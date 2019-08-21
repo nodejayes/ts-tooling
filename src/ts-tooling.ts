@@ -1,29 +1,9 @@
 import {Double} from './primitive/double';
 import {Integer} from './primitive/integer';
 import {Chars} from "./primitive/chars";
-import {DateTime} from './complex/datetime';
-
-// Primitive Data Types
-export {Integer} from './primitive/integer';
-export {Double} from './primitive/double';
-export {Chars} from './primitive/chars';
-
-// Complex Data Types
-export {TimeSpan} from './complex/timeSpan';
-export {DateTime} from './complex/datetime';
-
-// Collections
-export {Dictionary} from './collections/dictionary';
-export {List} from './collections/list';
-export {ListSortOrder} from './collections/list-sort-order.enum';
-
-// Patterns
-export {IDisposable} from './pattern/dispose/disposable';
-export {using} from './pattern/dispose/using';
-export {EventHandler} from './pattern/events/eventhandler';
+import {DateTime} from './complex/date-time';
 
 // Basic Extensions
-
 declare global {
     interface Number {
         ToDouble(): Double;
@@ -93,3 +73,15 @@ String.prototype.ToDouble = function (this: string): Double {
 Date.prototype.ToDateTime = function (this: Date): DateTime {
     return DateTime.FromJavascriptDate(this);
 };
+
+export {EventHandler} from './pattern/events/event-handler';
+export {using} from './pattern/dispose/using';
+export {IDisposable} from './pattern/dispose/disposable';
+export {Dictionary} from './collections/dictionary';
+export {List} from './collections/list';
+export {ListSortOrder} from './collections/list-sort-order.enum';
+export {Double} from './primitive/double';
+export {Integer} from './primitive/integer';
+export {Chars} from './primitive/chars';
+export {DateTime} from './complex/date-time';
+export {TimeSpan} from './complex/time-span';

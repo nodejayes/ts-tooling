@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {Double, Integer} from "../../src/index";
+import {Double, Integer} from "../../src/ts-tooling";
 
 describe('Double Tests', () => {
     it('can create empty Double', () => {

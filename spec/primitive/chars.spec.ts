@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {Chars, Integer} from "../../src/index";
+import {Chars, Integer} from "../../src/ts-tooling";
 
 describe('Chars Tests', () => {
     it('can create empty Chars', () => {

@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {Integer} from "../../src/index";
+import {Integer} from "../../src/ts-tooling";
 
 describe('Integer Tests', () => {
     it('can create empty Integer', () => {

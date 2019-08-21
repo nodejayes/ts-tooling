@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import {Duration as LuxonDuration} from 'luxon';
-import {TimeSpan, Chars, Integer} from "../../src/index";
+import {TimeSpan, Chars, Integer} from "../../src/ts-tooling";
 
 describe('TimeSpan Tests', () => {
     it('can create empty TimeSpan', () => {

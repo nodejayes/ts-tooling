@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {List, Integer, Chars, ListSortOrder} from "../../src/index";
+import {List, Integer, Chars, ListSortOrder} from "../../src/ts-tooling";
 
 interface TestAddress {
     PLZ: string;

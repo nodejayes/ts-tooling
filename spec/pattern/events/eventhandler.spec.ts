@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {EventHandler} from "../../../src/pattern/events/eventhandler";
+import {EventHandler} from "../../../src/ts-tooling";
 
 describe('EventHandler Tests', () => {
     it('can register on class', (done) => {

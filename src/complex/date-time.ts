@@ -1,6 +1,6 @@
 import {DateTime as LuxonDateTime} from 'luxon';
 import {cloneDeep} from 'lodash';
-import {TimeSpan} from "./timeSpan";
+import {TimeSpan} from "./time-span";
 import {Integer} from "../primitive/integer";
 import {Chars} from '../primitive/chars';
 
