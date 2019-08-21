@@ -450,4 +450,44 @@ describe('List Tests', () => {
             assert.equal(list.MeanBy(i => i.value).Value, 2);
         });
     });
+
+    describe('List Compressing Tests', () => {
+        it('can compress', () => {
+            assert.isAbove(new List(complexValues).Serialize().Length.Value, 1);
+        });
+        it('can decompress', () => {
+            const serialized = new List(complexValues).Serialize();
+            assert.equal(new List(complexValues).Deserialize(serialized).ElementAt((0).ToInteger()).Name, 'Jonas Schreiner');
+        });
+        it('is smaller', () => {
+            const lzLength = new List(complexValues).Serialize().Length.Value;
+            const rawLength = JSON.stringify(new List(complexValues).ToArray()).length;
+            assert.isBelow(lzLength, rawLength);
+            console.info('compression rate is ', 100 - (lzLength * 100 / rawLength), '%');
+        });
+        it('test big data', () => {
+            const tmp = new List<TestUser>();
+            for (let i = 0; i < 10000; i++) {
+                tmp.Add({
+                    Name: 'Jonas Schreiner',
+                    Age: 23,
+                    Birthday: new Date(1965, 4, 12, 0, 0, 0),
+                    Address: {
+                        Street: 'Gotthardstrasse 69',
+                        PLZ: '99094',
+                        Town: 'Erfurt'
+                    }
+                });
+            }
+
+            let start = Date.now();
+            const lzLength = tmp.Serialize().Length.Value;
+            console.info(`lz-string compression: ${(Date.now()-start)} ms`);
+            start = Date.now();
+            const rawLength = JSON.stringify(tmp.ToArray()).length;
+            console.info(`stringify: ${(Date.now()-start)} ms`);
+            assert.isBelow(lzLength, rawLength);
+            console.info('compression rate is ', 100 - (lzLength * 100 / rawLength), '% ', lzLength, ' byte from ', rawLength, ' byte');
+        });
+    });
 });

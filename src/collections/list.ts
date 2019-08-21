@@ -1,3 +1,4 @@
+import * as LZString from 'lz-string';
 import {
     cloneDeep,
     filter,
@@ -456,5 +457,13 @@ export class List<T> {
      */
     SumBy(filterMethod: SumMethod<T>): Double {
         return new Double(sumBy(this._data, filterMethod));
+    }
+
+    Serialize(): Chars {
+        return new Chars(LZString.compressToBase64(JSON.stringify(this.ToArray())));
+    }
+
+    Deserialize(compressed: Chars): List<T> {
+        return new List<T>(JSON.parse(LZString.decompressFromBase64(compressed.Value)));
     }
 }
