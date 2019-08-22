@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {Chars, Integer} from "../../src/ts-tooling";
+import {Chars, Dictionary, Integer} from "../../src/ts-tooling";
 
 describe('Chars Tests', () => {
     it('can create empty Chars', () => {
@@ -186,5 +186,15 @@ describe('Chars Tests', () => {
         assert.equal('Hello'.ToChars().Value, 'Hello');
         assert.equal('1'.ToInteger().Value, 1);
         assert.equal('1.5'.ToDouble().Value, 1.5);
+    });
+
+    describe('Chars Compressing Tests', () => {
+        it('can compress', () => {
+            assert.isAbove(new Chars('Hello World!').Compress().Length.Value, 1);
+        });
+        it('can decompress', () => {
+            const serialized = new Chars('Hello World!').Compress();
+            assert.equal(new Chars('Hello World!').Decompress(serialized).Value, 'Hello World!');
+        });
     });
 });

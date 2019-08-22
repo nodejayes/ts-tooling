@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {Dictionary, Integer, Chars} from "../../src/ts-tooling";
+import {Dictionary, Integer, Chars, List} from "../../src/ts-tooling";
 
 const DEMO_DATA = {'a': 1, 'b': 2, 'c': 3};
 const EMPTY = new Dictionary();
@@ -53,5 +53,15 @@ describe('Dictionary Tests', () => {
     it('can get a Value out of the Dictionary', () => {
         assert.equal(FILLED.TryGetValue(new Chars('b')), 2);
         assert.isNull(FILLED.TryGetValue(new Chars('z')));
+    });
+
+    describe('Dictionary Compressing Tests', () => {
+        it('can compress', () => {
+            assert.isAbove(new Dictionary({Hello:'World'}).Compress().Length.Value, 1);
+        });
+        it('can decompress', () => {
+            const serialized = new Dictionary({Hello:'World'}).Compress();
+            assert.equal(new Dictionary().Decompress(serialized).TryGetValue('Hello'.ToChars()), 'World');
+        });
     });
 });

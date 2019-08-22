@@ -453,14 +453,14 @@ describe('List Tests', () => {
 
     describe('List Compressing Tests', () => {
         it('can compress', () => {
-            assert.isAbove(new List(complexValues).Serialize().Length.Value, 1);
+            assert.isAbove(new List(complexValues).Compress().Length.Value, 1);
         });
         it('can decompress', () => {
-            const serialized = new List(complexValues).Serialize();
-            assert.equal(new List(complexValues).Deserialize(serialized).ElementAt((0).ToInteger()).Name, 'Jonas Schreiner');
+            const serialized = new List(complexValues).Compress();
+            assert.equal(new List(complexValues).Decompress(serialized).ElementAt((0).ToInteger()).Name, 'Jonas Schreiner');
         });
         it('is smaller', () => {
-            const lzLength = new List(complexValues).Serialize().Length.Value;
+            const lzLength = new List(complexValues).Compress().Length.Value;
             const rawLength = JSON.stringify(new List(complexValues).ToArray()).length;
             assert.isBelow(lzLength, rawLength);
             console.info('compression rate is ', 100 - (lzLength * 100 / rawLength), '%');
@@ -481,7 +481,7 @@ describe('List Tests', () => {
             }
 
             let start = Date.now();
-            const lzLength = tmp.Serialize().Length.Value;
+            const lzLength = tmp.Compress().Length.Value;
             console.info(`lz-string compression: ${(Date.now()-start)} ms`);
             start = Date.now();
             const rawLength = JSON.stringify(tmp.ToArray()).length;

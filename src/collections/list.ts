@@ -459,11 +459,20 @@ export class List<T> {
         return new Double(sumBy(this._data, filterMethod));
     }
 
-    Serialize(): Chars {
+    /**
+     * compress the List into a lz base64 string
+     * @constructor
+     */
+    Compress(): Chars {
         return new Chars(LZString.compressToBase64(JSON.stringify(this.ToArray())));
     }
 
-    Deserialize(compressed: Chars): List<T> {
+    /**
+     * decompress a lz base64 string into a List
+     * @param compressed
+     * @constructor
+     */
+    Decompress(compressed: Chars): List<T> {
         return new List<T>(JSON.parse(LZString.decompressFromBase64(compressed.Value)));
     }
 }

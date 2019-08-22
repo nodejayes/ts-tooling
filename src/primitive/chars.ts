@@ -34,6 +34,7 @@ import {
 } from 'lodash';
 import {Integer} from "./integer";
 import {List} from "../collections/list";
+import * as LZString from 'lz-string';
 
 /**
  * represent a String DataType
@@ -399,5 +400,22 @@ export class Chars {
      */
     LastIndexOf(value: Chars): Integer {
         return new Integer(lastIndexOf(this._str, value.Value));
+    }
+
+    /**
+     * compress the Chars into a lz base64 string
+     * @constructor
+     */
+    Compress(): Chars {
+        return new Chars(LZString.compressToBase64(JSON.stringify(this._str)));
+    }
+
+    /**
+     * decompress a lz base64 string into a Chars
+     * @param compressed
+     * @constructor
+     */
+    Decompress(compressed: Chars): Chars {
+        return new Chars(JSON.parse(LZString.decompressFromBase64(compressed.Value)));
     }
 }
