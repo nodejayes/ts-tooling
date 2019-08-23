@@ -1,3 +1,7 @@
+### 1.0.6
+
+* add createWithFactory Function same as create but with a Factory Function
+
 ### 1.0.5
 
 * add create Function to create values null safe

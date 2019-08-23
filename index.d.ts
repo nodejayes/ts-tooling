@@ -1370,6 +1370,13 @@ declare module 'pattern/construct' {
 	 * @param defaultValue
 	 */
 	export function create<T>(initialValue: T, defaultValue?: T): T;
+	/**
+	 * create a Value with a Factory Method null safe with optional default value
+	 * @param factoryMethod the Method that creates the Value
+	 * @param args the Factory Function Arguments
+	 * @param defaultValue
+	 */
+	export function createWithFactory<T>(factoryMethod: Function, args: any[], defaultValue?: T): T;
 
 }
 declare module 'ts-tooling' {
@@ -1401,6 +1408,6 @@ declare module 'ts-tooling' {
 	export { Chars } from 'primitive/chars';
 	export { DateTime } from 'complex/date-time';
 	export { TimeSpan } from 'complex/time-span';
-	export { create } from 'pattern/construct';
+	export { create, createWithFactory } from 'pattern/construct';
 
 }

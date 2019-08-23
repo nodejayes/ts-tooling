@@ -85,4 +85,4 @@ export {Integer} from './primitive/integer';
 export {Chars} from './primitive/chars';
 export {DateTime} from './complex/date-time';
 export {TimeSpan} from './complex/time-span';
-export {create} from './pattern/construct';
+export {create, createWithFactory} from './pattern/construct';
