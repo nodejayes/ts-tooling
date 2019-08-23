@@ -484,21 +484,4 @@ export class List<T> {
     SumBy(filterMethod: SumMethod<T>): Double {
         return new Double(sumBy(this._data, filterMethod));
     }
-
-    /**
-     * compress the List into a lz base64 string
-     * @constructor
-     */
-    Compress(): Chars {
-        return new Chars(LZString.compressToBase64(JSON.stringify(this.ToArray())));
-    }
-
-    /**
-     * decompress a lz base64 string into a List
-     * @param compressed
-     * @constructor
-     */
-    Decompress(compressed: Chars): List<T> {
-        return new List<T>(JSON.parse(LZString.decompressFromBase64(compressed.Value)));
-    }
 }

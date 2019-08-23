@@ -108,21 +108,4 @@ export class Dictionary<T> {
     TryGetValue(key: Chars): T {
         return this._data[key.Value] || null;
     }
-
-    /**
-     * compress the Dictionary into a lz base64 string
-     * @constructor
-     */
-    Compress(): Chars {
-        return new Chars(LZString.compressToBase64(JSON.stringify(this._data)));
-    }
-
-    /**
-     * decompress a lz base64 string into a Dictionary
-     * @param compressed
-     * @constructor
-     */
-    Decompress(compressed: Chars): Dictionary<T> {
-        return new Dictionary<T>(JSON.parse(LZString.decompressFromBase64(compressed.Value)));
-    }
 }

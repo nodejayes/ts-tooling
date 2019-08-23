@@ -54,14 +54,4 @@ describe('Dictionary Tests', () => {
         assert.equal(FILLED.TryGetValue(new Chars('b')), 2);
         assert.isNull(FILLED.TryGetValue(new Chars('z')));
     });
-
-    describe('Dictionary Compressing Tests', () => {
-        it('can compress', () => {
-            assert.isAbove(new Dictionary({Hello:'World'}).Compress().Length.Value, 1);
-        });
-        it('can decompress', () => {
-            const serialized = new Dictionary({Hello:'World'}).Compress();
-            assert.equal(new Dictionary().Decompress(serialized).TryGetValue('Hello'.ToChars()), 'World');
-        });
-    });
 });

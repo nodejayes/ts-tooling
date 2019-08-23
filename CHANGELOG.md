@@ -1,3 +1,7 @@
+### 1.0.7
+
+* move LZCompression into a static Class
+
 ### 1.0.6
 
 * add createWithFactory Function same as create but with a Factory Function
