@@ -105,7 +105,7 @@ describe('List Tests', () => {
 
         it('can convert to Array', () => {
             const list = new List<number>();
-            list.AddRange([1, 2]);
+            list.AddRange(new List([1, 2]));
             assert.equal(list.ToArray()[0], 1);
             assert.equal(list.ToArray()[1], 2);
         });
@@ -130,7 +130,7 @@ describe('List Tests', () => {
 
         it('can Add multiple Elements into List', () => {
             const list = new List<number>();
-            list.AddRange([1, 2, 3]);
+            list.AddRange(new List([1, 2, 3]));
             assert.equal(list.Count.Value, 3, 'nothing added to List');
             assert.equal(list.ToArray()[0], 1, 'wrong item in List');
             assert.equal(list.ToArray()[1], 2, 'wrong item in List');
@@ -139,7 +139,7 @@ describe('List Tests', () => {
 
         it('can clear List', () => {
             const list = new List<number>();
-            list.AddRange([1, 2, 3]);
+            list.AddRange(new List([1, 2, 3]));
             list.Clear();
             assert.equal(list.Count.Value, 0, 'List is not empty');
         });
@@ -448,6 +448,28 @@ describe('List Tests', () => {
                 {name: 'test3', value: 3},
             ]);
             assert.equal(list.MeanBy(i => i.value).Value, 2);
+        });
+
+        it('can unique add to list', () => {
+            const list = new List([1,2,3]);
+            assert.isTrue(list.AddIfNotExists(4));
+            assert.equal(list.Count.Value, 4);
+            assert.equal(list.Find(i => i === 4), 4);
+            assert.isFalse(list.AddIfNotExists(3));
+        });
+
+        it('can unique add range values', () => {
+            const list = new List([1,2,3]);
+            let added = list.AddRangeIfNotExists(new List([4,5,6]));
+            assert.isTrue(added.ElementAt((0).ToInteger()));
+            assert.isTrue(added.ElementAt((1).ToInteger()));
+            assert.isTrue(added.ElementAt((2).ToInteger()));
+            assert.equal(list.Count.Value, 6);
+
+            added = list.AddRangeIfNotExists(new List([1,5,7]));
+            assert.isFalse(added.ElementAt((0).ToInteger()));
+            assert.isFalse(added.ElementAt((1).ToInteger()));
+            assert.isTrue(added.ElementAt((2).ToInteger()));
         });
     });
 

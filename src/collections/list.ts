@@ -59,7 +59,7 @@ function checkIfNumeric<T>(item: T): boolean {
  * Represent a List of Items with specific Type
  */
 export class List<T> {
-    private _data: T[];
+    private _data: T[] = [];
 
     /**
      * the number of items in the list
@@ -140,14 +140,40 @@ export class List<T> {
     }
 
     /**
-     * add multiple Items into the List
+     * add a Item to the List if not exists in the List
+     * @param element
+     * @constructor
+     */
+    AddIfNotExists(element: T): boolean {
+        if (!this.Contains(element)) {
+            this.Add(element);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * same as Add with multiple Items
      * @param elements
      * @constructor
      */
-    AddRange(elements: T[]): void {
-        for (const el of elements) {
+    AddRange(elements: List<T>): void {
+        for (const el of elements.ToArray()) {
             this.Add(el);
         }
+    }
+
+    /**
+     * same as AddIfNotExists with multiple items
+     * @param elements
+     * @constructor
+     */
+    AddRangeIfNotExists(elements: List<T>): List<boolean> {
+        const state = new List<boolean>();
+        for (const el of elements.ToArray()) {
+            state.Add(this.AddIfNotExists(el));
+        }
+        return state;
     }
 
     /**
@@ -373,8 +399,8 @@ export class List<T> {
      * @param index
      * @constructor
      */
-    ElementAt(index: Integer) {
-        return this._data[index.Value] || null;
+    ElementAt(index: Integer): T {
+        return this._data[index.Value];
     }
 
     /**

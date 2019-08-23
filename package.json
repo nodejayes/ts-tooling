@@ -1,12 +1,12 @@
 {
   "name": "ts-tooling",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/index.js",
   "types": "index.d.ts",
   "scripts": {
     "build": "tsc",
     "type-generation": "dts-generator --project . --out index.d.ts",
-    "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out documentation src/index.ts"
+    "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out documentation src/ts-tooling.ts"
   },
   "dependencies": {
     "lodash": "^4.17.15",

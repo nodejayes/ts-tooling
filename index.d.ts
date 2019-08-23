@@ -347,6 +347,17 @@ declare module 'collections/dictionary' {
 	     * @constructor
 	     */
 	    TryGetValue(key: Chars): T;
+	    /**
+	     * compress the Dictionary into a lz base64 string
+	     * @constructor
+	     */
+	    Compress(): Chars;
+	    /**
+	     * decompress a lz base64 string into a Dictionary
+	     * @param compressed
+	     * @constructor
+	     */
+	    Decompress(compressed: Chars): Dictionary<T>;
 	}
 
 }
@@ -413,11 +424,23 @@ declare module 'collections/list' {
 	     */
 	    Add(element: T): void;
 	    /**
-	     * add multiple Items into the List
+	     * add a Item to the List if not exists in the List
+	     * @param element
+	     * @constructor
+	     */
+	    AddIfNotExists(element: T): boolean;
+	    /**
+	     * same as Add with multiple Items
 	     * @param elements
 	     * @constructor
 	     */
-	    AddRange(elements: T[]): void;
+	    AddRange(elements: List<T>): void;
+	    /**
+	     * same as AddIfNotExists with multiple items
+	     * @param elements
+	     * @constructor
+	     */
+	    AddRangeIfNotExists(elements: List<T>): List<boolean>;
 	    /**
 	     * remove all Items from the List
 	     * @constructor
@@ -604,6 +627,17 @@ declare module 'collections/list' {
 	     * @constructor
 	     */
 	    SumBy(filterMethod: SumMethod<T>): Double;
+	    /**
+	     * compress the List into a lz base64 string
+	     * @constructor
+	     */
+	    Compress(): Chars;
+	    /**
+	     * decompress a lz base64 string into a List
+	     * @param compressed
+	     * @constructor
+	     */
+	    Decompress(compressed: Chars): List<T>;
 	}
 	export {};
 
@@ -849,6 +883,17 @@ declare module 'primitive/chars' {
 	     * @constructor
 	     */
 	    LastIndexOf(value: Chars): Integer;
+	    /**
+	     * compress the Chars into a lz base64 string
+	     * @constructor
+	     */
+	    Compress(): Chars;
+	    /**
+	     * decompress a lz base64 string into a Chars
+	     * @param compressed
+	     * @constructor
+	     */
+	    Decompress(compressed: Chars): Chars;
 	}
 
 }
