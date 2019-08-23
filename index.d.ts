@@ -1363,6 +1363,15 @@ declare module 'pattern/dispose/using' {
 	export function using<T extends IDisposable>(item: new () => T, cb: (d: T) => void): void;
 
 }
+declare module 'pattern/construct' {
+	/**
+	 * create a Variable and when not defined returns default or null
+	 * @param initialValue
+	 * @param defaultValue
+	 */
+	export function create<T>(initialValue: T, defaultValue?: T): T;
+
+}
 declare module 'ts-tooling' {
 	import { Double } from 'primitive/double';
 	import { Integer } from 'primitive/integer';
@@ -1392,5 +1401,6 @@ declare module 'ts-tooling' {
 	export { Chars } from 'primitive/chars';
 	export { DateTime } from 'complex/date-time';
 	export { TimeSpan } from 'complex/time-span';
+	export { create } from 'pattern/construct';
 
 }

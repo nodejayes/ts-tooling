@@ -1,3 +1,7 @@
+### 1.0.5
+
+* add create Function to create values null safe
+
 ### 1.0.4
 
 * add Items to List when not exists
