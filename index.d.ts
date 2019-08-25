@@ -347,17 +347,6 @@ declare module 'collections/dictionary' {
 	     * @constructor
 	     */
 	    TryGetValue(key: Chars): T;
-	    /**
-	     * compress the Dictionary into a lz base64 string
-	     * @constructor
-	     */
-	    Compress(): Chars;
-	    /**
-	     * decompress a lz base64 string into a Dictionary
-	     * @param compressed
-	     * @constructor
-	     */
-	    Decompress(compressed: Chars): Dictionary<T>;
 	}
 
 }
@@ -627,17 +616,6 @@ declare module 'collections/list' {
 	     * @constructor
 	     */
 	    SumBy(filterMethod: SumMethod<T>): Double;
-	    /**
-	     * compress the List into a lz base64 string
-	     * @constructor
-	     */
-	    Compress(): Chars;
-	    /**
-	     * decompress a lz base64 string into a List
-	     * @param compressed
-	     * @constructor
-	     */
-	    Decompress(compressed: Chars): List<T>;
 	}
 	export {};
 
@@ -883,17 +861,6 @@ declare module 'primitive/chars' {
 	     * @constructor
 	     */
 	    LastIndexOf(value: Chars): Integer;
-	    /**
-	     * compress the Chars into a lz base64 string
-	     * @constructor
-	     */
-	    Compress(): Chars;
-	    /**
-	     * decompress a lz base64 string into a Chars
-	     * @param compressed
-	     * @constructor
-	     */
-	    Decompress(compressed: Chars): Chars;
 	}
 
 }
@@ -1379,6 +1346,28 @@ declare module 'pattern/construct' {
 	export function createWithFactory<T>(factoryMethod: Function, args: any[], defaultValue?: T): T;
 
 }
+declare module 'compression/lz' {
+	import { Chars } from 'primitive/chars';
+	/**
+	 * implementation of lz compression
+	 * with lz-string
+	 */
+	export class LZCompression {
+	    /**
+	     * Compress any Javascript Value to a LZ String
+	     * @param data
+	     * @constructor
+	     */
+	    static Compress(data: any): Chars;
+	    /**
+	     * Decompress a LZ String to any Javascript Value
+	     * @param compressed
+	     * @constructor
+	     */
+	    static Decompress(compressed: Chars): any;
+	}
+
+}
 declare module 'ts-tooling' {
 	import { Double } from 'primitive/double';
 	import { Integer } from 'primitive/integer';
@@ -1409,5 +1398,6 @@ declare module 'ts-tooling' {
 	export { DateTime } from 'complex/date-time';
 	export { TimeSpan } from 'complex/time-span';
 	export { create, createWithFactory } from 'pattern/construct';
+	export { LZCompression } from 'compression/lz';
 
 }
