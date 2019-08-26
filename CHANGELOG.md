@@ -1,3 +1,11 @@
+### 1.0.9
+
+* change main entry
+
+### 1.0.8
+
+* clean rebuild dist folder
+
 ### 1.0.7
 
 * move LZCompression into a static Class
