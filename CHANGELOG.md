@@ -1,3 +1,8 @@
+### 1.0.10
+
+* export List Function Types
+* add Find and FindAll to Dictionary
+
 ### 1.0.9
 
 * change main entry

@@ -1,4 +1,3 @@
-import * as LZString from 'lz-string';
 import {
     cloneDeep,
     filter,
@@ -34,19 +33,19 @@ import {Double} from "../primitive/double";
  * a callback that get the Item and returns a Boolean value
  * true means the Value is in the Filter
  */
-type FilterMethod<T> = (d: T) => boolean;
+export type FilterMethod<T> = (d: T) => boolean;
 /**
  * a callback that gets the Item and returns a Number that was aggregate by Sum
  */
-type SumMethod<T> = (d: T) => number;
+export type SumMethod<T> = (d: T) => number;
 /**
  * a callback that gets the Item and return anything
  */
-type TransformMethod<T> = (d: T) => any;
+export type TransformMethod<T> = (d: T) => any;
 /**
  * a callback that gets a Item and returns another specific Item
  */
-type ConvertMethod<T, K> = (d: T) => K;
+export type ConvertMethod<T, K> = (d: T) => K;
 
 /**
  * @ignore

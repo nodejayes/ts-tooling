@@ -1,7 +1,6 @@
 import {find, hasIn, keys, map, unset, values} from 'lodash';
-import * as LZString from 'lz-string';
 import {Integer} from "../primitive/integer";
-import {List} from "./list";
+import {FilterMethod, List} from "./list";
 import {Chars} from '../primitive/chars';
 
 /**
@@ -107,5 +106,29 @@ export class Dictionary<T> {
      */
     TryGetValue(key: Chars): T {
         return this._data[key.Value] || null;
+    }
+
+    /**
+     * get a Value that match the Filter Condition
+     * @param filter
+     * @constructor
+     */
+    Find(filter: FilterMethod<T>): T {
+        return find(this._data, filter);
+    }
+
+    /**
+     * same as Find but get multiple Values
+     * @param filter
+     * @constructor
+     */
+    FindAll(filter: FilterMethod<T>): List<T> {
+        const r = new List<T>();
+        for (const key of keys(this._data)) {
+            if (filter(this._data[key])) {
+                r.Add(this._data[key]);
+            }
+        }
+        return r;
     }
 }

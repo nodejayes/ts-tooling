@@ -54,4 +54,24 @@ describe('Dictionary Tests', () => {
         assert.equal(FILLED.TryGetValue(new Chars('b')), 2);
         assert.isNull(FILLED.TryGetValue(new Chars('z')));
     });
+
+    it('can find a Value by Filter', () => {
+        const d = new Dictionary<Chars>({
+            Hello: 'World'.ToChars(),
+            This: 'is'.ToChars(),
+            A: 'Dictionary'.ToChars(),
+        });
+        assert.equal(d.Find(i => i.Equals('is'.ToChars())).Value, 'is');
+    });
+
+    it('can find multiple Values by a Filter', () => {
+        const d = new Dictionary<Chars>({
+            Hello: 'World'.ToChars(),
+            Hello2: 'World'.ToChars(),
+            Hello3: 'World'.ToChars(),
+            This: 'is'.ToChars(),
+            A: 'Dictionary'.ToChars(),
+        });
+        assert.equal(d.FindAll(i => i.Equals('World'.ToChars())).Count.Value, 3);
+    });
 });
