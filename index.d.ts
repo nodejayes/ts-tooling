@@ -275,7 +275,7 @@ declare module 'primitive/double' {
 }
 declare module 'collections/dictionary' {
 	import { Integer } from 'primitive/integer';
-	import { List } from 'collections/list';
+	import { FilterMethod, List } from 'collections/list';
 	import { Chars } from 'primitive/chars';
 	/**
 	 * representation of a string Dictionary
@@ -347,6 +347,18 @@ declare module 'collections/dictionary' {
 	     * @constructor
 	     */
 	    TryGetValue(key: Chars): T;
+	    /**
+	     * get a Value that match the Filter Condition
+	     * @param filter
+	     * @constructor
+	     */
+	    Find(filter: FilterMethod<T>): T;
+	    /**
+	     * same as Find but get multiple Values
+	     * @param filter
+	     * @constructor
+	     */
+	    FindAll(filter: FilterMethod<T>): List<T>;
 	}
 
 }
@@ -365,7 +377,24 @@ declare module 'collections/list' {
 	import { Integer } from 'primitive/integer';
 	import { Chars } from 'primitive/chars';
 	import { ListSortOrder } from 'collections/list-sort-order.enum';
-	import { Double } from 'primitive/double'; type FilterMethod<T> = (d: T) => boolean; type SumMethod<T> = (d: T) => number; type TransformMethod<T> = (d: T) => any; type ConvertMethod<T, K> = (d: T) => K;
+	import { Double } from 'primitive/double';
+	/**
+	 * a callback that get the Item and returns a Boolean value
+	 * true means the Value is in the Filter
+	 */
+	export type FilterMethod<T> = (d: T) => boolean;
+	/**
+	 * a callback that gets the Item and returns a Number that was aggregate by Sum
+	 */
+	export type SumMethod<T> = (d: T) => number;
+	/**
+	 * a callback that gets the Item and return anything
+	 */
+	export type TransformMethod<T> = (d: T) => any;
+	/**
+	 * a callback that gets a Item and returns another specific Item
+	 */
+	export type ConvertMethod<T, K> = (d: T) => K;
 	/**
 	 * Represent a List of Items with specific Type
 	 */
@@ -617,7 +646,6 @@ declare module 'collections/list' {
 	     */
 	    SumBy(filterMethod: SumMethod<T>): Double;
 	}
-	export {};
 
 }
 declare module 'primitive/chars' {
