@@ -1,3 +1,9 @@
+### 1.0.11
+
+* FirstOrDefault in List optional Filter Method (when not defined the First Element is returned)
+* add TextBetween Method to Chars returns the Text between a start or end search string
+* make Split null safe
+
 ### 1.0.10
 
 * export List Function Types

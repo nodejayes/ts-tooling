@@ -267,6 +267,9 @@ export class Chars {
      * @constructor
      */
     Split(pattern: Chars): List<Chars> {
+        if (!this._str) {
+            return new List<Chars>();
+        }
         return new List<Chars>(map(this._str.split(pattern.Value), i => new Chars(i)));
     }
 
@@ -400,5 +403,26 @@ export class Chars {
      */
     LastIndexOf(value: Chars): Integer {
         return new Integer(lastIndexOf(this._str, value.Value));
+    }
+
+    /**
+     * get Text between 2 searches
+     * @param begin
+     * @param end
+     * @constructor
+     */
+    TextBetween(begin: Chars, end: Chars): List<Chars> {
+        const tmp = new List<Chars>();
+        for (const split of this.Split(begin).ToArray()) {
+            if (!split._str) {
+                continue;
+            }
+            const between = split.Split(end).FirstOrDefault(() => true);
+            if (!between._str) {
+                continue;
+            }
+            tmp.Add(between);
+        }
+        return tmp;
     }
 }

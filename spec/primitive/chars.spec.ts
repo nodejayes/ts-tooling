@@ -187,4 +187,17 @@ describe('Chars Tests', () => {
         assert.equal('1'.ToInteger().Value, 1);
         assert.equal('1.5'.ToDouble().Value, 1.5);
     });
+
+    it('can get Text between', () => {
+        let t = new Chars('abcdefg').TextBetween('a'.ToChars(), 'b'.ToChars());
+        assert.equal(new Chars('abcdefg').TextBetween('a'.ToChars(), 'c'.ToChars()).Count.Value, 1);
+        assert.equal(new Chars('abcdefg').TextBetween('a'.ToChars(), 'c'.ToChars()).ElementAt((0).ToInteger()).Value, 'b');
+        assert.equal(new Chars('abcdefg').TextBetween('a'.ToChars(), 'b'.ToChars()).Count.Value, 0);
+        assert.equal(new Chars('abcdefgabcdefg').TextBetween('a'.ToChars(), 'c'.ToChars()).Count.Value, 2);
+        assert.equal(new Chars('abcdefgabcdefg').TextBetween('a'.ToChars(), 'c'.ToChars()).ElementAt((0).ToInteger()).Value, 'b');
+        assert.equal(new Chars('abcdefgabcdefg').TextBetween('a'.ToChars(), 'c'.ToChars()).ElementAt((1).ToInteger()).Value, 'b');
+        assert.equal(new Chars('abbcbbcdefgabcdefg').TextBetween('a'.ToChars(), 'c'.ToChars()).Count.Value, 2);
+        assert.equal(new Chars('abbcbbcdefgabcdefg').TextBetween('a'.ToChars(), 'c'.ToChars()).ElementAt((0).ToInteger()).Value, 'bb');
+        assert.equal(new Chars('abbcbbcdefgabcdefg').TextBetween('a'.ToChars(), 'c'.ToChars()).ElementAt((1).ToInteger()).Value, 'b');
+    });
 });

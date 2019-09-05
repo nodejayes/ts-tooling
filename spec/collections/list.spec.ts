@@ -275,6 +275,7 @@ describe('List Tests', () => {
             assert.equal(list.FirstOrDefault(i => i === 2), 2);
             assert.isNull(list.FirstOrDefault(i => i === 14));
             assert.equal(list.FirstOrDefault(i => i === 14, 12), 12);
+            assert.equal(list.FirstOrDefault(), 1);
         });
 
         it('can find the Last match Element or return Default', () => {

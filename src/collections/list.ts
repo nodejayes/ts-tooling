@@ -22,6 +22,8 @@ import {
     sum,
     sumBy,
     without,
+    isFunction,
+    first,
 } from 'lodash';
 import {Dictionary} from "./dictionary";
 import {Integer} from "../primitive/integer";
@@ -408,7 +410,10 @@ export class List<T> {
      * @param def
      * @constructor
      */
-    FirstOrDefault(filterMethod: FilterMethod<T>, def?: T): T {
+    FirstOrDefault(filterMethod?: FilterMethod<T>, def?: T): T {
+        if (!isFunction(filterMethod)) {
+            return first(this._data) || (def ? def : null);
+        }
         return find(this._data, filterMethod) || (def ? def : null);
     }
 
