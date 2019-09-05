@@ -598,7 +598,7 @@ declare module 'collections/list' {
 	     * @param def
 	     * @constructor
 	     */
-	    FirstOrDefault(filterMethod: FilterMethod<T>, def?: T): T;
+	    FirstOrDefault(filterMethod?: FilterMethod<T>, def?: T): T;
 	    /**
 	     * find the Last match Item or return a Default Value
 	     * @param filterMethod
@@ -889,6 +889,13 @@ declare module 'primitive/chars' {
 	     * @constructor
 	     */
 	    LastIndexOf(value: Chars): Integer;
+	    /**
+	     * get Text between 2 searches
+	     * @param begin
+	     * @param end
+	     * @constructor
+	     */
+	    TextBetween(begin: Chars, end: Chars): List<Chars>;
 	}
 
 }
