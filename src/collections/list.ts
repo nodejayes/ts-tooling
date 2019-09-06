@@ -24,6 +24,7 @@ import {
     without,
     isFunction,
     first,
+    last,
 } from 'lodash';
 import {Dictionary} from "./dictionary";
 import {Integer} from "../primitive/integer";
@@ -423,7 +424,10 @@ export class List<T> {
      * @param def
      * @constructor
      */
-    LastOrDefault(filterMethod: FilterMethod<T>, def?: T): T {
+    LastOrDefault(filterMethod?: FilterMethod<T>, def?: T): T {
+        if (!isFunction(filterMethod)) {
+            return last(this._data) || (def ? def : null);
+        }
         return findLast(this._data, filterMethod) || (def ? def : null);
     }
 

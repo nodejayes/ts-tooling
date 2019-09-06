@@ -283,6 +283,7 @@ describe('List Tests', () => {
             assert.equal(list.LastOrDefault(i => i === 2), 2);
             assert.isNull(list.LastOrDefault(i => i === 14));
             assert.equal(list.LastOrDefault(i => i === 14, 12), 12);
+            assert.equal(list.LastOrDefault(), 3);
         });
 
         it('can get Element at Index', () => {
