@@ -605,7 +605,7 @@ declare module 'collections/list' {
 	     * @param def
 	     * @constructor
 	     */
-	    LastOrDefault(filterMethod: FilterMethod<T>, def?: T): T;
+	    LastOrDefault(filterMethod?: FilterMethod<T>, def?: T): T;
 	    /**
 	     * group a List by a specific Key that was returned by transform Function
 	     * @param transformMethod
@@ -671,6 +671,12 @@ declare module 'primitive/chars' {
 	     * @param str
 	     */
 	    constructor(str?: string);
+	    /**
+	     * returns a Character at Position in this String
+	     * @param pos
+	     * @constructor
+	     */
+	    CharAt(pos: Integer): Chars;
 	    /**
 	     * convert to CamelCase String
 	     * @constructor
@@ -845,11 +851,17 @@ declare module 'primitive/chars' {
 	     */
 	    Clone(): Chars;
 	    /**
-	     * this CHars contains the given Chars?
+	     * this Chars contains the given Chars?
 	     * @param search
 	     * @constructor
 	     */
 	    Contains(search: Chars): boolean;
+	    /**
+	     * gets the Number of found Chars
+	     * @param search
+	     * @constructor
+	     */
+	    ContainsCount(search: Chars): Integer;
 	    /**
 	     * the given Chars are Equals this One?
 	     * @param value
@@ -1434,5 +1446,47 @@ declare module 'ts-tooling' {
 	export { TimeSpan } from 'complex/time-span';
 	export { create, createWithFactory } from 'pattern/construct';
 	export { LZCompression } from 'compression/lz';
+
+}
+declare module 'complex/guid' {
+	import { Chars } from 'primitive/chars';
+	/**
+	 * represent the Global Uniqe Identifier
+	 */
+	export class Guid {
+	    private _value;
+	    /**
+	     * get a empty Guid
+	     * @constructor
+	     */
+	    static readonly Empty: Guid;
+	    /**
+	     * validate a Guid
+	     * @param guid
+	     * @constructor
+	     */
+	    static Validate(guid: Chars): boolean;
+	    /**
+	     * is this Guid a Empty Guid
+	     * @constructor
+	     */
+	    readonly IsEmpty: boolean;
+	    /**
+	     * create a new Guid
+	     * @param guid
+	     */
+	    constructor(guid?: string | Chars);
+	    /**
+	     * converts the Guid to a String representation
+	     * @constructor
+	     */
+	    ToString(): Chars;
+	    /**
+	     * check if the Guid is Equal another Guid
+	     * @param guid
+	     * @constructor
+	     */
+	    Equals(guid: Guid | Chars): boolean;
+	}
 
 }

@@ -1,6 +1,6 @@
 {
   "name": "ts-tooling",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "main": "dist/ts-tooling.js",
   "types": "index.d.ts",
   "scripts": {
