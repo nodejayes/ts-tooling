@@ -67,6 +67,18 @@ export class Chars {
     }
 
     /**
+     * returns a Character at Position in this String
+     * @param pos
+     * @constructor
+     */
+    CharAt(pos: Integer): Chars {
+        if (this.Length.Subtract(new Integer(1)).IsBelow(pos)) {
+            throw new Error(`Chars has not enough Characters searching ${pos.Value} Chars Length are ${this.Length.Value}`);
+        }
+        return this._str[pos.Value].ToChars();
+    }
+
+    /**
      * convert to CamelCase String
      * @constructor
      */
@@ -164,7 +176,7 @@ export class Chars {
      * @constructor
      */
     ToLowerCase(): Chars {
-        return new Chars(lowerCase(this._str));
+        return new Chars(this._str.toLowerCase());
     }
 
     /**
@@ -172,7 +184,7 @@ export class Chars {
      * @constructor
      */
     ToUpperCase(): Chars {
-        return new Chars(upperCase(this._str));
+        return new Chars(this._str.toUpperCase());
     }
 
     /**
@@ -340,12 +352,29 @@ export class Chars {
     }
 
     /**
-     * this CHars contains the given Chars?
+     * this Chars contains the given Chars?
      * @param search
      * @constructor
      */
     Contains(search: Chars): boolean {
         return includes(this._str, search.Value);
+    }
+
+    /**
+     * gets the Number of found Chars
+     * @param search
+     * @constructor
+     */
+    ContainsCount(search: Chars): Integer {
+        let count = -1;
+        const tmp = this.Split(search);
+        for (const target of tmp.ToArray()) {
+            if (!target) {
+                continue;
+            }
+            count++;
+        }
+        return new Integer(count);
     }
 
     /**

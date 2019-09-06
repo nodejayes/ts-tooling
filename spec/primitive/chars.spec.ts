@@ -200,4 +200,20 @@ describe('Chars Tests', () => {
         assert.equal(new Chars('abbcbbcdefgabcdefg').TextBetween('a'.ToChars(), 'c'.ToChars()).ElementAt((0).ToInteger()).Value, 'bb');
         assert.equal(new Chars('abbcbbcdefgabcdefg').TextBetween('a'.ToChars(), 'c'.ToChars()).ElementAt((1).ToInteger()).Value, 'b');
     });
+
+    it('can get a char at position', () => {
+        assert.equal('abc'.ToChars().CharAt(new Integer(0)).Value, 'a');
+        assert.equal('abc'.ToChars().CharAt(new Integer(1)).Value, 'b');
+        assert.equal('abc'.ToChars().CharAt(new Integer(2)).Value, 'c');
+        assert.throws(() => {
+            'abc'.ToChars().CharAt(new Integer(3));
+        }, 'Chars has not enough Characters searching 3 Chars Length are 3');
+    });
+
+    it('can count containing strings', () => {
+        assert.equal('zzabcabcabczz'.ToChars().ContainsCount('a'.ToChars()).Value, 3);
+        assert.equal('zzabcabcabczz'.ToChars().ContainsCount('abc'.ToChars()).Value, 3);
+        assert.equal('zzabcabcabczz'.ToChars().ContainsCount('zz'.ToChars()).Value, 2);
+        assert.equal('zzabcabcabczz'.ToChars().ContainsCount('u'.ToChars()).Value, 0);
+    });
 });

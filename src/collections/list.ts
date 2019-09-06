@@ -192,7 +192,17 @@ export class List<T> {
      * @constructor
      */
     Contains(element: T): boolean {
-        return includes(this._data, element);
+        for (const el of this._data) {
+            if (isFunction(el['Equals'])) {
+                if (el['Equals'](element)) {
+                    return true;
+                }
+            }
+            if (el === element) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

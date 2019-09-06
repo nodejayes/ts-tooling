@@ -1,3 +1,12 @@
+### 1.0.12
+
+* change LastOrDefault like FirstOrDefault
+* add Guid Data Type
+* add CharAt Method to Chars
+* ass ContainsCount Method to Chars
+* fix List Contains
+* fix LowerCase and UpperCase (use javascript native one)
+
 ### 1.0.11
 
 * FirstOrDefault in List optional Filter Method (when not defined the First Element is returned)
