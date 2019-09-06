@@ -189,7 +189,13 @@ describe('Chars Tests', () => {
     });
 
     it('can get Text between', () => {
-        let t = new Chars('abcdefg').TextBetween('a'.ToChars(), 'b'.ToChars());
+        assert.equal('beforemodule@NgModule({betweenmodule})aftermodule'.ToChars()
+            .TextBetween('@NgModule({'.ToChars(), '})'.ToChars())
+            .Count.Value, 1);
+        assert.equal('beforemodule@NgModule({betweenmodule})aftermodule'.ToChars()
+            .TextBetween('@NgModule({'.ToChars(), '})'.ToChars())
+            .ElementAt(new Integer(0))
+            .Value, 'betweenmodule');
         assert.equal(new Chars('abcdefg').TextBetween('a'.ToChars(), 'c'.ToChars()).Count.Value, 1);
         assert.equal(new Chars('abcdefg').TextBetween('a'.ToChars(), 'c'.ToChars()).ElementAt((0).ToInteger()).Value, 'b');
         assert.equal(new Chars('abcdefg').TextBetween('a'.ToChars(), 'b'.ToChars()).Count.Value, 0);

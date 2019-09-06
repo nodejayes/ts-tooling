@@ -1,3 +1,7 @@
+### 1.0.13
+
+* fix TextBetween when search not begins in string
+
 ### 1.0.12
 
 * change LastOrDefault like FirstOrDefault

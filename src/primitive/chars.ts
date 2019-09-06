@@ -444,6 +444,7 @@ export class Chars {
         const tmp = new List<Chars>();
         for (const split of this.Split(begin).ToArray()) {
             if (!split._str) {
+                tmp.Add(new Chars());
                 continue;
             }
             const between = split.Split(end).FirstOrDefault(() => true);
@@ -452,6 +453,7 @@ export class Chars {
             }
             tmp.Add(between);
         }
+        tmp.RemoveAt(new Integer(0));
         return tmp;
     }
 }
