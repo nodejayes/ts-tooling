@@ -859,9 +859,10 @@ declare module 'primitive/chars' {
 	    /**
 	     * gets the Number of found Chars
 	     * @param search
+	     * @param allowOverlapping
 	     * @constructor
 	     */
-	    ContainsCount(search: Chars): Integer;
+	    ContainsCount(search: Chars, allowOverlapping?: boolean): Integer;
 	    /**
 	     * the given Chars are Equals this One?
 	     * @param value

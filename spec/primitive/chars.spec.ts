@@ -1,9 +1,9 @@
 import {assert} from 'chai';
-import {Chars, Dictionary, Integer} from "../../src/ts-tooling";
+import {Chars, Integer} from "../../src/ts-tooling";
 
 describe('Chars Tests', () => {
     it('can create empty Chars', () => {
-        assert.isNull(new Chars().Value);
+        assert.equal(new Chars().Value, '');
     });
 
     it('can create predefined Chars', () => {
@@ -96,14 +96,14 @@ describe('Chars Tests', () => {
     it('can replace in String', () => {
         assert.equal(new Chars('abcddde').Replace(new Chars('d'), new Chars('z')).Value, 'abczdde');
         assert.equal(new Chars('abcddde').ReplaceAll(new Chars('d'), new Chars('z')).Value, 'abczzze');
+        assert.equal(new Chars('abcddde').ReplaceAll(new Chars('d'), new Chars('')).Value, 'abce');
     });
 
     it('can split Chars to List', () => {
-        assert.equal(new Chars('abbbbabbbac').Split(new Chars('a')).Count.Value, 4);
-        assert.equal(new Chars('abbbbabbbac').Split(new Chars('a')).ElementAt(new Integer(0)).Value, null);
-        assert.equal(new Chars('abbbbabbbac').Split(new Chars('a')).ElementAt(new Integer(1)).Value, 'bbbb');
-        assert.equal(new Chars('abbbbabbbac').Split(new Chars('a')).ElementAt(new Integer(2)).Value, 'bbb');
-        assert.equal(new Chars('abbbbabbbac').Split(new Chars('a')).ElementAt(new Integer(3)).Value, 'c');
+        assert.equal(new Chars('abbbbabbbac').Split(new Chars('a')).Count.Value, 3);
+        assert.equal(new Chars('abbbbabbbac').Split(new Chars('a')).ElementAt(new Integer(0)).Value, 'bbbb');
+        assert.equal(new Chars('abbbbabbbac').Split(new Chars('a')).ElementAt(new Integer(1)).Value, 'bbb');
+        assert.equal(new Chars('abbbbabbbac').Split(new Chars('a')).ElementAt(new Integer(2)).Value, 'c');
     });
 
     it('can make Chars to lower String', () => {
@@ -221,5 +221,7 @@ describe('Chars Tests', () => {
         assert.equal('zzabcabcabczz'.ToChars().ContainsCount('abc'.ToChars()).Value, 3);
         assert.equal('zzabcabcabczz'.ToChars().ContainsCount('zz'.ToChars()).Value, 2);
         assert.equal('zzabcabcabczz'.ToChars().ContainsCount('u'.ToChars()).Value, 0);
+        assert.equal('zzabcabcabczz'.ToChars().ContainsCount('cabc'.ToChars()).Value, 1);
+        assert.equal('zzabcabcabczz'.ToChars().ContainsCount('cabc'.ToChars(), true).Value, 2);
     });
 });

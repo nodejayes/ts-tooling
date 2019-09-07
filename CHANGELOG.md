@@ -1,3 +1,10 @@
+### 1.0.14
+
+* fix ReplaceAll with empty string generates null values
+* null or undefined Chars is a empty string
+* change ContainsCount
+* Split dont return null or empty values
+
 ### 1.0.13
 
 * fix TextBetween when search not begins in string

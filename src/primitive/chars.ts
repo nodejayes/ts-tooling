@@ -1,12 +1,16 @@
 import {
     camelCase,
     capitalize,
+    clone,
     deburr,
     endsWith,
     escape,
     escapeRegExp,
+    filter,
+    includes,
+    indexOf,
     kebabCase,
-    lowerCase,
+    lastIndexOf,
     lowerFirst,
     map,
     pad,
@@ -17,7 +21,6 @@ import {
     snakeCase,
     startCase,
     startsWith,
-    clone,
     toLower,
     toUpper,
     trim,
@@ -25,16 +28,11 @@ import {
     trimStart,
     truncate,
     unescape,
-    upperCase,
     upperFirst,
     words,
-    includes,
-    indexOf,
-    lastIndexOf,
 } from 'lodash';
 import {Integer} from "./integer";
 import {List} from "../collections/list";
-import * as LZString from 'lz-string';
 
 /**
  * represent a String DataType
@@ -63,7 +61,7 @@ export class Chars {
      * @param str
      */
     constructor(str?: string) {
-        this._str = str || null;
+        this._str = str || '';
     }
 
     /**
@@ -282,7 +280,7 @@ export class Chars {
         if (!this._str) {
             return new List<Chars>();
         }
-        return new List<Chars>(map(this._str.split(pattern.Value), i => new Chars(i)));
+        return new List<Chars>(map(filter(this._str.split(pattern.Value), i => !!i), i => new Chars(i)));
     }
 
     /**
@@ -363,18 +361,27 @@ export class Chars {
     /**
      * gets the Number of found Chars
      * @param search
+     * @param allowOverlapping
      * @constructor
      */
-    ContainsCount(search: Chars): Integer {
-        let count = -1;
-        const tmp = this.Split(search);
-        for (const target of tmp.ToArray()) {
-            if (!target) {
-                continue;
-            }
-            count++;
+    ContainsCount(search: Chars, allowOverlapping?: boolean): Integer {
+        allowOverlapping = allowOverlapping === true;
+        if (search.Length.Value <= 0) {
+            return new Integer(this._str.length + 1);
         }
-        return new Integer(count);
+
+        let n = 0;
+        let pos = 0;
+        let step = allowOverlapping ? 1 : search.Length.Value;
+
+        while (true) {
+            pos = this._str.indexOf(search.Value, pos);
+            if (pos >= 0) {
+                ++n;
+                pos += step;
+            } else break;
+        }
+        return new Integer(n);
     }
 
     /**
@@ -403,7 +410,7 @@ export class Chars {
      * @constructor
      */
     Remove(position: Integer, count?: Integer): Chars {
-        return new Chars(this._str.substr(0, position.Value) + this._str.substr(position.Value+(count ? count.Value : 1), this._str.length));
+        return new Chars(this._str.substr(0, position.Value) + this._str.substr(position.Value + (count ? count.Value : 1), this._str.length));
     }
 
     /**
@@ -453,7 +460,10 @@ export class Chars {
             }
             tmp.Add(between);
         }
-        tmp.RemoveAt(new Integer(0));
+        if (!this.StartsWith(begin) || this.EndsWith(tmp.ElementAt(new Integer(0)))) {
+            // remove the begin string
+            tmp.RemoveAt(new Integer(0));
+        }
         return tmp;
     }
 }
