@@ -1,3 +1,7 @@
+### 1.0.15
+
+* add Event Handler Unsubscribe
+
 ### 1.0.14
 
 * fix ReplaceAll with empty string generates null values

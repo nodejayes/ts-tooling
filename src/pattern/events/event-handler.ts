@@ -35,4 +35,12 @@ export class EventHandler<T, K> {
     Subscribe(cb: EventCallback<T, K>): void {
         this._callbacks.push(cb);
     }
+
+    /**
+     * unsubscribe all callbacks
+     * @constructor
+     */
+    Unsubscribe() {
+        this._callbacks = [];
+    }
 }

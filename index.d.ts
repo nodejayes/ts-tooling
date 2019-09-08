@@ -1355,6 +1355,11 @@ declare module 'pattern/events/event-handler' {
 	     * @constructor
 	     */
 	    Subscribe(cb: EventCallback<T, K>): void;
+	    /**
+	     * unsubscribe all callbacks
+	     * @constructor
+	     */
+	    Unsubscribe(): void;
 	}
 	export {};
 
