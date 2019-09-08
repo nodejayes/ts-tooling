@@ -1,3 +1,7 @@
+### 1.0.16
+
+* invoke EventHandler async
+
 ### 1.0.15
 
 * add Event Handler Unsubscribe

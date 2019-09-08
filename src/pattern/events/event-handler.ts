@@ -23,7 +23,9 @@ export class EventHandler<T, K> {
      */
     Invoke(args: K): void {
         each(this._callbacks, (event) => {
-            event(this._instance, args);
+            setTimeout(() => {
+                event(this._instance, args);
+            }, 1);
         });
     }
 
