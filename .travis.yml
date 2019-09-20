@@ -11,4 +11,4 @@ jobs:
     - stage: build
       script: npm run build
     - stage: test
-      script: npm run coverage
+      script: npm run cover
