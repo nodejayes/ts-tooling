@@ -6,3 +6,5 @@ src
 tsconfig.json
 .gitignore
 .npmignore
+.coveralls.yml
+.travis.yml

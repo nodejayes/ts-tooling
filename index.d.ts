@@ -1421,6 +1421,27 @@ declare module 'compression/lz' {
 	}
 
 }
+declare module 'utils/stopwatch' {
+	import { Double } from 'primitive/double';
+	/**
+	 * a Stopwatch to measure the Time in ms
+	 * the StopWatch starts in the Constructor
+	 * You can measure multiple Times when you give the StopWatch a key
+	 */
+	export class StopWatch {
+	    private _time;
+	    private _multipleTimes;
+	    constructor();
+	    SectionStart(key: string): void;
+	    SectionElapsedMs(key: string): Double;
+	    ElapsedMs(): Double;
+	    private getTimestamp;
+	    private getTimeDiff;
+	    private getMultipleTimeDiff;
+	    private isBrowser;
+	}
+
+}
 declare module 'ts-tooling' {
 	import { Double } from 'primitive/double';
 	import { Integer } from 'primitive/integer';
@@ -1452,6 +1473,7 @@ declare module 'ts-tooling' {
 	export { TimeSpan } from 'complex/time-span';
 	export { create, createWithFactory } from 'pattern/construct';
 	export { LZCompression } from 'compression/lz';
+	export { StopWatch } from 'utils/stopwatch';
 
 }
 declare module 'complex/guid' {
