@@ -2,6 +2,7 @@
 
 * add StopWatch
 * add travis ci and coveralls
+* add some Project Information's
 
 ### 1.0.16
 
