@@ -1,6 +1,7 @@
 ### 1.1.0 (not released)
 
 * add StopWatch
+* add travis ci and coveralls
 
 ### 1.0.16
 

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test": "mocha --require ts-node/register **/*.spec.ts",
+    "cover": "nyc --extension=.ts --extension=.js --report-dir coverage mocha --require ts-node/register **\\*.spec.ts",
     "type-generation": "dts-generator --project . --out index.d.ts",
     "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out documentation src/ts-tooling.ts",
     "build-test": "npm run build && npm run type-generation && npm run test",
