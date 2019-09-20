@@ -87,3 +87,4 @@ export {DateTime} from './complex/date-time';
 export {TimeSpan} from './complex/time-span';
 export {create, createWithFactory} from './pattern/construct';
 export {LZCompression} from './compression/lz';
+export {StopWatch} from './utils/stopwatch';

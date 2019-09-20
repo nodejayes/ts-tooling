@@ -1,3 +1,7 @@
+### 1.1.0 (not released)
+
+* add StopWatch
+
 ### 1.0.16
 
 * invoke EventHandler async
