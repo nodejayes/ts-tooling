@@ -35,7 +35,7 @@ describe("Test StopWatch", () => {
             assert.isBelow(sw.SectionElapsedMs('1').Value, 10);
             sw.SectionStart('1');
             setTimeout(() => {
-                assert.isAbove(sw.SectionElapsedMs('1').Value, 10);
+                assert.isAbove(sw.SectionElapsedMs('1').Value, 8);
                 done();
             }, 10);
         }, 1);
