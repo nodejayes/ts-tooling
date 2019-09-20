@@ -12,6 +12,15 @@
     "build-test": "npm run build && npm run type-generation && npm run test",
     "release": "npm run build-test && npm publish"
   },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodejayes/ts-tooling"
+  },
+  "bugs": {
+    "url": "https://github.com/nodejayes/ts-tooling/issues",
+    "email": "markusgilg@outlook.de"
+  },
   "dependencies": {
     "lodash": "^4.17.15",
     "luxon": "^1.17.2",
