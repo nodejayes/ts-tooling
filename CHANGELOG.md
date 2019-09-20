@@ -1,6 +1,7 @@
 ### 1.1.0 (not released)
 
 * add StopWatch
+* fix Javascript Date conversion
 * add travis ci and coveralls
 * add some Project Information's
 

@@ -285,12 +285,12 @@ describe('DateTime Tests', () => {
     });
 
     it('extends basic Date',  () => {
-        assert.equal(new Date(2019,0,1,1,0,0).ToDateTime().Year.Value, 2019);
-        // assert.equal(new Date(2019,0,1,1,0,0).ToDateTime().Month.Value, 1);
-        assert.equal(new Date(2019,0,1,1,0,0).ToDateTime().Day.Value, 1);
-        assert.equal(new Date(2019,0,1,1,0,0).ToDateTime().Hour.Value, 0);
-        assert.equal(new Date(2019,0,1,1,0,0).ToDateTime().Minute.Value, 0);
-        assert.equal(new Date(2019,0,1,1,0,0).ToDateTime().Second.Value, 0);
-        assert.equal(new Date(2019,0,1,1,0,0).ToDateTime().Millisecond.Value, 0);
+        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Year.Value, 2019);
+        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Month.Value, 1);
+        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Day.Value, 1);
+        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Hour.Value, 1);
+        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Minute.Value, 0);
+        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Second.Value, 0);
+        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Millisecond.Value, 0);
     });
 });
