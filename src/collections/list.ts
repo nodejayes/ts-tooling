@@ -461,7 +461,7 @@ export class List<T> {
      * @constructor
      */
     Convert<K>(convertMethod: ConvertMethod<T, K>): List<K> {
-        return new List(map(this._data, convertMethod));
+        return new List<K>(map(this._data, convertMethod));
     }
 
     /**
