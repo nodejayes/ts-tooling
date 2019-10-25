@@ -416,6 +416,14 @@ export class List<T> {
     }
 
     /**
+     * is this List empty
+     * @constructor
+     */
+    IsEmpty(): boolean {
+        return this.Count.IsBelow((1).ToInteger());
+    }
+
+    /**
      * find the First match Item or return a Default Value
      * @param filterMethod
      * @param def

@@ -473,5 +473,10 @@ describe('List Tests', () => {
             assert.isFalse(added.ElementAt((1).ToInteger()));
             assert.isTrue(added.ElementAt((2).ToInteger()));
         });
+
+        it('check for empty list', () => {
+            assert.isTrue(new List().IsEmpty());
+            assert.isFalse(new List([1,2,3]).IsEmpty());
+        });
     });
 });
