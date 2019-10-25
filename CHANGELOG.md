@@ -1,4 +1,9 @@
-### 1.1.0 (not released)
+### 1.1.1 (not released)
+
+* Is Empty Check for List
+* fix missing generic Type
+
+### 1.1.0
 
 * add StopWatch
 * fix Javascript Date conversion
