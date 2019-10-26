@@ -1,5 +1,6 @@
 ### 1.2.0 (not released)
 
+* add Bool primitive Type
 * Is Empty Check for List
 * fix missing generic Type
 
