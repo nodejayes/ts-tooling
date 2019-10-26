@@ -1,4 +1,4 @@
-### 1.1.1 (not released)
+### 1.2.0 (not released)
 
 * Is Empty Check for List
 * fix missing generic Type
