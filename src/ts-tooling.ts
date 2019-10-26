@@ -2,6 +2,7 @@ import {Double} from './primitive/double';
 import {Integer} from './primitive/integer';
 import {Chars} from "./primitive/chars";
 import {DateTime} from './complex/date-time';
+import {Bool} from "./primitive/bool";
 
 // Basic Extensions
 declare global {
