@@ -477,6 +477,8 @@ describe('List Tests', () => {
         it('check for empty list', () => {
             assert.isTrue(new List().IsEmpty());
             assert.isFalse(new List([1,2,3]).IsEmpty());
+            assert.isFalse(new List().Any());
+            assert.isTrue(new List([1,2,3]).Any());
         });
     });
 });

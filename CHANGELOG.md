@@ -1,7 +1,8 @@
 ### 1.2.0 (not released)
 
 * add Bool primitive Type
-* Is Empty Check for List
+* IsEmpty Check for List
+* Any Check for List
 * fix missing generic Type
 
 ### 1.1.0

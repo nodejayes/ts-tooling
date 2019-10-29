@@ -424,6 +424,14 @@ export class List<T> {
     }
 
     /**
+     * have the List more that one Item
+     * @constructor
+     */
+    Any(): boolean {
+        return this.Count.IsAbove((0).ToInteger());
+    }
+
+    /**
      * find the First match Item or return a Default Value
      * @param filterMethod
      * @param def
