@@ -1,5 +1,6 @@
 ### 1.2.0 (not released)
 
+* ZERO Constant for Integer and Double
 * add Bool primitive Type
 * IsEmpty Check for List
 * Any Check for List

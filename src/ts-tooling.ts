@@ -82,10 +82,15 @@ export {Dictionary} from './collections/dictionary';
 export {List} from './collections/list';
 export {ListSortOrder} from './collections/list-sort-order.enum';
 export {Double} from './primitive/double';
+export {Bool} from './primitive/bool';
 export {Integer} from './primitive/integer';
 export {Chars} from './primitive/chars';
 export {DateTime} from './complex/date-time';
 export {TimeSpan} from './complex/time-span';
+export {Guid} from './complex/guid';
 export {create, createWithFactory} from './pattern/construct';
 export {LZCompression} from './compression/lz';
 export {StopWatch} from './utils/stopwatch';
+
+export const ZERO_INT = new Integer(0);
+export const ZERO_DOUBLE = new Double(0.0);
