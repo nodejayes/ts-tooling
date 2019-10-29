@@ -593,6 +593,16 @@ declare module 'collections/list' {
 	     */
 	    ElementAt(index: Integer): T;
 	    /**
+	     * is this List empty
+	     * @constructor
+	     */
+	    IsEmpty(): boolean;
+	    /**
+	     * have the List more that one Item
+	     * @constructor
+	     */
+	    Any(): boolean;
+	    /**
 	     * find the First match Item or return a Default Value
 	     * @param filterMethod
 	     * @param def
@@ -1330,6 +1340,17 @@ declare module 'complex/date-time' {
 	}
 
 }
+declare module 'primitive/bool' {
+	export class Bool {
+	    private _value;
+	    readonly Value: boolean;
+	    constructor(b: boolean);
+	    IsTrue(): boolean;
+	    IsFalse(): boolean;
+	    Switch(): Bool;
+	}
+
+}
 declare module 'pattern/events/event-handler' {
 	 type EventCallback<T, K> = (sender: T, args: K) => void;
 	/**
@@ -1381,6 +1402,48 @@ declare module 'pattern/dispose/using' {
 	 * @param cb
 	 */
 	export function using<T extends IDisposable>(item: new () => T, cb: (d: T) => void): void;
+
+}
+declare module 'complex/guid' {
+	import { Chars } from 'primitive/chars';
+	/**
+	 * represent the Global Uniqe Identifier
+	 */
+	export class Guid {
+	    private _value;
+	    /**
+	     * get a empty Guid
+	     * @constructor
+	     */
+	    static readonly Empty: Guid;
+	    /**
+	     * validate a Guid
+	     * @param guid
+	     * @constructor
+	     */
+	    static Validate(guid: Chars): boolean;
+	    /**
+	     * is this Guid a Empty Guid
+	     * @constructor
+	     */
+	    readonly IsEmpty: boolean;
+	    /**
+	     * create a new Guid
+	     * @param guid
+	     */
+	    constructor(guid?: string | Chars);
+	    /**
+	     * converts the Guid to a String representation
+	     * @constructor
+	     */
+	    ToString(): Chars;
+	    /**
+	     * check if the Guid is Equal another Guid
+	     * @param guid
+	     * @constructor
+	     */
+	    Equals(guid: Guid | Chars): boolean;
+	}
 
 }
 declare module 'pattern/construct' {
@@ -1467,54 +1530,16 @@ declare module 'ts-tooling' {
 	export { List } from 'collections/list';
 	export { ListSortOrder } from 'collections/list-sort-order.enum';
 	export { Double } from 'primitive/double';
+	export { Bool } from 'primitive/bool';
 	export { Integer } from 'primitive/integer';
 	export { Chars } from 'primitive/chars';
 	export { DateTime } from 'complex/date-time';
 	export { TimeSpan } from 'complex/time-span';
+	export { Guid } from 'complex/guid';
 	export { create, createWithFactory } from 'pattern/construct';
 	export { LZCompression } from 'compression/lz';
 	export { StopWatch } from 'utils/stopwatch';
-
-}
-declare module 'complex/guid' {
-	import { Chars } from 'primitive/chars';
-	/**
-	 * represent the Global Uniqe Identifier
-	 */
-	export class Guid {
-	    private _value;
-	    /**
-	     * get a empty Guid
-	     * @constructor
-	     */
-	    static readonly Empty: Guid;
-	    /**
-	     * validate a Guid
-	     * @param guid
-	     * @constructor
-	     */
-	    static Validate(guid: Chars): boolean;
-	    /**
-	     * is this Guid a Empty Guid
-	     * @constructor
-	     */
-	    readonly IsEmpty: boolean;
-	    /**
-	     * create a new Guid
-	     * @param guid
-	     */
-	    constructor(guid?: string | Chars);
-	    /**
-	     * converts the Guid to a String representation
-	     * @constructor
-	     */
-	    ToString(): Chars;
-	    /**
-	     * check if the Guid is Equal another Guid
-	     * @param guid
-	     * @constructor
-	     */
-	    Equals(guid: Guid | Chars): boolean;
-	}
+	export const ZERO_INT: Integer;
+	export const ZERO_DOUBLE: Double;
 
 }

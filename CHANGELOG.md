@@ -1,5 +1,6 @@
 ### 1.2.0 (not released)
 
+* add rxjs as Dependency
 * ZERO Constant for Integer and Double
 * add Bool primitive Type
 * IsEmpty Check for List

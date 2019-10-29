@@ -26,7 +26,8 @@
     "luxon": "^1.17.2",
     "async": "^3.1.0",
     "lz-string": "^1.4.4",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "rxjs": "^6.5.3"
   },
   "devDependencies": {
     "typescript": "^3.5.3",
