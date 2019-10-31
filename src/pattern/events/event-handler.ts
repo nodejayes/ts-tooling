@@ -1,48 +1,52 @@
-import {each} from 'async';
-type EventCallback<T, K> = (sender: T, args: K) => void;
+import {Subject, Subscription} from 'rxjs';
+import {Dictionary} from '../../collections/dictionary';
+import {Chars} from '../../primitive/chars';
 
 /**
  * represent a Event Handler
  */
-export class EventHandler<T, K> {
-    private _callbacks: EventCallback<T, K>[] = [];
-    private _instance: T;
-
-    /**
-     * create a new Event Handler for an Instance
-     * @param instance
-     */
-    constructor(instance: T) {
-        this._instance = instance;
-    }
+export class EventHandler<T> {
+    private _stream = new Subject<T>();
+    private _subscriptions: Dictionary<Subscription> = new Dictionary<Subscription>();
 
     /**
      * invoke the Event on the Handler
      * @param args
      * @constructor
      */
-    Invoke(args: K): void {
-        each(this._callbacks, (event) => {
-            setTimeout(() => {
-                event(this._instance, args);
-            }, 1);
-        });
+    Invoke(args: T): void {
+        this._stream.next(args);
     }
 
     /**
      * do something when the Handler is invoked
+     * @param key the key to identify the subscription
      * @param cb
+     * @returns the Idx of the Subscription
      * @constructor
      */
-    Subscribe(cb: EventCallback<T, K>): void {
-        this._callbacks.push(cb);
+    Subscribe(key: Chars, cb: (d: T) => void) {
+        this._subscriptions.Add(key, this._stream.subscribe(cb));
     }
 
     /**
      * unsubscribe all callbacks
+     * @param key the key to identify the Subscription to unsubscribe
      * @constructor
      */
-    Unsubscribe() {
-        this._callbacks = [];
+    Unsubscribe(key?: Chars) {
+        if (!key || key.IsEmpty()) {
+            for (const k of this._subscriptions.Keys.ToArray()) {
+                this.unsubscribeByKey(k);
+            }
+        } else {
+            this.unsubscribeByKey(key);
+        }
+    }
+
+    private unsubscribeByKey(key: Chars): void {
+        const sub = this._subscriptions.TryGetValue(key);
+        sub.unsubscribe();
+        this._subscriptions.Remove(key);
     }
 }

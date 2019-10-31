@@ -1,5 +1,6 @@
 import {assert} from 'chai';
-import {Chars, Integer} from "../../src/ts-tooling";
+import {Chars, Integer} from '../../src/ts-tooling';
+import 'mocha';
 
 describe('Chars Tests', () => {
     it('can create empty Chars', () => {
@@ -223,5 +224,11 @@ describe('Chars Tests', () => {
         assert.equal('zzabcabcabczz'.ToChars().ContainsCount('u'.ToChars()).Value, 0);
         assert.equal('zzabcabcabczz'.ToChars().ContainsCount('cabc'.ToChars()).Value, 1);
         assert.equal('zzabcabcabczz'.ToChars().ContainsCount('cabc'.ToChars(), true).Value, 2);
+    });
+
+    it('check if string is Empty', () => {
+        assert.isTrue(''.ToChars().IsEmpty());
+        assert.isFalse('a'.ToChars().IsEmpty());
+        assert.isTrue(new Chars().IsEmpty());
     });
 });

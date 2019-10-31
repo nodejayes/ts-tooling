@@ -880,6 +880,11 @@ declare module 'primitive/chars' {
 	     */
 	    Equals(value: Chars): boolean;
 	    /**
+	     * check if a String is empty
+	     * @constructor
+	     */
+	    IsEmpty(): boolean;
+	    /**
 	     * insert a new String into the Chars at Position
 	     * @param startIndex
 	     * @param value
@@ -1352,37 +1357,35 @@ declare module 'primitive/bool' {
 
 }
 declare module 'pattern/events/event-handler' {
-	 type EventCallback<T, K> = (sender: T, args: K) => void;
+	import { Chars } from 'primitive/chars';
 	/**
 	 * represent a Event Handler
 	 */
-	export class EventHandler<T, K> {
-	    private _callbacks;
-	    private _instance;
-	    /**
-	     * create a new Event Handler for an Instance
-	     * @param instance
-	     */
-	    constructor(instance: T);
+	export class EventHandler<T> {
+	    private _stream;
+	    private _subscriptions;
 	    /**
 	     * invoke the Event on the Handler
 	     * @param args
 	     * @constructor
 	     */
-	    Invoke(args: K): void;
+	    Invoke(args: T): void;
 	    /**
 	     * do something when the Handler is invoked
+	     * @param key the key to identify the subscription
 	     * @param cb
+	     * @returns the Idx of the Subscription
 	     * @constructor
 	     */
-	    Subscribe(cb: EventCallback<T, K>): void;
+	    Subscribe(key: Chars, cb: (d: T) => void): void;
 	    /**
 	     * unsubscribe all callbacks
+	     * @param key the key to identify the Subscription to unsubscribe
 	     * @constructor
 	     */
-	    Unsubscribe(): void;
+	    Unsubscribe(key?: Chars): void;
+	    private unsubscribeByKey;
 	}
-	export {};
 
 }
 declare module 'pattern/dispose/disposable' {

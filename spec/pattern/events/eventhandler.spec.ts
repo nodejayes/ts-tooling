@@ -1,32 +1,50 @@
 import {assert} from 'chai';
-import {EventHandler} from "../../../src/ts-tooling";
+import {EventHandler} from '../../../src/ts-tooling';
+import 'mocha';
 
 describe('EventHandler Tests', () => {
-    it('can register on class', (done) => {
-        class TestEventHandler {
-            name = 'TestClass';
-            ev = new EventHandler<TestEventHandler, string>(this);
-        }
-        const t = new TestEventHandler();
-        t.ev.Subscribe((sender, args) => {
-            assert.equal(sender.name, t.name);
+    it('can subscribe', (done) => {
+        const eventHandler = new EventHandler<string>();
+        eventHandler.Subscribe('s1'.ToChars(), (args) => {
             assert.equal(args, 'data');
             done();
         });
-        t.ev.Invoke('data');
+        eventHandler.Invoke('data');
     });
 
     it('unsubscribes', (done) => {
-        class TestEventHandler {
-            name = 'TestClass';
-            ev = new EventHandler<TestEventHandler, string>(this);
-        }
-        const t = new TestEventHandler();
-        t.ev.Subscribe((sender, args) => {
+        const eventHandler = new EventHandler<string>();
+        eventHandler.Subscribe('s1'.ToChars(), (args) => {
             assert.fail();
         });
-        t.ev.Unsubscribe();
-        t.ev.Invoke('data');
+        eventHandler.Unsubscribe('s1'.ToChars());
+        eventHandler.Invoke('data');
+        setTimeout(() => done(), 200);
+    });
+
+    it('unsubscribe only once', (done) => {
+        const eventHandler = new EventHandler<string>();
+        eventHandler.Subscribe('s1'.ToChars(), (args) => {
+            assert.fail();
+        });
+        eventHandler.Subscribe('s2'.ToChars(), (args) => {
+            assert.equal(args, 'data');
+            setTimeout(() => done(), 200);
+        });
+        eventHandler.Unsubscribe('s1'.ToChars());
+        eventHandler.Invoke('data');
+    });
+
+    it('unsubscribe all', (done) => {
+        const eventHandler = new EventHandler<string>();
+        eventHandler.Subscribe('s1'.ToChars(), (args) => {
+            assert.fail();
+        });
+        eventHandler.Subscribe('s2'.ToChars(), (args) => {
+            assert.fail();
+        });
+        eventHandler.Unsubscribe();
+        eventHandler.Invoke('data');
         setTimeout(() => done(), 200);
     });
 });

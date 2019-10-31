@@ -394,6 +394,14 @@ export class Chars {
     }
 
     /**
+     * check if a String is empty
+     * @constructor
+     */
+    IsEmpty(): boolean {
+        return !this._str || this._str.length < 1;
+    }
+
+    /**
      * insert a new String into the Chars at Position
      * @param startIndex
      * @param value

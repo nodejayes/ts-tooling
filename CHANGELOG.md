@@ -1,5 +1,7 @@
 ### 1.2.0 (not released)
 
+* refactor Event Handler with rxjs Subscription
+* add IsEmpty check for Chars
 * add rxjs as Dependency
 * ZERO Constant for Integer and Double
 * add Bool primitive Type
