@@ -4,15 +4,26 @@ import {Chars} from '../../primitive/chars';
 import {ZERO_INT} from '../../ts-tooling';
 import {set, get} from 'lodash';
 
+/**
+ * a Reactive Store to save States and listen to Changes
+ */
 export class ReactiveStore<T> {
     private _core: T = null;
     private _behaviorSubjects = new Dictionary<BehaviorSubject<any>>();
 
+    /**
+     * create a new Store with a Initial State
+     * @param initialState
+     */
     constructor(initialState: T) {
         this._core = initialState;
     }
 
-    select<K>(selector: (d: T) => K): BehaviorSubject<K> {
+    /**
+     * listen to a specific Property or a complete State change
+     * @param selector
+     */
+    Listen<K>(selector: (d: T) => K): BehaviorSubject<K> {
         const key = this.parseSelectorAccess(selector);
         if (this._behaviorSubjects.ContainsKey(key)) {
             return this._behaviorSubjects.TryGetValue(key);
@@ -22,7 +33,12 @@ export class ReactiveStore<T> {
         return subject;
     }
 
-    mutate<K>(selector: (d: T) => K, mutation: (s: K) => K): void {
+    /**
+     * mutate a specific Property or a complete State
+     * @param selector
+     * @param mutation
+     */
+    Mutate<K>(selector: (d: T) => K, mutation: (s: K) => K): void {
         const key = this.parseSelectorAccess(selector);
         const behavior = this._behaviorSubjects.TryGetValue(key);
         const currentValue = selector(this._core);

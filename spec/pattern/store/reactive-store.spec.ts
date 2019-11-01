@@ -29,16 +29,16 @@ describe('Reactive Store Tests', () => {
                }
            }
        });
-       assert.equal(store.select((s) => s.test.b).getValue(), true);
-       assert.equal(store.select((s) => s.test.n).getValue(), 5);
-       assert.equal(store.select((s) => s.test.dt.Year).getValue().Value, 2019);
-       assert.equal(store.select((s) => s.test.dt.Month).getValue().Value, 1);
-       assert.equal(store.select((s) => s.test.dt.Day).getValue().Value, 1);
-       assert.equal(store.select((s) => s.test.dt.Hour).getValue().Value, 0);
-       assert.equal(store.select((s) => s.test.dt.Minute).getValue().Value, 0);
-       assert.equal(store.select((s) => s.test.dt.Second).getValue().Value, 0);
-       assert.equal(store.select((s) => s.test.dt.Millisecond.Value).getValue(), 0);
-       assert.equal(store.select((s) => s.test.o.name).getValue().Value, 'Paul');
+       assert.equal(store.Listen((s) => s.test.b).getValue(), true);
+       assert.equal(store.Listen((s) => s.test.n).getValue(), 5);
+       assert.equal(store.Listen((s) => s.test.dt.Year).getValue().Value, 2019);
+       assert.equal(store.Listen((s) => s.test.dt.Month).getValue().Value, 1);
+       assert.equal(store.Listen((s) => s.test.dt.Day).getValue().Value, 1);
+       assert.equal(store.Listen((s) => s.test.dt.Hour).getValue().Value, 0);
+       assert.equal(store.Listen((s) => s.test.dt.Minute).getValue().Value, 0);
+       assert.equal(store.Listen((s) => s.test.dt.Second).getValue().Value, 0);
+       assert.equal(store.Listen((s) => s.test.dt.Millisecond.Value).getValue(), 0);
+       assert.equal(store.Listen((s) => s.test.o.name).getValue().Value, 'Paul');
    });
 
    it('can mutate the State', () => {
@@ -52,8 +52,8 @@ describe('Reactive Store Tests', () => {
                }
            }
        });
-       store.mutate(s => s.test.b, ov => false);
-       assert.equal(store.select(s => s.test.b).getValue(), false);
+       store.Mutate(s => s.test.b, ov => false);
+       assert.equal(store.Listen(s => s.test.b).getValue(), false);
    });
 
    it('can listen on mutation', (done) => {
@@ -68,7 +68,7 @@ describe('Reactive Store Tests', () => {
                }
            }
        });
-       store.select(s => s.test.b).subscribe(d => {
+       store.Listen(s => s.test.b).subscribe(d => {
            callCount.Increment();
            if (callCount.IsBelow((2).ToInteger())) {
                // init call
@@ -79,7 +79,7 @@ describe('Reactive Store Tests', () => {
            assert.equal(d, false);
            done();
        });
-       store.mutate(s => s.test.b, ov => false);
+       store.Mutate(s => s.test.b, ov => false);
    });
 
    it('can mutate complete State', (done) => {
@@ -94,7 +94,7 @@ describe('Reactive Store Tests', () => {
                }
            }
        });
-       store.select(s => s.test).subscribe(d => {
+       store.Listen(s => s.test).subscribe(d => {
            callCount.Increment();
            if (callCount.IsBelow((2).ToInteger())) {
                // init call
@@ -105,7 +105,7 @@ describe('Reactive Store Tests', () => {
            assert.equal(d.o.name.Value, 'Max');
            done();
        });
-       store.mutate(s => s.test, d => {
+       store.Mutate(s => s.test, d => {
            d.o.name = new Chars('Max');
            return d;
        });

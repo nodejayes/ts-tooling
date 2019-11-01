@@ -1510,12 +1510,28 @@ declare module 'pattern/events/event-handler' {
 }
 declare module 'pattern/store/reactive-store' {
 	import { BehaviorSubject } from 'rxjs';
+	/**
+	 * a Reactive Store to save States and listen to Changes
+	 */
 	export class ReactiveStore<T> {
 	    private _core;
 	    private _behaviorSubjects;
+	    /**
+	     * create a new Store with a Initial State
+	     * @param initialState
+	     */
 	    constructor(initialState: T);
-	    select<K>(selector: (d: T) => K): BehaviorSubject<K>;
-	    mutate<K>(selector: (d: T) => K, mutation: (s: K) => K): void;
+	    /**
+	     * listen to a specific Property or a complete State change
+	     * @param selector
+	     */
+	    Listen<K>(selector: (d: T) => K): BehaviorSubject<K>;
+	    /**
+	     * mutate a specific Property or a complete State
+	     * @param selector
+	     * @param mutation
+	     */
+	    Mutate<K>(selector: (d: T) => K, mutation: (s: K) => K): void;
 	    private parseSelectorAccess;
 	}
 
@@ -1600,5 +1616,10 @@ declare module 'ts-tooling' {
 	export { StopWatch } from 'utils/stopwatch';
 	export const ZERO_INT: Integer;
 	export const ZERO_DOUBLE: Double;
+
+}
+declare module 'utils/background-worker' {
+	export class BackgroundWorker {
+	}
 
 }
