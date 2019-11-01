@@ -1399,57 +1399,6 @@ declare module 'primitive/bool' {
 	}
 
 }
-declare module 'pattern/events/event-handler' {
-	import { Chars } from 'primitive/chars';
-	/**
-	 * represent a Event Handler
-	 */
-	export class EventHandler<T> {
-	    private _stream;
-	    private _subscriptions;
-	    /**
-	     * invoke the Event on the Handler
-	     * @param args
-	     * @constructor
-	     */
-	    Invoke(args: T): void;
-	    /**
-	     * do something when the Handler is invoked
-	     * @param key the key to identify the subscription
-	     * @param cb
-	     * @returns the Idx of the Subscription
-	     * @constructor
-	     */
-	    Subscribe(key: Chars, cb: (d: T) => void): void;
-	    /**
-	     * unsubscribe all callbacks
-	     * @param key the key to identify the Subscription to unsubscribe
-	     * @constructor
-	     */
-	    Unsubscribe(key?: Chars): void;
-	    private unsubscribeByKey;
-	}
-
-}
-declare module 'pattern/dispose/disposable' {
-	/**
-	 * implements Methods to make a Class Disposable
-	 */
-	export interface IDisposable {
-	    Dispose(): void;
-	}
-
-}
-declare module 'pattern/dispose/using' {
-	import { IDisposable } from 'pattern/dispose/disposable';
-	/**
-	 * use a Instance and Dispose it after Execution
-	 * @param item
-	 * @param cb
-	 */
-	export function using<T extends IDisposable>(item: new () => T, cb: (d: T) => void): void;
-
-}
 declare module 'complex/guid' {
 	import { Chars } from 'primitive/chars';
 	/**
@@ -1492,6 +1441,25 @@ declare module 'complex/guid' {
 	}
 
 }
+declare module 'pattern/dispose/disposable' {
+	/**
+	 * implements Methods to make a Class Disposable
+	 */
+	export interface IDisposable {
+	    Dispose(): void;
+	}
+
+}
+declare module 'pattern/dispose/using' {
+	import { IDisposable } from 'pattern/dispose/disposable';
+	/**
+	 * use a Instance and Dispose it after Execution
+	 * @param item
+	 * @param cb
+	 */
+	export function using<T extends IDisposable>(item: new () => T, cb: (d: T) => void): void;
+
+}
 declare module 'pattern/construct' {
 	/**
 	 * create a Variable and when not defined returns default or null
@@ -1506,6 +1474,50 @@ declare module 'pattern/construct' {
 	 * @param defaultValue
 	 */
 	export function createWithFactory<T>(factoryMethod: Function, args: any[], defaultValue?: T): T;
+
+}
+declare module 'pattern/events/event-handler' {
+	import { Chars } from 'primitive/chars';
+	/**
+	 * represent a Event Handler
+	 */
+	export class EventHandler<T> {
+	    private _stream;
+	    private _subscriptions;
+	    /**
+	     * invoke the Event on the Handler
+	     * @param args
+	     * @constructor
+	     */
+	    Invoke(args: T): void;
+	    /**
+	     * do something when the Handler is invoked
+	     * @param key the key to identify the subscription
+	     * @param cb
+	     * @returns the Idx of the Subscription
+	     * @constructor
+	     */
+	    Subscribe(key: Chars, cb: (d: T) => void): void;
+	    /**
+	     * unsubscribe all callbacks
+	     * @param key the key to identify the Subscription to unsubscribe
+	     * @constructor
+	     */
+	    Unsubscribe(key?: Chars): void;
+	    private unsubscribeByKey;
+	}
+
+}
+declare module 'pattern/store/reactive-store' {
+	import { BehaviorSubject } from 'rxjs';
+	export class ReactiveStore<T> {
+	    private _core;
+	    private _behaviorSubjects;
+	    constructor(initialState: T);
+	    select<K>(selector: (d: T) => K): BehaviorSubject<K>;
+	    mutate<K>(selector: (d: T) => K, mutation: (s: K) => K): void;
+	    private parseSelectorAccess;
+	}
 
 }
 declare module 'compression/lz' {
@@ -1569,12 +1581,6 @@ declare module 'ts-tooling' {
 	        ToDateTime(): DateTime;
 	    }
 	}
-	export { EventHandler } from 'pattern/events/event-handler';
-	export { using } from 'pattern/dispose/using';
-	export { IDisposable } from 'pattern/dispose/disposable';
-	export { Dictionary } from 'collections/dictionary';
-	export { List } from 'collections/list';
-	export { ListSortOrder } from 'collections/list-sort-order.enum';
 	export { Double } from 'primitive/double';
 	export { Bool } from 'primitive/bool';
 	export { Integer } from 'primitive/integer';
@@ -1582,22 +1588,17 @@ declare module 'ts-tooling' {
 	export { DateTime } from 'complex/date-time';
 	export { TimeSpan } from 'complex/time-span';
 	export { Guid } from 'complex/guid';
+	export { Dictionary } from 'collections/dictionary';
+	export { List } from 'collections/list';
+	export { ListSortOrder } from 'collections/list-sort-order.enum';
+	export { using } from 'pattern/dispose/using';
+	export { IDisposable } from 'pattern/dispose/disposable';
 	export { create, createWithFactory } from 'pattern/construct';
+	export { EventHandler } from 'pattern/events/event-handler';
+	export { ReactiveStore } from 'pattern/store/reactive-store';
 	export { LZCompression } from 'compression/lz';
 	export { StopWatch } from 'utils/stopwatch';
 	export const ZERO_INT: Integer;
 	export const ZERO_DOUBLE: Double;
-
-}
-declare module 'pattern/store/reactive-store' {
-	import { BehaviorSubject } from 'rxjs';
-	export class ReactiveStore<T> {
-	    private _core;
-	    private _behaviorSubjects;
-	    constructor(initialState: T);
-	    select<K>(selector: (d: T) => K): BehaviorSubject<K>;
-	    mutate<K>(selector: (d: T) => K, mutation: (s: K) => K): void;
-	    private parseSelectorAccess;
-	}
 
 }

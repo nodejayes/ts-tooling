@@ -1,7 +1,7 @@
 import * as uuidv4 from 'uuid/v4';
-import {Chars} from "../primitive/chars";
-import {Integer} from "../primitive/integer";
-import {List} from "../ts-tooling";
+import {Chars} from '../primitive/chars';
+import {Integer} from '../primitive/integer';
+import {List} from '../collections/list';
 
 /**
  * @ignore
