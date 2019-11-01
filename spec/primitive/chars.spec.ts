@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {Chars, Integer} from '../../src/ts-tooling';
+import {Chars, Integer, List} from '../../src/ts-tooling';
 import 'mocha';
 
 describe('Chars Tests', () => {
@@ -230,5 +230,20 @@ describe('Chars Tests', () => {
         assert.isTrue(''.ToChars().IsEmpty());
         assert.isFalse('a'.ToChars().IsEmpty());
         assert.isTrue(new Chars().IsEmpty());
+    });
+
+    it('can Concat Chars', () => {
+        assert.equal(new Chars('a').Concat('b'.ToChars()).Value, 'ab');
+        assert.equal(new Chars('a').Concat('b'.ToChars(), '#'.ToChars()).Value, 'a#b');
+    });
+
+    it('can Join Chars', () => {
+        const list = new List<Chars>([
+            new Chars('a'),
+            new Chars('b'),
+            new Chars('c'),
+        ]);
+        const target = new Chars();
+        assert.equal(target.Join(list, ','.ToChars()).Value, 'a,b,c');
     });
 });

@@ -206,7 +206,37 @@ export class Chars {
      * @constructor
      */
     Words(): List<Chars> {
-        return new List(map(words(this._str), i => new Chars(i)));
+        return new List<Chars>(map(words(this._str), i => new Chars(i)));
+    }
+
+    /**
+     * concat two Chars optional with a Separator Chars
+     * @param appender
+     * @param separator
+     * @constructor
+     */
+    Concat(appender: Chars, separator?: Chars): Chars {
+        if (separator && !separator.IsEmpty() && !this.IsEmpty()) {
+            return new Chars(this.Value + separator.Value + appender.Value);
+        }
+        return new Chars(this.Value + appender.Value);
+    }
+
+    /**
+     * join a List of Chars into a new Chars
+     * @param appender
+     * @param separator
+     * @constructor
+     */
+    Join(appender: List<Chars>, separator: Chars): Chars {
+        if (!appender.Any()) {
+            return new Chars();
+        }
+        let res = new Chars();
+        for (const str of appender.ToArray()) {
+            res = res.Concat(str, separator);
+        }
+        return res;
     }
 
     /**

@@ -155,6 +155,19 @@ export class List<T> {
     }
 
     /**
+     * reduce a List of Elements into a new Element
+     * @param reducer
+     * @param initial
+     * @constructor
+     */
+    Reduce<K>(reducer: (target: K, e: T) => K, initial: K): K {
+        for (const element of this.ToArray()) {
+            initial = reducer(initial, element);
+        }
+        return initial;
+    }
+
+    /**
      * same as Add with multiple Items
      * @param elements
      * @constructor

@@ -162,6 +162,16 @@ declare module 'primitive/integer' {
 	     * @constructor
 	     */
 	    Divide(n: Integer): Integer;
+	    /**
+	     * increment this Integer Value
+	     * @constructor
+	     */
+	    Increment(): Integer;
+	    /**
+	     * decrement this Integer Value
+	     * @constructor
+	     */
+	    Decrement(): Integer;
 	}
 
 }
@@ -270,6 +280,18 @@ declare module 'primitive/double' {
 	     * @constructor
 	     */
 	    Round(precision?: Integer): Double;
+	    /**
+	     * increment the Double by the number of Steps
+	     * @param step
+	     * @constructor
+	     */
+	    Increment(step?: Double): Double;
+	    /**
+	     * decrement this Double by the number of Steps
+	     * @param step
+	     * @constructor
+	     */
+	    Decrement(step?: Double): Double;
 	}
 
 }
@@ -447,6 +469,13 @@ declare module 'collections/list' {
 	     * @constructor
 	     */
 	    AddIfNotExists(element: T): boolean;
+	    /**
+	     * reduce a List of Elements into a new Element
+	     * @param reducer
+	     * @param initial
+	     * @constructor
+	     */
+	    Reduce<K>(reducer: (target: K, e: T) => K, initial: K): K;
 	    /**
 	     * same as Add with multiple Items
 	     * @param elements
@@ -772,6 +801,20 @@ declare module 'primitive/chars' {
 	     * @constructor
 	     */
 	    Words(): List<Chars>;
+	    /**
+	     * concat two Chars optional with a Separator Chars
+	     * @param appender
+	     * @param separator
+	     * @constructor
+	     */
+	    Concat(appender: Chars, separator?: Chars): Chars;
+	    /**
+	     * join a List of Chars into a new Chars
+	     * @param appender
+	     * @param separator
+	     * @constructor
+	     */
+	    Join(appender: List<Chars>, separator: Chars): Chars;
 	    /**
 	     * fill the String from left and right
 	     * @param length
@@ -1544,5 +1587,17 @@ declare module 'ts-tooling' {
 	export { StopWatch } from 'utils/stopwatch';
 	export const ZERO_INT: Integer;
 	export const ZERO_DOUBLE: Double;
+
+}
+declare module 'pattern/store/reactive-store' {
+	import { BehaviorSubject } from 'rxjs';
+	export class ReactiveStore<T> {
+	    private _core;
+	    private _behaviorSubjects;
+	    constructor(initialState: T);
+	    select<K>(selector: (d: T) => K): BehaviorSubject<K>;
+	    mutate<K>(selector: (d: T) => K, mutation: (s: K) => K): void;
+	    private parseSelectorAccess;
+	}
 
 }

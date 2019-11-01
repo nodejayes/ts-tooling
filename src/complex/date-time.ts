@@ -192,7 +192,7 @@ export class DateTime {
      * @param millisecond
      */
     constructor(zone?: Chars, year?: Integer, month?: Integer, day?: Integer, hour?: Integer, minute?: Integer, second?: Integer, millisecond?: Integer) {
-        if (!zone) {
+        if (!zone || zone.IsEmpty()) {
             zone = new Chars('UTC');
         }
         this._date = LuxonDateTime.utc(
@@ -231,7 +231,7 @@ export class DateTime {
      * @param zone
      */
     static FromJavascriptDate(date: Date, zone?: Chars): DateTime {
-        if (!zone) {
+        if (!zone || zone.IsEmpty()) {
             zone = new Chars('UTC');
         }
         const tmp = LuxonDateTime.fromJSDate(date, {
@@ -248,7 +248,7 @@ export class DateTime {
      * @param zone
      */
     static FromISOString(isoStr: Chars, zone?: Chars): DateTime {
-        if (!zone) {
+        if (!zone || zone.IsEmpty()) {
             zone = new Chars('UTC');
         }
         const tmp = LuxonDateTime.fromISO(isoStr.Value, {
@@ -265,7 +265,7 @@ export class DateTime {
      * @constructor
      */
     static FromMilliseconds(milliseconds: Integer, zone?: Chars): DateTime {
-        if (!zone) {
+        if (!zone || zone.IsEmpty()) {
             zone = new Chars('UTC');
         }
         const tmp = LuxonDateTime.fromMillis(milliseconds.Value, {

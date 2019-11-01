@@ -1,5 +1,11 @@
 ### 1.2.0 (not released)
 
+Features:
+
+* Reactive Store
+* Increment/Decrement Integer and Double
+* add List Reduce Function
+* add a Chars Concat and Join Function
 * refactor Event Handler with rxjs Subscription
 * add IsEmpty check for Chars
 * add rxjs as Dependency
@@ -7,7 +13,12 @@
 * add Bool primitive Type
 * IsEmpty Check for List
 * Any Check for List
+
+Bugfixes:
+
+* fix Zone Check in DateTime
 * fix missing generic Type
+* add missing List Type on Chars Words Function
 
 ### 1.1.0
 

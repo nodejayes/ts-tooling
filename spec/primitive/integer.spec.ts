@@ -1,5 +1,6 @@
 import {assert} from 'chai';
-import {Integer} from "../../src/ts-tooling";
+import {Integer} from '../../src/ts-tooling';
+import 'mocha';
 
 describe('Integer Tests', () => {
     it('can create empty Integer', () => {
@@ -75,5 +76,15 @@ describe('Integer Tests', () => {
 
     it('extends basic number', () => {
         assert.equal((1).ToInteger().Value, 1);
+    });
+
+    it('can Increment', () => {
+        const test = new Integer(1);
+        assert.equal(test.Increment().Value, 2);
+    });
+
+    it('can Decrement', () => {
+        const test = new Integer(1);
+        assert.equal(test.Decrement().Value, 0);
     });
 });

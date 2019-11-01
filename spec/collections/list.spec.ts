@@ -1,5 +1,6 @@
 import {assert} from 'chai';
-import {List, Integer, Chars, ListSortOrder} from "../../src/ts-tooling";
+import {List, Integer, Chars, ListSortOrder} from '../../src/ts-tooling';
+import 'mocha';
 
 interface TestAddress {
     PLZ: string;
@@ -479,6 +480,20 @@ describe('List Tests', () => {
             assert.isFalse(new List([1,2,3]).IsEmpty());
             assert.isFalse(new List().Any());
             assert.isTrue(new List([1,2,3]).Any());
+        });
+
+        it('can Reduce List', () => {
+            const list = new List<Chars>([
+                new Chars('a'),
+                new Chars('b'),
+                new Chars('c'),
+            ]);
+            const result = list.Reduce<Chars>((target, e) => {
+                const res = target.Concat(e, new Chars(','));
+                console.info(res);
+                return res;
+            }, new Chars());
+            assert.equal(result.Value, 'a,b,c');
         });
     });
 });

@@ -212,4 +212,22 @@ export class Integer {
         }
         return new Integer(this.Value / n.Value);
     }
+
+    /**
+     * increment this Integer Value
+     * @constructor
+     */
+    Increment(): Integer {
+        this._number++;
+        return this;
+    }
+
+    /**
+     * decrement this Integer Value
+     * @constructor
+     */
+    Decrement(): Integer {
+        this._number--;
+        return this;
+    }
 }

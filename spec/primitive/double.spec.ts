@@ -1,5 +1,6 @@
 import {assert} from 'chai';
-import {Double, Integer} from "../../src/ts-tooling";
+import {Double, Integer} from '../../src/ts-tooling';
+import 'mocha';
 
 describe('Double Tests', () => {
     it('can create empty Double', () => {
@@ -90,5 +91,17 @@ describe('Double Tests', () => {
 
     it('extends basic number', () => {
         assert.equal((1.5).ToDouble().Value, 1.5);
+    });
+
+    it('can Increment', () => {
+        const test = new Double(1.0);
+        assert.equal(test.Increment().Value, 2.0);
+        assert.equal(test.Increment(new Double(0.5)).Value, 2.5);
+    });
+
+    it('can Decrement', () => {
+        const test = new Double(3.0);
+        assert.equal(test.Decrement().Value, 2.0);
+        assert.equal(test.Decrement(new Double(0.5)).Value, 1.5);
     });
 });

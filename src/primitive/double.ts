@@ -174,4 +174,32 @@ export class Double {
         }
         return new Double(round(this._number, p));
     }
+
+    /**
+     * increment the Double by the number of Steps
+     * @param step
+     * @constructor
+     */
+    Increment(step?: Double): Double {
+        if (!step) {
+            this._number++;
+        } else {
+            this._number += step.Value;
+        }
+        return this;
+    }
+
+    /**
+     * decrement this Double by the number of Steps
+     * @param step
+     * @constructor
+     */
+    Decrement(step?: Double): Double {
+        if (!step) {
+            this._number--;
+        } else {
+            this._number -= step.Value;
+        }
+        return this;
+    }
 }
