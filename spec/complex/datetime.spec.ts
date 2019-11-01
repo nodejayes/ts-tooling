@@ -1,6 +1,7 @@
 import {assert} from 'chai';
 import {DateTime as LuxonDateTime} from 'luxon';
-import {DateTime, Chars, Integer} from "../../src/ts-tooling";
+import {DateTime, Chars, Integer} from '../../src/ts-tooling';
+import 'mocha';
 
 function assertDate(dt: DateTime, vgl: LuxonDateTime) {
     assert.equal(dt.Year.Value, vgl.year);

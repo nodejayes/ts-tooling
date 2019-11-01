@@ -1,5 +1,6 @@
 import {assert} from 'chai';
-import {Dictionary, Integer, Chars, List} from "../../src/ts-tooling";
+import {Dictionary, Integer, Chars} from '../../src/ts-tooling';
+import 'mocha';
 
 const DEMO_DATA = {'a': 1, 'b': 2, 'c': 3};
 const EMPTY = new Dictionary();

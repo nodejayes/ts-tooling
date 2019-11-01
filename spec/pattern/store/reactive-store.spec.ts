@@ -1,9 +1,6 @@
 import {assert} from 'chai';
+import {Chars, DateTime, Integer, ReactiveStore} from '../../../src/ts-tooling';
 import 'mocha';
-import {ReactiveStore} from '../../../src/pattern/store/reactive-store';
-import {DateTime} from '../../../src/complex/date-time';
-import {Chars} from '../../../src/primitive/chars';
-import {Integer, ZERO_INT} from "../../../src/ts-tooling";
 
 interface ITestUser {
     name: Chars;

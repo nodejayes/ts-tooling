@@ -1,6 +1,6 @@
-import {assert} from "chai";
-import {List} from "../../src/collections/list";
-import {LZCompression} from "../../src/ts-tooling";
+import {assert} from 'chai';
+import {LZCompression, List} from '../../src/ts-tooling';
+import 'mocha';
 
 interface TestAddress {
     PLZ: string;

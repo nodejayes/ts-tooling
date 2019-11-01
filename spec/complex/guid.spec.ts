@@ -1,6 +1,6 @@
 import {assert} from 'chai';
-import {Chars} from "../../src/ts-tooling";
-import {Guid} from "../../src/complex/guid";
+import {Chars, Guid} from "../../src/ts-tooling";
+import 'mocha';
 
 describe('Guid Tests', () => {
     it('can generate a new Guid', () => {

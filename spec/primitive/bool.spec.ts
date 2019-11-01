@@ -1,5 +1,6 @@
 import {assert} from 'chai';
-import {Bool} from "../../src/primitive/bool";
+import {Bool} from '../../src/ts-tooling';
+import 'mocha';
 
 describe('Bool Tests', () => {
     it('can create Boolean Value', () => {

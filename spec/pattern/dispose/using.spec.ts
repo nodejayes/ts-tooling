@@ -1,5 +1,6 @@
 import {assert} from 'chai';
-import {IDisposable, using} from "../../../src/ts-tooling";
+import {IDisposable, using} from '../../../src/ts-tooling';
+import 'mocha';
 
 class WithDisposable implements IDisposable {
     Name = 'WithoutDisposable';
