@@ -99,6 +99,7 @@ export {ReactiveStore} from './pattern/store/reactive-store';
 // Utils
 export {LZCompression} from './compression/lz';
 export {StopWatch} from './utils/stopwatch';
+export {BackgroundWorker} from './utils/background-worker';
 
 export const ZERO_INT = new Integer(0);
 export const ZERO_DOUBLE = new Double(0.0);
