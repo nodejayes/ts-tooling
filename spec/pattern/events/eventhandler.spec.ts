@@ -19,7 +19,7 @@ describe('EventHandler Tests', () => {
         });
         eventHandler.Unsubscribe('s1'.ToChars());
         eventHandler.Invoke('data');
-        setTimeout(() => done(), 200);
+        setTimeout(() => done(), 50);
     });
 
     it('unsubscribe only once', (done) => {
@@ -29,7 +29,7 @@ describe('EventHandler Tests', () => {
         });
         eventHandler.Subscribe('s2'.ToChars(), (args) => {
             assert.equal(args, 'data');
-            setTimeout(() => done(), 200);
+            setTimeout(() => done(), 50);
         });
         eventHandler.Unsubscribe('s1'.ToChars());
         eventHandler.Invoke('data');
@@ -45,6 +45,6 @@ describe('EventHandler Tests', () => {
         });
         eventHandler.Unsubscribe();
         eventHandler.Invoke('data');
-        setTimeout(() => done(), 200);
+        setTimeout(() => done(), 50);
     });
 });

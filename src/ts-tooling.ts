@@ -75,12 +75,7 @@ Date.prototype.ToDateTime = function (this: Date): DateTime {
     return DateTime.FromJavascriptDate(this);
 };
 
-export {EventHandler} from './pattern/events/event-handler';
-export {using} from './pattern/dispose/using';
-export {IDisposable} from './pattern/dispose/disposable';
-export {Dictionary} from './collections/dictionary';
-export {List} from './collections/list';
-export {ListSortOrder} from './collections/list-sort-order.enum';
+// Types
 export {Double} from './primitive/double';
 export {Bool} from './primitive/bool';
 export {Integer} from './primitive/integer';
@@ -88,7 +83,20 @@ export {Chars} from './primitive/chars';
 export {DateTime} from './complex/date-time';
 export {TimeSpan} from './complex/time-span';
 export {Guid} from './complex/guid';
+
+// Collections
+export {Dictionary} from './collections/dictionary';
+export {List} from './collections/list';
+export {ListSortOrder} from './collections/list-sort-order.enum';
+
+// Patterns
+export {using} from './pattern/dispose/using';
+export {IDisposable} from './pattern/dispose/disposable';
 export {create, createWithFactory} from './pattern/construct';
+export {EventHandler} from './pattern/events/event-handler';
+export {ReactiveStore} from './pattern/store/reactive-store';
+
+// Utils
 export {LZCompression} from './compression/lz';
 export {StopWatch} from './utils/stopwatch';
 

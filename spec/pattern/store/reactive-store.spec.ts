@@ -60,7 +60,7 @@ describe('Reactive Store Tests', () => {
    });
 
    it('can listen on mutation', (done) => {
-       let callCount = new Integer(0);
+       const callCount = new Integer(0);
        const store = new ReactiveStore<ITestStore>({
            test: {
                b: true,
@@ -83,5 +83,34 @@ describe('Reactive Store Tests', () => {
            done();
        });
        store.mutate(s => s.test.b, ov => false);
+   });
+
+   it('can mutate complete State', (done) => {
+       const callCount = new Integer(0);
+       const store = new ReactiveStore<ITestStore>({
+           test: {
+               b: true,
+               n: 5,
+               dt: DateTime.FromISOString('2019-01-01T00:00:00'.ToChars()),
+               o: {
+                   name: new Chars('Paul')
+               }
+           }
+       });
+       store.select(s => s.test).subscribe(d => {
+           callCount.Increment();
+           if (callCount.IsBelow((2).ToInteger())) {
+               // init call
+               assert.equal(d.o.name.Value, 'Paul');
+               return;
+           }
+           // mutate call
+           assert.equal(d.o.name.Value, 'Max');
+           done();
+       });
+       store.mutate(s => s.test, d => {
+           d.o.name = new Chars('Max');
+           return d;
+       });
    });
 });

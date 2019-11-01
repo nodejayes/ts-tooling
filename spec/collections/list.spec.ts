@@ -489,9 +489,7 @@ describe('List Tests', () => {
                 new Chars('c'),
             ]);
             const result = list.Reduce<Chars>((target, e) => {
-                const res = target.Concat(e, new Chars(','));
-                console.info(res);
-                return res;
+                return target.Concat(e, new Chars(','));
             }, new Chars());
             assert.equal(result.Value, 'a,b,c');
         });
