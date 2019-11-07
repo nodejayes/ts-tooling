@@ -1,14 +1,12 @@
-import '../../src/primitive';
+import '../../src/ts-tooling';
 import {assert} from 'chai';
 import 'mocha';
 
 describe('Number Extension Test', () => {
-    it('can create Random Integers', () => {
-        let counter = 0;
-        while (counter < 100) {
-            const n = Number.Random(0, 10);
-            assert.isTrue(n >= 0 && n <= 10);
-            counter++;
-        }
+    it('number IsInRange', () => {
+        const n = 5;
+        assert.isTrue(n.IsInRange(n-1, 10));
+        assert.isTrue(n.IsInRange(n, 10));
+        assert.isFalse(n.IsInRange(n+1, 10));
     });
 });
