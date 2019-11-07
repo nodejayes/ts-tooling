@@ -1,4 +1,4 @@
-### 1.2.0 (not released)
+### 1.2.0
 
 Features:
 
@@ -10,7 +10,6 @@ Features:
 * add IsEmpty check for Chars
 * add rxjs as Dependency
 * ZERO Constant for Integer and Double
-* add Bool primitive Type
 * IsEmpty Check for List
 * Any Check for List
 

@@ -2,7 +2,6 @@ import {Double} from './primitive/double';
 import {Integer} from './primitive/integer';
 import {Chars} from "./primitive/chars";
 import {DateTime} from './complex/date-time';
-import {Bool} from "./primitive/bool";
 
 // Basic Extensions
 declare global {
@@ -77,7 +76,6 @@ Date.prototype.ToDateTime = function (this: Date): DateTime {
 
 // Types
 export {Double} from './primitive/double';
-export {Bool} from './primitive/bool';
 export {Integer} from './primitive/integer';
 export {Chars} from './primitive/chars';
 export {DateTime} from './complex/date-time';
@@ -99,7 +97,6 @@ export {ReactiveStore} from './pattern/store/reactive-store';
 // Utils
 export {LZCompression} from './compression/lz';
 export {StopWatch} from './utils/stopwatch';
-export {BackgroundWorker} from './utils/background-worker';
 
 export const ZERO_INT = new Integer(0);
 export const ZERO_DOUBLE = new Double(0.0);

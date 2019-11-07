@@ -1388,17 +1388,6 @@ declare module 'complex/date-time' {
 	}
 
 }
-declare module 'primitive/bool' {
-	export class Bool {
-	    private _value;
-	    readonly Value: boolean;
-	    constructor(b: boolean);
-	    IsTrue(): boolean;
-	    IsFalse(): boolean;
-	    Switch(): Bool;
-	}
-
-}
 declare module 'complex/guid' {
 	import { Chars } from 'primitive/chars';
 	/**
@@ -1598,7 +1587,6 @@ declare module 'ts-tooling' {
 	    }
 	}
 	export { Double } from 'primitive/double';
-	export { Bool } from 'primitive/bool';
 	export { Integer } from 'primitive/integer';
 	export { Chars } from 'primitive/chars';
 	export { DateTime } from 'complex/date-time';
@@ -1616,10 +1604,5 @@ declare module 'ts-tooling' {
 	export { StopWatch } from 'utils/stopwatch';
 	export const ZERO_INT: Integer;
 	export const ZERO_DOUBLE: Double;
-
-}
-declare module 'utils/background-worker' {
-	export class BackgroundWorker {
-	}
 
 }
