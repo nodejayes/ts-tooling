@@ -1,6 +1,5 @@
 import {clamp, ceil, floor, round} from 'lodash';
 
-
 Number.prototype.IsInRange = function (start: number, end: number): boolean {
     return this <= end && this >= start;
 };
