@@ -1,7 +1,7 @@
-import {DateTime} from './complex/date-time';
+import {DateTime} from './complex/date.time';
 import './primitive/number.extension';
 import './primitive/string.extension';
-import {List} from "./collections/list";
+import {ListSortOrder} from "./primitive/list.sort.order.enum";
 
 // Basic Extensions
 declare global {
@@ -353,12 +353,6 @@ declare global {
         Equals(value: string): boolean;
 
         /**
-         * check if a String is empty
-         * @constructor
-         */
-        IsNullOrEmpty(): boolean;
-
-        /**
          * insert a new String into the Chars at Position
          * @param startIndex
          * @param value
@@ -403,6 +397,291 @@ declare global {
          * @constructor
          */
         TextBetween(begin: string, end: string): string[];
+    }
+    interface Array<T> {
+        /**
+         * the number of items in the list
+         * @constructor
+         */
+        Count(): number;
+
+        /**
+         * get the Maximum Value in the List
+         * ATTENTION only in Numeric Lists
+         * @constructor
+         */
+        Max(): number;
+
+        /**
+         * get the Min Value of the List
+         * ATTENTION only in Numeric Lists
+         * @constructor
+         */
+        Min(): number;
+
+        /**
+         * get the Mean of this List
+         * ATTENTION only in Numeric Lists
+         * @constructor
+         */
+        Mean(): number;
+
+        /**
+         * get the Sum of this List
+         * ATTENTION only in Numeric Lists
+         * @constructor
+         */
+        Sum(): number;
+
+        /**
+         * add a new Item into the List
+         * @param element
+         * @constructor
+         */
+        Add(element: T): void;
+
+        /**
+         * add a Item to the List if not exists in the List
+         * @param element
+         * @constructor
+         */
+        AddIfNotExists(element: T): boolean;
+
+        /**
+         * reduce a List of Elements into a new Element
+         * @param reducer
+         * @param initial
+         * @constructor
+         */
+        Reduce<K>(reducer: (target: K, e: T) => K, initial: K): K;
+
+        /**
+         * same as Add with multiple Items
+         * @param elements
+         * @constructor
+         */
+        AddRange(elements: T[]): void;
+
+        /**
+         * same as AddIfNotExists with multiple items
+         * @param elements
+         * @constructor
+         */
+        AddRangeIfNotExists(elements: T[]): boolean[];
+
+        /**
+         * remove all Items from the List
+         * @constructor
+         */
+        Clear(): void;
+
+        /**
+         * check if an Item is in the List
+         * @param element
+         * @constructor
+         */
+        Contains(element: T): boolean;
+
+        /**
+         * copy the complete List into a new One
+         * @constructor
+         */
+        Copy(): T[];
+
+        /**
+         * check if a Items exists that match the specific Filter
+         * @constructor
+         */
+        Exists(findMethod: (d: T) => boolean): boolean;
+
+        /**
+         * returns the First match of an Item from the List by specific Filter
+         * @param findMethod
+         * @constructor
+         */
+        Find(findMethod: (d: T) => boolean): T;
+
+        /**
+         * returns the Last match of an Item from the List by specific Filter
+         * @param findMethod
+         * @constructor
+         */
+        FindLast(findMethod: (d: T) => boolean): T;
+
+        /**
+         * returns the index of the First Item that matches the specific Filter
+         * @param findMethod
+         * @constructor
+         */
+        FindIndex(findMethod: (d: T) => boolean): number;
+
+        /**
+         * returns all Items that matches the specific Filter
+         * @param findMethod
+         * @constructor
+         */
+        FindAll(findMethod: (d: T) => boolean): T[];
+
+        /**
+         * returns the Index of the Last match Item from the List by specific Filter
+         * @param findMethod
+         * @constructor
+         */
+        FindLastIndex(findMethod: (d: T) => boolean): number;
+
+        /**
+         * check if the condition is true for all Items in the List
+         * @param matchMethod
+         * @constructor
+         */
+        TrueForAll(matchMethod: (d: T) => boolean): boolean;
+
+        /**
+         * insert a new Item at the Index into the List
+         * @param index
+         * @param element
+         * @constructor
+         */
+        Insert(index: number, element: T): void;
+
+        /**
+         * insert multiple Items at the Index into the List
+         * @param index
+         * @param elements
+         * @constructor
+         */
+        InsertRange(index: number, elements: T[]): void;
+
+        /**
+         * get the Index of an Intem in the List
+         * @param element
+         * @param fromIndex
+         * @constructor
+         */
+        IndexOf(element: T, fromIndex?: number): number;
+
+        /**
+         * removes a Item from the List
+         * @param element
+         * @constructor
+         */
+        Remove(element: T): void;
+
+        /**
+         * remove all Items from List that match the Filter
+         * @param match
+         * @constructor
+         */
+        RemoveAll(match: (d: T) => boolean): void;
+
+        /**
+         * remove a Item at a specific Index
+         * @param index
+         * @constructor
+         */
+        RemoveAt(index: number): void;
+
+        /**
+         * remove all these Items from the List
+         * @param elements
+         * @constructor
+         */
+        RemoveRange(elements: T[]): void;
+
+        /**
+         * turn around the whole List
+         * @constructor
+         */
+        Reverse(): T[];
+
+        /**
+         * sort primitive List by ASC or DESC order
+         * @param order
+         * @constructor
+         */
+        Sort(order?: ListSortOrder): T[];
+
+        /**
+         * sort complex List by multiple Keys
+         * @param keys
+         * @param orders
+         * @constructor
+         */
+        SortBy(keys: string[], orders?: ListSortOrder[]): T[];
+
+        /**
+         * get the Item at the Index
+         * @param index
+         * @constructor
+         */
+        ElementAt(index: number): T;
+
+        /**
+         * have the List more that one Item
+         * @constructor
+         */
+        Any(): boolean;
+
+        /**
+         * find the First match Item or return a Default Value
+         * @param findMethod
+         * @param def
+         * @constructor
+         */
+        FirstOrDefault(findMethod: (d: T) => boolean, def?: T): T;
+
+        /**
+         * find the Last match Item or return a Default Value
+         * @param findMethod
+         * @param def
+         * @constructor
+         */
+        LastOrDefault(findMethod: (d: T) => boolean, def?: T): T;
+
+        /**
+         * group a List by a specific Key that was returned by transform Function
+         * @param transformMethod
+         * @constructor
+         */
+        GroupBy(transformMethod: (d: T) => any): {[key: string]: T[]};
+
+        /**
+         * convert a List into another List
+         * @param convertMethod
+         * @constructor
+         */
+        Convert<K>(convertMethod: (d: T) => K): K[];
+
+        /**
+         * get the Max Element
+         * must have a Numeric Property
+         * @param filterMethod
+         * @constructor
+         */
+        MaxBy(filterMethod: (d: T) => number): T;
+
+        /**
+         * get the Min Element
+         * must have a Numeric Property
+         * @param filterMethod
+         * @constructor
+         */
+        MinBy(filterMethod: (d: T) => number): T;
+
+        /**
+         * get the Mean of complex element
+         * must have a Numeric Property
+         * @param filterMethod
+         * @constructor
+         */
+        MeanBy(filterMethod: (d: T) => number): T;
+
+        /**
+         * calculate a Sum
+         * @param filterMethod
+         * @constructor
+         */
+        SumBy(filterMethod: (d: T) => number): number;
     }
     interface Date {
         ToDateTime(): DateTime;

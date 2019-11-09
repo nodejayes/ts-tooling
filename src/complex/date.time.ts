@@ -1,8 +1,7 @@
 import {DateTime as LuxonDateTime} from 'luxon';
 import {cloneDeep} from 'lodash';
-import {TimeSpan} from "./time-span";
-import {Integer} from "../primitive/integer";
-import {Chars} from '../primitive/chars';
+import {TimeSpan} from './time.span';
+import {StringFactory} from "../utils/string.factory";
 
 /**
  * @ignore
@@ -23,56 +22,56 @@ export class DateTime {
      * Year of the Date
      * @constructor
      */
-    get Year(): Integer {
-        return new Integer(this._date.year);
+    get Year(): number {
+        return this._date.year;
     }
 
     /**
      * Month of the Date
      * @constructor
      */
-    get Month(): Integer {
-        return new Integer(this._date.month);
+    get Month(): number {
+        return this._date.month;
     }
 
     /**
      * Day of the Date in Month
      * @constructor
      */
-    get Day(): Integer {
-        return new Integer(this._date.day);
+    get Day(): number {
+        return this._date.day;
     }
 
     /**
      * Hour of the Day
      * @constructor
      */
-    get Hour(): Integer {
-        return new Integer(this._date.hour);
+    get Hour(): number {
+        return this._date.hour;
     }
 
     /**
      * Minute of the Day
      * @constructor
      */
-    get Minute(): Integer {
-        return new Integer(this._date.minute);
+    get Minute(): number {
+        return this._date.minute;
     }
 
     /**
      * Second of the Day
      * @constructor
      */
-    get Second(): Integer {
-        return new Integer(this._date.second);
+    get Second(): number {
+        return this._date.second;
     }
 
     /**
      * Millisecond of the Day
      * @constructor
      */
-    get Millisecond(): Integer {
-        return new Integer(this._date.millisecond);
+    get Millisecond(): number {
+        return this._date.millisecond;
     }
 
     /**
@@ -82,78 +81,78 @@ export class DateTime {
     get UTC(): DateTime {
         const tmp = cloneDeep(this._date).toUTC();
         return new DateTime(
-            new Chars('UTC'),
-            new Integer(tmp.year),
-            new Integer(tmp.month),
-            new Integer(tmp.day),
-            new Integer(tmp.hour),
-            new Integer(tmp.minute),
-            new Integer(tmp.second),
-            new Integer(tmp.millisecond));
+            'UTC',
+            tmp.year,
+            tmp.month,
+            tmp.day,
+            tmp.hour,
+            tmp.minute,
+            tmp.second,
+            tmp.millisecond);
     }
 
     /**
      * the offset to UTC Timezone in Minutes
      * @constructor
      */
-    get UTCOffsetMinutes(): Integer {
-        return new Integer(this._date.offset);
+    get UTCOffsetMinutes(): number {
+        return this._date.offset;
     }
 
     /**
      * the current Timezone Name
      * @constructor
      */
-    get Zone(): Chars {
-        return new Chars(this._date.zoneName);
+    get Zone(): string {
+        return this._date.zoneName;
     }
 
     /**
      * the Weekday of the DateTime
      * @constructor
      */
-    get DayOfWeek(): Integer {
-        return new Integer(this._date.weekday);
+    get DayOfWeek(): number {
+        return this._date.weekday;
     }
 
     /**
      * the Day in the Year of the DateTime
      * @constructor
      */
-    get DayOfYear(): Integer {
-        return new Integer(this._date.ordinal);
+    get DayOfYear(): number {
+        return this._date.ordinal;
     }
 
     /**
      * the Number of the Days in the DateTime Year
      * @constructor
      */
-    get DaysInYear(): Integer {
-        return new Integer(this._date.daysInYear);
+    get DaysInYear(): number {
+        return this._date.daysInYear;
     }
 
     /**
      * the Number of Days in the Month of the DateTime
      * @constructor
      */
-    get DaysInMonth(): Integer {
-        return new Integer(this._date.daysInMonth);
+    get DaysInMonth(): number {
+        return this._date.daysInMonth;
     }
 
     /**
      * the Quarter of the Year of the DateTime
      * @constructor
      */
-    get YearQuarter(): Integer {
-        return new Integer(this._date.quarter);
+    get YearQuarter(): number {
+        return this._date.quarter;
     }
 
     /**
      * the Week Number of the Year of DateTime
      * @constructor
      */
-    get YearWeekNumber(): Integer {
-        return new Integer(this._date.weekNumber);
+    get YearWeekNumber(): number {
+        return this._date.weekNumber;
     }
 
     /**
@@ -161,7 +160,7 @@ export class DateTime {
      * @constructor
      */
     get Date(): DateTime {
-        return new DateTime(this.Zone, this.Year, this.Month, this.Day, new Integer(0), new Integer(0), new Integer(0), new Integer(0));
+        return new DateTime(this.Zone, this.Year, this.Month, this.Day, 0, 0, 0, 0);
     }
 
     /**
@@ -169,7 +168,7 @@ export class DateTime {
      * @constructor
      */
     get TimeOfDay(): TimeSpan {
-        return new TimeSpan(this.Hour, this.Minute, this.Second, this.Millisecond, new Integer(0));
+        return new TimeSpan(this.Hour, this.Minute, this.Second, this.Millisecond, 0);
     }
 
     /**
@@ -191,20 +190,20 @@ export class DateTime {
      * @param second
      * @param millisecond
      */
-    constructor(zone?: Chars, year?: Integer, month?: Integer, day?: Integer, hour?: Integer, minute?: Integer, second?: Integer, millisecond?: Integer) {
-        if (!zone || zone.IsEmpty()) {
-            zone = new Chars('UTC');
+    constructor(zone?: string, year?: number, month?: number, day?: number, hour?: number, minute?: number, second?: number, millisecond?: number) {
+        if (StringFactory.IsNullOrEmpty(zone)) {
+            zone = 'UTC';
         }
         this._date = LuxonDateTime.utc(
-            year ? year.Value : undefined,
-            month ? month.Value : undefined,
-            day ? day.Value : undefined,
-            hour ? hour.Value : undefined,
-            minute ? minute.Value : undefined,
-            second ? second.Value : undefined,
-            millisecond ? millisecond.Value : undefined)
-            .setZone(zone.Value);
-        checkLuxonTimeZone(zone.Value, this._date);
+            year ? year : undefined,
+            month ? month : undefined,
+            day ? day : undefined,
+            hour ? hour : undefined,
+            minute ? minute : undefined,
+            second ? second : undefined,
+            millisecond ? millisecond : undefined)
+            .setZone(zone);
+        checkLuxonTimeZone(zone, this._date);
     }
 
     /**
@@ -214,14 +213,14 @@ export class DateTime {
      */
     static FromLuxon(luxonDate: LuxonDateTime): DateTime {
         return new DateTime(
-            new Chars(luxonDate.zoneName),
-            new Integer(luxonDate.year),
-            new Integer(luxonDate.month),
-            new Integer(luxonDate.day),
-            new Integer(luxonDate.hour),
-            new Integer(luxonDate.minute),
-            new Integer(luxonDate.second),
-            new Integer(luxonDate.millisecond));
+            luxonDate.zoneName,
+            luxonDate.year,
+            luxonDate.month,
+            luxonDate.day,
+            luxonDate.hour,
+            luxonDate.minute,
+            luxonDate.second,
+            luxonDate.millisecond);
     }
 
     /**
@@ -230,14 +229,14 @@ export class DateTime {
      * @param date
      * @param zone
      */
-    static FromJavascriptDate(date: Date, zone?: Chars): DateTime {
-        if (!zone || zone.IsEmpty()) {
-            zone = new Chars('UTC');
+    static FromJavascriptDate(date: Date, zone?: string): DateTime {
+        if (StringFactory.IsNullOrEmpty(zone)) {
+            zone = 'UTC';
         }
         const tmp = LuxonDateTime.fromJSDate(date, {
-            zone: zone.Value,
+            zone: zone,
         });
-        checkLuxonTimeZone(zone.Value, tmp);
+        checkLuxonTimeZone(zone, tmp);
         return this.FromLuxon(tmp);
     }
 
@@ -247,14 +246,14 @@ export class DateTime {
      * @param isoStr
      * @param zone
      */
-    static FromISOString(isoStr: Chars, zone?: Chars): DateTime {
-        if (!zone || zone.IsEmpty()) {
-            zone = new Chars('UTC');
+    static FromISOString(isoStr: string, zone?: string): DateTime {
+        if (StringFactory.IsNullOrEmpty(zone)) {
+            zone = 'UTC';
         }
-        const tmp = LuxonDateTime.fromISO(isoStr.Value, {
-            zone: zone.Value,
+        const tmp = LuxonDateTime.fromISO(isoStr, {
+            zone,
         });
-        checkLuxonTimeZone(zone.Value, tmp);
+        checkLuxonTimeZone(zone, tmp);
         return this.FromLuxon(tmp);
     }
 
@@ -264,14 +263,14 @@ export class DateTime {
      * @param zone
      * @constructor
      */
-    static FromMilliseconds(milliseconds: Integer, zone?: Chars): DateTime {
-        if (!zone || zone.IsEmpty()) {
-            zone = new Chars('UTC');
+    static FromMilliseconds(milliseconds: number, zone?: string): DateTime {
+        if (StringFactory.IsNullOrEmpty(zone)) {
+            zone = 'UTC';
         }
-        const tmp = LuxonDateTime.fromMillis(milliseconds.Value, {
-            zone: zone.Value,
+        const tmp = LuxonDateTime.fromMillis(milliseconds, {
+            zone,
         });
-        checkLuxonTimeZone(zone.Value, tmp);
+        checkLuxonTimeZone(zone, tmp);
         return this.FromLuxon(tmp);
     }
 
@@ -279,17 +278,17 @@ export class DateTime {
      * get the DateTime in a specific Timezone
      * @param zone
      */
-    ToZone(zone: Chars): DateTime {
-        const tmp = cloneDeep(this._date).setZone(zone.Value);
+    ToZone(zone: string): DateTime {
+        const tmp = cloneDeep(this._date).setZone(zone);
         return new DateTime(
             zone,
-            new Integer(tmp.year),
-            new Integer(tmp.month),
-            new Integer(tmp.day),
-            new Integer(tmp.hour),
-            new Integer(tmp.minute),
-            new Integer(tmp.second),
-            new Integer(tmp.millisecond));
+            tmp.year,
+            tmp.month,
+            tmp.day,
+            tmp.hour,
+            tmp.minute,
+            tmp.second,
+            tmp.millisecond);
     }
 
     /**
@@ -299,13 +298,13 @@ export class DateTime {
      */
     Add(dt: DateTime): DateTime {
         this._date = this._date.plus({
-            year: dt.Year.Value,
-            month: dt.Month.Value,
-            day: dt.Day.Value,
-            hour: dt.Hour.Value,
-            minute: dt.Minute.Value,
-            second: dt.Second.Value,
-            millisecond: dt.Millisecond.Value,
+            year: dt.Year,
+            month: dt.Month,
+            day: dt.Day,
+            hour: dt.Hour,
+            minute: dt.Minute,
+            second: dt.Second,
+            millisecond: dt.Millisecond,
         });
         return this;
     }
@@ -326,13 +325,13 @@ export class DateTime {
      */
     Subtract(dt: DateTime): DateTime {
         this._date = this._date.minus({
-            year: dt.Year.Value,
-            month: dt.Month.Value,
-            day: dt.Day.Value,
-            hour: dt.Hour.Value,
-            minute: dt.Minute.Value,
-            second: dt.Second.Value,
-            millisecond: dt.Millisecond.Value,
+            year: dt.Year,
+            month: dt.Month,
+            day: dt.Day,
+            hour: dt.Hour,
+            minute: dt.Minute,
+            second: dt.Second,
+            millisecond: dt.Millisecond,
         });
         return this;
     }
@@ -342,8 +341,8 @@ export class DateTime {
      * @param years
      * @constructor
      */
-    AddYears(years: Integer): DateTime {
-        this._date = this._date.plus({years: years.Value});
+    AddYears(years: number): DateTime {
+        this._date = this._date.plus({years});
         return this;
     }
 
@@ -352,8 +351,8 @@ export class DateTime {
      * @param months
      * @constructor
      */
-    AddMonths(months: Integer): DateTime {
-        this._date = this._date.plus({months: months.Value});
+    AddMonths(months: number): DateTime {
+        this._date = this._date.plus({months});
         return this;
     }
 
@@ -362,8 +361,8 @@ export class DateTime {
      * @param days
      * @constructor
      */
-    AddDays(days: Integer): DateTime {
-        this._date = this._date.plus({days: days.Value});
+    AddDays(days: number): DateTime {
+        this._date = this._date.plus({days});
         return this;
     }
 
@@ -372,8 +371,8 @@ export class DateTime {
      * @param hours
      * @constructor
      */
-    AddHours(hours: Integer): DateTime {
-        this._date = this._date.plus({hours: hours.Value});
+    AddHours(hours: number): DateTime {
+        this._date = this._date.plus({hours});
         return this;
     }
 
@@ -382,8 +381,8 @@ export class DateTime {
      * @param minutes
      * @constructor
      */
-    AddMinutes(minutes: Integer): DateTime {
-        this._date = this._date.plus({minutes: minutes.Value});
+    AddMinutes(minutes: number): DateTime {
+        this._date = this._date.plus({minutes});
         return this;
     }
 
@@ -392,8 +391,8 @@ export class DateTime {
      * @param seconds
      * @constructor
      */
-    AddSeconds(seconds: Integer): DateTime {
-        this._date = this._date.plus({seconds: seconds.Value});
+    AddSeconds(seconds: number): DateTime {
+        this._date = this._date.plus({seconds});
         return this;
     }
 
@@ -402,8 +401,8 @@ export class DateTime {
      * @param milliseconds
      * @constructor
      */
-    AddMilliseconds(milliseconds: Integer): DateTime {
-        this._date = this._date.plus({milliseconds: milliseconds.Value});
+    AddMilliseconds(milliseconds: number): DateTime {
+        this._date = this._date.plus({milliseconds});
         return this;
     }
 
@@ -439,7 +438,7 @@ export class DateTime {
      * @param fmt
      * @constructor
      */
-    ToString(fmt?: Chars): Chars {
-        return new Chars(this._date.toFormat(fmt ? fmt.Value : 'yyyy-MM-dd HH:mm:ss'));
+    ToString(fmt?: string): string {
+        return this._date.toFormat(fmt ? fmt : 'yyyy-MM-dd HH:mm:ss');
     }
 }

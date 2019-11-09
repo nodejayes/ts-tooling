@@ -4,7 +4,8 @@ import {
     words, pad, padStart, padEnd, repeat, replace, filter, toUpper, toLower,
     trim, trimStart, trimEnd, truncate, clone, includes, lastIndexOf
 } from 'lodash';
-import {List} from "../collections/list";
+import {StringFactory} from "../utils/string.factory";
+import {ZERO_INT} from "../ts-tooling";
 
 String.prototype.CharAt = function (pos: number): string {
     if (this.length.Subtract(1).IsBelow(pos)) {
@@ -78,28 +79,35 @@ String.prototype.Words = function (): string[] {
 };
 
 String.prototype.Concat = function (appender: string, separator?: string): string {
-    if (separator && !separator.IsNullOrEmpty() && !this.IsNullOrEmpty()) {
+    if (!StringFactory.IsNullOrEmpty(separator) && !this.IsNullOrEmpty()) {
         return this + separator + appender;
     }
     return this + appender;
 };
 
 String.prototype.Join = function (appender: string[], separator: string): string {
-   // TODO: first implement List
+    if (!appender.Any()) {
+        return '';
+    }
+    let res = '';
+    for (const str of appender) {
+        res = res.Concat(str, separator);
+    }
+    return res;
 };
 
 String.prototype.Pad = function (length: number, template?: string): string {
-    template = template.IsNullOrEmpty() ? ' ' : template;
+    template = StringFactory.IsNullOrEmpty(template) ? ' ' : template;
     return pad(this, length, template);
 };
 
 String.prototype.PadLeft = function (length: number, template?: string): string {
-    template = template.IsNullOrEmpty() ? ' ' : template;
+    template = StringFactory.IsNullOrEmpty(template) ? ' ' : template;
     return padStart(this, length, template);
 };
 
 String.prototype.PadRight = function (length: number, template?: string): string {
-    template = template.IsNullOrEmpty() ? ' ' : template;
+    template = StringFactory.IsNullOrEmpty(template) ? ' ' : template;
     return padEnd(this, length, template);
 };
 
@@ -116,7 +124,7 @@ String.prototype.ReplaceAll = function (search: string, replacer: string): strin
 };
 
 String.prototype.Split = function (pattern: string): string[] {
-    if (this.IsNullOrEmpty()) {
+    if (StringFactory.IsNullOrEmpty(this)) {
         return [];
     }
     return filter(this.split(pattern), i => !!i);
@@ -182,10 +190,6 @@ String.prototype.Equals = function (value: string): boolean {
     return this === value;
 };
 
-String.prototype.IsNullOrEmpty = function (): boolean {
-    return !this || this.length < 1;
-};
-
 String.prototype.Insert = function (startIndex: number, value: string): string {
     return this.slice(0, startIndex) + value + this.slice(startIndex, this.length);
 };
@@ -207,23 +211,21 @@ String.prototype.LastIndexOf = function (value: string): number {
 };
 
 String.prototype.TextBetween = function (begin: string, end: string): string[] {
-    const tmp: string[] = [];
+    const tmp = [];
     for (const split of this.Split(begin)) {
-        if (!split && !split.IsNullOrEmpty()) {
-            // TODO: change to Add when List extension is Ready
-            tmp.push('');
+        if (!split) {
+            tmp.Add('');
             continue;
         }
         const between = split.Split(end).FirstOrDefault(() => true);
-        if (!between && !between.IsNullOrEmpty()) {
+        if (!between) {
             continue;
         }
-        // TODO: change to Add when List extension is Ready
-        tmp.push(between);
+        tmp.Add(between);
     }
-    if (!this.StartsWith(begin) || this.EndsWith(tmp.ElementAt(new Integer(0)))) {
+    if (!this.StartsWith(begin) || this.EndsWith(tmp.ElementAt(ZERO_INT))) {
         // remove the begin string
-        tmp.RemoveAt(new Integer(0));
+        tmp.RemoveAt(ZERO_INT);
     }
     return tmp;
 };

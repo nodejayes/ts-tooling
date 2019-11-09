@@ -1,6 +1,6 @@
 import {Subject, Subscription} from 'rxjs';
-import {Dictionary} from '../../collections/dictionary';
-import {Chars} from '../../primitive/chars';
+import {Dictionary} from '../../complex/dictionary';
+import {StringFactory} from '../../utils/string.factory';
 
 /**
  * represent a Event Handler
@@ -25,7 +25,7 @@ export class EventHandler<T> {
      * @returns the Idx of the Subscription
      * @constructor
      */
-    Subscribe(key: Chars, cb: (d: T) => void) {
+    Subscribe(key: string, cb: (d: T) => void) {
         this._subscriptions.Add(key, this._stream.subscribe(cb));
     }
 
@@ -34,9 +34,9 @@ export class EventHandler<T> {
      * @param key the key to identify the Subscription to unsubscribe
      * @constructor
      */
-    Unsubscribe(key?: Chars) {
-        if (!key || key.IsEmpty()) {
-            for (const k of this._subscriptions.Keys.ToArray()) {
+    Unsubscribe(key?: string) {
+        if (StringFactory.IsNullOrEmpty(key)) {
+            for (const k of this._subscriptions.Keys) {
                 this.unsubscribeByKey(k);
             }
         } else {
@@ -44,7 +44,7 @@ export class EventHandler<T> {
         }
     }
 
-    private unsubscribeByKey(key: Chars): void {
+    private unsubscribeByKey(key: string): void {
         const sub = this._subscriptions.TryGetValue(key);
         sub.unsubscribe();
         this._subscriptions.Remove(key);

@@ -1,7 +1,4 @@
 import {Duration as LuxonDuration, DurationObject} from 'luxon';
-import {Integer} from "../primitive/integer";
-import {Double} from "../primitive/double";
-import {Chars} from "../primitive/chars";
 
 /**
  * @ignore
@@ -96,100 +93,100 @@ export class TimeSpan {
      * the Days of this TimeSpan
      * @constructor
      */
-    get Day(): Integer {
-        return new Integer(this._days);
+    get Day(): number {
+        return this._days;
     }
 
     /**
      * the TimeSpan in Days
      * @constructor
      */
-    get TotalDays(): Double {
+    get TotalDays(): number {
         const ms = (this._milliseconds / this.MillisecondsPerDay);
         const s = (this._seconds / this.SecondsPerDay);
         const m = (this._minutes / this.MinutesPerDay);
         const h = (this._hours / this.HoursPerDay);
-        return new Double(this._days + ms + s + m + h);
+        return this._days + ms + s + m + h;
     }
 
     /**
      * the Hour of this TimeSpan
      * @constructor
      */
-    get Hour(): Integer {
-        return new Integer(this._hours);
+    get Hour(): number {
+        return this._hours;
     }
 
     /**
      * the TimeSpan in Hours
      * @constructor
      */
-    get TotalHours(): Double {
+    get TotalHours(): number {
         const d = (this._days * this.HoursPerDay);
         const m = (this._minutes / this.MinutesPerHour);
         const s = (this._seconds / this.SecondsPerHour);
         const ms = (this._milliseconds / this.MillisecondsPerHour);
-        return new Double(this._hours + d + m + s + ms);
+        return this._hours + d + m + s + ms;
     }
 
     /**
      * the Minute of this TimeSpan
      * @constructor
      */
-    get Minute(): Integer {
-        return new Integer(this._minutes);
+    get Minute(): number {
+        return this._minutes;
     }
 
     /**
      * the TimeSpan in Minutes
      * @constructor
      */
-    get TotalMinutes(): Double {
+    get TotalMinutes(): number {
         const d = this._days * this.MinutesPerDay;
         const h = this._hours * this.MinutesPerHour;
         const s = this._seconds / this.SecondsPerMinute;
         const ms = this._milliseconds / this.MillisecondsPerMinute;
-        return new Double(this._minutes + d + h + s + ms);
+        return this._minutes + d + h + s + ms;
     }
 
     /**
      * the Second of this TimeSpan
      * @constructor
      */
-    get Second(): Integer {
-        return new Integer(this._seconds);
+    get Second(): number {
+        return this._seconds;
     }
 
     /**
      * the TimeSpan in Seconds
      * @constructor
      */
-    get TotalSeconds(): Double {
+    get TotalSeconds(): number {
         const d = this._days * this.SecondsPerDay;
         const h = this._hours * this.SecondsPerHour;
         const m = this._minutes * this.SecondsPerMinute;
         const ms = this._milliseconds / this.MillisecondsPerSecond;
-        return new Double(this._seconds + d + h + m + ms);
+        return this._seconds + d + h + m + ms;
     }
 
     /**
      * the Millisecond of this TimeSpan
      * @constructor
      */
-    get Millisecond(): Integer {
-        return new Integer(this._milliseconds);
+    get Millisecond(): number {
+        return this._milliseconds;
     }
 
     /**
      * the TimeSpan in Milliseconds
      * @constructor
      */
-    get TotalMilliseconds(): Double {
+    get TotalMilliseconds(): number {
         const d = this._days * this.MillisecondsPerDay;
         const h = this._hours * this.MillisecondsPerHour;
         const m = this._minutes * this.MillisecondsPerMinute;
         const s = this._seconds * this.MillisecondsPerSecond;
-        return new Double(this._milliseconds + d + h + m + s);
+        return this._milliseconds + d + h + m + s;
     }
 
     /**
@@ -198,7 +195,7 @@ export class TimeSpan {
      */
     get Valid(): boolean {
         return LuxonDuration.fromObject({
-            milliseconds: this.TotalMilliseconds.Value,
+            milliseconds: this.TotalMilliseconds,
         }).isValid
     }
 
@@ -210,21 +207,21 @@ export class TimeSpan {
      * @param milliseconds
      * @param days
      */
-    constructor(hours?: Integer, minutes?: Integer, seconds?: Integer, milliseconds?: Integer, days?: Integer) {
-        if (days && days.Value > 0) {
-            this._days = days.Value;
+    constructor(hours?: number, minutes?: number, seconds?: number, milliseconds?: number, days?: number) {
+        if (days && days > 0) {
+            this._days = days;
         }
-        if (hours && hours.Value > 0) {
-            this._hours = hours.Value;
+        if (hours && hours > 0) {
+            this._hours = hours;
         }
-        if (minutes && minutes.Value > 0) {
-            this._minutes = minutes.Value;
+        if (minutes && minutes > 0) {
+            this._minutes = minutes;
         }
-        if (seconds && seconds.Value > 0) {
-            this._seconds = seconds.Value;
+        if (seconds && seconds > 0) {
+            this._seconds = seconds;
         }
-        if (milliseconds && milliseconds.Value > 0) {
-            this._milliseconds = milliseconds.Value;
+        if (milliseconds && milliseconds > 0) {
+            this._milliseconds = milliseconds;
         }
     }
 
@@ -235,11 +232,11 @@ export class TimeSpan {
      */
     static FromLuxon(luxon: LuxonDuration): TimeSpan {
         return new TimeSpan(
-            new Integer(luxon.hours),
-            new Integer(luxon.minutes),
-            new Integer(luxon.seconds),
-            new Integer(luxon.milliseconds),
-            new Integer(luxon.days));
+            luxon.hours,
+            luxon.minutes,
+            luxon.seconds,
+            luxon.milliseconds,
+            luxon.days);
     }
 
     /**
@@ -248,8 +245,8 @@ export class TimeSpan {
      * @param isoStr
      * @constructor
      */
-    static FromISOString(isoStr: Chars): TimeSpan {
-        const d = LuxonDuration.fromObject(parseString(isoStr.Value));
+    static FromISOString(isoStr: string): TimeSpan {
+        const d = LuxonDuration.fromObject(parseString(isoStr));
         return this.FromLuxon(d);
     }
 
@@ -258,8 +255,8 @@ export class TimeSpan {
      * @param milliseconds
      * @constructor
      */
-    static FromMilliseconds(milliseconds: Integer): TimeSpan {
-        return this.FromLuxon(LuxonDuration.fromMillis(milliseconds.Value));
+    static FromMilliseconds(milliseconds: number): TimeSpan {
+        return this.FromLuxon(LuxonDuration.fromMillis(milliseconds));
     }
 
     /**
@@ -268,11 +265,11 @@ export class TimeSpan {
      * @constructor
      */
     Add(duration: TimeSpan): TimeSpan {
-        this._days += duration.Day.Value;
-        this._hours += duration.Hour.Value;
-        this._minutes += duration.Minute.Value;
-        this._seconds += duration.Second.Value;
-        this._milliseconds += duration.Millisecond.Value;
+        this._days += duration.Day;
+        this._hours += duration.Hour;
+        this._minutes += duration.Minute;
+        this._seconds += duration.Second;
+        this._milliseconds += duration.Millisecond;
         return this;
     }
 
@@ -282,7 +279,7 @@ export class TimeSpan {
      * @constructor
      */
     Equals(duration: TimeSpan): boolean {
-        return this.TotalMilliseconds.Value === duration.TotalMilliseconds.Value;
+        return this.TotalMilliseconds === duration.TotalMilliseconds;
     }
 
     /**
@@ -304,11 +301,11 @@ export class TimeSpan {
      * @constructor
      */
     Subtract(duration: TimeSpan): TimeSpan {
-        this._days -= duration.Day.Value;
-        this._hours -= duration.Hour.Value;
-        this._minutes -= duration.Minute.Value;
-        this._seconds -= duration.Second.Value;
-        this._milliseconds -= duration.Millisecond.Value;
+        this._days -= duration.Day;
+        this._hours -= duration.Hour;
+        this._minutes -= duration.Minute;
+        this._seconds -= duration.Second;
+        this._milliseconds -= duration.Millisecond;
         return this;
     }
 
@@ -318,7 +315,7 @@ export class TimeSpan {
      * @constructor
      */
     IsBefore(duration: TimeSpan): boolean {
-        return duration.TotalMilliseconds.Value > this.TotalMilliseconds.Value;
+        return duration.TotalMilliseconds > this.TotalMilliseconds;
     }
 
     /**
@@ -327,7 +324,7 @@ export class TimeSpan {
      * @constructor
      */
     IsAfter(duration: TimeSpan): boolean {
-        return duration.TotalMilliseconds.Value < this.TotalMilliseconds.Value;
+        return duration.TotalMilliseconds < this.TotalMilliseconds;
     }
 
     /**
@@ -336,8 +333,8 @@ export class TimeSpan {
      * @param fmt
      * @constructor
      */
-    ToString(fmt?: Chars): Chars {
-        return new Chars(LuxonDuration.fromMillis(this.TotalMilliseconds.Value)
-            .toFormat(fmt ? fmt.Value : 'hh:mm:ss'));
+    ToString(fmt?: string): string {
+        return LuxonDuration.fromMillis(this.TotalMilliseconds)
+            .toFormat(fmt ? fmt : 'hh:mm:ss');
     }
 }

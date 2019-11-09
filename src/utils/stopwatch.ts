@@ -1,5 +1,3 @@
-import { Double } from "../primitive/double";
-
 const NS_PER_SEC = 1e9;
 
 /**
@@ -20,12 +18,12 @@ export class StopWatch {
         this._multipleTimes[key] = this.getTimestamp();
     }
 
-    public SectionElapsedMs(key: string): Double {
-        return new Double(this.getMultipleTimeDiff(key));
+    public SectionElapsedMs(key: string): number {
+        return this.getMultipleTimeDiff(key);
     }
 
-    public ElapsedMs(): Double {
-        return new Double(this.getTimeDiff());
+    public ElapsedMs(): number {
+        return this.getTimeDiff();
     }
 
     private getTimestamp(): number | [number, number] {
