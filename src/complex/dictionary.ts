@@ -36,7 +36,8 @@ export class Dictionary<T> {
      * all Keys of the Dictionary
      * @constructor
      */
-    get Keys(): string[] {
+    Keys(): string[] {
+        console.info([1].ElementAt(0));
         return keys(this._data);
     }
 

@@ -79,7 +79,7 @@ String.prototype.Words = function (): string[] {
 };
 
 String.prototype.Concat = function (appender: string, separator?: string): string {
-    if (!StringFactory.IsNullOrEmpty(separator) && !this.IsNullOrEmpty()) {
+    if (!StringFactory.IsNullOrEmpty(separator) && !StringFactory.IsNullOrEmpty(this)) {
         return this + separator + appender;
     }
     return this + appender;

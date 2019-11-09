@@ -36,7 +36,7 @@ export class EventHandler<T> {
      */
     Unsubscribe(key?: string) {
         if (StringFactory.IsNullOrEmpty(key)) {
-            for (const k of this._subscriptions.Keys) {
+            for (const k of this._subscriptions.Keys()) {
                 this.unsubscribeByKey(k);
             }
         } else {

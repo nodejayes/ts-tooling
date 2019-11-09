@@ -1,10 +1,9 @@
 import {
     max, min, mean, sum, isFunction, cloneDeep, find,
     findLast, filter, findIndex, indexOf, without, remove,
-    pullAt, reverse, orderBy, first, last, map, maxBy, minBy, meanBy, sumBy
+    pullAt, reverse, orderBy, first, last, map, maxBy, minBy, meanBy, sumBy, groupBy
 } from 'lodash';
-import {ListSortOrder} from "./list.sort.order.enum";
-import {groupBy} from "rxjs/operators";
+import {ListSortOrder} from './list.sort.order.enum';
 
 function checkIfNumeric<T>(item: T): boolean {
     return !isNaN(<any>item)
@@ -80,7 +79,7 @@ Array.prototype.Clear = function (): void {
 };
 
 Array.prototype.Contains = function (element): boolean {
-    for (const el of this._data) {
+    for (const el of this) {
         if (isFunction(el['Equals'])) {
             if (el['Equals'](element)) {
                 return true;

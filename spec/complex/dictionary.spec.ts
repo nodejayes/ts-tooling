@@ -1,7 +1,7 @@
 import {assert} from 'chai';
-import {Dictionary} from '../../src/ts-tooling';
 import '../../src/ts-tooling';
 import 'mocha';
+import {Dictionary} from '../../src/ts-tooling';
 
 const DEMO_DATA = {'a': 1, 'b': 2, 'c': 3};
 const EMPTY = new Dictionary();
@@ -21,9 +21,9 @@ describe('Dictionary Tests', () => {
     });
 
     it('can get Keys', () => {
-        assert.deepEqual(FILLED.Keys.ElementAt(0), 'a');
-        assert.deepEqual(FILLED.Keys.ElementAt(1), 'b');
-        assert.deepEqual(FILLED.Keys.ElementAt(2), 'c');
+        assert.deepEqual(FILLED.Keys().ElementAt(0), 'a');
+        assert.deepEqual(FILLED.Keys().ElementAt(1), 'b');
+        assert.deepEqual(FILLED.Keys().ElementAt(2), 'c');
     });
 
     it('can get Values', () => {
