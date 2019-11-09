@@ -6,7 +6,7 @@ describe("Test StopWatch", () => {
     it('can create the Stopwatch and measure the Time', (done) => {
         const sw = new StopWatch();
         setTimeout(() => {
-            assert.isAbove(sw.ElapsedMs().Value, 0);
+            assert.isAbove(sw.ElapsedMs(), 0);
             done();
         }, 1);
     });
@@ -15,7 +15,7 @@ describe("Test StopWatch", () => {
         const sw = new StopWatch();
         sw.SectionStart('1');
         setTimeout(() => {
-            assert.isAbove(sw.SectionElapsedMs('1').Value, 0);
+            assert.isAbove(sw.SectionElapsedMs('1'), 0);
             done();
         }, 1);
     });
@@ -23,7 +23,7 @@ describe("Test StopWatch", () => {
     it('nothing on select not existent Section elapsed', (done) => {
         const sw = new StopWatch();
         setTimeout(() => {
-            assert.equal(sw.SectionElapsedMs('1').Value, 0);
+            assert.equal(sw.SectionElapsedMs('1'), 0);
             done();
         }, 1);
     });
@@ -32,11 +32,11 @@ describe("Test StopWatch", () => {
         const sw = new StopWatch();
         sw.SectionStart('1');
         setTimeout(() => {
-            assert.isAbove(sw.SectionElapsedMs('1').Value, 0);
-            assert.isBelow(sw.SectionElapsedMs('1').Value, 10);
+            assert.isAbove(sw.SectionElapsedMs('1'), 0);
+            assert.isBelow(sw.SectionElapsedMs('1'), 10);
             sw.SectionStart('1');
             setTimeout(() => {
-                assert.isAbove(sw.SectionElapsedMs('1').Value, 8);
+                assert.isAbove(sw.SectionElapsedMs('1'), 8);
                 done();
             }, 10);
         }, 1);

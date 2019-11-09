@@ -16,7 +16,6 @@ export {Guid} from './complex/guid';
 
 // Collections
 export {Dictionary} from './complex/dictionary';
-export {List} from './collections/list';
 export {ListSortOrder} from './primitive/list.sort.order.enum';
 
 // Patterns
