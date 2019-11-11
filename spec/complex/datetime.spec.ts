@@ -249,6 +249,17 @@ describe('DateTime Tests', () => {
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(2).Millisecond, 2);
     });
 
+    it('can create zero DateTime', () => {
+        const ZERO = new DateTime('UTC', 0, 1, 1, 0, 0, 0, 0);
+        assert.equal(ZERO.Year, 0);
+        assert.equal(ZERO.Month, 1);
+        assert.equal(ZERO.Day, 1);
+        assert.equal(ZERO.Hour, 0);
+        assert.equal(ZERO.Minute, 0);
+        assert.equal(ZERO.Second, 0);
+        assert.equal(ZERO.Millisecond, 0);
+    });
+
     it('can Subtract two DateTime', () => {
         assert.equal(DateTime.FromISOString('2019-02-02T02:00:00').Subtract(DateTime.FromISOString('0000-01-01T01:00:00')).Year, 2019);
         assert.equal(DateTime.FromISOString('2019-02-02T02:00:00').Subtract(DateTime.FromISOString('0000-01-01T01:00:00')).Month, 1);

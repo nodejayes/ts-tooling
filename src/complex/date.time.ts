@@ -195,13 +195,13 @@ export class DateTime {
             zone = 'UTC';
         }
         this._date = LuxonDateTime.utc(
-            year ? year : undefined,
+            year >= 0 ? year : undefined,
             month ? month : undefined,
             day ? day : undefined,
-            hour ? hour : undefined,
-            minute ? minute : undefined,
-            second ? second : undefined,
-            millisecond ? millisecond : undefined)
+            hour >= 0 ? hour : undefined,
+            minute >= 0 ? minute : undefined,
+            second >= 0 ? second : undefined,
+            millisecond >= 0 ? millisecond : undefined)
             .setZone(zone);
         checkLuxonTimeZone(zone, this._date);
     }
