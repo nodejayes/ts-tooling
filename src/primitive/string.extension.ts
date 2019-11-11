@@ -195,11 +195,11 @@ String.prototype.Insert = function (startIndex: number, value: string): string {
 };
 
 String.prototype.Remove = function (position: number, count?: number): string {
-    return this.substring(0, position) + this.substring(position + (count ? count : 1), this.length);
+    return this.substr(0, position) + this.substring(position + (count ? count : 1), this.length);
 };
 
 String.prototype.Substring = function (position: number, length?: number): string {
-    return this.substring(position, length ? length : undefined);
+    return this.substr(position, length ? length : undefined);
 };
 
 String.prototype.IndexOf = function (value: string): number {

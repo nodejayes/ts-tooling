@@ -53,7 +53,7 @@ export class ReactiveStore<T> {
 
     private parseSelectorAccess<K>(selector: (d: T) => K): string {
         let tmp = selector.toString();
-        tmp = tmp.Split('{').ElementAt((1));
+        tmp = tmp.Split('{').ElementAt(1);
         tmp = tmp.Split('}').ElementAt(ZERO_INT);
         const k = tmp.Trim(' ')
             .Split('return ')
@@ -63,6 +63,6 @@ export class ReactiveStore<T> {
             .Split('.');
         const key = k.Reduce((target, e) => target.Concat(e, '.'), '');
         const firstIdx = key.IndexOf('.');
-        return key.Substring(firstIdx.Add((1)), key.length.Subtract(firstIdx));
+        return key.Substring(firstIdx.Add(1), key.length.Subtract(firstIdx));
     }
 }
