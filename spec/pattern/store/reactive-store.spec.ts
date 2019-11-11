@@ -57,7 +57,7 @@ describe('Reactive Store Tests', () => {
    });
 
    it('can listen on mutation', (done) => {
-       const callCount = 0;
+       let callCount = 0;
        const store = new ReactiveStore<ITestStore>({
            test: {
                b: true,
@@ -69,7 +69,7 @@ describe('Reactive Store Tests', () => {
            }
        });
        store.Listen(s => s.test.b).subscribe(d => {
-           callCount.Increment();
+           callCount = callCount.Increment();
            if (callCount.IsBelow(2)) {
                // init call
                assert.equal(d, true);
@@ -83,7 +83,7 @@ describe('Reactive Store Tests', () => {
    });
 
    it('can mutate complete State', (done) => {
-       const callCount = 0;
+       let callCount = 0;
        const store = new ReactiveStore<ITestStore>({
            test: {
                b: true,
@@ -95,7 +95,7 @@ describe('Reactive Store Tests', () => {
            }
        });
        store.Listen(s => s.test).subscribe(d => {
-           callCount.Increment();
+           callCount = callCount.Increment();
            if (callCount.IsBelow(2)) {
                // init call
                assert.equal(d.o.name, 'Paul');
