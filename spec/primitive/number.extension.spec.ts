@@ -75,12 +75,12 @@ describe('Number Extension Test', () => {
     it('can Increment', () => {
         const test = 1.0;
         assert.equal(test.Increment(), 2.0);
-        assert.equal(test.Increment(0.5), 2.5);
+        assert.equal(test.Increment(0.5), 1.5);
     });
 
     it('can Decrement', () => {
         const test = 3.0;
         assert.equal(test.Decrement(), 2.0);
-        assert.equal(test.Decrement(0.5), 1.5);
+        assert.equal(test.Decrement(0.5), 2.5);
     });
 });

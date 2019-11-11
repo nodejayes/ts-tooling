@@ -131,7 +131,7 @@ describe('String Extension Tests', () => {
     it('can truncate Chars', () => {
         assert.equal('##-##Chars##-##'.Truncate(5), '##...');
         assert.equal('##-##Chars##-##'.Truncate(5, 'X'), '##-#X');
-        assert.equal('##-##Chars##-##'.Truncate(5, 'X'), '-', '##X');
+        assert.equal('##-##Chars##-##'.Truncate(5, 'X', '-'), '##X');
     });
 
     it('can split by words', () => {
@@ -152,7 +152,7 @@ describe('String Extension Tests', () => {
     it('can clone Instance', () => {
         const text = 'Hello';
         const textClone = text.Clone();
-        assert.notEqual(text, textClone);
+        assert.equal(text, textClone);
     });
 
     it('can check contains', () => {
@@ -219,7 +219,7 @@ describe('String Extension Tests', () => {
         assert.equal('abc'.CharAt(2), 'c');
         assert.throws(() => {
             'abc'.CharAt(3);
-        }, 'Chars has not enough Characters searching 3 Chars Length are 3');
+        }, 'the string has not enough Characters searching 3 string length are 3');
     });
 
     it('can count containing strings', () => {

@@ -1,980 +1,5 @@
-declare module 'primitive/integer' {
-	/**
-	 * representation of a Integer
-	 * @group BasicTypes
-	 */
-	export class Integer {
-	    private _number;
-	    private _isValid;
-	    /**
-	     * the Value of this Integer
-	     * @constructor
-	     */
-	    readonly Value: number;
-	    /**
-	     * the Current Integer is a valid Integer
-	     * @constructor
-	     */
-	    readonly Valid: boolean;
-	    /**
-	     * generate a Random Integer between min and max
-	     *
-	     * ```typescript
-	     * // set a Random Integer from 1-10 to random
-	     * const random = Integer.Random(new Integer(1), new Integer(10));
-	     * ```
-	     *
-	     * @param min
-	     * @param max
-	     * @constructor
-	     */
-	    static Random(min: Integer, max: Integer): Integer;
-	    /**
-	     * create a new Integer from Number or String
-	     *
-	     * ```typescript
-	     * // create with constructor
-	     * const one = new Integer(1);
-	     *
-	     * // create from Javascript Value
-	     * const one = (1).ToInteger();
-	     * ```
-	     * @param integer
-	     */
-	    constructor(integer?: number | string);
-	    /**
-	     * is this Integer in Range of two Integers
-	     * the Borders equality is in the Range!
-	     *
-	     * ```typescript
-	     * const value = new Integer(2);
-	     * const start = new Integer(1);
-	     * const end = new Integer(3);
-	     *
-	     * value.IsInRange(start, end);
-	     * // result => True
-	     * ```
-	     *
-	     * @param start
-	     * @param end
-	     * @constructor
-	     */
-	    IsInRange(start: Integer, end: Integer): boolean;
-	    /**
-	     * the Integer is equal with another Integer
-	     *
-	     * ```typescript
-	     * console.info(new Integer(1).Equals(new Integer(1)));
-	     * // result => True
-	     *
-	     * console.info(new Integer(1).Equals(new Integer(2)));
-	     * // result => False
-	     * ```
-	     *
-	     * @param value
-	     * @constructor
-	     */
-	    Equals(value: Integer): boolean;
-	    /**
-	     * the Integer is above another Integer
-	     *
-	     * ```typescript
-	     * console.info(new Integer(1).IsAbove(new Integer(0));
-	     * // result => True
-	     * ```
-	     *
-	     * @param value
-	     * @constructor
-	     */
-	    IsAbove(value: Integer): boolean;
-	    /**
-	     * the Integer is below another Integer
-	     *
-	     * ```typescript
-	     * console.info(new Integer(0).IsBelow(new Integer(1)));
-	     * // result => True
-	     * ```
-	     *
-	     * @param value
-	     * @constructor
-	     */
-	    IsBelow(value: Integer): boolean;
-	    /**
-	     * Clamps Integer within the inclusive lower and upper bounds.
-	     *
-	     * ```typescript
-	     * console.info(new Integer(12).Clamp(new Integer(1), new Integer(2)));
-	     * // result => 2
-	     * ```
-	     *
-	     * @param lower
-	     * @param upper
-	     * @constructor
-	     */
-	    Clamp(lower: Integer, upper: Integer): Integer;
-	    /**
-	     * Add a Integer to this Integer
-	     *
-	     * ```typescript
-	     * console.info(new Integer(1).Add(new Integer(2)));
-	     * // result => 2
-	     * ```
-	     *
-	     * @param n
-	     * @constructor
-	     */
-	    Add(n: Integer): Integer;
-	    /**
-	     * Subtract a Integer from this Integer
-	     *
-	     * ```typescript
-	     * console.info(new Integer(2).Subtract(new Integer(1)));
-	     * // result => 1
-	     * ```
-	     *
-	     * @param n
-	     * @constructor
-	     */
-	    Subtract(n: Integer): Integer;
-	    /**
-	     * Multiply this Integer
-	     *
-	     * ```typescript
-	     * console.info(new Integer(1).Multiply(new Integer(1)));
-	     * // result => 1
-	     * ```
-	     *
-	     * @param n
-	     * @constructor
-	     */
-	    Multiply(n: Integer): Integer;
-	    /**
-	     * Divide this Integer
-	     * ATTENTION Result is a Integer not Double
-	     * for Precision choose Double Data Type
-	     *
-	     * ```typescript
-	     * console.info(new Integer(4).Divide(new Integer(2)));
-	     * // returns => 2
-	     * ```
-	     *
-	     * @param n
-	     * @constructor
-	     */
-	    Divide(n: Integer): Integer;
-	    /**
-	     * increment this Integer Value
-	     * @constructor
-	     */
-	    Increment(): Integer;
-	    /**
-	     * decrement this Integer Value
-	     * @constructor
-	     */
-	    Decrement(): Integer;
-	}
-
-}
-declare module 'primitive/double' {
-	import { Integer } from 'primitive/integer';
-	/**
-	 * representation of a Double
-	 */
-	export class Double {
-	    private _number;
-	    private _isValid;
-	    /**
-	     * the Value of this Double
-	     * @constructor
-	     */
-	    readonly Value: number;
-	    /**
-	     * the Double Value is a Valid Value
-	     * @constructor
-	     */
-	    readonly Valid: boolean;
-	    /**
-	     * generate a Random Double between min and max
-	     * @param min
-	     * @param max
-	     * @constructor
-	     */
-	    static Random(min: Double, max: Double): Double;
-	    /**
-	     * create a new Double from Number or String
-	     * @param double
-	     */
-	    constructor(double?: number | string);
-	    /**
-	     * is this Double in Range of two Doubles
-	     * the Borders equality is in the Range!
-	     * @param start
-	     * @param end
-	     * @constructor
-	     */
-	    IsInRange(start: Double, end: Double): boolean;
-	    /**
-	     * the Double is equal with another Double
-	     * @param value
-	     * @constructor
-	     */
-	    Equals(value: Double): boolean;
-	    /**
-	     * the Double is above another Double
-	     * @param value
-	     * @constructor
-	     */
-	    IsAbove(value: Double): boolean;
-	    /**
-	     * the Double is below another Double
-	     * @param value
-	     * @constructor
-	     */
-	    IsBelow(value: Double): boolean;
-	    /**
-	     * Clamps Double within the inclusive lower and upper bounds.
-	     * @param lower
-	     * @param upper
-	     * @constructor
-	     */
-	    Clamp(lower: Double, upper: Double): Double;
-	    /**
-	     * Add a Double to this Double
-	     * @param n
-	     * @constructor
-	     */
-	    Add(n: Double): Double;
-	    /**
-	     * Subtract a Double from this Double
-	     * @param n
-	     * @constructor
-	     */
-	    Subtract(n: Double): Double;
-	    /**
-	     * Multiply this Double
-	     * @param n
-	     * @constructor
-	     */
-	    Multiply(n: Double): Double;
-	    /**
-	     * Divide this Double
-	     * @param n
-	     * @constructor
-	     */
-	    Divide(n: Double): Double;
-	    /**
-	     * round up
-	     * @param precision
-	     * @constructor
-	     */
-	    Ceil(precision?: Integer): Double;
-	    /**
-	     * round down
-	     * @param precision
-	     * @constructor
-	     */
-	    Floor(precision?: Integer): Double;
-	    /**
-	     * round up or down
-	     * @param precision
-	     * @constructor
-	     */
-	    Round(precision?: Integer): Double;
-	    /**
-	     * increment the Double by the number of Steps
-	     * @param step
-	     * @constructor
-	     */
-	    Increment(step?: Double): Double;
-	    /**
-	     * decrement this Double by the number of Steps
-	     * @param step
-	     * @constructor
-	     */
-	    Decrement(step?: Double): Double;
-	}
-
-}
-declare module 'collections/dictionary' {
-	import { Integer } from 'primitive/integer';
-	import { FilterMethod, List } from 'collections/list';
-	import { Chars } from 'primitive/chars';
-	/**
-	 * representation of a string Dictionary
-	 */
-	export class Dictionary<T> {
-	    private _data;
-	    /**
-	     * create a new Dictionary you can fill it with predefined Data
-	     * @param dictionary
-	     */
-	    constructor(dictionary?: {
-	        [key: string]: T;
-	    });
-	    /**
-	     * Number of Entries in the Dictionary
-	     * @constructor
-	     */
-	    readonly Count: Integer;
-	    /**
-	     * all Values of the Dictionary
-	     * @constructor
-	     */
-	    readonly Values: T[];
-	    /**
-	     * all Keys of the Dictionary
-	     * @constructor
-	     */
-	    readonly Keys: List<Chars>;
-	    /**
-	     * add a Entry into the Dictionary
-	     * @param key
-	     * @param item
-	     * @constructor
-	     */
-	    Add(key: Chars, item: T): Dictionary<T>;
-	    /**
-	     * clear the Dictionary
-	     * @constructor
-	     */
-	    Clear(): Dictionary<T>;
-	    /**
-	     * remove a Entry from the Dictionary
-	     * @param key
-	     * @constructor
-	     */
-	    Remove(key: Chars): Dictionary<T>;
-	    /**
-	     * check if a Key is in the Dictionary
-	     * @param key
-	     * @constructor
-	     */
-	    ContainsKey(key: Chars): boolean;
-	    /**
-	     * check if a Value is in the Dictionary
-	     * @param value
-	     * @constructor
-	     */
-	    ContainsValue(value: T): boolean;
-	    /**
-	     * get the Dictionary as Javascript Object
-	     * @constructor
-	     */
-	    GetObject(): {
-	        [key: string]: T;
-	    };
-	    /**
-	     * try to get a Value in the Dictionary
-	     * @param key
-	     * @constructor
-	     */
-	    TryGetValue(key: Chars): T;
-	    /**
-	     * get a Value that match the Filter Condition
-	     * @param filter
-	     * @constructor
-	     */
-	    Find(filter: FilterMethod<T>): T;
-	    /**
-	     * same as Find but get multiple Values
-	     * @param filter
-	     * @constructor
-	     */
-	    FindAll(filter: FilterMethod<T>): List<T>;
-	}
-
-}
-declare module 'collections/list-sort-order.enum' {
-	/**
-	 * represent a Sort Order of a List
-	 */
-	export enum ListSortOrder {
-	    ASC = 0,
-	    DESC = 1
-	}
-
-}
-declare module 'collections/list' {
-	import { Dictionary } from 'collections/dictionary';
-	import { Integer } from 'primitive/integer';
-	import { Chars } from 'primitive/chars';
-	import { ListSortOrder } from 'collections/list-sort-order.enum';
-	import { Double } from 'primitive/double';
-	/**
-	 * a callback that get the Item and returns a Boolean value
-	 * true means the Value is in the Filter
-	 */
-	export type FilterMethod<T> = (d: T) => boolean;
-	/**
-	 * a callback that gets the Item and returns a Number that was aggregate by Sum
-	 */
-	export type SumMethod<T> = (d: T) => number;
-	/**
-	 * a callback that gets the Item and return anything
-	 */
-	export type TransformMethod<T> = (d: T) => any;
-	/**
-	 * a callback that gets a Item and returns another specific Item
-	 */
-	export type ConvertMethod<T, K> = (d: T) => K;
-	/**
-	 * Represent a List of Items with specific Type
-	 */
-	export class List<T> {
-	    private _data;
-	    /**
-	     * the number of items in the list
-	     * @constructor
-	     */
-	    readonly Count: Integer;
-	    /**
-	     * get the Maximum Value in the List
-	     * ATTENTION only in Numeric Lists
-	     * @constructor
-	     */
-	    readonly Max: Double;
-	    /**
-	     * get the Min Value of the List
-	     * ATTENTION only in Numeric Lists
-	     * @constructor
-	     */
-	    readonly Min: Double;
-	    /**
-	     * get the Mean of this List
-	     * ATTENTION only in Numeric Lists
-	     * @constructor
-	     */
-	    readonly Mean: Double;
-	    /**
-	     * get the Sum of this List
-	     * ATTENTION only in Numeric Lists
-	     * @constructor
-	     */
-	    readonly Sum: Double;
-	    /**
-	     * create a new List you can create an empty List or fill an
-	     * Array into the List when it was created
-	     * @param data
-	     */
-	    constructor(data?: T[]);
-	    /**
-	     * add a new Item into the List
-	     * @param element
-	     * @constructor
-	     */
-	    Add(element: T): void;
-	    /**
-	     * add a Item to the List if not exists in the List
-	     * @param element
-	     * @constructor
-	     */
-	    AddIfNotExists(element: T): boolean;
-	    /**
-	     * reduce a List of Elements into a new Element
-	     * @param reducer
-	     * @param initial
-	     * @constructor
-	     */
-	    Reduce<K>(reducer: (target: K, e: T) => K, initial: K): K;
-	    /**
-	     * same as Add with multiple Items
-	     * @param elements
-	     * @constructor
-	     */
-	    AddRange(elements: List<T>): void;
-	    /**
-	     * same as AddIfNotExists with multiple items
-	     * @param elements
-	     * @constructor
-	     */
-	    AddRangeIfNotExists(elements: List<T>): List<boolean>;
-	    /**
-	     * remove all Items from the List
-	     * @constructor
-	     */
-	    Clear(): void;
-	    /**
-	     * check if an Item is in the List
-	     * @param element
-	     * @constructor
-	     */
-	    Contains(element: T): boolean;
-	    /**
-	     * copy the complete List into a new One
-	     * @constructor
-	     */
-	    Copy(): List<T>;
-	    /**
-	     * check if a Items exists that match the specific Filter
-	     * @param findMethod the Filter function
-	     * @constructor
-	     */
-	    Exists(findMethod: FilterMethod<T>): boolean;
-	    /**
-	     * returns the First match of an Item from the List by specific Filter
-	     * @param findMethod the Filter function
-	     * @constructor
-	     */
-	    Find(findMethod: FilterMethod<T>): T;
-	    /**
-	     * returns the Last match of an Item from the List by specific Filter
-	     * @param findMethod the Filter function
-	     * @constructor
-	     */
-	    FindLast(findMethod: FilterMethod<T>): T;
-	    /**
-	     * returns the index of the First Item that matches the specific Filter
-	     * @param findMethod the Filter function
-	     * @constructor
-	     */
-	    FindIndex(findMethod: FilterMethod<T>): Integer;
-	    /**
-	     * returns all Items that matches the specific Filter
-	     * as new List
-	     * @param findMethod the Filter function
-	     * @constructor
-	     */
-	    FindAll(findMethod: FilterMethod<T>): List<T>;
-	    /**
-	     * returns the Index of the Last match Item from the List by specific Filter
-	     * @param findMethod the Filter function
-	     * @constructor
-	     */
-	    FindLastIndex(findMethod: FilterMethod<T>): Integer;
-	    /**
-	     * check if the condition is true for all Items in the List
-	     * @param matchMethod
-	     * @constructor
-	     */
-	    TrueForAll(matchMethod: FilterMethod<T>): boolean;
-	    /**
-	     * insert a new Item at the Index into the List
-	     * @param index
-	     * @param element
-	     * @constructor
-	     */
-	    Insert(index: Integer, element: T): void;
-	    /**
-	     * insert multiple Items at the Index into the List
-	     * @param index
-	     * @param elements
-	     * @constructor
-	     */
-	    InsertRange(index: Integer, elements: T[]): void;
-	    /**
-	     * get the Index of an Intem in the List
-	     * @param element
-	     * @param fromIndex
-	     * @constructor
-	     */
-	    IndexOf(element: T, fromIndex?: Integer): Integer;
-	    /**
-	     * removes a Item from the List
-	     * @param element
-	     * @constructor
-	     */
-	    Remove(element: T): void;
-	    /**
-	     * remove all Items from List that match the Filter
-	     * @param match
-	     * @constructor
-	     */
-	    RemoveAll(match: FilterMethod<T>): void;
-	    /**
-	     * remove a Item at a specific Index
-	     * @param index
-	     * @constructor
-	     */
-	    RemoveAt(index: Integer): void;
-	    /**
-	     * remove all these Items from the List
-	     * @param elements
-	     * @constructor
-	     */
-	    RemoveRange(elements: T[]): void;
-	    /**
-	     * turn around the whole List
-	     * @constructor
-	     */
-	    Reverse(): List<T>;
-	    /**
-	     * convert the List back into a Javascript Array
-	     * @constructor
-	     */
-	    ToArray(): T[];
-	    /**
-	     * sort primitive List by ASC or DESC order
-	     * @param order
-	     * @constructor
-	     */
-	    Sort(order?: ListSortOrder): List<T>;
-	    /**
-	     * sort complex List by multiple Keys
-	     * @param keys
-	     * @param orders
-	     * @constructor
-	     */
-	    SortBy(keys: List<Chars>, orders?: List<ListSortOrder>): List<T>;
-	    /**
-	     * get the Item at the Index
-	     * @param index
-	     * @constructor
-	     */
-	    ElementAt(index: Integer): T;
-	    /**
-	     * is this List empty
-	     * @constructor
-	     */
-	    IsEmpty(): boolean;
-	    /**
-	     * have the List more that one Item
-	     * @constructor
-	     */
-	    Any(): boolean;
-	    /**
-	     * find the First match Item or return a Default Value
-	     * @param filterMethod
-	     * @param def
-	     * @constructor
-	     */
-	    FirstOrDefault(filterMethod?: FilterMethod<T>, def?: T): T;
-	    /**
-	     * find the Last match Item or return a Default Value
-	     * @param filterMethod
-	     * @param def
-	     * @constructor
-	     */
-	    LastOrDefault(filterMethod?: FilterMethod<T>, def?: T): T;
-	    /**
-	     * group a List by a specific Key that was returned by transform Function
-	     * @param transformMethod
-	     * @constructor
-	     */
-	    GroupBy(transformMethod: TransformMethod<T>): Dictionary<List<T>>;
-	    /**
-	     * convert a List into another List
-	     * @param convertMethod
-	     * @constructor
-	     */
-	    Convert<K>(convertMethod: ConvertMethod<T, K>): List<K>;
-	    /**
-	     * get the Max Element
-	     * must have a Numeric Property
-	     * @param filterMethod
-	     * @constructor
-	     */
-	    MaxBy(filterMethod: SumMethod<T>): T;
-	    /**
-	     * get the Min Element
-	     * must have a Numeric Property
-	     * @param filterMethod
-	     * @constructor
-	     */
-	    MinBy(filterMethod: SumMethod<T>): T;
-	    /**
-	     * get the Mean of complex element
-	     * must have a Numeric Property
-	     * @param filterMethod
-	     * @constructor
-	     */
-	    MeanBy(filterMethod: SumMethod<T>): Double;
-	    /**
-	     * calculate a Sum
-	     * @param filterMethod
-	     * @constructor
-	     */
-	    SumBy(filterMethod: SumMethod<T>): Double;
-	}
-
-}
-declare module 'primitive/chars' {
-	import { Integer } from 'primitive/integer';
-	import { List } from 'collections/list';
-	/**
-	 * represent a String DataType
-	 */
-	export class Chars {
-	    private _str;
-	    /**
-	     * the String Value
-	     * @constructor
-	     */
-	    readonly Value: string;
-	    /**
-	     * number of characters in the String
-	     * @constructor
-	     */
-	    readonly Length: Integer;
-	    /**
-	     * create a new String Instance
-	     * @param str
-	     */
-	    constructor(str?: string);
-	    /**
-	     * returns a Character at Position in this String
-	     * @param pos
-	     * @constructor
-	     */
-	    CharAt(pos: Integer): Chars;
-	    /**
-	     * convert to CamelCase String
-	     * @constructor
-	     */
-	    ToCamelCase(): Chars;
-	    /**
-	     * make the first letter to Uppercase
-	     * @constructor
-	     */
-	    Capitalize(): Chars;
-	    /**
-	     * converting Latin-1 Supplement and Latin Extended-A letters
-	     * to basic Latin letters and removing combining diacritical marks.
-	     * @constructor
-	     */
-	    Deburr(): Chars;
-	    /**
-	     * check if the String starts with a specific letter combination
-	     * @param search
-	     * @param position
-	     * @constructor
-	     */
-	    StartsWith(search: Chars, position?: Integer): boolean;
-	    /**
-	     * check if the String ends with a specific letter combination
-	     * @param search
-	     * @param position
-	     * @constructor
-	     */
-	    EndsWith(search: Chars, position?: Integer): boolean;
-	    /**
-	     * escape the String to HTML
-	     * @constructor
-	     */
-	    HTMLEscape(): Chars;
-	    /**
-	     * unescape HTML String to normal String
-	     * @constructor
-	     */
-	    HTMLUnescape(): Chars;
-	    /**
-	     * escape to a String used by a Regex
-	     * @constructor
-	     */
-	    RegExpEscape(): Chars;
-	    /**
-	     * convert the String to Kebab Case
-	     * @constructor
-	     */
-	    ToKebabCase(): Chars;
-	    /**
-	     * conver the String to Snake Case
-	     * @constructor
-	     */
-	    ToSnakeCase(): Chars;
-	    /**
-	     * convert the String to Start Case
-	     * @constructor
-	     */
-	    ToStartCase(): Chars;
-	    /**
-	     * convert the String to lowercase
-	     * @constructor
-	     */
-	    ToLowerCase(): Chars;
-	    /**
-	     * convert a String to uppercase
-	     * @constructor
-	     */
-	    ToUpperCase(): Chars;
-	    /**
-	     * convert the first letter of the String to lowercase
-	     * @constructor
-	     */
-	    LowerFirst(): Chars;
-	    /**
-	     * convert the first letter of the String to uppercase
-	     * @constructor
-	     */
-	    UpperFirst(): Chars;
-	    /**
-	     * split the String into a List of Strings by Words
-	     * @constructor
-	     */
-	    Words(): List<Chars>;
-	    /**
-	     * concat two Chars optional with a Separator Chars
-	     * @param appender
-	     * @param separator
-	     * @constructor
-	     */
-	    Concat(appender: Chars, separator?: Chars): Chars;
-	    /**
-	     * join a List of Chars into a new Chars
-	     * @param appender
-	     * @param separator
-	     * @constructor
-	     */
-	    Join(appender: List<Chars>, separator: Chars): Chars;
-	    /**
-	     * fill the String from left and right
-	     * @param length
-	     * @param template
-	     * @constructor
-	     */
-	    Pad(length: Integer, template?: Chars): Chars;
-	    /**
-	     * fill the String from left
-	     * @param length
-	     * @param template
-	     * @constructor
-	     */
-	    PadLeft(length: Integer, template?: Chars): Chars;
-	    /**
-	     * fill the String from right
-	     * @param length
-	     * @param template
-	     * @constructor
-	     */
-	    PadRight(length: Integer, template?: Chars): Chars;
-	    /**
-	     * repeat the String x times
-	     * @param times
-	     * @constructor
-	     */
-	    Repeat(times: Integer): Chars;
-	    /**
-	     * replace the first matching with other text
-	     * @param search
-	     * @param replacer
-	     * @constructor
-	     */
-	    Replace(search: Chars, replacer: Chars): Chars;
-	    /**
-	     * replace all matchings with other text
-	     * @param search
-	     * @param replacer
-	     * @constructor
-	     */
-	    ReplaceAll(search: Chars, replacer: Chars): Chars;
-	    /**
-	     * split the Chars in a List of Texts by Pattern
-	     * @param pattern
-	     * @constructor
-	     */
-	    Split(pattern: Chars): List<Chars>;
-	    /**
-	     * convert all letters from the Chars to Lowercase
-	     * @constructor
-	     */
-	    ToLower(): Chars;
-	    /**
-	     * convert all Letters from the Chars to Uppercase
-	     * @constructor
-	     */
-	    ToUpper(): Chars;
-	    /**
-	     * trim the Chars by a sequence on both sides
-	     * @param sequence
-	     * @constructor
-	     */
-	    Trim(sequence: Chars): Chars;
-	    /**
-	     * trim the Chars by sequence on Start
-	     * @param sequence
-	     * @constructor
-	     */
-	    TrimStart(sequence: Chars): Chars;
-	    /**
-	     * trim the Chars by sequence on end
-	     * @param sequence
-	     * @constructor
-	     */
-	    TrimEnd(sequence: Chars): Chars;
-	    /**
-	     * truncate the Chars by text length
-	     * @param length
-	     * @param omission
-	     * @param seperator
-	     * @constructor
-	     */
-	    Truncate(length: Integer, omission?: Chars, seperator?: Chars): Chars;
-	    /**
-	     * clone this Chars Instance into a new One
-	     * @constructor
-	     */
-	    Clone(): Chars;
-	    /**
-	     * this Chars contains the given Chars?
-	     * @param search
-	     * @constructor
-	     */
-	    Contains(search: Chars): boolean;
-	    /**
-	     * gets the Number of found Chars
-	     * @param search
-	     * @param allowOverlapping
-	     * @constructor
-	     */
-	    ContainsCount(search: Chars, allowOverlapping?: boolean): Integer;
-	    /**
-	     * the given Chars are Equals this One?
-	     * @param value
-	     * @constructor
-	     */
-	    Equals(value: Chars): boolean;
-	    /**
-	     * check if a String is empty
-	     * @constructor
-	     */
-	    IsEmpty(): boolean;
-	    /**
-	     * insert a new String into the Chars at Position
-	     * @param startIndex
-	     * @param value
-	     * @constructor
-	     */
-	    Insert(startIndex: Integer, value: Chars): Chars;
-	    /**
-	     * remove chars at position
-	     * @param position
-	     * @param count
-	     * @constructor
-	     */
-	    Remove(position: Integer, count?: Integer): Chars;
-	    /**
-	     * get the chars from position with length or all
-	     * @param position
-	     * @param length
-	     * @constructor
-	     */
-	    Substring(position: Integer, length?: Integer): Chars;
-	    /**
-	     * find the first match of the Chars and return the Index Number
-	     * @param value
-	     * @constructor
-	     */
-	    IndexOf(value: Chars): Integer;
-	    /**
-	     * find the Last match of the chars and return the Index Number
-	     * @param value
-	     * @constructor
-	     */
-	    LastIndexOf(value: Chars): Integer;
-	    /**
-	     * get Text between 2 searches
-	     * @param begin
-	     * @param end
-	     * @constructor
-	     */
-	    TextBetween(begin: Chars, end: Chars): List<Chars>;
-	}
-
-}
-declare module 'complex/time-span' {
+declare module 'complex/time.span' {
 	import { Duration as LuxonDuration } from 'luxon';
-	import { Integer } from 'primitive/integer';
-	import { Double } from 'primitive/double';
-	import { Chars } from 'primitive/chars';
 	/**
 	 * represent a TimeSpan of a Time
 	 */
@@ -1028,52 +53,52 @@ declare module 'complex/time-span' {
 	     * the Days of this TimeSpan
 	     * @constructor
 	     */
-	    readonly Day: Integer;
+	    readonly Day: number;
 	    /**
 	     * the TimeSpan in Days
 	     * @constructor
 	     */
-	    readonly TotalDays: Double;
+	    readonly TotalDays: number;
 	    /**
 	     * the Hour of this TimeSpan
 	     * @constructor
 	     */
-	    readonly Hour: Integer;
+	    readonly Hour: number;
 	    /**
 	     * the TimeSpan in Hours
 	     * @constructor
 	     */
-	    readonly TotalHours: Double;
+	    readonly TotalHours: number;
 	    /**
 	     * the Minute of this TimeSpan
 	     * @constructor
 	     */
-	    readonly Minute: Integer;
+	    readonly Minute: number;
 	    /**
 	     * the TimeSpan in Minutes
 	     * @constructor
 	     */
-	    readonly TotalMinutes: Double;
+	    readonly TotalMinutes: number;
 	    /**
 	     * the Second of this TimeSpan
 	     * @constructor
 	     */
-	    readonly Second: Integer;
+	    readonly Second: number;
 	    /**
 	     * the TimeSpan in Seconds
 	     * @constructor
 	     */
-	    readonly TotalSeconds: Double;
+	    readonly TotalSeconds: number;
 	    /**
 	     * the Millisecond of this TimeSpan
 	     * @constructor
 	     */
-	    readonly Millisecond: Integer;
+	    readonly Millisecond: number;
 	    /**
 	     * the TimeSpan in Milliseconds
 	     * @constructor
 	     */
-	    readonly TotalMilliseconds: Double;
+	    readonly TotalMilliseconds: number;
 	    /**
 	     * if the TimeSpan a valid TimeSpan
 	     * @constructor
@@ -1087,7 +112,7 @@ declare module 'complex/time-span' {
 	     * @param milliseconds
 	     * @param days
 	     */
-	    constructor(hours?: Integer, minutes?: Integer, seconds?: Integer, milliseconds?: Integer, days?: Integer);
+	    constructor(hours?: number, minutes?: number, seconds?: number, milliseconds?: number, days?: number);
 	    /**
 	     * create TimeSpan from Luxon Object
 	     * @param luxon
@@ -1100,13 +125,13 @@ declare module 'complex/time-span' {
 	     * @param isoStr
 	     * @constructor
 	     */
-	    static FromISOString(isoStr: Chars): TimeSpan;
+	    static FromISOString(isoStr: string): TimeSpan;
 	    /**
 	     * create TimeSpan from Milliseconds
 	     * @param milliseconds
 	     * @constructor
 	     */
-	    static FromMilliseconds(milliseconds: Integer): TimeSpan;
+	    static FromMilliseconds(milliseconds: number): TimeSpan;
 	    /**
 	     * add a TimeSpan to this TimeSpan
 	     * @param duration
@@ -1148,15 +173,26 @@ declare module 'complex/time-span' {
 	     * @param fmt
 	     * @constructor
 	     */
-	    ToString(fmt?: Chars): Chars;
+	    ToString(fmt?: string): string;
 	}
 
 }
-declare module 'complex/date-time' {
+declare module 'utils/string.factory' {
+	/**
+	 * implement some static String Functions
+	 */
+	export class StringFactory {
+	    /**
+	     * check if a String is empty or null
+	     * @constructor
+	     */
+	    static IsNullOrEmpty(value: string): boolean;
+	}
+
+}
+declare module 'complex/date.time' {
 	import { DateTime as LuxonDateTime } from 'luxon';
-	import { TimeSpan } from 'complex/time-span';
-	import { Integer } from 'primitive/integer';
-	import { Chars } from 'primitive/chars';
+	import { TimeSpan } from 'complex/time.span';
 	/**
 	 * represent a DateTime DataType
 	 */
@@ -1166,37 +202,37 @@ declare module 'complex/date-time' {
 	     * Year of the Date
 	     * @constructor
 	     */
-	    readonly Year: Integer;
+	    readonly Year: number;
 	    /**
 	     * Month of the Date
 	     * @constructor
 	     */
-	    readonly Month: Integer;
+	    readonly Month: number;
 	    /**
 	     * Day of the Date in Month
 	     * @constructor
 	     */
-	    readonly Day: Integer;
+	    readonly Day: number;
 	    /**
 	     * Hour of the Day
 	     * @constructor
 	     */
-	    readonly Hour: Integer;
+	    readonly Hour: number;
 	    /**
 	     * Minute of the Day
 	     * @constructor
 	     */
-	    readonly Minute: Integer;
+	    readonly Minute: number;
 	    /**
 	     * Second of the Day
 	     * @constructor
 	     */
-	    readonly Second: Integer;
+	    readonly Second: number;
 	    /**
 	     * Millisecond of the Day
 	     * @constructor
 	     */
-	    readonly Millisecond: Integer;
+	    readonly Millisecond: number;
 	    /**
 	     * get the DateTime as UTC
 	     * @constructor
@@ -1206,42 +242,42 @@ declare module 'complex/date-time' {
 	     * the offset to UTC Timezone in Minutes
 	     * @constructor
 	     */
-	    readonly UTCOffsetMinutes: Integer;
+	    readonly UTCOffsetMinutes: number;
 	    /**
 	     * the current Timezone Name
 	     * @constructor
 	     */
-	    readonly Zone: Chars;
+	    readonly Zone: string;
 	    /**
 	     * the Weekday of the DateTime
 	     * @constructor
 	     */
-	    readonly DayOfWeek: Integer;
+	    readonly DayOfWeek: number;
 	    /**
 	     * the Day in the Year of the DateTime
 	     * @constructor
 	     */
-	    readonly DayOfYear: Integer;
+	    readonly DayOfYear: number;
 	    /**
 	     * the Number of the Days in the DateTime Year
 	     * @constructor
 	     */
-	    readonly DaysInYear: Integer;
+	    readonly DaysInYear: number;
 	    /**
 	     * the Number of Days in the Month of the DateTime
 	     * @constructor
 	     */
-	    readonly DaysInMonth: Integer;
+	    readonly DaysInMonth: number;
 	    /**
 	     * the Quarter of the Year of the DateTime
 	     * @constructor
 	     */
-	    readonly YearQuarter: Integer;
+	    readonly YearQuarter: number;
 	    /**
 	     * the Week Number of the Year of DateTime
 	     * @constructor
 	     */
-	    readonly YearWeekNumber: Integer;
+	    readonly YearWeekNumber: number;
 	    /**
 	     * the Date without the Time
 	     * @constructor
@@ -1268,7 +304,7 @@ declare module 'complex/date-time' {
 	     * @param second
 	     * @param millisecond
 	     */
-	    constructor(zone?: Chars, year?: Integer, month?: Integer, day?: Integer, hour?: Integer, minute?: Integer, second?: Integer, millisecond?: Integer);
+	    constructor(zone?: string, year?: number, month?: number, day?: number, hour?: number, minute?: number, second?: number, millisecond?: number);
 	    /**
 	     * create DateTime from a Luxon Date Object
 	     * uses the Timezone from the Luxon Object
@@ -1281,26 +317,26 @@ declare module 'complex/date-time' {
 	     * @param date
 	     * @param zone
 	     */
-	    static FromJavascriptDate(date: Date, zone?: Chars): DateTime;
+	    static FromJavascriptDate(date: Date, zone?: string): DateTime;
 	    /**
 	     * create DateTime from ISO Chars
 	     * you have to specify the Timezone or UTC was taken!
 	     * @param isoStr
 	     * @param zone
 	     */
-	    static FromISOString(isoStr: Chars, zone?: Chars): DateTime;
+	    static FromISOString(isoStr: string, zone?: string): DateTime;
 	    /**
 	     * create DateTime from Milliseconds
 	     * @param milliseconds
 	     * @param zone
 	     * @constructor
 	     */
-	    static FromMilliseconds(milliseconds: Integer, zone?: Chars): DateTime;
+	    static FromMilliseconds(milliseconds: number, zone?: string): DateTime;
 	    /**
 	     * get the DateTime in a specific Timezone
 	     * @param zone
 	     */
-	    ToZone(zone: Chars): DateTime;
+	    ToZone(zone: string): DateTime;
 	    /**
 	     * add a DateTime to this DateTime
 	     * @param dt
@@ -1324,43 +360,43 @@ declare module 'complex/date-time' {
 	     * @param years
 	     * @constructor
 	     */
-	    AddYears(years: Integer): DateTime;
+	    AddYears(years: number): DateTime;
 	    /**
 	     * add a number of Months to this DateTime
 	     * @param months
 	     * @constructor
 	     */
-	    AddMonths(months: Integer): DateTime;
+	    AddMonths(months: number): DateTime;
 	    /**
 	     * add a number of Days to this DateTime
 	     * @param days
 	     * @constructor
 	     */
-	    AddDays(days: Integer): DateTime;
+	    AddDays(days: number): DateTime;
 	    /**
 	     * add a number of Hours to this DateTime
 	     * @param hours
 	     * @constructor
 	     */
-	    AddHours(hours: Integer): DateTime;
+	    AddHours(hours: number): DateTime;
 	    /**
 	     * add a number of Minutes to this DateTime
 	     * @param minutes
 	     * @constructor
 	     */
-	    AddMinutes(minutes: Integer): DateTime;
+	    AddMinutes(minutes: number): DateTime;
 	    /**
 	     * add a number of Seconds to this DateTime
 	     * @param seconds
 	     * @constructor
 	     */
-	    AddSeconds(seconds: Integer): DateTime;
+	    AddSeconds(seconds: number): DateTime;
 	    /**
 	     * add a number of Milliseconds to this DateTime
 	     * @param milliseconds
 	     * @constructor
 	     */
-	    AddMilliseconds(milliseconds: Integer): DateTime;
+	    AddMilliseconds(milliseconds: number): DateTime;
 	    /**
 	     * is this DateTime before
 	     * @param dt
@@ -1384,12 +420,646 @@ declare module 'complex/date-time' {
 	     * @param fmt
 	     * @constructor
 	     */
-	    ToString(fmt?: Chars): Chars;
+	    ToString(fmt?: string): string;
+	}
+
+}
+declare module 'primitive/number.extension' {
+	export {};
+
+}
+declare module 'primitive/string.extension' {
+	export {};
+
+}
+declare module 'primitive/list.sort.order.enum' {
+	/**
+	 * represent a Sort Order of a List
+	 */
+	export enum ListSortOrder {
+	    ASC = 0,
+	    DESC = 1
+	}
+
+}
+declare module 'primitive/list.extension' {
+	export {};
+
+}
+declare module 'type.extensions' {
+	import { DateTime } from 'complex/date.time';
+	import 'primitive/number.extension';
+	import 'primitive/string.extension';
+	import 'primitive/list.extension';
+	import { ListSortOrder } from 'primitive/list.sort.order.enum'; global {
+	    interface Number {
+	        /**
+	         * if the Number between the Range of start and end
+	         * @param start the lower border
+	         * @param end the upper border
+	         * @constructor
+	         */
+	        IsInRange(start: number, end: number): boolean;
+	        /**
+	         * if the given Number the Same as this Number
+	         * @param value the Number to compare
+	         * @constructor
+	         */
+	        Equals(value: number): boolean;
+	        /**
+	         * the Number is above another Number
+	         * @param value the Number that must be lower than this Number to be True
+	         * @constructor
+	         */
+	        IsAbove(value: number): boolean;
+	        /**
+	         * the Number is below another Number
+	         * @param value the Number that must be higher than this Number to be True
+	         * @constructor
+	         */
+	        IsBelow(value: number): boolean;
+	        /**
+	         * Clamps Number within the inclusive lower and upper bounds.
+	         * @param lower the Number of the lower border
+	         * @param upper the Number of the upper border
+	         * @constructor
+	         */
+	        Clamp(lower: number, upper: number): number;
+	        /**
+	         * add a Number to this Number
+	         * @param value the Number to add
+	         * @constructor
+	         */
+	        Add(value: number): number;
+	        /**
+	         * remove a Number from this Number
+	         * @param value the Number to subtract
+	         * @constructor
+	         */
+	        Subtract(value: number): number;
+	        /**
+	         * multiply a Number with this Number
+	         * @param value the Multiplicand for this Number
+	         * @constructor
+	         */
+	        Multiply(value: number): number;
+	        /**
+	         * divide this Number by the given Number
+	         * throw a Exception when the Divisor is zero
+	         * @param value the Divisor
+	         * @constructor
+	         */
+	        Divide(value: number): number;
+	        /**
+	         * increment this Number and return a new Instance
+	         * @param step? the Number to Increment with one Call
+	         * @constructor
+	         */
+	        Increment(step?: number): number;
+	        /**
+	         * decrement this Number and return a new Instance
+	         * @param step? the Number to Decrement with one Call
+	         * @constructor
+	         */
+	        Decrement(step?: number): number;
+	        /**
+	         * Round up or down
+	         * @param precision number of digits after the decimal point
+	         * @constructor
+	         */
+	        Round(precision?: number): number;
+	        /**
+	         * Round down
+	         * @param precision number of digits after the decimal point
+	         * @constructor
+	         */
+	        Floor(precision?: number): number;
+	        /**
+	         * Round up
+	         * @param precision number of digits after the decimal point
+	         * @constructor
+	         */
+	        Ceil(precision?: number): number;
+	    }
+	    interface String {
+	        /**
+	         * convert the String into a Number (integer) when it possible
+	         * @constructor
+	         */
+	        ToInteger(): number;
+	        /**
+	         * convert the String into a Number (double) when it possible
+	         * @constructor
+	         */
+	        ToDouble(): number;
+	        /**
+	         * returns a Character at Position in this String
+	         * @param pos the Position of the Character to return
+	         * @constructor
+	         */
+	        CharAt(pos: number): string;
+	        /**
+	         * convert to CamelCase String
+	         * @constructor
+	         */
+	        ToCamelCase(): string;
+	        /**
+	         * make the first letter to Uppercase
+	         * @constructor
+	         */
+	        Capitalize(): string;
+	        /**
+	         * converting Latin-1 Supplement and Latin Extended-A letters
+	         * to basic Latin letters and removing combining diacritical marks.
+	         * @constructor
+	         */
+	        Deburr(): string;
+	        /**
+	         * check if the String starts with a specific letter combination
+	         * @param search
+	         * @param position
+	         * @constructor
+	         */
+	        StartsWith(search: string, position?: number): boolean;
+	        /**
+	         * check if the String ends with a specific letter combination
+	         * @param search
+	         * @param position
+	         * @constructor
+	         */
+	        EndsWith(search: string, position?: number): boolean;
+	        /**
+	         * escape the String to HTML
+	         * @constructor
+	         */
+	        HTMLEscape(): string;
+	        /**
+	         * unescape HTML String to normal String
+	         * @constructor
+	         */
+	        HTMLUnescape(): string;
+	        /**
+	         * escape to a String used by a Regex
+	         * @constructor
+	         */
+	        RegExpEscape(): string;
+	        /**
+	         * convert the String to Kebab Case
+	         * @constructor
+	         */
+	        ToKebabCase(): string;
+	        /**
+	         * conver the String to Snake Case
+	         * @constructor
+	         */
+	        ToSnakeCase(): string;
+	        /**
+	         * convert the String to Start Case
+	         * @constructor
+	         */
+	        ToStartCase(): string;
+	        /**
+	         * convert the String to lowercase
+	         * @constructor
+	         */
+	        ToLowerCase(): string;
+	        /**
+	         * convert a String to uppercase
+	         * @constructor
+	         */
+	        ToUpperCase(): string;
+	        /**
+	         * convert the first letter of the String to lowercase
+	         * @constructor
+	         */
+	        LowerFirst(): string;
+	        /**
+	         * convert the first letter of the String to uppercase
+	         * @constructor
+	         */
+	        UpperFirst(): string;
+	        /**
+	         * split the String into a Array of Strings by Words
+	         * @constructor
+	         */
+	        Words(): string[];
+	        /**
+	         * concat two strings optional with a Separator string
+	         * @param appender
+	         * @param separator
+	         * @constructor
+	         */
+	        Concat(appender: string, separator?: string): string;
+	        /**
+	         * join a Array of strings into a new string
+	         * @param appender
+	         * @param separator
+	         * @constructor
+	         */
+	        Join(appender: string[], separator?: string): string;
+	        /**
+	         * fill the String from left and right
+	         * @param length
+	         * @param template
+	         * @constructor
+	         */
+	        Pad(length: number, template?: string): string;
+	        /**
+	         * fill the String from left
+	         * @param length
+	         * @param template
+	         * @constructor
+	         */
+	        PadLeft(length: number, template?: string): string;
+	        /**
+	         * fill the String from right
+	         * @param length
+	         * @param template
+	         * @constructor
+	         */
+	        PadRight(length: number, template?: string): string;
+	        /**
+	         * repeat the String x times
+	         * @param times
+	         * @constructor
+	         */
+	        Repeat(times: number): string;
+	        /**
+	         * replace the first matching with other text
+	         * @param search
+	         * @param replacer
+	         * @constructor
+	         */
+	        Replace(search: string, replacer: string): string;
+	        /**
+	         * replace all matchings with other text
+	         * @param search
+	         * @param replacer
+	         * @constructor
+	         */
+	        ReplaceAll(search: string, replacer: string): string;
+	        /**
+	         * split the String in a Array of Texts by Pattern
+	         * @param pattern
+	         * @constructor
+	         */
+	        Split(pattern: string): string[];
+	        /**
+	         * convert all letters from the String to Lowercase
+	         * @constructor
+	         */
+	        ToLower(): string;
+	        /**
+	         * convert all Letters from the String to Uppercase
+	         * @constructor
+	         */
+	        ToUpper(): string;
+	        /**
+	         * trim the String by a sequence on both sides
+	         * @param sequence
+	         * @constructor
+	         */
+	        Trim(sequence: string): string;
+	        /**
+	         * trim the String by sequence on Start
+	         * @param sequence
+	         * @constructor
+	         */
+	        TrimStart(sequence: string): string;
+	        /**
+	         * trim the String by sequence on end
+	         * @param sequence
+	         * @constructor
+	         */
+	        TrimEnd(sequence: string): string;
+	        /**
+	         * truncate the String by text length
+	         * @param length
+	         * @param omission
+	         * @param separator
+	         * @constructor
+	         */
+	        Truncate(length: number, omission?: string, separator?: string): string;
+	        /**
+	         * clone this String Instance into a new One
+	         * @constructor
+	         */
+	        Clone(): string;
+	        /**
+	         * this String contains the given String?
+	         * @param search
+	         * @constructor
+	         */
+	        Contains(search: string): boolean;
+	        /**
+	         * gets the Number of found String
+	         * @param search
+	         * @param allowOverlapping
+	         * @constructor
+	         */
+	        ContainsCount(search: string, allowOverlapping?: boolean): number;
+	        /**
+	         * the given String are Equals this One?
+	         * @param value
+	         * @constructor
+	         */
+	        Equals(value: string): boolean;
+	        /**
+	         * insert a new String into the String at Position
+	         * @param startIndex
+	         * @param value
+	         * @constructor
+	         */
+	        Insert(startIndex: number, value: string): string;
+	        /**
+	         * remove chars at position
+	         * @param position
+	         * @param count
+	         * @constructor
+	         */
+	        Remove(position: number, count?: number): string;
+	        /**
+	         * get the chars from position with length or all
+	         * @param position
+	         * @param length
+	         * @constructor
+	         */
+	        Substring(position: number, length?: number): string;
+	        /**
+	         * find the first match of the String and return the Index Number
+	         * @param value
+	         * @constructor
+	         */
+	        IndexOf(value: string): number;
+	        /**
+	         * find the Last match of the chars and return the Index Number
+	         * @param value
+	         * @constructor
+	         */
+	        LastIndexOf(value: string): number;
+	        /**
+	         * get Text between 2 searches
+	         * @param begin
+	         * @param end
+	         * @constructor
+	         */
+	        TextBetween(begin: string, end: string): string[];
+	    }
+	    interface Array<T> {
+	        /**
+	         * the number of items in the list
+	         * @constructor
+	         */
+	        Count(): number;
+	        /**
+	         * get the Maximum Value in the Array
+	         * ATTENTION only in Numeric Lists
+	         * @constructor
+	         */
+	        Max(): number;
+	        /**
+	         * get the Min Value of the Array
+	         * ATTENTION only in Numeric Lists
+	         * @constructor
+	         */
+	        Min(): number;
+	        /**
+	         * get the Mean of this Array
+	         * ATTENTION only in Numeric Lists
+	         * @constructor
+	         */
+	        Mean(): number;
+	        /**
+	         * get the Sum of this Array
+	         * ATTENTION only in Numeric Lists
+	         * @constructor
+	         */
+	        Sum(): number;
+	        /**
+	         * add a new Item into the Array
+	         * @param element
+	         * @constructor
+	         */
+	        Add(element: T): void;
+	        /**
+	         * add a Item to the Array if not exists in the Array
+	         * @param element
+	         * @constructor
+	         */
+	        AddIfNotExists(element: T): boolean;
+	        /**
+	         * reduce a Array of Elements into a new Element
+	         * @param reducer
+	         * @param initial
+	         * @constructor
+	         */
+	        Reduce<K>(reducer: (target: K, e: T) => K, initial: K): K;
+	        /**
+	         * same as Add with multiple Items
+	         * @param elements
+	         * @constructor
+	         */
+	        AddRange(elements: T[]): void;
+	        /**
+	         * same as AddIfNotExists with multiple items
+	         * @param elements
+	         * @constructor
+	         */
+	        AddRangeIfNotExists(elements: T[]): boolean[];
+	        /**
+	         * remove all Items from the Array
+	         * @constructor
+	         */
+	        Clear(): void;
+	        /**
+	         * check if an Item is in the Array
+	         * @param element
+	         * @constructor
+	         */
+	        Contains(element: T): boolean;
+	        /**
+	         * copy the complete Array into a new One
+	         * @constructor
+	         */
+	        Copy(): T[];
+	        /**
+	         * check if a Items exists that match the specific Filter
+	         * @constructor
+	         */
+	        Exists(findMethod: (d: T) => boolean): boolean;
+	        /**
+	         * returns the First match of an Item from the Array by specific Filter
+	         * @param findMethod
+	         * @constructor
+	         */
+	        Find(findMethod: (d: T) => boolean): T;
+	        /**
+	         * returns the Last match of an Item from the Array by specific Filter
+	         * @param findMethod
+	         * @constructor
+	         */
+	        FindLast(findMethod: (d: T) => boolean): T;
+	        /**
+	         * returns the index of the First Item that matches the specific Filter
+	         * @param findMethod
+	         * @constructor
+	         */
+	        FindIndex(findMethod: (d: T) => boolean): number;
+	        /**
+	         * returns all Items that matches the specific Filter
+	         * @param findMethod
+	         * @constructor
+	         */
+	        FindAll(findMethod: (d: T) => boolean): T[];
+	        /**
+	         * returns the Index of the Last match Item from the Array by specific Filter
+	         * @param findMethod
+	         * @constructor
+	         */
+	        FindLastIndex(findMethod: (d: T) => boolean): number;
+	        /**
+	         * check if the condition is true for all Items in the Array
+	         * @param matchMethod
+	         * @constructor
+	         */
+	        TrueForAll(matchMethod: (d: T) => boolean): boolean;
+	        /**
+	         * insert a new Item at the Index into the Array
+	         * @param index
+	         * @param element
+	         * @constructor
+	         */
+	        Insert(index: number, element: T): void;
+	        /**
+	         * insert multiple Items at the Index into the Array
+	         * @param index
+	         * @param elements
+	         * @constructor
+	         */
+	        InsertRange(index: number, elements: T[]): void;
+	        /**
+	         * get the Index of an Intem in the Array
+	         * @param element
+	         * @param fromIndex
+	         * @constructor
+	         */
+	        IndexOf(element: T, fromIndex?: number): number;
+	        /**
+	         * removes a Item from the Array
+	         * @param element
+	         * @constructor
+	         */
+	        Remove(element: T): void;
+	        /**
+	         * remove all Items from Array that match the Filter
+	         * @param match
+	         * @constructor
+	         */
+	        RemoveAll(match: (d: T) => boolean): void;
+	        /**
+	         * remove a Item at a specific Index
+	         * @param index
+	         * @constructor
+	         */
+	        RemoveAt(index: number): void;
+	        /**
+	         * remove all these Items from the Array
+	         * @param elements
+	         * @constructor
+	         */
+	        RemoveRange(elements: T[]): void;
+	        /**
+	         * turn around the whole Array
+	         * @constructor
+	         */
+	        Reverse(): T[];
+	        /**
+	         * sort primitive Array by ASC or DESC order
+	         * @param order
+	         * @constructor
+	         */
+	        Sort(order?: ListSortOrder): T[];
+	        /**
+	         * sort complex Array by multiple Keys
+	         * @param keys
+	         * @param orders
+	         * @constructor
+	         */
+	        SortBy(keys: string[], orders?: ListSortOrder[]): T[];
+	        /**
+	         * get the Item at the Index
+	         * @param index
+	         * @constructor
+	         */
+	        ElementAt(index: number): T;
+	        /**
+	         * have the Array more that one Item
+	         * @constructor
+	         */
+	        Any(): boolean;
+	        /**
+	         * find the First match Item or return a Default Value
+	         * @param findMethod
+	         * @param def
+	         * @constructor
+	         */
+	        FirstOrDefault(findMethod?: (d: T) => boolean, def?: T): T;
+	        /**
+	         * find the Last match Item or return a Default Value
+	         * @param findMethod
+	         * @param def
+	         * @constructor
+	         */
+	        LastOrDefault(findMethod?: (d: T) => boolean, def?: T): T;
+	        /**
+	         * group a Array by a specific Key that was returned by transform Function
+	         * @param transformMethod
+	         * @constructor
+	         */
+	        GroupBy(transformMethod: (d: T) => any): {
+	            [key: string]: T[];
+	        };
+	        /**
+	         * convert a Array into another Array
+	         * @param convertMethod
+	         * @constructor
+	         */
+	        Convert<K>(convertMethod: (d: T) => K): K[];
+	        /**
+	         * get the Max Element
+	         * must have a Numeric Property
+	         * @param filterMethod
+	         * @constructor
+	         */
+	        MaxBy<K>(filterMethod: (d: T) => number): K;
+	        /**
+	         * get the Min Element
+	         * must have a Numeric Property
+	         * @param filterMethod
+	         * @constructor
+	         */
+	        MinBy<K>(filterMethod: (d: T) => number): K;
+	        /**
+	         * get the Mean of complex element
+	         * must have a Numeric Property
+	         * @param filterMethod
+	         * @constructor
+	         */
+	        MeanBy<K>(filterMethod: (d: T) => number): K;
+	        /**
+	         * calculate a Sum
+	         * @param filterMethod
+	         * @constructor
+	         */
+	        SumBy(filterMethod: (d: T) => number): number;
+	    }
+	    interface Date {
+	        ToDateTime(): DateTime;
+	    }
 	}
 
 }
 declare module 'complex/guid' {
-	import { Chars } from 'primitive/chars';
 	/**
 	 * represent the Global Uniqe Identifier
 	 */
@@ -1405,7 +1075,7 @@ declare module 'complex/guid' {
 	     * @param guid
 	     * @constructor
 	     */
-	    static Validate(guid: Chars): boolean;
+	    static Validate(guid: string): boolean;
 	    /**
 	     * is this Guid a Empty Guid
 	     * @constructor
@@ -1415,18 +1085,104 @@ declare module 'complex/guid' {
 	     * create a new Guid
 	     * @param guid
 	     */
-	    constructor(guid?: string | Chars);
+	    constructor(guid?: string);
 	    /**
 	     * converts the Guid to a String representation
 	     * @constructor
 	     */
-	    ToString(): Chars;
+	    ToString(): string;
 	    /**
 	     * check if the Guid is Equal another Guid
 	     * @param guid
 	     * @constructor
 	     */
-	    Equals(guid: Guid | Chars): boolean;
+	    Equals(guid: Guid | string): boolean;
+	}
+
+}
+declare module 'complex/dictionary' {
+	/**
+	 * representation of a string Dictionary
+	 */
+	export class Dictionary<T> {
+	    private _data;
+	    /**
+	     * create a new Dictionary you can fill it with predefined Data
+	     * @param dictionary
+	     */
+	    constructor(dictionary?: {
+	        [key: string]: T;
+	    });
+	    /**
+	     * Number of Entries in the Dictionary
+	     * @constructor
+	     */
+	    readonly Count: number;
+	    /**
+	     * all Values of the Dictionary
+	     * @constructor
+	     */
+	    readonly Values: T[];
+	    /**
+	     * all Keys of the Dictionary
+	     * @constructor
+	     */
+	    Keys(): string[];
+	    /**
+	     * add a Entry into the Dictionary
+	     * @param key
+	     * @param item
+	     * @constructor
+	     */
+	    Add(key: string, item: T): Dictionary<T>;
+	    /**
+	     * clear the Dictionary
+	     * @constructor
+	     */
+	    Clear(): Dictionary<T>;
+	    /**
+	     * remove a Entry from the Dictionary
+	     * @param key
+	     * @constructor
+	     */
+	    Remove(key: string): Dictionary<T>;
+	    /**
+	     * check if a Key is in the Dictionary
+	     * @param key
+	     * @constructor
+	     */
+	    ContainsKey(key: string): boolean;
+	    /**
+	     * check if a Value is in the Dictionary
+	     * @param value
+	     * @constructor
+	     */
+	    ContainsValue(value: T): boolean;
+	    /**
+	     * get the Dictionary as Javascript Object
+	     * @constructor
+	     */
+	    GetObject(): {
+	        [key: string]: T;
+	    };
+	    /**
+	     * try to get a Value in the Dictionary
+	     * @param key
+	     * @constructor
+	     */
+	    TryGetValue(key: string): T;
+	    /**
+	     * get a Value that match the Filter Condition
+	     * @param filter
+	     * @constructor
+	     */
+	    Find(filter: (d: T) => boolean): T;
+	    /**
+	     * same as Find but get multiple Values
+	     * @param filter
+	     * @constructor
+	     */
+	    FindAll(filter: (d: T) => boolean): T[];
 	}
 
 }
@@ -1465,8 +1221,7 @@ declare module 'pattern/construct' {
 	export function createWithFactory<T>(factoryMethod: Function, args: any[], defaultValue?: T): T;
 
 }
-declare module 'pattern/events/event-handler' {
-	import { Chars } from 'primitive/chars';
+declare module 'pattern/events/event.handler' {
 	/**
 	 * represent a Event Handler
 	 */
@@ -1486,18 +1241,18 @@ declare module 'pattern/events/event-handler' {
 	     * @returns the Idx of the Subscription
 	     * @constructor
 	     */
-	    Subscribe(key: Chars, cb: (d: T) => void): void;
+	    Subscribe(key: string, cb: (d: T) => void): void;
 	    /**
 	     * unsubscribe all callbacks
 	     * @param key the key to identify the Subscription to unsubscribe
 	     * @constructor
 	     */
-	    Unsubscribe(key?: Chars): void;
+	    Unsubscribe(key?: string): void;
 	    private unsubscribeByKey;
 	}
 
 }
-declare module 'pattern/store/reactive-store' {
+declare module 'pattern/store/reactive.store' {
 	import { BehaviorSubject } from 'rxjs';
 	/**
 	 * a Reactive Store to save States and listen to Changes
@@ -1526,7 +1281,6 @@ declare module 'pattern/store/reactive-store' {
 
 }
 declare module 'compression/lz' {
-	import { Chars } from 'primitive/chars';
 	/**
 	 * implementation of lz compression
 	 * with lz-string
@@ -1537,18 +1291,17 @@ declare module 'compression/lz' {
 	     * @param data
 	     * @constructor
 	     */
-	    static Compress(data: any): Chars;
+	    static Compress(data: any): string;
 	    /**
 	     * Decompress a LZ String to any Javascript Value
 	     * @param compressed
 	     * @constructor
 	     */
-	    static Decompress(compressed: Chars): any;
+	    static Decompress(compressed: string): any;
 	}
 
 }
 declare module 'utils/stopwatch' {
-	import { Double } from 'primitive/double';
 	/**
 	 * a Stopwatch to measure the Time in ms
 	 * the StopWatch starts in the Constructor
@@ -1559,8 +1312,8 @@ declare module 'utils/stopwatch' {
 	    private _multipleTimes;
 	    constructor();
 	    SectionStart(key: string): void;
-	    SectionElapsedMs(key: string): Double;
-	    ElapsedMs(): Double;
+	    SectionElapsedMs(key: string): number;
+	    ElapsedMs(): number;
 	    private getTimestamp;
 	    private getTimeDiff;
 	    private getMultipleTimeDiff;
@@ -1568,41 +1321,54 @@ declare module 'utils/stopwatch' {
 	}
 
 }
-declare module 'ts-tooling' {
-	import { Double } from 'primitive/double';
-	import { Integer } from 'primitive/integer';
-	import { Chars } from 'primitive/chars';
-	import { DateTime } from 'complex/date-time'; global {
-	    interface Number {
-	        ToDouble(): Double;
-	        ToInteger(): Integer;
-	    }
-	    interface String {
-	        ToChars(): Chars;
-	        ToDouble(): Double;
-	        ToInteger(): Integer;
-	    }
-	    interface Date {
-	        ToDateTime(): DateTime;
-	    }
+declare module 'utils/number.factory' {
+	/**
+	 * create some Numbers
+	 */
+	export class NumberFactory {
+	    /**
+	     * create a new Integer Number from the given input
+	     * @param value Javascript Number or String
+	     */
+	    static newInteger(value: number | string): number;
+	    /**
+	     * create a new Double Number from the given input
+	     * @param value  Javascript Number or String
+	     */
+	    static newDouble(value: number | string): number;
+	    /**
+	     * create Random Integers in the min/max Border
+	     * @param min the minimum Integer that can be created
+	     * @param max the maximum Integer that can be created
+	     * @constructor
+	     */
+	    static RandomInteger(min: number, max: number): number;
+	    /**
+	     * create Random Doubles in the min/max Border
+	     * @param min the minimum Double that can be created
+	     * @param max the maximum Double that can be created
+	     * @constructor
+	     */
+	    static RandomDouble(min: number, max: number): number;
 	}
-	export { Double } from 'primitive/double';
-	export { Integer } from 'primitive/integer';
-	export { Chars } from 'primitive/chars';
-	export { DateTime } from 'complex/date-time';
-	export { TimeSpan } from 'complex/time-span';
+
+}
+declare module 'ts-tooling' {
+	import 'type.extensions';
+	export { DateTime } from 'complex/date.time';
+	export { TimeSpan } from 'complex/time.span';
 	export { Guid } from 'complex/guid';
-	export { Dictionary } from 'collections/dictionary';
-	export { List } from 'collections/list';
-	export { ListSortOrder } from 'collections/list-sort-order.enum';
+	export { Dictionary } from 'complex/dictionary';
+	export { ListSortOrder } from 'primitive/list.sort.order.enum';
 	export { using } from 'pattern/dispose/using';
 	export { IDisposable } from 'pattern/dispose/disposable';
 	export { create, createWithFactory } from 'pattern/construct';
-	export { EventHandler } from 'pattern/events/event-handler';
-	export { ReactiveStore } from 'pattern/store/reactive-store';
+	export { EventHandler } from 'pattern/events/event.handler';
+	export { ReactiveStore } from 'pattern/store/reactive.store';
 	export { LZCompression } from 'compression/lz';
 	export { StopWatch } from 'utils/stopwatch';
-	export const ZERO_INT: Integer;
-	export const ZERO_DOUBLE: Double;
+	export { NumberFactory } from 'utils/number.factory';
+	export const ZERO_INT = 0;
+	export const ZERO_DOUBLE = 0;
 
 }

@@ -27,7 +27,7 @@ String.prototype.Deburr = function (): string {
 };
 
 String.prototype.StartsWith = function (search: string, position?: number): boolean {
-    return startsWith(this, search, position ? position : this.length);
+    return startsWith(this, search, position ? position : 0);
 };
 
 String.prototype.EndsWith = function (search: string, position?: number): boolean {
