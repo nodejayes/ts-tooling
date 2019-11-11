@@ -208,7 +208,7 @@ declare global {
         UpperFirst(): string;
 
         /**
-         * split the String into a List of Strings by Words
+         * split the String into a Array of Strings by Words
          * @constructor
          */
         Words(): string[];
@@ -277,47 +277,47 @@ declare global {
         ReplaceAll(search: string, replacer: string): string;
 
         /**
-         * split the Chars in a List of Texts by Pattern
+         * split the String in a Array of Texts by Pattern
          * @param pattern
          * @constructor
          */
         Split(pattern: string): string[];
 
         /**
-         * convert all letters from the Chars to Lowercase
+         * convert all letters from the String to Lowercase
          * @constructor
          */
         ToLower(): string;
 
         /**
-         * convert all Letters from the Chars to Uppercase
+         * convert all Letters from the String to Uppercase
          * @constructor
          */
         ToUpper(): string;
 
         /**
-         * trim the Chars by a sequence on both sides
+         * trim the String by a sequence on both sides
          * @param sequence
          * @constructor
          */
         Trim(sequence: string): string;
 
         /**
-         * trim the Chars by sequence on Start
+         * trim the String by sequence on Start
          * @param sequence
          * @constructor
          */
         TrimStart(sequence: string): string;
 
         /**
-         * trim the Chars by sequence on end
+         * trim the String by sequence on end
          * @param sequence
          * @constructor
          */
         TrimEnd(sequence: string): string;
 
         /**
-         * truncate the Chars by text length
+         * truncate the String by text length
          * @param length
          * @param omission
          * @param separator
@@ -326,20 +326,20 @@ declare global {
         Truncate(length: number, omission?: string, separator?: string): string;
 
         /**
-         * clone this Chars Instance into a new One
+         * clone this String Instance into a new One
          * @constructor
          */
         Clone(): string;
 
         /**
-         * this Chars contains the given Chars?
+         * this String contains the given String?
          * @param search
          * @constructor
          */
         Contains(search: string): boolean;
 
         /**
-         * gets the Number of found Chars
+         * gets the Number of found String
          * @param search
          * @param allowOverlapping
          * @constructor
@@ -347,14 +347,14 @@ declare global {
         ContainsCount(search: string, allowOverlapping?: boolean): number;
 
         /**
-         * the given Chars are Equals this One?
+         * the given String are Equals this One?
          * @param value
          * @constructor
          */
         Equals(value: string): boolean;
 
         /**
-         * insert a new String into the Chars at Position
+         * insert a new String into the String at Position
          * @param startIndex
          * @param value
          * @constructor
@@ -378,7 +378,7 @@ declare global {
         Substring(position: number, length?: number): string;
 
         /**
-         * find the first match of the Chars and return the Index Number
+         * find the first match of the String and return the Index Number
          * @param value
          * @constructor
          */
@@ -407,49 +407,49 @@ declare global {
         Count(): number;
 
         /**
-         * get the Maximum Value in the List
+         * get the Maximum Value in the Array
          * ATTENTION only in Numeric Lists
          * @constructor
          */
         Max(): number;
 
         /**
-         * get the Min Value of the List
+         * get the Min Value of the Array
          * ATTENTION only in Numeric Lists
          * @constructor
          */
         Min(): number;
 
         /**
-         * get the Mean of this List
+         * get the Mean of this Array
          * ATTENTION only in Numeric Lists
          * @constructor
          */
         Mean(): number;
 
         /**
-         * get the Sum of this List
+         * get the Sum of this Array
          * ATTENTION only in Numeric Lists
          * @constructor
          */
         Sum(): number;
 
         /**
-         * add a new Item into the List
+         * add a new Item into the Array
          * @param element
          * @constructor
          */
         Add(element: T): void;
 
         /**
-         * add a Item to the List if not exists in the List
+         * add a Item to the Array if not exists in the Array
          * @param element
          * @constructor
          */
         AddIfNotExists(element: T): boolean;
 
         /**
-         * reduce a List of Elements into a new Element
+         * reduce a Array of Elements into a new Element
          * @param reducer
          * @param initial
          * @constructor
@@ -471,20 +471,20 @@ declare global {
         AddRangeIfNotExists(elements: T[]): boolean[];
 
         /**
-         * remove all Items from the List
+         * remove all Items from the Array
          * @constructor
          */
         Clear(): void;
 
         /**
-         * check if an Item is in the List
+         * check if an Item is in the Array
          * @param element
          * @constructor
          */
         Contains(element: T): boolean;
 
         /**
-         * copy the complete List into a new One
+         * copy the complete Array into a new One
          * @constructor
          */
         Copy(): T[];
@@ -496,14 +496,14 @@ declare global {
         Exists(findMethod: (d: T) => boolean): boolean;
 
         /**
-         * returns the First match of an Item from the List by specific Filter
+         * returns the First match of an Item from the Array by specific Filter
          * @param findMethod
          * @constructor
          */
         Find(findMethod: (d: T) => boolean): T;
 
         /**
-         * returns the Last match of an Item from the List by specific Filter
+         * returns the Last match of an Item from the Array by specific Filter
          * @param findMethod
          * @constructor
          */
@@ -524,21 +524,21 @@ declare global {
         FindAll(findMethod: (d: T) => boolean): T[];
 
         /**
-         * returns the Index of the Last match Item from the List by specific Filter
+         * returns the Index of the Last match Item from the Array by specific Filter
          * @param findMethod
          * @constructor
          */
         FindLastIndex(findMethod: (d: T) => boolean): number;
 
         /**
-         * check if the condition is true for all Items in the List
+         * check if the condition is true for all Items in the Array
          * @param matchMethod
          * @constructor
          */
         TrueForAll(matchMethod: (d: T) => boolean): boolean;
 
         /**
-         * insert a new Item at the Index into the List
+         * insert a new Item at the Index into the Array
          * @param index
          * @param element
          * @constructor
@@ -546,7 +546,7 @@ declare global {
         Insert(index: number, element: T): void;
 
         /**
-         * insert multiple Items at the Index into the List
+         * insert multiple Items at the Index into the Array
          * @param index
          * @param elements
          * @constructor
@@ -554,7 +554,7 @@ declare global {
         InsertRange(index: number, elements: T[]): void;
 
         /**
-         * get the Index of an Intem in the List
+         * get the Index of an Intem in the Array
          * @param element
          * @param fromIndex
          * @constructor
@@ -562,14 +562,14 @@ declare global {
         IndexOf(element: T, fromIndex?: number): number;
 
         /**
-         * removes a Item from the List
+         * removes a Item from the Array
          * @param element
          * @constructor
          */
         Remove(element: T): void;
 
         /**
-         * remove all Items from List that match the Filter
+         * remove all Items from Array that match the Filter
          * @param match
          * @constructor
          */
@@ -583,27 +583,27 @@ declare global {
         RemoveAt(index: number): void;
 
         /**
-         * remove all these Items from the List
+         * remove all these Items from the Array
          * @param elements
          * @constructor
          */
         RemoveRange(elements: T[]): void;
 
         /**
-         * turn around the whole List
+         * turn around the whole Array
          * @constructor
          */
         Reverse(): T[];
 
         /**
-         * sort primitive List by ASC or DESC order
+         * sort primitive Array by ASC or DESC order
          * @param order
          * @constructor
          */
         Sort(order?: ListSortOrder): T[];
 
         /**
-         * sort complex List by multiple Keys
+         * sort complex Array by multiple Keys
          * @param keys
          * @param orders
          * @constructor
@@ -618,7 +618,7 @@ declare global {
         ElementAt(index: number): T;
 
         /**
-         * have the List more that one Item
+         * have the Array more that one Item
          * @constructor
          */
         Any(): boolean;
@@ -640,14 +640,14 @@ declare global {
         LastOrDefault(findMethod: (d: T) => boolean, def?: T): T;
 
         /**
-         * group a List by a specific Key that was returned by transform Function
+         * group a Array by a specific Key that was returned by transform Function
          * @param transformMethod
          * @constructor
          */
         GroupBy(transformMethod: (d: T) => any): {[key: string]: T[]};
 
         /**
-         * convert a List into another List
+         * convert a Array into another Array
          * @param convertMethod
          * @constructor
          */
