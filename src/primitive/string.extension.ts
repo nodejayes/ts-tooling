@@ -202,6 +202,22 @@ String.prototype.Substring = function (position: number, length?: number): strin
     return this.substr(position, length ? length : undefined);
 };
 
+String.prototype.ToInteger = function (): number {
+    const res = parseInt(this, 10);
+    if (isNaN(res)) {
+        return 0;
+    }
+    return res;
+};
+
+String.prototype.ToDouble = function (): number {
+    const res = parseFloat(this);
+    if (isNaN(res)) {
+        return 0.0;
+    }
+    return res;
+};
+
 String.prototype.IndexOf = function (value: string): number {
     return this.indexOf(value);
 };

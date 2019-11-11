@@ -106,6 +106,18 @@ declare global {
     }
     interface String {
         /**
+         * convert the String into a Number (integer) when it possible
+         * @constructor
+         */
+        ToInteger(): number;
+
+        /**
+         * convert the String into a Number (double) when it possible
+         * @constructor
+         */
+        ToDouble(): number;
+
+        /**
          * returns a Character at Position in this String
          * @param pos the Position of the Character to return
          * @constructor
