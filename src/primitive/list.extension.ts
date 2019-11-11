@@ -1,7 +1,8 @@
 import {
     max, min, mean, sum, isFunction, cloneDeep, find,
     findLast, filter, findIndex, indexOf, without, remove,
-    pullAt, reverse, orderBy, first, last, map, maxBy, minBy, meanBy, sumBy, groupBy
+    pullAt, reverse, orderBy, first, last, map, maxBy, minBy, meanBy, sumBy, groupBy,
+    findLastIndex
 } from 'lodash';
 import {ListSortOrder} from './list.sort.order.enum';
 
@@ -14,28 +15,28 @@ Array.prototype.Count = function (): number {
 };
 
 Array.prototype.Max = function (): number {
-    if (!checkIfNumeric(this)) {
+    if (!checkIfNumeric(this[0])) {
         throw new Error(`Array has no numeric Content`);
     }
     return max(this);
 };
 
 Array.prototype.Min = function (): number {
-    if (!checkIfNumeric(this)) {
+    if (!checkIfNumeric(this[0])) {
         throw new Error(`Array has no numeric Content`);
     }
     return min(this);
 };
 
 Array.prototype.Mean = function (): number {
-    if (!checkIfNumeric(this)) {
+    if (!checkIfNumeric(this[0])) {
         throw new Error(`Array has no numeric Content`);
     }
     return mean(this);
 };
 
 Array.prototype.Sum = function (): number {
-    if (!checkIfNumeric(this)) {
+    if (!checkIfNumeric(this[0])) {
         throw new Error(`Array has no numeric Content`);
     }
     return sum(this);
@@ -193,16 +194,29 @@ Array.prototype.Any = function (): boolean {
 
 Array.prototype.FirstOrDefault = function (filterMethod?, def?): any {
     if (!isFunction(filterMethod)) {
-        return first(this._data) || (def ? def : null);
+        return first(this) || (def ? def : null);
     }
-    return find(this._data, filterMethod) || (def ? def : null);
+    return find(this, filterMethod) || (def ? def : null);
+};
+
+Array.prototype.FindLastIndex = function (findMethod): number {
+    return findLastIndex(this, findMethod);
+};
+
+Array.prototype.TrueForAll = function (matchMethod): boolean {
+    for (const item of this) {
+        if (!matchMethod(item)) {
+            return false;
+        }
+    }
+    return true;
 };
 
 Array.prototype.LastOrDefault = function (filterMethod?, def?): any {
     if (!isFunction(filterMethod)) {
-        return last(this._data) || (def ? def : null);
+        return last(this) || (def ? def : null);
     }
-    return findLast(this._data, filterMethod) || (def ? def : null);
+    return findLast(this, filterMethod) || (def ? def : null);
 };
 
 Array.prototype.GroupBy = function (transformMethod): any {

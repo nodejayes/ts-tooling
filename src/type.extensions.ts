@@ -629,7 +629,7 @@ declare global {
          * @param def
          * @constructor
          */
-        FirstOrDefault(findMethod: (d: T) => boolean, def?: T): T;
+        FirstOrDefault(findMethod?: (d: T) => boolean, def?: T): T;
 
         /**
          * find the Last match Item or return a Default Value
@@ -637,7 +637,7 @@ declare global {
          * @param def
          * @constructor
          */
-        LastOrDefault(findMethod: (d: T) => boolean, def?: T): T;
+        LastOrDefault(findMethod?: (d: T) => boolean, def?: T): T;
 
         /**
          * group a Array by a specific Key that was returned by transform Function
@@ -659,7 +659,7 @@ declare global {
          * @param filterMethod
          * @constructor
          */
-        MaxBy(filterMethod: (d: T) => number): T;
+        MaxBy<K>(filterMethod: (d: T) => number): K;
 
         /**
          * get the Min Element
@@ -667,7 +667,7 @@ declare global {
          * @param filterMethod
          * @constructor
          */
-        MinBy(filterMethod: (d: T) => number): T;
+        MinBy<K>(filterMethod: (d: T) => number): K;
 
         /**
          * get the Mean of complex element
@@ -675,7 +675,7 @@ declare global {
          * @param filterMethod
          * @constructor
          */
-        MeanBy(filterMethod: (d: T) => number): T;
+        MeanBy<K>(filterMethod: (d: T) => number): K;
 
         /**
          * calculate a Sum
