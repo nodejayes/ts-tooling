@@ -48,6 +48,8 @@ export class ReactiveStore<T> {
         set(<any>this._core, key, newValue);
         if (behavior) {
             behavior.next(get(this._core, key));
+        } else {
+            console.warn(`no behavior detected!`);
         }
     }
 
@@ -55,6 +57,11 @@ export class ReactiveStore<T> {
         let tmp = selector.toString();
         tmp = tmp.Split('{').ElementAt(1);
         tmp = tmp.Split('}').ElementAt(ZERO_INT);
+        if (tmp.Contains(';return ')) {
+            // coverage stuff found
+            tmp = 'return ' + tmp.Split(';return')
+                .ElementAt(1)
+        }
         const k = tmp.Trim(' ')
             .Split('return ')
             .Reduce((target, e) => target.Concat(e), '')
