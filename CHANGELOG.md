@@ -1,6 +1,7 @@
 ### 2.0.0
 
 * Refactor Base Types to use native Javascript Types
+* Increment/Decrement not mutate the this Instance only returns a new Instance
 
 ### 1.2.0
 
