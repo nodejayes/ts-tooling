@@ -1,7 +1,4 @@
-import {find, hasIn, keys, map, unset, values} from 'lodash';
-import {Integer} from "../primitive/integer";
-import {FilterMethod, List} from "./list";
-import {Chars} from '../primitive/chars';
+import {find, hasIn, keys, unset, values} from 'lodash';
 
 /**
  * representation of a string Dictionary
@@ -23,8 +20,8 @@ export class Dictionary<T> {
      * Number of Entries in the Dictionary
      * @constructor
      */
-    get Count(): Integer {
-        return new Integer(keys(this._data).length);
+    get Count(): number {
+        return keys(this._data).length;
     }
 
     /**
@@ -39,8 +36,8 @@ export class Dictionary<T> {
      * all Keys of the Dictionary
      * @constructor
      */
-    get Keys(): List<Chars> {
-        return new List<Chars>(map(keys(this._data), i => new Chars(i)));
+    Keys(): string[] {
+        return keys(this._data);
     }
 
     /**
@@ -49,8 +46,8 @@ export class Dictionary<T> {
      * @param item
      * @constructor
      */
-    Add(key: Chars, item: T): Dictionary<T> {
-        this._data[key.Value] = item;
+    Add(key: string, item: T): Dictionary<T> {
+        this._data[key] = item;
         return this;
     }
 
@@ -68,8 +65,8 @@ export class Dictionary<T> {
      * @param key
      * @constructor
      */
-    Remove(key: Chars): Dictionary<T> {
-        unset(this._data, key.Value);
+    Remove(key: string): Dictionary<T> {
+        unset(this._data, key);
         return this;
     }
 
@@ -78,8 +75,8 @@ export class Dictionary<T> {
      * @param key
      * @constructor
      */
-    ContainsKey(key: Chars): boolean {
-        return hasIn(this._data, key.Value);
+    ContainsKey(key: string): boolean {
+        return hasIn(this._data, key);
     }
 
     /**
@@ -104,8 +101,8 @@ export class Dictionary<T> {
      * @param key
      * @constructor
      */
-    TryGetValue(key: Chars): T {
-        return this._data[key.Value] || null;
+    TryGetValue(key: string): T {
+        return this._data[key] || null;
     }
 
     /**
@@ -113,7 +110,7 @@ export class Dictionary<T> {
      * @param filter
      * @constructor
      */
-    Find(filter: FilterMethod<T>): T {
+    Find(filter: (d: T) => boolean): T {
         return find(this._data, filter);
     }
 
@@ -122,8 +119,8 @@ export class Dictionary<T> {
      * @param filter
      * @constructor
      */
-    FindAll(filter: FilterMethod<T>): List<T> {
-        const r = new List<T>();
+    FindAll(filter: (d: T) => boolean): T[] {
+        const r = [];
         for (const key of keys(this._data)) {
             if (filter(this._data[key])) {
                 r.Add(this._data[key]);

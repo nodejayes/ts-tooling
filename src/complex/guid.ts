@@ -1,53 +1,51 @@
 import * as uuidv4 from 'uuid/v4';
-import {Chars} from '../primitive/chars';
-import {Integer} from '../primitive/integer';
-import {List} from '../collections/list';
+import {StringFactory} from "../utils/string.factory";
 
 /**
  * @ignore
  */
-const GUID_LENGTH = new Integer(36);
+const GUID_LENGTH = 36;
 
 /**
  * @ignore
  */
-const GUID_SEPERATOR_POSITIONS = new List<Integer>([
-    new Integer(8),
-    new Integer(13),
-    new Integer(18),
-    new Integer(23),
-]);
+const GUID_SEPARATOR_POSITIONS = [
+    8,
+    13,
+    18,
+    23,
+];
 
 /**
  * @ignore
  */
-const GUID_VALID_CHARS = new List<Chars>([
-    '0'.ToChars(), '1'.ToChars(), '2'.ToChars(), '3'.ToChars(), '4'.ToChars(), '5'.ToChars(),
-    '6'.ToChars(), '7'.ToChars(), '8'.ToChars(), '9'.ToChars(), 'a'.ToChars(), 'b'.ToChars(),
-    'c'.ToChars(), 'd'.ToChars(), 'e'.ToChars(), 'f'.ToChars(), '-'.ToChars()
-]);
+const GUID_VALID_CHARS = [
+    '0', '1', '2', '3', '4', '5',
+    '6', '7', '8', '9', 'a', 'b',
+    'c', 'd', 'e', 'f', '-'
+];
 
 /**
  * @ignore
  */
-function validateGuid(guid: Chars): boolean {
+function validateGuid(guid: string): boolean {
     // check the length of the Guid
-    if (!guid.Length.Equals(GUID_LENGTH)) {
+    if (!guid.length.Equals(GUID_LENGTH)) {
         return false;
     }
     // check the number of "-" in the Guid
-    if (guid.ContainsCount('-'.ToChars()).IsAbove(new Integer(4))) {
+    if (guid.ContainsCount('-').IsAbove(4)) {
         return false;
     }
     // check the Position of "-" in the Guid
-    for (const pos of GUID_SEPERATOR_POSITIONS.ToArray()) {
-        if (!guid.CharAt(pos).Equals(new Chars('-'))) {
+    for (const pos of GUID_SEPARATOR_POSITIONS) {
+        if (!guid.CharAt(pos).Equals('-')) {
             return false;
         }
     }
     // check the Chars in the Guid
-    for (const char of guid.Value) {
-        const c = new Chars(char).ToLowerCase();
+    for (const char of guid) {
+        const c = char.ToLowerCase();
         if (!GUID_VALID_CHARS.Contains(c)) {
             return false;
         }
@@ -59,7 +57,7 @@ function validateGuid(guid: Chars): boolean {
  * represent the Global Uniqe Identifier
  */
 export class Guid {
-    private _value: Chars;
+    private _value: string;
 
     /**
      * get a empty Guid
@@ -74,7 +72,7 @@ export class Guid {
      * @param guid
      * @constructor
      */
-    static Validate(guid: Chars): boolean {
+    static Validate(guid: string): boolean {
         return validateGuid(guid);
     }
 
@@ -90,19 +88,14 @@ export class Guid {
      * create a new Guid
      * @param guid
      */
-    constructor(guid?: string | Chars) {
-        if (!guid) {
-            this._value = new Chars(uuidv4());
-        } else if (guid instanceof Chars) {
-            if (!validateGuid(guid)) {
-                throw new Error(`guid is invalid ${guid.Value}`);
-            }
-            this._value = guid.ToLowerCase();
+    constructor(guid?: string) {
+        if (StringFactory.IsNullOrEmpty(guid)) {
+            this._value = uuidv4();
         } else {
-            if (!validateGuid(guid.ToChars())) {
+            if (!validateGuid(guid)) {
                 throw new Error(`guid is invalid ${guid}`);
             }
-            this._value = guid.ToChars().ToLowerCase();
+            this._value = guid.ToLowerCase();
         }
     }
 
@@ -110,7 +103,7 @@ export class Guid {
      * converts the Guid to a String representation
      * @constructor
      */
-    ToString(): Chars {
+    ToString(): string {
         return this._value;
     }
 
@@ -119,10 +112,10 @@ export class Guid {
      * @param guid
      * @constructor
      */
-    Equals(guid: Guid | Chars): boolean {
-        if (guid instanceof Chars) {
-            return this._value.Equals(guid);
+    Equals(guid: Guid | string): boolean {
+        if (guid instanceof Guid) {
+            return this._value.Equals(guid.ToString());
         }
-        return this._value.Equals(guid.ToString());
+        return this._value.Equals(guid);
     }
 }

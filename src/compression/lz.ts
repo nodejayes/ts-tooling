@@ -1,4 +1,3 @@
-import {Chars} from "../primitive/chars";
 import * as LZString from 'lz-string';
 
 /**
@@ -11,8 +10,8 @@ export class LZCompression {
      * @param data
      * @constructor
      */
-    static Compress(data: any): Chars {
-        return new Chars(LZString.compressToBase64(JSON.stringify(data)));
+    static Compress(data: any): string {
+        return LZString.compressToBase64(JSON.stringify(data));
     }
 
     /**
@@ -20,7 +19,7 @@ export class LZCompression {
      * @param compressed
      * @constructor
      */
-    static Decompress(compressed: Chars): any {
-        return JSON.parse(LZString.decompressFromBase64(compressed.Value));
+    static Decompress(compressed: string): any {
+        return JSON.parse(LZString.decompressFromBase64(compressed));
     }
 }

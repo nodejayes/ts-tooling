@@ -1,4 +1,4 @@
-import {IDisposable} from "./disposable";
+import {IDisposable} from './disposable';
 
 /**
  * use a Instance and Dispose it after Execution

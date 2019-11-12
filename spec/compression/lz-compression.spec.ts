@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {LZCompression, List} from '../../src/ts-tooling';
+import {LZCompression} from '../../src/ts-tooling';
 import 'mocha';
 
 interface TestAddress {
@@ -70,20 +70,20 @@ const complexValues: TestUser[] = [
 
 describe('LZ Compression Tests', () => {
     it('can compress', () => {
-        assert.isAbove(LZCompression.Compress(complexValues).Length.Value, 1);
+        assert.isAbove(LZCompression.Compress(complexValues).length, 1);
     });
     it('can decompress', () => {
         const serialized = LZCompression.Compress(complexValues);
-        assert.equal(new List<TestUser>(LZCompression.Decompress(serialized)).ElementAt((0).ToInteger()).Name, 'Jonas Schreiner');
+        assert.equal(LZCompression.Decompress(serialized).ElementAt(0).Name, 'Jonas Schreiner');
     });
     it('is smaller', () => {
-        const lzLength = LZCompression.Compress(complexValues).Length.Value;
-        const rawLength = JSON.stringify(new List(complexValues).ToArray()).length;
+        const lzLength = LZCompression.Compress(complexValues).length;
+        const rawLength = JSON.stringify(complexValues).length;
         assert.isBelow(lzLength, rawLength);
         console.info('compression rate is ', 100 - (lzLength * 100 / rawLength), '%');
     });
     it('test big data', () => {
-        const tmp = new List<TestUser>();
+        const tmp = [];
         for (let i = 0; i < 10000; i++) {
             tmp.Add({
                 Name: 'Jonas Schreiner',
@@ -98,10 +98,10 @@ describe('LZ Compression Tests', () => {
         }
 
         let start = Date.now();
-        const lzLength = LZCompression.Compress(complexValues).Length.Value;
+        const lzLength = LZCompression.Compress(complexValues).length;
         console.info(`lz-string compression: ${(Date.now()-start)} ms`);
         start = Date.now();
-        const rawLength = JSON.stringify(tmp.ToArray()).length;
+        const rawLength = JSON.stringify(tmp).length;
         console.info(`stringify: ${(Date.now()-start)} ms`);
         assert.isBelow(lzLength, rawLength);
         console.info('compression rate is ', 100 - (lzLength * 100 / rawLength), '% ', lzLength, ' byte from ', rawLength, ' byte');

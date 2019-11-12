@@ -1,3 +1,7 @@
+### 2.0.0
+
+* Refactor Base Types to use native Javascript Types
+
 ### 1.2.0
 
 Features:

@@ -1,9 +1,9 @@
 import {assert} from 'chai';
-import {Chars, DateTime, Integer, ReactiveStore} from '../../../src/ts-tooling';
+import {DateTime, ReactiveStore} from '../../../src/ts-tooling';
 import 'mocha';
 
 interface ITestUser {
-    name: Chars;
+    name: string;
 }
 
 interface ITestState {
@@ -23,22 +23,22 @@ describe('Reactive Store Tests', () => {
            test: {
                b: true,
                n: 5,
-               dt: DateTime.FromISOString('2019-01-01T00:00:00'.ToChars()),
+               dt: DateTime.FromISOString('2019-01-01T00:00:00'),
                o: {
-                   name: new Chars('Paul')
+                   name: 'Paul'
                }
            }
        });
        assert.equal(store.Listen((s) => s.test.b).getValue(), true);
        assert.equal(store.Listen((s) => s.test.n).getValue(), 5);
-       assert.equal(store.Listen((s) => s.test.dt.Year).getValue().Value, 2019);
-       assert.equal(store.Listen((s) => s.test.dt.Month).getValue().Value, 1);
-       assert.equal(store.Listen((s) => s.test.dt.Day).getValue().Value, 1);
-       assert.equal(store.Listen((s) => s.test.dt.Hour).getValue().Value, 0);
-       assert.equal(store.Listen((s) => s.test.dt.Minute).getValue().Value, 0);
-       assert.equal(store.Listen((s) => s.test.dt.Second).getValue().Value, 0);
-       assert.equal(store.Listen((s) => s.test.dt.Millisecond.Value).getValue(), 0);
-       assert.equal(store.Listen((s) => s.test.o.name).getValue().Value, 'Paul');
+       assert.equal(store.Listen((s) => s.test.dt.Year).getValue(), 2019);
+       assert.equal(store.Listen((s) => s.test.dt.Month).getValue(), 1);
+       assert.equal(store.Listen((s) => s.test.dt.Day).getValue(), 1);
+       assert.equal(store.Listen((s) => s.test.dt.Hour).getValue(), 0);
+       assert.equal(store.Listen((s) => s.test.dt.Minute).getValue(), 0);
+       assert.equal(store.Listen((s) => s.test.dt.Second).getValue(), 0);
+       assert.equal(store.Listen((s) => s.test.dt.Millisecond).getValue(), 0);
+       assert.equal(store.Listen((s) => s.test.o.name).getValue(), 'Paul');
    });
 
    it('can mutate the State', () => {
@@ -46,9 +46,9 @@ describe('Reactive Store Tests', () => {
            test: {
                b: true,
                n: 5,
-               dt: DateTime.FromISOString('2019-01-01T00:00:00'.ToChars()),
+               dt: DateTime.FromISOString('2019-01-01T00:00:00'),
                o: {
-                   name: new Chars('Paul')
+                   name: 'Paul'
                }
            }
        });
@@ -57,20 +57,20 @@ describe('Reactive Store Tests', () => {
    });
 
    it('can listen on mutation', (done) => {
-       const callCount = new Integer(0);
+       let callCount = 0;
        const store = new ReactiveStore<ITestStore>({
            test: {
                b: true,
                n: 5,
-               dt: DateTime.FromISOString('2019-01-01T00:00:00'.ToChars()),
+               dt: DateTime.FromISOString('2019-01-01T00:00:00'),
                o: {
-                   name: new Chars('Paul')
+                   name: 'Paul'
                }
            }
        });
        store.Listen(s => s.test.b).subscribe(d => {
-           callCount.Increment();
-           if (callCount.IsBelow((2).ToInteger())) {
+           callCount = callCount.Increment();
+           if (callCount.IsBelow(2)) {
                // init call
                assert.equal(d, true);
                return;
@@ -83,30 +83,30 @@ describe('Reactive Store Tests', () => {
    });
 
    it('can mutate complete State', (done) => {
-       const callCount = new Integer(0);
+       let callCount = 0;
        const store = new ReactiveStore<ITestStore>({
            test: {
                b: true,
                n: 5,
-               dt: DateTime.FromISOString('2019-01-01T00:00:00'.ToChars()),
+               dt: DateTime.FromISOString('2019-01-01T00:00:00'),
                o: {
-                   name: new Chars('Paul')
+                   name: 'Paul'
                }
            }
        });
        store.Listen(s => s.test).subscribe(d => {
-           callCount.Increment();
-           if (callCount.IsBelow((2).ToInteger())) {
+           callCount = callCount.Increment();
+           if (callCount.IsBelow(2)) {
                // init call
-               assert.equal(d.o.name.Value, 'Paul');
+               assert.equal(d.o.name, 'Paul');
                return;
            }
            // mutate call
-           assert.equal(d.o.name.Value, 'Max');
+           assert.equal(d.o.name, 'Max');
            done();
        });
        store.Mutate(s => s.test, d => {
-           d.o.name = new Chars('Max');
+           d.o.name = 'Max';
            return d;
        });
    });
