@@ -1,10 +1,19 @@
 /**
- * implement some static String Functions
+ * some Utils for strings
  */
 export class StringFactory {
     /**
      * check if a String is empty or null
-     * @constructor
+     *
+     * ```typescript
+     * // is true
+     * StringFactory.IsNullOrEmpty(undefined);
+     * StringFactory.IsNullOrEmpty(null);
+     * StringFactory.IsNullOrEmpty('');
+     *
+     * // is false
+     * StringFactory.IsNullOrEmpty('a');
+     * ```
      */
     static IsNullOrEmpty(value: string) {
         return !value || value.length < 1;
