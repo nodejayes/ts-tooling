@@ -13,6 +13,8 @@ Date.prototype.ToDateTime = function (this: Date): DateTime {
 export {DateTime} from './complex/date.time';
 export {TimeSpan} from './complex/time.span';
 export {Guid} from './complex/guid';
+export {Byte} from './complex/byte';
+export {ByteStream} from './complex/byte.stream';
 
 // Collections
 export {Dictionary} from './complex/dictionary';

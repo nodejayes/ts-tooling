@@ -1,3 +1,9 @@
+### 2.1.0
+
+* add Byte Type
+* add ByteStream to read and Write Bytes
+* add more Documentation
+
 ### 2.0.0
 
 * Refactor Base Types to use native Javascript Types
