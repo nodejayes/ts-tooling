@@ -179,12 +179,21 @@ declare module 'complex/time.span' {
 }
 declare module 'utils/string.factory' {
 	/**
-	 * implement some static String Functions
+	 * some Utils for strings
 	 */
 	export class StringFactory {
 	    /**
 	     * check if a String is empty or null
-	     * @constructor
+	     *
+	     * ```typescript
+	     * // is true
+	     * StringFactory.IsNullOrEmpty(undefined);
+	     * StringFactory.IsNullOrEmpty(null);
+	     * StringFactory.IsNullOrEmpty('');
+	     *
+	     * // is false
+	     * StringFactory.IsNullOrEmpty('a');
+	     * ```
 	     */
 	    static IsNullOrEmpty(value: string): boolean;
 	}
@@ -1100,6 +1109,88 @@ declare module 'complex/guid' {
 	}
 
 }
+declare module 'complex/byte' {
+	/**
+	 * a Number represent as Byte
+	 */
+	export class Byte {
+	    private _value;
+	    /**
+	     * create a new Byte
+	     * Numbers that are higher or lower than the maximum or minimum byte values are truncated.
+	     * @param value the byte Value
+	     */
+	    constructor(value: number);
+	    /**
+	     * get the Byte Value
+	     */
+	    readonly Value: number;
+	}
+
+}
+declare module 'complex/byte.stream' {
+	import { Byte } from 'complex/byte';
+	/**
+	 * a Stream of multiple Bytes that can hold any Byte Values
+	 * and handle Read/Write Operations
+	 */
+	export class ByteStream {
+	    private readonly _value;
+	    private _position;
+	    /**
+	     * create a new Byte Stream from a Byte String
+	     * @param str the Byte String
+	     */
+	    static FromByteString(str: string): ByteStream;
+	    /**
+	     * the size of the Stream
+	     */
+	    readonly Length: number;
+	    /**
+	     * the current Position of the Read/Write Cursor in the Stream
+	     */
+	    readonly Position: number;
+	    /**
+	     * reset the Read/Write Cursor of the Stream
+	     */
+	    ResetCursor(): void;
+	    /**
+	     * set the Read/Write Cursor to a specific Position
+	     * if a bigger Position given the Cursor was set to the end of  the Stream
+	     * @param pos the Position the Cursor was set
+	     */
+	    SetCursor(pos: number): void;
+	    /**
+	     * write multiple Bytes into the Byte Stream
+	     * @param value the Bytes to write into Stream
+	     */
+	    Write(value: Byte[]): number;
+	    /**
+	     * write a single Byte into the Stream
+	     * @param value the Byte to write into Stream
+	     */
+	    WriteByte(value: Byte): void;
+	    /**
+	     * read a Part of the Byte Stream on default the complete Stream was returned
+	     * @param pos the start position to read
+	     * @param len the number of Bytes to read
+	     */
+	    Read(pos?: number, len?: number): number[];
+	    /**
+	     * read a single Byte at a specific Position of the Stream
+	     * if no Position passed the first Byte was read
+	     * @param pos the Position in the Stream of the Byte to read
+	     */
+	    ReadByte(pos?: number): number;
+	    /**
+	     * get the String representation of the Byte Stream
+	     */
+	    ToString(): string;
+	    private writeByte;
+	    private readByte;
+	}
+
+}
 declare module 'complex/dictionary' {
 	/**
 	 * representation of a string Dictionary
@@ -1199,8 +1290,21 @@ declare module 'pattern/dispose/using' {
 	import { IDisposable } from 'pattern/dispose/disposable';
 	/**
 	 * use a Instance and Dispose it after Execution
-	 * @param item
-	 * @param cb
+	 * @param item a instance of a Class to Dispose after running the using section
+	 * @param cb what is to do in this using?
+	 *
+	 * ```typescript
+	 * class WithDisposable implements IDisposable {
+	 *   Name = 'WithoutDisposable';
+	 *
+	 *   Dispose(): void {
+	 *     this.Name = '';
+	 *   }
+	 * }
+	 * using(WithDisposable, (i) => {
+	 *   // Do whatever you want to do with the new Instance of the Class
+	 * });
+	 * ```
 	 */
 	export function using<T extends IDisposable>(item: new () => T, cb: (d: T) => void): void;
 
@@ -1223,7 +1327,7 @@ declare module 'pattern/construct' {
 }
 declare module 'pattern/events/event.handler' {
 	/**
-	 * represent a Event Handler
+	 * lets create a Event Handler you can subscribe or unsubscribe
 	 */
 	export class EventHandler<T> {
 	    private _stream;
@@ -1231,7 +1335,12 @@ declare module 'pattern/events/event.handler' {
 	    /**
 	     * invoke the Event on the Handler
 	     * @param args
-	     * @constructor
+	     *
+	     * ```typescript
+	     * const handler = new EventHandler<number>();
+	     * // sends 1 to every Subscriber
+	     * handler.Invoke(1);
+	     * ```
 	     */
 	    Invoke(args: T): void;
 	    /**
@@ -1239,13 +1348,31 @@ declare module 'pattern/events/event.handler' {
 	     * @param key the key to identify the subscription
 	     * @param cb
 	     * @returns the Idx of the Subscription
-	     * @constructor
+	     *
+	     * ```typescript
+	     * const handler = new EventHandler<number>();
+	     * handler.Subscribe('X', (i) => {
+	     *     // get the Number that was send by a Invoke call (2)
+	     * });
+	     * handler.Invoke(2);
+	     * ```
 	     */
 	    Subscribe(key: string, cb: (d: T) => void): void;
 	    /**
 	     * unsubscribe all callbacks
 	     * @param key the key to identify the Subscription to unsubscribe
-	     * @constructor
+	     *
+	     * ```typescript
+	     * const handler = new EventHandler<number>();
+	     * handler.Subscribe('X', (i) => {
+	     *      // nothing happen here while the Handler was unsubscribe
+	     * });
+	     * // unsubscribe only the X Subscriber
+	     * handler.Unsubscribe('X');
+	     * // unsubscribe all Subscriber
+	     * handler.Unsubscribe();
+	     * handler.Invoke(2);
+	     * ```
 	     */
 	    Unsubscribe(key?: string): void;
 	    private unsubscribeByKey;
@@ -1289,13 +1416,21 @@ declare module 'compression/lz' {
 	    /**
 	     * Compress any Javascript Value to a LZ String
 	     * @param data
-	     * @constructor
+	     *
+	     * ```typescript
+	     * // compress the Object to a zipped JSON String
+	     * LZCompression.Compress({"Hello":"World!"});
+	     * ```
 	     */
 	    static Compress(data: any): string;
 	    /**
 	     * Decompress a LZ String to any Javascript Value
 	     * @param compressed
-	     * @constructor
+	     *
+	     * ```typescript
+	     * // decompress the zipped JSON String to a Object
+	     * LZCompression.Compress('N4IgEgpgNlD2IC4QHVYCcoBMCEIC+QA=');
+	     * ```
 	     */
 	    static Decompress(compressed: string): any;
 	}
@@ -1303,16 +1438,48 @@ declare module 'compression/lz' {
 }
 declare module 'utils/stopwatch' {
 	/**
-	 * a Stopwatch to measure the Time in ms
-	 * the StopWatch starts in the Constructor
-	 * You can measure multiple Times when you give the StopWatch a key
+	 * measure the Time between Code Lines in ms
+	 * the StopWatch starts when a new Instance was created and can give the Elapsed ms when ElapsedMs was called.
+	 * measure multiple Times is also possible with SectionStart and SectionElapsedMs
 	 */
 	export class StopWatch {
-	    private _time;
-	    private _multipleTimes;
+	    private readonly _time;
+	    private readonly _multipleTimes;
+	    /**
+	     * create a new StopWatch Instance at this Time the StopWatch was started
+	     *
+	     * ```typescript
+	     * const watch = new StopWatch();
+	     * // returns the elapsed Ms from construction and this Line
+	     * watch.ElapsedMs();
+	     * ```
+	     */
 	    constructor();
+	    /**
+	     * starts the StopWatch for a specific Section marks by the given key
+	     * @param key the key that indicates the Section
+	     *
+	     * ```typescript
+	     * const watch = new StopWatch();
+	     * watch.SectionStart('A');
+	     * // logs the Time between SectionStart('A') and SectionElapsedMs('A')
+	     * watch.SectionElapsedMs('A');
+	     * watch.SectionStart('B');
+	     * // logs the Time between SectionStart('B') and SectionElapsedMs('B')
+	     * watch.SectionElapsedMs('B');
+	     * // logs the Time between SectionStart('A') and this Line with SectionStart('B') and SectionElapsedMs('B')
+	     * watch.SectionElapsedMs('A');
+	     * ```
+	     */
 	    SectionStart(key: string): void;
+	    /**
+	     * get the Time in ms Elapsed by the Section matches the given key
+	     * @param key the key that indicates the Section
+	     */
 	    SectionElapsedMs(key: string): number;
+	    /**
+	     * gets the Elapsed Time in ms from the StopWatch
+	     */
 	    ElapsedMs(): number;
 	    private getTimestamp;
 	    private getTimeDiff;
@@ -1323,31 +1490,52 @@ declare module 'utils/stopwatch' {
 }
 declare module 'utils/number.factory' {
 	/**
-	 * create some Numbers
+	 * some Utils for Integer and Double numbers
 	 */
 	export class NumberFactory {
 	    /**
-	     * create a new Integer Number from the given input
+	     * create a new Integer from the given input
 	     * @param value Javascript Number or String
+	     *
+	     * ```typescript
+	     * // create a valid Javascript Number with value 1
+	     * NumberFactory.newInteger(1);
+	     * NumberFactory.newInteger('1');
+	     * NumberFactory.newInteger(1.5);
+	     * ```
 	     */
 	    static newInteger(value: number | string): number;
 	    /**
-	     * create a new Double Number from the given input
+	     * create a new Double number from the given input
 	     * @param value  Javascript Number or String
+	     *
+	     * ```typescript
+	     * // create a valid Javascript Number with value 1.5
+	     * NumberFactory.newDouble(1.5);
+	     * NumberFactory.newDouble('1.5');
+	     * ```
 	     */
 	    static newDouble(value: number | string): number;
 	    /**
 	     * create Random Integers in the min/max Border
 	     * @param min the minimum Integer that can be created
 	     * @param max the maximum Integer that can be created
-	     * @constructor
+	     *
+	     * ```typescript
+	     * // creates the Javascript Numbers 1,2,3,4,5,6,7,8,9 and 10
+	     * NumberFactory.RandomInteger(1, 10);
+	     * ```
 	     */
 	    static RandomInteger(min: number, max: number): number;
 	    /**
 	     * create Random Doubles in the min/max Border
 	     * @param min the minimum Double that can be created
 	     * @param max the maximum Double that can be created
-	     * @constructor
+	     *
+	     * ```typescript
+	     * // create all Double Numbers begins with 0.0 and ends with 1.0
+	     * NumberFactory.RandomDouble(0, 1)
+	     * ```
 	     */
 	    static RandomDouble(min: number, max: number): number;
 	}
@@ -1358,6 +1546,8 @@ declare module 'ts-tooling' {
 	export { DateTime } from 'complex/date.time';
 	export { TimeSpan } from 'complex/time.span';
 	export { Guid } from 'complex/guid';
+	export { Byte } from 'complex/byte';
+	export { ByteStream } from 'complex/byte.stream';
 	export { Dictionary } from 'complex/dictionary';
 	export { ListSortOrder } from 'primitive/list.sort.order.enum';
 	export { using } from 'pattern/dispose/using';
