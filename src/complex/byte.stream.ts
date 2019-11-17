@@ -19,6 +19,16 @@ export class ByteStream {
     }
 
     /**
+     * create a new ByteStream from a Array of Numbers
+     * @param value the Array of Numbers
+     */
+    static FromNumberArray(value: number[]): ByteStream {
+        const tmp = new ByteStream();
+        tmp.Write(value.Convert(i => new Byte(i)));
+        return tmp;
+    }
+
+    /**
      * the size of the Stream
      */
     get Length(): number {

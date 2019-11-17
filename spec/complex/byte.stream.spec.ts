@@ -78,4 +78,8 @@ describe('ByteStream Tests', () => {
     it('read Byte String', () => {
         assert.deepEqual(ByteStream.FromByteString('Hello World!').Read(), [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33]);
     });
+    it('read number Array', () => {
+        const stream = ByteStream.FromNumberArray([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33]);
+        assert.equal(stream.ToString(), 'Hello World!');
+    });
 });
