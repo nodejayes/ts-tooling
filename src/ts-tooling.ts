@@ -31,6 +31,7 @@ export {ReactiveStore} from './pattern/store/reactive.store';
 export {LZCompression} from './compression/lz';
 export {StopWatch} from './utils/stopwatch';
 export {NumberFactory} from './utils/number.factory';
+export {ClassValidator} from './utils/class.validator';
 
 export const ZERO_INT = 0;
 export const ZERO_DOUBLE = 0.0;

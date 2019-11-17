@@ -5,13 +5,15 @@
     "moduleResolution": "node",
     "module": "commonjs",
     "target": "es5",
-    "sourceMap": true
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": [
     "src"
   ],
   "exclude": [
     "node_modules",
-    "spec",
+    "spec"
   ]
 }

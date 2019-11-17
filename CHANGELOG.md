@@ -3,6 +3,7 @@
 * add Byte Type
 * add ByteStream to read and Write Bytes
 * add more Documentation
+* add Class Validation based on class-validator Package
 
 ### 2.0.0
 

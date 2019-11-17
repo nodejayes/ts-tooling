@@ -1143,6 +1143,11 @@ declare module 'complex/byte.stream' {
 	     */
 	    static FromByteString(str: string): ByteStream;
 	    /**
+	     * create a new ByteStream from a Array of Numbers
+	     * @param value the Array of Numbers
+	     */
+	    static FromNumberArray(value: number[]): ByteStream;
+	    /**
 	     * the size of the Stream
 	     */
 	    readonly Length: number;
@@ -1541,6 +1546,26 @@ declare module 'utils/number.factory' {
 	}
 
 }
+declare module 'utils/class.validator' {
+	import { ValidationError } from 'class-validator';
+	/**
+	 * wraps the Package class-validator to Validate Typescript Classes
+	 */
+	export class ClassValidator {
+	    /**
+	     * validate again a Decorated Class Instance
+	     * @param instance the Instance of the Class to Validate
+	     */
+	    static Validate<T>(instance: T): Promise<ValidationError[]>;
+	    /**
+	     * validate a plain Object again a Class
+	     * @param constructor the Class with the Validation Decorators
+	     * @param value the raw JSON Object
+	     */
+	    static ValidateObject<T>(constructor: new () => T, value: any): Promise<ValidationError[]>;
+	}
+
+}
 declare module 'ts-tooling' {
 	import 'type.extensions';
 	export { DateTime } from 'complex/date.time';
@@ -1558,6 +1583,7 @@ declare module 'ts-tooling' {
 	export { LZCompression } from 'compression/lz';
 	export { StopWatch } from 'utils/stopwatch';
 	export { NumberFactory } from 'utils/number.factory';
+	export { ClassValidator } from 'utils/class.validator';
 	export const ZERO_INT = 0;
 	export const ZERO_DOUBLE = 0;
 
