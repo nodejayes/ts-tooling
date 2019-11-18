@@ -1,6 +1,6 @@
 import {Subject} from 'rxjs';
 import {StringFactory} from '../../utils/string.factory';
-import {IBackgroundWorker, IWorkerInput} from "./worker.interface";
+import {IBackgroundWorker} from "./worker.interface";
 
 export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K> {
     WorkPath: string;
@@ -12,19 +12,17 @@ export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K> {
         this.WorkPath = path;
     }
 
-    Run(args: IWorkerInput<T>) {
+    Run(args: T) {
         if (StringFactory.IsNullOrEmpty(this.WorkPath)) {
             throw new Error(`missing DoWork Path`);
         }
-        /*
-        try {
-            const work = await spawn(new Worker(this.WorkPath));
-            const result = await work(args);
-            await Thread.terminate(work);
-            this.OnFinish.next(result);
-        } catch (err) {
-            this.OnError.next(err);
-        }
-         */
+        const worker = new Worker(this.WorkPath);
+        worker.addEventListener('message', (e) => {
+            this.OnFinish.next(e.data);
+        });
+        worker.addEventListener('error', (e) => {
+            this.OnError.next(e.error);
+        });
+        worker.postMessage(args || null);
     }
 }
