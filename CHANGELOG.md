@@ -4,7 +4,7 @@
 * add ByteStream to read and Write Bytes
 * add more Documentation
 * add Class Validation based on class-validator Package
-* Background Worker support for Node 12+
+* Background Worker support for Node 12+ and Web Worker
 
 ### 2.0.0
 
