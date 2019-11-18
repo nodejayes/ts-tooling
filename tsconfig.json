@@ -7,7 +7,8 @@
     "target": "es5",
     "sourceMap": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "types": ["intern"]
   },
   "include": [
     "src"
