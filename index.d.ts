@@ -1412,6 +1412,53 @@ declare module 'pattern/store/reactive.store' {
 	}
 
 }
+declare module 'pattern/background.worker/worker.interface' {
+	import { Subject } from 'rxjs';
+	export interface IWorkerInput<T> {
+	    scriptPath: string;
+	    data: T;
+	}
+	export interface IBackgroundWorker<T, K> {
+	    WorkPath: string;
+	    OnFinish: Subject<K>;
+	    OnError: Subject<Error>;
+	    Run(args?: T): any;
+	}
+
+}
+declare module 'pattern/background.worker/background.worker' {
+	import { IBackgroundWorker } from 'pattern/background.worker/worker.interface';
+	import { Subject } from 'rxjs'; let BW: any;
+	/**
+	 * a Worker that runs in a Thread in Background
+	 */
+	export class BackgroundWorker<T, K> extends BW.BackgroundWorker implements IBackgroundWorker<T, K> {
+	    /**
+	     * fires when a Error occurs in the Worker
+	     */
+	    OnError: Subject<Error>;
+	    /**
+	     * fires when the Worker successfully finish his Work
+	     */
+	    OnFinish: Subject<K>;
+	    /**
+	     * the path to a script that was running in the Background
+	     */
+	    WorkPath: string;
+	    /**
+	     * create the Background Worker with a path to a Script
+	     * @param path
+	     */
+	    constructor(path: string);
+	    /**
+	     * start a new Thread Instance of this BackgroundWorker
+	     * @param args the Workers data argument
+	     */
+	    Run(args?: T): void;
+	}
+	export {};
+
+}
 declare module 'compression/lz' {
 	/**
 	 * implementation of lz compression
@@ -1580,11 +1627,36 @@ declare module 'ts-tooling' {
 	export { create, createWithFactory } from 'pattern/construct';
 	export { EventHandler } from 'pattern/events/event.handler';
 	export { ReactiveStore } from 'pattern/store/reactive.store';
+	export { BackgroundWorker } from 'pattern/background.worker/background.worker';
 	export { LZCompression } from 'compression/lz';
 	export { StopWatch } from 'utils/stopwatch';
 	export { NumberFactory } from 'utils/number.factory';
 	export { ClassValidator } from 'utils/class.validator';
 	export const ZERO_INT = 0;
 	export const ZERO_DOUBLE = 0;
+
+}
+declare module 'pattern/background.worker/node' {
+	import { Subject } from 'rxjs';
+	import { IBackgroundWorker } from 'pattern/background.worker/worker.interface';
+	export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K> {
+	    WorkPath: string;
+	    OnFinish: Subject<K>;
+	    OnError: Subject<Error>;
+	    constructor(path: string);
+	    Run(args?: T): void;
+	}
+
+}
+declare module 'pattern/background.worker/web' {
+	import { Subject } from 'rxjs';
+	import { IBackgroundWorker } from 'pattern/background.worker/worker.interface';
+	export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K> {
+	    WorkPath: string;
+	    OnFinish: Subject<K>;
+	    OnError: Subject<Error>;
+	    constructor(path: string);
+	    Run(args: T): void;
+	}
 
 }
