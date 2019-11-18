@@ -1,6 +1,6 @@
 import {Subject} from 'rxjs';
 import {StringFactory} from '../../utils/string.factory';
-import {IBackgroundWorker} from "./worker.interface";
+import {IBackgroundWorker} from './worker.interface';
 
 export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K> {
     WorkPath: string;
