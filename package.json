@@ -11,7 +11,8 @@
     "type-generation": "dts-generator --project . --out index.d.ts",
     "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out documentation src/ts-tooling.ts",
     "build-test": "npm run build && npm run type-generation && npm run test",
-    "release": "npm run build-test && npm publish"
+    "release": "npm run build-test && npm publish",
+    "test:browser": "karma start --single-run karma.conf.js"
   },
   "license": "MIT",
   "repository": {
@@ -49,6 +50,13 @@
     "typedoc-clarity-theme": "^1.1.0",
     "dts-generator": "^3.0.0",
     "coveralls": "^3.0.6",
-    "intern": "^4.6.0"
+    "intern": "^4.6.0",
+    "karma": "^4.4.1",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-cli": "^2.0.0",
+    "karma-mocha": "^1.3.0",
+    "karma-chai": "^0.1.0",
+    "karma-typescript": "^4.1.1",
+    "puppeteer": "^2.0.0"
   }
 }
