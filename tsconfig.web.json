@@ -8,14 +8,14 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "types": ["intern"],
-    "declaration": true
+    "types": ["intern"]
   },
   "include": [
     "src"
   ],
   "exclude": [
     "node_modules",
-    "spec"
+    "spec",
+    "src/pattern/background.worker/node.ts"
   ]
 }

@@ -26,7 +26,8 @@ export {IDisposable} from './pattern/dispose/disposable';
 export {create, createWithFactory} from './pattern/construct';
 export {EventHandler} from './pattern/events/event.handler';
 export {ReactiveStore} from './pattern/store/reactive.store';
-export {BackgroundWorker} from './pattern/background.worker/background.worker';
+export {NodeBackgroundWorker} from './pattern/background.worker/node';
+export {WebBackgroundWorker} from './pattern/background.worker/web';
 
 // Utils
 export {LZCompression} from './compression/lz';

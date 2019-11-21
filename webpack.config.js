@@ -7,8 +7,13 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
-                exclude: /node_modules/,
-            },
+                exclude: [
+                    /node_modules/,
+                ],
+                options: {
+                    configFile: "tsconfig.web.json"
+                }
+            }
         ]
     },
     resolve: {

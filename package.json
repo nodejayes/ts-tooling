@@ -2,17 +2,15 @@
   "name": "ts-tooling",
   "version": "2.1.0",
   "main": "dist/ts-tooling.js",
-  "types": "index.d.ts",
+  "types": "dist/ts-tooling.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "cover": "nyc --extension=.ts --extension=.js --reporter=lcov --report-dir coverage mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls",
-    "type-generation": "dts-generator --project . --out index.d.ts",
     "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out documentation src/ts-tooling.ts",
-    "build-test": "npm run build && npm run type-generation && npm run test",
-    "release": "npm run build-test && npm publish",
-    "test:browser": "karma start --single-run karma.conf.js"
+    "build-test": "npm run build && npm run test",
+    "release": "npm run build-test && npm publish"
   },
   "license": "MIT",
   "repository": {
@@ -43,8 +41,6 @@
     "@types/node": "^12.7.2",
     "chai": "^4.2.0",
     "coveralls": "^3.0.6",
-    "dts-generator": "^3.0.0",
-    "intern": "^4.6.0",
     "mocha": "^6.2.0",
     "nyc": "^14.1.1",
     "typedoc": "^0.15.0",
