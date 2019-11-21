@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import {Duration as LuxonDuration} from 'luxon';
-import {TimeSpan} from '../../src/ts-tooling';
+import {TimeSpan} from '../../src/ts-tooling.node';
 import 'mocha';
 
 describe('TimeSpan Tests', () => {

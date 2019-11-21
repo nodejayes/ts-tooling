@@ -1,14 +1,13 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "outDir": "dist",
+    "outDir": "node",
     "moduleResolution": "node",
     "module": "commonjs",
     "target": "es5",
     "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "types": ["intern"],
     "declaration": true
   },
   "include": [
@@ -16,6 +15,7 @@
   ],
   "exclude": [
     "node_modules",
-    "spec"
+    "spec",
+    "src/ts-tooling.web.ts"
   ]
 }

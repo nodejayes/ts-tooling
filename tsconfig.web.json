@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "outDir": "dist",
+    "outDir": "lib",
     "moduleResolution": "node",
     "module": "commonjs",
     "target": "es5",
     "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "types": ["intern"]
+    "declaration": true
   },
   "include": [
     "src"
@@ -16,6 +16,6 @@
   "exclude": [
     "node_modules",
     "spec",
-    "src/pattern/background.worker/node.ts"
+    "src/ts-tooling.node.ts"
   ]
 }

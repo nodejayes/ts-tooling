@@ -61,4 +61,5 @@ typings/
 .next
 
 documentation
-dist
+node
+web

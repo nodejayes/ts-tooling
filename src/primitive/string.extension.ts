@@ -4,8 +4,7 @@ import {
     words, pad, padStart, padEnd, repeat, replace, filter, toUpper, toLower,
     trim, trimStart, trimEnd, truncate, clone, includes, lastIndexOf
 } from 'lodash';
-import {StringFactory} from "../utils/string.factory";
-import {ZERO_INT} from "../ts-tooling";
+import {StringFactory} from '../utils/string.factory';
 
 String.prototype.CharAt = function (pos: number): string {
     if (this.length.Subtract(1).IsBelow(pos)) {
@@ -239,9 +238,9 @@ String.prototype.TextBetween = function (begin: string, end: string): string[] {
         }
         tmp.Add(between);
     }
-    if (!this.StartsWith(begin) || this.EndsWith(tmp.ElementAt(ZERO_INT))) {
+    if (!this.StartsWith(begin) || this.EndsWith(tmp.ElementAt(0))) {
         // remove the begin string
-        tmp.RemoveAt(ZERO_INT);
+        tmp.RemoveAt(0);
     }
     return tmp;
 };

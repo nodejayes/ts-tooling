@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import {DateTime as LuxonDateTime} from 'luxon';
-import {DateTime} from '../../src/ts-tooling';
+import {DateTime} from '../../src/ts-tooling.node';
 import 'mocha';
 
 function assertDate(dt: DateTime, vgl: LuxonDateTime) {

@@ -1,10 +1,6 @@
-.nyc_output
+.*
+**/tsconfig.json
+**/webpack.config.js
 node_modules
-documentation
-spec
 src
-tsconfig.json
-.gitignore
-.npmignore
-.coveralls.yml
-.travis.yml
+spec

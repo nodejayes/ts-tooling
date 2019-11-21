@@ -4,7 +4,7 @@ import {Subject} from 'rxjs';
 import {StringFactory} from '../../utils/string.factory';
 import {IBackgroundWorker, IWorkerInput} from './worker.interface';
 
-export class NodeBackgroundWorker<T, K> implements IBackgroundWorker<T, K>{
+export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K>{
     WorkPath: string;
 
     OnFinish = new Subject<K>();

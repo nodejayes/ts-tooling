@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {LZCompression} from '../../src/ts-tooling';
+import {LZCompression} from '../../src/ts-tooling.node';
 import 'mocha';
 
 interface TestAddress {

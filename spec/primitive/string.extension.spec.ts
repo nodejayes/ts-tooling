@@ -1,4 +1,4 @@
-import '../../src/ts-tooling'
+import '../../src/ts-tooling.node'
 import {assert} from 'chai';
 import 'mocha';
 import {StringFactory} from "../../src/utils/string.factory";

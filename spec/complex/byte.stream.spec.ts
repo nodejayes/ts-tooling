@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import 'mocha';
-import {Byte, ByteStream} from '../../src/ts-tooling';
+import {Byte, ByteStream} from '../../src/ts-tooling.node';
 
 describe('ByteStream Tests', () => {
     it('create a Empty Stream by default', () => {

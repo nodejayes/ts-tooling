@@ -1,14 +1,14 @@
 {
   "name": "ts-tooling",
   "version": "2.1.0",
-  "main": "dist/ts-tooling.js",
-  "types": "dist/ts-tooling.d.ts",
+  "main": "node/ts-tooling.node.js",
+  "types": "node/ts-tooling.node.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "gulp build:all",
     "test": "mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "cover": "nyc --extension=.ts --extension=.js --reporter=lcov --report-dir coverage mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls",
-    "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out documentation src/ts-tooling.ts",
+    "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out documentation src/ts-tooling.node.ts",
     "build-test": "npm run build && npm run test",
     "release": "npm run build-test && npm publish"
   },
@@ -46,8 +46,13 @@
     "typedoc": "^0.15.0",
     "typedoc-clarity-theme": "^1.1.0",
     "typescript": "^3.5.3",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "ts-loader": "^6.2.1"
+    "gulp": "^4.0.2",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-uglify": "^3.0.2",
+    "merge2": "^1.3.0"
   }
 }

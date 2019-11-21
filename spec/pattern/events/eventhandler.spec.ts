@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {EventHandler} from '../../../src/ts-tooling';
+import {EventHandler} from '../../../src/ts-tooling.node';
 import 'mocha';
 
 describe('EventHandler Tests', () => {
