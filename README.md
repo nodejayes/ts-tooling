@@ -10,3 +10,12 @@
 
 # ts-tooling
 some tools for Typescript inspired by .NET Framework
+
+# Installation
+
+Required Packages are:
+
+* rxjs
+* lodash
+* luxon
+* 

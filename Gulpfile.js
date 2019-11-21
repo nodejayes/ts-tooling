@@ -1,11 +1,12 @@
 var gulp = require('gulp');
-var browserify = require('gulp-browserify');
 var clean = require('gulp-clean');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 var uglify = require('gulp-uglify');
 var merge = require('merge2');
+var browserify = require('browserify');
+var fs = require('fs');
 
 const APP_NAME = 'ts-tooling';
 const TARGET_FOLDER_NODE = 'node';
@@ -64,13 +65,22 @@ gulp.task('build:web', () => {
         .pipe(gulp.dest('./' + TARGET_FOLDER_WEB + '/tmp'));
 });
 
-gulp.task('minify:web', () => {
-    return gulp
-        .src('./' + TARGET_FOLDER_WEB + '/tmp/' + APP_NAME + '.web.js')
-        .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(browserify())
-        .pipe(concat(APP_NAME + '.js'))
-        .pipe(gulp.dest('./' + TARGET_FOLDER_WEB))
+gulp.task('minify:web', async () => {
+    const data = await new Promise((resolve, reject) => {
+        browserify('./' + TARGET_FOLDER_WEB + '/tmp/' + APP_NAME + '.web.js', {
+            insertGlobalVars: true,
+        }).bundle((err, body) => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve(body);
+        });
+    });
+    fs.writeFileSync('./' + TARGET_FOLDER_WEB + '/' + APP_NAME + '.js', data);
+    return gulp.src([
+        './' + TARGET_FOLDER_WEB + '/' + APP_NAME + '.js'
+    ])
         .pipe(uglify())
         .pipe(concat(APP_NAME + '.min.js'))
         .pipe(sourcemaps.write('./'))
