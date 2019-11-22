@@ -3,7 +3,7 @@
     "baseUrl": "src",
     "outDir": "lib",
     "moduleResolution": "node",
-    "module": "commonjs",
+    "module": "umd",
     "target": "es5",
     "sourceMap": true,
     "experimentalDecorators": true,

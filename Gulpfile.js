@@ -6,6 +6,7 @@ var ts = require('gulp-typescript');
 var uglify = require('gulp-uglify');
 var merge = require('merge2');
 var browserify = require('browserify');
+var {exec} = require('child_process');
 var fs = require('fs');
 
 const APP_NAME = 'ts-tooling';
@@ -66,18 +67,16 @@ gulp.task('build:web', () => {
 });
 
 gulp.task('minify:web', async () => {
-    const data = await new Promise((resolve, reject) => {
-        browserify('./' + TARGET_FOLDER_WEB + '/tmp/' + APP_NAME + '.web.js', {
-            insertGlobalVars: true,
-        }).bundle((err, body) => {
+    await new Promise((resolve, reject) => {
+        exec('browserify --s ' + APP_NAME + ' -o ' + './' + TARGET_FOLDER_WEB + '/' + APP_NAME + '.js ' + './' + TARGET_FOLDER_WEB + '/tmp/' + APP_NAME + '.web.js', (err) => {
             if (err) {
-                reject(err);
+                console.info(err);
+                reject();
                 return;
             }
-            resolve(body);
+            resolve();
         });
     });
-    fs.writeFileSync('./' + TARGET_FOLDER_WEB + '/' + APP_NAME + '.js', data);
     return gulp.src([
         './' + TARGET_FOLDER_WEB + '/' + APP_NAME + '.js'
     ])
