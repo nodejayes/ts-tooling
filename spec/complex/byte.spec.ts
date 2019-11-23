@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import 'mocha';
-import {Byte} from '../../src/ts-tooling.node';
+import {Byte} from '../../src/ts-tooling';
 
 describe('Byte Tests', () => {
     it('create new Byte from Numbers', () => {

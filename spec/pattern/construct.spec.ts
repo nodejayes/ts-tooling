@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {create, createWithFactory} from '../../src/ts-tooling.node';
+import {create, createWithFactory} from '../../src/ts-tooling';
 import 'mocha';
 
 describe('construct Tests', () => {

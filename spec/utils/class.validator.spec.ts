@@ -1,7 +1,7 @@
 import {assert} from 'chai';
 import 'mocha';
 import {IsDefined, IsEmail, Max, Min} from 'class-validator';
-import {ClassValidator} from '../../src/ts-tooling.node';
+import {ClassValidator} from '../../src/ts-tooling';
 
 class Test {
     @IsDefined()

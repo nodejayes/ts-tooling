@@ -1,7 +1,7 @@
 import {assert} from 'chai';
-import '../../src/ts-tooling.node';
+import '../../src/ts-tooling';
 import 'mocha';
-import {Dictionary} from '../../src/ts-tooling.node';
+import {Dictionary} from '../../src/ts-tooling';
 
 const DEMO_DATA = {'a': 1, 'b': 2, 'c': 3};
 const EMPTY = new Dictionary();

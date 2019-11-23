@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {Guid} from '../../src/ts-tooling.node';
+import {Guid} from '../../src/ts-tooling';
 import 'mocha';
 
 describe('Guid Tests', () => {

@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {DateTime, ReactiveStore} from '../../../src/ts-tooling.node';
+import {DateTime, ReactiveStore} from '../../../src/ts-tooling';
 import 'mocha';
 
 interface ITestUser {

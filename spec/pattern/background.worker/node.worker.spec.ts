@@ -1,7 +1,7 @@
 import {assert} from 'chai';
 import 'mocha';
 import {join} from 'path';
-import {BackgroundWorker} from '../../../src/ts-tooling.node';
+import {BackgroundWorker} from '../../../src/ts-tooling';
 
 const WORKER_1_TYPESCRIPT = join(__dirname, './worker1.ts');
 const WORKER_2_JAVASCRIPT = join(__dirname, './worker2.js');
