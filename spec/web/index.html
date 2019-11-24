@@ -7,15 +7,13 @@
 <body>
 <div id="mocha"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
 <script src="https://unpkg.com/chai@4.1.2/chai.js"></script>
 <script src="https://unpkg.com/mocha@4.0.1/mocha.js"></script>
 
 <script>mocha.setup('bdd')</script>
 
-<script src="../../web/ts-tooling.min.js"></script>
+<script src="../../lib/ts-tooling.bundle.js"></script>
 <script type="application/javascript">
-    const tst = require('ts-tooling');
     describe('BackgroundWorker Tests', () => {
         it('run BackgroundWorker with external File', (done) => {
             const worker = new tst.BackgroundWorker('worker1.js');
