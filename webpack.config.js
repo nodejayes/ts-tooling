@@ -7,7 +7,8 @@ module.exports = {
         path: path.resolve(__dirname, 'lib'),
         filename: 'ts-tooling.bundle.js',
         library: 'tst',
-        libraryTarget: 'var',
+        libraryTarget: 'umd',
+        globalObject: 'this',
     },
     externals: {
         fs: {
