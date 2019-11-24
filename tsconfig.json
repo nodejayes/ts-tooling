@@ -7,15 +7,13 @@
     "target": "es5",
     "sourceMap": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "declaration": true
+    "emitDecoratorMetadata": true
   },
   "include": [
     "src"
   ],
   "exclude": [
     "node_modules",
-    "spec",
-    "src/ts-tooling.web.ts"
+    "spec"
   ]
 }
