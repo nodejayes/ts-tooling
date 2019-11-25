@@ -41,4 +41,66 @@ describe("Test StopWatch", () => {
             }, 10);
         }, 1);
     });
+
+    it('make pause without resume', () => {
+        const sw = new StopWatch();
+        assert.isFalse(sw.IsPause);
+        setTimeout(() => {
+            sw.Pause();
+            assert.isTrue(sw.IsPause);
+            setTimeout(() => {
+                assert.isAbove(sw.ElapsedMs(), 9);
+                assert.isBelow(sw.ElapsedMs(), 20);
+            }, 10);
+        }, 10);
+    });
+
+    it('make pause with resume', () => {
+        const sw = new StopWatch();
+        assert.isFalse(sw.IsPause);
+        setTimeout(() => {
+            sw.Pause();
+            assert.isTrue(sw.IsPause);
+            setTimeout(() => {
+                sw.Resume();
+                assert.isFalse(sw.IsPause);
+                setTimeout(() => {
+                    assert.isAbove(sw.ElapsedMs(), 19);
+                    assert.isBelow(sw.ElapsedMs(), 30);
+                }, 10);
+            }, 10);
+        }, 10);
+    });
+
+    it('make section pause without resume', () => {
+        const sw = new StopWatch();
+        sw.SectionStart('1');
+        assert.isFalse(sw.IsSectionPause('1'));
+        setTimeout(() => {
+            sw.SectionPause('1');
+            assert.isTrue(sw.IsSectionPause('1'));
+            setTimeout(() => {
+                assert.isAbove(sw.SectionElapsedMs('1'), 9);
+                assert.isBelow(sw.SectionElapsedMs('1'), 20);
+            }, 10);
+        }, 10);
+    });
+
+    it('make section pause with resume', () => {
+        const sw = new StopWatch();
+        sw.SectionStart('1');
+        assert.isFalse(sw.IsSectionPause('1'));
+        setTimeout(() => {
+            sw.SectionPause('1');
+            assert.isTrue(sw.IsSectionPause('1'));
+            setTimeout(() => {
+                sw.SectionResume('1');
+                assert.isFalse(sw.IsSectionPause('1'));
+                setTimeout(() => {
+                    assert.isAbove(sw.SectionElapsedMs('1'), 19);
+                    assert.isBelow(sw.SectionElapsedMs('1'), 30);
+                }, 10);
+            }, 10);
+        }, 10);
+    });
 });

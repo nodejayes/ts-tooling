@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry: './src/ts-tooling.ts',
-    mode: 'development',
+    mode: 'production',
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
     },

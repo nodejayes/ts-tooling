@@ -1,4 +1,10 @@
-### 2.1.0 (not released)
+### 2.1.1
+
+* make the build smaller
+* remove old scripts
+* add pause function to StopWatch
+
+### 2.1.0
 
 * add Byte Type
 * add ByteStream to read and Write Bytes
