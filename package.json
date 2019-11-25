@@ -5,8 +5,6 @@
   "types": "lib/ts-tooling.d.ts",
   "scripts": {
     "build": "webpack-cli && npm run type-generation",
-    "clean": "node ./scripts/clean_lib.js",
-    "clear": "node ./scripts/clear_lib.js",
     "test": "mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "cover": "nyc --extension=.ts --extension=.js --reporter=lcov --report-dir coverage mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls",
