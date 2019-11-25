@@ -1,7 +1,8 @@
-import {DateTime} from './complex/date.time';
 import './primitive/number.extension';
 import './primitive/string.extension';
 import './primitive/list.extension';
+
+import {DateTime} from './complex/date.time';
 import {ListSortOrder} from './primitive/list.sort.order.enum';
 
 // Basic Extensions

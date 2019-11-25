@@ -11,28 +11,47 @@ Date.prototype.ToDateTime = function (this: Date): DateTime {
 
 // Types
 export {DateTime} from './complex/date.time';
+import {TimeSpan} from './complex/time.span';
 export {TimeSpan} from './complex/time.span';
+import {Guid} from './complex/guid';
 export {Guid} from './complex/guid';
+import {Byte} from './complex/byte';
 export {Byte} from './complex/byte';
+import {ByteStream} from './complex/byte.stream';
 export {ByteStream} from './complex/byte.stream';
 
 // Collections
+import {Dictionary} from './complex/dictionary';
 export {Dictionary} from './complex/dictionary';
+import {ListSortOrder} from './primitive/list.sort.order.enum';
 export {ListSortOrder} from './primitive/list.sort.order.enum';
 
 // Patterns
+import {using} from './pattern/dispose/using';
 export {using} from './pattern/dispose/using';
 export {IDisposable} from './pattern/dispose/disposable';
+import {create, createWithFactory} from './pattern/construct';
 export {create, createWithFactory} from './pattern/construct';
+import {EventHandler} from './pattern/events/event.handler';
 export {EventHandler} from './pattern/events/event.handler';
+import {ReactiveStore} from './pattern/store/reactive.store';
 export {ReactiveStore} from './pattern/store/reactive.store';
-export {BackgroundWorker} from './pattern/background.worker';
+import {BackgroundWorker} from './pattern/background.worker/background.worker';
+export {BackgroundWorker} from './pattern/background.worker/background.worker';
 
 // Utils
+import {LZCompression} from './compression/lz';
 export {LZCompression} from './compression/lz';
+import {StopWatch} from './utils/stopwatch';
 export {StopWatch} from './utils/stopwatch';
+import {NumberFactory} from './utils/number.factory';
 export {NumberFactory} from './utils/number.factory';
+import {ClassValidator} from './utils/class.validator';
 export {ClassValidator} from './utils/class.validator';
 
-export const ZERO_INT = 0;
-export const ZERO_DOUBLE = 0.0;
+export default {
+    DateTime, TimeSpan, Guid, Byte, ByteStream,
+    Dictionary, ListSortOrder,
+    using, create, createWithFactory, EventHandler, ReactiveStore, BackgroundWorker,
+    LZCompression, StopWatch, NumberFactory, ClassValidator
+};
