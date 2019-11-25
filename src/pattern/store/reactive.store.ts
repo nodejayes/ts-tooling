@@ -1,6 +1,5 @@
 import {BehaviorSubject} from 'rxjs';
 import {Dictionary} from '../../complex/dictionary';
-import {ZERO_INT} from '../../ts-tooling';
 import {set, get} from 'lodash';
 
 /**
@@ -56,7 +55,7 @@ export class ReactiveStore<T> {
     private parseSelectorAccess<K>(selector: (d: T) => K): string {
         let tmp = selector.toString();
         tmp = tmp.Split('{').ElementAt(1);
-        tmp = tmp.Split('}').ElementAt(ZERO_INT);
+        tmp = tmp.Split('}').ElementAt(0);
         if (tmp.Contains(';return ')) {
             // coverage stuff found
             tmp = 'return ' + tmp.Split(';return')

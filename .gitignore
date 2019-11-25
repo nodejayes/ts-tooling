@@ -61,4 +61,4 @@ typings/
 .next
 
 documentation
-dist
+lib

@@ -1,3 +1,11 @@
+### 2.1.0 (not released)
+
+* add Byte Type
+* add ByteStream to read and Write Bytes
+* add more Documentation
+* add Class Validation based on class-validator Package
+* Background Worker support for Node 12+ and Web Worker
+
 ### 2.0.0
 
 * Refactor Base Types to use native Javascript Types

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ts-tooling Browser Tests</title>
+</head>
+<body>
+<div id="mocha"></div>
+
+<script src="https://unpkg.com/chai@4.1.2/chai.js"></script>
+<script src="https://unpkg.com/mocha@4.0.1/mocha.js"></script>
+
+<script>mocha.setup('bdd')</script>
+
+<script src="../../lib/ts-tooling.js"></script>
+<script type="application/javascript">
+    describe('BackgroundWorker Tests', () => {
+        it('run BackgroundWorker with external File', (done) => {
+            const worker = new tst.BackgroundWorker('worker1.js');
+            worker.OnError.subscribe(err => {
+                console.error(err);
+                chai.assert.fail('a Error was thrown in worker!');
+            });
+            worker.OnFinish.subscribe(d => {
+                chai.assert.equal(d, 120);
+                done();
+            });
+            worker.Run(5);
+        });
+        it('run multiple Workers', (done) => {
+            var counter = 1;
+            const worker1 = new tst.BackgroundWorker('worker1.js');
+            worker1.OnFinish.subscribe((d) => {
+                chai.assert.equal(d, 2.6525285981219103e+32);
+                counter++;
+                if (counter === 16) {
+                    done();
+                }
+            });
+            for (let i = 0; i < 16; i++) {
+                worker1.Run(30);
+            }
+        });
+        it('throws Error when empty worker path was given', () => {
+            var worker = new tst.BackgroundWorker('');
+            chai.assert.throws(() => {
+                worker.Run();
+            }, 'missing DoWork Path/File ');
+        });
+        it('throws Error when has no Typescript or Javascript endings', () => {
+            var worker = new tst.BackgroundWorker('test.bash');
+            chai.assert.throws(() => {
+                worker.Run();
+            }, 'test.bash is not supported Script for BackgroundWorker');
+        });
+    });
+</script>
+
+<script>
+    mocha.checkLeaks();
+    mocha.run();
+</script>
+</body>
+</html>
