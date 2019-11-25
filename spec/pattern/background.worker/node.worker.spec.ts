@@ -22,16 +22,17 @@ describe('BackgroundWorker Tests', () => {
         worker.Run(5);
     });
     it('run multiple Workers', (done) => {
+        const WORKER_TO_START = 2;
         let counter = 1;
         const worker1 = new BackgroundWorker(WORKER_1_TYPESCRIPT);
         worker1.OnFinish.subscribe((d) => {
             assert.equal(d, 2.6525285981219103e+32);
             counter++;
-            if (counter === 16) {
+            if (counter === WORKER_TO_START) {
                 done();
             }
         });
-        for (let i = 0; i < 16; i++) {
+        for (let i = 0; i < WORKER_TO_START; i++) {
             worker1.Run(30);
         }
     });
