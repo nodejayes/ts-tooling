@@ -1,3 +1,7 @@
+### 2.1.2
+
+* load the WebWorker at construction for better performance
+
 ### 2.1.1
 
 * make the build smaller
