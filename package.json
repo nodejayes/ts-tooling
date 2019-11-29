@@ -8,7 +8,7 @@
     "test": "mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "cover": "nyc --extension=.ts --extension=.js --reporter=lcov --report-dir coverage mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls",
-    "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out documentation src/ts-tooling.ts",
+    "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out docs src/ts-tooling.ts",
     "build-test": "npm run build && npm run test",
     "release": "npm run build-test && npm publish",
     "type-generation": "dts-generator --project . --out lib/ts-tooling.d.ts"
