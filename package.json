@@ -1,6 +1,6 @@
 {
   "name": "ts-tooling",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "main": "lib/ts-tooling.js",
   "types": "lib/ts-tooling.d.ts",
   "scripts": {
@@ -8,7 +8,7 @@
     "test": "mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "cover": "nyc --extension=.ts --extension=.js --reporter=lcov --report-dir coverage mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls",
-    "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out documentation src/ts-tooling.ts",
+    "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out docs src/ts-tooling.ts",
     "build-test": "npm run build && npm run test",
     "release": "npm run build-test && npm publish",
     "type-generation": "dts-generator --project . --out lib/ts-tooling.d.ts"
@@ -29,10 +29,10 @@
     "class-transformer": "^0.2.3",
     "class-validator": "^0.11.0",
     "lodash": "^4.17.15",
-    "luxon": "^1.17.2",
+    "luxon": "^1.21.3",
     "lz-string": "^1.4.4",
     "rxjs": "^6.5.3",
-    "ts-node": "^8.5.2",
+    "ts-node": "^8.5.4",
     "uuid": "^3.3.3"
   },
   "devDependencies": {

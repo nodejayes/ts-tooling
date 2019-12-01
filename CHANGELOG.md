@@ -1,3 +1,9 @@
+### 2.1.2
+
+* load the WebWorker at construction for better performance
+* update Dependencies
+* add Documentation Site
+
 ### 2.1.1
 
 * make the build smaller
