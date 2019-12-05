@@ -48,7 +48,7 @@ export class ReactiveStore<T> {
         if (behavior) {
             behavior.next(get(this._core, key));
         } else {
-            console.warn(`no behavior detected!`);
+            console.warn(`no behavior detected for key ${key}!`);
         }
     }
 
