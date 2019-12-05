@@ -46,6 +46,8 @@ import {StopWatch} from './utils/stopwatch';
 export {StopWatch} from './utils/stopwatch';
 import {NumberFactory} from './utils/number.factory';
 export {NumberFactory} from './utils/number.factory';
+import {StringFactory} from "./utils/string.factory";
+export {StringFactory} from "./utils/string.factory";
 import {ClassValidator} from './utils/class.validator';
 export {ClassValidator} from './utils/class.validator';
 
@@ -53,5 +55,5 @@ export default {
     DateTime, TimeSpan, Guid, Byte, ByteStream,
     Dictionary, ListSortOrder,
     using, create, createWithFactory, EventHandler, ReactiveStore, BackgroundWorker,
-    LZCompression, StopWatch, NumberFactory, ClassValidator
+    LZCompression, StopWatch, NumberFactory, StringFactory, ClassValidator
 };

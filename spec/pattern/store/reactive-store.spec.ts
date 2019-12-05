@@ -110,4 +110,193 @@ describe('Reactive Store Tests', () => {
            return d;
        });
    });
+   it('accessors [\'\'] works with .', (done) => {
+       let callCount = 0;
+       const store = new ReactiveStore<ITestStore>({
+           test: {
+               b: false,
+               n: 5,
+               dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+               o: {
+                   name: 'Paul'
+               }
+           }
+       });
+       store.Listen(s => s['test'].b).subscribe(v => {
+           if (callCount > 0) {
+               assert.isTrue(v);
+               done();
+           }
+           callCount++;
+       });
+       store.Mutate(s => s.test.b, () => true);
+   });
+    it('accessors [""] works with .', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore<ITestStore>({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s["test"].b).subscribe(v => {
+            if (callCount > 0) {
+                assert.isTrue(v);
+                done();
+            }
+            callCount++;
+        });
+        store.Mutate(s => s.test.b, () => true);
+    });
+    it('accessors . works with [\'\']', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore<ITestStore>({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s.test.b).subscribe(v => {
+            if (callCount > 0) {
+                assert.isTrue(v);
+                done();
+            }
+            callCount++;
+        });
+        store.Mutate(s => s['test'].b, () => true);
+    });
+    it('accessors . works with [""]', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore<ITestStore>({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s.test.b).subscribe(v => {
+            if (callCount > 0) {
+                assert.isTrue(v);
+                done();
+            }
+            callCount++;
+        });
+        store.Mutate(s => s["test"].b, () => true);
+    });
+    it('multiple accessors . works with [""]', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore<ITestStore>({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s.test.b).subscribe(v => {
+            if (callCount > 0) {
+                assert.isTrue(v);
+                done();
+            }
+            callCount++;
+        });
+        store.Mutate(s => s["test"]["b"], () => true);
+    });
+    it('multiple accessors . works with [\'\']', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore<ITestStore>({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s.test.b).subscribe(v => {
+            if (callCount > 0) {
+                assert.isTrue(v);
+                done();
+            }
+            callCount++;
+        });
+        store.Mutate(s => s['test']['b'], () => true);
+    });
+    it('multiple accessors [\'\'] works with .', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore<ITestStore>({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s['test']['b']).subscribe(v => {
+            if (callCount > 0) {
+                assert.isTrue(v);
+                done();
+            }
+            callCount++;
+        });
+        store.Mutate(s => s.test.b, () => true);
+    });
+    it('multiple accessors [""] works with .', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore<ITestStore>({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s["test"]["b"]).subscribe(v => {
+            if (callCount > 0) {
+                assert.isTrue(v);
+                done();
+            }
+            callCount++;
+        });
+        store.Mutate(s => s.test.b, () => true);
+    });
+    it('multiple accessors mixed works', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore<ITestStore>({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s["test"]['b']).subscribe(v => {
+            if (callCount > 0) {
+                assert.isTrue(v);
+                done();
+            }
+            callCount++;
+        });
+        store.Mutate(s => s['test'].b, () => true);
+    });
 });

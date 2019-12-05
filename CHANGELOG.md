@@ -1,3 +1,8 @@
+### 2.1.3
+
+* ReactiveStore supports mixing accessors like [''] or [""]
+* add missing StringFactory to global Namespace
+
 ### 2.1.2
 
 * load the WebWorker at construction for better performance

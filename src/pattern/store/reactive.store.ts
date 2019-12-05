@@ -67,8 +67,13 @@ export class ReactiveStore<T> {
             .Split(';')
             .Reduce((target, e) => target.Concat(e), '')
             .Split('.');
-        const key = k.Reduce((target, e) => target.Concat(e, '.'), '');
+        let key = k.Reduce((target, e) => target.Concat(e, '.'), '');
+        key = key.ReplaceAll('[\'', '.')
+            .ReplaceAll('["', '.')
+            .ReplaceAll('\']', '')
+            .ReplaceAll('"]', '');
         const firstIdx = key.IndexOf('.');
-        return key.Substring(firstIdx.Add(1), key.length.Subtract(firstIdx));
+        let blankKey = key.Substring(firstIdx.Add(1), key.length.Subtract(firstIdx));
+        return blankKey;
     }
 }
