@@ -229,6 +229,8 @@ describe('String Extension Tests', () => {
         assert.equal('zzabcabcabczz'.ContainsCount('u'), 0);
         assert.equal('zzabcabcabczz'.ContainsCount('cabc'), 1);
         assert.equal('zzabcabcabczz'.ContainsCount('cabc', true), 2);
+        assert.equal('zzab ab abczz'.ContainsCount(' '), 2);
+        assert.equal(' '.ContainsCount(' '), 1);
     });
 
     it('check if string is Empty', () => {

@@ -1,6 +1,6 @@
 import {BehaviorSubject} from 'rxjs';
 import {Dictionary} from '../../complex/dictionary';
-import {set, get} from 'lodash';
+import {set, get, cloneDeep} from 'lodash';
 
 /**
  * a Reactive Store to save States and listen to Changes
@@ -21,14 +21,21 @@ export class ReactiveStore<T> {
      * listen to a specific Property or a complete State change
      * @param selector
      */
-    Listen<K>(selector: (d: T) => K): BehaviorSubject<K> {
+    Listen<K>(selector: (d: T) => K) {
         const key = this.parseSelectorAccess(selector);
         if (this._behaviorSubjects.ContainsKey(key)) {
-            return this._behaviorSubjects.TryGetValue(key);
+            const subject = this._behaviorSubjects.TryGetValue(key);
+            return {
+                getValue: () => cloneDeep(subject.getValue()),
+                subscribe: o => subject.subscribe(o),
+            };
         }
         const subject = new BehaviorSubject<K>(selector(<T>this._core));
         this._behaviorSubjects.Add(key, subject);
-        return subject;
+        return {
+            getValue: () => cloneDeep(subject.getValue()),
+            subscribe: o => subject.subscribe(o),
+        };
     }
 
     /**

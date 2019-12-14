@@ -1,3 +1,7 @@
+### 2.2.0
+
+* Reactive Store Wrap BehaviorSubject to prevent the User to change the Last Value and emit Values with next Function
+
 ### 2.1.3
 
 * ReactiveStore supports mixing accessors like [''] or [""]

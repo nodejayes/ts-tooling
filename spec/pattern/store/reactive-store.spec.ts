@@ -299,4 +299,22 @@ describe('Reactive Store Tests', () => {
         });
         store.Mutate(s => s['test'].b, () => true);
     });
+    it('immutable values readed by getValue', async () => {
+        const store = new ReactiveStore<ITestStore>({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        let b = store.Listen(s => s.test.b).getValue();
+        b = true;
+        assert.isFalse(store.Listen(s => s.test.b).getValue());
+        let o = store.Listen(s => s.test.o).getValue();
+        o.name = 'Peter';
+        assert.equal(store.Listen(s => s.test.o.name).getValue(), 'Paul');
+    });
 });
