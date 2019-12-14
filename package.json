@@ -11,7 +11,8 @@
     "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out docs src/ts-tooling.ts",
     "build-test": "npm run build && npm run test",
     "release": "npm run build-test && npm publish",
-    "type-generation": "dts-generator --project . --out lib/ts-tooling.d.ts"
+    "type-generation": "dts-generator --project . --out lib/ts-tooling.d.ts",
+    "analyze": "webpack --profile --json > profiling.json && webpack-bundle-analyzer profiling.json"
   },
   "license": "MIT",
   "repository": {
@@ -56,6 +57,7 @@
     "typedoc-clarity-theme": "^1.1.0",
     "typescript": "~3.2.2",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-bundle-analyzer": "^3.6.0"
   }
 }
