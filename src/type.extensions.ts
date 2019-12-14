@@ -1,6 +1,7 @@
 import './primitive/number.extension';
 import './primitive/string.extension';
 import './primitive/list.extension';
+// import './primitive/object.extension';
 
 import {DateTime} from './complex/date.time';
 import {ListSortOrder} from './primitive/list.sort.order.enum';
@@ -698,6 +699,10 @@ declare global {
         SumBy(filterMethod: (d: T) => number): number;
     }
     interface Date {
+        /**
+         * conver the Javascript Date to a ts-tooling DateTime
+         * @constructor
+         */
         ToDateTime(): DateTime;
     }
 }
