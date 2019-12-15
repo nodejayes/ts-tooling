@@ -49,12 +49,12 @@ export {NumberFactory} from './utils/number.factory';
 import {StringFactory} from "./utils/string.factory";
 export {StringFactory} from "./utils/string.factory";
 import {
-    ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty,
-    MaxLength, MinLength, ValidateIf, Whitelist
+    ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty, IsEmpty,
+    MaxLength, MinLength, ValidateIf, Whitelist, Equals, NotEquals
 } from './utils/class.validator';
 export {
-    ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty,
-    MaxLength, MinLength, ValidateIf, Whitelist
+    ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty, IsEmpty,
+    MaxLength, MinLength, ValidateIf, Whitelist, Equals, NotEquals
 } from './utils/class.validator';
 import {ObjectFactory} from "./utils/object.factory";
 export {ObjectFactory} from "./utils/object.factory";
@@ -64,5 +64,6 @@ export default {
     Dictionary, ListSortOrder,
     using, create, createWithFactory, EventHandler, ReactiveStore, BackgroundWorker,
     LZCompression, StopWatch, NumberFactory, StringFactory, ClassValidator, ObjectFactory,
-    IsDefined, IsEmail, Min, Max, Blacklist, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist
+    IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
+    Equals, NotEquals
 };

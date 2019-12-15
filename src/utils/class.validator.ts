@@ -54,11 +54,11 @@ export class ClassValidator {
                     case 'IsDefined':
                         executeValidation(value, v => v === null || v === undefined, validationMessage, errors);
                         break;
+                    case 'IsEmpty':
+                        executeValidation(value, v => v !== '' && v !== null && v !== undefined, validationMessage, errors);
+                        break;
                     case 'IsNotEmpty':
-                        if (!isString(value)) {
-                            throw new Error(`can only placed at a string Property ${key} in ${instance.constructor.name}`);
-                        }
-                        executeValidation(value, v => v === '', validationMessage, errors);
+                        executeValidation(value, v => v === '' || v === null || v === undefined, validationMessage, errors);
                         break;
                     case 'IsEmail':
                         executeValidation(value, v => !/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v), validationMessage, errors);
@@ -80,6 +80,12 @@ export class ClassValidator {
                         break;
                     case 'Blacklist':
                         executeValidation(value, v => validationValue.Contains(v), validationMessage, errors);
+                        break;
+                    case 'Equals':
+                        executeValidation(value, v => validationValue !== v, validationMessage, errors);
+                        break;
+                    case 'NotEquals':
+                        executeValidation(value, v => validationValue === v, validationMessage, errors);
                         break;
                     case 'CustomValidation':
                         executeValidation(value, validationValue, validationMessage, errors);
@@ -144,7 +150,19 @@ export function IsDefined(validationMessage?: string) {
 }
 
 /**
- * the Property must can not have a Empty value like empty String
+ * the Property must have a Empty value like empty String or null or undefined
+ * @param validationMessage
+ * @constructor
+ */
+export function IsEmpty(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be Empty.`;
+        registerInStore(target, propertyKey, 'IsEmpty', true, message);
+    }
+}
+
+/**
+ * the Property must can not have a Empty value like empty String or null or undefined
  * @param validationMessage
  * @constructor
  */
@@ -255,5 +273,31 @@ export function Blacklist(value: any[], validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have the following values: ${value.join(',')}`;
         registerInStore(target, propertyKey, 'Blacklist', value, message);
+    }
+}
+
+/**
+ * check if the Property Value Equals the given Value using (===)
+ * @param value
+ * @param validationMessage
+ * @constructor
+ */
+export function Equals<T>(value: T, validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} not match the value: ${value}`;
+        registerInStore(target, propertyKey, 'Equals', value, message);
+    }
+}
+
+/**
+ * check if the Property Value Equals the given Value using (!==)
+ * @param value
+ * @param validationMessage
+ * @constructor
+ */
+export function NotEquals(value: any, validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} match the value: ${value}`;
+        registerInStore(target, propertyKey, 'NotEquals', value, message);
     }
 }

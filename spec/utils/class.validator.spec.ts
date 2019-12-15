@@ -2,7 +2,7 @@ import {assert} from 'chai';
 import 'mocha';
 import {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty,
-    MaxLength, MinLength, ValidateIf, Whitelist
+    MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals
 } from '../../src/ts-tooling';
 
 class Test {
@@ -150,6 +150,20 @@ describe('ClassValidator Tests', () => {
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 0);
     });
+    it('check IsEmpty', async () => {
+        class MustBeEmpty {
+            @IsEmpty('Invalid')
+            prop: string;
+        }
+        const t = new MustBeEmpty();
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'value';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
     it('check IsNotEmpty', async () => {
         const t = new EmptyValue();
         t.prop = '';
@@ -160,17 +174,6 @@ describe('ClassValidator Tests', () => {
         t.prop = 'value';
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 0);
-    });
-    it('IsNotEmpty only can use by string Property', (done) => {
-        class EmptyValueFail {
-            @IsNotEmpty()
-            prop: number;
-        }
-        const t = new EmptyValueFail();
-        t.prop = 5;
-        ClassValidator.Validate(t)
-            .then(() => assert.fail('must throw a Error'))
-            .catch(() => done());
     });
     it('Blacklist check', async () => {
         class BlacklistCheck {
@@ -227,6 +230,36 @@ describe('ClassValidator Tests', () => {
 
         t.prop = 'z';
 
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+    });
+    it('Equal check', async () => {
+        class CheckEqual {
+            @Equals('-', 'Invalid')
+            prop: string;
+        }
+        const t = new CheckEqual();
+        t.prop = null;
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.prop = '-';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+    });
+    it('NotEqual check', async () => {
+        class CheckNotEqual {
+            @NotEquals('-', 'Invalid')
+            prop: string;
+        }
+        const t = new CheckNotEqual();
+        t.prop = '-';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.prop = 'a';
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 0);
     });
