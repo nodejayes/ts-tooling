@@ -1,7 +1,7 @@
 import {assert} from 'chai';
 import 'mocha';
 import {ClassValidator, IsDefined, IsEmail, Max, Min} from '../../src/ts-tooling';
-import {MaxLength, MinLength} from "../../src/utils/class.validator";
+import {IsNotEmpty, MaxLength, MinLength, ValidateIf} from "../../src/utils/class.validator";
 
 class Test {
     @IsDefined()
@@ -51,6 +51,19 @@ class MultipleValidations {
     @MinLength(3)
     @MaxLength(50)
     LastName: string;
+}
+
+class ConditionalValidation {
+    Validate: boolean;
+
+    @ValidateIf<ConditionalValidation>(m => m.Validate)
+    @IsDefined()
+    Name: string;
+}
+
+class EmptyValue {
+    @IsNotEmpty()
+    prop: string;
 }
 
 describe('ClassValidator Tests', () => {
@@ -120,7 +133,41 @@ describe('ClassValidator Tests', () => {
         t.LastName = '';
         let res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 2);
-        assert.equal(res.ElementAt(0).Message, '');
-        assert.equal(res.ElementAt(1).Message, '');
-    })
+        assert.equal(res.ElementAt(0).Message, 'the Property FirstName in MultipleValidations can not have more than 25 characters.');
+        assert.equal(res.ElementAt(1).Message, 'the Property LastName in MultipleValidations can not have more than 50 characters.');
+    });
+    it('use Conditional Validation', async () => {
+        const t = new ConditionalValidation();
+        t.Validate = true;
+        t.Name = null;
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'the Property Name in ConditionalValidation must be defined.');
+
+        t.Validate = false;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+    });
+    it('check IsNotEmpty', async () => {
+        const t = new EmptyValue();
+        t.prop = '';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'the Property prop in EmptyValue can not be Empty.');
+
+        t.prop = 'value';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+    });
+    it('IsNotEmpty only can use by string Property', (done) => {
+        class EmptyValueFail {
+            @IsNotEmpty()
+            prop: number;
+        }
+        const t = new EmptyValueFail();
+        t.prop = 5;
+        ClassValidator.Validate(t)
+            .then(() => assert.fail('must throw a Error'))
+            .catch(() => done());
+    });
 });

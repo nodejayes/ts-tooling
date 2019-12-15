@@ -1,4 +1,4 @@
-import {isObject, isArray} from 'lodash';
+import {isObject, isArray, isString, isFunction} from 'lodash';
 import {ObjectFactory} from "../ts-tooling";
 
 export interface IValidationError {
@@ -43,6 +43,9 @@ export class ClassValidator {
             }
             if (!validationRules) {
                 continue;
+            } else if (validationRules['ValidateIf'] && validationRules['ValidateIf'].Any() &&
+                isFunction(validationRules['ValidateIf'][0]) && !validationRules['ValidateIf'][0](instance)) {
+                continue;
             }
             for (const validationKey of Object.keys(validationRules)) {
                 const validationValue = validationRules[validationKey][0];
@@ -50,6 +53,12 @@ export class ClassValidator {
                 switch (validationKey) {
                     case 'IsDefined':
                         executeValidation(value, v => v === null || v === undefined, validationMessage, errors);
+                        break;
+                    case 'IsNotEmpty':
+                        if (!isString(value)) {
+                            throw new Error(`can only placed at a string Property ${key} in ${instance.constructor.name}`);
+                        }
+                        executeValidation(value, v => v === '', validationMessage, errors);
                         break;
                     case 'IsEmail':
                         executeValidation(value, v => !/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v), validationMessage, errors);
@@ -105,6 +114,22 @@ function registerInStore(target, propertyKey: string, targetKey: string, value, 
     ValidationStore[key][targetKey] = [value, validationMessage];
 }
 
+/**
+ * only Validate the Property when the check Method returns True
+ * @param cb define the check Method
+ * @constructor
+ */
+export function ValidateIf<T>(cb: (d: T) => boolean) {
+    return function (target, propertyKey: string) {
+        registerInStore(target, propertyKey, 'ValidateIf', cb, '');
+    }
+}
+
+/**
+ * the Property must have a Valid Value
+ * @param validationMessage
+ * @constructor
+ */
 export function IsDefined(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be defined.`;
@@ -112,6 +137,23 @@ export function IsDefined(validationMessage?: string) {
     }
 }
 
+/**
+ * the Property must can not have a Empty value like empty String
+ * @param validationMessage
+ * @constructor
+ */
+export function IsNotEmpty(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be Empty.`;
+        registerInStore(target, propertyKey, 'IsNotEmpty', true, message);
+    }
+}
+
+/**
+ * the String at this Property must be a Email Address
+ * @param validationMessage
+ * @constructor
+ */
 export function IsEmail(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Email Address.`;
