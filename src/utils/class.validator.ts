@@ -90,6 +90,9 @@ export class ClassValidator {
                     case 'NotEquals':
                         executeValidation(value, v => validationValue === v, validationMessage, errors);
                         break;
+                    case 'IsBoolean':
+                        executeValidation(value, v => v !== true && v !== false, validationMessage, errors);
+                        break;
                     case 'CustomValidation':
                         executeValidation(value, validationValue, validationMessage, errors);
                         break;
@@ -339,3 +342,80 @@ export function NotEquals(value: any, validationMessage?: string) {
         registerInStore(target, propertyKey, 'NotEquals', value, message);
     }
 }
+
+/**
+ * check if the Property Value is a Boolean Value
+ * @param validationMessage
+ * @constructor
+ */
+export function IsBoolean(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Boolean Value`;
+        registerInStore(target, propertyKey, 'IsBoolean', true, message);
+    }
+}
+
+// IsLatLong
+// IsLatitude
+// IsLongitude
+// IsDate
+// IsNumber
+// IsInt
+// IsString
+// IsDateString
+// IsArray
+// IsEnum
+
+// IsDivisibleBy
+// IsPositive
+// IsNegative
+// MinDate
+// MaxDate
+// IsBooleanString
+// IsNumberString
+
+// Contains
+// NotContains
+// IsAlpha Checks if the string contains only letters (a-zA-Z).
+// IsAlphanumeric Checks if the string contains only letters and numbers.
+// IsDecimal
+// IsAscii
+// IsBase64
+// IsByteLength
+// IsCreditCard
+// IsCurrency
+// IsFQDN Checks if the string is a fully qualified domain name (e.g. domain.com).
+// IsFullWidth
+// IsHalfWidth
+// IsVariableWidth
+// IsHexColor
+// IsHexadecimal
+// IsMACAddress
+// IsIP
+// IsPort
+// IsISBN
+// IsISIN
+// IsISO8601
+// IsJSON
+// IsJWT
+// IsObject
+// IsNotEmptyObject
+// IsLowercase
+// IsUppercase
+// IsMobilePhone
+// IsPhoneNumber
+// IsISO31661Alpha2
+// IsISO31661Alpha3
+// IsMongoId
+// IsMultibyte
+// IsSurrogatePair
+// IsUrl
+// IsUUID
+// Length
+// Matches
+// IsMilitaryTime
+// IsHash
+// IsISSN
+
+// ArrayNotEmpty
+// ArrayUnique
