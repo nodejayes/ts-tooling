@@ -4,6 +4,7 @@ import {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals
 } from '../../src/ts-tooling';
+import {IsOptional, Required} from "../../src/utils/class.validator";
 
 class Test {
     @IsDefined()
@@ -260,6 +261,43 @@ describe('ClassValidator Tests', () => {
         assert.equal(res.ElementAt(0).Message, 'Invalid');
 
         t.prop = 'a';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+    });
+    it('Required check', async () => {
+        class CheckIsRequired {
+            @Required('Invalid')
+            id: number;
+        }
+        const t = new CheckIsRequired();
+        t.id = null;
+
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.id = 1;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+    });
+    it('IsOptional check', async () => {
+        class CheckIsOptional {
+            @IsOptional()
+            @Equals('test', 'Invalid')
+            prop: string;
+        }
+        const t = new CheckIsOptional();
+        t.prop = 'x';
+
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.prop = null;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'test';
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 0);
     });

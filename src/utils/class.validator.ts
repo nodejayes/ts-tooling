@@ -1,4 +1,4 @@
-import {isObject, isArray, isString, isFunction} from 'lodash';
+import {isObject, isArray, isFunction} from 'lodash';
 import {ObjectFactory} from "../ts-tooling";
 
 export interface IValidationError {
@@ -15,6 +15,7 @@ export class ClassValidator {
      */
     static async Validate<T>(instance: T): Promise<IValidationError[]> {
         const errors: IValidationError[] = [];
+        checkForRequired(instance, errors);
         for (const key of Object.keys(instance)) {
             const validationRules = ValidationStore[`${instance.constructor.name}_${key}`];
             const value = instance[key];
@@ -45,6 +46,8 @@ export class ClassValidator {
                 continue;
             } else if (validationRules['ValidateIf'] && validationRules['ValidateIf'].Any() &&
                 isFunction(validationRules['ValidateIf'][0]) && !validationRules['ValidateIf'][0](instance)) {
+                continue;
+            } else if (validationRules['IsOptional'] && validationRules['IsOptional'][0] === true && !value) {
                 continue;
             }
             for (const validationKey of Object.keys(validationRules)) {
@@ -112,6 +115,19 @@ export class ClassValidator {
 
 const ValidationStore = {};
 
+function checkForRequired(instance, errors: IValidationError[]) {
+    const props = Object.keys(ValidationStore).FindAll(i => i.StartsWith(instance.constructor.name));
+    for (const prop of props) {
+        const validationRules = ValidationStore[prop];
+        if (validationRules['Required']) {
+            const propName = prop.Split('_').ElementAt(1);
+            if (instance[propName] === undefined || instance[propName] === null) {
+                errors.Add({Message:validationRules['Required'][1]});
+            }
+        }
+    }
+}
+
 function executeValidation(value, cb: (v) => boolean, validationMessage: string, errors: IValidationError[]) {
     if (cb(value)) {
         errors.Add({Message: validationMessage});
@@ -134,6 +150,28 @@ function registerInStore(target, propertyKey: string, targetKey: string, value, 
 export function ValidateIf<T>(cb: (d: T) => boolean) {
     return function (target, propertyKey: string) {
         registerInStore(target, propertyKey, 'ValidateIf', cb, '');
+    }
+}
+
+/**
+ * check if the Value is missing and ignore all Validations
+ * @constructor
+ */
+export function IsOptional() {
+    return function (target, propertyKey: string) {
+        registerInStore(target, propertyKey, 'IsOptional', true, '');
+    }
+}
+
+/**
+ * check if the Property was in the Object and have a Value
+ * @param validationMessage
+ * @constructor
+ */
+export function Required(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be set.`;
+        registerInStore(target, propertyKey, 'Required', true, message);
     }
 }
 
