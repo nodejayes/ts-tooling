@@ -1,6 +1,7 @@
 import {assert} from 'chai';
 import 'mocha';
 import {ClassValidator, IsDefined, IsEmail, Max, Min} from '../../src/ts-tooling';
+import {MaxLength, MinLength} from "../../src/utils/class.validator";
 
 class Test {
     @IsDefined()
@@ -37,6 +38,18 @@ class SubObject {
     FirstName: string;
 
     @IsDefined()
+    LastName: string;
+}
+
+class MultipleValidations {
+    @IsDefined()
+    @MinLength(3)
+    @MaxLength(25)
+    FirstName: string;
+
+    @IsDefined()
+    @MinLength(3)
+    @MaxLength(50)
     LastName: string;
 }
 
@@ -101,4 +114,13 @@ describe('ClassValidator Tests', () => {
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'the Property FirstName in SubObject must be defined.');
     });
+    it('support multiple Validations at one Property', async () => {
+        const t = new MultipleValidations();
+        t.FirstName = '';
+        t.LastName = '';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 2);
+        assert.equal(res.ElementAt(0).Message, '');
+        assert.equal(res.ElementAt(1).Message, '');
+    })
 });

@@ -60,6 +60,12 @@ export class ClassValidator {
                     case 'Max':
                         executeValidation(value, v => v > validationValue, validationMessage, errors);
                         break;
+                    case 'MinLength':
+                        executeValidation(value, v => v.length > validationValue, validationMessage, errors);
+                        break;
+                    case 'MaxLength':
+                        executeValidation(value, v => v.length < validationValue, validationMessage, errors);
+                        break;
                     case 'CustomValidation':
                         executeValidation(value, validationValue, validationMessage, errors);
                         break;
@@ -132,4 +138,18 @@ export function CustomValidation(value: (v) => boolean, validationMessage?: stri
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} Custom Validation was not successful.`;
         registerInStore(target, propertyKey, 'CustomValidation', value, message);
     }
+}
+
+export function MinLength(value: number, validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must have ${value} characters.`;
+        registerInStore(target, propertyKey, 'MinLength', value, message);
+    };
+}
+
+export function MaxLength(value: number, validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have more than ${value} characters.`;
+        registerInStore(target, propertyKey, 'MaxLength', value, message);
+    };
 }
