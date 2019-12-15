@@ -1,7 +1,8 @@
-### 2.2.0
+### 2.2.0 (not-released)
 
 * Reactive Store Wrap BehaviorSubject to prevent the User to change the Last Value and emit Values with next Function
 * add ObjectFactory with Circular Detection
+* own Validator Implementation reduces Bundle Size
 
 ### 2.1.3
 
