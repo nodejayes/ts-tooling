@@ -26,6 +26,20 @@ class Test2 {
     Email: string;
 }
 
+class Test3 {
+    @IsDefined()
+    Name: string;
+    Detail: SubObject;
+}
+
+class SubObject {
+    @IsDefined()
+    FirstName: string;
+
+    @IsDefined()
+    LastName: string;
+}
+
 describe('ClassValidator Tests', () => {
     it('validate decorated Class', async () => {
         const valid = new Test();
@@ -76,5 +90,15 @@ describe('ClassValidator Tests', () => {
         assert.lengthOf(res, 0);
         res = await ClassValidator.ValidateObject(Test, invalid);
         assert.lengthOf(res, 3);
+    });
+    it('check Sub Objects', async () => {
+        const t = new Test3();
+        t.Name = 'IDontTellYou';
+        t.Detail = new SubObject();
+        t.Detail.FirstName = null;
+        t.Detail.LastName = 'SomeName';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'the Property FirstName in SubObject must be defined.');
     });
 });

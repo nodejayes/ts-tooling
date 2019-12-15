@@ -1,3 +1,6 @@
+import {isObject, isArray} from 'lodash';
+import {ObjectFactory} from "../ts-tooling";
+
 export interface IValidationError {
     Message: string;
 }
@@ -14,10 +17,33 @@ export class ClassValidator {
         const errors: IValidationError[] = [];
         for (const key of Object.keys(instance)) {
             const validationRules = ValidationStore[`${instance.constructor.name}_${key}`];
+            const value = instance[key];
+            if (isObject(value)) {
+                // validate the SubObject but skip circulars
+                if (!ObjectFactory.IsCircular(value)) {
+                    const subErrors = await ClassValidator.Validate(value);
+                    if (subErrors.Any()) {
+                        errors.AddRange(subErrors);
+                    }
+                }
+                continue;
+            } else if (isArray(value) && value.Any()) {
+                for (const entry of value) {
+                    if (isObject(entry)) {
+                        // validate the SubObject but skip circulars
+                        if (!ObjectFactory.IsCircular(entry)) {
+                            const subErrors = await ClassValidator.Validate(entry);
+                            if (subErrors.Any()) {
+                                errors.AddRange(subErrors);
+                            }
+                        }
+                    }
+                }
+                continue;
+            }
             if (!validationRules) {
                 continue;
             }
-            const value = instance[key];
             for (const validationKey of Object.keys(validationRules)) {
                 const validationValue = validationRules[validationKey][0];
                 const validationMessage = validationRules[validationKey][1];
@@ -26,8 +52,7 @@ export class ClassValidator {
                         executeValidation(value, v => v === null || v === undefined, validationMessage, errors);
                         break;
                     case 'IsEmail':
-                        // TODO: implement Email check
-                        executeValidation(value, v => false, validationMessage, errors);
+                        executeValidation(value, v => !/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v), validationMessage, errors);
                         break;
                     case 'Min':
                         executeValidation(value, v => v < validationValue, validationMessage, errors);
