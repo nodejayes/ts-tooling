@@ -48,8 +48,8 @@ import {NumberFactory} from './utils/number.factory';
 export {NumberFactory} from './utils/number.factory';
 import {StringFactory} from "./utils/string.factory";
 export {StringFactory} from "./utils/string.factory";
-import {ClassValidator} from './utils/class.validator';
-export {ClassValidator} from './utils/class.validator';
+import {ClassValidator, IsDefined, IsEmail, Max, Min} from './utils/class.validator';
+export {ClassValidator, IsDefined, IsEmail, Max, Min} from './utils/class.validator';
 import {ObjectFactory} from "./utils/object.factory";
 export {ObjectFactory} from "./utils/object.factory";
 
@@ -57,5 +57,6 @@ export default {
     DateTime, TimeSpan, Guid, Byte, ByteStream,
     Dictionary, ListSortOrder,
     using, create, createWithFactory, EventHandler, ReactiveStore, BackgroundWorker,
-    LZCompression, StopWatch, NumberFactory, StringFactory, ClassValidator, ObjectFactory
+    LZCompression, StopWatch, NumberFactory, StringFactory, ClassValidator, ObjectFactory,
+    IsDefined, IsEmail, Min, Max
 };
