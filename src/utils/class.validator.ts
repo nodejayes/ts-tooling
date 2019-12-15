@@ -75,6 +75,12 @@ export class ClassValidator {
                     case 'MaxLength':
                         executeValidation(value, v => v.length < validationValue, validationMessage, errors);
                         break;
+                    case 'Whitelist':
+                        executeValidation(value, v => !validationValue.Contains(v), validationMessage, errors);
+                        break;
+                    case 'Blacklist':
+                        executeValidation(value, v => validationValue.Contains(v), validationMessage, errors);
+                        break;
                     case 'CustomValidation':
                         executeValidation(value, validationValue, validationMessage, errors);
                         break;
@@ -161,6 +167,12 @@ export function IsEmail(validationMessage?: string) {
     }
 }
 
+/**
+ * the numeric Value must be greater or Equal the given Value
+ * @param value
+ * @param validationMessage
+ * @constructor
+ */
 export function Min(value: number, validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be lower than ${value}.`;
@@ -168,6 +180,12 @@ export function Min(value: number, validationMessage?: string) {
     };
 }
 
+/**
+ * the numeric Value mut be lower or equal the given Value
+ * @param value
+ * @param validationMessage
+ * @constructor
+ */
 export function Max(value: number, validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be bigger than ${value}.`;
@@ -175,6 +193,12 @@ export function Max(value: number, validationMessage?: string) {
     };
 }
 
+/**
+ * can execute a Function that returns true or false, can perform any Validation you want
+ * @param value
+ * @param validationMessage
+ * @constructor
+ */
 export function CustomValidation(value: (v) => boolean, validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} Custom Validation was not successful.`;
@@ -182,6 +206,12 @@ export function CustomValidation(value: (v) => boolean, validationMessage?: stri
     }
 }
 
+/**
+ * the String or Array must have the given Length or more
+ * @param value
+ * @param validationMessage
+ * @constructor
+ */
 export function MinLength(value: number, validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must have ${value} characters.`;
@@ -189,9 +219,41 @@ export function MinLength(value: number, validationMessage?: string) {
     };
 }
 
+/**
+ * the String or Array must have the given Length or lesser
+ * @param value
+ * @param validationMessage
+ * @constructor
+ */
 export function MaxLength(value: number, validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have more than ${value} characters.`;
         registerInStore(target, propertyKey, 'MaxLength', value, message);
     };
+}
+
+/**
+ * implements a Whitelist check for the Property
+ * @param value
+ * @param validationMessage
+ * @constructor
+ */
+export function Whitelist(value: any[], validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have the following values: ${value.join(',')}`;
+        registerInStore(target, propertyKey, 'Whitelist', value, message);
+    }
+}
+
+/**
+ * implements a Blacklist check for the Property
+ * @param value
+ * @param validationMessage
+ * @constructor
+ */
+export function Blacklist(value: any[], validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have the following values: ${value.join(',')}`;
+        registerInStore(target, propertyKey, 'Blacklist', value, message);
+    }
 }

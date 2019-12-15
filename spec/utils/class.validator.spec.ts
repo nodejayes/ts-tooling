@@ -1,7 +1,9 @@
 import {assert} from 'chai';
 import 'mocha';
-import {ClassValidator, IsDefined, IsEmail, Max, Min} from '../../src/ts-tooling';
-import {IsNotEmpty, MaxLength, MinLength, ValidateIf} from "../../src/utils/class.validator";
+import {
+    ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty,
+    MaxLength, MinLength, ValidateIf, Whitelist
+} from '../../src/ts-tooling';
 
 class Test {
     @IsDefined()
@@ -169,5 +171,63 @@ describe('ClassValidator Tests', () => {
         ClassValidator.Validate(t)
             .then(() => assert.fail('must throw a Error'))
             .catch(() => done());
+    });
+    it('Blacklist check', async () => {
+        class BlacklistCheck {
+            @Blacklist(['a', 'b', 'c'])
+            prop: string;
+        }
+
+        const t = new BlacklistCheck();
+        t.prop = 'a';
+
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'the Property prop in BlacklistCheck can not have the following values: a,b,c');
+
+        t.prop = 'b';
+
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'the Property prop in BlacklistCheck can not have the following values: a,b,c');
+
+        t.prop = 'c';
+
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'the Property prop in BlacklistCheck can not have the following values: a,b,c');
+
+        t.prop = 'x';
+
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+    });
+    it('Whitelist check', async () => {
+        class WhitelistCheck {
+            @Whitelist(['x', 'y', 'z'])
+            prop: string;
+        }
+
+        const t = new WhitelistCheck();
+        t.prop = 'a';
+
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'the Property prop in WhitelistCheck can only have the following values: x,y,z');
+
+        t.prop = 'x';
+
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'y';
+
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'z';
+
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
     });
 });
