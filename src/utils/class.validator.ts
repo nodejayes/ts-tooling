@@ -84,8 +84,15 @@ export class ClassValidator {
                             executeValidation(value, v => v >= 0, validationMessage, errors);
                             break;
                         case 'IsHash':
-                            executeValidation(value, v => /[0-9a-f]/i.test(v) &&
-                                ![32, 40, 64, 128].Contains(v.length), validationMessage, errors);
+                            executeValidation(value, v => !/^[0-9a-fA-F]{32}$/g.test(v) &&
+                                !/^[0-9a-fA-F]{40}$/g.test(v) &&
+                                !/^[0-9a-fA-F]{64}$/g.test(v) &&
+                                !/^[0-9a-fA-F]{128}$/g.test(v), validationMessage, errors);
+                            break;
+                        case 'IsUUID':
+                            executeValidation(value,
+                                v => !/^\{?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}?$/g.test(v)
+                                , validationMessage, errors);
                             break;
                         case 'ArrayNotEmpty':
                             executeValidation(value, v => v ? !v.Any() : false, validationMessage, errors);
@@ -572,6 +579,11 @@ export function IsUrl(validationMessage?: string) {
     }
 }
 
+/**
+ * check if a String is a UUID
+ * @param validationMessage
+ * @constructor
+ */
 export function IsUUID(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a UUID.`;
@@ -579,6 +591,13 @@ export function IsUUID(validationMessage?: string) {
     }
 }
 
+/**
+ * check if the String can be a Hash
+ * supported are all Hashes with 32, 40, 64 and 128 bit size
+ * for Example MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, Snefru, GHOST and Whirlpool
+ * @param validationMessage
+ * @constructor
+ */
 export function IsHash(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hash.`;

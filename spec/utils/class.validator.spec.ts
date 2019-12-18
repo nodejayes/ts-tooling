@@ -9,7 +9,7 @@ import {
     IsInt,
     IsNegative, IsNumberString,
     IsOptional,
-    IsPositive,
+    IsPositive, IsUUID,
     Required,
     UniqueArray
 } from "../../src/utils/class.validator";
@@ -510,8 +510,32 @@ describe('ClassValidator Tests', () => {
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 0);
 
+        // test Upper Case Letters
+        t.prop = t.prop.ToUpperCase();
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
         // no Hash
         t.prop = 'HalloWelt';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsUUID check', async () => {
+        class IsUUIDCheck {
+            @IsUUID('Invalid')
+            prop: string;
+        }
+        const t = new IsUUIDCheck();
+        t.prop = '3e019b17-e95e-40fc-9606-4041efcb2684';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '{3e019b17-e95e-40fc-9606-4041efcb2684}';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'no uuid';
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');
