@@ -575,6 +575,11 @@ export function IsByteLength(value: number, validationMessage?: string) {
     }
 }
 
+/**
+ * check if a String is a MongoDb Object Id
+ * @param validationMessage
+ * @constructor
+ */
 export function IsMongoId(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MongoDb ObjectId.`;
