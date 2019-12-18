@@ -456,46 +456,128 @@ export function IsNumberString(validationMessage?: string) {
     }
 }
 
-// MinDate
-// MaxDate
+export function MinDate(value: DateTime, validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be greater than ${value.toString()}.`;
+        registerInStore(target, propertyKey, 'MinDate', value, message);
+    }
+}
 
-// IsAlpha Checks if the string contains only letters (a-zA-Z).
-// IsAlphanumeric Checks if the string contains only letters and numbers.
-// IsDecimal
-// IsAscii
-// IsBase64
-// IsByteLength
-// IsCreditCard
-// IsCurrency
-// IsFQDN Checks if the string is a fully qualified domain name (e.g. domain.com).
-// IsFullWidth
-// IsHalfWidth
-// IsVariableWidth
-// IsHexColor
-// IsHexadecimal
-// IsMACAddress
-// IsIP
-// IsPort
-// IsISBN
-// IsISIN
-// IsISO8601
-// IsJSON
-// IsJWT
-// IsObject
-// IsNotEmptyObject
-// IsLowercase
-// IsUppercase
-// IsMobilePhone
-// IsPhoneNumber
-// IsISO31661Alpha2
-// IsISO31661Alpha3
-// IsMongoId
-// IsMultibyte
-// IsSurrogatePair
-// IsUrl
-// IsUUID
-// Length
-// Matches
-// IsMilitaryTime
-// IsHash
-// IsISSN
+export function MaxDate(value: DateTime, validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be lower than ${value.toString()}.`;
+        registerInStore(target, propertyKey, 'MaxDate', value, message);
+    }
+}
+
+export function IsAlpha(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters (a-zA-Z).`;
+        registerInStore(target, propertyKey, 'IsAlpha', true, message);
+    }
+}
+
+export function IsAlphanumeric(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters and numbers.`;
+        registerInStore(target, propertyKey, 'IsAlphanumeric', true, message);
+    }
+}
+
+export function IsAscii(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Ascii String.`;
+        registerInStore(target, propertyKey, 'IsAscii', true, message);
+    }
+}
+
+export function IsBase64(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Base64 String.`;
+        registerInStore(target, propertyKey, 'IsBase64', true, message);
+    }
+}
+
+export function IsHexColor(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hex Color String.`;
+        registerInStore(target, propertyKey, 'IsHexColor', true, message);
+    }
+}
+
+export function IsHexadecimal(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hexadecimal String.`;
+        registerInStore(target, propertyKey, 'IsHexadecimal', true, message);
+    }
+}
+
+export function IsMacAddress(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MAC Address.`;
+        registerInStore(target, propertyKey, 'IsMacAddress', true, message);
+    }
+}
+
+export function IsIp(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a IP Address.`;
+        registerInStore(target, propertyKey, 'IsIp', true, message);
+    }
+}
+
+export function IsPort(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Port Number.`;
+        registerInStore(target, propertyKey, 'IsPort', true, message);
+    }
+}
+
+export function IsJSON(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON String.`;
+        registerInStore(target, propertyKey, 'IsJSON', true, message);
+    }
+}
+
+export function IsJWT(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON Web Token.`;
+        registerInStore(target, propertyKey, 'IsJWT', true, message);
+    }
+}
+
+export function IsByteLength(value: number, validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have a Length of ${value} Bytes.`;
+        registerInStore(target, propertyKey, 'IsByteLength', value, message);
+    }
+}
+
+export function IsMongoId(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MongoDb ObjectId.`;
+        registerInStore(target, propertyKey, 'IsMongoId', true, message);
+    }
+}
+
+export function IsUrl(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a URL.`;
+        registerInStore(target, propertyKey, 'IsUrl', true, message);
+    }
+}
+
+export function IsUUID(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a UUID.`;
+        registerInStore(target, propertyKey, 'IsUUID', true, message);
+    }
+}
+
+export function IsHash(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hash.`;
+        registerInStore(target, propertyKey, 'IsHash', true, message);
+    }
+}
