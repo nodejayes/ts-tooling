@@ -6,7 +6,7 @@ import {
 } from '../../src/ts-tooling';
 import {
     ArrayNotEmpty, IsBooleanString, IsHash,
-    IsInt,
+    IsInt, IsMongoId,
     IsNegative, IsNumberString,
     IsOptional,
     IsPositive, IsUrl, IsUUID,
@@ -569,5 +569,21 @@ describe('ClassValidator Tests', () => {
             assert.lengthOf(res, 1);
             assert.equal(res.ElementAt(0).Message, 'Invalid');
         }
+    });
+    it('IsMongoId check', async () => {
+        class IsMongoIdCheck {
+            @IsMongoId('Invalid')
+            prop: string;
+        }
+        const t = new IsMongoIdCheck();
+
+        t.prop = '5dfaa9da5fca3be0982a4301';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'Hallo';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
     });
 });

@@ -101,6 +101,9 @@ export class ClassValidator {
                         case 'IsUrl':
                             executeValidation(value, v => !isValidUrl(v), validationMessage, errors);
                             break;
+                        case 'IsMongoId':
+                            executeValidation(value, v => !/^[0-9a-fA-F]{24}$/g.test(v), validationMessage, errors);
+                            break;
                         case 'ArrayNotEmpty':
                             executeValidation(value, v => v ? !v.Any() : false, validationMessage, errors);
                             break;
