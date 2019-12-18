@@ -9,7 +9,7 @@ import {
     IsInt,
     IsNegative, IsNumberString,
     IsOptional,
-    IsPositive, IsUUID,
+    IsPositive, IsUrl, IsUUID,
     Required,
     UniqueArray
 } from "../../src/utils/class.validator";
@@ -539,5 +539,35 @@ describe('ClassValidator Tests', () => {
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsURL check', async () => {
+        class IsURLCheck {
+            @IsUrl('Invalid')
+            prop: string;
+        }
+
+        const t = new IsURLCheck();
+        for (const url of [
+            'http://foobar.com', 'http://foo.bar.com/', 'http://qux.com',
+            'http://en.wikipedia.org/wiki/Procter_&_Gamble',
+            'http://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&docid=nIv5rk2GyP3hXM&tbnid=isiOkMe3nCtexM:&ved=0CAUQjRw&url=http%3A%2F%2Fanimalcrossing.wikia.com%2Fwiki%2FLion&ei=ygZXU_2fGKbMsQTf4YLgAQ&bvm=bv.65177938,d.aWc&psig=AFQjCNEpBfKnal9kU7Zu4n7RnEt2nerN4g&ust=1398298682009707',
+            'https://stackoverflow.com/',
+            'oh.my', 'google.co.uk', 'test-domain.MUSEUM',
+            'http://thingiverse.com/download:1894343',
+            'https://medium.com/@techytimo'
+        ]) {
+            t.prop = url;
+            let res = await ClassValidator.Validate(t);
+            assert.lengthOf(res, 0);
+        }
+
+        for (const url of [
+            'aaaa', 'https://w'
+        ]) {
+            t.prop = url;
+            let res = await ClassValidator.Validate(t);
+            assert.lengthOf(res, 1);
+            assert.equal(res.ElementAt(0).Message, 'Invalid');
+        }
     });
 });
