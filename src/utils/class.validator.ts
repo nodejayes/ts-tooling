@@ -1,5 +1,5 @@
 import {isObject, isArray, isFunction} from 'lodash';
-import {ObjectFactory} from "../ts-tooling";
+import {DateTime, ObjectFactory} from "../ts-tooling";
 
 export interface IValidationError {
     Message: string;
@@ -19,16 +19,81 @@ export class ClassValidator {
         for (const key of Object.keys(instance)) {
             const validationRules = ValidationStore[`${instance.constructor.name}_${key}`];
             const value = instance[key];
-            if (isObject(value)) {
-                // validate the SubObject but skip circulars
-                if (!ObjectFactory.IsCircular(value)) {
-                    const subErrors = await ClassValidator.Validate(value);
-                    if (subErrors.Any()) {
-                        errors.AddRange(subErrors);
+
+            if (validationRules) {
+                if (validationRules['ValidateIf'] && validationRules['ValidateIf'].Any() &&
+                    isFunction(validationRules['ValidateIf'][0]) && !validationRules['ValidateIf'][0](instance)) {
+                    continue;
+                } else if (validationRules['IsOptional'] && validationRules['IsOptional'][0] === true && !value) {
+                    continue;
+                }
+
+                for (const validationKey of Object.keys(validationRules)) {
+                    const validationValue = validationRules[validationKey][0];
+                    const validationMessage = validationRules[validationKey][1];
+                    switch (validationKey) {
+                        case 'IsDefined':
+                            executeValidation(value, v => v === null || v === undefined, validationMessage, errors);
+                            break;
+                        case 'IsEmpty':
+                            executeValidation(value, v => v !== '' && v !== null && v !== undefined, validationMessage, errors);
+                            break;
+                        case 'IsNotEmpty':
+                            executeValidation(value, v => v === '' || v === null || v === undefined, validationMessage, errors);
+                            break;
+                        case 'IsEmail':
+                            executeValidation(value, v => !/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v), validationMessage, errors);
+                            break;
+                        case 'Min':
+                            executeValidation(value, v => v < validationValue, validationMessage, errors);
+                            break;
+                        case 'Max':
+                            executeValidation(value, v => v > validationValue, validationMessage, errors);
+                            break;
+                        case 'MinLength':
+                            executeValidation(value, v => v.length > validationValue, validationMessage, errors);
+                            break;
+                        case 'MaxLength':
+                            executeValidation(value, v => v.length < validationValue, validationMessage, errors);
+                            break;
+                        case 'Whitelist':
+                            executeValidation(value, v => !validationValue.Contains(v), validationMessage, errors);
+                            break;
+                        case 'Blacklist':
+                            executeValidation(value, v => validationValue.Contains(v), validationMessage, errors);
+                            break;
+                        case 'Equals':
+                            executeValidation(value, v => validationValue !== v, validationMessage, errors);
+                            break;
+                        case 'NotEquals':
+                            executeValidation(value, v => validationValue === v, validationMessage, errors);
+                            break;
+                        case 'IsInt':
+                            executeValidation(value, v => isNaN(parseInt(v.toString())) || v.toString().Contains('.'), validationMessage, errors);
+                            break;
+                        case 'ArrayNotEmpty':
+                            executeValidation(value, v => v ? !v.Any() : false, validationMessage, errors);
+                            break;
+                        case 'UniqueArray':
+                            executeValidation(value, v => {
+                                const tmp = [];
+                                for (const value of v) {
+                                    if (tmp.Contains(value)) {
+                                        return true;
+                                    }
+                                    tmp.Add(value);
+                                }
+                                return false;
+                            }, validationMessage, errors);
+                            break;
+                        case 'CustomValidation':
+                            executeValidation(value, validationValue, validationMessage, errors);
+                            break;
                     }
                 }
-                continue;
-            } else if (isArray(value) && value.Any()) {
+            }
+
+            if (isArray(value) && value.Any()) {
                 for (const entry of value) {
                     if (isObject(entry)) {
                         // validate the SubObject but skip circulars
@@ -40,62 +105,13 @@ export class ClassValidator {
                         }
                     }
                 }
-                continue;
-            }
-            if (!validationRules) {
-                continue;
-            } else if (validationRules['ValidateIf'] && validationRules['ValidateIf'].Any() &&
-                isFunction(validationRules['ValidateIf'][0]) && !validationRules['ValidateIf'][0](instance)) {
-                continue;
-            } else if (validationRules['IsOptional'] && validationRules['IsOptional'][0] === true && !value) {
-                continue;
-            }
-            for (const validationKey of Object.keys(validationRules)) {
-                const validationValue = validationRules[validationKey][0];
-                const validationMessage = validationRules[validationKey][1];
-                switch (validationKey) {
-                    case 'IsDefined':
-                        executeValidation(value, v => v === null || v === undefined, validationMessage, errors);
-                        break;
-                    case 'IsEmpty':
-                        executeValidation(value, v => v !== '' && v !== null && v !== undefined, validationMessage, errors);
-                        break;
-                    case 'IsNotEmpty':
-                        executeValidation(value, v => v === '' || v === null || v === undefined, validationMessage, errors);
-                        break;
-                    case 'IsEmail':
-                        executeValidation(value, v => !/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v), validationMessage, errors);
-                        break;
-                    case 'Min':
-                        executeValidation(value, v => v < validationValue, validationMessage, errors);
-                        break;
-                    case 'Max':
-                        executeValidation(value, v => v > validationValue, validationMessage, errors);
-                        break;
-                    case 'MinLength':
-                        executeValidation(value, v => v.length > validationValue, validationMessage, errors);
-                        break;
-                    case 'MaxLength':
-                        executeValidation(value, v => v.length < validationValue, validationMessage, errors);
-                        break;
-                    case 'Whitelist':
-                        executeValidation(value, v => !validationValue.Contains(v), validationMessage, errors);
-                        break;
-                    case 'Blacklist':
-                        executeValidation(value, v => validationValue.Contains(v), validationMessage, errors);
-                        break;
-                    case 'Equals':
-                        executeValidation(value, v => validationValue !== v, validationMessage, errors);
-                        break;
-                    case 'NotEquals':
-                        executeValidation(value, v => validationValue === v, validationMessage, errors);
-                        break;
-                    case 'IsBoolean':
-                        executeValidation(value, v => v !== true && v !== false, validationMessage, errors);
-                        break;
-                    case 'CustomValidation':
-                        executeValidation(value, validationValue, validationMessage, errors);
-                        break;
+            } else if (isObject(value)) {
+                // validate the SubObject but skip circulars
+                if (!ObjectFactory.IsCircular(value)) {
+                    const subErrors = await ClassValidator.Validate(value);
+                    if (subErrors.Any()) {
+                        errors.AddRange(subErrors);
+                    }
                 }
             }
         }
@@ -344,27 +360,40 @@ export function NotEquals(value: any, validationMessage?: string) {
 }
 
 /**
- * check if the Property Value is a Boolean Value
+ * check if the given Value is an Integer number
  * @param validationMessage
  * @constructor
  */
-export function IsBoolean(validationMessage?: string) {
+export function IsInt(validationMessage?: string) {
     return function (target, propertyKey: string) {
-        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Boolean Value`;
-        registerInStore(target, propertyKey, 'IsBoolean', true, message);
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Integer Value`;
+        registerInStore(target, propertyKey, 'IsInt', true, message);
     }
 }
 
-// IsLatLong
-// IsLatitude
-// IsLongitude
-// IsDate
-// IsNumber
-// IsInt
-// IsString
-// IsDateString
-// IsArray
-// IsEnum
+/**
+ * check an Array if it has Unique Values
+ * @param validationMessage
+ * @constructor
+ */
+export function UniqueArray(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must have Unique Values`;
+        registerInStore(target, propertyKey, 'UniqueArray', true, message);
+    }
+}
+
+/**
+ * check if the Array not Empty
+ * @param validationMessage
+ * @constructor
+ */
+export function ArrayNotEmpty(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be empty.`;
+        registerInStore(target, propertyKey, 'ArrayNotEmpty', true, message);
+    }
+}
 
 // IsDivisibleBy
 // IsPositive
@@ -416,6 +445,3 @@ export function IsBoolean(validationMessage?: string) {
 // IsMilitaryTime
 // IsHash
 // IsISSN
-
-// ArrayNotEmpty
-// ArrayUnique

@@ -4,7 +4,7 @@ import {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals
 } from '../../src/ts-tooling';
-import {IsBoolean, IsOptional, Required} from "../../src/utils/class.validator";
+import {ArrayNotEmpty, IsInt, IsOptional, Required, UniqueArray} from "../../src/utils/class.validator";
 
 class Test {
     @IsDefined()
@@ -301,23 +301,69 @@ describe('ClassValidator Tests', () => {
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 0);
     });
-    it('IsBoolean check', async () => {
+    it('IsInt check', async () => {
         class CheckIsBoolean {
-            @IsBoolean('Invalid')
+            @IsInt('Invalid')
             prop: any;
         }
         const t = new CheckIsBoolean();
-        t.prop = true;
+        t.prop = 1;
         let res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 0);
 
-        t.prop = false;
-        res = await ClassValidator.Validate(t);
-        assert.lengthOf(res, 0);
-
-        t.prop = 1;
+        t.prop = 1.5;
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.prop = '1.5';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('UniqueArray check', async () => {
+        class UniqueArrayCheck {
+            @UniqueArray('Invalid')
+            prop: any[];
+        }
+        const tmp1 = {Hello:'World!'};
+        const tmp2 = {Test:'World!'};
+        const t = new UniqueArrayCheck();
+        t.prop = [1,2,3,4];
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = [tmp1, tmp2];
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = [tmp1, tmp1];
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.prop = [1, 1];
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('ArrayIsNotEmpty check', async () => {
+        class ArrayIsNotEmptyCheck {
+            @ArrayNotEmpty('Invalid')
+            prop: any[];
+        }
+        const t = new ArrayIsNotEmptyCheck();
+        t.prop = [];
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.prop = [1];
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = null;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
     });
 });
