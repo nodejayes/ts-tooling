@@ -4,7 +4,15 @@ import {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals
 } from '../../src/ts-tooling';
-import {ArrayNotEmpty, IsInt, IsOptional, Required, UniqueArray} from "../../src/utils/class.validator";
+import {
+    ArrayNotEmpty,
+    IsInt,
+    IsNegative,
+    IsOptional,
+    IsPositive,
+    Required,
+    UniqueArray
+} from "../../src/utils/class.validator";
 
 class Test {
     @IsDefined()
@@ -365,5 +373,44 @@ describe('ClassValidator Tests', () => {
         t.prop = null;
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 0);
+    });
+    it('IsPositive check', async () => {
+        class IsPositiveCheck {
+            @IsPositive('Invalid')
+            prop: number;
+        }
+        const t = new IsPositiveCheck();
+        t.prop = 0;
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 1;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = -1;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsNegative check', async () => {
+        class IsNegativeCheck {
+            @IsNegative('Invalid')
+            prop: number;
+        }
+        const t = new IsNegativeCheck();
+        t.prop = -1;
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 0;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.prop = 1;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
     });
 });

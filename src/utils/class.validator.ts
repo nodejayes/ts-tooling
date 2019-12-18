@@ -71,6 +71,12 @@ export class ClassValidator {
                         case 'IsInt':
                             executeValidation(value, v => isNaN(parseInt(v.toString())) || v.toString().Contains('.'), validationMessage, errors);
                             break;
+                        case 'IsPositive':
+                            executeValidation(value, v => v < 0, validationMessage, errors);
+                            break;
+                        case 'IsNegative':
+                            executeValidation(value, v => v >= 0, validationMessage, errors);
+                            break;
                         case 'ArrayNotEmpty':
                             executeValidation(value, v => v ? !v.Any() : false, validationMessage, errors);
                             break;
@@ -392,6 +398,30 @@ export function ArrayNotEmpty(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be empty.`;
         registerInStore(target, propertyKey, 'ArrayNotEmpty', true, message);
+    }
+}
+
+/**
+ * check the Value for a Positive number
+ * @param validationMessage
+ * @constructor
+ */
+export function IsPositive(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have Positive Values.`;
+        registerInStore(target, propertyKey, 'IsPositive', true, message);
+    }
+}
+
+/**
+ * check the Value for a Negative number
+ * @param validationMessage
+ * @constructor
+ */
+export function IsNegative(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have Positive Values.`;
+        registerInStore(target, propertyKey, 'IsNegative', true, message);
     }
 }
 
