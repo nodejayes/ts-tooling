@@ -7,7 +7,7 @@ import {
 import {
     ArrayNotEmpty, IsBooleanString,
     IsInt,
-    IsNegative,
+    IsNegative, IsNumberString,
     IsOptional,
     IsPositive,
     Required,
@@ -432,6 +432,29 @@ describe('ClassValidator Tests', () => {
         assert.lengthOf(res, 0);
 
         t.prop = 'FALSE';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'xxx';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsNumberString check', async () => {
+        class IsNumberStringCheck {
+            @IsNumberString('Invalid')
+            prop: string;
+        }
+        const t = new IsNumberStringCheck();
+        t.prop = '1';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '1.2';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '1xxx2';
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 0);
 

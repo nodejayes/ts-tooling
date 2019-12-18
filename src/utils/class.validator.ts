@@ -74,6 +74,9 @@ export class ClassValidator {
                         case 'IsBooleanString':
                             executeValidation(value, v => v !== 'true' && v !== 'false' && v !== 'TRUE' && v !== 'FALSE', validationMessage, errors);
                             break;
+                        case 'IsNumberString':
+                            executeValidation(value, v => isNaN(parseFloat(v)), validationMessage, errors);
+                            break;
                         case 'IsPositive':
                             executeValidation(value, v => v < 0, validationMessage, errors);
                             break;
@@ -441,9 +444,20 @@ export function IsBooleanString(validationMessage?: string) {
     }
 }
 
+/**
+ * check if the String contain Numbers Only
+ * @param validationMessage
+ * @constructor
+ */
+export function IsNumberString(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contain Numbers.`;
+        registerInStore(target, propertyKey, 'IsNumberString', true, message);
+    }
+}
+
 // MinDate
 // MaxDate
-// IsNumberString
 
 // IsAlpha Checks if the string contains only letters (a-zA-Z).
 // IsAlphanumeric Checks if the string contains only letters and numbers.
