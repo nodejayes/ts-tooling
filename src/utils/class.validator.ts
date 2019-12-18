@@ -83,6 +83,10 @@ export class ClassValidator {
                         case 'IsNegative':
                             executeValidation(value, v => v >= 0, validationMessage, errors);
                             break;
+                        case 'IsHash':
+                            executeValidation(value, v => /[0-9a-f]/i.test(v) &&
+                                ![32, 40, 64, 128].Contains(v.length), validationMessage, errors);
+                            break;
                         case 'ArrayNotEmpty':
                             executeValidation(value, v => v ? !v.Any() : false, validationMessage, errors);
                             break;

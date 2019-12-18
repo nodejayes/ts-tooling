@@ -5,7 +5,7 @@ import {
     MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals
 } from '../../src/ts-tooling';
 import {
-    ArrayNotEmpty, IsBooleanString,
+    ArrayNotEmpty, IsBooleanString, IsHash,
     IsInt,
     IsNegative, IsNumberString,
     IsOptional,
@@ -459,6 +459,59 @@ describe('ClassValidator Tests', () => {
         assert.lengthOf(res, 0);
 
         t.prop = 'xxx';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsHash check', async () => {
+        class IsHashCheck {
+            @IsHash('Invalid')
+            prop: string;
+        }
+        const t = new IsHashCheck();
+
+        // MD5
+        t.prop = 'd41d8cd98f00b204e9800998ecf8427e';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        // SHA-1
+        t.prop = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        // SHA-256
+        t.prop = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        // SHA-512
+        t.prop = 'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        // RIPEMD-160
+        t.prop = '9c1185a5c5e9fc54612808977ee8f548b2258d31';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        // Snefru
+        t.prop = '8617f366566a011837f4fb4ba5bedea2b892f3ed8b894023d16ae344b2be5881';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        // GHOST
+        t.prop = 'ce85b99cc46752fffee35cab9a7b0278abb4c2d2055cff685af4912c49490f8d';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        //Whirlpool
+        t.prop = '19fa61d75522a4669b44e39c1d2e1726c530232130d407f89afee0964997f7a73e83be698b288febcf88e3e03c4f0757ea8964e59b63d93708b138cc42a66eb3';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        // no Hash
+        t.prop = 'HalloWelt';
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');
