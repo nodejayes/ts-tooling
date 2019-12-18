@@ -5,7 +5,7 @@ import {
     MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals
 } from '../../src/ts-tooling';
 import {
-    ArrayNotEmpty,
+    ArrayNotEmpty, IsBooleanString,
     IsInt,
     IsNegative,
     IsOptional,
@@ -409,6 +409,33 @@ describe('ClassValidator Tests', () => {
         assert.equal(res.ElementAt(0).Message, 'Invalid');
 
         t.prop = 1;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsBooleanString check', async () => {
+        class IsBooleanStringCheck {
+            @IsBooleanString('Invalid')
+            prop: string;
+        }
+        const t = new IsBooleanStringCheck();
+        t.prop = 'true';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'false';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'TRUE';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'FALSE';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'xxx';
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');

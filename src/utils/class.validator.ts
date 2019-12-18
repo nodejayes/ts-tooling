@@ -71,6 +71,9 @@ export class ClassValidator {
                         case 'IsInt':
                             executeValidation(value, v => isNaN(parseInt(v.toString())) || v.toString().Contains('.'), validationMessage, errors);
                             break;
+                        case 'IsBooleanString':
+                            executeValidation(value, v => v !== 'true' && v !== 'false' && v !== 'TRUE' && v !== 'FALSE', validationMessage, errors);
+                            break;
                         case 'IsPositive':
                             executeValidation(value, v => v < 0, validationMessage, errors);
                             break;
@@ -425,16 +428,23 @@ export function IsNegative(validationMessage?: string) {
     }
 }
 
-// IsDivisibleBy
-// IsPositive
-// IsNegative
+/**
+ * check if the String has any valid Boolean declaration like
+ * true, false, TRUE, FALSE
+ * @param validationMessage
+ * @constructor
+ */
+export function IsBooleanString(validationMessage?: string) {
+    return function (target, propertyKey: string) {
+        const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Boolean String.`;
+        registerInStore(target, propertyKey, 'IsBooleanString', true, message);
+    }
+}
+
 // MinDate
 // MaxDate
-// IsBooleanString
 // IsNumberString
 
-// Contains
-// NotContains
 // IsAlpha Checks if the string contains only letters (a-zA-Z).
 // IsAlphanumeric Checks if the string contains only letters and numbers.
 // IsDecimal
