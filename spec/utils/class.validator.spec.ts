@@ -15,7 +15,7 @@ import {
     IsHash,
     IsHexadecimal,
     IsHexColor,
-    IsInt, IsIp, IsJSON, IsMacAddress,
+    IsInt, IsIp, IsJSON, IsJWT, IsMacAddress,
     IsMongoId,
     IsNegative,
     IsNumberString,
@@ -875,6 +875,22 @@ describe('ClassValidator Tests', () => {
         assert.lengthOf(res, 0);
 
         t.prop = 'xxxx';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsJWT check', async () => {
+        class IsJWTCheck {
+            @IsJWT('Invalid')
+            prop: string;
+        }
+        const t = new IsJWTCheck();
+
+        t.prop = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'Hello';
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');

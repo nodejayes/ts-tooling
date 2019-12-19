@@ -148,6 +148,7 @@ export class ClassValidator {
                             }, validationMessage, errors);
                             break;
                         case 'IsJWT':
+                            executeValidation(value, v => !/^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$/g.test(v), validationMessage, errors);
                             break;
                         case 'IsByteLength':
                             executeValidation(value, (v: string) => v.Bytes() > validationValue, validationMessage, errors);
@@ -633,6 +634,11 @@ export function IsHexadecimal(validationMessage?: string) {
     }
 }
 
+/**
+ * check if the String is a MAC Address
+ * @param validationMessage
+ * @constructor
+ */
 export function IsMacAddress(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MAC Address.`;
@@ -640,6 +646,11 @@ export function IsMacAddress(validationMessage?: string) {
     }
 }
 
+/**
+ * check if the String is a IP Address
+ * @param validationMessage
+ * @constructor
+ */
 export function IsIp(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a IP Address.`;
@@ -647,6 +658,11 @@ export function IsIp(validationMessage?: string) {
     }
 }
 
+/**
+ * check if the String or Number is a Port Number
+ * @param validationMessage
+ * @constructor
+ */
 export function IsPort(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Port Number.`;
@@ -654,6 +670,11 @@ export function IsPort(validationMessage?: string) {
     }
 }
 
+/**
+ * check if the String is a JSON String
+ * @param validationMessage
+ * @constructor
+ */
 export function IsJSON(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON String.`;
@@ -661,6 +682,11 @@ export function IsJSON(validationMessage?: string) {
     }
 }
 
+/**
+ * check if the String is a JSON Web Token
+ * @param validationMessage
+ * @constructor
+ */
 export function IsJWT(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON Web Token.`;
