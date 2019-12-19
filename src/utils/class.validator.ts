@@ -120,12 +120,32 @@ export class ClassValidator {
                             executeValidation(value, v => !/(?:0[xX])?[0-9a-fA-F]+/g.test(v), validationMessage, errors);
                             break;
                         case 'IsMacAddress':
+                            executeValidation(value, v => !/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/g.test(v), validationMessage, errors);
                             break;
                         case 'IsPort':
+                            executeValidation(value, v => {
+                                let val = v;
+                                if (typeof v === typeof '') {
+                                    val = parseInt(v);
+                                }
+                                if (isNaN(val)) {
+                                    return true;
+                                }
+                                return val > 65536 ||val < 1
+                            }, validationMessage, errors);
                             break;
                         case 'IsIp':
+                            executeValidation(value, v => !/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/g.test(v), validationMessage, errors);
                             break;
                         case 'IsJSON':
+                            executeValidation(value, v => {
+                                try {
+                                    JSON.parse(v);
+                                    return false;
+                                } catch (e) {
+                                    return true;
+                                }
+                            }, validationMessage, errors);
                             break;
                         case 'IsJWT':
                             break;

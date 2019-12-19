@@ -15,11 +15,11 @@ import {
     IsHash,
     IsHexadecimal,
     IsHexColor,
-    IsInt,
+    IsInt, IsIp, IsJSON, IsMacAddress,
     IsMongoId,
     IsNegative,
     IsNumberString,
-    IsOptional,
+    IsOptional, IsPort,
     IsPositive,
     IsUrl,
     IsUUID,
@@ -770,6 +770,111 @@ describe('ClassValidator Tests', () => {
         assert.lengthOf(res, 0);
 
         t.prop = '12345';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsMacAddress check', async () => {
+        class IsMacAddressCheck {
+            @IsMacAddress('Invalid')
+            prop: string;
+        }
+        const t = new IsMacAddressCheck();
+
+        t.prop = '3D-F2-C9-A6-B3-4F';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '3D:F2:C9:A6:B3:4F';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '3D:F2:C9:A6:B3:4F:';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsPort check', async () => {
+        class IsPortCheck {
+            @IsPort('Invalid')
+            prop: number | string;
+        }
+        const t = new IsPortCheck();
+
+        t.prop = 1;
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 65536;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 65537;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.prop = 0;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.prop = '1';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '65536';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '65537';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.prop = '0';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.prop = 'x';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsIp check', async () => {
+        class IsIpCheck {
+            @IsIp('Invalid')
+            prop: string;
+        }
+        const t = new IsIpCheck();
+
+        t.prop = '192.168.1.1';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '000.0000.00.00';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+
+        t.prop = '912.456.123.123';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsJson check', async () => {
+        class IsJsonCheck {
+            @IsJSON('Invalid')
+            prop: string;
+        }
+        const t = new IsJsonCheck();
+
+        t.prop = JSON.stringify({Hello:'World'});
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'xxxx';
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');
