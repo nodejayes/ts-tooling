@@ -253,3 +253,7 @@ String.prototype.IsAscii = function (): boolean {
     }
     return true;
 };
+
+String.prototype.Bytes = function (): number {
+    return Buffer.byteLength(this);
+};

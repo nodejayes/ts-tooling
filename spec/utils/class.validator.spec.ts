@@ -5,11 +5,26 @@ import {
     MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals, DateTime
 } from '../../src/ts-tooling';
 import {
-    ArrayNotEmpty, IsAlpha, IsAlphanumeric, IsAscii, IsBase64, IsBooleanString, IsHash,
-    IsInt, IsMongoId,
-    IsNegative, IsNumberString,
+    ArrayNotEmpty,
+    IsAlpha,
+    IsAlphanumeric,
+    IsAscii,
+    IsBase64,
+    IsBooleanString,
+    IsByteLength,
+    IsHash,
+    IsHexadecimal,
+    IsHexColor,
+    IsInt,
+    IsMongoId,
+    IsNegative,
+    IsNumberString,
     IsOptional,
-    IsPositive, IsUrl, IsUUID, MaxDate, MinDate,
+    IsPositive,
+    IsUrl,
+    IsUUID,
+    MaxDate,
+    MinDate,
     Required,
     UniqueArray
 } from "../../src/utils/class.validator";
@@ -691,6 +706,70 @@ describe('ClassValidator Tests', () => {
         assert.lengthOf(res, 0);
 
         t.prop = 'hello:world!?$*&()\'-=@~';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsHexColor check', async () => {
+        class IsHexColorCheck {
+            @IsHexColor('Invalid')
+            prop: string;
+        }
+        const t = new IsHexColorCheck();
+
+        t.prop = '#ffffff';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '#ffffffff';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '#ffffffffff';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsHexadecimal check', async () => {
+        class IsHexadecimalCheck {
+            @IsHexadecimal('Invalid')
+            prop: string;
+        }
+        const t = new IsHexadecimalCheck();
+
+        t.prop = 'AF050505';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'AF050505'.ToLowerCase();
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '0xAF050505';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '#AF050505';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'xxxxxxxx';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsByteLength check', async () => {
+        class IsByteLengthCheck {
+            @IsByteLength(4, 'Invalid')
+            prop: string;
+        }
+        const t = new IsByteLengthCheck();
+
+        t.prop = '1234';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = '12345';
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');

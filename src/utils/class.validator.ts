@@ -114,8 +114,10 @@ export class ClassValidator {
                             executeValidation(value, v => !/^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{4})$/g.test(v), validationMessage, errors);
                             break;
                         case 'IsHexColor':
+                            executeValidation(value, v => !/^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/g.test(v), validationMessage, errors);
                             break;
                         case 'IsHexadecimal':
+                            executeValidation(value, v => !/(?:0[xX])?[0-9a-fA-F]+/g.test(v), validationMessage, errors);
                             break;
                         case 'IsMacAddress':
                             break;
@@ -128,6 +130,7 @@ export class ClassValidator {
                         case 'IsJWT':
                             break;
                         case 'IsByteLength':
+                            executeValidation(value, (v: string) => v.Bytes() > validationValue, validationMessage, errors);
                             break;
                         case 'IsMongoId':
                             executeValidation(value, v => !/^[0-9a-fA-F]{24}$/g.test(v), validationMessage, errors);
@@ -585,6 +588,12 @@ export function IsBase64(validationMessage?: string) {
     }
 }
 
+/**
+ * check if a String is a Hex Color
+ * supported Hex Color with 8 (with Alpha), 6 (Default) or 3 (Short) Characters
+ * @param validationMessage
+ * @constructor
+ */
 export function IsHexColor(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hex Color String.`;
@@ -592,6 +601,11 @@ export function IsHexColor(validationMessage?: string) {
     }
 }
 
+/**
+ * check if a String is a Hexadecimal String
+ * @param validationMessage
+ * @constructor
+ */
 export function IsHexadecimal(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hexadecimal String.`;
@@ -634,6 +648,12 @@ export function IsJWT(validationMessage?: string) {
     }
 }
 
+/**
+ * check if the String has the Maximum Bytes Size of the given Value
+ * @param value
+ * @param validationMessage
+ * @constructor
+ */
 export function IsByteLength(value: number, validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have a Length of ${value} Bytes.`;

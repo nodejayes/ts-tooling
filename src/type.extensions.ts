@@ -417,6 +417,12 @@ declare global {
          * @constructor
          */
         IsAscii(): boolean;
+
+        /**
+         * return the Size of the String in Bytes
+         * @constructor
+         */
+        Bytes(): number;
     }
     interface Array<T> {
         /**
