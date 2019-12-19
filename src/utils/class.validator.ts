@@ -111,6 +111,7 @@ export class ClassValidator {
                             executeValidation(value, v => typeof v !== typeof '' || !v.IsAscii(), validationMessage, errors);
                             break;
                         case 'IsBase64':
+                            executeValidation(value, v => !/^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{4})$/g.test(v), validationMessage, errors);
                             break;
                         case 'IsHexColor':
                             break;
@@ -536,6 +537,11 @@ export function MaxDate(value: DateTime, validationMessage?: string) {
     }
 }
 
+/**
+ * check if the String contains only letters a-z
+ * @param validationMessage
+ * @constructor
+ */
 export function IsAlpha(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters (a-zA-Z).`;
@@ -543,6 +549,11 @@ export function IsAlpha(validationMessage?: string) {
     }
 }
 
+/**
+ * check if the string only contains letters a-z and numbers 0-9
+ * @param validationMessage
+ * @constructor
+ */
 export function IsAlphanumeric(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters and numbers.`;
@@ -550,6 +561,11 @@ export function IsAlphanumeric(validationMessage?: string) {
     }
 }
 
+/**
+ * check if the String only contains Ascii Characters
+ * @param validationMessage
+ * @constructor
+ */
 export function IsAscii(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Ascii String.`;
@@ -557,6 +573,11 @@ export function IsAscii(validationMessage?: string) {
     }
 }
 
+/**
+ * check if the String is a Base64 string
+ * @param validationMessage
+ * @constructor
+ */
 export function IsBase64(validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Base64 String.`;

@@ -5,7 +5,7 @@ import {
     MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals, DateTime
 } from '../../src/ts-tooling';
 import {
-    ArrayNotEmpty, IsAlpha, IsAlphanumeric, IsAscii, IsBooleanString, IsHash,
+    ArrayNotEmpty, IsAlpha, IsAlphanumeric, IsAscii, IsBase64, IsBooleanString, IsHash,
     IsInt, IsMongoId,
     IsNegative, IsNumberString,
     IsOptional,
@@ -675,6 +675,22 @@ describe('ClassValidator Tests', () => {
         assert.lengthOf(res, 0);
 
         t.prop = nonAsciiExample;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsBase64 check',async () => {
+        class IsBase64Check {
+            @IsBase64('Invalid')
+            prop: string;
+        }
+        const t = new IsBase64Check();
+
+        t.prop = 'aGVsbG86d29ybGQhPyQqJigpJy09QH4=';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'hello:world!?$*&()\'-=@~';
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');
