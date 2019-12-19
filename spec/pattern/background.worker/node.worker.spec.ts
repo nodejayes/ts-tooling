@@ -4,6 +4,7 @@ import {join} from 'path';
 import {BackgroundWorker} from '../../../src/ts-tooling';
 
 const WORKER_1_TYPESCRIPT = join(__dirname, './worker1.ts');
+const WORKER_1_FAIL_TYPESCRIPT = join(__dirname, './worker1_fail.ts');
 const WORKER_2_JAVASCRIPT = join(__dirname, './worker2.js');
 const NOT_EXISTS_WORKER_FILE = join(__dirname, './worker3.ts');
 const TEST_BASH_SCRIPT = join(__dirname, './test.bash');
@@ -63,5 +64,15 @@ describe('BackgroundWorker Tests', () => {
         assert.throws(() => {
             worker.Run();
         }, TEST_BASH_SCRIPT + ' is not supported Script for BackgroundWorker');
+    });
+    it('invoke Error Stream', (done) => {
+        const worker = new BackgroundWorker(WORKER_1_FAIL_TYPESCRIPT);
+        worker.OnError.subscribe(err => {
+            done();
+        });
+        worker.OnFinish.subscribe(d => {
+            assert.fail('a Error was thrown in worker!');
+        });
+        worker.Run(5);
     });
 });

@@ -107,6 +107,12 @@ describe('TimeSpan Tests', () => {
         assert.equal(TimeSpan.FromISOString('05:22:12').Minute, 22);
         assert.equal(TimeSpan.FromISOString('05:22:12').Second, 12);
         assert.equal(TimeSpan.FromISOString('05:22:12').Millisecond, 0);
+
+        assert.equal(TimeSpan.FromISOString('1.05:22:12').Day, 1);
+        assert.equal(TimeSpan.FromISOString('1.05:22:12').Hour, 5);
+        assert.equal(TimeSpan.FromISOString('1.05:22:12').Minute, 22);
+        assert.equal(TimeSpan.FromISOString('1.05:22:12').Second, 12);
+        assert.equal(TimeSpan.FromISOString('1.05:22:12').Millisecond, 0);
     });
 
     it('can create TimeSpan from Milliseconds', () => {

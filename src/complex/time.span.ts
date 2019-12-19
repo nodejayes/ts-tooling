@@ -12,9 +12,9 @@ function parseString(str: string): DurationObject {
 
     if (str.indexOf('.') !== -1) {
         const tmp1 = str.split('.');
-        d = parseInt(tmp1[0].replace('.', ''));
+        d = parseInt(tmp1[0]);
         d = isNaN(d) ? 0 : d;
-        str = tmp1[2];
+        str = tmp1[1];
     }
     const tmp2 = str.split(':');
     h = parseInt(tmp2[0]);

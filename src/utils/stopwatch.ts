@@ -71,9 +71,6 @@ export class StopWatch {
      */
     public SectionElapsedMs(key: string): number {
         let tmp = this._multipleIsPause[key] ? 0 : this.getMultipleTimeDiff(key);
-        if (isNaN(tmp)) {
-            tmp = 0;
-        }
         if (!this._multipleMeasures[key]) {
             this._multipleMeasures[key] = [];
         }
@@ -142,9 +139,6 @@ export class StopWatch {
     private getTimeDiff(): number {
         if (!this.isBrowser()) {
             const tmp2 = this._time as [number, number];
-            if (!tmp2) {
-                return 0
-            }
             const t = process.hrtime(tmp2);
             return (t[0] * NS_PER_SEC + t[1])/1000000
         }

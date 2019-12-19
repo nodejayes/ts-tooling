@@ -1,3 +1,6 @@
+import {BackgroundWorker} from "../../src/pattern/background.worker/background.worker";
+import {assert} from "chai";
+
 describe('BackgroundWorker Tests', () => {
     it('run BackgroundWorker with external File', (done) => {
         const worker = new tst.BackgroundWorker('worker1.js');
@@ -34,5 +37,15 @@ describe('BackgroundWorker Tests', () => {
         chai.assert.throws(() => {
             new tst.BackgroundWorker('test.bash');
         }, 'test.bash is not supported Script for BackgroundWorker');
+    });
+    it('invoke Error Stream', (done) => {
+        var worker = new tst.BackgroundWorker(WORKER_1_FAIL_TYPESCRIPT);
+        worker.OnError.subscribe(err => {
+            done();
+        });
+        worker.OnFinish.subscribe(d => {
+            chai.assert.fail('a Error was thrown in worker!');
+        });
+        worker.Run(5);
     });
 });

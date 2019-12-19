@@ -40,12 +40,19 @@ export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K>{
         const worker = new Worker(workerScript, {
             workerData: p,
         });
+        let workerIsFinish = false;
 
         worker.on('message', (result) => {
             this.OnFinish.next(result);
+            workerIsFinish = true;
         });
         worker.on('error', (err) => {
             this.OnError.next(err);
+        });
+        worker.on('exit', () => {
+            if (!workerIsFinish) {
+                this.OnError.next(new Error('worker exited before Finish'));
+            }
         });
     }
 }

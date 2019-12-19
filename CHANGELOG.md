@@ -3,9 +3,10 @@
 * Reactive Store Wrap BehaviorSubject to prevent the User to change the Last Value and emit Values with next Function
 * add ObjectFactory with Circular Detection
 * own Validator Implementation reduces Bundle Size
-* Fix String ContainsCount Bug when searching empty String a Count was returned
+* Fix String.ContainsCount Bug when searching empty String a Count was returned
+* Fix TimeSpan.FromISOString Bug when given a TimeSpan String with Days
 * add more Test Cases
-* reduce code in String TextBetween
+* reduce code in String, StopWatch
 
 ### 2.1.3
 

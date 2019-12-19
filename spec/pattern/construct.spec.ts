@@ -18,5 +18,6 @@ describe('construct Tests', () => {
        const factory = (argument1: string) => { return argument1; };
        assert.equal(createWithFactory<string>(factory, ['test']), 'test');
        assert.equal(createWithFactory<string>(factory, [], 'default'), 'default');
+       assert.equal(createWithFactory<string>(<any>undefined, [], 'default'), 'default');
    });
 });
