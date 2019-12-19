@@ -3,6 +3,9 @@
 * Reactive Store Wrap BehaviorSubject to prevent the User to change the Last Value and emit Values with next Function
 * add ObjectFactory with Circular Detection
 * own Validator Implementation reduces Bundle Size
+* Fix String ContainsCount Bug when searching empty String a Count was returned
+* add more Test Cases
+* reduce code in String TextBetween
 
 ### 2.1.3
 

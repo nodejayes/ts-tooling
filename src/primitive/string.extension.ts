@@ -168,7 +168,7 @@ String.prototype.Contains = function (search: string): boolean {
 String.prototype.ContainsCount = function (search: string, allowOverlapping?: boolean): number {
     allowOverlapping = allowOverlapping === true;
     if (search.length <= 0) {
-        return this.length + 1;
+        return 0;
     }
 
     let n = 0;
@@ -228,14 +228,7 @@ String.prototype.LastIndexOf = function (value: string): number {
 String.prototype.TextBetween = function (begin: string, end: string): string[] {
     const tmp = [];
     for (const split of this.Split(begin)) {
-        if (!split) {
-            tmp.Add('');
-            continue;
-        }
         const between = split.Split(end).FirstOrDefault(() => true);
-        if (!between) {
-            continue;
-        }
         tmp.Add(between);
     }
     if (!this.StartsWith(begin) || this.EndsWith(tmp.ElementAt(0))) {

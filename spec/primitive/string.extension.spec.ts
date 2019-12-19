@@ -110,6 +110,7 @@ describe('String Extension Tests', () => {
         assert.equal('abbbbabbbac'.Split('a').ElementAt(0), 'bbbb');
         assert.equal('abbbbabbbac'.Split('a').ElementAt(1), 'bbb');
         assert.equal('abbbbabbbac'.Split('a').ElementAt(2), 'c');
+        assert.equal(''.Split(',').Count(), 0);
     });
 
     it('can make Chars to lower String', () => {
@@ -211,6 +212,8 @@ describe('String Extension Tests', () => {
         assert.equal('abbcbbcdefgabcdefg'.TextBetween('a', 'c').Count(), 2);
         assert.equal('abbcbbcdefgabcdefg'.TextBetween('a', 'c').ElementAt(0), 'bb');
         assert.equal('abbcbbcdefgabcdefg'.TextBetween('a', 'c').ElementAt(1), 'b');
+        assert.equal(''.TextBetween('a', 'c').Count(), 0);
+        assert.equal('     '.TextBetween(' ', ' ').Count(), 0);
     });
 
     it('can get a char at position', () => {
@@ -231,6 +234,7 @@ describe('String Extension Tests', () => {
         assert.equal('zzabcabcabczz'.ContainsCount('cabc', true), 2);
         assert.equal('zzab ab abczz'.ContainsCount(' '), 2);
         assert.equal(' '.ContainsCount(' '), 1);
+        assert.equal('xxxxxxxx'.ContainsCount(''), 0);
     });
 
     it('check if string is Empty', () => {
@@ -252,5 +256,6 @@ describe('String Extension Tests', () => {
         ];
         const target = '';
         assert.equal(target.Join(list, ','), 'a,b,c');
+        assert.equal(target.Join([], ','), '');
     });
 });
