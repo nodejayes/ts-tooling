@@ -178,7 +178,7 @@ export class ClassValidator {
                             }, validationMessage, errors);
                             break;
                         case 'CustomValidation':
-                            executeValidation(value, validationValue, validationMessage, errors);
+                            executeValidation(value, v => !validationValue(v), validationMessage, errors);
                             break;
                     }
                 }

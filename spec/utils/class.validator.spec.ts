@@ -2,10 +2,8 @@ import {assert} from 'chai';
 import 'mocha';
 import {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty,
-    MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals, DateTime
-} from '../../src/ts-tooling';
-import {
-    ArrayNotEmpty,
+    MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals, DateTime,
+    ArrayNotEmpty, CustomValidation,
     IsAlpha,
     IsAlphanumeric,
     IsAscii,
@@ -27,7 +25,7 @@ import {
     MinDate,
     Required,
     UniqueArray
-} from "../../src/utils/class.validator";
+} from '../../src/ts-tooling';
 
 class Test {
     @IsDefined()
@@ -891,6 +889,56 @@ describe('ClassValidator Tests', () => {
         assert.lengthOf(res, 0);
 
         t.prop = 'Hello';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('CustomValidator check', async () => {
+        class CustomValidatorCheck {
+            @CustomValidation(v => v === 5, 'Invalid')
+            prop: number;
+        }
+        const t = new CustomValidatorCheck();
+
+        t.prop = 5;
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 6;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('validate Array with SubObjects', async () => {
+        class ArrayWithSubObjectsSub {
+            @CustomValidation(v => v === 'a', 'Invalid')
+            prop: string;
+        }
+        class ArrayWithSubObjectsMain {
+            sub: ArrayWithSubObjectsSub;
+        }
+        class ArrayWithSubObjects {
+            prop: ArrayWithSubObjectsMain[];
+        }
+        const t = new ArrayWithSubObjects();
+        const main1 = new ArrayWithSubObjectsMain();
+        const main2 = new ArrayWithSubObjectsMain();
+        const main3 = new ArrayWithSubObjectsMain();
+        const sub1 = new ArrayWithSubObjectsSub();
+        const sub2 = new ArrayWithSubObjectsSub();
+        const sub3 = new ArrayWithSubObjectsSub();
+        sub1.prop = 'a';
+        sub2.prop = 'a';
+        sub3.prop = 'x';
+        main1.sub = sub1;
+        main2.sub = sub2;
+        main3.sub = sub3;
+
+        t.prop = [main1, main2];
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop.Add(main3);
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');
