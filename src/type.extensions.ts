@@ -411,6 +411,12 @@ declare global {
          * @constructor
          */
         TextBetween(begin: string, end: string): string[];
+
+        /**
+         * the current String contains only Ascii Characters
+         * @constructor
+         */
+        IsAscii(): boolean;
     }
     interface Array<T> {
         /**

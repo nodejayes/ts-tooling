@@ -244,3 +244,12 @@ String.prototype.TextBetween = function (begin: string, end: string): string[] {
     }
     return tmp;
 };
+
+String.prototype.IsAscii = function (): boolean {
+    for (let i = 0; i < this.length; i++) {
+        if (this.charCodeAt(i) > 127) {
+            return false;
+        }
+    }
+    return true;
+};

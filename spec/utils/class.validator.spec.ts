@@ -2,14 +2,14 @@ import {assert} from 'chai';
 import 'mocha';
 import {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty,
-    MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals
+    MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals, DateTime
 } from '../../src/ts-tooling';
 import {
-    ArrayNotEmpty, IsBooleanString, IsHash,
+    ArrayNotEmpty, IsAlpha, IsAlphanumeric, IsAscii, IsBooleanString, IsHash,
     IsInt, IsMongoId,
     IsNegative, IsNumberString,
     IsOptional,
-    IsPositive, IsUrl, IsUUID,
+    IsPositive, IsUrl, IsUUID, MaxDate, MinDate,
     Required,
     UniqueArray
 } from "../../src/utils/class.validator";
@@ -582,6 +582,99 @@ describe('ClassValidator Tests', () => {
         assert.lengthOf(res, 0);
 
         t.prop = 'Hallo';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('MinDate check', async () => {
+        class MinDateCheck {
+            @MinDate(new DateTime('UTC', 2019,1,1,0,0,0, 0), 'Invalid')
+            prop: DateTime;
+        }
+        const t = new MinDateCheck();
+        t.prop = new DateTime('UTC', 2019,1,1,2,0,0, 0);
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = new DateTime('UTC', 2019,1,1,0,0,0, 0);
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = new DateTime('UTC', 2018,12,31,23,59,59, 999);
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('MaxDate check', async () => {
+        class MaxDateCheck {
+            @MaxDate(new DateTime('UTC', 2019,1,1,0,0,0, 0), 'Invalid')
+            prop: DateTime;
+        }
+        const t = new MaxDateCheck();
+        t.prop = new DateTime('UTC', 2018,12,31,23,59,59, 999);
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = new DateTime('UTC', 2019,1,1,0,0,0, 0);
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = new DateTime('UTC', 2019,1,1,0,0,0, 1);
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsAlpha check', async () => {
+        class IsAlphaCheck {
+            @IsAlpha('Invalid')
+            prop: string;
+        }
+        const t = new IsAlphaCheck();
+        t.prop = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsAlphanumeric check', async () => {
+        class IsAlphanumericCheck {
+            @IsAlphanumeric('Invalid')
+            prop: string;
+        }
+        const t = new IsAlphanumericCheck();
+        t.prop = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('IsAscii check', async () => {
+        class IsAsciiCheck {
+            @IsAscii('Invalid')
+            prop: string;
+        }
+        const t = new IsAsciiCheck();
+
+        let asciiExample = '';
+        let nonAsciiExample = '';
+        for (let i = 0; i <= 127; i++) {
+            asciiExample += String.fromCharCode(i);
+        }
+        for (let i = 128; i <= 255; i++) {
+            nonAsciiExample += String.fromCharCode(i);
+        }
+
+        t.prop = asciiExample;
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop = nonAsciiExample;
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');

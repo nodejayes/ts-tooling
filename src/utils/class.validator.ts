@@ -101,8 +101,41 @@ export class ClassValidator {
                         case 'IsUrl':
                             executeValidation(value, v => !isValidUrl(v), validationMessage, errors);
                             break;
+                        case 'IsAlpha':
+                            executeValidation(value, v => !/^[a-zA-Z]*$/g.test(v), validationMessage, errors);
+                            break;
+                        case 'IsAlphanumeric':
+                            executeValidation(value, v => !/^[a-zA-Z0-9]*$/g.test(v), validationMessage, errors);
+                            break;
+                        case 'IsAscii':
+                            executeValidation(value, v => typeof v !== typeof '' || !v.IsAscii(), validationMessage, errors);
+                            break;
+                        case 'IsBase64':
+                            break;
+                        case 'IsHexColor':
+                            break;
+                        case 'IsHexadecimal':
+                            break;
+                        case 'IsMacAddress':
+                            break;
+                        case 'IsPort':
+                            break;
+                        case 'IsIp':
+                            break;
+                        case 'IsJSON':
+                            break;
+                        case 'IsJWT':
+                            break;
+                        case 'IsByteLength':
+                            break;
                         case 'IsMongoId':
                             executeValidation(value, v => !/^[0-9a-fA-F]{24}$/g.test(v), validationMessage, errors);
+                            break;
+                        case 'MinDate':
+                            executeValidation(value, (v: DateTime) => v.IsBefore(validationValue), validationMessage, errors);
+                            break;
+                        case 'MaxDate':
+                            executeValidation(value, (v: DateTime) => v.IsAfter(validationValue), validationMessage, errors);
                             break;
                         case 'ArrayNotEmpty':
                             executeValidation(value, v => v ? !v.Any() : false, validationMessage, errors);
@@ -477,6 +510,12 @@ export function IsNumberString(validationMessage?: string) {
     }
 }
 
+/**
+ * check if a DateTime is After the value
+ * @param value
+ * @param validationMessage
+ * @constructor
+ */
 export function MinDate(value: DateTime, validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be greater than ${value.toString()}.`;
@@ -484,6 +523,12 @@ export function MinDate(value: DateTime, validationMessage?: string) {
     }
 }
 
+/**
+ * check if a DateTime is Before the value
+ * @param value
+ * @param validationMessage
+ * @constructor
+ */
 export function MaxDate(value: DateTime, validationMessage?: string) {
     return function (target, propertyKey: string) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be lower than ${value.toString()}.`;
