@@ -1,5 +1,6 @@
 import {assert} from 'chai';
 import 'mocha';
+import '../../lib/ts-tooling';
 const {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals, DateTime,
@@ -90,7 +91,7 @@ class EmptyValue {
     prop: string;
 }
 
-describe('ClassValidator Tests', () => {
+describe('ClassValidator Bundle Tests', () => {
     it('validate decorated Class', async () => {
         const valid = new Test();
         valid.Name = 'Max';
