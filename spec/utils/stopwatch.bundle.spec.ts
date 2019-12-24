@@ -1,10 +1,10 @@
 import {assert} from 'chai';
 import 'mocha';
-import {StopWatch} from '../../src/ts-tooling';
+const tst = require('../../lib/ts-tooling');
 
-describe("Test StopWatch", () => {
+describe("Test StopWatch Bundle", () => {
     it('can create the Stopwatch and measure the Time', (done) => {
-        const sw = new StopWatch();
+        const sw = new tst.StopWatch();
         setTimeout(() => {
             assert.isAbove(sw.ElapsedMs(), 0);
             done();
@@ -12,7 +12,7 @@ describe("Test StopWatch", () => {
     });
 
     it('can measure multiple Times', (done) => {
-        const sw = new StopWatch();
+        const sw = new tst.StopWatch();
         sw.SectionStart('1');
         setTimeout(() => {
             assert.isAbove(sw.SectionElapsedMs('1'), 0);
@@ -21,7 +21,7 @@ describe("Test StopWatch", () => {
     });
 
     it('nothing on select not existent Section elapsed', (done) => {
-        const sw = new StopWatch();
+        const sw = new tst.StopWatch();
         setTimeout(() => {
             assert.equal(sw.SectionElapsedMs('1'), 0);
             done();
@@ -29,7 +29,7 @@ describe("Test StopWatch", () => {
     });
 
     it('overwrite existing Section', (done) => {
-        const sw = new StopWatch();
+        const sw = new tst.StopWatch();
         sw.SectionStart('1');
         setTimeout(() => {
             assert.isAbove(sw.SectionElapsedMs('1'), 0);
@@ -43,7 +43,7 @@ describe("Test StopWatch", () => {
     });
 
     it('make pause without resume', () => {
-        const sw = new StopWatch();
+        const sw = new tst.StopWatch();
         assert.isFalse(sw.IsPause);
         setTimeout(() => {
             sw.Pause();
@@ -56,7 +56,7 @@ describe("Test StopWatch", () => {
     });
 
     it('make pause with resume', () => {
-        const sw = new StopWatch();
+        const sw = new tst.StopWatch();
         assert.isFalse(sw.IsPause);
         setTimeout(() => {
             sw.Pause();
@@ -73,7 +73,7 @@ describe("Test StopWatch", () => {
     });
 
     it('make section pause without resume', () => {
-        const sw = new StopWatch();
+        const sw = new tst.StopWatch();
         sw.SectionStart('1');
         assert.isFalse(sw.IsSectionPause('1'));
         setTimeout(() => {
@@ -87,7 +87,7 @@ describe("Test StopWatch", () => {
     });
 
     it('make section pause with resume', () => {
-        const sw = new StopWatch();
+        const sw = new tst.StopWatch();
         sw.SectionStart('1');
         assert.isFalse(sw.IsSectionPause('1'));
         setTimeout(() => {

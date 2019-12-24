@@ -1,7 +1,9 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/ts-tooling.ts',
+    entry: {
+        'ts-tooling': './src/ts-tooling.ts',
+    },
     mode: 'production',
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
@@ -17,7 +19,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'lib'),
-        filename: 'ts-tooling.js',
+        filename: '[name].js',
         library: 'tst',
         libraryTarget: 'umd',
         globalObject: 'this',

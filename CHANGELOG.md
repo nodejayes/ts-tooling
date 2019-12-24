@@ -1,4 +1,9 @@
-### 2.2.0 (not-released)
+### 2.2.1
+
+* fix NodeJs Bug process was renamed from Webpack so Stopwatch not works
+* add Tests using the Webpack Package
+
+### 2.2.0
 
 * Reactive Store Wrap BehaviorSubject to prevent the User to change the Last Value and emit Values with next Function
 * add ObjectFactory with Circular Detection

@@ -133,13 +133,13 @@ export class StopWatch {
         if (this.isBrowser()) {
             return window.performance.now();
         }
-        return process.hrtime();
+        return global['process'].hrtime();
     }
 
     private getTimeDiff(): number {
         if (!this.isBrowser()) {
             const tmp2 = this._time as [number, number];
-            const t = process.hrtime(tmp2);
+            const t = global['process'].hrtime(tmp2);
             return (t[0] * NS_PER_SEC + t[1])/1000000
         }
         const tmp = this._time as number;
@@ -152,7 +152,7 @@ export class StopWatch {
             if (!tmp2) {
                 return 0
             }
-            const t = process.hrtime(tmp2);
+            const t = global['process'].hrtime(tmp2);
             return (t[0] * NS_PER_SEC + t[1])/1000000
         }
         const tmp = this._multipleTimes[key] as number;
