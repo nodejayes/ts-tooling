@@ -73,7 +73,8 @@ import {
     MinDate,
     Required,
     UniqueArray,
-    CustomValidation
+    CustomValidation,
+    ValidateClass
 } from './utils/class.validator';
 export {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty, IsEmpty,
@@ -100,7 +101,8 @@ export {
     MinDate,
     Required,
     UniqueArray,
-    CustomValidation
+    CustomValidation,
+    ValidateClass
 } from './utils/class.validator';
 import {ObjectFactory} from "./utils/object.factory";
 export {ObjectFactory} from "./utils/object.factory";
@@ -136,5 +138,6 @@ export default {
     MinDate,
     Required,
     UniqueArray,
-    CustomValidation
+    CustomValidation,
+    ValidateClass,
 };

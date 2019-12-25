@@ -42,7 +42,7 @@ describe("Test StopWatch Bundle", () => {
         }, 1);
     });
 
-    it('make pause without resume', () => {
+    it('make pause without resume', (done) => {
         const sw = new tst.StopWatch();
         assert.isFalse(sw.IsPause);
         setTimeout(() => {
@@ -51,11 +51,12 @@ describe("Test StopWatch Bundle", () => {
             setTimeout(() => {
                 assert.isAbove(sw.ElapsedMs(), 9);
                 assert.isBelow(sw.ElapsedMs(), 20);
+                done();
             }, 10);
         }, 10);
     });
 
-    it('make pause with resume', () => {
+    it('make pause with resume', (done) => {
         const sw = new tst.StopWatch();
         assert.isFalse(sw.IsPause);
         setTimeout(() => {
@@ -67,12 +68,13 @@ describe("Test StopWatch Bundle", () => {
                 setTimeout(() => {
                     assert.isAbove(sw.ElapsedMs(), 19);
                     assert.isBelow(sw.ElapsedMs(), 30);
+                    done();
                 }, 10);
             }, 10);
         }, 10);
     });
 
-    it('make section pause without resume', () => {
+    it('make section pause without resume', (done) => {
         const sw = new tst.StopWatch();
         sw.SectionStart('1');
         assert.isFalse(sw.IsSectionPause('1'));
@@ -82,11 +84,12 @@ describe("Test StopWatch Bundle", () => {
             setTimeout(() => {
                 assert.isAbove(sw.SectionElapsedMs('1'), 9);
                 assert.isBelow(sw.SectionElapsedMs('1'), 20);
+                done();
             }, 10);
         }, 10);
     });
 
-    it('make section pause with resume', () => {
+    it('make section pause with resume', (done) => {
         const sw = new tst.StopWatch();
         sw.SectionStart('1');
         assert.isFalse(sw.IsSectionPause('1'));
@@ -99,6 +102,7 @@ describe("Test StopWatch Bundle", () => {
                 setTimeout(() => {
                     assert.isAbove(sw.SectionElapsedMs('1'), 19);
                     assert.isBelow(sw.SectionElapsedMs('1'), 30);
+                    done();
                 }, 10);
             }, 10);
         }, 10);

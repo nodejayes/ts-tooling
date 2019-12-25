@@ -1,8 +1,9 @@
-### 2.2.2 (not-released)
+### 2.2.2
 
 * add IsAlpha check to String
 * add Object Factory sizeof Method
 * add TestDataGenerator
+* add Class Validator Decorator
 
 ### 2.2.1
 

@@ -25,7 +25,8 @@ const {
     MaxDate,
     MinDate,
     Required,
-    UniqueArray
+    UniqueArray,
+    ValidateClass
 } = require('../../lib/ts-tooling');
 
 class Test {
@@ -940,6 +941,26 @@ describe('ClassValidator Bundle Tests', () => {
         assert.lengthOf(res, 0);
 
         t.prop.Add(main3);
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('ValidateClass check', async () => {
+        @ValidateClass((i, v) => {
+            return v.IsEmail(i.prop1) && v.Max(i.prop2, 20);
+        }, 'Invalid')
+        class ValidateClassCheck {
+            prop1: string;
+            prop2: number;
+        }
+        const t = new ValidateClassCheck();
+        t.prop1 = 'a@b.de';
+        t.prop2 = 9;
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop1 = 'a@b.de';
+        t.prop2 = 50;
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');
