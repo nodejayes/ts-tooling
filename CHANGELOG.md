@@ -1,3 +1,9 @@
+### 2.2.2 (not-released)
+
+* add IsAlpha check to String
+* add Object Factory sizeof Method
+* add TestDataGenerator
+
 ### 2.2.1
 
 * fix NodeJs Bug process was renamed from Webpack so Stopwatch not works

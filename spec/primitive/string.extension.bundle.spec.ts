@@ -258,4 +258,9 @@ describe('String Extension Bundle Tests', () => {
         assert.equal(target.Join(list, ','), 'a,b,c');
         assert.equal(target.Join([], ','), '');
     });
+    it('check IsAlpha', () => {
+        assert.isTrue('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.IsAlpha());
+        assert.isFalse('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1'.IsAlpha());
+        assert.isFalse('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZß'.IsAlpha());
+    });
 });

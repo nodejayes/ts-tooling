@@ -104,6 +104,8 @@ export {
 } from './utils/class.validator';
 import {ObjectFactory} from "./utils/object.factory";
 export {ObjectFactory} from "./utils/object.factory";
+import {TestDataGenerator} from './utils/test.data.generator';
+export {TestDataGenerator} from './utils/test.data.generator';
 
 export default {
     DateTime, TimeSpan, Guid, Byte, ByteStream,

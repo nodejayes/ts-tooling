@@ -247,6 +247,16 @@ String.prototype.IsAscii = function (): boolean {
     return true;
 };
 
+String.prototype.IsAlpha = function (): boolean {
+    for (let i = 0; i < this.length; i++) {
+        if (!this.charCodeAt(i).IsInRange(65, 90) &&
+            !this.charCodeAt(i).IsInRange(97, 122)) {
+            return false;
+        }
+    }
+    return true;
+};
+
 String.prototype.Bytes = function (): number {
     return Buffer.byteLength(this);
 };

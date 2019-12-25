@@ -419,6 +419,12 @@ declare global {
         IsAscii(): boolean;
 
         /**
+         * check if the String only contains letters a-z
+         * @constructor
+         */
+        IsAlpha(): boolean;
+
+        /**
          * return the Size of the String in Bytes
          * @constructor
          */

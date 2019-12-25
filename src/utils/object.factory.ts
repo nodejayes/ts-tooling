@@ -1,4 +1,5 @@
 import '../ts-tooling';
+const sizeof = require('object-sizeof');
 
 export class ObjectFactory {
     static IsCircular(obj: any): boolean {
@@ -26,5 +27,9 @@ export class ObjectFactory {
         }
 
         return check(obj);
+    }
+
+    static SizeOf(obj: any): number {
+        return sizeof(obj);
     }
 }
