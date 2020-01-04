@@ -714,6 +714,13 @@ declare global {
          * @constructor
          */
         SumBy(filterMethod: (d: T) => number): number;
+
+        /**
+         * joins the Array Elements to a single String split by separator
+         * @param separator
+         * @constructor
+         */
+        Join(separator?: string): string;
     }
     interface Date {
         /**

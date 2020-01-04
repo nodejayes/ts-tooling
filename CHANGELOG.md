@@ -1,3 +1,7 @@
+### 2.3.0 (not-released)
+
+* add Join Method to Array
+
 ### 2.2.2
 
 * add IsAlpha check to String
