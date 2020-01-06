@@ -476,4 +476,11 @@ describe('Array Extension Bundle Tests', () => {
         }, '');
         assert.equal(result, 'a,b,c');
     });
+
+    it('Join test', () => {
+        const list = ['a', 'b', 'c'];
+        assert.equal(list.Join(), 'a,b,c');
+        assert.equal(list.Join('.'), 'a.b.c');
+        assert.equal(['a',{Hello:'World'},'c'].Join('.'), 'a.[object Object].c');
+    });
 });

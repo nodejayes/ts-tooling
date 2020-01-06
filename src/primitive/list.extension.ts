@@ -242,3 +242,7 @@ Array.prototype.MeanBy = function (filterMethod): any {
 Array.prototype.SumBy = function (filterMethod): number {
     return sumBy(this, filterMethod);
 };
+
+Array.prototype.Join = function (sep?: string): string {
+    return this.join(sep || ',');
+};

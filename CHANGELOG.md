@@ -1,3 +1,8 @@
+### 2.3.0 (not-released)
+
+* add Join Method to Array
+* add Observable getter for Reactive Store
+
 ### 2.2.2
 
 * add IsAlpha check to String

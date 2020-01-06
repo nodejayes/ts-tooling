@@ -1,6 +1,7 @@
 import {assert} from 'chai';
 import {DateTime, ReactiveStore} from '../../../src/ts-tooling';
 import 'mocha';
+import {filter} from "rxjs/operators";
 
 interface ITestUser {
     name: string;
@@ -316,5 +317,24 @@ describe('Reactive Store Tests', () => {
         let o = store.Listen(s => s.test.o).getValue();
         o.name = 'Peter';
         assert.equal(store.Listen(s => s.test.o.name).getValue(), 'Paul');
+    });
+    it('using pipe of Listen Store', (done) => {
+        const store = new ReactiveStore<ITestStore>({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s.test.b).getObservable().pipe(
+            filter(d => d === true),
+        ).subscribe(d => {
+            assert.isTrue(d);
+            done();
+        });
+        store.Mutate(s => s.test.b, () => true);
     });
 });

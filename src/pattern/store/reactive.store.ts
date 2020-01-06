@@ -35,6 +35,7 @@ export class ReactiveStore<T> {
         return {
             getValue: () => cloneDeep(subject.getValue()),
             subscribe: o => subject.subscribe(o),
+            getObservable: () => subject.asObservable(),
         };
     }
 
@@ -80,7 +81,6 @@ export class ReactiveStore<T> {
             .ReplaceAll('\']', '')
             .ReplaceAll('"]', '');
         const firstIdx = key.IndexOf('.');
-        let blankKey = key.Substring(firstIdx.Add(1), key.length.Subtract(firstIdx));
-        return blankKey;
+        return key.Substring(firstIdx.Add(1), key.length.Subtract(firstIdx));
     }
 }
