@@ -1,3 +1,7 @@
+### 2.3.1
+
+* fix Reactive Store Listen Method
+
 ### 2.3.0
 
 * add Join Method to Array

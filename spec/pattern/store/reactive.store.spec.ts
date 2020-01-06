@@ -329,7 +329,7 @@ describe('Reactive Store Tests', () => {
                 }
             }
         });
-        store.Listen(s => s.test.b).getObservable().pipe(
+        store.Listen(s => s.test.b).pipe(
             filter(d => d === true),
         ).subscribe(d => {
             assert.isTrue(d);

@@ -2,12 +2,18 @@ import {BehaviorSubject} from 'rxjs';
 import {Dictionary} from '../../complex/dictionary';
 import {set, get, cloneDeep} from 'lodash';
 
+export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
+    getValue(): T {
+        return cloneDeep(super.getValue());
+    }
+}
+
 /**
  * a Reactive Store to save States and listen to Changes
  */
 export class ReactiveStore<T> {
     private _core: T = null;
-    private _behaviorSubjects = new Dictionary<BehaviorSubject<any>>();
+    private _behaviorSubjects = new Dictionary<SafeBehaviorSubject<any>>();
 
     /**
      * create a new Store with a Initial State
@@ -21,22 +27,14 @@ export class ReactiveStore<T> {
      * listen to a specific Property or a complete State change
      * @param selector
      */
-    Listen<K>(selector: (d: T) => K) {
+    Listen<K>(selector: (d: T) => K): SafeBehaviorSubject<K> {
         const key = this.parseSelectorAccess(selector);
         if (this._behaviorSubjects.ContainsKey(key)) {
-            const subject = this._behaviorSubjects.TryGetValue(key);
-            return {
-                getValue: () => cloneDeep(subject.getValue()),
-                subscribe: o => subject.subscribe(o),
-            };
+            return this._behaviorSubjects.TryGetValue(key);
         }
-        const subject = new BehaviorSubject<K>(selector(<T>this._core));
+        const subject = new SafeBehaviorSubject<K>(selector(<T>this._core));
         this._behaviorSubjects.Add(key, subject);
-        return {
-            getValue: () => cloneDeep(subject.getValue()),
-            subscribe: o => subject.subscribe(o),
-            getObservable: () => subject.asObservable(),
-        };
+        return subject;
     }
 
     /**

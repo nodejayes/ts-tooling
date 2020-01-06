@@ -34,8 +34,8 @@ import {create, createWithFactory} from './pattern/construct';
 export {create, createWithFactory} from './pattern/construct';
 import {EventHandler} from './pattern/events/event.handler';
 export {EventHandler} from './pattern/events/event.handler';
-import {ReactiveStore} from './pattern/store/reactive.store';
-export {ReactiveStore} from './pattern/store/reactive.store';
+import {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
+export {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
 import {BackgroundWorker} from './pattern/background.worker/background.worker';
 export {BackgroundWorker} from './pattern/background.worker/background.worker';
 
