@@ -1,4 +1,4 @@
-### 2.3.0 (not-released)
+### 2.3.0
 
 * add Join Method to Array
 * add Observable getter for Reactive Store
