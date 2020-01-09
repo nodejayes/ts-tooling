@@ -104,11 +104,14 @@ describe('Array Extension Bundle Tests', () => {
         assert.equal(primitiveDates.Count(), primitiveDates.length, 'invalid Count on primitive Dates');
     });
 
-    it('can convert to Array', () => {
+    it('can convert to Array', async () => {
         const list = [];
         list.AddRange([1, 2]);
         assert.equal(list[0], 1);
         assert.equal(list[1], 2);
+
+        assert.deepEqual(list.Convert<string>(e => `${e}`), ['1', '2']);
+        assert.deepEqual(await Promise.all(list.Convert<string>(async e => `${e}`)), ['1', '2']);
     });
 
     it('can copy List', () => {

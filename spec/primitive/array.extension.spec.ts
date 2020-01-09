@@ -104,11 +104,14 @@ describe('Array Extension Tests', () => {
         assert.equal(primitiveDates.Count(), primitiveDates.length, 'invalid Count on primitive Dates');
     });
 
-    it('can convert to Array', () => {
+    it('can convert to Array', async () => {
         const list = [];
         list.AddRange([1, 2]);
         assert.equal(list[0], 1);
         assert.equal(list[1], 2);
+
+        assert.deepEqual(list.Convert<string>(e => `${e}`), ['1', '2']);
+        assert.deepEqual(await Promise.all(list.Convert<string>(async e => `${e}`)), ['1', '2']);
     });
 
     it('can copy List', () => {
@@ -377,7 +380,7 @@ describe('Array Extension Tests', () => {
         assert.equal(grouped['3'].Count(), 3);
     });
 
-    it('can sum List elements', () => {
+    it('can sum List elements', async () => {
         assert.equal([1, 2, 3.5].SumBy(i => i), 6.5);
     });
 

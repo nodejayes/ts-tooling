@@ -1,3 +1,8 @@
+### 2.3.2
+
+* add ReactiveStore DebugMode default disabled
+* Array Convert accepts async Callbacks
+
 ### 2.3.1
 
 * fix Reactive Store Listen Method

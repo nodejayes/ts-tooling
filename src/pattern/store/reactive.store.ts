@@ -16,6 +16,12 @@ export class ReactiveStore<T> {
     private _behaviorSubjects = new Dictionary<SafeBehaviorSubject<any>>();
 
     /**
+     * enable the Debug log for the Store
+     * (Logs to Console when no Action behavior was found)
+     */
+    DebugMode = false;
+
+    /**
      * create a new Store with a Initial State
      * @param initialState
      */
@@ -53,7 +59,7 @@ export class ReactiveStore<T> {
         set(<any>this._core, key, newValue);
         if (behavior) {
             behavior.next(get(this._core, key));
-        } else {
+        } else if (this.DebugMode === true) {
             console.warn(`no behavior detected for key ${key}!`);
         }
     }

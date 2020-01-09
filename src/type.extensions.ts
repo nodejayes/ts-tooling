@@ -5,6 +5,13 @@ import './primitive/list.extension';
 import {DateTime} from './complex/date.time';
 import {ListSortOrder} from './primitive/list.sort.order.enum';
 
+type ConvertMethod<T, K> = ((d: T) => K) | ((d: T) => Promise<K>);
+type TransformMethod<T> = (d: T) => any;
+type FilterNumber<T> = (d: T) => number;
+type FindMethod<T> = (d: T) => boolean;
+type ReducerMethod<T, K> = (target: K, e: T) => K;
+
+
 // Basic Extensions
 declare global {
     interface Number {
@@ -485,7 +492,7 @@ declare global {
          * @param initial
          * @constructor
          */
-        Reduce<K>(reducer: (target: K, e: T) => K, initial: K): K;
+        Reduce<K>(reducer: ReducerMethod<T, K>, initial: K): K;
 
         /**
          * same as Add with multiple Items
@@ -524,49 +531,49 @@ declare global {
          * check if a Items exists that match the specific Filter
          * @constructor
          */
-        Exists(findMethod: (d: T) => boolean): boolean;
+        Exists(findMethod: FindMethod<T>): boolean;
 
         /**
          * returns the First match of an Item from the Array by specific Filter
          * @param findMethod
          * @constructor
          */
-        Find(findMethod: (d: T) => boolean): T;
+        Find(findMethod: FindMethod<T>): T;
 
         /**
          * returns the Last match of an Item from the Array by specific Filter
          * @param findMethod
          * @constructor
          */
-        FindLast(findMethod: (d: T) => boolean): T;
+        FindLast(findMethod: FindMethod<T>): T;
 
         /**
          * returns the index of the First Item that matches the specific Filter
          * @param findMethod
          * @constructor
          */
-        FindIndex(findMethod: (d: T) => boolean): number;
+        FindIndex(findMethod: FindMethod<T>): number;
 
         /**
          * returns all Items that matches the specific Filter
          * @param findMethod
          * @constructor
          */
-        FindAll(findMethod: (d: T) => boolean): T[];
+        FindAll(findMethod: FindMethod<T>): T[];
 
         /**
          * returns the Index of the Last match Item from the Array by specific Filter
          * @param findMethod
          * @constructor
          */
-        FindLastIndex(findMethod: (d: T) => boolean): number;
+        FindLastIndex(findMethod: FindMethod<T>): number;
 
         /**
          * check if the condition is true for all Items in the Array
          * @param matchMethod
          * @constructor
          */
-        TrueForAll(matchMethod: (d: T) => boolean): boolean;
+        TrueForAll(matchMethod: FindMethod<T>): boolean;
 
         /**
          * insert a new Item at the Index into the Array
@@ -604,7 +611,7 @@ declare global {
          * @param match
          * @constructor
          */
-        RemoveAll(match: (d: T) => boolean): void;
+        RemoveAll(match: FindMethod<T>): void;
 
         /**
          * remove a Item at a specific Index
@@ -660,7 +667,7 @@ declare global {
          * @param def
          * @constructor
          */
-        FirstOrDefault(findMethod?: (d: T) => boolean, def?: T): T;
+        FirstOrDefault(findMethod?: FindMethod<T>, def?: T): T;
 
         /**
          * find the Last match Item or return a Default Value
@@ -668,21 +675,21 @@ declare global {
          * @param def
          * @constructor
          */
-        LastOrDefault(findMethod?: (d: T) => boolean, def?: T): T;
+        LastOrDefault(findMethod?: FindMethod<T>, def?: T): T;
 
         /**
          * group a Array by a specific Key that was returned by transform Function
          * @param transformMethod
          * @constructor
          */
-        GroupBy(transformMethod: (d: T) => any): {[key: string]: T[]};
+        GroupBy(transformMethod: TransformMethod<T>): {[key: string]: T[]};
 
         /**
          * convert a Array into another Array
          * @param convertMethod
          * @constructor
          */
-        Convert<K>(convertMethod: (d: T) => K): K[];
+        Convert<K>(convertMethod: ConvertMethod<T, K>): K[];
 
         /**
          * get the Max Element
@@ -690,7 +697,7 @@ declare global {
          * @param filterMethod
          * @constructor
          */
-        MaxBy<K>(filterMethod: (d: T) => number): K;
+        MaxBy<K>(filterMethod: FilterNumber<T>): K;
 
         /**
          * get the Min Element
@@ -698,7 +705,7 @@ declare global {
          * @param filterMethod
          * @constructor
          */
-        MinBy<K>(filterMethod: (d: T) => number): K;
+        MinBy<K>(filterMethod: FilterNumber<T>): K;
 
         /**
          * get the Mean of complex element
@@ -706,14 +713,14 @@ declare global {
          * @param filterMethod
          * @constructor
          */
-        MeanBy<K>(filterMethod: (d: T) => number): K;
+        MeanBy<K>(filterMethod: FilterNumber<T>): K;
 
         /**
          * calculate a Sum
          * @param filterMethod
          * @constructor
          */
-        SumBy(filterMethod: (d: T) => number): number;
+        SumBy(filterMethod: FilterNumber<T>): number;
 
         /**
          * joins the Array Elements to a single String split by separator
