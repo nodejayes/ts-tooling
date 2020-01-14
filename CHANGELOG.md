@@ -1,3 +1,7 @@
+### 2.4.1
+
+* move node and web worker to separate namespaces
+
 ### 2.4.0
 
 * remove ToDateTime extension (trouble with third party libaries)

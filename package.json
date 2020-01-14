@@ -1,17 +1,19 @@
 {
   "name": "ts-tooling",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "main": "lib/ts-tooling.js",
   "types": "lib/ts-tooling.d.ts",
   "scripts": {
-    "build": "webpack-cli && npm run type-generation",
+    "build": "webpack-cli && npm run type-generation:main && npm run type-generation:nodeworker && npm run type-generation:webworker",
     "test": "mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "cover": "nyc --extension=.ts --extension=.js --reporter=lcov --report-dir coverage mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "coveralls": "npm run build && npm run cover && cat ./coverage/lcov.info | coveralls",
     "doc": "typedoc --mode file --theme node_modules/typedoc-clarity-theme/bin --out docs src/ts-tooling.ts",
     "build-test": "npm run build && npm run test",
     "release": "npm run build-test && npm publish",
-    "type-generation": "dts-generator --project . --out lib/ts-tooling.d.ts",
+    "type-generation:main": "dts-generator --project . --out lib/ts-tooling.d.ts",
+    "type-generation:nodeworker": "dts-generator --project . --out lib/node-worker.d.ts",
+    "type-generation:webworker": "dts-generator --project . --out lib/web-worker.d.ts",
     "analyze": "webpack --profile --json > profiling.json && webpack-bundle-analyzer profiling.json"
   },
   "license": "MIT",

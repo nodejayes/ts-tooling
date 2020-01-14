@@ -1,4 +1,4 @@
-import {BackgroundWorker} from "../../src/pattern/background.worker/background.worker";
+import {BackgroundWorker} from "../../src/pattern/background.worker/web";
 import {assert} from "chai";
 
 describe('BackgroundWorker Tests', () => {

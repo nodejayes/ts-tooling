@@ -28,8 +28,6 @@ import {EventHandler} from './pattern/events/event.handler';
 export {EventHandler} from './pattern/events/event.handler';
 import {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
 export {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
-import {BackgroundWorker} from './pattern/background.worker/background.worker';
-export {BackgroundWorker} from './pattern/background.worker/background.worker';
 
 // Utils
 import {LZCompression} from './compression/lz';
@@ -104,7 +102,7 @@ export {TestDataGenerator} from './utils/test.data.generator';
 export default {
     DateTime, TimeSpan, Guid, Byte, ByteStream,
     Dictionary, ListSortOrder,
-    using, create, createWithFactory, EventHandler, ReactiveStore, BackgroundWorker,
+    using, create, createWithFactory, EventHandler, ReactiveStore,
     LZCompression, StopWatch, NumberFactory, StringFactory, ClassValidator, ObjectFactory,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
     Equals, NotEquals,
