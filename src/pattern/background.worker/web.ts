@@ -1,5 +1,4 @@
 import {Subject} from 'rxjs';
-import {StringFactory} from '../../utils/string.factory';
 import {IBackgroundWorker} from './worker.interface';
 
 export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K> {
@@ -18,7 +17,7 @@ export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K> {
             throw new Error(`WebWorker not supported`);
         }
         this.WorkPath = path;
-        if (StringFactory.IsNullOrEmpty(this.WorkPath)) {
+        if (!this.WorkPath || this.WorkPath.length < 1) {
             throw new Error(`missing DoWork Path/File ${this.WorkPath}`);
         }
         if (!this.IsJavaScript) {

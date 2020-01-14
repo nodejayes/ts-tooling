@@ -1,7 +1,6 @@
 import {existsSync} from 'fs';
 import {Worker} from 'worker_threads';
 import {Subject} from 'rxjs';
-import {StringFactory} from '../../utils/string.factory';
 import {IBackgroundWorker, IWorkerInput} from './worker.interface';
 
 export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K>{
@@ -23,7 +22,7 @@ export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K>{
     }
 
     Run(args?: T) {
-        if (StringFactory.IsNullOrEmpty(this.WorkPath) || !existsSync(this.WorkPath)) {
+        if (!this.WorkPath || this.WorkPath.length < 1 || !existsSync(this.WorkPath)) {
             throw new Error(`missing DoWork Path/File ${this.WorkPath}`);
         }
         if (!this.IsJavaScript && !this.IsTypeScript) {

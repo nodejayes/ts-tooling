@@ -1,3 +1,7 @@
+### 2.4.2
+
+* smaller worker bundles
+
 ### 2.4.1
 
 * move node and web worker to separate namespaces
