@@ -2,7 +2,6 @@ import './primitive/number.extension';
 import './primitive/string.extension';
 import './primitive/list.extension';
 
-import {DateTime} from './complex/date.time';
 import {ListSortOrder} from './primitive/list.sort.order.enum';
 
 type ConvertMethod<T, K> = ((d: T) => K) | ((d: T) => Promise<K>);
@@ -728,12 +727,5 @@ declare global {
          * @constructor
          */
         Join(separator?: string): string;
-    }
-    interface Date {
-        /**
-         * conver the Javascript Date to a ts-tooling DateTime
-         * @constructor
-         */
-        ToDateTime(): DateTime;
     }
 }

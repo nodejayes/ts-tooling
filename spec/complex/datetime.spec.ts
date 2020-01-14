@@ -297,12 +297,12 @@ describe('DateTime Tests', () => {
     });
 
     it('extends basic Date',  () => {
-        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Year, 2019);
-        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Month, 1);
-        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Day, 1);
-        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Hour, 1);
-        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Minute, 0);
-        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Second, 0);
-        assert.equal(new Date(Date.UTC(2019,0,1,1,0,0)).ToDateTime().Millisecond, 0);
+        assert.equal(DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0))).Year, 2019);
+        assert.equal(DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0))).Month, 1);
+        assert.equal(DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0))).Day, 1);
+        assert.equal(DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0))).Hour, 1);
+        assert.equal(DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0))).Minute, 0);
+        assert.equal(DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0))).Second, 0);
+        assert.equal(DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0))).Millisecond, 0);
     });
 });

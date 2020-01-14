@@ -1,14 +1,6 @@
 import {DateTime} from './complex/date.time';
 import './type.extensions';
 
-/**
- * convert basic Javascript Date into DateTime
- * @constructor
- */
-Date.prototype.ToDateTime = function (this: Date): DateTime {
-    return DateTime.FromJavascriptDate(this);
-};
-
 // Types
 export {DateTime} from './complex/date.time';
 import {TimeSpan} from './complex/time.span';

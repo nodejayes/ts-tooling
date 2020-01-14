@@ -1,3 +1,7 @@
+### 2.4.0
+
+* remove ToDateTime extension (trouble with third party libaries)
+
 ### 2.3.2
 
 * add ReactiveStore DebugMode default disabled
