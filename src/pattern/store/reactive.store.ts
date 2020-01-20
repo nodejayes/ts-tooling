@@ -3,8 +3,20 @@ import {Dictionary} from '../../complex/dictionary';
 import {set, get, cloneDeep} from 'lodash';
 
 export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
-    getValue(): T {
-        return cloneDeep(super.getValue());
+    private _copy: T = null;
+
+    constructor(defaultValue: T) {
+        super(defaultValue);
+        this._copy = cloneDeep(defaultValue);
+    }
+
+    getValue(filter?: (item: T) => boolean): T {
+        return this._copy;
+    }
+
+    next(value: T): void {
+        super.next(value);
+        this._copy = cloneDeep(value);
     }
 }
 

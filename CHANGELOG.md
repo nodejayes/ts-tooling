@@ -1,3 +1,7 @@
+### 2.4.3
+
+* faster Reactive Store getValue()
+
 ### 2.4.2
 
 * smaller worker bundles
