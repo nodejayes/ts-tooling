@@ -28,6 +28,8 @@ import {EventHandler} from './pattern/events/event.handler';
 export {EventHandler} from './pattern/events/event.handler';
 import {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
 export {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
+import {asyncFor} from './pattern/async/loop';
+export {asyncFor} from './pattern/async/loop';
 
 // Utils
 import {LZCompression} from './compression/lz';
@@ -36,8 +38,8 @@ import {StopWatch} from './utils/stopwatch';
 export {StopWatch} from './utils/stopwatch';
 import {NumberFactory} from './utils/number.factory';
 export {NumberFactory} from './utils/number.factory';
-import {StringFactory} from "./utils/string.factory";
-export {StringFactory} from "./utils/string.factory";
+import {StringFactory} from './utils/string.factory';
+export {StringFactory} from './utils/string.factory';
 import {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty, IsEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, Equals, NotEquals,
