@@ -60,5 +60,8 @@ typings/
 # next.js build output
 .next
 
-lib
+lib/ts-tooling.js
+lib/node-worker.js
+lib/web-worker.js
+lib/type-checker.js
 profiling.json

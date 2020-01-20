@@ -3,8 +3,9 @@ const path = require('path');
 module.exports = {
     entry: {
         'ts-tooling': './src/ts-tooling.ts',
-        'web-worker': './src/web-worker.ts',
-        'node-worker': './src/node-worker.ts',
+        'web-worker': './src/pattern/background.worker/web.ts',
+        'node-worker': './src/pattern/background.worker/node.ts',
+        'type-checker': './src/primitive/type.checker.ts',
     },
     mode: 'production',
     resolve: {

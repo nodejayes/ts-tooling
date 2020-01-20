@@ -1,5 +1,5 @@
 import {isObject, isArray, isFunction} from 'lodash';
-import {DateTime, ObjectFactory} from "../ts-tooling";
+import {DateTime, ObjectFactory} from '../ts-tooling';
 
 export interface IValidationError {
     Message: string;

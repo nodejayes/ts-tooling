@@ -28,8 +28,6 @@ import {EventHandler} from './pattern/events/event.handler';
 export {EventHandler} from './pattern/events/event.handler';
 import {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
 export {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
-import {asyncFor} from './pattern/async/loop';
-export {asyncFor} from './pattern/async/loop';
 
 // Utils
 import {LZCompression} from './compression/lz';
