@@ -1,10 +1,10 @@
 {
   "name": "ts-tooling",
-  "version": "3.0.0",
+  "version": "2.4.3",
   "main": "lib/ts-tooling.js",
   "types": "lib/ts-tooling.d.ts",
   "scripts": {
-    "build": "webpack-cli",
+    "build": "webpack-cli && npm run type-generation:main && npm run type-generation:nodeworker && npm run type-generation:webworker",
     "test": "mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "cover": "nyc --extension=.ts --extension=.js --reporter=lcov --report-dir coverage mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "coveralls": "npm run build && npm run cover && cat ./coverage/lcov.info | coveralls",

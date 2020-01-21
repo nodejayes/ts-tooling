@@ -1,7 +1,3 @@
-### 3.0.0
-
-* modularize the Package
-
 ### 2.4.3
 
 * faster Reactive Store getValue()
