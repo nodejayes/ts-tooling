@@ -1,4 +1,4 @@
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, merge} from 'rxjs';
 import {Dictionary} from '../../complex/dictionary';
 import {set, get, cloneDeep} from 'lodash';
 
@@ -10,7 +10,7 @@ export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
         this._copy = cloneDeep(defaultValue);
     }
 
-    getValue(filter?: (item: T) => boolean): T {
+    getValue(): T {
         return this._copy;
     }
 
@@ -46,7 +46,7 @@ export class ReactiveStore<T> {
      * @param selector
      */
     Listen<K>(selector: (d: T) => K): SafeBehaviorSubject<K> {
-        const key = this.parseSelectorAccess(selector);
+        let key = this.parseSelectorAccess(selector);
         if (this._behaviorSubjects.ContainsKey(key)) {
             return this._behaviorSubjects.TryGetValue(key);
         }
@@ -62,18 +62,42 @@ export class ReactiveStore<T> {
      */
     Mutate<K>(selector: (d: T) => K, mutation: (s: K) => K): void {
         const key = this.parseSelectorAccess(selector);
-        const behavior = this._behaviorSubjects.TryGetValue(key);
+        const realKey = key.StartsWith('root.') ? key.Replace('root.', '') :
+            key === 'root' ? '' : key;
+        const behaviors = this.selectBehaviors(key);
         const currentValue = selector(this._core);
         const newValue = mutation(currentValue);
         this._core = {
             ...this._core,
         };
-        set(<any>this._core, key, newValue);
-        if (behavior) {
-            behavior.next(get(this._core, key));
-        } else if (this.DebugMode === true) {
-            console.warn(`no behavior detected for key ${key}!`);
+        if (!realKey) {
+            this._core = <any>newValue;
+        } else {
+            set(<any>this._core, realKey, newValue);
         }
+        for (const behaviorKey of Object.keys(behaviors)) {
+            const realKey = behaviorKey.StartsWith('root.') ? behaviorKey.Replace('root.', '') :
+                behaviorKey === 'root' ? '' : behaviorKey;
+            const behavior = behaviors[behaviorKey];
+            if (!realKey) {
+                behavior.next(this._core);
+            }
+            behavior.next(get(this._core, realKey));
+        }
+    }
+
+    private selectBehaviors<T>(key: string): {[key: string]: SafeBehaviorSubject<T>} {
+        const res = {};
+        const behaviorKeys = this._behaviorSubjects.Keys().FindAll(i => {
+            return i.length >= key.length ? i.StartsWith(key) : key.StartsWith(i);
+        });
+        for (const behaviorKey of behaviorKeys) {
+            const behavior = this._behaviorSubjects.TryGetValue(behaviorKey);
+            if (behavior) {
+                res[behaviorKey] = behavior;
+            }
+        }
+        return res;
     }
 
     private parseSelectorAccess<K>(selector: (d: T) => K): string {
@@ -97,6 +121,10 @@ export class ReactiveStore<T> {
             .ReplaceAll('\']', '')
             .ReplaceAll('"]', '');
         const firstIdx = key.IndexOf('.');
-        return key.Substring(firstIdx.Add(1), key.length.Subtract(firstIdx));
+        if (!key.Contains('.')) {
+            return 'root';
+        }
+        let res = key.Substring(firstIdx.Add(1), key.length.Subtract(firstIdx));
+        return `root.${res}`;
     }
 }

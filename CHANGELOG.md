@@ -1,3 +1,8 @@
+### 2.4.4
+
+* more flexible Listen and Mutate in Reactive Store
+    * You can Listen to a specific Sub Path in the State and Mutate the complete State and all the Sub Path Listeners was triggered
+
 ### 2.4.3
 
 * faster Reactive Store getValue()
