@@ -1,20 +1,46 @@
 import {BehaviorSubject} from 'rxjs';
 import {Dictionary} from '../../complex/dictionary';
-import {set, get, cloneDeep} from 'lodash';
+import {cloneDeep, get, set} from 'lodash';
 
+/**
+ * extends the rxjs BehaviorSubject and implements a Value Copy
+ * next => create a Copy of the Value and emits the new Value to the BehaviorSubject
+ * getValue => returns the current Copy of the Value in the Behavior Subject
+ */
 export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
     private _copy: T = null;
 
     constructor(defaultValue: T) {
         super(defaultValue);
         this._copy = cloneDeep(defaultValue);
+        super.pipe()
     }
 
+    /**
+     * get the current Value in the Subject
+     */
     getValue(): T {
         return this._copy;
     }
 
-    next(value: T): void {
+    /**
+     * @deprecated this function is disabled ... use the Store to mutate the State
+     * @example
+     * store.Listen(s => s.data, () => newData);
+     */
+    next(value: T) {}
+
+    /**
+     * @deprecated this function is disabled ... not allowed action
+     */
+    complete() {}
+
+    /**
+     * @deprecated this function is disabled ... not allowed action
+     */
+    error(err: any) {}
+
+    private innerNext(value: T) {
         super.next(value);
         this._copy = cloneDeep(value);
     }
@@ -24,14 +50,13 @@ export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
  * a Reactive Store to save States and listen to Changes
  */
 export class ReactiveStore<T> {
-    private _core: T = null;
-    private _behaviorSubjects = new Dictionary<SafeBehaviorSubject<any>>();
-
     /**
      * enable the Debug log for the Store
      * (Logs to Console when no Action behavior was found)
      */
     DebugMode = false;
+    private _core: T = null;
+    private _behaviorSubjects = new Dictionary<SafeBehaviorSubject<any>>();
 
     /**
      * create a new Store with a Initial State
@@ -76,9 +101,9 @@ export class ReactiveStore<T> {
                 behaviorKey === 'root' ? '' : behaviorKey;
             const behavior = behaviors[behaviorKey];
             if (!realKey) {
-                behavior.next(this._core);
+                behavior['innerNext'](this._core);
             }
-            behavior.next(get(this._core, realKey));
+            behavior['innerNext'](get(this._core, realKey));
         }
     }
 
@@ -86,7 +111,7 @@ export class ReactiveStore<T> {
      * returns the Behaviors to Invoke for the given Key
      * @param key
      */
-    private selectBehaviors<T>(key: string): {[key: string]: SafeBehaviorSubject<T>} {
+    private selectBehaviors<T>(key: string): { [key: string]: SafeBehaviorSubject<T> } {
         const res = {};
         const behaviorKeys = this._behaviorSubjects.Keys().FindAll(i => {
             if (i.Equals(key)) {

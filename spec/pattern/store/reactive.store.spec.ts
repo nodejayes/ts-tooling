@@ -507,4 +507,28 @@ describe('Reactive Store Tests', () => {
         });
         store.Mutate(s => s.test.b, () => true);
     });
+
+    it('next Function is disabled', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore<ITestStore>({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s.test.n).subscribe(d => {
+            callCount++;
+            if (callCount > 1) {
+                assert.fail();
+            } else {
+                assert.equal(d, 5);
+                setTimeout(() => done(), 100);
+            }
+        });
+        store.Listen(s => s.test.n).next(50);
+    });
 });
