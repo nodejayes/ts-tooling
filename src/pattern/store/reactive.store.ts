@@ -89,7 +89,10 @@ export class ReactiveStore<T> {
     private selectBehaviors<T>(key: string): {[key: string]: SafeBehaviorSubject<T>} {
         const res = {};
         const behaviorKeys = this._behaviorSubjects.Keys().FindAll(i => {
-            return i.length >= key.length ? i.StartsWith(key) : key.StartsWith(i);
+            if (i.Equals(key)) {
+                return true;
+            }
+            return i.Split(key).FirstOrDefault().StartsWith('.');
         });
         for (const behaviorKey of behaviorKeys) {
             const behavior = this._behaviorSubjects.TryGetValue(behaviorKey);

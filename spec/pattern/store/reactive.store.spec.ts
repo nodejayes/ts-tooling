@@ -19,6 +19,11 @@ interface ITestStore {
     test: ITestState;
 }
 
+interface ITestExact {
+    update: number,
+    updateComponent: number,
+}
+
 describe('Reactive Store Tests', () => {
    it('can create a new Store with init State', () => {
        const store = new ReactiveStore<ITestStore>({
@@ -57,6 +62,52 @@ describe('Reactive Store Tests', () => {
        store.Mutate(s => s.test.b, ov => false);
        assert.equal(store.Listen(s => s.test.b).getValue(), false);
    });
+
+    it('exact match 1', (done) => {
+        let callCount = 0;
+        let callCount2 = 0;
+        const store = new ReactiveStore<ITestExact>({
+            update: 1,
+            updateComponent: 2,
+        });
+        store.Listen(s => s.update).subscribe(d => {
+            callCount++;
+            if (callCount > 1) {
+                assert.equal(d, 5);
+                setTimeout(() => done(), 400);
+            }
+        });
+        store.Listen(s => s.updateComponent).subscribe(() => {
+            callCount2++;
+            if (callCount2 > 1) {
+                assert.fail();
+            }
+        });
+        store.Mutate(s => s.update, () => 5);
+    });
+
+    it('exact match 2', (done) => {
+        let callCount = 0;
+        let callCount2 = 0;
+        const store = new ReactiveStore<ITestExact>({
+            update: 1,
+            updateComponent: 2,
+        });
+        store.Listen(s => s.update).subscribe(d => {
+            callCount++;
+            if (callCount > 1) {
+                assert.fail();
+            }
+        });
+        store.Listen(s => s.updateComponent).subscribe(d => {
+            callCount2++;
+            if (callCount2 > 1) {
+                assert.equal(d, 5);
+                setTimeout(() => done(), 400);
+            }
+        });
+        store.Mutate(s => s.updateComponent, () => 5);
+    });
 
    it('listen multiple states', (done) => {
        let callCount = 0;
