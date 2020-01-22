@@ -1,4 +1,4 @@
-import {BehaviorSubject, merge} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 import {Dictionary} from '../../complex/dictionary';
 import {set, get, cloneDeep} from 'lodash';
 
@@ -62,14 +62,10 @@ export class ReactiveStore<T> {
      */
     Mutate<K>(selector: (d: T) => K, mutation: (s: K) => K): void {
         const key = this.parseSelectorAccess(selector);
-        const realKey = key.StartsWith('root.') ? key.Replace('root.', '') :
-            key === 'root' ? '' : key;
+        const realKey = this.toRealKey(key);
         const behaviors = this.selectBehaviors(key);
         const currentValue = selector(this._core);
         const newValue = mutation(currentValue);
-        this._core = {
-            ...this._core,
-        };
         if (!realKey) {
             this._core = <any>newValue;
         } else {
@@ -86,13 +82,19 @@ export class ReactiveStore<T> {
         }
     }
 
+    /**
+     * returns the Behaviors to Invoke for the given Key
+     * @param key
+     */
     private selectBehaviors<T>(key: string): {[key: string]: SafeBehaviorSubject<T>} {
         const res = {};
         const behaviorKeys = this._behaviorSubjects.Keys().FindAll(i => {
             if (i.Equals(key)) {
                 return true;
             }
-            return i.Split(key).FirstOrDefault().StartsWith('.');
+            return key.length >= i.length ?
+                key.Split(i).FirstOrDefault().StartsWith('.') :
+                i.Split(key).FirstOrDefault().StartsWith('.');
         });
         for (const behaviorKey of behaviorKeys) {
             const behavior = this._behaviorSubjects.TryGetValue(behaviorKey);
@@ -103,6 +105,14 @@ export class ReactiveStore<T> {
         return res;
     }
 
+    /**
+     * create a unique Key from the State Selector that can use as identifier for the Behavior Subjects
+     * adds "root" in front of the Key to have no empty Key when selector points to the State itself
+     * @param selector
+     * @example
+     * store.Listen(s => s.data) // generates the key: root.data
+     * store.Listen(s => s) // generates the key: root
+     */
     private parseSelectorAccess<K>(selector: (d: T) => K): string {
         let tmp = selector.toString();
         tmp = tmp.Split('{').ElementAt(1);
@@ -129,5 +139,17 @@ export class ReactiveStore<T> {
         }
         let res = key.Substring(firstIdx.Add(1), key.length.Subtract(firstIdx));
         return `root.${res}`;
+    }
+
+    /**
+     * creates the Original Path for a Object
+     * @param key
+     * @example
+     * root.data // generates: data
+     */
+    private toRealKey(key: string): string {
+        return key.StartsWith('root.') ?
+            key.Replace('root.', '') :
+            key === 'root' ? '' : key;
     }
 }

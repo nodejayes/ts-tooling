@@ -1,3 +1,7 @@
+### 2.4.5
+
+* Bugfix: Reactive Store emits to many Listeners
+
 ### 2.4.4
 
 * more flexible Listen and Mutate in Reactive Store

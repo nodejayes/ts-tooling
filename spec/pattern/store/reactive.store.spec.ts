@@ -74,7 +74,7 @@ describe('Reactive Store Tests', () => {
             callCount++;
             if (callCount > 1) {
                 assert.equal(d, 5);
-                setTimeout(() => done(), 400);
+                setTimeout(() => done(), 50);
             }
         });
         store.Listen(s => s.updateComponent).subscribe(() => {
@@ -103,7 +103,7 @@ describe('Reactive Store Tests', () => {
             callCount2++;
             if (callCount2 > 1) {
                 assert.equal(d, 5);
-                setTimeout(() => done(), 400);
+                setTimeout(() => done(), 50);
             }
         });
         store.Mutate(s => s.updateComponent, () => 5);
@@ -111,6 +111,7 @@ describe('Reactive Store Tests', () => {
 
    it('listen multiple states', (done) => {
        let callCount = 0;
+       let callCount2 = 0;
        const store = new ReactiveStore<ITestStore>({
            test: {
                b: true,
@@ -119,6 +120,12 @@ describe('Reactive Store Tests', () => {
                o: {
                    name: 'Paul'
                }
+           }
+       });
+       store.Listen(s => s.test.o).subscribe(() => {
+           callCount2++;
+           if (callCount2 > 1) {
+               assert.fail();
            }
        });
        zip(
