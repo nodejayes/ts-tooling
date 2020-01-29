@@ -1,3 +1,9 @@
+### 2.4.6
+
+* add Union By
+* make interface Functions optional
+* add GroupKey Method to Array
+
 ### 2.4.5
 
 * Bugfix: Reactive Store emits to many Listeners

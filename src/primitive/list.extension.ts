@@ -223,6 +223,10 @@ Array.prototype.GroupBy = function (transformMethod): any {
     return groupBy(this, transformMethod);
 };
 
+Array.prototype.GroupKeys = function (transformMethod) {
+    return Object.keys(groupBy(this, transformMethod));
+};
+
 Array.prototype.Convert = function (convertMethod): any {
     return map(this, convertMethod);
 };
@@ -245,4 +249,13 @@ Array.prototype.SumBy = function (filterMethod): number {
 
 Array.prototype.Join = function (sep?: string): string {
     return this.join(sep || ',');
+};
+
+Array.prototype.UnionBy = function(arr, filter) {
+    for (const el of arr) {
+        if (filter(el)) {
+            this.push(el);
+        }
+    }
+    return this;
 };

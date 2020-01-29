@@ -380,6 +380,11 @@ describe('Array Extension Tests', () => {
         assert.equal(grouped['3'].Count(), 3);
     });
 
+    it('GroupBy get only the Keys', () => {
+        const grouped = [1, 2, 2, 3, 3, 3].GroupKeys(i => i);
+        assert.deepEqual(grouped, ['1', '2', '3']);
+    });
+
     it('can sum List elements', async () => {
         assert.equal([1, 2, 3.5].SumBy(i => i), 6.5);
     });
@@ -485,5 +490,9 @@ describe('Array Extension Tests', () => {
         assert.equal(list.Join(), 'a,b,c');
         assert.equal(list.Join('.'), 'a.b.c');
         assert.equal(['a',{Hello:'World'},'c'].Join('.'), 'a.[object Object].c');
+    });
+
+    it('UnionBy test', () => {
+        assert.deepEqual([1,2,3,4].UnionBy([1,2,3,4,5,6,7,8,9,10], i => i > 4), [1,2,3,4,5,6,7,8,9,10]);
     });
 });
