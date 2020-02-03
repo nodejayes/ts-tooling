@@ -41,8 +41,8 @@ export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
     error(err: any) {}
 
     private innerNext(value: T) {
-        super.next(value);
         this._copy = cloneDeep(value);
+        super.next(value);
     }
 }
 
@@ -120,6 +120,7 @@ export class ReactiveStore<T> {
             const behavior = behaviors[behaviorKey];
             if (!realKey) {
                 behavior['innerNext'](this._core);
+                continue;
             }
             behavior['innerNext'](get(this._core, realKey));
         }

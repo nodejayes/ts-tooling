@@ -1,3 +1,7 @@
+### 2.4.7
+
+* fix reactive store state get lost after multiple changes
+
 ### 2.4.6
 
 * add Union By

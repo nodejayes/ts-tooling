@@ -531,4 +531,36 @@ describe('Reactive Store Tests', () => {
         });
         store.Listen(s => s.test.n).next(50);
     });
+
+    it('mutate complete state', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore<ITestStore>({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s).subscribe(d => {
+            callCount++;
+            if (callCount === 2) {
+                assert.isTrue(d.test.b);
+            }
+            if (callCount === 3) {
+                done();
+                assert.isTrue(d.test.b);
+            }
+        });
+        store.Mutate(s => s.test, o => {
+            o.b = true;
+            return o;
+        });
+        store.Mutate(s => s.test, o => {
+            o.b = true;
+            return o;
+        });
+    });
 });
