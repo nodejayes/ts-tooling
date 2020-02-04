@@ -471,6 +471,8 @@ describe('Array Extension Tests', () => {
     it('check for empty list', () => {
         assert.isFalse([].Any());
         assert.isTrue([1,2,3].Any());
+        assert.isTrue([1,2,3].Any(e => e === 2));
+        assert.isFalse([1,2,3].Any(e => e === 10));
     });
 
     it('can Reduce List', () => {

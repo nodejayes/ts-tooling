@@ -656,9 +656,10 @@ declare global {
 
         /**
          * have the Array more that one Item
+         * @param condition the condition to search the element
          * @constructor
          */
-        Any?(): boolean;
+        Any?(condition?: FindMethod<T>): boolean;
 
         /**
          * find the First match Item or return a Default Value

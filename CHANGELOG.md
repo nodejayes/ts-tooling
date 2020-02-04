@@ -1,3 +1,7 @@
+### 2.4.8
+
+* add a condition to the Any Method
+
 ### 2.4.7
 
 * fix reactive store state get lost after multiple changes

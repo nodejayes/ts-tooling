@@ -188,8 +188,11 @@ Array.prototype.ElementAt = function (index: number): any {
     return this[index];
 };
 
-Array.prototype.Any = function (): boolean {
-    return this.length.IsAbove(0);
+Array.prototype.Any = function (condition): boolean {
+    if (typeof condition !== typeof function() {}) {
+        return this.length.IsAbove(0);
+    }
+    return !!this.Find(condition);
 };
 
 Array.prototype.FirstOrDefault = function (filterMethod?, def?): any {
