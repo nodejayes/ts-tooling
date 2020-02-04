@@ -151,35 +151,20 @@ describe('Array Extension Tests', () => {
     });
 
     it('can insert Element in List', () => {
-        const list = [];
-        list.Insert(0, 1);
-        assert.equal(list.Count(), 1);
-        assert.equal(list[0], 1);
+        assert.deepEqual([].Insert(0, 1), [1]);
     });
 
     it('can insert Element in List with not existent index', () => {
-        const list = [];
-        list.Insert(2, 5);
-        assert.equal(list.Count(), 3);
-        assert.equal(list[2], 5);
+        assert.deepEqual([].Insert(2, 5), [5]);
+        assert.deepEqual([1,2,3].Insert(1, 5), [1,5,2,3]);
     });
 
     it('can insert multiple Elements into List', () => {
-        const list = [1, 2, 3];
-        list.InsertRange(0, [5, 5]);
-        assert.equal(list.Count(), 3);
-        assert.equal(list[0], 5);
-        assert.equal(list[1], 5);
-        assert.equal(list[2], 3);
+        assert.deepEqual([1, 2, 3].InsertRange(0, [5,5]), [5,5,1,2,3]);
     });
 
     it('insert multiple Elements into list extends the List', () => {
-        const list = [];
-        list.InsertRange(0, [5, 5, 5]);
-        assert.equal(list.Count(), 3);
-        assert.equal(list[0], 5);
-        assert.equal(list[1], 5);
-        assert.equal(list[2], 5);
+        assert.deepEqual([].InsertRange(0, [5,5,5]), [5,5,5]);
     });
 
     it('can remove a Item from List', () => {

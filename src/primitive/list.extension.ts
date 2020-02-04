@@ -121,14 +121,21 @@ Array.prototype.FindAll = function (findMethod): any {
     return filter(this, findMethod);
 };
 
-Array.prototype.Insert = function (index: number, element): void {
-    this[index] = element;
+/**
+ * @ignore
+ */
+function mergeArray(array, index, elements) {
+    const before = array.slice(0, index);
+    const after = array.slice(index, array.length);
+    return [...before, ...elements, ...after];
+}
+
+Array.prototype.Insert = function (index: number, element) {
+    return mergeArray(this, index, [element]);
 };
 
-Array.prototype.InsertRange = function (index: number, elements): void {
-    for (let i = 0; i < elements.length; i++) {
-        this.Insert(index.Add(i), elements[i]);
-    }
+Array.prototype.InsertRange = function (index: number, elements) {
+    return mergeArray(this, index, elements);
 };
 
 Array.prototype.IndexOf = function (element, fromIndex?: number): number {

@@ -580,7 +580,7 @@ declare global {
          * @param element
          * @constructor
          */
-        Insert?(index: number, element: T): void;
+        Insert?(index: number, element: T): T[];
 
         /**
          * insert multiple Items at the Index into the Array
@@ -588,7 +588,7 @@ declare global {
          * @param elements
          * @constructor
          */
-        InsertRange?(index: number, elements: T[]): void;
+        InsertRange?(index: number, elements: T[]): T[];
 
         /**
          * get the Index of an Intem in the Array

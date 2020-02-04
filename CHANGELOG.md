@@ -1,6 +1,7 @@
 ### 2.4.8
 
 * add a condition to the Any Method
+* Insert and InsertRange make a insert not a replace
 
 ### 2.4.7
 

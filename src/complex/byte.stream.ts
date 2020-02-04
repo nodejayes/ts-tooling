@@ -125,7 +125,7 @@ export class ByteStream {
     }
 
     private writeByte(b: Byte) {
-        this._value.Insert(this._position, b);
+        this._value[this._position] = b;
         this._position++;
     }
 
