@@ -1,6 +1,7 @@
 import {BehaviorSubject} from 'rxjs';
 import {Dictionary} from '../../complex/dictionary';
 import {cloneDeep, get, set} from 'lodash';
+import {Guid} from "../../complex/guid";
 
 /**
  * extends the rxjs BehaviorSubject and implements a Value Copy
@@ -9,9 +10,11 @@ import {cloneDeep, get, set} from 'lodash';
  */
 export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
     private _copy: T = null;
+    objectId: Guid = null;
 
     constructor(defaultValue: T) {
         super(defaultValue);
+        this.objectId = new Guid();
         this._copy = cloneDeep(defaultValue);
         super.pipe()
     }
