@@ -1,8 +1,8 @@
 import {
-    camelCase, capitalize, deburr, startsWith, endsWith, escape, unescape,
+    camelCase, startsWith, endsWith, escape, unescape,
     escapeRegExp, kebabCase, snakeCase, startCase, lowerFirst, upperFirst,
     words, pad, padStart, padEnd, repeat, replace, filter, toUpper, toLower,
-    trim, trimStart, trimEnd, truncate, clone, includes, lastIndexOf
+    trim, trimStart, trimEnd, truncate, clone, includes
 } from 'lodash';
 import {StringFactory} from '../utils/string.factory';
 
@@ -13,16 +13,17 @@ String.prototype.CharAt = function (pos: number): string {
     return this[pos];
 };
 
+String.prototype.Capitalize = function (): string {
+    if (this.length < 1) {
+        return this;
+    }
+    const first = this[0];
+    const others = this.slice(1, this.length);
+    return `${first.ToUpper()}${others.ToLower()}`;
+};
+
 String.prototype.ToCamelCase = function (): string {
     return camelCase(this);
-};
-
-String.prototype.Capitalize = function (): string {
-    return capitalize(this);
-};
-
-String.prototype.Deburr = function (): string {
-    return deburr(this);
 };
 
 String.prototype.StartsWith = function (search: string, position?: number): boolean {
@@ -73,8 +74,11 @@ String.prototype.UpperFirst = function (): string {
     return upperFirst(this);
 };
 
-String.prototype.Words = function (): string[] {
-    return words(this);
+String.prototype.Words = function (filter?: (word: string) => boolean, pattern?: string): string[] {
+    const tmp = words(this, pattern);
+    return typeof filter === typeof function () {} ?
+        tmp.FindAll(filter) :
+        tmp;
 };
 
 String.prototype.Concat = function (appender: string, separator?: string): string {
@@ -86,9 +90,9 @@ String.prototype.Concat = function (appender: string, separator?: string): strin
 
 String.prototype.Join = function (appender: string[], separator: string): string {
     if (!appender.Any()) {
-        return '';
+        return this;
     }
-    let res = '';
+    let res = this;
     for (const str of appender) {
         res = res.Concat(str, separator);
     }
@@ -137,15 +141,24 @@ String.prototype.ToUpper = function (): string {
     return toUpper(this);
 };
 
-String.prototype.Trim = function (sequence: string): string {
+String.prototype.Trim = function (sequence?: string): string {
+    if (!sequence) {
+        return trim(this, ' ');
+    }
     return trim(this, sequence);
 };
 
-String.prototype.TrimStart = function (sequence: string): string {
+String.prototype.TrimStart = function (sequence?: string): string {
+    if (!sequence) {
+        return trimStart(this, ' ');
+    }
     return trimStart(this, sequence);
 };
 
-String.prototype.TrimEnd = function (sequence: string): string {
+String.prototype.TrimEnd = function (sequence?: string): string {
+    if (!sequence) {
+        return trimEnd(this, ' ');
+    }
     return trimEnd(this, sequence);
 };
 
@@ -157,7 +170,7 @@ String.prototype.Truncate = function (length: number, omission?: string, separat
     });
 };
 
-String.prototype.Clone = function (): string {
+String.prototype.Copy = function (): string {
     return clone(this);
 };
 
@@ -190,15 +203,41 @@ String.prototype.Equals = function (value: string): boolean {
 };
 
 String.prototype.Insert = function (startIndex: number, value: string): string {
+    if (startIndex < 0) {
+        startIndex = 0;
+    }
+    if (startIndex > this.length) {
+        startIndex = this.length;
+    }
     return this.slice(0, startIndex) + value + this.slice(startIndex, this.length);
 };
 
 String.prototype.Remove = function (position: number, count?: number): string {
+    let charsCanBeRemoved = this.length;
+    if (position < 0) {
+        position = 0;
+    }
+    if (position > this.length) {
+        position = this.length - 1;
+        charsCanBeRemoved = 1;
+    }
+    if (count > charsCanBeRemoved) {
+        position = position - (count - charsCanBeRemoved);
+    }
     return this.substr(0, position) + this.substring(position + (count ? count : 1), this.length);
 };
 
 String.prototype.Substring = function (position: number, length?: number): string {
-    return this.substr(position, length ? length : undefined);
+    if (!length || length < 1) {
+        length = 1;
+    }
+    if (position < 0) {
+        position = 0;
+    }
+    if (position > this.length) {
+        position = this.length - length;
+    }
+    return this.substr(position, length);
 };
 
 String.prototype.ToInteger = function (): number {
@@ -222,7 +261,13 @@ String.prototype.IndexOf = function (value: string): number {
 };
 
 String.prototype.LastIndexOf = function (value: string): number {
-    return lastIndexOf(this, value);
+    let currentPosition = -1;
+    let idx = this.indexOf(value, 0);
+    while (idx !== -1) {
+        currentPosition = idx;
+        idx = this.indexOf(value, currentPosition + 1);
+    }
+    return currentPosition;
 };
 
 String.prototype.TextBetween = function (begin: string, end: string): string[] {

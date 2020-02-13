@@ -9,16 +9,16 @@ describe('Guid Tests', () => {
     });
 
     it('can validate Guid', () => {
-        assert.throws(() => {
+        assert.throw(() => {
             new Guid('000-00000-0000-0000-0000-000000000000');
         }, 'guid is invalid 000-00000-0000-0000-0000-000000000000');
-        assert.throws(() => {
+        assert.throw(() => {
             new Guid('000-0000-0000-0000-0000-000000000000');
         }, 'guid is invalid 000-0000-0000-0000-0000-000000000000');
-        assert.throws(() => {
+        assert.throw(() => {
             new Guid('000000000-000-0000-0000-000000000000');
         }, 'guid is invalid 000000000-000-0000-0000-000000000000');
-        assert.throws(() => {
+        assert.throw(() => {
             new Guid('00000000-0000-q000-0000-000000000000');
         }, 'guid is invalid 00000000-0000-q000-0000-000000000000');
         assert.isFalse(Guid.Validate('00000000-0000-q000-0000-000000000000'));

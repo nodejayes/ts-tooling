@@ -1,10 +1,31 @@
-import * as uuidv4 from 'uuid/v4';
-import {StringFactory} from "../utils/string.factory";
+/**
+ * @ignore
+ */
+import {StringFactory} from '../utils/string.factory';
+
+const GUID_LENGTH = 36;
 
 /**
  * @ignore
  */
-const GUID_LENGTH = 36;
+const lut = [];
+for (let i= 0; i < 256; i++) {
+    lut[i] = (i < 16 ? '0' : '') + (i).toString(16);
+}
+
+/**
+ * @ignore
+ */
+function uuidv4() {
+    const d0 = Math.random()*0xffffffff|0;
+    const d1 = Math.random()*0xffffffff|0;
+    const d2 = Math.random()*0xffffffff|0;
+    const d3 = Math.random()*0xffffffff|0;
+    return lut[d0&0xff]+lut[d0>>8&0xff]+lut[d0>>16&0xff]+lut[d0>>24&0xff]+'-'+
+        lut[d1&0xff]+lut[d1>>8&0xff]+'-'+lut[d1>>16&0x0f|0x40]+lut[d1>>24&0xff]+'-'+
+        lut[d2&0x3f|0x80]+lut[d2>>8&0xff]+'-'+lut[d2>>16&0xff]+lut[d2>>24&0xff]+
+        lut[d3&0xff]+lut[d3>>8&0xff]+lut[d3>>16&0xff]+lut[d3>>24&0xff];
+}
 
 /**
  * @ignore
@@ -61,7 +82,12 @@ export class Guid {
 
     /**
      * get a empty Guid
-     * @constructor
+     *
+     * @returns the empty guid
+     *
+     * @example
+     * // returns "00000000-0000-0000-0000-000000000000"
+     * Guid.Empty;
      */
     static get Empty(): Guid {
         return new Guid('00000000-0000-0000-0000-000000000000');
@@ -69,8 +95,15 @@ export class Guid {
 
     /**
      * validate a Guid
-     * @param guid
-     * @constructor
+     *
+     * @param guid the guid to validate
+     * @returns is the given guid string valid or not
+     *
+     * @example
+     * // returns true
+     * Guid.Validate('00000000-0000-0000-0000-000000000000');
+     * // returns false
+     * Guid.Validate('00000000000000000000000000000000');
      */
     static Validate(guid: string): boolean {
         return validateGuid(guid);
@@ -78,7 +111,14 @@ export class Guid {
 
     /**
      * is this Guid a Empty Guid
-     * @constructor
+     *
+     * @returns matches the empty guid
+     *
+     * @example
+     * // returns true
+     * new Guid('00000000-0000-0000-0000-000000000000').IsEmpty();
+     * // returns false
+     * new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').IsEmpty();
      */
     get IsEmpty(): boolean {
         return this._value.Equals(Guid.Empty.ToString());
@@ -86,7 +126,16 @@ export class Guid {
 
     /**
      * create a new Guid
-     * @param guid
+     *
+     * generates a new one when no guid was passed
+     *
+     * @param guid a new guid as string representation
+     *
+     * @example
+     * // returns a new generated Guid
+     * new Guid();
+     * // returns "6bcb9d2c-ae48-4310-8d56-ea7accffcc8c"
+     * new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c');
      */
     constructor(guid?: string) {
         if (StringFactory.IsNullOrEmpty(guid)) {
@@ -101,7 +150,12 @@ export class Guid {
 
     /**
      * converts the Guid to a String representation
-     * @constructor
+     *
+     * @returns Guid as string
+     *
+     * @example
+     * // returns "6bcb9d2c-ae48-4310-8d56-ea7accffcc8c"
+     * new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').ToString();
      */
     ToString(): string {
         return this._value;
@@ -109,8 +163,16 @@ export class Guid {
 
     /**
      * check if the Guid is Equal another Guid
-     * @param guid
-     * @constructor
+     *
+     * @param guid the guid to check
+     * @returns are the Guid´s equal or not
+     *
+     * @example
+     * // returns true
+     * new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').Equals('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c');
+     * new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').Equals(new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c'));
+     * // returns false
+     * new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').Equals('4fa89189-03b5-43f2-b184-8a42adeebfe7');
      */
     Equals(guid: Guid | string): boolean {
         if (guid instanceof Guid) {

@@ -17,7 +17,7 @@ Number.prototype.IsInRange = function (lower: number, upper: number): boolean {
 };
 
 Number.prototype.Equals = function (value: number): boolean {
-    return this === value;
+    return this.valueOf() === value;
 };
 
 Number.prototype.IsAbove = function (value: number): boolean {
