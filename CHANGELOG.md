@@ -1,3 +1,8 @@
+### 2.5.1 (not-released)
+
+* update Documentation
+* add DecimalPlaces and Numerals to number
+
 ### 2.5.0
 
 * update Dependencies

@@ -1,7 +1,21 @@
 import {clamp, ceil, floor, round} from 'lodash';
 
-Number.prototype.IsInRange = function (start: number, end: number): boolean {
-    return this <= end && this >= start;
+/**
+ * @ignore
+ */
+function _round(value: number, precision: number = 0, method: string = 'round'): number {
+    let offset = '1';
+    for (let i = 0; i < Math.abs(precision); i++) {
+        offset += '0';
+    }
+    const tmp = parseInt(offset, 10);
+    return precision.IsBelow(0) ?
+        Math[method](value / tmp) * tmp :
+        Math[method](value * tmp) / tmp;
+}
+
+Number.prototype.IsInRange = function (lower: number, upper: number): boolean {
+    return this <= upper && this >= lower;
 };
 
 Number.prototype.Equals = function (value: number): boolean {
@@ -17,7 +31,13 @@ Number.prototype.IsBelow = function (value: number): boolean {
 };
 
 Number.prototype.Clamp = function (lower: number, upper: number): number {
-    return clamp(this, lower, upper);
+    if (this < lower) {
+        return lower;
+    }
+    if (this > upper) {
+        return upper;
+    }
+    return this.valueOf();
 };
 
 Number.prototype.Add = function (value: number): number {
@@ -40,15 +60,24 @@ Number.prototype.Divide = function (value: number): number {
 };
 
 Number.prototype.Ceil = function (precision?: number): number {
-    return ceil(this, precision || 0);
+    return _round(this, precision, 'ceil');
 };
 
 Number.prototype.Floor = function (precision?: number): number {
-    return floor(this, precision || 0);
+    return _round(this, precision, 'floor');
 };
 
 Number.prototype.Round = function (precision?: number): number {
-    return round(this, precision || 0);
+    return _round(this, precision);
+};
+
+Number.prototype.Numerals = function (): number {
+    return this.toFixed(0).length;
+};
+
+Number.prototype.DecimalPlaces = function(): number {
+    const tmp = this.toString().split('.');
+    return tmp[1] ? tmp[1].length : 0;
 };
 
 Number.prototype.Increment = function (step?: number): number {
