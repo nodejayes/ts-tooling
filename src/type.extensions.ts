@@ -243,6 +243,118 @@ declare global {
     }
     interface String {
         /**
+         * Returns a letter of a string at a certain position.
+         *
+         * @category string
+         *
+         * @param pos The index of the letter to be returned.
+         * @returns the Letter at the Position
+         *
+         * @example
+         * // returns "H"
+         * 'Hello'.CharAt(0);
+         * // returns "o"
+         * 'Hello'.CharAt(4);
+         * // throws an Error while string has not enough letters
+         * 'Hello'.CharAt(5);
+         */
+        CharAt?(pos: number): string;
+
+        /**
+         * Converts a string so that the first letter of the string is capital and all others are small.
+         *
+         * @category string
+         *
+         * @returns the capitalized String
+         *
+         * @example
+         * // retruns "Hello"
+         * 'hello'.Capitalize();
+         * 'HELLO'.Capitalize();
+         * 'Hello'.Capitalize();
+         */
+        Capitalize?(): string;
+
+        /**
+         * checks whether a string begins with a character string.
+         *
+         * @category string
+         *
+         * @param search the string with which the string should begin
+         * @param position an offset parameter
+         * @returns the string begins with the string
+         *
+         * @example
+         * // returns true
+         * 'abcdefg'.StartsWith('abc');
+         * 'abcdefg'.StartsWith('b', 1);
+         * // returns false
+         * 'abcdefg'.StartsWith('b', 2);
+         * 'abcdefg'.StartsWith('z');
+         */
+        StartsWith?(search: string, position?: number): boolean;
+
+        /**
+         * checks whether a string ends with a character string.
+         *
+         * @category string
+         *
+         * @param search the string with which the string should end
+         * @param position an offset parameter
+         * @returns the string ends with the search
+         *
+         * @example
+         * ```
+         * // returns true
+         * 'abcdefg'.EndsWith('efg');
+         * 'abcdefg'.EndsWith('f', 6);
+         * // returns false
+         * 'abcdefg'.EndsWith('f', 1);
+         * 'abcdefg'.EndsWith('z');
+         * ```
+         */
+        EndsWith?(search: string, position?: number): boolean;
+
+        /**
+         * escape to a HTML safe string
+         *
+         * @category string
+         *
+         * @returns a escaped HTML String
+         *
+         * @example
+         * // returns "fred, barney, &amp; pebbles"
+         * 'fred, barney, & pebbles'.HTMLEscape();
+         */
+        HTMLEscape?(): string;
+
+        /**
+         * unescape a escaped HTML String
+         *
+         * @category string
+         *
+         * @returns a unescaped HTML String
+         *
+         * @example
+         * // returns "fred, barney, & pebbles"
+         * 'fred, barney, &amp; pebbles'.HTMLUnescape();
+         */
+        HTMLUnescape?(): string;
+
+        /**
+         * escape a String used for Regular Expression
+         *
+         * @category string
+         *
+         * @returns a escaped Regular Expression
+         *
+         * @example
+         * // returns "\[lodash\]\(https://lodash\.com/\)"
+         * '[lodash](https://lodash.com/)'.RegExpEscape();
+         */
+        RegExpEscape?(): string;
+
+        /**
          * convert the String into a Number (integer) when it possible
          * @constructor
          */
@@ -255,110 +367,142 @@ declare global {
         ToDouble?(): number;
 
         /**
-         * returns a Character at Position in this String
-         * @param pos the Position of the Character to return
-         * @constructor
-         */
-        CharAt?(pos: number): string;
-
-        /**
-         * convert to CamelCase String
-         * @constructor
+         * Converts a string into the Camel Case format.
+         *
+         * @category string
+         *
+         * @returns the Camel Case String
+         *
+         * @example
+         * // returns "fooBar"
+         * 'Foo Bar'.ToCamelCase()
+         * '--foo-bar--'.ToCamelCase()
+         * '__FOO_BAR__'.ToCamelCase()
          */
         ToCamelCase?(): string;
 
         /**
-         * make the first letter to Uppercase
-         * @constructor
-         */
-        Capitalize?(): string;
-
-        /**
-         * converting Latin-1 Supplement and Latin Extended-A letters
-         * to basic Latin letters and removing combining diacritical marks.
-         * @constructor
-         */
-        Deburr?(): string;
-
-        /**
-         * check if the String starts with a specific letter combination
-         * @param search
-         * @param position
-         * @constructor
-         */
-        StartsWith?(search: string, position?: number): boolean;
-
-        /**
-         * check if the String ends with a specific letter combination
-         * @param search
-         * @param position
-         * @constructor
-         */
-        EndsWith?(search: string, position?: number): boolean;
-
-        /**
-         * escape the String to HTML
-         * @constructor
-         */
-        HTMLEscape?(): string;
-
-        /**
-         * unescape HTML String to normal String
-         * @constructor
-         */
-        HTMLUnescape?(): string;
-
-        /**
-         * escape to a String used by a Regex
-         * @constructor
-         */
-        RegExpEscape?(): string;
-
-        /**
-         * convert the String to Kebab Case
-         * @constructor
+         * Converts a string into the Kebab Case format.
+         *
+         * @category string
+         *
+         * @returns the Kebab Case String
+         *
+         * @example
+         * // returns "foo-bar"
+         * 'Foo Bar'.ToKebabCase();
+         * 'fooBar'.ToKebabCase();
+         * '__FOO_BAR__'.ToKebabCase();
          */
         ToKebabCase?(): string;
 
         /**
-         * conver the String to Snake Case
-         * @constructor
+         * Converts a string into the Snake Case format.
+         *
+         * @category string
+         *
+         * @returns the Snake Case String
+         *
+         * @example
+         * // returns "foo_bar"
+         * 'Foo Bar'.ToSnakeCase();
+         * 'fooBar'.ToSnakeCase();
+         * '--FOO-BAR--'.ToSnakeCase();
          */
         ToSnakeCase?(): string;
 
         /**
-         * convert the String to Start Case
-         * @constructor
+         * Converts a string into the Start Case format.
+         *
+         * @category string
+         *
+         * @returns the Start Case String
+         *
+         * @example
+         * // returns "Foo Bar"
+         * '--foo-bar--'.ToStartCase();
+         * 'fooBar'.ToStartCase();
+         * // returns "FOO BAR"
+         * '__FOO_BAR__'.ToStartCase();
          */
         ToStartCase?(): string;
 
         /**
-         * convert the String to lowercase
-         * @constructor
+         * converts every letter of the string into lower case
+         *
+         * @category string
+         *
+         * @returns the lower case string
+         *
+         * @example
+         * // returns "hello"
+         * 'HELLO'.ToLowerCase();
          */
         ToLowerCase?(): string;
 
         /**
-         * convert a String to uppercase
-         * @constructor
+         * converts every letter of the string into upper case
+         *
+         * @category string
+         *
+         * @returns the upper case string
+         *
+         * @example
+         * ```
+         * // returns "HELLO"
+         * 'hello'.ToLowerCase();
+         * ```
          */
         ToUpperCase?(): string;
 
         /**
-         * convert the first letter of the String to lowercase
-         * @constructor
+         * convert the first letter of the string into lower case
+         *
+         * @category string
+         *
+         * @returns the new string with the lower case first letter
+         *
+         * @example
+         * // returns "hello"
+         * 'Hello'.LowerFirst();
+         * 'hello'.LowerFirst();
          */
         LowerFirst?(): string;
 
         /**
-         * convert the first letter of the String to uppercase
-         * @constructor
+         * convert the first letter of the string into upper case
+         *
+         * @category string
+         *
+         * @returns the new string with the upper case first letter
+         *
+         * @example
+         * // returns "Hello"
+         * 'hello'.UpperFirst();
+         * 'Hello'.UpperFirst();
          */
         UpperFirst?(): string;
 
         /**
-         * split the String into a Array of Strings by Words
-         * @constructor
+         * splits a string into an array of its words.
+         *
+         * @category string
+         *
+         * @param filter a word filter that can be applied
+         * @param pattern a custom split pattern
+         * @returns a Array of Words
+         *
+         * @example
+         * // returns ['hello', 'is', 'a', 'word', 'of', 'a', 'sentence']
+         * 'hello is a word of a sentence'.Words();
+         * // returns ['a']
+         * 'abcd'.Words(null, 'a');
+         * // returns ['hello', 'word', 'sentence']
+         * 'hello is a word of a sentence'
+         *     .Words(e => [
+         *         'hello', 'word', 'sentence'
+         *     ].Contains(e)
+         * );
          */
         Words?(): string[];
 
@@ -379,26 +523,59 @@ declare global {
         Join?(appender: string[], separator?: string): string;
 
         /**
-         * fill the String from left and right
-         * @param length
-         * @param template
-         * @constructor
+         * fills a string alternately from left and right.
+         *
+         * @category string
+         *
+         * @param length Specifies how long the string should be
+         * @param template the string to be inserted
+         * @returns the padded string
+         *
+         * @example
+         * // returns "_-abc_-_"
+         * 'abc'.Pad(8, '_-');
+         * // returns "  abc   "
+         * 'abc'.Pad(8);
+         * // returns "abcdefg"
+         * 'abcdefg'.Pad(3, '-');
          */
         Pad?(length: number, template?: string): string;
 
         /**
-         * fill the String from left
-         * @param length
-         * @param template
-         * @constructor
+         * fills a string from left.
+         *
+         * @category string
+         *
+         * @param length Specifies how long the string should be
+         * @param template the string to be inserted
+         * @returns the padded string
+         *
+         * @example
+         * // returns "__abc"
+         * 'abc'.PadLeft(5, '_');
+         * // returns "  abc"
+         * 'abc'.PadLeft(5);
+         * // returns "abcdefg"
+         * 'abcdefg'.PadLeft(3, '-');
          */
         PadLeft?(length: number, template?: string): string;
 
         /**
-         * fill the String from right
-         * @param length
-         * @param template
-         * @constructor
+         * fills a string from right.
+         *
+         * @category string
+         *
+         * @param length Specifies how long the string should be
+         * @param template the string to be inserted
+         * @returns the padded string
+         *
+         * @example
+         * // returns "abc__"
+         * 'abc'.PadRight(5, '_');
+         * // returns "abc  "
+         * 'abc'.PadRight(5);
+         * // returns "abcdefg"
+         * 'abcdefg'.PadRight(3, '-');
          */
         PadRight?(length: number, template?: string): string;
 
@@ -565,6 +742,13 @@ declare global {
          * @constructor
          */
         Bytes?(): number;
+
+        /**
+         * converting Latin-1 Supplement and Latin Extended-A letters
+         * to basic Latin letters and removing combining diacritical marks.
+         * @constructor
+         */
+        Deburr?(): string;
     }
     interface Array<T> {
         /**

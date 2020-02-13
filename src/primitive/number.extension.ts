@@ -1,5 +1,3 @@
-import {clamp, ceil, floor, round} from 'lodash';
-
 /**
  * @ignore
  */
