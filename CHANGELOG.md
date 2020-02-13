@@ -1,3 +1,8 @@
+### 2.5.0
+
+* update Dependencies
+* add throttle Function to patterns
+
 ### 2.4.9
 
 * generate Guid into SafeBehaviorSubject

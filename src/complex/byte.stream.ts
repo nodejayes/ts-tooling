@@ -14,7 +14,9 @@ export class ByteStream {
      */
     static FromByteString(str: string): ByteStream {
         const tmp = new ByteStream();
-        tmp.Write(Array.from(new TextEncoder().encode(str)).Convert<Byte>(i => new Byte(i)));
+        const arr = [];
+        new TextEncoder().encode(str).forEach(i => arr.Add(new Byte(i)));
+        tmp.Write(arr);
         return tmp;
     }
 

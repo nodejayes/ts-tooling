@@ -28,6 +28,8 @@ import {EventHandler} from './pattern/events/event.handler';
 export {EventHandler} from './pattern/events/event.handler';
 import {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
 export {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
+import {throttle, IThrottleOptions} from './pattern/functions/throttle';
+export {throttle, IThrottleOptions} from './pattern/functions/throttle';
 
 // Utils
 import {LZCompression} from './compression/lz';
