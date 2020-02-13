@@ -6,16 +6,21 @@ import {random} from 'lodash';
 export class NumberFactory {
     /**
      * create a new Integer from the given input
-     * @param value Javascript Number or String
      *
-     * ```typescript
-     * // create a valid Javascript Number with value 1
-     * NumberFactory.newInteger(1);
-     * NumberFactory.newInteger('1');
-     * NumberFactory.newInteger(1.5);
-     * ```
+     * @category number
+     *
+     * @param value Javascript Number or String
+     * @returns new integer representation of the string or number
+     *
+     * @example
+     * // returns 1
+     * NumberFactory.NewInteger(1);
+     * NumberFactory.NewInteger('1');
+     * NumberFactory.NewInteger(1.5);
+     * // returns 0
+     * NumberFactory.NewInteger('aaaa');
      */
-    static newInteger(value: number | string): number {
+    static NewInteger(value: number | string): number {
         const tmp = parseInt(value.toString());
         if (isNaN(tmp)) {
             return 0;
@@ -25,15 +30,20 @@ export class NumberFactory {
 
     /**
      * create a new Double number from the given input
-     * @param value  Javascript Number or String
      *
-     * ```typescript
-     * // create a valid Javascript Number with value 1.5
-     * NumberFactory.newDouble(1.5);
-     * NumberFactory.newDouble('1.5');
-     * ```
+     * @category number
+     *
+     * @param value Javascript Number or String
+     * @returns the double number representation of the string or number input
+     *
+     * @example
+     * // returns 1.5
+     * NumberFactory.NewDouble(1.5);
+     * NumberFactory.NewDouble('1.5');
+     * // returns 0.0
+     * NumberFactory.NewDouble('aaa');
      */
-    static newDouble(value: number | string): number {
+    static NewDouble(value: number | string): number {
         const tmp = parseFloat(value.toString());
         if (isNaN(tmp)) {
             return 0;
@@ -43,13 +53,16 @@ export class NumberFactory {
 
     /**
      * create Random Integers in the min/max Border
+     *
+     * @category number
+     *
      * @param min the minimum Integer that can be created
      * @param max the maximum Integer that can be created
+     * @returns a integer number between min and max
      *
-     * ```typescript
+     * @example
      * // creates the Javascript Numbers 1,2,3,4,5,6,7,8,9 and 10
      * NumberFactory.RandomInteger(1, 10);
-     * ```
      */
     static RandomInteger(min: number, max: number): number {
         return random(min, max, false);
@@ -57,13 +70,16 @@ export class NumberFactory {
 
     /**
      * create Random Doubles in the min/max Border
+     *
+     * @category number
+     *
      * @param min the minimum Double that can be created
      * @param max the maximum Double that can be created
+     * @returns a double number between min and max
      *
-     * ```typescript
+     * @example
      * // create all Double Numbers begins with 0.0 and ends with 1.0
      * NumberFactory.RandomDouble(0, 1)
-     * ```
      */
     static RandomDouble(min: number, max: number): number {
         return random(min, max, true);

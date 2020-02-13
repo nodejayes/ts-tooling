@@ -22,21 +22,21 @@ describe('Number Generator Tests', () => {
         }
     });
     it('create Integers', () => {
-        assert.equal(NumberFactory.newInteger(1), 1);
-        assert.equal(NumberFactory.newInteger(1.5), 1);
-        assert.equal(NumberFactory.newInteger(1.4), 1);
-        assert.equal(NumberFactory.newInteger(1.6), 1);
-        assert.equal(NumberFactory.newInteger('1'), 1);
-        assert.equal(NumberFactory.newInteger('1.5'), 1);
+        assert.equal(NumberFactory.NewInteger(1), 1);
+        assert.equal(NumberFactory.NewInteger(1.5), 1);
+        assert.equal(NumberFactory.NewInteger(1.4), 1);
+        assert.equal(NumberFactory.NewInteger(1.6), 1);
+        assert.equal(NumberFactory.NewInteger('1'), 1);
+        assert.equal(NumberFactory.NewInteger('1.5'), 1);
     });
     it('create Doubles', () => {
-        assert.equal(NumberFactory.newDouble(1), 1);
-        assert.equal(NumberFactory.newDouble(1.5), 1.5);
-        assert.equal(NumberFactory.newDouble('1'), 1);
-        assert.equal(NumberFactory.newDouble('1.5'), 1.5);
+        assert.equal(NumberFactory.NewDouble(1), 1);
+        assert.equal(NumberFactory.NewDouble(1.5), 1.5);
+        assert.equal(NumberFactory.NewDouble('1'), 1);
+        assert.equal(NumberFactory.NewDouble('1.5'), 1.5);
     });
     it('default is zero', () => {
-        assert.equal(NumberFactory.newInteger('dsjdjhdh'), 0);
-        assert.equal(NumberFactory.newDouble('dsjdjhdh'), 0);
+        assert.equal(NumberFactory.NewInteger('dsjdjhdh'), 0);
+        assert.equal(NumberFactory.NewDouble('dsjdjhdh'), 0);
     });
 });

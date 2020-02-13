@@ -1,21 +1,27 @@
 /**
  * some Utils for strings
  */
-import {NumberFactory} from "./number.factory";
+import {NumberFactory} from './number.factory';
 
+/**
+ * some Utils for Strings
+ */
 export class StringFactory {
     /**
      * check if a String is empty or null
      *
-     * ```typescript
+     * @category string
+     *
+     * @param value the string to check
+     * @returns is the given string defined and not empty or not
+     *
+     * @example
      * // is true
      * StringFactory.IsNullOrEmpty(undefined);
      * StringFactory.IsNullOrEmpty(null);
      * StringFactory.IsNullOrEmpty('');
-     *
      * // is false
      * StringFactory.IsNullOrEmpty('a');
-     * ```
      */
     static IsNullOrEmpty(value: string) {
         return !value || value.length < 1;
@@ -24,8 +30,15 @@ export class StringFactory {
     /**
      * generate a Random String with given Size
      * use only letters a-z
+     *
+     * @category string
+     *
      * @param length the Size of the String
-     * @constructor
+     * @returns a random string with letters from a-z
+     *
+     * @example
+     * // returns a random string with 12 bytes length
+     * StringFactory.RandomAlphaString(12);
      */
     static RandomAlphaString(length: number): string {
         if (length < 1) {
