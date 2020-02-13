@@ -2,6 +2,9 @@
 
 * update Documentation
 * add DecimalPlaces and Numerals to number
+* remove MinBy MaxBy MeanBy and SumBy (replaced by filter parameter)
+* add filter Parameter to Min Max Mean and Sum
+* GroupKeys named GroupKey now
 
 ### 2.5.0
 

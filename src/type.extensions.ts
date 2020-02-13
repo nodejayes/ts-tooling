@@ -985,304 +985,711 @@ declare global {
     }
     interface Array<T> {
         /**
-         * the number of items in the list
-         * @constructor
+         * get the Number of Items in the Array
+         *
+         * @category array
+         * @returns the Number of Elements
+         *
+         * @example
+         * // returns 3
+         * [1,2,3].Count();
+         * // returns 0
+         * [].Count();
          */
         Count?(): number;
 
         /**
-         * get the Maximum Value in the Array
-         * ATTENTION only in Numeric Lists
-         * @constructor
+         * get the maximum number in the Array
+         *
+         * only number types are checked!!!
+         *
+         * @category array
+         *
+         * @param filterMethod a filter function to remove some number values
+         * @returns the maximum value
+         *
+         * @example
+         * // returns 3
+         * [1,2,3].Max();
+         * // returns 2
+         * [1,2,3].Max(i => i < 3);
+         * // returns 4
+         * [1,2,'3',4,'5'].Max();
          */
-        Max?(): number;
+        Max?(filterMethod?: FindMethod<T>): number;
 
         /**
-         * get the Min Value of the Array
-         * ATTENTION only in Numeric Lists
-         * @constructor
+         * get the minimum number in the Array
+         *
+         * only number types are checked!!!
+         *
+         * @category array
+         *
+         * @param filterMethod a filter function to remove some number values
+         * @returns the minimum value
+         *
+         * @example
+         * // returns 3
+         * [1,2,3].Min();
+         * // returns 2
+         * [1,2,3].Min(i => i > 1);
+         * // returns 4
+         * ['1','2','3',4,'5'].Min();
          */
-        Min?(): number;
+        Min?(filterMethod?: FindMethod<T>): number;
 
         /**
-         * get the Mean of this Array
-         * ATTENTION only in Numeric Lists
-         * @constructor
+         * get the Mean from all numbers in this array
+         *
+         * @category array
+         *
+         * @param filterMethod a filter function to remove some number values
+         * @returns the mean value
+         *
+         * @example
+         * // returns 9.866666666666667
+         * [1, 25.6, 3].Mean();
+         * // returns 2
+         * [1,2,3,4].Mean(i => i < 4);
+         * // returns 4
+         * ['1','2','3',4,'5'].Mean();
          */
-        Mean?(): number;
+        Mean?(filterMethod?: FindMethod<T>): number;
 
         /**
-         * get the Sum of this Array
-         * ATTENTION only in Numeric Lists
-         * @constructor
+         * get the Sum from all numbers in this array
+         *
+         * @category array
+         *
+         * @param filterMethod a filter function to remove some number values
+         * @returns the sum value
+         *
+         * @example
+         * // returns 6
+         * [1,2,3].Sum();
+         * // returns 5
+         * [1,2,3].Sum(i => i > 1);
+         * // returns 4
+         * ['1','2','3',4,'5'].Sum();
          */
-        Sum?(): number;
+        Sum?(filterMethod?: FindMethod<T>): number;
 
         /**
-         * add a new Item into the Array
-         * @param element
-         * @constructor
+         * add the given element at the end of the list
+         *
+         * @category array
+         *
+         * @param element the element to add in the list
+         * @returns the list after element added
+         *
+         * @example
+         * // returns [1]
+         * [].Add(1);
          */
-        Add?(element: T): void;
+        Add?(element: T): T[];
 
         /**
-         * add a Item to the Array if not exists in the Array
-         * @param element
-         * @constructor
+         * add the element at the end of the list when the element not exists in the list.
+         *
+         * @category array
+         *
+         * @param element the element to add in the list
+         * @returns the list after eventually added element
+         *
+         * @example
+         * // returns [1,2]
+         * [1].AddIfNotExists(2);
+         * // returns [1]
+         * [1].AddIfNotExists(1);
          */
-        AddIfNotExists?(element: T): boolean;
+        AddIfNotExists?(element: T): T[];
 
         /**
-         * reduce a Array of Elements into a new Element
-         * @param reducer
-         * @param initial
-         * @constructor
+         * shrink the array into a new object with a convert function.
+         *
+         * @category array
+         *
+         * @param reducer the reducer function to convert each array element
+         * @param initial the initial value pass to each element
+         * @returns the shrinked object
+         *
+         * @example
+         * // returns "a,b,c"
+         * ['a', 'b', 'c'].Reduce((target, e) => {
+         *      return target.Concat(e, ',');
+         *  }, '')
          */
         Reduce?<K>(reducer: ReducerMethod<T, K>, initial: K): K;
 
         /**
-         * same as Add with multiple Items
-         * @param elements
-         * @constructor
+         * add multiple elements at the end of this array
+         *
+         * @category array
+         *
+         * @param elements the elements to add into this array
+         * @returns the array after add all elements
+         *
+         * @example
+         * // returns [1,2,3,4]
+         * [1].AddRange([2,3,4]);
          */
-        AddRange?(elements: T[]): void;
+        AddRange?(elements: T[]): T[];
 
         /**
-         * same as AddIfNotExists with multiple items
-         * @param elements
-         * @constructor
+         * add multiple elements at the end of this array when not exists
+         *
+         * @category array
+         *
+         * @param elements the elements to add into this array
+         * @returns the array after add all elements
+         *
+         * @example
+         * // returns [1,2,3,4]
+         * [1].AddRangeIfNotExists([2,3,4]);
+         * // returns [1]
+         * [1].AddRangeIfNotExists([1,1,1]);
          */
-        AddRangeIfNotExists?(elements: T[]): boolean[];
+        AddRangeIfNotExists?(elements: T[]): T[];
 
         /**
-         * remove all Items from the Array
-         * @constructor
+         * remove all Elements from this array
+         *
+         * @category array
+         *
+         * @returns the empty array
+         *
+         * @example
+         * // returns []
+         * [1,2,3].Clear();
          */
-        Clear?(): void;
+        Clear?(): T[];
 
         /**
-         * check if an Item is in the Array
-         * @param element
-         * @constructor
+         * check if this array have the given element
+         *
+         * @category array
+         *
+         * @param element the element to be find
+         * @returns element is in the list or not
+         *
+         * @example
+         * // returns true
+         * [1,2,3].Contains(2);
+         * const element = {x:'y'};
+         * [element].Contains(element);
+         * const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
+         * [element2].Contains(element2);
+         * // returns false
+         * [1,2,3].Contains(50);
+         * [{hello:'world'}].Contains({hello:'world'});
          */
         Contains?(element: T): boolean;
 
         /**
-         * copy the complete Array into a new One
-         * @constructor
+         * get a new instance of the array
+         *
+         * @category array
+         *
+         * @returns the new instance
+         *
+         * @example
+         * // returns [1,2,3]
+         * [1,2,3].Copy();
          */
         Copy?(): T[];
 
         /**
-         * check if a Items exists that match the specific Filter
-         * @constructor
+         * check if the find Method returns true for a element in the list
+         *
+         * @category array
+         *
+         * @param condition the method executed for each element in the list
+         * @returns element exists or not
+         *
+         * @example
+         * // returns true
+         * [1,2,3].Exists(e => e === 2);
+         * // returns false
+         * [1,2,3].Exists(e => e === 20);
          */
-        Exists?(findMethod: FindMethod<T>): boolean;
+        Exists?(condition: FindMethod<T>): boolean;
 
         /**
-         * returns the First match of an Item from the Array by specific Filter
-         * @param findMethod
-         * @constructor
+         * find the first element that matches the condition in the array
+         *
+         * @category array
+         *
+         * @param condition the method executed for each element in the list
+         * @returns the element that matches
+         *
+         * @example
+         * // returns 2
+         * [1,2,3].Find((e) => e > 1);
          */
-        Find?(findMethod: FindMethod<T>): T;
+        Find?(condition: FindMethod<T>): T;
 
         /**
-         * returns the Last match of an Item from the Array by specific Filter
-         * @param findMethod
-         * @constructor
+         * find the last element that matches the condition in the array
+         *
+         * @category array
+         *
+         * @param condition the method executed for each element in the list
+         * @returns the element that matches
+         *
+         * @example
+         * // returns 3
+         * [1,2,3].FindLast((e) => e > 1);
          */
-        FindLast?(findMethod: FindMethod<T>): T;
+        FindLast?(condition: FindMethod<T>): T;
 
         /**
-         * returns the index of the First Item that matches the specific Filter
-         * @param findMethod
-         * @constructor
+         * get the index number of the first matched element in the array
+         *
+         * @category array
+         *
+         * @param condition the method executed for each element in the list
+         * @returns the index number
+         *
+         * @example
+         * // returns 1
+         * [1,2,3,1,2,3].FindIndex(e => e === 2);
          */
-        FindIndex?(findMethod: FindMethod<T>): number;
+        FindIndex?(condition: FindMethod<T>): number;
 
         /**
-         * returns all Items that matches the specific Filter
-         * @param findMethod
-         * @constructor
+         * get all elements that match the condition
+         *
+         * @category array
+         *
+         * @param condition the method executed for each element in the list
+         * @returns a array of matched elements
+         *
+         * @example
+         * // returns [2,3]
+         * [1,2,3].FindAll(i => i > 1);
          */
-        FindAll?(findMethod: FindMethod<T>): T[];
+        FindAll?(condition: FindMethod<T>): T[];
 
         /**
-         * returns the Index of the Last match Item from the Array by specific Filter
-         * @param findMethod
-         * @constructor
+         * get the index number of the last matched element in the array
+         *
+         * @category array
+         *
+         * @param condition the method executed for each element in the list
+         * @returns the index number
+         *
+         * @example
+         * // returns 4
+         * [1,2,3,1,2,3].FindLastIndex(e => e === 2);
          */
-        FindLastIndex?(findMethod: FindMethod<T>): number;
+        FindLastIndex?(condition: FindMethod<T>): number;
 
         /**
-         * check if the condition is true for all Items in the Array
-         * @param matchMethod
-         * @constructor
+         * check if a condition returns true for any element in the array
+         *
+         * @category array
+         *
+         * @param condition the method to check each element
+         * @returns condition is true for all elements or not
+         *
+         * @example
+         * // returns true
+         * [1,2,3].TrueForAll(e => typeof e === typeof 0);
+         * // returns false
+         * [1,2,3].TrueForAll(e => e === 1);
          */
-        TrueForAll?(matchMethod: FindMethod<T>): boolean;
+        TrueForAll?(condition: FindMethod<T>): boolean;
 
         /**
-         * insert a new Item at the Index into the Array
-         * @param index
-         * @param element
-         * @constructor
+         * insert a element in the array at a specific position
+         *
+         * @category array
+         *
+         * @param index the position where to insert the element
+         * @param element the element to insert
+         * @returns the array with inserted element
+         *
+         * @example
+         * // returns [1,5,2,3]
+         * [1,2,3].Insert(1, 5);
          */
         Insert?(index: number, element: T): T[];
 
         /**
-         * insert multiple Items at the Index into the Array
-         * @param index
-         * @param elements
-         * @constructor
+         * insert a array of elements in the array at a specific position
+         *
+         * @category array
+         *
+         * @param index the position where to insert the element
+         * @param elements the elements to insert
+         * @returns the array with inserted elements
+         *
+         * @example
+         * // returns [1,4,5,6,2,3]
+         * [1,2,3].Insert(1, [4,5,6]);
          */
         InsertRange?(index: number, elements: T[]): T[];
 
         /**
-         * get the Index of an Intem in the Array
-         * @param element
-         * @param fromIndex
-         * @constructor
+         * get the array index of a element
+         *
+         * @category array
+         *
+         * @param element the element to find in the array
+         * @param fromIndex the index to skip
+         * @returns the array index of the target element
+         *
+         * @example
+         * // returns 1
+         * [1,2,3,1,2,3].IndexOf(2);
+         * // returns 4
+         * [1,2,3,1,2,3].IndexOf(2, 2);
          */
         IndexOf?(element: T, fromIndex?: number): number;
 
         /**
-         * removes a Item from the Array
-         * @param element
-         * @constructor
+         * remove a element from the list
+         *
+         * @category array
+         *
+         * @param element the element to remove from the list
+         * @returns the array without the element to remove
+         *
+         * @example
+         * // returns [1,3]
+         * [1,2,3].Remove(2);
          */
-        Remove?(element: T): void;
+        Remove?(element: T): T[];
 
         /**
-         * remove all Items from Array that match the Filter
-         * @param match
-         * @constructor
+         * remove all elements that match the given condition
+         *
+         * @category array
+         *
+         * @param match the condition executed by any element in the array
+         * @returns the array without the condition matching elements
+         *
+         * @example
+         * // return [1,3]
+         * [1,2,3].RemoveAll(e => e === 2);
+         * // return []
+         * [1,2,3].RemoveAll(() => true);
          */
-        RemoveAll?(match: FindMethod<T>): void;
+        RemoveAll?(match: FindMethod<T>): T[];
 
         /**
-         * remove a Item at a specific Index
-         * @param index
-         * @constructor
+         * remove element at specific position
+         *
+         * @category array
+         *
+         * @param index the position where the element was removed
+         * @returns the array without the element to remove
+         *
+         * @example
+         * // returns [1,3]
+         * [1,2,3].RemoveAt(1);
          */
-        RemoveAt?(index: number): void;
+        RemoveAt?(index: number): T[];
 
         /**
-         * remove all these Items from the Array
-         * @param elements
-         * @constructor
+         * remove multiple elements from the array
+         *
+         * @category array
+         *
+         * @param elements the elements to remove from the array
+         * @returns the array without the elements to remove
+         *
+         * @example
+         * // returns [1,2,3]
+         * [1,2,3,4,5,6].RemoveRange([4,5,6]);
+         * [1,2,3].RemoveRange([4,5,6]);
          */
-        RemoveRange?(elements: T[]): void;
+        RemoveRange?(elements: T[]): T[];
 
         /**
-         * turn around the whole Array
-         * @constructor
+         * turn around the array elements
+         *
+         * @category array
+         *
+         * @returns the reverse of the array
+         *
+         * @example
+         * // returns [3,2,1]
+         * [1,2,3].Reverse();
          */
         Reverse?(): T[];
 
         /**
-         * sort primitive Array by ASC or DESC order
-         * @param order
-         * @constructor
+         * sort the elements in a array
+         *
+         * @category array
+         *
+         * @param order the direction to sort the array elements
+         * @returns the sorted array
+         *
+         * @example
+         * // returns [1, 2, 3]
+         * [1, 2, 3].Sort();
+         * // returns [3, 2, 1]
+         * [1, 2, 3].Sort(ListSortOrder.DESC);
+         * // returns ['c', 'b', 'a']
+         * ['a', 'b', 'c'].Sort(ListSortOrder.DESC);
          */
         Sort?(order?: ListSortOrder): T[];
 
         /**
-         * sort complex Array by multiple Keys
-         * @param keys
-         * @param orders
-         * @constructor
+         * sort a array of objects by the given keys
+         *
+         * @category array
+         *
+         * @param keys a list of keys to sort with
+         * @param orders the sort direction to the keys
+         * @returns the sorted list of objects
+         *
+         * @example
+         * // returns [
+         * // {
+         * //       Name: 'Anne Klein',
+         * //       Age: 23,
+         * //       Birthday: new Date(1965, 8, 12, 0, 0, 0),
+         * //       Address: {
+         * //           Street: 'Jenaer Strasse 26',
+         * //           PLZ: '47053',
+         * //           Town: 'Duisburg',
+         * //       }
+         * //   },{
+         * //       Name: 'Christine Ehrlichmann',
+         * //       Age: 37,
+         * //       Birthday: new Date(1982, 4, 23, 0, 0, 0),
+         * //       Address: {
+         * //           Street: 'Paul-Nevermann-Platz 59',
+         * //           PLZ: '97657',
+         * //           Town: 'Sandberg'
+         * //       }
+         * //   },{
+         * //       Name: 'Jonas Schreiner',
+         * //       Age: 23,
+         * //       Birthday: new Date(1965, 4, 12, 0, 0, 0),
+         * //       Address: {
+         * //           Street: 'Gotthardstrasse 69',
+         * //           PLZ: '99094',
+         * //           Town: 'Erfurt'
+         * //       }
+         * //   },{
+         * //       Name: 'Sandra Eichmann',
+         * //       Age: 45,
+         * //       Birthday: new Date(1969, 0, 22, 0, 0, 0),
+         * //       Address: {
+         * //           Street: 'Inge Beisheim Platz 20',
+         * //           PLZ: '25313',
+         * //           Town: 'Elmshorn'
+         * //       }
+         * //   },{
+         * //       Name: 'Ulrich Gärtner',
+         * //       Age: 60,
+         * //       Birthday: new Date(1959, 2, 23, 0, 0, 0),
+         * //       Address: {
+         * //           Street: 'Koenigstrasse 50',
+         * //           PLZ: '99750',
+         * //           Town: 'Bleicherode'
+         * //       }
+         * //   }
+         * // ]
+         * [
+         *    {
+         *           Name: 'Jonas Schreiner',
+         *           Age: 23,
+         *           Birthday: new Date(1965, 4, 12, 0, 0, 0),
+         *           Address: {
+         *               Street: 'Gotthardstrasse 69',
+         *               PLZ: '99094',
+         *               Town: 'Erfurt'
+         *           }
+         *       },
+         *    {
+         *           Name: 'Sandra Eichmann',
+         *           Age: 45,
+         *           Birthday: new Date(1969, 0, 22, 0, 0, 0),
+         *           Address: {
+         *               Street: 'Inge Beisheim Platz 20',
+         *               PLZ: '25313',
+         *               Town: 'Elmshorn'
+         *           }
+         *       },
+         *    {
+         *           Name: 'Ulrich Gärtner',
+         *           Age: 60,
+         *           Birthday: new Date(1959, 2, 23, 0, 0, 0),
+         *           Address: {
+         *               Street: 'Koenigstrasse 50',
+         *               PLZ: '99750',
+         *               Town: 'Bleicherode'
+         *           }
+         *       },
+         *    {
+         *           Name: 'Christine Ehrlichmann',
+         *           Age: 37,
+         *           Birthday: new Date(1982, 4, 23, 0, 0, 0),
+         *           Address: {
+         *               Street: 'Paul-Nevermann-Platz 59',
+         *               PLZ: '97657',
+         *               Town: 'Sandberg'
+         *           }
+         *       },
+         *    {
+         *           Name: 'Anne Klein',
+         *           Age: 23,
+         *           Birthday: new Date(1965, 8, 12, 0, 0, 0),
+         *           Address: {
+         *               Street: 'Jenaer Strasse 26',
+         *               PLZ: '47053',
+         *               Town: 'Duisburg',
+         *           }
+         *       }
+         *    ].SortBy(['Name'], [ListSortOrder.ASC]);
          */
         SortBy?(keys: string[], orders?: ListSortOrder[]): T[];
 
         /**
-         * get the Item at the Index
-         * @param index
-         * @constructor
+         * get the array element at the given index or null
+         *
+         * @category array
+         *
+         * @param index the index of the element to get from array
+         * @returns the element at the given index
+         *
+         * @example
+         * // returns 2
+         * [1,2,3].ElementAt(1);
          */
         ElementAt?(index: number): T;
 
         /**
-         * have the Array more that one Item
+         * check if any element is in the array
+         *
+         * @category array
+         *
          * @param condition the condition to search the element
-         * @constructor
+         * @returns array has a element or not
+         *
+         * @example
+         * // returns true
+         * [1,2,3].Any();
+         * // returns false
+         * [].Any();
          */
         Any?(condition?: FindMethod<T>): boolean;
 
         /**
-         * find the First match Item or return a Default Value
-         * @param findMethod
-         * @param def
-         * @constructor
+         * get the First element of the array or the first that match the condition
+         *
+         * when no element was found the default value or null was returned
+         *
+         * @category array
+         *
+         * @param condition the condition executed ba any array element
+         * @param def the default value to return
+         * @returns the element that matches first
+         *
+         * @example
+         * // return 1
+         * [1,2,3,4,5,6].FirstOrDefault();
+         * // return 2
+         * [1,2,3,4,5,6].FirstOrDefault(e => e > 1);
+         * // return 10
+         * [1,2,3,4,5,6].FirstOrDefault(() => false, 10);
          */
-        FirstOrDefault?(findMethod?: FindMethod<T>, def?: T): T;
+        FirstOrDefault?(condition?: FindMethod<T>, def?: T): T;
 
         /**
-         * find the Last match Item or return a Default Value
-         * @param findMethod
-         * @param def
-         * @constructor
+         * get the last element of the array or the last that match the condition
+         *
+         * when no element was found the default value or null was returned
+         *
+         * @category array
+         *
+         * @param condition the condition executed ba any array element
+         * @param def the default value to return
+         * @returns the element that matches last
+         *
+         * @example
+         * // return 6
+         * [1,2,3,4,5,6].LastOrDefault();
+         * [1,2,3,4,5,6].LastOrDefault(e => e > 1);
+         * // return 10
+         * [1,2,3,4,5,6].LastOrDefault(() => false, 10);
          */
-        LastOrDefault?(findMethod?: FindMethod<T>, def?: T): T;
+        LastOrDefault?(condition?: FindMethod<T>, def?: T): T;
 
         /**
-         * group a Array by a specific Key that was returned by transform Function
-         * @param transformMethod
-         * @constructor
+         * groups a array of elements by a condition
+         *
+         * @category array
+         *
+         * @param condition the condition to group the array
+         * @returns the grouped object with splatted arrays from the current array
+         *
+         * @example
+         * // returns {'1': [1], '2': [2], '3': [3,3,3]}
+         * [1,2,3,3,3].GroupBy(e => e);
          */
-        GroupBy?(transformMethod: TransformMethod<T>): {[key: string]: T[]};
+        GroupBy?(condition: TransformMethod<T>): {[key: string]: T[]};
 
         /**
-         * group a Array by a specific Key and returns only the Grouped Keys
-         * @param transformMethod
-         * @constructor
+         * groups a array of elements by a condition and returns the group keys
+         *
+         * @category array
+         *
+         * @param condition the condition to group the array
+         * @returns the grouped keys as string array
+         *
+         * @example
+         * // returns ['1', '2', '3']
+         * [1,2,3,3,3].GroupKey(e => e);
          */
-        GroupKeys?(transformMethod: TransformMethod<T>): string[];
+        GroupKey?(condition: TransformMethod<T>): string[];
 
         /**
-         * convert a Array into another Array
-         * @param convertMethod
-         * @constructor
+         * convert all elements of the array into other form
+         *
+         * @category array
+         *
+         * @param convertMethod the method that execute with any element and convert them
+         * @returns a new converted array
+         *
+         * @example
+         * // returns ['Test1', 'Test2', 'Test3']
+         * [1,2,3].Convert(e => 'Test' + e);
          */
         Convert?<K>(convertMethod: ConvertMethod<T, K>): K[];
 
         /**
-         * get the Max Element
-         * must have a Numeric Property
-         * @param filterMethod
-         * @constructor
-         */
-        MaxBy?<K>(filterMethod: FilterNumber<T>): K;
-
-        /**
-         * get the Min Element
-         * must have a Numeric Property
-         * @param filterMethod
-         * @constructor
-         */
-        MinBy?<K>(filterMethod: FilterNumber<T>): K;
-
-        /**
-         * get the Mean of complex element
-         * must have a Numeric Property
-         * @param filterMethod
-         * @constructor
-         */
-        MeanBy?<K>(filterMethod: FilterNumber<T>): K;
-
-        /**
-         * calculate a Sum
-         * @param filterMethod
-         * @constructor
-         */
-        SumBy?(filterMethod: FilterNumber<T>): number;
-
-        /**
-         * joins the Array Elements to a single String split by separator
-         * @param separator
-         * @constructor
+         * joins the array elements into a string with separator
+         *
+         * @category array
+         *
+         * @param separator the separator to split the array elements in the string
+         * @returns the string with array elements
+         *
+         * @example
+         * // returns "1,2,3"
+         * [1,2,3].Join(',');
          */
         Join?(separator?: string): string;
 
-        UnionBy?<T>(arr: T[], filterMethod: FindMethod<T>): T[];
+        /**
+         * merge two arrays by the condition
+         *
+         * @category array
+         *
+         * @param items the items to add at the end of the array
+         * @param check the condition that executed by the given items
+         * @returns the merged array
+         *
+         * @example
+         * // returns [1,2,3,6]
+         * [1,2,3].UnionBy([4,5,6], e => e === 6);
+         */
+        UnionBy?<T>(items: T[], check: FindMethod<T>): T[];
     }
 }

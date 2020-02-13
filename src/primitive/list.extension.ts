@@ -1,57 +1,96 @@
 import {
-    max, min, mean, sum, isFunction, cloneDeep, find,
+    isFunction, cloneDeep, find,
     findLast, filter, findIndex, indexOf, without, remove,
-    pullAt, reverse, orderBy, first, last, map, maxBy, minBy, meanBy, sumBy, groupBy,
+    pullAt, reverse, orderBy, first, last, map, groupBy,
     findLastIndex
 } from 'lodash';
 import {ListSortOrder} from './list.sort.order.enum';
 
-function checkIfNumeric<T>(item: T): boolean {
-    return !isNaN(<any>item)
+/**
+ * @ignore
+ */
+function operateArray(arr, filter, operation) {
+    let value = null;
+    let counter = 0;
+    for (const item of arr) {
+        if (typeof item !== typeof 0) {
+            continue;
+        }
+        if (filter && !filter(item)) {
+            continue;
+        }
+        counter++;
+        switch(operation) {
+            case 1:
+                if (value === null || item > value) {
+                    value = item;
+                }
+                break;
+            case 2:
+                if (value === null || item < value) {
+                    value = item;
+                }
+                break;
+            case 3:
+            case 4:
+                if (value === null) {
+                    value = 0;
+                }
+                value += item;
+                break;
+        }
+    }
+    if (value === null) {
+        value = 0;
+    }
+    if (operation === 4) {
+        if (counter < 1) {
+            return 0;
+        }
+        value = value / counter;
+    }
+    return value;
+}
+
+/**
+ * @ignore
+ */
+function mergeArray(array, index, elements) {
+    const before = array.slice(0, index);
+    const after = array.slice(index, array.length);
+    return [...before, ...elements, ...after];
 }
 
 Array.prototype.Count = function (): number {
     return this.length;
 };
 
-Array.prototype.Max = function (): number {
-    if (!checkIfNumeric(this[0])) {
-        throw new Error(`Array has no numeric Content`);
-    }
-    return max(this);
+Array.prototype.Max = function (filterMethod?): number {
+    return operateArray(this, filterMethod, 1);
 };
 
-Array.prototype.Min = function (): number {
-    if (!checkIfNumeric(this[0])) {
-        throw new Error(`Array has no numeric Content`);
-    }
-    return min(this);
+Array.prototype.Min = function (filterMethod?): number {
+    return operateArray(this, filterMethod, 2);
 };
 
-Array.prototype.Mean = function (): number {
-    if (!checkIfNumeric(this[0])) {
-        throw new Error(`Array has no numeric Content`);
-    }
-    return mean(this);
+Array.prototype.Mean = function (filterMethod?): number {
+    return operateArray(this, filterMethod, 4);
 };
 
-Array.prototype.Sum = function (): number {
-    if (!checkIfNumeric(this[0])) {
-        throw new Error(`Array has no numeric Content`);
-    }
-    return sum(this);
+Array.prototype.Sum = function (filterMethod?): number {
+    return operateArray(this, filterMethod, 3);
 };
 
-Array.prototype.Add = function (element): void {
+Array.prototype.Add = function (element) {
     this.push(element);
+    return this;
 };
 
-Array.prototype.AddIfNotExists = function (element): boolean {
+Array.prototype.AddIfNotExists = function (element) {
     if (!this.Contains(element)) {
         this.Add(element);
-        return true;
     }
-    return false;
+    return this;
 };
 
 Array.prototype.Reduce = function (reducer, initial): any {
@@ -61,22 +100,23 @@ Array.prototype.Reduce = function (reducer, initial): any {
     return initial;
 };
 
-Array.prototype.AddRange = function (elements): void {
+Array.prototype.AddRange = function (elements) {
     for (const el of elements) {
         this.Add(el);
     }
+    return this;
 };
 
-Array.prototype.AddRangeIfNotExists = function (elements): boolean[] {
-    const state = [];
+Array.prototype.AddRangeIfNotExists = function (elements) {
     for (const el of elements) {
-        state.Add(this.AddIfNotExists(el));
+        this.AddIfNotExists(el);
     }
-    return state;
+    return this;
 };
 
-Array.prototype.Clear = function (): void {
+Array.prototype.Clear = function () {
     this.splice(0, this.length);
+    return this;
 };
 
 Array.prototype.Contains = function (element): boolean {
@@ -93,7 +133,7 @@ Array.prototype.Contains = function (element): boolean {
     return false;
 };
 
-Array.prototype.Copy = function (): any {
+Array.prototype.Copy = function () {
     const tmp = [];
     for (const el of this) {
         tmp.push(cloneDeep(el));
@@ -101,34 +141,25 @@ Array.prototype.Copy = function (): any {
     return tmp;
 };
 
-Array.prototype.Exists = function (findMethod): boolean {
-    return !!find(this, findMethod);
+Array.prototype.Exists = function (condition): boolean {
+    return !!find(this, condition);
 };
 
-Array.prototype.Find = function (findMethod): any {
-    return find(this, findMethod);
+Array.prototype.Find = function (condition): any {
+    return find(this, condition) || null;
 };
 
-Array.prototype.FindLast = function (findMethod): any {
-    return findLast(this, findMethod);
+Array.prototype.FindLast = function (condition): any {
+    return findLast(this, condition) || null;
 };
 
-Array.prototype.FindIndex = function (findMethod): number {
-    return findIndex(this, findMethod);
+Array.prototype.FindIndex = function (condition): number {
+    return findIndex(this, condition);
 };
 
-Array.prototype.FindAll = function (findMethod): any {
-    return filter(this, findMethod);
+Array.prototype.FindAll = function (condition): any {
+    return filter(this, condition);
 };
-
-/**
- * @ignore
- */
-function mergeArray(array, index, elements) {
-    const before = array.slice(0, index);
-    const after = array.slice(index, array.length);
-    return [...before, ...elements, ...after];
-}
 
 Array.prototype.Insert = function (index: number, element) {
     return mergeArray(this, index, [element]);
@@ -148,26 +179,33 @@ Array.prototype.IndexOf = function (element, fromIndex?: number): number {
     return tmp;
 };
 
-Array.prototype.Remove = function (element): void {
+Array.prototype.Remove = function (element) {
     const tmp = without(this, element);
     this.Clear();
     this.AddRange(tmp);
+    return this;
 };
 
-Array.prototype.RemoveAll = function (match): void {
+Array.prototype.RemoveAll = function (match) {
     const tmp = remove(this, i => !match(i));
     this.Clear();
     this.AddRange(tmp);
+    return this;
 };
 
-Array.prototype.RemoveAt = function (index: number): void {
+Array.prototype.RemoveAt = function (index: number) {
+    if (index >= this.length || index < 0) {
+        return this;
+    }
     pullAt(this, index);
+    return this;
 };
 
-Array.prototype.RemoveRange = function (elements): void {
+Array.prototype.RemoveRange = function (elements) {
     const tmp = without(this, ...elements);
     this.Clear();
     this.AddRange(tmp);
+    return this;
 };
 
 Array.prototype.Reverse = function (): any {
@@ -175,7 +213,7 @@ Array.prototype.Reverse = function (): any {
 };
 
 Array.prototype.Sort = function (order?: ListSortOrder): any {
-    const o = order === ListSortOrder.DESC ? 'desc' : 'asc';
+    const o = order === ListSortOrder.DESC ? 'asc' : 'desc';
     let sorted = this
         .sort((a, b) => a > b ? -1 : a < b ? 1 : 0);
     if (o === 'desc') {
@@ -192,7 +230,7 @@ Array.prototype.SortBy = function (keys: string[], orders?: ListSortOrder[]): an
 };
 
 Array.prototype.ElementAt = function (index: number): any {
-    return this[index];
+    return this[index] || null;
 };
 
 Array.prototype.Any = function (condition): boolean {
@@ -202,68 +240,52 @@ Array.prototype.Any = function (condition): boolean {
     return !!this.Find(condition);
 };
 
-Array.prototype.FirstOrDefault = function (filterMethod?, def?): any {
-    if (!isFunction(filterMethod)) {
+Array.prototype.FirstOrDefault = function (condition?, def?): any {
+    if (!isFunction(condition)) {
         return first(this) || (def ? def : null);
     }
-    return find(this, filterMethod) || (def ? def : null);
+    return find(this, condition) || (def ? def : null);
 };
 
-Array.prototype.FindLastIndex = function (findMethod): number {
-    return findLastIndex(this, findMethod);
+Array.prototype.FindLastIndex = function (condition): number {
+    return findLastIndex(this, condition);
 };
 
-Array.prototype.TrueForAll = function (matchMethod): boolean {
+Array.prototype.TrueForAll = function (condition): boolean {
     for (const item of this) {
-        if (!matchMethod(item)) {
+        if (!condition(item)) {
             return false;
         }
     }
     return true;
 };
 
-Array.prototype.LastOrDefault = function (filterMethod?, def?): any {
-    if (!isFunction(filterMethod)) {
+Array.prototype.LastOrDefault = function (condition?, def?): any {
+    if (!isFunction(condition)) {
         return last(this) || (def ? def : null);
     }
-    return findLast(this, filterMethod) || (def ? def : null);
+    return findLast(this, condition) || (def ? def : null);
 };
 
-Array.prototype.GroupBy = function (transformMethod): any {
-    return groupBy(this, transformMethod);
+Array.prototype.GroupBy = function (condition): any {
+    return groupBy(this, condition);
 };
 
-Array.prototype.GroupKeys = function (transformMethod) {
-    return Object.keys(groupBy(this, transformMethod));
+Array.prototype.GroupKey = function (condition) {
+    return Object.keys(groupBy(this, condition));
 };
 
 Array.prototype.Convert = function (convertMethod): any {
     return map(this, convertMethod);
 };
 
-Array.prototype.MaxBy = function (filterMethod): any {
-    return maxBy(this, filterMethod);
-};
-
-Array.prototype.MinBy = function (filterMethod): any {
-    return minBy(this, filterMethod);
-};
-
-Array.prototype.MeanBy = function (filterMethod): any {
-    return meanBy(this, filterMethod);
-};
-
-Array.prototype.SumBy = function (filterMethod): number {
-    return sumBy(this, filterMethod);
-};
-
 Array.prototype.Join = function (sep?: string): string {
     return this.join(sep || ',');
 };
 
-Array.prototype.UnionBy = function(arr, filter) {
-    for (const el of arr) {
-        if (filter(el)) {
+Array.prototype.UnionBy = function(items, check) {
+    for (const el of items) {
+        if (check(el)) {
             this.push(el);
         }
     }
