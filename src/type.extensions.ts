@@ -674,7 +674,7 @@ declare global {
          *
          * @example
          * // returns ['bbbb', 'bbb', 'c']
-         * 'abbbbabbbac'.Split('z');
+         * 'abbbbabbbac'.Split('a');
          */
         Split?(pattern: string): string[];
 
@@ -957,6 +957,7 @@ declare global {
          * check if this string only have alphabetical letters without "ß"
          *
          * @category string
+         *
          * @returns has only alphabetical letters or not
          *
          * @example
@@ -972,6 +973,7 @@ declare global {
          * get the String Length in Bytes
          *
          * @category string
+         *
          * @returns the Byte Length
          *
          * @example
