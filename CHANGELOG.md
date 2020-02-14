@@ -7,6 +7,7 @@
 * GroupKeys named GroupKey now
 * Copy Objects with Object Factory
 * add Markdown Wiki (including in NPM Package too)
+* move lz compression into utils
 
 ### 2.5.0
 

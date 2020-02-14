@@ -32,8 +32,8 @@ import {throttle, IThrottleOptions} from './pattern/functions/throttle';
 export {throttle, IThrottleOptions} from './pattern/functions/throttle';
 
 // Utils
-import {LZCompression} from './compression/lz';
-export {LZCompression} from './compression/lz';
+import {LZCompression} from './utils/lz';
+export {LZCompression} from './utils/lz';
 import {StopWatch} from './utils/stopwatch';
 export {StopWatch} from './utils/stopwatch';
 import {NumberFactory} from './utils/number.factory';

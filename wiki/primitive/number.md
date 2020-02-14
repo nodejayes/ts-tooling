@@ -345,3 +345,7 @@ Number of digits after the decimal point
 // returns 1
 (1.5).DecimalPlaces();
 ```
+
+---
+
+[<< Index](/wiki/index.md)
