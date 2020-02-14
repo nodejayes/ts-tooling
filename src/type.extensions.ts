@@ -303,14 +303,12 @@ declare global {
          * @returns the string ends with the search
          *
          * @example
-         * ```
          * // returns true
          * 'abcdefg'.EndsWith('efg');
          * 'abcdefg'.EndsWith('f', 6);
          * // returns false
          * 'abcdefg'.EndsWith('f', 1);
          * 'abcdefg'.EndsWith('z');
-         * ```
          */
         EndsWith?(search: string, position?: number): boolean;
 
