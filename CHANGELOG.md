@@ -6,6 +6,7 @@
 * add filter Parameter to Min Max Mean and Sum
 * GroupKeys named GroupKey now
 * Copy Objects with Object Factory
+* add Markdown Wiki (including in NPM Package too)
 
 ### 2.5.0
 
