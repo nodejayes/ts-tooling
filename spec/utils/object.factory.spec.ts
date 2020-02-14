@@ -21,4 +21,10 @@ describe('Object Extension Tests', () => {
         combined.t3 = obj3;
         assert.deepEqual(ObjectFactory.GetCircular(combined), ['c', 'c', 't1']);
     });
+    describe('[Method]: Copy', () => {
+        it('create a new Instance', () => {
+            const tmp = {Hello: 'World!'};
+            assert.notEqual(tmp, ObjectFactory.Copy(tmp));
+        });
+    });
 });

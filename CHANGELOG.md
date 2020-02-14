@@ -5,6 +5,7 @@
 * remove MinBy MaxBy MeanBy and SumBy (replaced by filter parameter)
 * add filter Parameter to Min Max Mean and Sum
 * GroupKeys named GroupKey now
+* Copy Objects with Object Factory
 
 ### 2.5.0
 

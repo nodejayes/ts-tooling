@@ -6,7 +6,6 @@ import {ListSortOrder} from './primitive/list.sort.order.enum';
 
 type ConvertMethod<T, K> = ((d: T) => K) | ((d: T) => Promise<K>);
 type TransformMethod<T> = (d: T) => any;
-type FilterNumber<T> = (d: T) => number;
 type FindMethod<T> = (d: T) => boolean;
 type ReducerMethod<T, K> = (target: K, e: T) => K;
 

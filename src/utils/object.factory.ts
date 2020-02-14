@@ -1,10 +1,27 @@
 import '../ts-tooling';
+import {cloneDeep} from 'lodash';
 const sizeof = require('object-sizeof');
 
 /**
  * Object Utils Class to perform some Operations on Objects
  */
 export class ObjectFactory {
+    /**
+     * copy a Object Instance and get a new one
+     *
+     * @param instance the object to copy
+     * @returns the new Object instance
+     *
+     * @example
+     * // returns {Hello:'World!'}
+     * ObjectFactory.Copy({Hello:'World!'});
+     * // returns false
+     * const obj = {Hello:'World!'};
+     * obj === ObjectFactory.Copy(obj);
+     */
+    static Copy<T>(instance: T): T {
+        return cloneDeep(instance);
+    }
     /**
      * check if the given Object has some self references
      *
