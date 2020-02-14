@@ -21,6 +21,8 @@ It exports the tst variable!
 npm install --save ts-tooling
 ```
 
+### Tutorials are >> [here](/wiki/index.md) <<
+
 | Module      | Description                                     |
 |-------------|-------------------------------------------------|
 | ts-tooling  | the Main Module usable in all environments      |

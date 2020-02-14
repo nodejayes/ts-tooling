@@ -1,4 +1,4 @@
-import {find, hasIn, keys, unset, values} from 'lodash';
+import {find, hasIn, keys, values} from 'lodash';
 
 /**
  * representation of a string Dictionary
@@ -66,7 +66,7 @@ export class Dictionary<T> {
      * @constructor
      */
     Remove(key: string): Dictionary<T> {
-        unset(this._data, key);
+        delete this._data[key];
         return this;
     }
 
