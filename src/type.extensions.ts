@@ -987,6 +987,7 @@ declare global {
          * get the Number of Items in the Array
          *
          * @category array
+         *
          * @returns the Number of Elements
          *
          * @example
