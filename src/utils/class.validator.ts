@@ -117,12 +117,39 @@ export const VALIDATIONS = {
 };
 
 /**
- * wraps the Package class-validator to Validate Typescript Classes
+ * a Validator to validate decorated Typescript Classes
  */
 export class ClassValidator {
     /**
      * validate again a Decorated Class Instance
+     *
      * @param instance the Instance of the Class to Validate
+     *
+     * @example
+     * class User {
+     *     @IsDefined('Name must be defined')
+     *     Name: string;
+     *
+     *     @Min(0, 'Age must be greater -1')
+     *     @Max(200, 'Age must me lower 201')
+     *     Age: number;
+     *
+     *     @IsEmail('Email must be a valid email address')
+     *     Email: string;
+     * }
+     * const instance = new User();
+     * // returns [
+     *      {Message:'Name must be defined'},
+     *      {Message:'Age must be greater -1'},
+     *      {Message:'Age must me lower 201'},
+     *      {Message:'Email must be a valid email address'},
+     * ]
+     * ClassValidator.Validate(instance);
+     * instance.Name = 'Udo';
+     * instance.Age = 20;
+     * instance.Email = 'udo@address.de';
+     * // returns []
+     * ClassValidator.Validate(instance);
      */
     static async Validate<T>(instance: T): Promise<IValidationError[]> {
         const errors: IValidationError[] = [];
@@ -300,8 +327,35 @@ export class ClassValidator {
 
     /**
      * validate a plain Object again a Class
+     *
      * @param constructor the Class with the Validation Decorators
      * @param value the raw JSON Object
+     *
+     * @example
+     * class User {
+     *     @IsDefined('Name must be defined')
+     *     Name: string;
+     *
+     *     @Min(0, 'Age must be greater -1')
+     *     @Max(200, 'Age must me lower 201')
+     *     Age: number;
+     *
+     *     @IsEmail('Email must be a valid email address')
+     *     Email: string;
+     * }
+     * const demoUser = {};
+     * // returns [
+     *      {Message:'Name must be defined'},
+     *      {Message:'Age must be greater -1'},
+     *      {Message:'Age must me lower 201'},
+     *      {Message:'Email must be a valid email address'},
+     * ]
+     * ClassValidator.Validate(demoUser);
+     * demoUser.Name = 'Udo';
+     * demoUser.Age = 20;
+     * demoUser.Email = 'udo@address.de';
+     * // returns []
+     * ClassValidator.Validate(demoUser);
      */
     static async ValidateObject<T>(constructor: new () => T, value: any): Promise<IValidationError[]> {
         const inst = new constructor();
@@ -343,8 +397,17 @@ function registerInStore(target, propertyKey: string, targetKey: string, value, 
 
 /**
  * only Validate the Property when the check Method returns True
+ *
  * @param cb define the check Method
- * @constructor
+ *
+ * @example
+ * // only validate the Class when Validate Property is true
+ * class ConditionalValidation {
+ *     Validate: boolean;
+ *     @ValidateIf<ConditionalValidation>(m => m.Validate)
+ *     @IsDefined()
+ *     Name: string;
+ * }
  */
 export function ValidateIf<T>(cb: (d: T) => boolean) {
     return function (target, propertyKey: string) {
