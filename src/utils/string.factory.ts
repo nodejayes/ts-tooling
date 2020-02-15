@@ -29,6 +29,7 @@ export class StringFactory {
 
     /**
      * generate a Random String with given Size
+     *
      * use only letters a-z
      *
      * @category string
