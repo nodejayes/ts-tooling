@@ -399,15 +399,6 @@ function registerInStore(target, propertyKey: string, targetKey: string, value, 
  * only Validate the Property when the check Method returns True
  *
  * @param cb define the check Method
- *
- * @example
- * // only validate the Class when Validate Property is true
- * class ConditionalValidation {
- *     Validate: boolean;
- *     @ValidateIf<ConditionalValidation>(m => m.Validate)
- *     @IsDefined()
- *     Name: string;
- * }
  */
 export function ValidateIf<T>(cb: (d: T) => boolean) {
     return function (target, propertyKey: string) {
@@ -417,7 +408,6 @@ export function ValidateIf<T>(cb: (d: T) => boolean) {
 
 /**
  * check if the Value is missing and ignore all Validations
- * @constructor
  */
 export function IsOptional() {
     return function (target, propertyKey: string) {
@@ -427,8 +417,8 @@ export function IsOptional() {
 
 /**
  * check if the Property was in the Object and have a Value
+ *
  * @param validationMessage
- * @constructor
  */
 export function Required(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -439,8 +429,8 @@ export function Required(validationMessage?: string) {
 
 /**
  * the Property must have a Valid Value
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsDefined(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -451,8 +441,8 @@ export function IsDefined(validationMessage?: string) {
 
 /**
  * the Property must have a Empty value like empty String or null or undefined
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsEmpty(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -463,8 +453,8 @@ export function IsEmpty(validationMessage?: string) {
 
 /**
  * the Property must can not have a Empty value like empty String or null or undefined
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsNotEmpty(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -475,8 +465,8 @@ export function IsNotEmpty(validationMessage?: string) {
 
 /**
  * the String at this Property must be a Email Address
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsEmail(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -487,9 +477,9 @@ export function IsEmail(validationMessage?: string) {
 
 /**
  * the numeric Value must be greater or Equal the given Value
+ *
  * @param value
  * @param validationMessage
- * @constructor
  */
 export function Min(value: number, validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -500,9 +490,9 @@ export function Min(value: number, validationMessage?: string) {
 
 /**
  * the numeric Value mut be lower or equal the given Value
+ *
  * @param value
  * @param validationMessage
- * @constructor
  */
 export function Max(value: number, validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -513,9 +503,9 @@ export function Max(value: number, validationMessage?: string) {
 
 /**
  * can execute a Function that returns true or false, can perform any Validation you want
+ *
  * @param value
  * @param validationMessage
- * @constructor
  */
 export function CustomValidation(value: (v) => boolean, validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -526,9 +516,9 @@ export function CustomValidation(value: (v) => boolean, validationMessage?: stri
 
 /**
  * the String or Array must have the given Length or more
+ *
  * @param value
  * @param validationMessage
- * @constructor
  */
 export function MinLength(value: number, validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -539,9 +529,9 @@ export function MinLength(value: number, validationMessage?: string) {
 
 /**
  * the String or Array must have the given Length or lesser
+ *
  * @param value
  * @param validationMessage
- * @constructor
  */
 export function MaxLength(value: number, validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -552,9 +542,9 @@ export function MaxLength(value: number, validationMessage?: string) {
 
 /**
  * implements a Whitelist check for the Property
+ *
  * @param value
  * @param validationMessage
- * @constructor
  */
 export function Whitelist(value: any[], validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -565,9 +555,9 @@ export function Whitelist(value: any[], validationMessage?: string) {
 
 /**
  * implements a Blacklist check for the Property
+ *
  * @param value
  * @param validationMessage
- * @constructor
  */
 export function Blacklist(value: any[], validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -578,9 +568,9 @@ export function Blacklist(value: any[], validationMessage?: string) {
 
 /**
  * check if the Property Value Equals the given Value using (===)
+ *
  * @param value
  * @param validationMessage
- * @constructor
  */
 export function Equals<T>(value: T, validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -591,9 +581,9 @@ export function Equals<T>(value: T, validationMessage?: string) {
 
 /**
  * check if the Property Value Equals the given Value using (!==)
+ *
  * @param value
  * @param validationMessage
- * @constructor
  */
 export function NotEquals(value: any, validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -604,8 +594,8 @@ export function NotEquals(value: any, validationMessage?: string) {
 
 /**
  * check if the given Value is an Integer number
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsInt(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -616,8 +606,8 @@ export function IsInt(validationMessage?: string) {
 
 /**
  * check an Array if it has Unique Values
+ *
  * @param validationMessage
- * @constructor
  */
 export function UniqueArray(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -628,8 +618,8 @@ export function UniqueArray(validationMessage?: string) {
 
 /**
  * check if the Array not Empty
+ *
  * @param validationMessage
- * @constructor
  */
 export function ArrayNotEmpty(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -640,8 +630,8 @@ export function ArrayNotEmpty(validationMessage?: string) {
 
 /**
  * check the Value for a Positive number
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsPositive(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -652,8 +642,8 @@ export function IsPositive(validationMessage?: string) {
 
 /**
  * check the Value for a Negative number
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsNegative(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -664,9 +654,10 @@ export function IsNegative(validationMessage?: string) {
 
 /**
  * check if the String has any valid Boolean declaration like
+ *
  * true, false, TRUE, FALSE
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsBooleanString(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -677,8 +668,8 @@ export function IsBooleanString(validationMessage?: string) {
 
 /**
  * check if the String contain Numbers Only
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsNumberString(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -689,9 +680,9 @@ export function IsNumberString(validationMessage?: string) {
 
 /**
  * check if a DateTime is After the value
+ *
  * @param value
  * @param validationMessage
- * @constructor
  */
 export function MinDate(value: DateTime, validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -702,9 +693,9 @@ export function MinDate(value: DateTime, validationMessage?: string) {
 
 /**
  * check if a DateTime is Before the value
+ *
  * @param value
  * @param validationMessage
- * @constructor
  */
 export function MaxDate(value: DateTime, validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -715,8 +706,8 @@ export function MaxDate(value: DateTime, validationMessage?: string) {
 
 /**
  * check if the String contains only letters a-z
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsAlpha(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -727,8 +718,8 @@ export function IsAlpha(validationMessage?: string) {
 
 /**
  * check if the string only contains letters a-z and numbers 0-9
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsAlphanumeric(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -739,8 +730,8 @@ export function IsAlphanumeric(validationMessage?: string) {
 
 /**
  * check if the String only contains Ascii Characters
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsAscii(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -751,8 +742,8 @@ export function IsAscii(validationMessage?: string) {
 
 /**
  * check if the String is a Base64 string
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsBase64(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -763,9 +754,10 @@ export function IsBase64(validationMessage?: string) {
 
 /**
  * check if a String is a Hex Color
+ *
  * supported Hex Color with 8 (with Alpha), 6 (Default) or 3 (Short) Characters
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsHexColor(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -776,8 +768,8 @@ export function IsHexColor(validationMessage?: string) {
 
 /**
  * check if a String is a Hexadecimal String
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsHexadecimal(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -788,8 +780,8 @@ export function IsHexadecimal(validationMessage?: string) {
 
 /**
  * check if the String is a MAC Address
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsMacAddress(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -800,8 +792,8 @@ export function IsMacAddress(validationMessage?: string) {
 
 /**
  * check if the String is a IP Address
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsIp(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -812,8 +804,8 @@ export function IsIp(validationMessage?: string) {
 
 /**
  * check if the String or Number is a Port Number
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsPort(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -824,8 +816,8 @@ export function IsPort(validationMessage?: string) {
 
 /**
  * check if the String is a JSON String
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsJSON(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -836,8 +828,8 @@ export function IsJSON(validationMessage?: string) {
 
 /**
  * check if the String is a JSON Web Token
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsJWT(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -848,9 +840,9 @@ export function IsJWT(validationMessage?: string) {
 
 /**
  * check if the String has the Maximum Bytes Size of the given Value
+ *
  * @param value
  * @param validationMessage
- * @constructor
  */
 export function IsByteLength(value: number, validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -861,8 +853,8 @@ export function IsByteLength(value: number, validationMessage?: string) {
 
 /**
  * check if a String is a MongoDb Object Id
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsMongoId(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -873,8 +865,8 @@ export function IsMongoId(validationMessage?: string) {
 
 /**
  * check if a String is a valid URL
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsUrl(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -885,8 +877,8 @@ export function IsUrl(validationMessage?: string) {
 
 /**
  * check if a String is a UUID
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsUUID(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -897,10 +889,12 @@ export function IsUUID(validationMessage?: string) {
 
 /**
  * check if the String can be a Hash
+ *
  * supported are all Hashes with 32, 40, 64 and 128 bit size
+ *
  * for Example MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, Snefru, GHOST and Whirlpool
+ *
  * @param validationMessage
- * @constructor
  */
 export function IsHash(validationMessage?: string) {
     return function (target, propertyKey: string) {
@@ -911,9 +905,9 @@ export function IsHash(validationMessage?: string) {
 
 /**
  * validate the Class with a Function
+ *
  * @param method
  * @param validationMessage
- * @constructor
  */
 export function ValidateClass<T>(method: (instance: T, validators: typeof VALIDATIONS) => boolean, validationMessage?: string) {
     return function (target) {
