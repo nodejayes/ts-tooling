@@ -12,6 +12,8 @@ validate again a Decorated Class Instance
 
     Validate<T>(instance: T): Promise<IValidationError[]>
 
+*Parameter:*
+
 | Name     | Type    | Description                           |
 |----------|---------|---------------------------------------|
 | instance | generic | the Instance of the Class to Validate |
@@ -50,6 +52,8 @@ ClassValidator.Validate(instance);
 validate a plain Object again a Class
 
     ValidateObject<T>(constructor: new () => T, value: any): Promise<IValidationError[]>
+
+*Parameter:*
 
 | Name        | Type    | Description                              |
 |-------------|---------|------------------------------------------|

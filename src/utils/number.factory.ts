@@ -9,7 +9,7 @@ export class NumberFactory {
      *
      * @category number
      *
-     * @param value Javascript Number or String
+     * @param value Javascript Number or String that represent the new Integer
      * @returns new integer representation of the string or number
      *
      * @example
@@ -31,7 +31,7 @@ export class NumberFactory {
     /**
      * create a new Double number from the given input
      *
-     * @category number
+     * @category number Javascript Number or String that represent the new Double
      *
      * @param value Javascript Number or String
      * @returns the double number representation of the string or number input

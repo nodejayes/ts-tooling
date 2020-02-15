@@ -7,7 +7,8 @@ import * as LZString from 'lz-string';
 export class LZCompression {
     /**
      * Compress any Javascript Value to a LZ String
-     * @param data
+     *
+     * @param data a Javascript Value
      *
      * ```typescript
      * // compress the Object to a zipped JSON String
@@ -20,7 +21,8 @@ export class LZCompression {
 
     /**
      * Decompress a LZ String to any Javascript Value
-     * @param compressed
+     *
+     * @param compressed a compressed string
      *
      * ```typescript
      * // decompress the zipped JSON String to a Object

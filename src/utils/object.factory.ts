@@ -42,7 +42,18 @@ export class ObjectFactory {
 
     /**
      * returns the Keys of self references in Objects
+     *
      * @param obj the Object to check
+     *
+     * @example
+     * const obj1 = {hello:'world',c:null};
+     * const obj2 = {test:'me',c:obj1};
+     * obj1.c = obj2;
+     * const combined = {t1:obj1,t2:obj2,t3:null};
+     * const obj3 = combined;
+     * combined.t3 = obj3;
+     * // returns ['c', 'c', 't1']
+     * ObjectFactory.GetCircular(combined);
      */
     static GetCircular(obj: any): string[] {
         const alreadyChecked = [];
@@ -69,7 +80,12 @@ export class ObjectFactory {
 
     /**
      * returns the Size in Byte of a Object Instance
+     *
      * @param obj the Object to check
+     *
+     * @example
+     * // returns 22
+     * ObjectFactory.SizeOf({Hello: 'World!'});
      */
     static SizeOf(obj: any): number {
         return sizeof(obj);

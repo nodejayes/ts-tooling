@@ -27,4 +27,10 @@ describe('Object Extension Tests', () => {
             assert.notEqual(tmp, ObjectFactory.Copy(tmp));
         });
     });
+    describe('[Method]: SizeOf', () => {
+        it('check {Hello: \'World!\'}', () => {
+            const tmp = {Hello: 'World!'};
+            assert.equal(ObjectFactory.SizeOf(tmp), 22);
+        });
+    });
 });
