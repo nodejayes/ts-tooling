@@ -3,6 +3,17 @@ import {DateTime as LuxonDateTime} from 'luxon';
 import {DateTime} from '../../src/ts-tooling';
 import 'mocha';
 
+function assertDateValues(date: DateTime, year: number, month: number, day: number, hour: number, minute: number, second: number, millisecond: number, zone: string) {
+    assert.equal(date.Year, year);
+    assert.equal(date.Month, month);
+    assert.equal(date.Day, day);
+    assert.equal(date.Hour, hour);
+    assert.equal(date.Minute, minute);
+    assert.equal(date.Second, second);
+    assert.equal(date.Millisecond, millisecond);
+    assert.equal(date.Zone, zone);
+}
+
 function assertDate(dt: DateTime, vgl: LuxonDateTime) {
     assert.equal(dt.Year, vgl.year);
     assert.equal(dt.Month, vgl.month);
@@ -40,9 +51,19 @@ describe('DateTime Tests', () => {
         assertDate(dt, vgl);
     });
 
+    it('create only date with no time in other timezone', () => {
+        const dt = new DateTime('Europe/Berlin', 2019, 1, 1);
+        const vgl = LuxonDateTime.utc(2019, 1, 1).setZone('Europe/Berlin');
+        assertDate(dt, vgl);
+    });
+
     it('can convert the DateTime in UTC', () => {
-        const dt = new DateTime('Europe/Berlin');
-        assert.equal(dt.UTC.UTCOffsetMinutes, 0);
+        const dt1 = new DateTime('Europe/Berlin');
+        const luxonUtc1 = LuxonDateTime.utc();
+        const dt2 = new DateTime('Europe/Berlin', 2019, 1, 1, 1, 0, 0, 0);
+        const luxonUtc2 = LuxonDateTime.utc(2019, 1, 1, 0, 0, 0, 0);
+        assertDate(dt1.UTC, luxonUtc1);
+        assertDate(dt2.UTC, luxonUtc2);
     });
 
     it('can convert the DateTime in Europe/Berlin', () => {
@@ -133,12 +154,14 @@ describe('DateTime Tests', () => {
     it('can get Days in Month', () => {
         assert.equal(DateTime.FromISOString('2019-01-01T12:23:54').DaysInMonth, 31);
         assert.equal(DateTime.FromISOString('2019-02-01T12:23:54').DaysInMonth, 28);
+        assert.equal(DateTime.FromISOString('2020-02-01T12:23:54').DaysInMonth, 29);
         assert.equal(DateTime.FromISOString('2016-02-01T12:23:54').DaysInMonth, 29);
         assert.equal(DateTime.FromISOString('2019-04-01T12:23:54').DaysInMonth, 30);
     });
 
     it('can get Days in the Year', () => {
         assert.equal(DateTime.FromISOString('2019-01-01T12:23:54').DaysInYear, 365);
+        assert.equal(DateTime.FromISOString('2020-01-01T12:23:54').DaysInYear, 366);
     });
 
     it('can get Week Number', () => {
@@ -187,6 +210,14 @@ describe('DateTime Tests', () => {
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddYears(2).Minute, 0);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddYears(2).Second, 0);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddYears(2).Millisecond, 0);
+
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddYears(-1).Year, 2018);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddYears(-1).Month, 1);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddYears(-1).Day, 1);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddYears(-1).Hour, 0);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddYears(-1).Minute, 0);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddYears(-1).Second, 0);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddYears(-1).Millisecond, 0);
     });
 
     it('can Add Months', () => {
@@ -197,6 +228,14 @@ describe('DateTime Tests', () => {
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(2).Minute, 0);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(2).Second, 0);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(2).Millisecond, 0);
+
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(-1).Year, 2018);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(-1).Month, 12);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(-1).Day, 1);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(-1).Hour, 0);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(-1).Minute, 0);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(-1).Second, 0);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(-1).Millisecond, 0);
     });
 
     it('can Add Days', () => {
@@ -207,6 +246,14 @@ describe('DateTime Tests', () => {
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddDays(2).Minute, 0);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddDays(2).Second, 0);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddDays(2).Millisecond, 0);
+
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddDays(-1).Year, 2018);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddDays(-1).Month, 12);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddDays(-1).Day, 31);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddDays(-1).Hour, 0);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddDays(-1).Minute, 0);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddDays(-1).Second, 0);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddDays(-1).Millisecond, 0);
     });
 
     it('can Add Hours', () => {
@@ -217,6 +264,14 @@ describe('DateTime Tests', () => {
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddHours(2).Minute, 0);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddHours(2).Second, 0);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddHours(2).Millisecond, 0);
+
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddHours(-1).Year, 2018);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddHours(-1).Month, 12);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddHours(-1).Day, 31);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddHours(-1).Hour, 23);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddHours(-1).Minute, 0);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddHours(-1).Second, 0);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddHours(-1).Millisecond, 0);
     });
 
     it('can Add Minutes', () => {
@@ -227,6 +282,14 @@ describe('DateTime Tests', () => {
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(2).Minute, 2);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(2).Second, 0);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(2).Millisecond, 0);
+
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(-1).Year, 2018);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(-1).Month, 12);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(-1).Day, 31);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(-1).Hour, 23);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(-1).Minute, 59);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(-1).Second, 0);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(-1).Millisecond, 0);
     });
 
     it('can Add Seconds', () => {
@@ -237,6 +300,14 @@ describe('DateTime Tests', () => {
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(2).Minute, 0);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(2).Second, 2);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(2).Millisecond, 0);
+
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(-1).Year, 2018);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(-1).Month, 12);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(-1).Day, 31);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(-1).Hour, 23);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(-1).Minute, 59);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(-1).Second, 59);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(-1).Millisecond, 0);
     });
 
     it('can Add Milliseconds', () => {
@@ -247,6 +318,14 @@ describe('DateTime Tests', () => {
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(2).Minute, 0);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(2).Second, 0);
         assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(2).Millisecond, 2);
+
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(-1).Year, 2018);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(-1).Month, 12);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(-1).Day, 31);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(-1).Hour, 23);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(-1).Minute, 59);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(-1).Second, 59);
+        assert.equal(DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(-1).Millisecond, 999);
     });
 
     it('can create zero DateTime', () => {
@@ -304,5 +383,24 @@ describe('DateTime Tests', () => {
         assert.equal(DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0))).Minute, 0);
         assert.equal(DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0))).Second, 0);
         assert.equal(DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0))).Millisecond, 0);
+    });
+
+    it('keep time zone', () => {
+        const TARGET_ZONE = 'Europe/Berlin';
+        const dateEurope = new DateTime('Europe/Berlin', 2019, 1, 1, 1);
+        const dateUtc = new DateTime('UTC', 2019, 1, 1, 1);
+
+        const convertedEurope = dateEurope.ToZone(TARGET_ZONE);
+        const convertedEuropeKeep = dateEurope.ToZone(TARGET_ZONE, true);
+        const convertedUtc = dateUtc.ToZone(TARGET_ZONE);
+        const convertedUtcKeep = dateUtc.ToZone(TARGET_ZONE, true);
+
+        assertDateValues(dateEurope, 2019, 1 , 1, 1, 0, 0, 0, 'Europe/Berlin');
+        assertDateValues(dateUtc, 2019, 1 , 1, 1, 0, 0, 0, 'UTC');
+
+        assertDateValues(convertedEurope, 2019, 1 , 1, 1, 0, 0, 0, 'Europe/Berlin');
+        assertDateValues(convertedEuropeKeep, 2019, 1 , 1, 1, 0, 0, 0, 'Europe/Berlin');
+        assertDateValues(convertedUtc, 2019, 1 , 1, 2, 0, 0, 0, 'Europe/Berlin');
+        assertDateValues(convertedUtcKeep, 2019, 1 , 1, 1, 0, 0, 0, 'Europe/Berlin');
     });
 });
