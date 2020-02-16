@@ -1,4 +1,4 @@
-### 2.5.1 (not-released)
+### 2.5.1
 
 * update Documentation
 * add DecimalPlaces and Numerals to number
@@ -8,6 +8,7 @@
 * Copy Objects with Object Factory
 * add Markdown Wiki (including in NPM Package too)
 * move lz compression into utils
+* DateTime keeps time zone on construct new DateTime (ne parameter keepTimeZone can be set to overwrite the behavior)
 
 ### 2.5.0
 
