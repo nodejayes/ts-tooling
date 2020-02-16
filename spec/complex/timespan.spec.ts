@@ -186,7 +186,9 @@ describe('TimeSpan Tests', () => {
     describe('[Method]: FromJavaScriptDate', () => {
         const testDate = new Date(2020, 1, 8, 1,0,0);
         it('with Date', () => {
-            assert.equal(TimeSpan.FromJavaScriptDate(testDate).TotalDays, 18300);
+            // using span check for travis ci
+            assert.isAtLeast(TimeSpan.FromJavaScriptDate(testDate).TotalDays, 18300);
+            assert.isAtMost(TimeSpan.FromJavaScriptDate(testDate).TotalDays, 18300.041666666668);
         });
         it('only Time', () => {
             assert.equal(TimeSpan.FromJavaScriptDate(testDate, true).TotalDays, 0.041666666666666664);
