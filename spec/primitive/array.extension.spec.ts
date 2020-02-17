@@ -543,7 +543,7 @@ describe('Array Extension Tests', () => {
                     }
                 }
             ];
-            assert.deepEqual(complexValues.SortBy2([], []), result);
+            assert.deepEqual(complexValues.SortBy([], []), result);
         });
         it('sort by Name', () => {
             const result = [
@@ -612,7 +612,7 @@ describe('Array Extension Tests', () => {
                     }
                 }
             ];
-            assert.deepEqual(complexValues.SortBy2(['Name'], [ListSortOrder.ASC]), result);
+            assert.deepEqual(complexValues.SortBy(['Name'], [ListSortOrder.ASC]), result);
         });
         it('sort by Age and Name', () => {
             const result = [
@@ -682,7 +682,7 @@ describe('Array Extension Tests', () => {
                     }
                 }
             ];
-            assert.deepEqual(complexValues.SortBy2(['Age', 'Name'], [ListSortOrder.ASC, ListSortOrder.ASC]), result);
+            assert.deepEqual(complexValues.SortBy(['Age', 'Name'], [ListSortOrder.ASC, ListSortOrder.ASC]), result);
         });
     });
     describe('[Method]: ElementAt', () => {
