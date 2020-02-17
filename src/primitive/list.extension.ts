@@ -1,10 +1,157 @@
-import {
-    isFunction, cloneDeep, find,
-    findLast, filter, findIndex, indexOf, without, remove,
-    pullAt, reverse, orderBy, first, last, map, groupBy,
-    findLastIndex
-} from 'lodash';
+import {cloneDeep} from 'lodash';
 import {ListSortOrder} from './list.sort.order.enum';
+
+/**
+ * @ignore
+ */
+function getSortValue(v1, v2) {
+    if (typeof v1.IsBefore === typeof function () {} &&
+        typeof v1.IsAfter === typeof function () {}) {
+        return v1.IsBefore(v2) ? [1, 2] :
+            v1.IsAfter(v2) ? [2, 1] : [0, 0];
+    }
+    return [v1, v2];
+}
+
+/**
+ * @ignore
+ */
+function sort(array, columns, orders) {
+    return array.sort((a, b) => {
+        for (let i = 0; i < columns.length; i++) {
+            const column = columns[i];
+            const reverse = orders[i];
+            const values = getSortValue(a[column], b[column]);
+            if (values[0] < values[1]) {
+                return reverse ? 1 : -1;
+            }
+            if (values[0] > values[1]) {
+                return reverse ? -1 : 1;
+            }
+        }
+        return 0;
+    });
+}
+
+/**
+ * @ignore
+ */
+function groupBy<T>(array: T[], select: (d: T) => any) {
+    const tmp = {};
+    for (const item of array) {
+        const v = select(item);
+        if (!tmp[v]) {
+            tmp[v] = [];
+        }
+        tmp[v].push(item);
+    }
+    return tmp;
+}
+
+/**
+ * @ignore
+ */
+function reverse<T>(array: T[]): T[] {
+    const tmp = [];
+    let counter = 0;
+    for (let i = array.length-1; i >= 0; i--) {
+        tmp[counter] = array[i];
+        counter++;
+    }
+    return tmp;
+}
+
+/**
+ * @ignore
+ */
+function isFunction(value: any): boolean {
+    return typeof value === typeof function() {};
+}
+
+/**
+ * @ignore
+ */
+function _find<T>(array: T[], cb: (d: T) => boolean, getIdx = false, up = true) {
+    if (up === true) {
+        for (let i = 0; i < array.length; i++) {
+            const item = array[i];
+            if (cb(item)) {
+                return getIdx ? i : item;
+            }
+        }
+        return getIdx ? -1 : null;
+    }
+
+    for (let i = array.length-1; i >= 0; i--) {
+        const item = array[i];
+        if (cb(item)) {
+            return getIdx ? i : item;
+        }
+    }
+    return getIdx ? -1 : null;
+}
+
+/**
+ * @ignore
+ */
+function find<T>(array: T[], cb: (d: T) => boolean, getIdx = false) {
+    return _find(array, cb, getIdx);
+}
+
+/**
+ * @ignore
+ */
+function findLast<T>(array: T[], cb: (d: T) => boolean, getIdx = false) {
+    return _find(array, cb, getIdx, false);
+}
+
+/**
+ * @ignore
+ */
+function filter<T>(array: T[], cb: (d: T) => boolean, remove = false): T[] {
+    const tmp = [];
+    for (const item of array) {
+        if (remove === true) {
+            if (!cb(item)) {
+                tmp.push(item);
+            }
+        } else {
+            if (cb(item)) {
+                tmp.push(item);
+            }
+        }
+    }
+    return tmp;
+}
+
+/**
+ * @ignore
+ */
+function without<T>(array: T[], elements: T[]): T[] {
+    const tmp = [];
+    for (const item of array) {
+        let found = indexOf(elements, item) > -1;
+        if (!found) {
+            tmp.push(item);
+        }
+    }
+    return tmp;
+}
+
+/**
+ * @ignore
+ */
+function indexOf<T>(array: T[], element: T, skip = 0): number {
+    for (let i = 0; i < array.length; i++) {
+        if (element === array[i] && i >= skip) {
+            return i;
+        }
+        if (isFunction(element['Equal']) && element['Equal'](array[i]) && i >= skip) {
+            return i;
+        }
+    }
+    return -1;
+}
 
 /**
  * @ignore
@@ -154,7 +301,7 @@ Array.prototype.FindLast = function (condition): any {
 };
 
 Array.prototype.FindIndex = function (condition): number {
-    return findIndex(this, condition);
+    return find(this, condition, true);
 };
 
 Array.prototype.FindAll = function (condition): any {
@@ -170,7 +317,7 @@ Array.prototype.InsertRange = function (index: number, elements) {
 };
 
 Array.prototype.IndexOf = function (element, fromIndex?: number): number {
-    let tmp = -1;
+    let tmp: number;
     if (fromIndex) {
         tmp = indexOf(this, element, fromIndex);
     } else {
@@ -180,14 +327,14 @@ Array.prototype.IndexOf = function (element, fromIndex?: number): number {
 };
 
 Array.prototype.Remove = function (element) {
-    const tmp = without(this, element);
+    const tmp = without(this, [element]);
     this.Clear();
     this.AddRange(tmp);
     return this;
 };
 
 Array.prototype.RemoveAll = function (match) {
-    const tmp = remove(this, i => !match(i));
+    const tmp = filter(this, i => match(i), true);
     this.Clear();
     this.AddRange(tmp);
     return this;
@@ -197,12 +344,12 @@ Array.prototype.RemoveAt = function (index: number) {
     if (index >= this.length || index < 0) {
         return this;
     }
-    pullAt(this, index);
+    this.splice(index, 1);
     return this;
 };
 
 Array.prototype.RemoveRange = function (elements) {
-    const tmp = without(this, ...elements);
+    const tmp = without(this, elements);
     this.Clear();
     this.AddRange(tmp);
     return this;
@@ -224,9 +371,7 @@ Array.prototype.Sort = function (order?: ListSortOrder): any {
 };
 
 Array.prototype.SortBy = function (keys: string[], orders?: ListSortOrder[]): any {
-    const k = keys.Convert<string>(i => i);
-    const sortOrder = orders.Convert<boolean | 'desc' | 'asc'>(i => i === ListSortOrder.DESC ? 'desc' : 'asc');
-    return orderBy(this, k, sortOrder);
+    return sort(this, keys, orders.Convert(o => o === ListSortOrder.DESC));
 };
 
 Array.prototype.ElementAt = function (index: number): any {
@@ -242,13 +387,13 @@ Array.prototype.Any = function (condition): boolean {
 
 Array.prototype.FirstOrDefault = function (condition?, def?): any {
     if (!isFunction(condition)) {
-        return first(this) || (def ? def : null);
+        return this[0] || (def ? def : null);
     }
     return find(this, condition) || (def ? def : null);
 };
 
 Array.prototype.FindLastIndex = function (condition): number {
-    return findLastIndex(this, condition);
+    return findLast(this, condition, true);
 };
 
 Array.prototype.TrueForAll = function (condition): boolean {
@@ -262,7 +407,7 @@ Array.prototype.TrueForAll = function (condition): boolean {
 
 Array.prototype.LastOrDefault = function (condition?, def?): any {
     if (!isFunction(condition)) {
-        return last(this) || (def ? def : null);
+        return this[this.length-1] || (def ? def : null);
     }
     return findLast(this, condition) || (def ? def : null);
 };
@@ -276,7 +421,7 @@ Array.prototype.GroupKey = function (condition) {
 };
 
 Array.prototype.Convert = function (convertMethod): any {
-    return map(this, convertMethod);
+    return this.map(convertMethod);
 };
 
 Array.prototype.Join = function (sep?: string): string {

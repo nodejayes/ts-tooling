@@ -1,5 +1,3 @@
-import {find, hasIn, keys, values} from 'lodash';
-
 /**
  * representation of a string Dictionary
  */
@@ -21,7 +19,7 @@ export class Dictionary<T> {
      * @constructor
      */
     get Count(): number {
-        return keys(this._data).length;
+        return Object.keys(this._data).length;
     }
 
     /**
@@ -29,7 +27,7 @@ export class Dictionary<T> {
      * @constructor
      */
     get Values(): T[] {
-        return values(this._data);
+        return Object.values(this._data);
     }
 
     /**
@@ -37,7 +35,7 @@ export class Dictionary<T> {
      * @constructor
      */
     Keys(): string[] {
-        return keys(this._data);
+        return Object.keys(this._data);
     }
 
     /**
@@ -76,7 +74,7 @@ export class Dictionary<T> {
      * @constructor
      */
     ContainsKey(key: string): boolean {
-        return hasIn(this._data, key);
+        return key in this._data;
     }
 
     /**
@@ -85,7 +83,7 @@ export class Dictionary<T> {
      * @constructor
      */
     ContainsValue(value: T): boolean {
-        return !!find(this.Values, i => i === value);
+        return this.Values.indexOf(value) > -1;
     }
 
     /**
@@ -111,7 +109,12 @@ export class Dictionary<T> {
      * @constructor
      */
     Find(filter: (d: T) => boolean): T {
-        return find(this._data, filter);
+        for (const v of this.Values) {
+            if (filter(v)) {
+                return v;
+            }
+        }
+        return null;
     }
 
     /**
@@ -121,7 +124,7 @@ export class Dictionary<T> {
      */
     FindAll(filter: (d: T) => boolean): T[] {
         const r = [];
-        for (const key of keys(this._data)) {
+        for (const key of Object.keys(this._data)) {
             if (filter(this._data[key])) {
                 r.Add(this._data[key]);
             }

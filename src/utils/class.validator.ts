@@ -1,5 +1,12 @@
-import {isObject, isArray, isFunction} from 'lodash';
 import {DateTime, ObjectFactory} from "../ts-tooling";
+
+function isObject(v: any): boolean {
+    return v && typeof v === typeof {};
+}
+
+function isFunction(v: any): boolean {
+    return typeof v === typeof function () {};
+}
 
 export interface IValidationError {
     Message: string;
@@ -288,7 +295,7 @@ export class ClassValidator {
                 }
             }
 
-            if (isArray(value) && value.Any()) {
+            if (Array.isArray(value) && value.Any()) {
                 for (const entry of value) {
                     if (isObject(entry)) {
                         // validate the SubObject but skip circulars

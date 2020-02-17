@@ -1,7 +1,32 @@
 import {BehaviorSubject} from 'rxjs';
 import {Dictionary} from '../../complex/dictionary';
-import {cloneDeep, get, set} from 'lodash';
-import {Guid} from "../../complex/guid";
+import {cloneDeep} from 'lodash';
+import {Guid} from '../../complex/guid';
+
+function get(obj: any, key: string): any {
+    let tmp = obj;
+    for (const part of key.Split('.')) {
+        if (!tmp || !tmp.hasOwnProperty(part)) {
+            return null;
+        }
+        tmp = tmp[part];
+    }
+    return tmp;
+}
+
+function set(obj: any, key: string, value: any): any {
+    let tmp = obj;
+    const keys = key.Split('.');
+    for (let i = 0; i < keys.length-1; i++) {
+        const part = keys[i];
+        if (!tmp || !tmp.hasOwnProperty(part)) {
+            return obj;
+        }
+        tmp = tmp[part];
+    }
+    tmp[keys.LastOrDefault()] = value;
+    return obj;
+}
 
 /**
  * extends the rxjs BehaviorSubject and implements a Value Copy

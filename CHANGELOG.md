@@ -1,3 +1,7 @@
+### 2.5.2 (not-released)
+
+* reduce package size
+
 ### 2.5.1
 
 * update Documentation

@@ -1,4 +1,8 @@
-import {random} from 'lodash';
+function random(min: number, max: number, floating: boolean): number {
+    return floating === true ?
+        Math.random() * (max - min) + min :
+        Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 /**
  * some Utils for Integer and Double numbers

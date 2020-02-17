@@ -1,6 +1,6 @@
-import {NumberFactory} from "./number.factory";
-import {ObjectFactory} from "./object.factory";
-import {StringFactory} from "./string.factory";
+import {NumberFactory} from './number.factory';
+import {ObjectFactory} from './object.factory';
+import {StringFactory} from './string.factory';
 
 /**
  * create some random Objects
