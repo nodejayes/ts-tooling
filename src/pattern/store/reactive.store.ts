@@ -1,32 +1,7 @@
 import {BehaviorSubject} from 'rxjs';
 import {Dictionary} from '../../complex/dictionary';
-import {cloneDeep} from 'lodash';
 import {Guid} from '../../complex/guid';
-
-function get(obj: any, key: string): any {
-    let tmp = obj;
-    for (const part of key.Split('.')) {
-        if (!tmp || !tmp.hasOwnProperty(part)) {
-            return null;
-        }
-        tmp = tmp[part];
-    }
-    return tmp;
-}
-
-function set(obj: any, key: string, value: any): any {
-    let tmp = obj;
-    const keys = key.Split('.');
-    for (let i = 0; i < keys.length-1; i++) {
-        const part = keys[i];
-        if (!tmp || !tmp.hasOwnProperty(part)) {
-            return obj;
-        }
-        tmp = tmp[part];
-    }
-    tmp[keys.LastOrDefault()] = value;
-    return obj;
-}
+import {recursiveDeepCopy, get, set} from '../../core/object';
 
 /**
  * extends the rxjs BehaviorSubject and implements a Value Copy
@@ -40,7 +15,7 @@ export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
     constructor(defaultValue: T) {
         super(defaultValue);
         this.objectId = new Guid();
-        this._copy = cloneDeep(defaultValue);
+        this._copy = recursiveDeepCopy(defaultValue);
         super.pipe()
     }
 
@@ -69,7 +44,7 @@ export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
     error(err: any) {}
 
     private innerNext(value: T) {
-        this._copy = cloneDeep(value);
+        this._copy = recursiveDeepCopy(value);
         super.next(value);
     }
 }

@@ -1,4 +1,4 @@
-import {cloneDeep} from 'lodash';
+import {recursiveDeepCopy} from '../core/object';
 import {ListSortOrder} from './list.sort.order.enum';
 
 /**
@@ -283,7 +283,7 @@ Array.prototype.Contains = function (element): boolean {
 Array.prototype.Copy = function () {
     const tmp = [];
     for (const el of this) {
-        tmp.push(cloneDeep(el));
+        tmp.push(recursiveDeepCopy(el));
     }
     return tmp;
 };

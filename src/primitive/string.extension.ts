@@ -1,10 +1,10 @@
 import {
-    camelCase, startsWith, endsWith, escape, unescape,
-    escapeRegExp, kebabCase, snakeCase, startCase, lowerFirst, upperFirst,
-    words, pad, padStart, padEnd, repeat, replace, filter, toUpper, toLower,
-    trim, trimStart, trimEnd, truncate, clone, includes
+    camelCase, escape, unescape,
+    escapeRegExp, kebabCase, snakeCase, startCase,
+    words
 } from 'lodash';
 import {StringFactory} from '../utils/string.factory';
+import {trimChar} from '../core/string';
 
 String.prototype.CharAt = function (pos: number): string {
     if (this.length.Subtract(1).IsBelow(pos)) {
@@ -27,11 +27,11 @@ String.prototype.ToCamelCase = function (): string {
 };
 
 String.prototype.StartsWith = function (search: string, position?: number): boolean {
-    return startsWith(this, search, position ? position : 0);
+    return this.startsWith(search, position ? position : 0);
 };
 
 String.prototype.EndsWith = function (search: string, position?: number): boolean {
-    return endsWith(this, search, position ? position : this.length);
+    return this.endsWith(search, position ? position : this.length);
 };
 
 String.prototype.HTMLEscape = function (): string {
@@ -67,11 +67,11 @@ String.prototype.ToUpperCase = function (): string {
 };
 
 String.prototype.LowerFirst = function (): string {
-    return lowerFirst(this);
+    return `${this[0].toLowerCase()}${this.slice(1, this.length)}`;
 };
 
 String.prototype.UpperFirst = function (): string {
-    return upperFirst(this);
+    return `${this[0].toUpperCase()}${this.slice(1, this.length)}`;
 };
 
 String.prototype.Words = function (filter?: (word: string) => boolean, pattern?: string): string[] {
@@ -101,25 +101,49 @@ String.prototype.Join = function (appender: string[], separator: string): string
 
 String.prototype.Pad = function (length: number, template?: string): string {
     template = StringFactory.IsNullOrEmpty(template) ? ' ' : template;
-    return pad(this, length, template);
+    let tmp = this;
+    let sw = false;
+    while (tmp.length < length) {
+        if (sw) {
+            for (let i = template.length-1; i >= 0; i--) {
+                tmp = template[i] + tmp;
+                if (tmp.length >= length) {
+                    break;
+                }
+            }
+        } else {
+            for (let i = 0; i < template.length; i++) {
+                tmp = tmp + template[i];
+                if (tmp.length >= length) {
+                    break;
+                }
+            }
+        }
+        sw = !sw;
+    }
+    return tmp;
 };
 
 String.prototype.PadLeft = function (length: number, template?: string): string {
     template = StringFactory.IsNullOrEmpty(template) ? ' ' : template;
-    return padStart(this, length, template);
+    return this.padStart(length, template);
 };
 
 String.prototype.PadRight = function (length: number, template?: string): string {
     template = StringFactory.IsNullOrEmpty(template) ? ' ' : template;
-    return padEnd(this, length, template);
+    return this.padEnd(length, template);
 };
 
 String.prototype.Repeat = function (times: number): string {
-    return repeat(this, times);
+    let tmp = '';
+    for (let i = 0; i < times; i++) {
+        tmp += this;
+    }
+    return tmp;
 };
 
 String.prototype.Replace = function (search: string, replacer: string): string {
-    return replace(this, search, replacer);
+    return this.replace(search, replacer);
 };
 
 String.prototype.ReplaceAll = function (search: string, replacer: string): string {
@@ -130,52 +154,56 @@ String.prototype.Split = function (pattern: string): string[] {
     if (StringFactory.IsNullOrEmpty(this)) {
         return [];
     }
-    return filter(this.split(pattern), i => !!i);
+    return this.split(pattern).FindAll( i => !!i);
 };
 
 String.prototype.ToLower = function (): string {
-    return toLower(this);
+    return this.toLowerCase();
 };
 
 String.prototype.ToUpper = function (): string {
-    return toUpper(this);
+    return this.toUpperCase();
 };
 
 String.prototype.Trim = function (sequence?: string): string {
     if (!sequence) {
-        return trim(this, ' ');
+        return trimChar(this, ' ', 2);
     }
-    return trim(this, sequence);
+    return trimChar(this, sequence, 2);
 };
 
 String.prototype.TrimStart = function (sequence?: string): string {
     if (!sequence) {
-        return trimStart(this, ' ');
+        return trimChar(this, ' ', 0);
     }
-    return trimStart(this, sequence);
+    return trimChar(this, sequence, 0);
 };
 
 String.prototype.TrimEnd = function (sequence?: string): string {
     if (!sequence) {
-        return trimEnd(this, ' ');
+        return trimChar(this, ' ', 1);
     }
-    return trimEnd(this, sequence);
+    return trimChar(this, sequence, 1);
 };
 
 String.prototype.Truncate = function (length: number, omission?: string, separator?: string): string {
-    return truncate(this, {
-        length: length,
-        omission: omission ? omission : '...',
-        separator: separator ? separator : undefined,
-    });
+    let tmp = '';
+    const cutter = omission ? omission : '...';
+    for (let i = 0; i < this.length; i++) {
+        if (tmp.length >= length || tmp.endsWith(separator)) {
+            return tmp.substr(0, tmp.length - cutter.length) + cutter;
+        }
+        tmp += this[i];
+    }
+    return tmp;
 };
 
 String.prototype.Copy = function (): string {
-    return clone(this);
+    return `${this}`;
 };
 
 String.prototype.Contains = function (search: string): boolean {
-    return includes(this, search);
+    return this.includes(search);
 };
 
 String.prototype.ContainsCount = function (search: string, allowOverlapping?: boolean): number {

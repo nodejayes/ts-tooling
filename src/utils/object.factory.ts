@@ -1,5 +1,5 @@
 import '../ts-tooling';
-import {cloneDeep} from 'lodash';
+import {recursiveDeepCopy} from '../core/object';
 const sizeof = require('object-sizeof');
 
 /**
@@ -20,7 +20,7 @@ export class ObjectFactory {
      * obj === ObjectFactory.Copy(obj);
      */
     static Copy<T>(instance: T): T {
-        return cloneDeep(instance);
+        return recursiveDeepCopy(instance);
     }
     /**
      * check if the given Object has some self references
