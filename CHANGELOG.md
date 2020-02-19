@@ -1,4 +1,4 @@
-### 2.5.2 (not-released)
+### 2.5.2
 
 * reduce package size
 
