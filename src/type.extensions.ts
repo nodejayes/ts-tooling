@@ -416,6 +416,91 @@ declare global {
         ToKebabCase?(): string;
 
         /**
+         * Transform into a space separated string with each word capitalized.
+         *
+         * @category string
+         *
+         * @returns the Capital Case String
+         *
+         * @example
+         * // returns "Test String"
+         * 'test string'.ToCapitalCase();
+         */
+        ToCapitalCase?(): string;
+        /**
+         * Transform into upper case string with an underscore between words.
+         *
+         * @category string
+         *
+         * @returns the Constant Case String
+         *
+         * @example
+         * // returns "TEST_STRING"
+         * 'test string'.ToConstantCase();
+         */
+        ToConstantCase?(): string;
+        /**
+         * Transform into a lower case string with a period between words.
+         *
+         * @category string
+         *
+         * @returns the Dot Case String
+         *
+         * @example
+         * // returns "test.string"
+         * 'test string'.ToDotCase();
+         */
+        ToDotCase?(): string;
+        /**
+         * Transform into a lower cased string with spaces between words.
+         *
+         * @category string
+         *
+         * @returns the No Case String
+         *
+         * @example
+         * // returns "test.string"
+         * 'test string'.ToNoCase();
+         */
+        ToNoCase?(): string;
+        /**
+         * Transform into a lower case string with slashes between words.
+         *
+         * @category string
+         *
+         * @returns the Path Case String
+         *
+         * @example
+         * // returns "test/string"
+         * 'test string'.ToPathCase();
+         */
+        ToPathCase?(): string;
+        /**
+         * Transform into a lower case with spaces between words, then capitalize the string.
+         *
+         * @category string
+         *
+         * @returns the Sentence Case String
+         *
+         * @example
+         * // returns "Test string"
+         * 'test string'.ToSentenceCase();
+         */
+        ToSentenceCase?(): string;
+        /**
+         * Transform into a string of capitalized words without separators.
+         *
+         * @category string
+         *
+         * @returns the Pascal Case String
+         *
+         * @example
+         * // returns "Test string"
+         * 'TestString'.ToPascalCase();
+         */
+        ToPascalCase?(): string;
+
+        /**
          * Converts a string into the Snake Case format.
          *
          * @category string
@@ -429,22 +514,6 @@ declare global {
          * '--FOO-BAR--'.ToSnakeCase();
          */
         ToSnakeCase?(): string;
-
-        /**
-         * Converts a string into the Start Case format.
-         *
-         * @category string
-         *
-         * @returns the Start Case String
-         *
-         * @example
-         * // returns "Foo Bar"
-         * '--foo-bar--'.ToStartCase();
-         * 'fooBar'.ToStartCase();
-         * // returns "FOO BAR"
-         * '__FOO_BAR__'.ToStartCase();
-         */
-        ToStartCase?(): string;
 
         /**
          * converts every letter of the string into lower case

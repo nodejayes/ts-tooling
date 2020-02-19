@@ -1,10 +1,9 @@
-import {
-    camelCase, escape, unescape,
-    escapeRegExp, kebabCase, snakeCase, startCase,
-    words
-} from 'lodash';
 import {StringFactory} from '../utils/string.factory';
-import {trimChar} from '../core/string';
+import {escape, unescape, trimChar, words, escapeRegExp} from '../core/string';
+import {
+    camelCase, snakeCase, pascalCase, paramCase, capitalCase, constantCase, dotCase,
+    noCase, pathCase, sentenceCase
+} from 'change-case';
 
 String.prototype.CharAt = function (pos: number): string {
     if (this.length.Subtract(1).IsBelow(pos)) {
@@ -24,6 +23,26 @@ String.prototype.Capitalize = function (): string {
 
 String.prototype.ToCamelCase = function (): string {
     return camelCase(this);
+};
+
+String.prototype.ToConstantCase = function () {
+    return constantCase(this);
+};
+
+String.prototype.ToDotCase = function() {
+    return dotCase(this);
+};
+
+String.prototype.ToNoCase = function () {
+   return noCase(this);
+};
+
+String.prototype.ToPathCase = function () {
+    return pathCase(this);
+};
+
+String.prototype.ToSentenceCase = function () {
+    return sentenceCase(this);
 };
 
 String.prototype.StartsWith = function (search: string, position?: number): boolean {
@@ -47,15 +66,19 @@ String.prototype.RegExpEscape = function (): string {
 };
 
 String.prototype.ToKebabCase = function (): string {
-    return kebabCase(this);
+    return paramCase(this);
 };
 
 String.prototype.ToSnakeCase = function (): string {
     return snakeCase(this);
 };
 
-String.prototype.ToStartCase = function (): string {
-    return startCase(this);
+String.prototype.ToCapitalCase = function (): string {
+    return capitalCase(this);
+};
+
+String.prototype.ToPascalCase = function(): string {
+    return pascalCase(this);
 };
 
 String.prototype.ToLowerCase = function (): string {

@@ -29,13 +29,13 @@
     "lib"
   ],
   "dependencies": {
-    "lodash": "^4.17.15",
     "luxon": "^1.22.0",
     "lz-string": "^1.4.4",
     "rxjs": "^6.5.4",
     "ts-node": "^8.6.2",
     "uuid": "^3.4.0",
-    "object-sizeof": "^1.5.2"
+    "object-sizeof": "^1.5.2",
+    "change-case": "^4.1.1"
   },
   "devDependencies": {
     "@types/async": "^3.0.7",

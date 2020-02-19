@@ -107,15 +107,81 @@ describe('String Extensions Tests', () => {
             assert.equal('--FOO-BAR--'.ToSnakeCase(), 'foo_bar');
         });
     });
-    describe('[Method]: ToStartCase', () => {
+    describe('[Method]: ToCapitalCase', () => {
         it('from Kebab Case', () => {
-            assert.equal('--foo-bar--'.ToStartCase(), 'Foo Bar');
+            assert.equal('--foo-bar--'.ToCapitalCase(), 'Foo Bar');
         });
         it('from Camel Case', () => {
-            assert.equal('fooBar'.ToStartCase(), 'Foo Bar');
+            assert.equal('fooBar'.ToCapitalCase(), 'Foo Bar');
         });
         it('from Snake Case', () => {
-            assert.equal('__FOO_BAR__'.ToStartCase(), 'FOO BAR');
+            assert.equal('__FOO_BAR__'.ToCapitalCase(), 'Foo Bar');
+        });
+    });
+    describe('[Method]: ToConstantCase', () => {
+        it('from Kebab Case', () => {
+            assert.equal('--foo-bar--'.ToConstantCase(), 'FOO_BAR');
+        });
+        it('from Camel Case', () => {
+            assert.equal('fooBar'.ToConstantCase(), 'FOO_BAR');
+        });
+        it('from Snake Case', () => {
+            assert.equal('__FOO_BAR__'.ToConstantCase(), 'FOO_BAR');
+        });
+    });
+    describe('[Method]: ToDotCase', () => {
+        it('from Kebab Case', () => {
+            assert.equal('--foo-bar--'.ToDotCase(), 'foo.bar');
+        });
+        it('from Camel Case', () => {
+            assert.equal('fooBar'.ToDotCase(), 'foo.bar');
+        });
+        it('from Snake Case', () => {
+            assert.equal('__FOO_BAR__'.ToDotCase(), 'foo.bar');
+        });
+    });
+    describe('[Method]: ToNoCase', () => {
+        it('from Kebab Case', () => {
+            assert.equal('--foo-bar--'.ToNoCase(), 'foo bar');
+        });
+        it('from Camel Case', () => {
+            assert.equal('fooBar'.ToNoCase(), 'foo bar');
+        });
+        it('from Snake Case', () => {
+            assert.equal('__FOO_BAR__'.ToNoCase(), 'foo bar');
+        });
+    });
+    describe('[Method]: ToPathCase', () => {
+        it('from Kebab Case', () => {
+            assert.equal('--foo-bar--'.ToPathCase(), 'foo/bar');
+        });
+        it('from Camel Case', () => {
+            assert.equal('fooBar'.ToPathCase(), 'foo/bar');
+        });
+        it('from Snake Case', () => {
+            assert.equal('__FOO_BAR__'.ToPathCase(), 'foo/bar');
+        });
+    });
+    describe('[Method]: ToSentenceCase', () => {
+        it('from Kebab Case', () => {
+            assert.equal('--foo-bar--'.ToSentenceCase(), 'Foo bar');
+        });
+        it('from Camel Case', () => {
+            assert.equal('fooBar'.ToSentenceCase(), 'Foo bar');
+        });
+        it('from Snake Case', () => {
+            assert.equal('__FOO_BAR__'.ToSentenceCase(), 'Foo bar');
+        });
+    });
+    describe('[Method]: ToPascalCase', () => {
+        it('from Kebab Case', () => {
+            assert.equal('--foo-bar--'.ToPascalCase(), 'FooBar');
+        });
+        it('from Camel Case', () => {
+            assert.equal('fooBar'.ToPascalCase(), 'FooBar');
+        });
+        it('from Snake Case', () => {
+            assert.equal('__FOO_BAR__'.ToPascalCase(), 'FooBar');
         });
     });
     describe('[Method]: ToLowerCase', () => {
@@ -585,6 +651,311 @@ describe('String Extensions Tests', () => {
     describe('[Method]: Bytes', () => {
         it('get the Bytes from string', () => {
             assert.equal('ABC'.Bytes(), 3);
+        });
+    });
+    describe('String Case Convertion', () => {
+        it('CamelCase', () => {
+            assert.equal('test string'.ToCamelCase(), 'testString');
+            assert.equal('test string'.ToCamelCase()
+                .ToSnakeCase(), 'test_string');
+            assert.equal('test string'.ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase(), 'test/string');
+            assert.equal('test string'.ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase(), 'test string');
+            assert.equal('test string'.ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase(), 'test.string');
+            assert.equal('test string'.ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase(), 'TEST_STRING');
+            assert.equal('test string'.ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase(), 'Test String');
+            assert.equal('test string'.ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase(), 'test-string');
+        });
+        it('KebabCase', () => {
+            assert.equal('test string'.ToKebabCase(), 'test-string');
+            assert.equal('test string'.ToKebabCase()
+                .ToCamelCase(), 'testString');
+            assert.equal('test string'.ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase(), 'test_string');
+            assert.equal('test string'.ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase(), 'test/string');
+            assert.equal('test string'.ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase(), 'test string');
+            assert.equal('test string'.ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase(), 'test.string');
+            assert.equal('test string'.ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase(), 'TEST_STRING');
+            assert.equal('test string'.ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase(), 'Test String');
+        });
+        it('CapitalCase', () => {
+            assert.equal('test string'.ToCapitalCase(), 'Test String');
+            assert.equal('test string'.ToCapitalCase()
+                .ToKebabCase(), 'test-string');
+            assert.equal('test string'.ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase(), 'testString');
+            assert.equal('test string'.ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase(), 'test_string');
+            assert.equal('test string'.ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase(), 'test/string');
+            assert.equal('test string'.ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase(), 'test string');
+            assert.equal('test string'.ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase(), 'test.string');
+            assert.equal('test string'.ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase(), 'TEST_STRING');
+        });
+        it('ConstantCase', () => {
+            assert.equal('test string'.ToConstantCase(), 'TEST_STRING');
+            assert.equal('test string'.ToConstantCase()
+                .ToCapitalCase(), 'Test String');
+            assert.equal('test string'.ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase(), 'test-string');
+            assert.equal('test string'.ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase(), 'testString');
+            assert.equal('test string'.ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase(), 'test_string');
+            assert.equal('test string'.ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase(), 'test/string');
+            assert.equal('test string'.ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase(), 'test string');
+            assert.equal('test string'.ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase(), 'test.string');
+        });
+        it('DotCase', () => {
+            assert.equal('test string'.ToDotCase(), 'test.string');
+            assert.equal('test string'.ToDotCase()
+                .ToConstantCase(), 'TEST_STRING');
+            assert.equal('test string'.ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase(), 'Test String');
+            assert.equal('test string'.ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase(), 'test-string');
+            assert.equal('test string'.ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase(), 'testString');
+            assert.equal('test string'.ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase(), 'test_string');
+            assert.equal('test string'.ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase(), 'test/string');
+            assert.equal('test string'.ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase(), 'test string');
+        });
+        it('NoCase', () => {
+            assert.equal('test string'.ToNoCase(), 'test string');
+            assert.equal('test string'.ToNoCase()
+                .ToDotCase(), 'test.string');
+            assert.equal('test string'.ToNoCase()
+                .ToDotCase()
+                .ToConstantCase(), 'TEST_STRING');
+            assert.equal('test string'.ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase(), 'Test String');
+            assert.equal('test string'.ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase(), 'test-string');
+            assert.equal('test string'.ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase(), 'testString');
+            assert.equal('test string'.ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase(), 'test_string');
+            assert.equal('test string'.ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase()
+                .ToPathCase(), 'test/string');
+        });
+        it('PathCase', () => {
+            assert.equal('test string'.ToPathCase(), 'test/string');
+            assert.equal('test string'.ToPathCase()
+                .ToNoCase(), 'test string');
+            assert.equal('test string'.ToPathCase()
+                .ToNoCase()
+                .ToDotCase(), 'test.string');
+            assert.equal('test string'.ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase(), 'TEST_STRING');
+            assert.equal('test string'.ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase(), 'Test String');
+            assert.equal('test string'.ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase(), 'test-string');
+            assert.equal('test string'.ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase(), 'testString');
+            assert.equal('test string'.ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase()
+                .ToSnakeCase(), 'test_string');
+        });
+        it('SnakeCase', () => {
+            assert.equal('test string'.ToSnakeCase(), 'test_string');
+            assert.equal('test string'.ToSnakeCase().ToPathCase(), 'test/string');
+            assert.equal('test string'.ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase(), 'test string');
+            assert.equal('test string'.ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase(), 'test.string');
+            assert.equal('test string'.ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase(), 'TEST_STRING');
+            assert.equal('test string'.ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase(), 'Test String');
+            assert.equal('test string'.ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase(), 'test-string');
+            assert.equal('test string'.ToSnakeCase()
+                .ToPathCase()
+                .ToNoCase()
+                .ToDotCase()
+                .ToConstantCase()
+                .ToCapitalCase()
+                .ToKebabCase()
+                .ToCamelCase(), 'testString');
         });
     });
 });
