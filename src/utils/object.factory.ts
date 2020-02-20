@@ -1,5 +1,5 @@
 import '../ts-tooling';
-import {recursiveDeepCopy} from '../core/object';
+import {merge, recursiveDeepCopy} from '../core/object';
 const sizeof = require('object-sizeof');
 
 /**
@@ -89,5 +89,28 @@ export class ObjectFactory {
      */
     static SizeOf(obj: any): number {
         return sizeof(obj);
+    }
+
+    /**
+     * merge the child into the parent object
+     *
+     * @param parent
+     * @param child
+     *
+     * @example
+     * // returns {name:'muster',age:10,state:{active:true}}
+     * const obj1 = {
+     *      name:'muster',
+     *      age:10,
+     * };
+     * const obj2 = {
+     *      state:{
+     *          active:true
+     *      }
+     * };
+     * ObjectFactory.Merge(obj1, obj2);
+     */
+    static Merge<T>(parent: any, child: any): T {
+        return merge(parent, child)
     }
 }

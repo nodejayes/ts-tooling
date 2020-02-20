@@ -68,3 +68,23 @@ export function set(obj: any, key: string, value: any): any {
     tmp[keys.LastOrDefault()] = value;
     return obj;
 }
+
+/**
+ * combine slave into master
+ *
+ * @param master
+ * @param slave
+ */
+export function merge<T>(master: any, slave: any): T {
+    for (const key in slave) {
+        if (master.hasOwnProperty(key) && master[key] !== null && master[key] !== undefined) {
+            if (typeof master[key] === typeof {}) {
+                master[key] = merge(master[key], slave[key]);
+            }
+            master[key] = slave[key];
+        } else {
+            master[key] = slave[key];
+        }
+    }
+    return master;
+}

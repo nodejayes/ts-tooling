@@ -1,3 +1,7 @@
+### 2.6.0 (not-released)
+
+* merge simple Objects with ObjectFactory
+
 ### 2.5.2
 
 * reduce package size

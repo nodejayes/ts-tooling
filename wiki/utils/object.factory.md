@@ -96,4 +96,35 @@ ObjectFactory.SizeOf({Hello: 'World!'});
 
 ---
 
+#### Merge
+
+merge the child into the parent object.
+
+it mutates the parent!
+
+    Merge<T>(parent: any, child: any): T
+
+*Parameter:*
+
+| Name     | Type    | Description                      |
+|----------|---------|----------------------------------|
+| parent   | any     | the main Object that was mutated |
+| child    | any     | the second Object                |
+
+```javascript
+// returns {name:'muster',age:10,state:{active:true}}
+const obj1 = {
+     name:'muster',
+     age:10,
+};
+const obj2 = {
+     state:{
+         active:true
+     }
+};
+ObjectFactory.Merge(obj1, obj2);
+```
+
+---
+
 [<< Index](/wiki/index.md)

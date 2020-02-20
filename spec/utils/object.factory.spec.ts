@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import 'mocha';
-import {ObjectFactory} from "../../src/ts-tooling";
+import {Byte, DateTime, ObjectFactory} from "../../src/ts-tooling";
 
 describe('Object Extension Tests', () => {
     it('detect Circular References', () => {
@@ -31,6 +31,33 @@ describe('Object Extension Tests', () => {
         it('check {Hello: \'World!\'}', () => {
             const tmp = {Hello: 'World!'};
             assert.equal(ObjectFactory.SizeOf(tmp), 22);
+        });
+    });
+    describe('[Method]: Merge', () => {
+        it('merge simple object', () => {
+            const obj1 = {
+                hello: 'world',
+                age: 1,
+                subobject: {
+                    number: 1,
+                    value: 'xxxx',
+                    active: true,
+                },
+            };
+            const obj2 = {
+                hello: 'world!',
+                description: 'some example value',
+            };
+            assert.deepEqual(ObjectFactory.Merge(obj1, obj2), {
+                hello: 'world!',
+                age: 1,
+                subobject: {
+                    number: 1,
+                    value: 'xxxx',
+                    active: true,
+                },
+                description: 'some example value',
+            });
         });
     });
 });
