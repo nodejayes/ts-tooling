@@ -1,5 +1,5 @@
-import {StringFactory} from '../utils/string.factory';
-import {escape, unescape, trimChar, words, escapeRegExp} from '../core/string';
+import {StringFactory} from './string.factory';
+import {escape, unescape, trimChar, words, escapeRegExp} from '../../core/string';
 import {
     camelCase, snakeCase, pascalCase, paramCase, capitalCase, constantCase, dotCase,
     noCase, pathCase, sentenceCase

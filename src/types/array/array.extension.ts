@@ -1,5 +1,12 @@
-import {recursiveDeepCopy} from '../core/object';
-import {ListSortOrder} from './list.sort.order.enum';
+import {recursiveDeepCopy} from '../../core/object';
+
+/**
+ * represent a Sort Order of a List
+ */
+export enum ListSortOrder {
+    ASC,
+    DESC
+}
 
 /**
  * @ignore

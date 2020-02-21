@@ -1,7 +1,7 @@
 /**
  * some Utils for strings
  */
-import {NumberFactory} from './number.factory';
+import {NumberFactory} from '../number/number.factory';
 
 /**
  * some Utils for Strings

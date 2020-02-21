@@ -1,6 +1,6 @@
 import {Subject, Subscription} from 'rxjs';
 import {Dictionary} from '../../complex/dictionary';
-import {StringFactory} from '../../utils/string.factory';
+import {StringFactory} from '../../types/string/string.factory';
 
 /**
  * lets create a Event Handler you can subscribe or unsubscribe

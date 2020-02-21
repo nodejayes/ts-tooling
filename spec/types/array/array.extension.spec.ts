@@ -1,7 +1,6 @@
 import {assert} from 'chai';
 import 'mocha';
-import '../../src/ts-tooling';
-import {ListSortOrder} from "../../src/ts-tooling";
+import {ListSortOrder} from '../../../src/ts-tooling';
 
 interface TestAddress {
     PLZ: string;

@@ -1,22 +1,20 @@
-import {DateTime} from './complex/date.time';
-import './type.extensions';
-
 // Types
-export {DateTime} from './complex/date.time';
+import {DateTime} from './complex/date.time';
+import {NumberFactory} from './types/number';
+import {StringFactory} from './types/string';
+import {ListSortOrder} from './types/array';
+import {ObjectFactory} from './types/object';
 import {TimeSpan} from './complex/time.span';
-export {TimeSpan} from './complex/time.span';
 import {Guid} from './complex/guid';
-export {Guid} from './complex/guid';
 import {Byte} from './complex/byte';
-export {Byte} from './complex/byte';
 import {ByteStream} from './complex/byte.stream';
-export {ByteStream} from './complex/byte.stream';
+
+export {NumberFactory, StringFactory, ObjectFactory, DateTime, TimeSpan, Guid, Byte, ByteStream};
 
 // Collections
 import {Dictionary} from './complex/dictionary';
 export {Dictionary} from './complex/dictionary';
-import {ListSortOrder} from './primitive/list.sort.order.enum';
-export {ListSortOrder} from './primitive/list.sort.order.enum';
+export {ListSortOrder};
 
 // Patterns
 import {using} from './pattern/dispose/using';
@@ -36,10 +34,6 @@ import {LZCompression} from './utils/lz';
 export {LZCompression} from './utils/lz';
 import {StopWatch} from './utils/stopwatch';
 export {StopWatch} from './utils/stopwatch';
-import {NumberFactory} from './utils/number.factory';
-export {NumberFactory} from './utils/number.factory';
-import {StringFactory} from "./utils/string.factory";
-export {StringFactory} from "./utils/string.factory";
 import {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty, IsEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, Equals, NotEquals,
@@ -96,8 +90,6 @@ export {
     CustomValidation,
     ValidateClass
 } from './utils/class.validator';
-import {ObjectFactory} from "./utils/object.factory";
-export {ObjectFactory} from "./utils/object.factory";
 import {TestDataGenerator} from './utils/test.data.generator';
 export {TestDataGenerator} from './utils/test.data.generator';
 

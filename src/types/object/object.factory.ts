@@ -1,4 +1,4 @@
-import '../ts-tooling';
+import '../../ts-tooling';
 import {merge, recursiveDeepCopy} from '../core/object';
 const sizeof = require('object-sizeof');
 

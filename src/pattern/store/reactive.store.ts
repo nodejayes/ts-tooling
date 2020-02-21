@@ -1,7 +1,7 @@
 import {BehaviorSubject} from 'rxjs';
 import {Dictionary} from '../../complex/dictionary';
 import {get, set} from '../../core/object';
-import produce from "immer";
+import produce from 'immer';
 
 export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
     /**

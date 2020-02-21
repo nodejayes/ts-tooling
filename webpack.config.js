@@ -3,6 +3,9 @@ const path = require('path');
 module.exports = {
     entry: {
         'ts-tooling': './src/ts-tooling.ts',
+        'number': './src/types/number/index.ts',
+        'string': './src/types/string/index.ts',
+        'array': './src/types/array/index.ts',
         'web-worker': './src/web-worker.ts',
         'node-worker': './src/node-worker.ts',
     },

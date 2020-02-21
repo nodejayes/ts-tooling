@@ -1,4 +1,4 @@
-import '../../src/ts-tooling'
+import '../../../src/ts-tooling'
 import {assert} from 'chai';
 import 'mocha';
 

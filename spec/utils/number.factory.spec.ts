@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import 'mocha';
-import {NumberFactory} from '../../src/utils/number.factory';
+import {NumberFactory} from '../../src/types/number/number.factory';
 
 describe('Number Generator Tests', () => {
     it('generates Integer Numbers', () => {
