@@ -4,6 +4,23 @@ import 'mocha';
 import {filter} from 'rxjs/operators';
 import {zip} from 'rxjs';
 
+class ComplexObject {
+    name = null;
+    birthday = new DateTime('UTC', 1975, 1, 1);
+
+    get Age() {
+        return new DateTime().Subtract(this.birthday).Year;
+    }
+
+    greet() {
+        return `Hello ${this.name}`;
+    }
+}
+
+interface IComplexState {
+    obj: ComplexObject;
+}
+
 interface ITestUser {
     name: string;
 }
@@ -562,6 +579,30 @@ describe('Reactive Store Tests', () => {
         store.Mutate(s => s.test, o => {
             o.b = true;
             return o;
+        });
+    });
+
+    it('set null value', (done) => {
+        const store = new ReactiveStore<ITestUser>({
+            name: null,
+        });
+        store.Listen(s => s.name).subscribe(name => {
+            if (name === 'Peter') {
+                assert.isTrue(true);
+                done();
+            }
+        });
+        store.Mutate(s => s.name, () => 'Peter');
+    });
+
+    it('store can handle complex objects', (done) => {
+        const store = new ReactiveStore<IComplexState>({
+            obj: new ComplexObject(),
+        });
+        store.Listen(s => s.obj).subscribe(o => {
+            assert.equal(o.Age, 45);
+            assert.equal(o.greet(), 'Hello null');
+            done();
         });
     });
 });

@@ -59,11 +59,7 @@ export function set(obj: any, key: string, value: any): any {
     let tmp = obj;
     const keys = key.Split('.');
     for (let i = 0; i < keys.length-1; i++) {
-        const part = keys[i];
-        if (!tmp || !tmp.hasOwnProperty(part)) {
-            return obj;
-        }
-        tmp = tmp[part];
+        tmp = tmp[keys[i]];
     }
     tmp[keys.LastOrDefault()] = value;
     return obj;
