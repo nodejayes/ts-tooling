@@ -47,13 +47,16 @@ describe('Object Extension Tests', () => {
             const obj2 = {
                 hello: 'world!',
                 description: 'some example value',
+                subobject: {
+                    value: 'change me',
+                }
             };
             assert.deepEqual(ObjectFactory.Merge(obj1, obj2), {
                 hello: 'world!',
                 age: 1,
                 subobject: {
                     number: 1,
-                    value: 'xxxx',
+                    value: 'change me',
                     active: true,
                 },
                 description: 'some example value',

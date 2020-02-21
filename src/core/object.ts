@@ -80,6 +80,7 @@ export function merge<T>(master: any, slave: any): T {
         if (master.hasOwnProperty(key) && master[key] !== null && master[key] !== undefined) {
             if (typeof master[key] === typeof {}) {
                 master[key] = merge(master[key], slave[key]);
+                continue;
             }
             master[key] = slave[key];
         } else {
