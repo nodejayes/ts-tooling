@@ -7,6 +7,7 @@ module.exports = {
         'byte': './src/types/byte/index.ts',
         'datetime': './src/types/datetime/index.ts',
         'dictionary': './src/types/dictionary/index.ts',
+        'guid': './src/types/guid/index.ts',
         'number': './src/types/number/index.ts',
         'object': './src/types/object/index.ts',
         'string': './src/types/string/index.ts',
