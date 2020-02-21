@@ -1,6 +1,7 @@
 ### 2.6.0 (not-released)
 
 * merge simple Objects with ObjectFactory
+* ReactiveStore state only can changed by Mutation Function (using immer)
 
 ### 2.5.2
 

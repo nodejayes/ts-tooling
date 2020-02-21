@@ -481,11 +481,10 @@ describe('Reactive Store Tests', () => {
                 }
             }
         });
-        let b = store.Listen(s => s.test.b).getValue();
-        b = true;
-        assert.isFalse(store.Listen(s => s.test.b).getValue());
-        let o = store.Listen(s => s.test.o).getValue();
-        o.name = 'Peter';
+        assert.throws(() => {
+            let o = store.Listen(s => s.test.o).getValue();
+            o.name = 'Peter';
+        });
         assert.equal(store.Listen(s => s.test.o.name).getValue(), 'Paul');
     });
     it('using pipe of Listen Store', (done) => {
@@ -529,7 +528,9 @@ describe('Reactive Store Tests', () => {
                 setTimeout(() => done(), 100);
             }
         });
-        store.Listen(s => s.test.n).next(50);
+        assert.throws(() => {
+            store.Listen(s => s.test.n).next(50);
+        }, 'cannot emit value 50 please use the Mutation Function to do that');
     });
 
     it('mutate complete state', (done) => {

@@ -1,50 +1,17 @@
 import {BehaviorSubject} from 'rxjs';
 import {Dictionary} from '../../complex/dictionary';
-import {Guid} from '../../complex/guid';
-import {recursiveDeepCopy, get, set} from '../../core/object';
+import {get, set} from '../../core/object';
+import produce from "immer";
 
-/**
- * extends the rxjs BehaviorSubject and implements a Value Copy
- * next => create a Copy of the Value and emits the new Value to the BehaviorSubject
- * getValue => returns the current Copy of the Value in the Behavior Subject
- */
 export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
-    private _copy: T = null;
-    objectId: Guid = null;
-
-    constructor(defaultValue: T) {
-        super(defaultValue);
-        this.objectId = new Guid();
-        this._copy = recursiveDeepCopy(defaultValue);
-        super.pipe()
+    /**
+     * @deprecated please use state.Mutation() to change the State Value
+     */
+    next(value: T): void {
+        throw new Error(`cannot emit value ${value} please use the Mutation Function to do that`);
     }
 
-    /**
-     * get the current Value in the Subject
-     */
-    getValue(): T {
-        return this._copy;
-    }
-
-    /**
-     * @deprecated this function is disabled ... use the Store to mutate the State
-     * @example
-     * store.Listen(s => s.data, () => newData);
-     */
-    next(value: T) {}
-
-    /**
-     * @deprecated this function is disabled ... not allowed action
-     */
-    complete() {}
-
-    /**
-     * @deprecated this function is disabled ... not allowed action
-     */
-    error(err: any) {}
-
-    private innerNext(value: T) {
-        this._copy = recursiveDeepCopy(value);
+    private innerNext(value: T): void {
         super.next(value);
     }
 }
@@ -66,7 +33,7 @@ export class ReactiveStore<T> {
      * @param initialState
      */
     constructor(initialState: T) {
-        this._core = initialState;
+        this._core = produce(initialState, () => {});
     }
 
     /**
@@ -110,23 +77,25 @@ export class ReactiveStore<T> {
         const key = this.parseSelectorAccess(selector);
         const realKey = this.toRealKey(key);
         const behaviors = this.selectBehaviors(key);
-        const currentValue = selector(this._core);
-        const newValue = mutation(currentValue);
-        if (!realKey) {
-            this._core = <any>newValue;
-        } else {
-            set(<any>this._core, realKey, newValue);
-        }
-        for (const behaviorKey of Object.keys(behaviors)) {
-            const realKey = behaviorKey.StartsWith('root.') ? behaviorKey.Replace('root.', '') :
-                behaviorKey === 'root' ? '' : behaviorKey;
-            const behavior = behaviors[behaviorKey];
+        this._core = produce(this._core, draft => {
+            const currentValue = selector(draft);
+            const newValue = mutation(currentValue);
             if (!realKey) {
-                behavior['innerNext'](this._core);
-                continue;
+                draft = <any>newValue;
+            } else {
+                set(<any>draft, realKey, newValue);
             }
-            behavior['innerNext'](get(this._core, realKey));
-        }
+            for (const behaviorKey of Object.keys(behaviors)) {
+                const realKey = behaviorKey.StartsWith('root.') ? behaviorKey.Replace('root.', '') :
+                    behaviorKey === 'root' ? '' : behaviorKey;
+                const behavior = behaviors[behaviorKey];
+                if (!realKey) {
+                    behavior['innerNext'](draft);
+                    continue;
+                }
+                behavior['innerNext'](get(draft, realKey));
+            }
+        });
     }
 
     /**
