@@ -1,5 +1,49 @@
 const path = require('path');
 
+class DtsBundlePlugin {
+    apply(compiler) {
+        compiler.hooks.done.tap(
+            'DtsBundlePlugin',
+            () => {
+                let dts = require('dts-bundle');
+
+                dts.bundle({
+                    name: 'ts-tooling',
+                    main: path.join(__dirname, 'lib', 'ts-tooling.d.ts'),
+                    out: path.join(__dirname, 'lib', `ts-tooling.d.ts`),
+                    removeSource: false,
+                    outputAsModuleFolder: true
+                });
+
+                dts.bundle({
+                    name: 'node-worker',
+                    main: path.join(__dirname, 'lib', 'node-worker.d.ts'),
+                    out: path.join(__dirname, 'lib', `node-worker.d.ts`),
+                    removeSource: false,
+                    outputAsModuleFolder: true
+                });
+                dts.bundle({
+                    name: 'web-worker',
+                    main: path.join(__dirname, 'lib', 'web-worker.d.ts'),
+                    out: path.join(__dirname, 'lib', `web-worker.d.ts`),
+                    removeSource: false,
+                    outputAsModuleFolder: true
+                });
+
+                for (const mod of ['array', 'byte', 'datetime', 'dictionary', 'guid', 'number', 'object', 'string']) {
+                    dts.bundle({
+                        name: mod,
+                        main: path.join(__dirname, 'lib', 'types', mod, 'index.d.ts'),
+                        out: path.join(__dirname, 'lib', `${mod}.d.ts`),
+                        removeSource: false,
+                        outputAsModuleFolder: true
+                    });
+                }
+            }
+        );
+    }
+}
+
 module.exports = {
     entry: {
         'ts-tooling': './src/ts-tooling.ts',
@@ -27,6 +71,9 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new DtsBundlePlugin(),
+    ],
     output: {
         path: path.resolve(__dirname, 'lib'),
         filename: '[name].js',
