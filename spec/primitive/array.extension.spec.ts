@@ -685,6 +685,14 @@ describe('Array Extension Tests', () => {
             assert.deepEqual(complexValues.SortBy(['Age', 'Name'], [ListSortOrder.ASC, ListSortOrder.ASC]), result);
         });
     });
+    describe('[Method]: Replace', () => {
+        it('replace in the middle of the list', () => {
+            assert.deepEqual([1,5,3].Replace(e => e === 5, 2), [1,2,3]);
+        });
+        it('append when the element not found', () => {
+            assert.deepEqual([1,2,3].Replace(e => e === 7, 4), [1,2,3,4]);
+        });
+    });
     describe('[Method]: ElementAt', () => {
         it('get the array element at the position', () => {
             assert.equal([1,2,3].ElementAt(1), 2);

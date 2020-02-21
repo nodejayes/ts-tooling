@@ -424,6 +424,17 @@ Array.prototype.Convert = function (convertMethod): any {
     return this.map(convertMethod);
 };
 
+Array.prototype.Replace = function (condition, item) {
+    const tmp = this;
+    const pos = this.FindIndex(condition);
+    if (pos.IsBelow(0)) {
+        tmp.Add(item);
+        return tmp;
+    }
+    tmp[pos] = item;
+    return tmp;
+};
+
 Array.prototype.Join = function (sep?: string): string {
     return this.join(sep || ',');
 };

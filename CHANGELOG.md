@@ -2,6 +2,7 @@
 
 * merge simple Objects with ObjectFactory
 * ReactiveStore state only can changed by Mutation Function (using immer)
+* Array add Replace Method
 
 ### 2.5.2
 

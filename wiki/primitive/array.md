@@ -888,4 +888,22 @@ merge two arrays by the condition
 
 ---
 
+#### Replace
+
+replace a Item in the List takes the first match
+
+    Replace?(condition: FindMethod<T>, item: T): T[];
+
+| Name         | Type      | Description                                             |
+|--------------|-----------|---------------------------------------------------------|
+| condition    | function  | the method executed for each element in the list        |
+| item         | generic   | the Item to replace with                                |    
+
+```javascript
+// returns [1,2,3]
+[1,5,3].Replace((e) => e === 5, 2);
+```
+
+---        
+
 [<< Index](/wiki/index.md)

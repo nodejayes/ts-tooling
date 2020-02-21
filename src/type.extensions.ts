@@ -1312,6 +1312,19 @@ declare global {
         FindLast?(condition: FindMethod<T>): T;
 
         /**
+         * replace a Item in the List takes the first match
+         *
+         * @param condition the method executed for each element in the list
+         * @param item the Item to replace with
+         * @returns the list with the inserted Item
+         *
+         * @example
+         * // returns [1,2,3]
+         * [1,5,3].Replace((e) => e === 5, 2);
+         */
+        Replace?(condition: FindMethod<T>, item: T): T[];
+
+        /**
          * get the index number of the first matched element in the array
          *
          * @category array
