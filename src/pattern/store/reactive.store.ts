@@ -1,5 +1,5 @@
 import {BehaviorSubject} from 'rxjs';
-import {Dictionary} from '../../complex/dictionary';
+import {Dictionary} from '../../types/dictionary/dictionary';
 import {get, set} from '../../core/object';
 import produce from 'immer';
 

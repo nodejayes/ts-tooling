@@ -1,7 +1,7 @@
 /**
  * @ignore
  */
-import {StringFactory} from '../types/string/string.factory';
+import {StringFactory} from '../string/string.factory';
 
 const GUID_LENGTH = 36;
 

@@ -1,7 +1,7 @@
 import {assert} from 'chai';
-import {TimeSpan} from '../../src/ts-tooling';
+import {TimeSpan} from '../../../src/ts-tooling';
 import 'mocha';
-import {IMomentInstance} from '../../src/complex/time.span';
+import {IMomentInstance} from '../../../src/types/datetime/time.span';
 
 describe('TimeSpan Tests', () => {
     it('can create empty TimeSpan', () => {

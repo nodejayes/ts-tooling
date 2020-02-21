@@ -4,6 +4,7 @@ import {
     camelCase, snakeCase, pascalCase, paramCase, capitalCase, constantCase, dotCase,
     noCase, pathCase, sentenceCase
 } from 'change-case';
+import '../array';
 
 String.prototype.CharAt = function (pos: number): string {
     if (this.length.Subtract(1).IsBelow(pos)) {

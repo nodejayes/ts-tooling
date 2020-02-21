@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import {DateTime as LuxonDateTime} from 'luxon';
-import {DateTime} from '../../src/ts-tooling';
+import {DateTime} from '../../../src/ts-tooling';
 import 'mocha';
 
 function assertDateValues(date: DateTime, year: number, month: number, day: number, hour: number, minute: number, second: number, millisecond: number, zone: string) {

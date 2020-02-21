@@ -1,20 +1,18 @@
 // Types
-import {DateTime} from './complex/date.time';
 import {NumberFactory} from './types/number';
 import {StringFactory} from './types/string';
 import {ListSortOrder} from './types/array';
 import {ObjectFactory} from './types/object';
-import {TimeSpan} from './complex/time.span';
-import {Guid} from './complex/guid';
-import {Byte} from './complex/byte';
-import {ByteStream} from './complex/byte.stream';
+import {TimeSpan, DateTime} from './types/datetime';
+import {Guid} from './types/guid';
+import {Byte, ByteStream} from './types/byte';
+import {Dictionary} from './types/dictionary';
 
-export {NumberFactory, StringFactory, ObjectFactory, DateTime, TimeSpan, Guid, Byte, ByteStream};
-
-// Collections
-import {Dictionary} from './complex/dictionary';
-export {Dictionary} from './complex/dictionary';
-export {ListSortOrder};
+export {
+    NumberFactory, StringFactory, ObjectFactory,
+    DateTime, TimeSpan, Guid, Byte, ByteStream,
+    ListSortOrder, Dictionary
+};
 
 // Patterns
 import {using} from './pattern/dispose/using';

@@ -3,14 +3,14 @@
 | Module     | Documentation                             |
 |------------|-------------------------------------------|
 | Array      | [Wiki here](/src/types/array/array.md)    |
-| Byte       | [Wiki here](/wiki/complex/byte.md)        |
-| ByteStream | [Wiki here](/wiki/complex/byte.stream.md) |
-| DateTime   | [Wiki here](/wiki/complex/datetime.md)    |
-| Dictionary | [Wiki here](/wiki/complex/dictionary.md)  |
-| Guid       | [Wiki here](/wiki/complex/guid.md)        |
+| Byte       | [Wiki here](/src/types/byte/byte.md)        |
+| ByteStream | [Wiki here](/src/types/byte/byte.stream.md) |
+| DateTime   | [Wiki here](/src/types/datetime/datetime.md)    |
+| Dictionary | [Wiki here](/src/types/dictionary/dictionary.md)  |
+| Guid       | [Wiki here](/src/types/guid/guid.md)        |
 | Number     | [Wiki here](/src/types/number/number.md)  |
 | String     | [Wiki here](/src/types/string/string.md)  |
-| TimeSpan   | [Wiki here](/wiki/complex/timespan.md)    |
+| TimeSpan   | [Wiki here](/src/types/datetime/timespan.md)    |
 
 ---
 

@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import 'mocha';
-import {Byte, DateTime, ObjectFactory} from "../../src/ts-tooling";
+import {Byte, DateTime, ObjectFactory} from "../../../src/ts-tooling";
 
 describe('Object Extension Tests', () => {
     it('detect Circular References', () => {

@@ -1,6 +1,6 @@
 import 'mocha';
 import {assert} from 'chai';
-import {StringFactory} from "../../src/ts-tooling";
+import {StringFactory} from "../../../src/ts-tooling";
 
 describe('String Factory Tests', () => {
     it('generate Random String', () => {

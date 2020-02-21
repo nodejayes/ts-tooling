@@ -3,9 +3,13 @@ const path = require('path');
 module.exports = {
     entry: {
         'ts-tooling': './src/ts-tooling.ts',
-        'number': './src/types/number/index.ts',
-        'string': './src/types/string/index.ts',
         'array': './src/types/array/index.ts',
+        'byte': './src/types/byte/index.ts',
+        'datetime': './src/types/datetime/index.ts',
+        'dictionary': './src/types/dictionary/index.ts',
+        'number': './src/types/number/index.ts',
+        'object': './src/types/object/index.ts',
+        'string': './src/types/string/index.ts',
         'web-worker': './src/web-worker.ts',
         'node-worker': './src/node-worker.ts',
     },

@@ -2,6 +2,7 @@ import {existsSync} from 'fs';
 import {Worker} from 'worker_threads';
 import {Subject} from 'rxjs';
 import {IBackgroundWorker, IWorkerInput} from './worker.interface';
+import '../../types/string';
 
 /**
  * the Implementation of BackgroundWorker for the Backend (Node Js)

@@ -1,5 +1,5 @@
 import {Subject, Subscription} from 'rxjs';
-import {Dictionary} from '../../complex/dictionary';
+import {Dictionary} from '../../types/dictionary/dictionary';
 import {StringFactory} from '../../types/string/string.factory';
 
 /**
