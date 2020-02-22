@@ -7,6 +7,8 @@ const NS_PER_SEC = 1e9;
  * the StopWatch starts when a new Instance was created and can give the Elapsed ms when ElapsedMs was called.
  *
  * measure multiple Times is also possible with SectionStart and SectionElapsedMs
+ *
+ * @category Utils
  */
 export class StopWatch {
     private _time: number | [number, number];

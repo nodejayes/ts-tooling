@@ -20,11 +20,3 @@ It exports the tst variable!
 // install over npm
 npm install --save ts-tooling
 ```
-
-### Tutorials are >> [here](/wiki/index.md) <<
-
-| Module      | Description                                     |
-|-------------|-------------------------------------------------|
-| ts-tooling  | the Main Module usable in all environments      |
-| web-worker  | the BackgroundWorker implementation for the Web |
-| node-worker | the BackgroundWorker implementation for Node    |
