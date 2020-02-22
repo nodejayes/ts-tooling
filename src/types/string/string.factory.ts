@@ -1,10 +1,12 @@
 /**
  * some Utils for strings
  */
-import {NumberFactory} from '../number/number.factory';
+import {NumberFactory} from '../number';
 
 /**
  * some Utils for Strings
+ *
+ * @category Type
  */
 export class StringFactory {
     /**

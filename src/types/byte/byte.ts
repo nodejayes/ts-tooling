@@ -1,5 +1,7 @@
 /**
  * a Number represent as Byte
+ *
+ * @category Type
  */
 export class Byte {
     private _value = 0;

@@ -4,6 +4,9 @@ import {NumberFactory} from './number.factory';
 export {NumberFactory};
 
 declare global {
+    /**
+     * extends the basic Javascript Number
+     */
     interface Number {
         /**
          * Checks if a number is within 2 limits.

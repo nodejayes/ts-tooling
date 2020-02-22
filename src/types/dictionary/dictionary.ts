@@ -1,5 +1,7 @@
 /**
  * representation of a string Dictionary
+ *
+ * @category Type
  */
 export class Dictionary<T> {
     private _data = {};

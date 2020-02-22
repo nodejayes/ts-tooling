@@ -5,7 +5,7 @@ import {StringFactory} from '../types/string/string.factory';
 /**
  * create some random Objects
  *
- * @category Utils
+ * @category Util
  */
 export class TestDataGenerator {
     /**

@@ -4,7 +4,7 @@ import * as LZString from 'lz-string';
  * implementation of lz compression
  * with lz-string
  *
- * @category Utils
+ * @category Util
  */
 export class LZCompression {
     /**

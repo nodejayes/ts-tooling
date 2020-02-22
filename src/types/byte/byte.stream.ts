@@ -2,7 +2,10 @@ import {Byte} from './byte';
 
 /**
  * a Stream of multiple Bytes that can hold any Byte Values
+ *
  * and handle Read/Write Operations
+ *
+ * @category Type
  */
 export class ByteStream {
     private readonly _value: Byte[] = [];

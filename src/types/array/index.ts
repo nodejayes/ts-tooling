@@ -1,13 +1,30 @@
 import {ListSortOrder} from './array.extension';
 export {ListSortOrder};
 
+/**
+ * @ignore
+ */
 type ConvertMethod<T, K> = ((d: T) => K) | ((d: T) => Promise<K>);
+/**
+ * @ignore
+ */
 type TransformMethod<T> = (d: T) => any;
+/**
+ * @ignore
+ */
 type FindMethod<T> = (d: T) => boolean;
+/**
+ * @ignore
+ */
 type ReducerMethod<T, K> = (target: K, e: T) => K;
 
-// Basic Extensions
+/**
+ * Here are the Javascript Global interface Extensions defined.
+ */
 declare global {
+    /**
+     * extends the basic Javascript Array
+     */
     interface Array<T> {
         /**
          * get the Number of Items in the Array
@@ -270,6 +287,8 @@ declare global {
 
         /**
          * replace a Item in the List takes the first match
+         *
+         * @category array
          *
          * @param condition the method executed for each element in the list
          * @param item the Item to replace with

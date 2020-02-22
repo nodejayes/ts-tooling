@@ -1,4 +1,7 @@
-// Nanoseconds in one Second
+/**
+ * Nanoseconds in one Second
+ * @ignore
+ */
 const NS_PER_SEC = 1e9;
 
 /**
@@ -8,7 +11,7 @@ const NS_PER_SEC = 1e9;
  *
  * measure multiple Times is also possible with SectionStart and SectionElapsedMs
  *
- * @category Utils
+ * @category Util
  */
 export class StopWatch {
     private _time: number | [number, number];

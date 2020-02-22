@@ -3,6 +3,9 @@ import {StringFactory} from './string.factory';
 export {StringFactory};
 
 declare global {
+    /**
+     * extends the basic Javascript String
+     */
     interface String {
         /**
          * Returns a letter of a string at a certain position.

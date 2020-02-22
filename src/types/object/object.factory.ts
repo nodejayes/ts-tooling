@@ -1,8 +1,14 @@
 import {merge, recursiveDeepCopy} from '../../core/object';
+
+/**
+ * @ignore
+ */
 const sizeof = require('object-sizeof');
 
 /**
  * Object Utils Class to perform some Operations on Objects
+ *
+ * @category Type
  */
 export class ObjectFactory {
     /**

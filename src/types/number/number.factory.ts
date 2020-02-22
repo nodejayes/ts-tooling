@@ -1,3 +1,6 @@
+/**
+ * @ignore
+ */
 function random(min: number, max: number, floating: boolean): number {
     return floating === true ?
         Math.random() * (max - min) + min :
@@ -6,6 +9,8 @@ function random(min: number, max: number, floating: boolean): number {
 
 /**
  * some Utils for Integer and Double numbers
+ *
+ * @category Type
  */
 export class NumberFactory {
     /**

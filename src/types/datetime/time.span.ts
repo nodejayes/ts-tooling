@@ -2,6 +2,7 @@ import {StringFactory} from '../string/string.factory';
 
 /**
  * Luxon representation
+ * @ignore
  */
 export interface ILuxonDuration {
     hours?: number;
@@ -13,6 +14,7 @@ export interface ILuxonDuration {
 
 /**
  * Moment Js representation
+ * @ignore
  */
 export interface IMomentInstance {
     valueOf(): number;
@@ -62,6 +64,8 @@ function parseString(str: string): ILuxonDuration {
 
 /**
  * represents a duration from milliseconds to days
+ *
+ * @category Type
  */
 export class TimeSpan {
     private _days = 0;

@@ -3,6 +3,8 @@ import {IBackgroundWorker} from './worker.interface';
 
 /**
  * the Implementation of BackgroundWorker for the Web
+ *
+ * @category Pattern
  */
 export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K> {
     private _worker: Worker = null;

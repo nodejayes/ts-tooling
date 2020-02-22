@@ -3,6 +3,9 @@
  */
 import {StringFactory} from '../string/string.factory';
 
+/**
+ * @ignore
+ */
 const GUID_LENGTH = 36;
 
 /**
@@ -76,6 +79,8 @@ function validateGuid(guid: string): boolean {
 
 /**
  * represent the Global Uniqe Identifier
+ *
+ * @category Type
  */
 export class Guid {
     private _value: string;

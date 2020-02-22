@@ -29,6 +29,8 @@ function cloneLuxonDate(date: LuxonDateTime) {
 
 /**
  * represent a DateTime DataType
+ *
+ * @category Type
  */
 export class DateTime {
     private _date = LuxonDateTime.utc();

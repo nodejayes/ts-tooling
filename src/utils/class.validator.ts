@@ -1,21 +1,41 @@
 import {DateTime, ObjectFactory} from "../ts-tooling";
 
+/**
+ * @ignore
+ */
 function isObject(v: any): boolean {
     return v && typeof v === typeof {};
 }
 
+/**
+ * @ignore
+ */
 function isFunction(v: any): boolean {
     return typeof v === typeof function () {};
 }
 
+/**
+ * the Structure of a Validation Error
+ *
+ * @category Validation
+ */
 export interface IValidationError {
+    /**
+     * the Error Message String
+     */
     Message: string;
 }
 
+/**
+ * @ignore
+ */
 function isValidUrl(url: string): boolean {
     return /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\.(?:[a-z\\u00a1-\\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/g.test(url);
 }
 
+/**
+ * @ignore
+ */
 const BASE_VALIDATIONS = {
     IsBase64: v => !/^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{4})$/g.test(v),
     IsHexColor: v => !/^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/g.test(v),
@@ -83,6 +103,9 @@ const BASE_VALIDATIONS = {
     IsEmpty: v => v !== '' && v !== null && v !== undefined,
     IsDefined: v => v === null || v === undefined,
 };
+/**
+ * @ignore
+ */
 export const VALIDATIONS = {
     IsBase64: v => !BASE_VALIDATIONS.IsBase64(v),
     IsHexColor: v => !BASE_VALIDATIONS.IsHexColor(v),
@@ -126,7 +149,7 @@ export const VALIDATIONS = {
 /**
  * a Validator to validate decorated Typescript Classes
  *
- * @category Validation
+ * @category Util
  */
 export class ClassValidator {
     /**
@@ -375,8 +398,14 @@ export class ClassValidator {
     }
 }
 
+/**
+ * @ignore
+ */
 const ValidationStore = {};
 
+/**
+ * @ignore
+ */
 function checkForRequired(instance, errors: IValidationError[]) {
     const props = Object.keys(ValidationStore).FindAll(i => i.StartsWith(instance.constructor.name));
     for (const prop of props) {
@@ -390,12 +419,18 @@ function checkForRequired(instance, errors: IValidationError[]) {
     }
 }
 
+/**
+ * @ignore
+ */
 function executeValidation(value, cb: (v) => boolean, validationMessage: string, errors: IValidationError[]) {
     if (cb(value)) {
         errors.Add({Message: validationMessage});
     }
 }
 
+/**
+ * @ignore
+ */
 function registerInStore(target, propertyKey: string, targetKey: string, value, validationMessage: string) {
     const key = `${target.constructor.name}_${propertyKey}`;
     if (!ValidationStore[key]) {
@@ -407,7 +442,7 @@ function registerInStore(target, propertyKey: string, targetKey: string, value, 
 /**
  * only Validate the Property when the check Method returns True
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param cb define the check Method
  */
@@ -420,7 +455,7 @@ export function ValidateIf<T>(cb: (d: T) => boolean) {
 /**
  * check if the Value is missing and ignore all Validations
  *
- * @category Validation
+ * @category Validation Decorator
  */
 export function IsOptional() {
     return function (target, propertyKey: string) {
@@ -431,7 +466,7 @@ export function IsOptional() {
 /**
  * check if the Property was in the Object and have a Value
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -445,7 +480,7 @@ export function Required(validationMessage?: string) {
 /**
  * the Property must have a Valid Value
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -459,7 +494,7 @@ export function IsDefined(validationMessage?: string) {
 /**
  * the Property must have a Empty value like empty String or null or undefined
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -473,7 +508,7 @@ export function IsEmpty(validationMessage?: string) {
 /**
  * the Property must can not have a Empty value like empty String or null or undefined
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -487,7 +522,7 @@ export function IsNotEmpty(validationMessage?: string) {
 /**
  * the String at this Property must be a Email Address
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -501,7 +536,7 @@ export function IsEmail(validationMessage?: string) {
 /**
  * the numeric Value must be greater or Equal the given Value
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param value
  * @param validationMessage
@@ -516,7 +551,7 @@ export function Min(value: number, validationMessage?: string) {
 /**
  * the numeric Value mut be lower or equal the given Value
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param value
  * @param validationMessage
@@ -531,7 +566,7 @@ export function Max(value: number, validationMessage?: string) {
 /**
  * can execute a Function that returns true or false, can perform any Validation you want
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param value
  * @param validationMessage
@@ -546,7 +581,7 @@ export function CustomValidation(value: (v) => boolean, validationMessage?: stri
 /**
  * the String or Array must have the given Length or more
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param value
  * @param validationMessage
@@ -561,7 +596,7 @@ export function MinLength(value: number, validationMessage?: string) {
 /**
  * the String or Array must have the given Length or lesser
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param value
  * @param validationMessage
@@ -576,7 +611,7 @@ export function MaxLength(value: number, validationMessage?: string) {
 /**
  * implements a Whitelist check for the Property
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param value
  * @param validationMessage
@@ -591,7 +626,7 @@ export function Whitelist(value: any[], validationMessage?: string) {
 /**
  * implements a Blacklist check for the Property
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param value
  * @param validationMessage
@@ -606,7 +641,7 @@ export function Blacklist(value: any[], validationMessage?: string) {
 /**
  * check if the Property Value Equals the given Value using (===)
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param value
  * @param validationMessage
@@ -621,7 +656,7 @@ export function Equals<T>(value: T, validationMessage?: string) {
 /**
  * check if the Property Value Equals the given Value using (!==)
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param value
  * @param validationMessage
@@ -636,7 +671,7 @@ export function NotEquals(value: any, validationMessage?: string) {
 /**
  * check if the given Value is an Integer number
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -650,7 +685,7 @@ export function IsInt(validationMessage?: string) {
 /**
  * check an Array if it has Unique Values
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -664,7 +699,7 @@ export function UniqueArray(validationMessage?: string) {
 /**
  * check if the Array not Empty
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -678,7 +713,7 @@ export function ArrayNotEmpty(validationMessage?: string) {
 /**
  * check the Value for a Positive number
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -692,7 +727,7 @@ export function IsPositive(validationMessage?: string) {
 /**
  * check the Value for a Negative number
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -708,7 +743,7 @@ export function IsNegative(validationMessage?: string) {
  *
  * true, false, TRUE, FALSE
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -722,7 +757,7 @@ export function IsBooleanString(validationMessage?: string) {
 /**
  * check if the String contain Numbers Only
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -736,7 +771,7 @@ export function IsNumberString(validationMessage?: string) {
 /**
  * check if a DateTime is After the value
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param value
  * @param validationMessage
@@ -751,7 +786,7 @@ export function MinDate(value: DateTime, validationMessage?: string) {
 /**
  * check if a DateTime is Before the value
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param value
  * @param validationMessage
@@ -766,7 +801,7 @@ export function MaxDate(value: DateTime, validationMessage?: string) {
 /**
  * check if the String contains only letters a-z
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -780,7 +815,7 @@ export function IsAlpha(validationMessage?: string) {
 /**
  * check if the string only contains letters a-z and numbers 0-9
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -794,7 +829,7 @@ export function IsAlphanumeric(validationMessage?: string) {
 /**
  * check if the String only contains Ascii Characters
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -808,7 +843,7 @@ export function IsAscii(validationMessage?: string) {
 /**
  * check if the String is a Base64 string
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -824,7 +859,7 @@ export function IsBase64(validationMessage?: string) {
  *
  * supported Hex Color with 8 (with Alpha), 6 (Default) or 3 (Short) Characters
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -838,7 +873,7 @@ export function IsHexColor(validationMessage?: string) {
 /**
  * check if a String is a Hexadecimal String
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -852,7 +887,7 @@ export function IsHexadecimal(validationMessage?: string) {
 /**
  * check if the String is a MAC Address
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -866,7 +901,7 @@ export function IsMacAddress(validationMessage?: string) {
 /**
  * check if the String is a IP Address
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -880,7 +915,7 @@ export function IsIp(validationMessage?: string) {
 /**
  * check if the String or Number is a Port Number
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -894,7 +929,7 @@ export function IsPort(validationMessage?: string) {
 /**
  * check if the String is a JSON String
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -908,7 +943,7 @@ export function IsJSON(validationMessage?: string) {
 /**
  * check if the String is a JSON Web Token
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -922,7 +957,7 @@ export function IsJWT(validationMessage?: string) {
 /**
  * check if the String has the Maximum Bytes Size of the given Value
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param value
  * @param validationMessage
@@ -937,7 +972,7 @@ export function IsByteLength(value: number, validationMessage?: string) {
 /**
  * check if a String is a MongoDb Object Id
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -951,7 +986,7 @@ export function IsMongoId(validationMessage?: string) {
 /**
  * check if a String is a valid URL
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -965,7 +1000,7 @@ export function IsUrl(validationMessage?: string) {
 /**
  * check if a String is a UUID
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -983,7 +1018,7 @@ export function IsUUID(validationMessage?: string) {
  *
  * for Example MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, Snefru, GHOST and Whirlpool
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param validationMessage
  */
@@ -997,7 +1032,7 @@ export function IsHash(validationMessage?: string) {
 /**
  * validate the Class with a Function
  *
- * @category Validation
+ * @category Validation Decorator
  *
  * @param method
  * @param validationMessage

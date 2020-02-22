@@ -3,6 +3,11 @@ import {Dictionary} from '../../types/dictionary';
 import {get, set} from '../../core/object';
 import produce, {Draft} from 'immer';
 
+/**
+ * extends the BehaviorSubject and prevent the next Method to execute
+ *
+ * @category Store
+ */
 export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
     /**
      * @deprecated please use state.Mutation() to change the State Value
@@ -18,6 +23,8 @@ export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
 
 /**
  * a Reactive Store to save States and listen to Changes
+ *
+ * @category Store
  */
 export class ReactiveStore<T> {
     /**

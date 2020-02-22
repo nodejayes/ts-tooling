@@ -6,6 +6,8 @@ import '../../types/string';
 
 /**
  * the Implementation of BackgroundWorker for the Backend (Node Js)
+ *
+ * @category Pattern
  */
 export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K>{
     /**
