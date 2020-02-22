@@ -25,7 +25,7 @@ import {
     MinDate,
     Required,
     UniqueArray, ValidateClass
-} from '../../src/ts-tooling';
+} from '../../../src/ts-tooling';
 
 class Test {
     @IsDefined()

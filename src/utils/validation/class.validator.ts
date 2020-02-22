@@ -1,4 +1,5 @@
-import {DateTime, ObjectFactory} from "../ts-tooling";
+import {DateTime} from '../../types/datetime';
+import {ObjectFactory} from '../../types/object';
 
 /**
  * @ignore

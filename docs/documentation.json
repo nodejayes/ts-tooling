@@ -8429,8 +8429,8 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/class.validator.ts",
-							"line": 186,
+							"fileName": "src/utils/validation/class.validator.ts",
+							"line": 187,
 							"character": 25
 						}
 					]
@@ -8513,8 +8513,8 @@
 											},
 											"sources": [
 												{
-													"fileName": "src/utils/class.validator.ts",
-													"line": 392,
+													"fileName": "src/utils/validation/class.validator.ts",
+													"line": 393,
 													"character": 47
 												}
 											]
@@ -8556,8 +8556,8 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/class.validator.ts",
-							"line": 392,
+							"fileName": "src/utils/validation/class.validator.ts",
+							"line": 393,
 							"character": 31
 						}
 					]
@@ -8575,8 +8575,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 154,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 155,
 					"character": 27
 				}
 			]
@@ -12341,7 +12341,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/lz.ts",
+							"fileName": "src/utils/compression/lz.ts",
 							"line": 19,
 							"character": 19
 						}
@@ -12400,7 +12400,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/lz.ts",
+							"fileName": "src/utils/compression/lz.ts",
 							"line": 32,
 							"character": 21
 						}
@@ -12419,7 +12419,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/lz.ts",
+					"fileName": "src/utils/compression/lz.ts",
 					"line": 9,
 					"character": 26
 				}
@@ -17934,7 +17934,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/stopwatch.ts",
+							"fileName": "src/utils/stopwatch/stopwatch.ts",
 							"line": 22,
 							"character": 60
 						}
@@ -17983,7 +17983,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/stopwatch.ts",
+							"fileName": "src/utils/stopwatch/stopwatch.ts",
 							"line": 88,
 							"character": 15
 						}
@@ -18024,7 +18024,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/stopwatch.ts",
+							"fileName": "src/utils/stopwatch/stopwatch.ts",
 							"line": 184,
 							"character": 20
 						}
@@ -18083,7 +18083,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/stopwatch.ts",
+							"fileName": "src/utils/stopwatch/stopwatch.ts",
 							"line": 73,
 							"character": 25
 						}
@@ -18124,7 +18124,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/stopwatch.ts",
+							"fileName": "src/utils/stopwatch/stopwatch.ts",
 							"line": 157,
 							"character": 16
 						}
@@ -18165,7 +18165,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/stopwatch.ts",
+							"fileName": "src/utils/stopwatch/stopwatch.ts",
 							"line": 171,
 							"character": 17
 						}
@@ -18224,7 +18224,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/stopwatch.ts",
+							"fileName": "src/utils/stopwatch/stopwatch.ts",
 							"line": 103,
 							"character": 27
 						}
@@ -18283,7 +18283,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/stopwatch.ts",
+							"fileName": "src/utils/stopwatch/stopwatch.ts",
 							"line": 127,
 							"character": 23
 						}
@@ -18342,7 +18342,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/stopwatch.ts",
+							"fileName": "src/utils/stopwatch/stopwatch.ts",
 							"line": 144,
 							"character": 24
 						}
@@ -18401,7 +18401,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/stopwatch.ts",
+							"fileName": "src/utils/stopwatch/stopwatch.ts",
 							"line": 53,
 							"character": 23
 						}
@@ -18440,7 +18440,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/stopwatch.ts",
+					"fileName": "src/utils/stopwatch/stopwatch.ts",
 					"line": 16,
 					"character": 22
 				}
@@ -18717,7 +18717,7 @@
 					],
 					"sources": [
 						{
-							"fileName": "src/utils/test.data.generator.ts",
+							"fileName": "src/utils/generator/test.data.generator.ts",
 							"line": 19,
 							"character": 17
 						}
@@ -18735,7 +18735,7 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/test.data.generator.ts",
+					"fileName": "src/utils/generator/test.data.generator.ts",
 					"line": 10,
 					"character": 30
 				}
@@ -20590,8 +20590,8 @@
 					},
 					"sources": [
 						{
-							"fileName": "src/utils/class.validator.ts",
-							"line": 26,
+							"fileName": "src/utils/validation/class.validator.ts",
+							"line": 27,
 							"character": 11
 						}
 					],
@@ -20612,8 +20612,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 22,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 23,
 					"character": 33
 				}
 			]
@@ -20784,8 +20784,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 706,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 707,
 					"character": 29
 				}
 			]
@@ -20854,8 +20854,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 634,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 635,
 					"character": 25
 				}
 			]
@@ -20932,8 +20932,8 @@
 									],
 									"sources": [
 										{
-											"fileName": "src/utils/class.validator.ts",
-											"line": 574,
+											"fileName": "src/utils/validation/class.validator.ts",
+											"line": 575,
 											"character": 39
 										}
 									]
@@ -20966,8 +20966,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 574,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 575,
 					"character": 32
 				}
 			]
@@ -21044,8 +21044,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 649,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 650,
 					"character": 22
 				}
 			]
@@ -21097,8 +21097,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 808,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 809,
 					"character": 23
 				}
 			]
@@ -21150,8 +21150,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 822,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 823,
 					"character": 30
 				}
 			]
@@ -21203,8 +21203,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 836,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 837,
 					"character": 23
 				}
 			]
@@ -21256,8 +21256,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 850,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 851,
 					"character": 24
 				}
 			]
@@ -21310,8 +21310,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 750,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 751,
 					"character": 31
 				}
 			]
@@ -21377,8 +21377,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 965,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 966,
 					"character": 28
 				}
 			]
@@ -21430,8 +21430,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 487,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 488,
 					"character": 25
 				}
 			]
@@ -21483,8 +21483,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 529,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 530,
 					"character": 23
 				}
 			]
@@ -21536,8 +21536,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 501,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 502,
 					"character": 23
 				}
 			]
@@ -21590,8 +21590,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 1025,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 1026,
 					"character": 22
 				}
 			]
@@ -21644,8 +21644,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 866,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 867,
 					"character": 26
 				}
 			]
@@ -21697,8 +21697,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 880,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 881,
 					"character": 29
 				}
 			]
@@ -21750,8 +21750,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 678,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 679,
 					"character": 21
 				}
 			]
@@ -21803,8 +21803,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 908,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 909,
 					"character": 20
 				}
 			]
@@ -21856,8 +21856,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 936,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 937,
 					"character": 22
 				}
 			]
@@ -21909,8 +21909,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 950,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 951,
 					"character": 21
 				}
 			]
@@ -21962,8 +21962,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 894,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 895,
 					"character": 28
 				}
 			]
@@ -22015,8 +22015,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 979,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 980,
 					"character": 25
 				}
 			]
@@ -22068,8 +22068,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 734,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 735,
 					"character": 26
 				}
 			]
@@ -22121,8 +22121,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 515,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 516,
 					"character": 26
 				}
 			]
@@ -22174,8 +22174,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 764,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 765,
 					"character": 30
 				}
 			]
@@ -22208,8 +22208,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 460,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 461,
 					"character": 26
 				}
 			]
@@ -22261,8 +22261,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 922,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 923,
 					"character": 22
 				}
 			]
@@ -22314,8 +22314,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 720,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 721,
 					"character": 26
 				}
 			]
@@ -22367,8 +22367,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 1007,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 1008,
 					"character": 22
 				}
 			]
@@ -22420,8 +22420,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 993,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 994,
 					"character": 21
 				}
 			]
@@ -22487,8 +22487,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 559,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 560,
 					"character": 19
 				}
 			]
@@ -22555,8 +22555,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 794,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 795,
 					"character": 23
 				}
 			]
@@ -22622,8 +22622,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 604,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 605,
 					"character": 25
 				}
 			]
@@ -22689,8 +22689,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 544,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 545,
 					"character": 19
 				}
 			]
@@ -22757,8 +22757,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 779,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 780,
 					"character": 23
 				}
 			]
@@ -22824,8 +22824,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 589,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 590,
 					"character": 25
 				}
 			]
@@ -22891,8 +22891,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 664,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 665,
 					"character": 25
 				}
 			]
@@ -22944,8 +22944,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 473,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 474,
 					"character": 24
 				}
 			]
@@ -22997,8 +22997,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 692,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 693,
 					"character": 27
 				}
 			]
@@ -23102,8 +23102,8 @@
 									],
 									"sources": [
 										{
-											"fileName": "src/utils/class.validator.ts",
-											"line": 1041,
+											"fileName": "src/utils/validation/class.validator.ts",
+											"line": 1042,
 											"character": 40
 										}
 									]
@@ -23136,8 +23136,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 1041,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 1042,
 					"character": 29
 				}
 			]
@@ -23227,8 +23227,8 @@
 									],
 									"sources": [
 										{
-											"fileName": "src/utils/class.validator.ts",
-											"line": 449,
+											"fileName": "src/utils/validation/class.validator.ts",
+											"line": 450,
 											"character": 33
 										}
 									]
@@ -23244,8 +23244,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 449,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 450,
 					"character": 26
 				}
 			]
@@ -23314,8 +23314,8 @@
 			],
 			"sources": [
 				{
-					"fileName": "src/utils/class.validator.ts",
-					"line": 619,
+					"fileName": "src/utils/validation/class.validator.ts",
+					"line": 620,
 					"character": 25
 				}
 			]

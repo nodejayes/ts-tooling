@@ -31,10 +31,24 @@ class DtsBundlePlugin {
                     outputAsModuleFolder: true
                 });
 
-                for (const mod of ['array', 'byte', 'datetime', 'dictionary', 'guid', 'number', 'object', 'string']) {
+                for (const mod of [
+                    'array', 'byte', 'datetime', 'dictionary', 'guid', 'number', 'object', 'string'
+                ]) {
                     dts.bundle({
                         name: mod,
                         main: path.join(__dirname, 'lib', 'types', mod, 'index.d.ts'),
+                        out: path.join(__dirname, 'lib', `${mod}.d.ts`),
+                        removeSource: false,
+                        outputAsModuleFolder: true
+                    });
+                }
+
+                for (const mod of [
+                    'compression', 'stopwatch', 'validation', 'generator'
+                ]) {
+                    dts.bundle({
+                        name: mod,
+                        main: path.join(__dirname, 'lib', 'utils', mod, 'index.d.ts'),
                         out: path.join(__dirname, 'lib', `${mod}.d.ts`),
                         removeSource: false,
                         outputAsModuleFolder: true
@@ -47,7 +61,7 @@ class DtsBundlePlugin {
 
 class TypeDocPlugin {
     apply(compiler) {
-        compiler.hooks.done.tap(
+        compiler.hooks.afterCompile.tap(
             'TypeDocPlugin',
             () => {
                 const app = new TypeDoc.Application();
@@ -87,6 +101,10 @@ module.exports = {
         'number': './src/types/number/index.ts',
         'object': './src/types/object/index.ts',
         'string': './src/types/string/index.ts',
+        'compression': './src/utils/compression/index.ts',
+        'generator': './src/utils/generator/index.ts',
+        'stopwatch': './src/utils/stopwatch/index.ts',
+        'validation': './src/utils/validation/index.ts',
         'web-worker': './src/web-worker.ts',
         'node-worker': './src/node-worker.ts',
     },

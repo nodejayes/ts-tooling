@@ -8,12 +8,6 @@ import {Guid} from './types/guid';
 import {Byte, ByteStream} from './types/byte';
 import {Dictionary} from './types/dictionary';
 
-export {
-    NumberFactory, StringFactory, ObjectFactory,
-    DateTime, TimeSpan, Guid, Byte, ByteStream,
-    ListSortOrder, Dictionary
-};
-
 // Patterns
 import {using} from './pattern/dispose/using';
 export {using} from './pattern/dispose/using';
@@ -28,10 +22,8 @@ import {throttle, IThrottleOptions} from './pattern/functions/throttle';
 export {throttle, IThrottleOptions} from './pattern/functions/throttle';
 
 // Utils
-import {LZCompression} from './utils/lz';
-export {LZCompression} from './utils/lz';
+import {LZCompression} from './utils/compression';
 import {StopWatch} from './utils/stopwatch';
-export {StopWatch} from './utils/stopwatch';
 import {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty, IsEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, Equals, NotEquals,
@@ -59,10 +51,16 @@ import {
     UniqueArray,
     CustomValidation,
     ValidateClass
-} from './utils/class.validator';
+} from './utils/validation';
+import {TestDataGenerator} from './utils/generator';
+
 export {
-    ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty, IsEmpty,
-    MaxLength, MinLength, ValidateIf, Whitelist, Equals, NotEquals,
+    NumberFactory, StringFactory, ObjectFactory,
+    DateTime, TimeSpan, Guid, Byte, ByteStream,
+    ListSortOrder, Dictionary, TestDataGenerator,
+    LZCompression, StopWatch, ClassValidator,
+    IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
+    Equals, NotEquals,
     ArrayNotEmpty,
     IsAlpha,
     IsAlphanumeric,
@@ -86,16 +84,15 @@ export {
     Required,
     UniqueArray,
     CustomValidation,
-    ValidateClass
-} from './utils/class.validator';
-import {TestDataGenerator} from './utils/test.data.generator';
-export {TestDataGenerator} from './utils/test.data.generator';
+    ValidateClass,
+};
 
 export default {
+    NumberFactory, StringFactory, ObjectFactory,
     DateTime, TimeSpan, Guid, Byte, ByteStream,
-    Dictionary, ListSortOrder,
+    ListSortOrder, Dictionary, TestDataGenerator,
     using, create, createWithFactory, EventHandler, ReactiveStore,
-    LZCompression, StopWatch, NumberFactory, StringFactory, ClassValidator, ObjectFactory,
+    LZCompression, StopWatch, ClassValidator,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
     Equals, NotEquals,
     ArrayNotEmpty,

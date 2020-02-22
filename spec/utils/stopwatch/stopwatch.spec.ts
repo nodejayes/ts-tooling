@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import 'mocha';
-import {StopWatch} from '../../src/ts-tooling';
+import {StopWatch} from '../../../src/ts-tooling';
 
 describe("Test StopWatch", () => {
     it('can create the Stopwatch and measure the Time', (done) => {

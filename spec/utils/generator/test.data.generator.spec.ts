@@ -1,6 +1,6 @@
 import 'mocha';
 import {assert} from 'chai';
-import {TestDataGenerator} from "../../src/ts-tooling";
+import {TestDataGenerator} from "../../../src/ts-tooling";
 const sizeof = require('object-sizeof');
 
 describe('Test Data Generator Tests', () => {
