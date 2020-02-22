@@ -1,0 +1,1 @@
+export {BackgroundWorker} from './node';

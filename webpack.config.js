@@ -43,6 +43,10 @@ class DtsBundlePlugin {
                     });
                 }
 
+                for (const mod of []) {
+
+                }
+
                 for (const mod of [
                     'compression', 'stopwatch', 'validation', 'generator'
                 ]) {
@@ -54,6 +58,43 @@ class DtsBundlePlugin {
                         outputAsModuleFolder: true
                     });
                 }
+
+                dts.bundle({
+                    name: 'web-worker',
+                    main: path.join(__dirname, 'lib', 'pattern', 'background.worker', 'web', 'index.d.ts'),
+                    out: path.join(__dirname, 'lib', `web-worker.d.ts`),
+                    removeSource: false,
+                    outputAsModuleFolder: true
+                });
+                dts.bundle({
+                    name: 'node-worker',
+                    main: path.join(__dirname, 'lib', 'pattern', 'background.worker', 'node', 'index.d.ts'),
+                    out: path.join(__dirname, 'lib', `node-worker.d.ts`),
+                    removeSource: false,
+                    outputAsModuleFolder: true
+                });
+
+                dts.bundle({
+                    name: 'reactive-store',
+                    main: path.join(__dirname, 'lib', 'pattern', 'store', 'index.d.ts'),
+                    out: path.join(__dirname, 'lib', `reactive-store.d.ts`),
+                    removeSource: false,
+                    outputAsModuleFolder: true
+                });
+                dts.bundle({
+                    name: 'event-handler',
+                    main: path.join(__dirname, 'lib', 'pattern', 'events', 'index.d.ts'),
+                    out: path.join(__dirname, 'lib', `event-handler.d.ts`),
+                    removeSource: false,
+                    outputAsModuleFolder: true
+                });
+                dts.bundle({
+                    name: 'pattern',
+                    main: path.join(__dirname, 'lib', 'pattern', 'index.d.ts'),
+                    out: path.join(__dirname, 'lib', `pattern.d.ts`),
+                    removeSource: false,
+                    outputAsModuleFolder: true
+                });
             }
         );
     }
@@ -105,8 +146,11 @@ module.exports = {
         'generator': './src/utils/generator/index.ts',
         'stopwatch': './src/utils/stopwatch/index.ts',
         'validation': './src/utils/validation/index.ts',
-        'web-worker': './src/web-worker.ts',
-        'node-worker': './src/node-worker.ts',
+        'web-worker': './src/pattern/background.worker/web/index.ts',
+        'node-worker': './src/pattern/background.worker/node/index.ts',
+        'reactive-store': './src/pattern/store/index.ts',
+        'event-handler': './src/pattern/events/index.ts',
+        'pattern': './src/pattern/index.ts',
     },
     mode: 'production',
     resolve: {

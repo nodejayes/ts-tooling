@@ -1,5 +1,5 @@
 import {Subject} from 'rxjs';
-import {IBackgroundWorker} from './worker.interface';
+import {IBackgroundWorker} from '../worker.interface';
 
 /**
  * the Implementation of BackgroundWorker for the Web

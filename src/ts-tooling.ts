@@ -9,17 +9,9 @@ import {Byte, ByteStream} from './types/byte';
 import {Dictionary} from './types/dictionary';
 
 // Patterns
-import {using} from './pattern/dispose/using';
-export {using} from './pattern/dispose/using';
-export {IDisposable} from './pattern/dispose/disposable';
-import {create, createWithFactory} from './pattern/construct';
-export {create, createWithFactory} from './pattern/construct';
-import {EventHandler} from './pattern/events/event.handler';
-export {EventHandler} from './pattern/events/event.handler';
-import {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
-export {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
-import {throttle, IThrottleOptions} from './pattern/functions/throttle';
-export {throttle, IThrottleOptions} from './pattern/functions/throttle';
+import {using, IDisposable, create, createWithFactory, IThrottleOptions, throttle} from './pattern';
+import {EventHandler} from './pattern/events';
+import {ReactiveStore, SafeBehaviorSubject} from './pattern/store';
 
 // Utils
 import {LZCompression} from './utils/compression';
@@ -59,6 +51,8 @@ export {
     DateTime, TimeSpan, Guid, Byte, ByteStream,
     ListSortOrder, Dictionary, TestDataGenerator,
     LZCompression, StopWatch, ClassValidator,
+    IThrottleOptions, throttle, SafeBehaviorSubject, IDisposable,
+    create, createWithFactory, using, EventHandler, ReactiveStore,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
     Equals, NotEquals,
     ArrayNotEmpty,
@@ -91,6 +85,7 @@ export default {
     NumberFactory, StringFactory, ObjectFactory,
     DateTime, TimeSpan, Guid, Byte, ByteStream,
     ListSortOrder, Dictionary, TestDataGenerator,
+    throttle, SafeBehaviorSubject,
     using, create, createWithFactory, EventHandler, ReactiveStore,
     LZCompression, StopWatch, ClassValidator,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
