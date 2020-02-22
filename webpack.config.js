@@ -1,5 +1,31 @@
 const path = require('path');
+const fs = require('fs');
 const TypeDoc = require('typedoc');
+
+function dropDirs(dir) {
+    const entries = fs.readdirSync(dir);
+    for (const entry of entries) {
+        const fullpath = path.join(dir, entry);
+        const stats = fs.statSync(fullpath);
+        if (stats.isDirectory()) {
+            dropDirs(fullpath);
+            continue;
+        }
+        fs.unlinkSync(fullpath);
+    }
+}
+
+function deleteTypeDefinition(file) {
+    if (fs.existsSync(file)) {
+        fs.unlinkSync(file);
+    }
+}
+
+function cleanTypeDefs() {
+    dropDirs(path.join(__dirname, 'lib'));
+    deleteTypeDefinition(path.join(__dirname, 'lib', 'core.d.ts'));
+    deleteTypeDefinition(path.join(__dirname, 'lib', 'type.extensions.d.ts'));
+}
 
 class DtsBundlePlugin {
     apply(compiler) {
@@ -95,6 +121,8 @@ class DtsBundlePlugin {
                     removeSource: false,
                     outputAsModuleFolder: true
                 });
+
+                cleanTypeDefs();
             }
         );
     }
