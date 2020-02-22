@@ -1,4 +1,6 @@
 const path = require('path');
+const TypedocPlugin = require('typedoc-webpack-plugin');
+const TypeDoc = require('typedoc');
 
 class DtsBundlePlugin {
     apply(compiler) {
@@ -73,6 +75,15 @@ module.exports = {
     },
     plugins: [
         new DtsBundlePlugin(),
+        new TypedocPlugin({
+            out: './docs',
+            module: 'commonjs',
+            target: 'es5',
+            exclude: '**/node_modules/**/*.*',
+            experimentalDecorators: true,
+            excludeExternals: true,
+            theme: './node_modules/igniteui-typedoc-theme/dist',
+        }, './src/ts-tooling.ts')
     ],
     output: {
         path: path.resolve(__dirname, 'lib'),
