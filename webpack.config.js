@@ -2,16 +2,21 @@ const path = require('path');
 const fs = require('fs');
 const TypeDoc = require('typedoc');
 
-function dropDirs(dir) {
+function dropDirs(dir, dropRoot) {
     const entries = fs.readdirSync(dir);
     for (const entry of entries) {
         const fullpath = path.join(dir, entry);
         const stats = fs.statSync(fullpath);
         if (stats.isDirectory()) {
-            dropDirs(fullpath);
+            dropDirs(fullpath, true);
             continue;
         }
-        fs.unlinkSync(fullpath);
+        if (dropRoot === true) {
+            fs.unlinkSync(fullpath);
+        }
+    }
+    if (dropRoot === true) {
+        fs.rmdirSync(dir);
     }
 }
 
@@ -22,9 +27,20 @@ function deleteTypeDefinition(file) {
 }
 
 function cleanTypeDefs() {
-    dropDirs(path.join(__dirname, 'lib'));
+    dropDirs(path.join(__dirname, 'lib'), false);
     deleteTypeDefinition(path.join(__dirname, 'lib', 'core.d.ts'));
     deleteTypeDefinition(path.join(__dirname, 'lib', 'type.extensions.d.ts'));
+}
+
+class CleanTypeDefsPlugin {
+    apply(compiler) {
+        compiler.hooks.done.tap(
+            'CleanTypeDefsPlugin',
+            () => {
+                cleanTypeDefs();
+            }
+        )
+    }
 }
 
 class DtsBundlePlugin {
@@ -42,21 +58,6 @@ class DtsBundlePlugin {
                     outputAsModuleFolder: true
                 });
 
-                dts.bundle({
-                    name: 'node-worker',
-                    main: path.join(__dirname, 'lib', 'node-worker.d.ts'),
-                    out: path.join(__dirname, 'lib', `node-worker.d.ts`),
-                    removeSource: false,
-                    outputAsModuleFolder: true
-                });
-                dts.bundle({
-                    name: 'web-worker',
-                    main: path.join(__dirname, 'lib', 'web-worker.d.ts'),
-                    out: path.join(__dirname, 'lib', `web-worker.d.ts`),
-                    removeSource: false,
-                    outputAsModuleFolder: true
-                });
-
                 for (const mod of [
                     'array', 'byte', 'datetime', 'dictionary', 'guid', 'number', 'object', 'string'
                 ]) {
@@ -67,10 +68,6 @@ class DtsBundlePlugin {
                         removeSource: false,
                         outputAsModuleFolder: true
                     });
-                }
-
-                for (const mod of []) {
-
                 }
 
                 for (const mod of [
@@ -121,8 +118,6 @@ class DtsBundlePlugin {
                     removeSource: false,
                     outputAsModuleFolder: true
                 });
-
-                cleanTypeDefs();
             }
         );
     }
@@ -195,6 +190,7 @@ module.exports = {
     },
     plugins: [
         new DtsBundlePlugin(),
+        new CleanTypeDefsPlugin(),
         new TypeDocPlugin(),
     ],
     output: {
