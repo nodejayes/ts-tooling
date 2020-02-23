@@ -8,14 +8,22 @@ function generate(args) {
     const MODULE_FOLDER = args.moduleFolder;
     const NAME = args.name;
     const moduleFolderStats = fs.statSync(MODULE_FOLDER);
-    fs.writeFileSync(path.join(LIB_DIR, `${NAME}.d.ts`), generator.generateDtsBundle([
+    // /// <reference types="luxon" />
+    // import {DateTime as LuxonDateTime} from 'luxon';
+    // replace the first line in types
+    const content = generator.generateDtsBundle([
         {
             filePath: moduleFolderStats.isDirectory() ? path.join(MODULE_FOLDER, 'index.ts') : MODULE_FOLDER,
             output: {
                 inlineDeclareGlobals: true,
             }
         }
-    ]), {encoding:'utf-8'});
+    ]);
+    fs.writeFileSync(path.join(LIB_DIR, `${NAME}.d.ts`), content
+        .map(c => c.replace(
+            '/// <reference types="luxon" />',
+            'import {DateTime as LuxonDateTime} from \'luxon\';')
+        ), {encoding:'utf-8'});
 }
 
 parentPort.postMessage(generate(workerData));

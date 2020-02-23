@@ -1,9 +1,39 @@
 import 'mocha';
 import {assert} from 'chai';
-import {ListSortOrder} from '../lib/array';
-import {ReactiveStore, SafeBehaviorSubject} from '../lib/reactive-store';
-import {EventHandler} from '../lib/event-handler';
-import {using, createWithFactory, create, throttle} from '../lib/pattern';
+import {
+    NumberFactory, StringFactory, ObjectFactory,
+    DateTime, TimeSpan, Guid, Byte, ByteStream,
+    ListSortOrder, Dictionary, TestDataGenerator,
+    throttle, SafeBehaviorSubject,
+    using, create, createWithFactory, EventHandler, ReactiveStore,
+    LZCompression, StopWatch, ClassValidator,
+    IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
+    Equals, NotEquals,
+    ArrayNotEmpty,
+    IsAlpha,
+    IsAlphanumeric,
+    IsAscii,
+    IsBase64,
+    IsBooleanString,
+    IsByteLength,
+    IsHash,
+    IsHexadecimal,
+    IsHexColor,
+    IsInt, IsIp, IsJSON, IsJWT, IsMacAddress,
+    IsMongoId,
+    IsNegative,
+    IsNumberString,
+    IsOptional, IsPort,
+    IsPositive,
+    IsUrl,
+    IsUUID,
+    MaxDate,
+    MinDate,
+    Required,
+    UniqueArray,
+    CustomValidation,
+    ValidateClass,
+} from '../lib/ts-tooling';
 import {BackgroundWorker as NodeBackgroundWorker} from '../lib/node-worker';
 import {BackgroundWorker as WebBackgroundWorker} from '../lib/web-worker';
 
@@ -46,22 +76,86 @@ describe('lib export Tests', () => {
             assert.isFunction([1].RemoveRange);
             assert.isFunction([1].GroupBy);
         });
-        it('byte', () => {});
-        it('datetime', () => {});
-        it('dictionary', () => {});
-        it('guid', () => {});
-        it('number', () => {
-            // assert.isFunction((1).IsBelow);
+        it('byte', () => {
+            assert.isDefined(Byte);
+            assert.isDefined(ByteStream);
         });
-        it('object', () => {});
+        it('datetime', () => {
+            assert.isDefined(DateTime);
+            assert.isDefined(TimeSpan);
+        });
+        it('dictionary', () => {
+            assert.isDefined(Dictionary);
+        });
+        it('guid', () => {
+            assert.isDefined(Guid);
+        });
+        it('number', () => {
+            assert.isDefined(NumberFactory);
+            assert.isFunction((1).IsBelow);
+        });
+        it('object', () => {
+            assert.isDefined(ObjectFactory);
+        });
         it('string', () => {
-            // assert.isFunction(''.Concat);
+            assert.isDefined(StringFactory);
+            assert.isFunction(''.Concat);
         });
     });
     describe('Util Modules', () => {
-        it('compression', () => {});
-        it('generator', () => {});
-        it('stopwatch', () => {});
-        it('validation', () => {});
+        it('compression', () => {
+            assert.isDefined(LZCompression);
+        });
+        it('generator', () => {
+            assert.isDefined(TestDataGenerator);
+        });
+        it('stopwatch', () => {
+            assert.isDefined(StopWatch);
+        });
+        it('validation', () => {
+            assert.isDefined(ClassValidator);
+            assert.isFunction(ValidateClass);
+            assert.isFunction(IsDefined);
+            assert.isFunction(IsEmail);
+            assert.isFunction(Min);
+            assert.isFunction(Max);
+            assert.isFunction(Blacklist);
+            assert.isFunction(IsEmpty);
+            assert.isFunction(IsNotEmpty);
+            assert.isFunction(MaxLength);
+            assert.isFunction(MinLength);
+            assert.isFunction(ValidateIf);
+            assert.isFunction(Whitelist);
+            assert.isFunction(Equals);
+            assert.isFunction(NotEquals);
+            assert.isFunction(ArrayNotEmpty);
+            assert.isFunction(IsAlpha);
+            assert.isFunction(IsAlphanumeric);
+            assert.isFunction(IsAscii);
+            assert.isFunction(IsBase64);
+            assert.isFunction(IsBooleanString);
+            assert.isFunction(IsByteLength);
+            assert.isFunction(IsHash);
+            assert.isFunction(IsHexadecimal);
+            assert.isFunction(IsHexColor);
+            assert.isFunction(IsInt);
+            assert.isFunction(IsIp);
+            assert.isFunction(IsJSON);
+            assert.isFunction(IsJWT);
+            assert.isFunction(IsMacAddress);
+            assert.isFunction(IsMongoId);
+            assert.isFunction(IsNegative);
+            assert.isFunction(IsNumberString);
+            assert.isFunction(IsOptional);
+            assert.isFunction(IsPort);
+            assert.isFunction(IsPositive);
+            assert.isFunction(IsUrl);
+            assert.isFunction(IsUUID);
+            assert.isFunction(MaxDate);
+            assert.isFunction(MinDate);
+            assert.isFunction(Required);
+            assert.isFunction(UniqueArray);
+            assert.isFunction(CustomValidation);
+        });
     });
 });

@@ -1,3 +1,8 @@
+### 2.6.1
+
+* fix Type generation
+* generate typescript definitions in parallel
+
 ### 2.6.0
 
 * merge simple Objects with ObjectFactory

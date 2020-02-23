@@ -8,7 +8,7 @@ const WORK_LIST = [];
 
 async function startWorkers() {
     while (TODO_LIST.length > 0) {
-        if (WORK_LIST.length >= cpus().length) {
+        if (WORK_LIST.length >= Math.ceil(cpus().length/2)) {
             await new Promise(resolve => setTimeout(resolve, 2000));
             continue;
         }
