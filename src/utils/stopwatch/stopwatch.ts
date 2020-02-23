@@ -1,3 +1,5 @@
+import '../../types/array';
+
 /**
  * Nanoseconds in one Second
  * @ignore

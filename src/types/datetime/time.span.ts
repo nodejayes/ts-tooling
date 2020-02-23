@@ -1,4 +1,4 @@
-import {StringFactory} from '../string/string.factory';
+import {StringFactory} from '../string';
 
 /**
  * Luxon representation

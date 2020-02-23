@@ -1,7 +1,7 @@
 /**
  * @ignore
  */
-import {StringFactory} from '../string/string.factory';
+import {StringFactory} from '../string';
 
 /**
  * @ignore

@@ -1,3 +1,5 @@
+import '../array';
+
 /**
  * representation of a string Dictionary
  *

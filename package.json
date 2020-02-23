@@ -1,6 +1,6 @@
 {
   "name": "ts-tooling",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "main": "lib/ts-tooling.js",
   "types": "lib/ts-tooling.d.ts",
   "scripts": {
@@ -10,6 +10,9 @@
     "coveralls": "npm run build && npm run cover && cat ./coverage/lcov.info | coveralls",
     "build-test": "npm run build && npm run test",
     "release": "npm run build-test && npm publish",
+    "type-generation:main": "dts-generator --project . --out lib/ts-tooling.d.ts",
+    "type-generation:nodeworker": "dts-generator --project . --out lib/node-worker.d.ts",
+    "type-generation:webworker": "dts-generator --project . --out lib/web-worker.d.ts",
     "analyze": "webpack --profile --json > profiling.json && webpack-bundle-analyzer profiling.json"
   },
   "license": "MIT",
@@ -43,7 +46,6 @@
     "@types/node": "^13.7.1",
     "chai": "^4.2.0",
     "coveralls": "^3.0.9",
-    "dts-generator": "^3.0.0",
     "fs-extra": "^8.1.0",
     "mocha": "^7.0.1",
     "nyc": "^15.0.0",
@@ -55,6 +57,6 @@
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-bundle-analyzer": "^3.6.0",
-    "dts-bundle": "^0.7.3"
+    "dts-bundle-generator": "^3.3.1"
   }
 }

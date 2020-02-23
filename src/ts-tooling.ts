@@ -10,8 +10,8 @@ import {Dictionary} from './types/dictionary';
 
 // Patterns
 import {using, IDisposable, create, createWithFactory, IThrottleOptions, throttle} from './pattern';
-import {EventHandler} from './pattern/events';
-import {ReactiveStore, SafeBehaviorSubject} from './pattern/store';
+import {EventHandler} from './pattern/event-handler';
+import {ReactiveStore, SafeBehaviorSubject} from './pattern/reactive-store';
 
 // Utils
 import {LZCompression} from './utils/compression';

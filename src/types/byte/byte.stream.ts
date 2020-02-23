@@ -1,4 +1,5 @@
 import {Byte} from './byte';
+import '../array';
 
 /**
  * a Stream of multiple Bytes that can hold any Byte Values

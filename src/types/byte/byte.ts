@@ -1,3 +1,5 @@
+import '../number';
+
 /**
  * a Number represent as Byte
  *
