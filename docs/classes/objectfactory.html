@@ -108,7 +108,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/types/object/object.factory.ts#L27">src/types/object/object.factory.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/types/object/object.factory.ts#L29">src/types/object/object.factory.ts:29</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -117,11 +117,11 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>// returns {Hello:&#39;World!&#39;}
-											ObjectFactory.Copy({Hello:&#39;World!&#39;});
-											// returns false
-											const obj = {Hello:&#39;World!&#39;};
-										obj === ObjectFactory.Copy(obj);</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-comment">// returns {Hello:'World!'}</span>
+ObjectFactory.Copy({Hello:<span class="hljs-string">'World!'</span>});
+<span class="hljs-comment">// returns false</span>
+<span class="hljs-keyword">const</span> obj = {Hello:<span class="hljs-string">'World!'</span>};
+obj === ObjectFactory.Copy(obj);</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -155,7 +155,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/types/object/object.factory.ts#L63">src/types/object/object.factory.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/types/object/object.factory.ts#L69">src/types/object/object.factory.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -164,14 +164,14 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>const obj1 = {hello:&#39;world&#39;,c:null};
-											const obj2 = {test:&#39;me&#39;,c:obj1};
-											obj1.c = obj2;
-											const combined = {t1:obj1,t2:obj2,t3:null};
-											const obj3 = combined;
-											combined.t3 = obj3;
-											// returns [&#39;c&#39;, &#39;c&#39;, &#39;t1&#39;]
-										ObjectFactory.GetCircular(combined);</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-keyword">const</span> obj1 = {hello:<span class="hljs-string">'world'</span>,c:<span class="hljs-literal">null</span>};
+<span class="hljs-keyword">const</span> obj2 = {test:<span class="hljs-string">'me'</span>,c:obj1};
+obj1.c = obj2;
+<span class="hljs-keyword">const</span> combined = {t1:obj1,t2:obj2,t3:<span class="hljs-literal">null</span>};
+<span class="hljs-keyword">const</span> obj3 = combined;
+combined.t3 = obj3;
+<span class="hljs-comment">// returns ['c', 'c', 't1']</span>
+ObjectFactory.GetCircular(combined);</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -198,7 +198,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/types/object/object.factory.ts#L44">src/types/object/object.factory.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/types/object/object.factory.ts#L48">src/types/object/object.factory.ts:48</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -207,13 +207,13 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>const obj1 = {hello:&#39;world&#39;};
-											const obj2 = {hello:&#39;world&#39;};
-											obj2.ref = obj2;
-											// returns false while the Object has no self references
-											ObjectFactory.IsCircular(obj1);
-											// returns true while obj2 has a self reference on the ref Property
-										ObjectFactory.IsCircular(obj2);</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-keyword">const</span> obj1 = {hello:<span class="hljs-string">'world'</span>};
+<span class="hljs-keyword">const</span> obj2 = {hello:<span class="hljs-string">'world'</span>};
+obj2.ref = obj2;
+<span class="hljs-comment">// returns false while the Object has no self references</span>
+ObjectFactory.IsCircular(obj1);
+<span class="hljs-comment">// returns true while obj2 has a self reference on the ref Property</span>
+ObjectFactory.IsCircular(obj2);</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -240,7 +240,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/types/object/object.factory.ts#L118">src/types/object/object.factory.ts:118</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/types/object/object.factory.ts#L128">src/types/object/object.factory.ts:128</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -249,17 +249,17 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>// returns {name:&#39;muster&#39;,age:10,state:{active:true}}
-											const obj1 = {
-											name:&#39;muster&#39;,
-											age:10,
-											};
-											const obj2 = {
-											state:{
-											active:true
-											}
-											};
-										ObjectFactory.Merge(obj1, obj2);</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-comment">// returns {name:'muster',age:10,state:{active:true}}</span>
+<span class="hljs-keyword">const</span> obj1 = {
+     name:<span class="hljs-string">'muster'</span>,
+     age:<span class="hljs-number">10</span>,
+};
+<span class="hljs-keyword">const</span> obj2 = {
+     state:{
+         active:<span class="hljs-literal">true</span>
+     }
+};
+ObjectFactory.Merge(obj1, obj2);</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -294,7 +294,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/types/object/object.factory.ts#L95">src/types/object/object.factory.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/types/object/object.factory.ts#L103">src/types/object/object.factory.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -303,8 +303,8 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>// returns 22
-										ObjectFactory.SizeOf({Hello: &#39;World!&#39;});</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-comment">// returns 22</span>
+ObjectFactory.SizeOf({Hello: <span class="hljs-string">'World!'</span>});</code></pre>
 									</dd>
 								</dl>
 							</div>

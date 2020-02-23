@@ -13,8 +13,10 @@ export class LZCompression {
      * @param data a Javascript Value
      *
      * @example
+     * ```typescript
      * // compress the Object to a zipped JSON String
      * LZCompression.Compress({"Hello":"World!"});
+     * ```
      */
     static Compress(data: any): string {
         return LZString.compressToBase64(JSON.stringify(data));
@@ -26,8 +28,10 @@ export class LZCompression {
      * @param compressed a compressed string
      *
      * @example
+     * ```typescript
      * // decompress the zipped JSON String to a Object
      * LZCompression.Compress('N4IgEgpgNlD2IC4QHVYCcoBMCEIC+QA=');
+     * ```
      */
     static Decompress(compressed: string): any {
         return JSON.parse(LZString.decompressFromBase64(compressed));

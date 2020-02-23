@@ -25,9 +25,11 @@ export class StopWatch {
      * create a new StopWatch Instance at this Time the StopWatch was started
      *
      * @example
+     * ```typescript
      * const watch = new StopWatch();
      * // returns the elapsed Ms from construction and this Line
      * watch.ElapsedMs();
+     * ```
      */
     constructor() {
         this._time = this.getTimestamp();
@@ -40,6 +42,7 @@ export class StopWatch {
      * @param key the key that indicates the Section
      *
      * @example
+     * ```typescript
      * const watch = new StopWatch();
      * watch.SectionStart('A');
      * // logs the Time between SectionStart('A') and SectionElapsedMs('A')
@@ -49,6 +52,7 @@ export class StopWatch {
      * watch.SectionElapsedMs('B');
      * // logs the Time between SectionStart('A') and this Line with SectionStart('B') and SectionElapsedMs('B')
      * watch.SectionElapsedMs('A');
+     * ```
      */
     public SectionStart(key: string): void {
         this._multipleTimes[key] = this.getTimestamp();
@@ -62,6 +66,7 @@ export class StopWatch {
      * @param key the key that indicates the Section
      *
      * @example
+     * ```typescript
      * const sw = new StopWatch();
      * sw.SectionStart('sw1');
      * // returns false
@@ -69,6 +74,7 @@ export class StopWatch {
      * sw.SectionPause('sw1');
      * // returns true
      * sw.IsSectionPause('sw1');
+     * ```
      */
     public IsSectionPause(key: string): boolean {
         return this._multipleIsPause[key] === true;
@@ -78,12 +84,14 @@ export class StopWatch {
      * if the current StopWatch in pause mode
      *
      * @example
+     * ```typescript
      * const sw = new StopWatch();
      * // returns false
      * sw.IsPause();
      * sw.Pause();
      * // returns true
      * sw.IsPause();
+     * ```
      */
     get IsPause(): boolean {
         return this._isPause === true;
@@ -95,10 +103,12 @@ export class StopWatch {
      * @param key the key that indicates the Section
      *
      * @example
+     * ```typescript
      * const sw = new StopWatch();
      * sw.SectionStart('sw1');
      * // returns the elapsed milliseconds since start of section sw1
      * sw.SectionElapsedMs('sw1');
+     * ```
      */
     public SectionElapsedMs(key: string): number {
         let tmp = this._multipleIsPause[key] ? 0 : this.getMultipleTimeDiff(key);
@@ -119,10 +129,12 @@ export class StopWatch {
      * @param key the key that indicates the Section
      *
      * @example
+     * ```typescript
      * const sw = new StopWatch();
      * sw.SectionStart('sw1');
      * // pause the sw1 section
      * sw.SectionPause('sw1');
+     * ```
      */
     public SectionPause(key: string) {
         this._multipleMeasures[key].Add(this.getMultipleTimeDiff(key));
@@ -135,11 +147,13 @@ export class StopWatch {
      * @param key the key that indicates the Section
      *
      * @example
+     * ```typescript
      * const sw = new StopWatch();
      * sw.SectionStart('sw1');
      * sw.SectionPause('sw1');
      * // restart the sw1 section
      * sw.SectionResume('sw1');
+     * ```
      */
     public SectionResume(key: string) {
         this._multipleIsPause[key] = false;
@@ -150,9 +164,11 @@ export class StopWatch {
      * stops the StopWatch from measure Time
      *
      * @example
+     * ```typescript
      * const sw = new StopWatch();
      * // pause the StopWatch
      * sw.Pause();
+     * ```
      */
     public Pause() {
         this._measures.Add(this.getTimeDiff());
@@ -163,10 +179,12 @@ export class StopWatch {
      * starts the StopWatch at the Point from the Last Pause
      *
      * @example
+     * ```typescript
      * const sw = new StopWatch();
      * sw.Pause();
      * // resume the paused StopWatch
      * sw.Resume();
+     * ```
      */
     public Resume() {
         this._time = this.getTimestamp();
@@ -177,9 +195,11 @@ export class StopWatch {
      * gets the Elapsed Time in ms from the StopWatch
      *
      * @example
+     * ```typescript
      * const sw = StopWatch();
      * // get the elapsed time in ms from StopWatch constructor
      * sw.ElapsedMs();
+     * ```
      */
     public ElapsedMs(): number {
         let tmp = this._isPause ? 0 : this.getTimeDiff();

@@ -119,7 +119,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/types/guid/guid.ts#L130">src/types/guid/guid.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/types/guid/guid.ts#L136">src/types/guid/guid.ts:136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -129,10 +129,10 @@
 								<p>generates a new one when no guid was passed</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>// returns a new generated Guid
-											new Guid();
-											// returns &quot;6bcb9d2c-ae48-4310-8d56-ea7accffcc8c&quot;
-										new Guid(&#39;6bcb9d2c-ae48-4310-8d56-ea7accffcc8c&#39;);</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-comment">// returns a new generated Guid</span>
+<span class="hljs-keyword">new</span> Guid();
+<span class="hljs-comment">// returns "6bcb9d2c-ae48-4310-8d56-ea7accffcc8c"</span>
+<span class="hljs-keyword">new</span> Guid(<span class="hljs-string">'6bcb9d2c-ae48-4310-8d56-ea7accffcc8c'</span>);</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -164,7 +164,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/types/guid/guid.ts#L128">src/types/guid/guid.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/types/guid/guid.ts#L134">src/types/guid/guid.ts:134</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -173,10 +173,10 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>// returns true
-											new Guid(&#39;00000000-0000-0000-0000-000000000000&#39;).IsEmpty();
-											// returns false
-										new Guid(&#39;6bcb9d2c-ae48-4310-8d56-ea7accffcc8c&#39;).IsEmpty();</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-comment">// returns true</span>
+<span class="hljs-keyword">new</span> Guid(<span class="hljs-string">'00000000-0000-0000-0000-000000000000'</span>).IsEmpty();
+<span class="hljs-comment">// returns false</span>
+<span class="hljs-keyword">new</span> Guid(<span class="hljs-string">'6bcb9d2c-ae48-4310-8d56-ea7accffcc8c'</span>).IsEmpty();</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -195,7 +195,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/types/guid/guid.ts#L97">src/types/guid/guid.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/types/guid/guid.ts#L99">src/types/guid/guid.ts:99</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -204,8 +204,8 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>// returns &quot;00000000-0000-0000-0000-000000000000&quot;
-										Guid.Empty;</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-comment">// returns "00000000-0000-0000-0000-000000000000"</span>
+Guid.Empty;</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -227,7 +227,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/types/guid/guid.ts#L182">src/types/guid/guid.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/types/guid/guid.ts#L194">src/types/guid/guid.ts:194</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -236,11 +236,11 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>// returns true
-											new Guid(&#39;6bcb9d2c-ae48-4310-8d56-ea7accffcc8c&#39;).Equals(&#39;6bcb9d2c-ae48-4310-8d56-ea7accffcc8c&#39;);
-											new Guid(&#39;6bcb9d2c-ae48-4310-8d56-ea7accffcc8c&#39;).Equals(new Guid(&#39;6bcb9d2c-ae48-4310-8d56-ea7accffcc8c&#39;));
-											// returns false
-										new Guid(&#39;6bcb9d2c-ae48-4310-8d56-ea7accffcc8c&#39;).Equals(&#39;4fa89189-03b5-43f2-b184-8a42adeebfe7&#39;);</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-comment">// returns true</span>
+<span class="hljs-keyword">new</span> Guid(<span class="hljs-string">'6bcb9d2c-ae48-4310-8d56-ea7accffcc8c'</span>).Equals(<span class="hljs-string">'6bcb9d2c-ae48-4310-8d56-ea7accffcc8c'</span>);
+<span class="hljs-keyword">new</span> Guid(<span class="hljs-string">'6bcb9d2c-ae48-4310-8d56-ea7accffcc8c'</span>).Equals(<span class="hljs-keyword">new</span> Guid(<span class="hljs-string">'6bcb9d2c-ae48-4310-8d56-ea7accffcc8c'</span>));
+<span class="hljs-comment">// returns false</span>
+<span class="hljs-keyword">new</span> Guid(<span class="hljs-string">'6bcb9d2c-ae48-4310-8d56-ea7accffcc8c'</span>).Equals(<span class="hljs-string">'4fa89189-03b5-43f2-b184-8a42adeebfe7'</span>);</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -268,7 +268,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/types/guid/guid.ts#L165">src/types/guid/guid.ts:165</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/types/guid/guid.ts#L175">src/types/guid/guid.ts:175</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -277,8 +277,8 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>// returns &quot;6bcb9d2c-ae48-4310-8d56-ea7accffcc8c&quot;
-										new Guid(&#39;6bcb9d2c-ae48-4310-8d56-ea7accffcc8c&#39;).ToString();</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-comment">// returns "6bcb9d2c-ae48-4310-8d56-ea7accffcc8c"</span>
+<span class="hljs-keyword">new</span> Guid(<span class="hljs-string">'6bcb9d2c-ae48-4310-8d56-ea7accffcc8c'</span>).ToString();</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -297,7 +297,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/types/guid/guid.ts#L113">src/types/guid/guid.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/types/guid/guid.ts#L117">src/types/guid/guid.ts:117</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -306,10 +306,10 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>// returns true
-											Guid.Validate(&#39;00000000-0000-0000-0000-000000000000&#39;);
-											// returns false
-										Guid.Validate(&#39;00000000000000000000000000000000&#39;);</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-comment">// returns true</span>
+Guid.Validate(<span class="hljs-string">'00000000-0000-0000-0000-000000000000'</span>);
+<span class="hljs-comment">// returns false</span>
+Guid.Validate(<span class="hljs-string">'00000000000000000000000000000000'</span>);</code></pre>
 									</dd>
 								</dl>
 							</div>

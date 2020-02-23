@@ -193,11 +193,13 @@ export class DateTime {
      * @param keepTimeZone not convert the given date to the given time zone
      *
      * @example
+     * ```typescript
      * // create a date in Europe Time Zone 2019-01-01 01:00:00.000
      * new DateTime('Europe/Berlin', 2019, 1, 1, 1, 0, 0, 0);
      * new DateTime('Europe/Berlin', 2019, 1, 1);
      * // create a date in Europe Time Zone 2019-01-01 00:00:00.000
      * new DateTime('Europe/Berlin', 2019, 1, 1, null, null, null, null, true);
+     * ```
      */
     constructor(zone?: string, year?: number, month?: number, day?: number, hour?: number, minute?: number, second?: number, millisecond?: number, keepTimeZone = false) {
         if (StringFactory.IsNullOrEmpty(zone)) {
@@ -224,9 +226,11 @@ export class DateTime {
      * @param luxonDate the luxon datetime object instance
      *
      * @example
+     * ```typescript
      * // returns the current time in utc
      * const vgl = LuxonDateTime.utc();
      * DateTime.FromLuxon(vgl);
+     * ```
      */
     static FromLuxon(luxonDate: LuxonDateTime): DateTime {
         return new DateTime(
@@ -249,10 +253,12 @@ export class DateTime {
      * @param zone the time zone to use
      *
      * @example
+     * ```typescript
      * // returns DateTime 2019-01-01 01:00:00.000 in UTC Time Zone
      * DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0)));
      * // returns DateTime 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone
      * DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0), 'Europe/Berlin'));
+     * ```
      */
     static FromJavascriptDate(date: Date, zone?: string): DateTime {
         if (StringFactory.IsNullOrEmpty(zone)) {
@@ -274,10 +280,12 @@ export class DateTime {
      * @param zone the time zone to use
      *
      * @example
+     * ```typescript
      * // returns DateTime 2019-01-01 01:00:00.000 in UTC Time Zone
      * DateTime.FromISOString('2019-01-01T01:00:00.000');
      * // returns DateTime 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone
      * DateTime.FromISOString('2019-01-01T01:00:00.000', 'Europe/Berlin');
+     * ```
      */
     static FromISOString(isoStr: string, zone?: string): DateTime {
         if (StringFactory.IsNullOrEmpty(zone)) {
@@ -297,11 +305,13 @@ export class DateTime {
      * @param zone the time zone to use
      *
      * @example
+     * ```typescript
      * const vgl = LuxonDateTime.utc();
      * // returns the current date time in UTC Time Zone
      * DateTime.FromMilliseconds(vgl.toMillis());
      * // returns the current date time in Europe/Berlin Time Zone
      * DateTime.FromMilliseconds(vgl.toMillis(), 'Europe/Berlin');
+     * ```
      */
     static FromMilliseconds(milliseconds: number, zone?: string): DateTime {
         if (StringFactory.IsNullOrEmpty(zone)) {
@@ -321,6 +331,7 @@ export class DateTime {
      * @param keepTimeZone not convert the time only set the new time zone
      *
      * @example
+     * ```typescript
      * const TARGET_ZONE = 'Europe/Berlin';
      * const dateEurope = new DateTime('Europe/Berlin', 2019, 1, 1, 1);
      * const dateUtc = new DateTime('UTC', 2019, 1, 1, 1);
@@ -330,6 +341,7 @@ export class DateTime {
      * dateUtc.ToZone(TARGET_ZONE, true);
      * // returns 2019-01-01 02:00:00.000 in Europe/Berlin Time Zone
      * dateUtc.ToZone(TARGET_ZONE);
+     * ```
      */
     ToZone(zone: string, keepTimeZone = false): DateTime {
         const tmp = cloneLuxonDate(this._date).setZone(zone, {keepLocalTime: keepTimeZone});
@@ -350,8 +362,10 @@ export class DateTime {
      * @param dt the DateTime to add on this DateTime
      *
      * @example
+     * ```typescript
      * // returns 4038-02-03 23:00:00.000
      * DateTime.FromISOString('2019-01-01T00:00:00').Add(DateTime.FromISOString('2019-01-02T23:00:00'));
+     * ```
      */
     Add(dt: DateTime): DateTime {
         this._date = this._date.plus({
@@ -372,10 +386,12 @@ export class DateTime {
      * @param dt the DateTime to compare with this DateTime
      *
      * @example
+     * ```typescript
      * // returns true
      * DateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('2019-02-02T02:00:00'));
      * // returns false
      * DateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('2019-02-02T03:00:00'));
+     * ```
      */
     Equals(dt: DateTime): boolean {
         return this._date.diff(dt._date).milliseconds === 0;
@@ -387,8 +403,10 @@ export class DateTime {
      * @param dt the DateTime to subtract on this DateTime
      *
      * @example
+     * ```typescript
      * // returns 2019-01-01 01:00:00.000
      * DateTime.FromISOString('2019-02-02T02:00:00').Subtract(DateTime.FromISOString('0000-01-01T01:00:00'));
+     * ```
      */
     Subtract(dt: DateTime): DateTime {
         this._date = this._date.minus({
@@ -409,8 +427,10 @@ export class DateTime {
      * @param years the number of years to add
      *
      * @example
+     * ```typescript
      * // returns 2021-01-01 00:00:00.000
      * DateTime.FromISOString('2019-01-01T00:00:00').AddYears(2);
+     * ```
      */
     AddYears(years: number): DateTime {
         this._date = this._date.plus({years});
@@ -423,8 +443,10 @@ export class DateTime {
      * @param months the number of months to add
      *
      * @example
+     * ```typescript
      * // returns 2019-03-01 00:00:00.000
      * DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(2);
+     * ```
      */
     AddMonths(months: number): DateTime {
         this._date = this._date.plus({months});
@@ -437,8 +459,10 @@ export class DateTime {
      * @param days the number of days to add
      *
      * @example
+     * ```typescript
      * // returns 2019-01-03 00:00:00.000
      * DateTime.FromISOString('2019-01-01T00:00:00').AddDays(2);
+     * ```
      */
     AddDays(days: number): DateTime {
         this._date = this._date.plus({days});
@@ -451,8 +475,10 @@ export class DateTime {
      * @param hours the number of hours to add
      *
      * @example
+     * ```typescript
      * // returns 2019-01-01 01:00:00.000
      * DateTime.FromISOString('2019-01-01T00:00:00').AddHours(1);
+     * ```
      */
     AddHours(hours: number): DateTime {
         this._date = this._date.plus({hours});
@@ -465,8 +491,10 @@ export class DateTime {
      * @param minutes the number of minutes to add
      *
      * @example
+     * ```typescript
      * // returns 2019-01-01 00:01:00.000
      * DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(1);
+     * ```
      */
     AddMinutes(minutes: number): DateTime {
         this._date = this._date.plus({minutes});
@@ -479,8 +507,10 @@ export class DateTime {
      * @param seconds the number of seconds to add
      *
      * @example
+     * ```typescript
      * // returns 2019-01-01 00:00:01.000
      * DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(1);
+     * ```
      */
     AddSeconds(seconds: number): DateTime {
         this._date = this._date.plus({seconds});
@@ -493,8 +523,10 @@ export class DateTime {
      * @param milliseconds the number of milliseconds to add
      *
      * @example
+     * ```typescript
      * // returns 2019-01-01 00:00:00.001
      * DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(1);
+     * ```
      */
     AddMilliseconds(milliseconds: number): DateTime {
         this._date = this._date.plus({milliseconds});
@@ -507,10 +539,12 @@ export class DateTime {
      * @param dt the DateTime to compare with this DateTime
      *
      * @example
+     * ```typescript
      * // returns true
      * DateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2019-02-03T02:00:00'));
      * // returns false
      * DateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2019-02-02T02:00:00'));
+     * ```
      */
     IsBefore(dt: DateTime): boolean {
         return this._date.diff(dt._date).milliseconds < 0;
@@ -522,10 +556,12 @@ export class DateTime {
      * @param dt the DateTime to compare with this DateTime
      *
      * @example
+     * ```typescript
      * // returns true
      * DateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('2019-02-01T02:00:00'));
      * // returns false
      * DateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('2019-02-03T02:00:00'));
+     * ```
      */
     IsAfter(dt: DateTime): boolean {
         return this._date.diff(dt._date).milliseconds > 0;
@@ -535,12 +571,14 @@ export class DateTime {
      * if the Current DateTime in Daylight Saving Time
      *
      * @example
+     * ```typescript
      * // returns true
      * DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').IsDaylightSavingTime();
      * // returns false
      * DateTime.FromISOString('2019-11-02T02:00:00', 'Europe/Berlin').IsDaylightSavingTime();
      * DateTime.FromISOString('2019-06-02T02:00:00', 'UTC').IsDaylightSavingTime();
      * DateTime.FromISOString('2019-11-02T02:00:00', 'UTC').IsDaylightSavingTime();
+     * ```
      */
     IsDaylightSavingTime(): boolean {
         return this._date.isInDST;
@@ -554,10 +592,12 @@ export class DateTime {
      * @param fmt the string format
      *
      * @example
+     * ```typescript
      * // returns "2019-01-01 12:23:54"
      * DateTime.FromISOString('2019-01-01T12:23:54').ToString();
      * // returns "2019"
      * DateTime.FromISOString('2019-01-01T12:23:54').ToString('yyyy');
+     * ```
      */
     ToString(fmt?: string): string {
         return this._date.toFormat(fmt ? fmt : 'yyyy-MM-dd HH:mm:ss');

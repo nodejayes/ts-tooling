@@ -159,6 +159,7 @@ export class ClassValidator {
      * @param instance the Instance of the Class to Validate
      *
      * @example
+     * ```typescript
      * class User {
      *     @IsDefined('Name must be defined')
      *     Name: string;
@@ -183,6 +184,7 @@ export class ClassValidator {
      * instance.Email = 'udo@address.de';
      * // returns []
      * ClassValidator.Validate(instance);
+     * ```
      */
     static async Validate<T>(instance: T): Promise<IValidationError[]> {
         const errors: IValidationError[] = [];
@@ -365,6 +367,7 @@ export class ClassValidator {
      * @param value the raw JSON Object
      *
      * @example
+     * ```typescript
      * class User {
      *     @IsDefined('Name must be defined')
      *     Name: string;
@@ -389,6 +392,7 @@ export class ClassValidator {
      * demoUser.Email = 'udo@address.de';
      * // returns []
      * ClassValidator.Validate(demoUser);
+     * ```
      */
     static async ValidateObject<T>(constructor: new () => T, value: any): Promise<IValidationError[]> {
         const inst = new constructor();

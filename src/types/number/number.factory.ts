@@ -22,12 +22,14 @@ export class NumberFactory {
      * @returns new integer representation of the string or number
      *
      * @example
+     * ```typescript
      * // returns 1
      * NumberFactory.NewInteger(1);
      * NumberFactory.NewInteger('1');
      * NumberFactory.NewInteger(1.5);
      * // returns 0
      * NumberFactory.NewInteger('aaaa');
+     * ```
      */
     static NewInteger(value: number | string): number {
         const tmp = parseInt(value.toString());
@@ -46,11 +48,13 @@ export class NumberFactory {
      * @returns the double number representation of the string or number input
      *
      * @example
+     * ```typescript
      * // returns 1.5
      * NumberFactory.NewDouble(1.5);
      * NumberFactory.NewDouble('1.5');
      * // returns 0.0
      * NumberFactory.NewDouble('aaa');
+     * ```
      */
     static NewDouble(value: number | string): number {
         const tmp = parseFloat(value.toString());
@@ -70,8 +74,10 @@ export class NumberFactory {
      * @returns a integer number between min and max
      *
      * @example
+     * ```typescript
      * // creates the Javascript Numbers 1,2,3,4,5,6,7,8,9 and 10
      * NumberFactory.RandomInteger(1, 10);
+     * ```
      */
     static RandomInteger(min: number, max: number): number {
         return random(min, max, false);
@@ -87,8 +93,10 @@ export class NumberFactory {
      * @returns a double number between min and max
      *
      * @example
+     * ```typescript
      * // create all Double Numbers begins with 0.0 and ends with 1.0
      * NumberFactory.RandomDouble(0, 1)
+     * ```
      */
     static RandomDouble(min: number, max: number): number {
         return random(min, max, true);

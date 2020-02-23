@@ -105,7 +105,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/utils/validation/class.validator.ts#L187">src/utils/validation/class.validator.ts:187</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/utils/validation/class.validator.ts#L189">src/utils/validation/class.validator.ts:189</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -114,36 +114,30 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>class User {</p>
-									</dd>
-									<dt>isdefined(&#x27;name</dt>
-									<dd><p>must be defined&#39;)
-										Name: string;</p>
-									</dd>
-									<dt>min(0,</dt>
-									<dd><p>&#39;Age must be greater -1&#39;)</p>
-									</dd>
-									<dt>max(200,</dt>
-									<dd><p>&#39;Age must me lower 201&#39;)
-										Age: number;</p>
-									</dd>
-									<dt>isemail(&#x27;email</dt>
-									<dd><p>must be a valid email address&#39;)
-											Email: string;
-											}
-											const instance = new User();
-											// returns [
-											{Message:&#39;Name must be defined&#39;},
-											{Message:&#39;Age must be greater -1&#39;},
-											{Message:&#39;Age must me lower 201&#39;},
-											{Message:&#39;Email must be a valid email address&#39;},
-											]
-											ClassValidator.Validate(instance);
-											instance.Name = &#39;Udo&#39;;
-											instance.Age = 20;
-											instance.Email = &#39;udo@address.de&#39;;
-											// returns []
-										ClassValidator.Validate(instance);</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-keyword">class</span> User {
+    <span class="hljs-meta">@IsDefined</span>(<span class="hljs-string">'Name must be defined'</span>)
+    Name: <span class="hljs-built_in">string</span>;
+
+    <span class="hljs-meta">@Min</span>(<span class="hljs-number">0</span>, <span class="hljs-string">'Age must be greater -1'</span>)
+    <span class="hljs-meta">@Max</span>(<span class="hljs-number">200</span>, <span class="hljs-string">'Age must me lower 201'</span>)
+    Age: <span class="hljs-built_in">number</span>;
+
+    <span class="hljs-meta">@IsEmail</span>(<span class="hljs-string">'Email must be a valid email address'</span>)
+    Email: <span class="hljs-built_in">string</span>;
+}
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> User();
+<span class="hljs-comment">// returns [</span>
+     {Message:<span class="hljs-string">'Name must be defined'</span>},
+     {Message:<span class="hljs-string">'Age must be greater -1'</span>},
+     {Message:<span class="hljs-string">'Age must me lower 201'</span>},
+     {Message:<span class="hljs-string">'Email must be a valid email address'</span>},
+]
+ClassValidator.Validate(instance);
+instance.Name = <span class="hljs-string">'Udo'</span>;
+instance.Age = <span class="hljs-number">20</span>;
+instance.Email = <span class="hljs-string">'udo@address.de'</span>;
+<span class="hljs-comment">// returns []</span>
+ClassValidator.Validate(instance);</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -176,7 +170,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/utils/validation/class.validator.ts#L393">src/utils/validation/class.validator.ts:393</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/utils/validation/class.validator.ts#L397">src/utils/validation/class.validator.ts:397</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -185,36 +179,30 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>class User {</p>
-									</dd>
-									<dt>isdefined(&#x27;name</dt>
-									<dd><p>must be defined&#39;)
-										Name: string;</p>
-									</dd>
-									<dt>min(0,</dt>
-									<dd><p>&#39;Age must be greater -1&#39;)</p>
-									</dd>
-									<dt>max(200,</dt>
-									<dd><p>&#39;Age must me lower 201&#39;)
-										Age: number;</p>
-									</dd>
-									<dt>isemail(&#x27;email</dt>
-									<dd><p>must be a valid email address&#39;)
-											Email: string;
-											}
-											const demoUser = {};
-											// returns [
-											{Message:&#39;Name must be defined&#39;},
-											{Message:&#39;Age must be greater -1&#39;},
-											{Message:&#39;Age must me lower 201&#39;},
-											{Message:&#39;Email must be a valid email address&#39;},
-											]
-											ClassValidator.Validate(demoUser);
-											demoUser.Name = &#39;Udo&#39;;
-											demoUser.Age = 20;
-											demoUser.Email = &#39;udo@address.de&#39;;
-											// returns []
-										ClassValidator.Validate(demoUser);</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-keyword">class</span> User {
+    <span class="hljs-meta">@IsDefined</span>(<span class="hljs-string">'Name must be defined'</span>)
+    Name: <span class="hljs-built_in">string</span>;
+
+    <span class="hljs-meta">@Min</span>(<span class="hljs-number">0</span>, <span class="hljs-string">'Age must be greater -1'</span>)
+    <span class="hljs-meta">@Max</span>(<span class="hljs-number">200</span>, <span class="hljs-string">'Age must me lower 201'</span>)
+    Age: <span class="hljs-built_in">number</span>;
+
+    <span class="hljs-meta">@IsEmail</span>(<span class="hljs-string">'Email must be a valid email address'</span>)
+    Email: <span class="hljs-built_in">string</span>;
+}
+<span class="hljs-keyword">const</span> demoUser = {};
+<span class="hljs-comment">// returns [</span>
+     {Message:<span class="hljs-string">'Name must be defined'</span>},
+     {Message:<span class="hljs-string">'Age must be greater -1'</span>},
+     {Message:<span class="hljs-string">'Age must me lower 201'</span>},
+     {Message:<span class="hljs-string">'Email must be a valid email address'</span>},
+]
+ClassValidator.Validate(demoUser);
+demoUser.Name = <span class="hljs-string">'Udo'</span>;
+demoUser.Age = <span class="hljs-number">20</span>;
+demoUser.Email = <span class="hljs-string">'udo@address.de'</span>;
+<span class="hljs-comment">// returns []</span>
+ClassValidator.Validate(demoUser);</code></pre>
 									</dd>
 								</dl>
 							</div>

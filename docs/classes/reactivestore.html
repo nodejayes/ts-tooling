@@ -125,7 +125,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/pattern/store/reactive.store.ts#L36">src/pattern/store/reactive.store.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/pattern/store/reactive.store.ts#L36">src/pattern/store/reactive.store.ts:36</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -156,7 +156,7 @@
 					<div class="tsd-signature tsd-kind-icon">Debug<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/pattern/store/reactive.store.ts#L34">src/pattern/store/reactive.store.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/pattern/store/reactive.store.ts#L34">src/pattern/store/reactive.store.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -179,7 +179,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/pattern/store/reactive.store.ts#L56">src/pattern/store/reactive.store.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/pattern/store/reactive.store.ts#L58">src/pattern/store/reactive.store.ts:58</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -190,8 +190,8 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>// write the data Property of the State into the console
-										store.Listen(s =&gt; s.data).subscribe(d =&gt; console.info(d));</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-comment">// write the data Property of the State into the console</span>
+store.Listen(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.data).subscribe(<span class="hljs-function"><span class="hljs-params">d</span> =&gt;</span> <span class="hljs-built_in">console</span>.info(d));</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -242,7 +242,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/21c7a83/src/pattern/store/reactive.store.ts#L83">src/pattern/store/reactive.store.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/nodejayes/ts-tooling/blob/5cee513/src/pattern/store/reactive.store.ts#L85">src/pattern/store/reactive.store.ts:85</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -251,16 +251,14 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><p>// simple Example to set the State
-										store.Mutate(s =&gt; s.data, () =&gt; newData);</p>
-									</dd>
-									<dt>example</dt>
-									<dd><p>// make a complex Mutation
-											store.Mutate(s =&gt; s, old =&gt; {
-											old.data = [];
-											old.loading = true;
-											return old;
-										});</p>
+									<dd><pre><code class="language-typescript"><span class="hljs-comment">// simple Example to set the State</span>
+store.Mutate(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.data, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> newData);
+<span class="hljs-comment">// make a complex Mutation</span>
+store.Mutate(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s, <span class="hljs-function"><span class="hljs-params">old</span> =&gt;</span> {
+    old.data = [];
+    old.loading = <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">return</span> old;
+});</code></pre>
 									</dd>
 								</dl>
 							</div>

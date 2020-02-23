@@ -18,12 +18,14 @@ export class StringFactory {
      * @returns is the given string defined and not empty or not
      *
      * @example
+     * ```typescript
      * // is true
      * StringFactory.IsNullOrEmpty(undefined);
      * StringFactory.IsNullOrEmpty(null);
      * StringFactory.IsNullOrEmpty('');
      * // is false
      * StringFactory.IsNullOrEmpty('a');
+     * ```
      */
     static IsNullOrEmpty(value: string) {
         return !value || value.length < 1;
@@ -40,8 +42,10 @@ export class StringFactory {
      * @returns a random string with letters from a-z
      *
      * @example
+     * ```typescript
      * // returns a random string with 12 bytes length
      * StringFactory.RandomAlphaString(12);
+     * ```
      */
     static RandomAlphaString(length: number): string {
         if (length < 1) {

@@ -64,7 +64,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1]\n[].Add(1);\n"
+												"text": "\n```typescript\n// returns [1]\n[].Add(1);\n```\n"
 											}
 										]
 									},
@@ -98,7 +98,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 132,
+									"line": 144,
 									"character": 11
 								}
 							]
@@ -127,7 +127,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1,2]\n[1].AddIfNotExists(2);\n// returns [1]\n[1].AddIfNotExists(1);\n"
+												"text": "\n```typescript\n// returns [1,2]\n[1].AddIfNotExists(2);\n// returns [1]\n[1].AddIfNotExists(1);\n```\n"
 											}
 										]
 									},
@@ -161,7 +161,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 148,
+									"line": 162,
 									"character": 22
 								}
 							]
@@ -190,7 +190,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1,2,3,4]\n[1].AddRange([2,3,4]);\n"
+												"text": "\n```typescript\n// returns [1,2,3,4]\n[1].AddRange([2,3,4]);\n```\n"
 											}
 										]
 									},
@@ -227,7 +227,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 179,
+									"line": 197,
 									"character": 16
 								}
 							]
@@ -256,7 +256,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1,2,3,4]\n[1].AddRangeIfNotExists([2,3,4]);\n// returns [1]\n[1].AddRangeIfNotExists([1,1,1]);\n"
+												"text": "\n```typescript\n// returns [1,2,3,4]\n[1].AddRangeIfNotExists([2,3,4]);\n// returns [1]\n[1].AddRangeIfNotExists([1,1,1]);\n```\n"
 											}
 										]
 									},
@@ -293,7 +293,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 195,
+									"line": 215,
 									"character": 27
 								}
 							]
@@ -322,7 +322,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n[1,2,3].Any();\n// returns false\n[].Any();\n"
+												"text": "\n```typescript\n// returns true\n[1,2,3].Any();\n// returns false\n[].Any();\n```\n"
 											}
 										]
 									},
@@ -360,7 +360,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 639,
+									"line": 705,
 									"character": 11
 								}
 							]
@@ -389,7 +389,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns []\n[1,2,3].Clear();\n"
+												"text": "\n```typescript\n// returns []\n[1,2,3].Clear();\n```\n"
 											}
 										]
 									},
@@ -405,7 +405,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 208,
+									"line": 230,
 									"character": 13
 								}
 							]
@@ -434,7 +434,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n[1,2,3].Contains(2);\nconst element = {x:'y'};\n[element].Contains(element);\nconst element2 = {hello:'world',Equals:(i) => this.hello === i.hello};\n[element2].Contains(element2);\n// returns false\n[1,2,3].Contains(50);\n[{hello:'world'}].Contains({hello:'world'});\n"
+												"text": "\n```typescript\n// returns true\n[1,2,3].Contains(2);\nconst element = {x:'y'};\n[element].Contains(element);\nconst element2 = {hello:'world',Equals:(i) => this.hello === i.hello};\n[element2].Contains(element2);\n// returns false\n[1,2,3].Contains(50);\n[{hello:'world'}].Contains({hello:'world'});\n```\n"
 											}
 										]
 									},
@@ -465,7 +465,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 229,
+									"line": 253,
 									"character": 16
 								}
 							]
@@ -494,7 +494,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns ['Test1', 'Test2', 'Test3']\n[1,2,3].Convert(e => 'Test' + e);\n"
+												"text": "\n```typescript\n// returns ['Test1', 'Test2', 'Test3']\n[1,2,3].Convert(e => 'Test' + e);\n```\n"
 											}
 										]
 									},
@@ -549,7 +549,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 722,
+									"line": 798,
 									"character": 15
 								}
 							]
@@ -578,7 +578,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1,2,3]\n[1,2,3].Copy();\n"
+												"text": "\n```typescript\n// returns [1,2,3]\n[1,2,3].Copy();\n```\n"
 											}
 										]
 									},
@@ -594,7 +594,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 242,
+									"line": 268,
 									"character": 12
 								}
 							]
@@ -623,7 +623,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 3\n[1,2,3].Count();\n// returns 0\n[].Count();\n"
+												"text": "\n```typescript\n// returns 3\n[1,2,3].Count();\n// returns 0\n[].Count();\n```\n"
 											}
 										]
 									},
@@ -636,7 +636,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 42,
+									"line": 44,
 									"character": 13
 								}
 							]
@@ -665,7 +665,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 2\n[1,2,3].ElementAt(1);\n"
+												"text": "\n```typescript\n// returns 2\n[1,2,3].ElementAt(1);\n```\n"
 											}
 										]
 									},
@@ -696,7 +696,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 623,
+									"line": 687,
 									"character": 17
 								}
 							]
@@ -725,7 +725,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n[1,2,3].Exists(e => e === 2);\n// returns false\n[1,2,3].Exists(e => e === 20);\n"
+												"text": "\n```typescript\n// returns true\n[1,2,3].Exists(e => e === 2);\n// returns false\n[1,2,3].Exists(e => e === 20);\n```\n"
 											}
 										]
 									},
@@ -762,7 +762,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 258,
+									"line": 286,
 									"character": 14
 								}
 							]
@@ -791,7 +791,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 2\n[1,2,3].Find((e) => e > 1);\n"
+												"text": "\n```typescript\n// returns 2\n[1,2,3].Find((e) => e > 1);\n```\n"
 											}
 										]
 									},
@@ -828,7 +828,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 272,
+									"line": 302,
 									"character": 12
 								}
 							]
@@ -857,7 +857,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [2,3]\n[1,2,3].FindAll(i => i > 1);\n"
+												"text": "\n```typescript\n// returns [2,3]\n[1,2,3].FindAll(i => i > 1);\n```\n"
 											}
 										]
 									},
@@ -897,7 +897,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 329,
+									"line": 367,
 									"character": 15
 								}
 							]
@@ -926,7 +926,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 1\n[1,2,3,1,2,3].FindIndex(e => e === 2);\n"
+												"text": "\n```typescript\n// returns 1\n[1,2,3,1,2,3].FindIndex(e => e === 2);\n```\n"
 											}
 										]
 									},
@@ -963,7 +963,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 315,
+									"line": 351,
 									"character": 17
 								}
 							]
@@ -992,7 +992,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 3\n[1,2,3].FindLast((e) => e > 1);\n"
+												"text": "\n```typescript\n// returns 3\n[1,2,3].FindLast((e) => e > 1);\n```\n"
 											}
 										]
 									},
@@ -1029,7 +1029,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 286,
+									"line": 318,
 									"character": 16
 								}
 							]
@@ -1058,7 +1058,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 4\n[1,2,3,1,2,3].FindLastIndex(e => e === 2);\n"
+												"text": "\n```typescript\n// returns 4\n[1,2,3,1,2,3].FindLastIndex(e => e === 2);\n```\n"
 											}
 										]
 									},
@@ -1095,7 +1095,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 343,
+									"line": 383,
 									"character": 21
 								}
 							]
@@ -1125,7 +1125,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// return 1\n[1,2,3,4,5,6].FirstOrDefault();\n// return 2\n[1,2,3,4,5,6].FirstOrDefault(e => e > 1);\n// return 10\n[1,2,3,4,5,6].FirstOrDefault(() => false, 10);\n"
+												"text": "\n```typescript\n// return 1\n[1,2,3,4,5,6].FirstOrDefault();\n// return 2\n[1,2,3,4,5,6].FirstOrDefault(e => e > 1);\n// return 10\n[1,2,3,4,5,6].FirstOrDefault(() => false, 10);\n```\n"
 											}
 										]
 									},
@@ -1180,7 +1180,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 660,
+									"line": 728,
 									"character": 22
 								}
 							]
@@ -1209,7 +1209,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns {'1': [1], '2': [2], '3': [3,3,3]}\n[1,2,3,3,3].GroupBy(e => e);\n"
+												"text": "\n```typescript\n// returns {'1': [1], '2': [2], '3': [3,3,3]}\n[1,2,3,3,3].GroupBy(e => e);\n```\n"
 											}
 										]
 									},
@@ -1283,7 +1283,7 @@
 											"sources": [
 												{
 													"fileName": "src/types/array/index.ts",
-													"line": 694,
+													"line": 766,
 													"character": 48
 												}
 											]
@@ -1294,7 +1294,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 694,
+									"line": 766,
 									"character": 15
 								}
 							]
@@ -1323,7 +1323,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns ['1', '2', '3']\n[1,2,3,3,3].GroupKey(e => e);\n"
+												"text": "\n```typescript\n// returns ['1', '2', '3']\n[1,2,3,3,3].GroupKey(e => e);\n```\n"
 											}
 										]
 									},
@@ -1363,7 +1363,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 708,
+									"line": 782,
 									"character": 16
 								}
 							]
@@ -1392,7 +1392,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 1\n[1,2,3,1,2,3].IndexOf(2);\n// returns 4\n[1,2,3,1,2,3].IndexOf(2, 2);\n"
+												"text": "\n```typescript\n// returns 1\n[1,2,3,1,2,3].IndexOf(2);\n// returns 4\n[1,2,3,1,2,3].IndexOf(2, 2);\n```\n"
 											}
 										]
 									},
@@ -1440,7 +1440,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 406,
+									"line": 454,
 									"character": 15
 								}
 							]
@@ -1469,7 +1469,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1,5,2,3]\n[1,2,3].Insert(1, 5);\n"
+												"text": "\n```typescript\n// returns [1,5,2,3]\n[1,2,3].Insert(1, 5);\n```\n"
 											}
 										]
 									},
@@ -1519,7 +1519,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 374,
+									"line": 418,
 									"character": 14
 								}
 							]
@@ -1548,7 +1548,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1,4,5,6,2,3]\n[1,2,3].Insert(1, [4,5,6]);\n"
+												"text": "\n```typescript\n// returns [1,4,5,6,2,3]\n[1,2,3].Insert(1, [4,5,6]);\n```\n"
 											}
 										]
 									},
@@ -1601,7 +1601,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 389,
+									"line": 435,
 									"character": 19
 								}
 							]
@@ -1630,7 +1630,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"1,2,3\"\n[1,2,3].Join(',');\n"
+												"text": "\n```typescript\n// returns \"1,2,3\"\n[1,2,3].Join(',');\n```\n"
 											}
 										]
 									},
@@ -1662,7 +1662,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 736,
+									"line": 814,
 									"character": 12
 								}
 							]
@@ -1692,7 +1692,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// return 6\n[1,2,3,4,5,6].LastOrDefault();\n[1,2,3,4,5,6].LastOrDefault(e => e > 1);\n// return 10\n[1,2,3,4,5,6].LastOrDefault(() => false, 10);\n"
+												"text": "\n```typescript\n// return 6\n[1,2,3,4,5,6].LastOrDefault();\n[1,2,3,4,5,6].LastOrDefault(e => e > 1);\n// return 10\n[1,2,3,4,5,6].LastOrDefault(() => false, 10);\n```\n"
 											}
 										]
 									},
@@ -1747,7 +1747,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 680,
+									"line": 750,
 									"character": 21
 								}
 							]
@@ -1777,7 +1777,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 3\n[1,2,3].Max();\n// returns 2\n[1,2,3].Max(i => i < 3);\n// returns 4\n[1,2,'3',4,'5'].Max();\n"
+												"text": "\n```typescript\n// returns 3\n[1,2,3].Max();\n// returns 2\n[1,2,3].Max(i => i < 3);\n// returns 4\n[1,2,'3',4,'5'].Max();\n```\n"
 											}
 										]
 									},
@@ -1815,7 +1815,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 62,
+									"line": 66,
 									"character": 11
 								}
 							]
@@ -1844,7 +1844,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 9.866666666666667\n[1, 25.6, 3].Mean();\n// returns 2\n[1,2,3,4].Mean(i => i < 4);\n// returns 4\n['1','2','3',4,'5'].Mean();\n"
+												"text": "\n```typescript\n// returns 9.866666666666667\n[1, 25.6, 3].Mean();\n// returns 2\n[1,2,3,4].Mean(i => i < 4);\n// returns 4\n['1','2','3',4,'5'].Mean();\n```\n"
 											}
 										]
 									},
@@ -1882,7 +1882,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 100,
+									"line": 108,
 									"character": 12
 								}
 							]
@@ -1912,7 +1912,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 3\n[1,2,3].Min();\n// returns 2\n[1,2,3].Min(i => i > 1);\n// returns 4\n['1','2','3',4,'5'].Min();\n"
+												"text": "\n```typescript\n// returns 3\n[1,2,3].Min();\n// returns 2\n[1,2,3].Min(i => i > 1);\n// returns 4\n['1','2','3',4,'5'].Min();\n```\n"
 											}
 										]
 									},
@@ -1950,7 +1950,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 82,
+									"line": 88,
 									"character": 11
 								}
 							]
@@ -1979,7 +1979,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"a,b,c\"\n['a', 'b', 'c'].Reduce((target, e) => {\n     return target.Concat(e, ',');\n }, '')\n"
+												"text": "\n```typescript\n// returns \"a,b,c\"\n['a', 'b', 'c'].Reduce((target, e) => {\n     return target.Concat(e, ',');\n }, '')\n```\n"
 											}
 										]
 									},
@@ -2047,7 +2047,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 165,
+									"line": 181,
 									"character": 14
 								}
 							]
@@ -2076,7 +2076,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1,3]\n[1,2,3].Remove(2);\n"
+												"text": "\n```typescript\n// returns [1,3]\n[1,2,3].Remove(2);\n```\n"
 											}
 										]
 									},
@@ -2110,7 +2110,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 420,
+									"line": 470,
 									"character": 14
 								}
 							]
@@ -2139,7 +2139,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// return [1,3]\n[1,2,3].RemoveAll(e => e === 2);\n// return []\n[1,2,3].RemoveAll(() => true);\n"
+												"text": "\n```typescript\n// return [1,3]\n[1,2,3].RemoveAll(e => e === 2);\n// return []\n[1,2,3].RemoveAll(() => true);\n```\n"
 											}
 										]
 									},
@@ -2179,7 +2179,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 436,
+									"line": 488,
 									"character": 17
 								}
 							]
@@ -2208,7 +2208,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1,3]\n[1,2,3].RemoveAt(1);\n"
+												"text": "\n```typescript\n// returns [1,3]\n[1,2,3].RemoveAt(1);\n```\n"
 											}
 										]
 									},
@@ -2242,7 +2242,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 450,
+									"line": 504,
 									"character": 16
 								}
 							]
@@ -2271,7 +2271,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1,2,3]\n[1,2,3,4,5,6].RemoveRange([4,5,6]);\n[1,2,3].RemoveRange([4,5,6]);\n"
+												"text": "\n```typescript\n// returns [1,2,3]\n[1,2,3,4,5,6].RemoveRange([4,5,6]);\n[1,2,3].RemoveRange([4,5,6]);\n```\n"
 											}
 										]
 									},
@@ -2308,7 +2308,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 465,
+									"line": 521,
 									"character": 19
 								}
 							]
@@ -2337,7 +2337,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1,2,3]\n[1,5,3].Replace((e) => e === 5, 2);\n"
+												"text": "\n```typescript\n// returns [1,2,3]\n[1,5,3].Replace((e) => e === 5, 2);\n```\n"
 											}
 										]
 									},
@@ -2393,7 +2393,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 301,
+									"line": 335,
 									"character": 15
 								}
 							]
@@ -2422,7 +2422,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [3,2,1]\n[1,2,3].Reverse();\n"
+												"text": "\n```typescript\n// returns [3,2,1]\n[1,2,3].Reverse();\n```\n"
 											}
 										]
 									},
@@ -2438,7 +2438,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 478,
+									"line": 536,
 									"character": 15
 								}
 							]
@@ -2467,7 +2467,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1, 2, 3]\n[1, 2, 3].Sort();\n// returns [3, 2, 1]\n[1, 2, 3].Sort(ListSortOrder.DESC);\n// returns ['c', 'b', 'a']\n['a', 'b', 'c'].Sort(ListSortOrder.DESC);\n"
+												"text": "\n```typescript\n// returns [1, 2, 3]\n[1, 2, 3].Sort();\n// returns [3, 2, 1]\n[1, 2, 3].Sort(ListSortOrder.DESC);\n// returns ['c', 'b', 'a']\n['a', 'b', 'c'].Sort(ListSortOrder.DESC);\n```\n"
 											}
 										]
 									},
@@ -2503,7 +2503,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 496,
+									"line": 556,
 									"character": 12
 								}
 							]
@@ -2532,7 +2532,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [\n// {\n//       Name: 'Anne Klein',\n//       Age: 23,\n//       Birthday: new Date(1965, 8, 12, 0, 0, 0),\n//       Address: {\n//           Street: 'Jenaer Strasse 26',\n//           PLZ: '47053',\n//           Town: 'Duisburg',\n//       }\n//   },{\n//       Name: 'Christine Ehrlichmann',\n//       Age: 37,\n//       Birthday: new Date(1982, 4, 23, 0, 0, 0),\n//       Address: {\n//           Street: 'Paul-Nevermann-Platz 59',\n//           PLZ: '97657',\n//           Town: 'Sandberg'\n//       }\n//   },{\n//       Name: 'Jonas Schreiner',\n//       Age: 23,\n//       Birthday: new Date(1965, 4, 12, 0, 0, 0),\n//       Address: {\n//           Street: 'Gotthardstrasse 69',\n//           PLZ: '99094',\n//           Town: 'Erfurt'\n//       }\n//   },{\n//       Name: 'Sandra Eichmann',\n//       Age: 45,\n//       Birthday: new Date(1969, 0, 22, 0, 0, 0),\n//       Address: {\n//           Street: 'Inge Beisheim Platz 20',\n//           PLZ: '25313',\n//           Town: 'Elmshorn'\n//       }\n//   },{\n//       Name: 'Ulrich Gärtner',\n//       Age: 60,\n//       Birthday: new Date(1959, 2, 23, 0, 0, 0),\n//       Address: {\n//           Street: 'Koenigstrasse 50',\n//           PLZ: '99750',\n//           Town: 'Bleicherode'\n//       }\n//   }\n// ]\n[\n   {\n          Name: 'Jonas Schreiner',\n          Age: 23,\n          Birthday: new Date(1965, 4, 12, 0, 0, 0),\n          Address: {\n              Street: 'Gotthardstrasse 69',\n              PLZ: '99094',\n              Town: 'Erfurt'\n          }\n      },\n   {\n          Name: 'Sandra Eichmann',\n          Age: 45,\n          Birthday: new Date(1969, 0, 22, 0, 0, 0),\n          Address: {\n              Street: 'Inge Beisheim Platz 20',\n              PLZ: '25313',\n              Town: 'Elmshorn'\n          }\n      },\n   {\n          Name: 'Ulrich Gärtner',\n          Age: 60,\n          Birthday: new Date(1959, 2, 23, 0, 0, 0),\n          Address: {\n              Street: 'Koenigstrasse 50',\n              PLZ: '99750',\n              Town: 'Bleicherode'\n          }\n      },\n   {\n          Name: 'Christine Ehrlichmann',\n          Age: 37,\n          Birthday: new Date(1982, 4, 23, 0, 0, 0),\n          Address: {\n              Street: 'Paul-Nevermann-Platz 59',\n              PLZ: '97657',\n              Town: 'Sandberg'\n          }\n      },\n   {\n          Name: 'Anne Klein',\n          Age: 23,\n          Birthday: new Date(1965, 8, 12, 0, 0, 0),\n          Address: {\n              Street: 'Jenaer Strasse 26',\n              PLZ: '47053',\n              Town: 'Duisburg',\n          }\n      }\n   ].SortBy(['Name'], [ListSortOrder.ASC]);\n"
+												"text": "\n```typescript\n// returns [\n// {\n//       Name: 'Anne Klein',\n//       Age: 23,\n//       Birthday: new Date(1965, 8, 12, 0, 0, 0),\n//       Address: {\n//           Street: 'Jenaer Strasse 26',\n//           PLZ: '47053',\n//           Town: 'Duisburg',\n//       }\n//   },{\n//       Name: 'Christine Ehrlichmann',\n//       Age: 37,\n//       Birthday: new Date(1982, 4, 23, 0, 0, 0),\n//       Address: {\n//           Street: 'Paul-Nevermann-Platz 59',\n//           PLZ: '97657',\n//           Town: 'Sandberg'\n//       }\n//   },{\n//       Name: 'Jonas Schreiner',\n//       Age: 23,\n//       Birthday: new Date(1965, 4, 12, 0, 0, 0),\n//       Address: {\n//           Street: 'Gotthardstrasse 69',\n//           PLZ: '99094',\n//           Town: 'Erfurt'\n//       }\n//   },{\n//       Name: 'Sandra Eichmann',\n//       Age: 45,\n//       Birthday: new Date(1969, 0, 22, 0, 0, 0),\n//       Address: {\n//           Street: 'Inge Beisheim Platz 20',\n//           PLZ: '25313',\n//           Town: 'Elmshorn'\n//       }\n//   },{\n//       Name: 'Ulrich Gärtner',\n//       Age: 60,\n//       Birthday: new Date(1959, 2, 23, 0, 0, 0),\n//       Address: {\n//           Street: 'Koenigstrasse 50',\n//           PLZ: '99750',\n//           Town: 'Bleicherode'\n//       }\n//   }\n// ]\n[\n   {\n          Name: 'Jonas Schreiner',\n          Age: 23,\n          Birthday: new Date(1965, 4, 12, 0, 0, 0),\n          Address: {\n              Street: 'Gotthardstrasse 69',\n              PLZ: '99094',\n              Town: 'Erfurt'\n          }\n      },\n   {\n          Name: 'Sandra Eichmann',\n          Age: 45,\n          Birthday: new Date(1969, 0, 22, 0, 0, 0),\n          Address: {\n              Street: 'Inge Beisheim Platz 20',\n              PLZ: '25313',\n              Town: 'Elmshorn'\n          }\n      },\n   {\n          Name: 'Ulrich Gärtner',\n          Age: 60,\n          Birthday: new Date(1959, 2, 23, 0, 0, 0),\n          Address: {\n              Street: 'Koenigstrasse 50',\n              PLZ: '99750',\n              Town: 'Bleicherode'\n          }\n      },\n   {\n          Name: 'Christine Ehrlichmann',\n          Age: 37,\n          Birthday: new Date(1982, 4, 23, 0, 0, 0),\n          Address: {\n              Street: 'Paul-Nevermann-Platz 59',\n              PLZ: '97657',\n              Town: 'Sandberg'\n          }\n      },\n   {\n          Name: 'Anne Klein',\n          Age: 23,\n          Birthday: new Date(1965, 8, 12, 0, 0, 0),\n          Address: {\n              Street: 'Jenaer Strasse 26',\n              PLZ: '47053',\n              Town: 'Duisburg',\n          }\n      }\n   ].SortBy(['Name'], [ListSortOrder.ASC]);\n```\n"
 											}
 										]
 									},
@@ -2590,7 +2590,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 609,
+									"line": 671,
 									"character": 14
 								}
 							]
@@ -2619,7 +2619,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 6\n[1,2,3].Sum();\n// returns 5\n[1,2,3].Sum(i => i > 1);\n// returns 4\n['1','2','3',4,'5'].Sum();\n"
+												"text": "\n```typescript\n// returns 6\n[1,2,3].Sum();\n// returns 5\n[1,2,3].Sum(i => i > 1);\n// returns 4\n['1','2','3',4,'5'].Sum();\n```\n"
 											}
 										]
 									},
@@ -2657,7 +2657,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 118,
+									"line": 128,
 									"character": 11
 								}
 							]
@@ -2686,7 +2686,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n[1,2,3].TrueForAll(e => typeof e === typeof 0);\n// returns false\n[1,2,3].TrueForAll(e => e === 1);\n"
+												"text": "\n```typescript\n// returns true\n[1,2,3].TrueForAll(e => typeof e === typeof 0);\n// returns false\n[1,2,3].TrueForAll(e => e === 1);\n```\n"
 											}
 										]
 									},
@@ -2723,7 +2723,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 359,
+									"line": 401,
 									"character": 18
 								}
 							]
@@ -2752,7 +2752,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns [1,2,3,6]\n[1,2,3].UnionBy([4,5,6], e => e === 6);\n"
+												"text": "\n```typescript\n// returns [1,2,3,6]\n[1,2,3].UnionBy([4,5,6], e => e === 6);\n```\n"
 											}
 										]
 									},
@@ -2822,7 +2822,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/array/index.ts",
-									"line": 751,
+									"line": 831,
 									"character": 15
 								}
 							]
@@ -2966,7 +2966,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n```\n// returns 2\n(1).Add(1);\n// returns 3\n(1).Add(1).Add(1);\n```\n"
+												"text": "\n```typescript\n// returns 2\n(1).Add(1);\n// returns 3\n(1).Add(1).Add(1);\n```\n"
 											}
 										]
 									},
@@ -2997,7 +2997,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 101,
+									"line": 109,
 									"character": 11
 								}
 							]
@@ -3025,7 +3025,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 5\n4.006.Ceil();\n// returns 6.01\n6.004.Ceil(2);\n// returns 6100\n(6040).Ceil(-2);\n"
+												"text": "\n```typescript\n// returns 5\n4.006.Ceil();\n// returns 6.01\n6.004.Ceil(2);\n// returns 6100\n(6040).Ceil(-2);\n```\n"
 											}
 										]
 									},
@@ -3057,7 +3057,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 213,
+									"line": 237,
 									"character": 12
 								}
 							]
@@ -3132,7 +3132,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 86,
+									"line": 94,
 									"character": 13
 								}
 							]
@@ -3160,7 +3160,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 0\n(1).DecimalPlaces();\n// returns 1\n(1.5).DecimalPlaces();\n"
+												"text": "\n```typescript\n// returns 0\n(1).DecimalPlaces();\n// returns 1\n(1.5).DecimalPlaces();\n```\n"
 											}
 										]
 									},
@@ -3173,7 +3173,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 236,
+									"line": 264,
 									"character": 21
 								}
 							]
@@ -3201,7 +3201,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 4\n(5).Decrement();\n// returns 1\n(5).Decrement(4);\n"
+												"text": "\n```typescript\n// returns 4\n(5).Decrement();\n// returns 1\n(5).Decrement(4);\n```\n"
 											}
 										]
 									},
@@ -3233,7 +3233,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 168,
+									"line": 186,
 									"character": 17
 								}
 							]
@@ -3261,7 +3261,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 5\n(10).Divide(2);\n// returns 5\n(20). Divide(2).Divide(2);\n// throws an Error\n(10).Divide(0);\n"
+												"text": "\n```typescript\n// returns 5\n(10).Divide(2);\n// returns 5\n(20). Divide(2).Divide(2);\n// throws an Error\n(10).Divide(0);\n```\n"
 											}
 										]
 									},
@@ -3292,7 +3292,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 142,
+									"line": 156,
 									"character": 14
 								}
 							]
@@ -3320,7 +3320,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n(1).Equals(1)\n// returns false\n(1).Equals(2)\n"
+												"text": "\n```typescript\n// returns true\n(1).Equals(1)\n// returns false\n(1).Equals(2)\n```\n"
 											}
 										]
 									},
@@ -3351,7 +3351,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 40,
+									"line": 44,
 									"character": 14
 								}
 							]
@@ -3379,7 +3379,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 4\n4.006.Floor();\n// returns 0.04\n0.046.Floor(2);\n// returns 4000\n(4060).Floor(-2);\n"
+												"text": "\n```typescript\n// returns 4\n4.006.Floor();\n// returns 0.04\n0.046.Floor(2);\n// returns 4000\n(4060).Floor(-2);\n```\n"
 											}
 										]
 									},
@@ -3411,7 +3411,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 198,
+									"line": 220,
 									"character": 13
 								}
 							]
@@ -3439,7 +3439,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 2\n(1).Increment();\n// returns 5\n(1).Increment(4);\n"
+												"text": "\n```typescript\n// returns 2\n(1).Increment();\n// returns 5\n(1).Increment(4);\n```\n"
 											}
 										]
 									},
@@ -3471,7 +3471,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 155,
+									"line": 171,
 									"character": 17
 								}
 							]
@@ -3499,7 +3499,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n(1).IsAbove(0)\n// returns false\n(1).IsAbove(1)\n(1).IsAbove(5)\n"
+												"text": "\n```typescript\n// returns true\n(1).IsAbove(0)\n// returns false\n(1).IsAbove(1)\n(1).IsAbove(5)\n```\n"
 											}
 										]
 									},
@@ -3530,7 +3530,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 54,
+									"line": 60,
 									"character": 15
 								}
 							]
@@ -3558,7 +3558,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n(1).IsBelow(5)\n// returns false\n(1).IsBelow(1)\n(1).IsBelow(0)\n"
+												"text": "\n```typescript\n// returns true\n(1).IsBelow(5)\n// returns false\n(1).IsBelow(1)\n(1).IsBelow(0)\n```\n"
 											}
 										]
 									},
@@ -3589,7 +3589,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 68,
+									"line": 76,
 									"character": 15
 								}
 							]
@@ -3618,7 +3618,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n1.2.IsInRange(1.0, 2.0);\n1.0.IsInRange(1.0, 2.0);\n2.0.IsInRange(1.0, 2.0);\n// returns false\n5.2.IsInRange(1.0, 2.0)\n"
+												"text": "\n```typescript\n// returns true\n1.2.IsInRange(1.0, 2.0);\n1.0.IsInRange(1.0, 2.0);\n2.0.IsInRange(1.0, 2.0);\n// returns false\n5.2.IsInRange(1.0, 2.0)\n```\n"
 											}
 										]
 									},
@@ -3665,7 +3665,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 27,
+									"line": 29,
 									"character": 17
 								}
 							]
@@ -3693,7 +3693,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 10\n(1).Multiply(10);\n// returns 20\n(1).Multiply(10).Multiply(2);\n"
+												"text": "\n```typescript\n// returns 10\n(1).Multiply(10);\n// returns 20\n(1).Multiply(10).Multiply(2);\n```\n"
 											}
 										]
 									},
@@ -3724,7 +3724,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 127,
+									"line": 139,
 									"character": 16
 								}
 							]
@@ -3752,7 +3752,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 1\n(1.5).Numerals();\n(1).Numerals();\n// returns 2\n(10).Numerals();\n"
+												"text": "\n```typescript\n// returns 1\n(1.5).Numerals();\n(1).Numerals();\n// returns 2\n(10).Numerals();\n```\n"
 											}
 										]
 									},
@@ -3765,7 +3765,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 225,
+									"line": 251,
 									"character": 16
 								}
 							]
@@ -3793,7 +3793,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 4\n4.006.Round();\n// returns 4.01\n4.006.Round(2);\n// returns 4100\n(4060).Round(-2);\n"
+												"text": "\n```typescript\n// returns 4\n4.006.Round();\n// returns 4.01\n4.006.Round(2);\n// returns 4100\n(4060).Round(-2);\n```\n"
 											}
 										]
 									},
@@ -3825,7 +3825,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 183,
+									"line": 203,
 									"character": 13
 								}
 							]
@@ -3853,7 +3853,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 1\n(2).Subtract(1);\n// returns 0\n(2).Subtract(1).Subtract(1);\n"
+												"text": "\n```typescript\n// returns 1\n(2).Subtract(1);\n// returns 0\n(2).Subtract(1).Subtract(1);\n```\n"
 											}
 										]
 									},
@@ -3884,7 +3884,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/number/index.ts",
-									"line": 114,
+									"line": 124,
 									"character": 16
 								}
 							]
@@ -3958,7 +3958,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 3\n'ABC'.Bytes();\n"
+												"text": "\n```typescript\n// returns 3\n'ABC'.Bytes();\n```\n"
 											}
 										]
 									},
@@ -3971,7 +3971,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 824,
+									"line": 927,
 									"character": 13
 								}
 							]
@@ -4000,7 +4000,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// retruns \"Hello\"\n'hello'.Capitalize();\n'HELLO'.Capitalize();\n'Hello'.Capitalize();\n"
+												"text": "\n```typescript\n// retruns \"Hello\"\n'hello'.Capitalize();\n'HELLO'.Capitalize();\n'Hello'.Capitalize();\n```\n"
 											}
 										]
 									},
@@ -4013,7 +4013,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 41,
+									"line": 45,
 									"character": 18
 								}
 							]
@@ -4042,7 +4042,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"H\"\n'Hello'.CharAt(0);\n// returns \"o\"\n'Hello'.CharAt(4);\n// throws an Error while string has not enough letters\n'Hello'.CharAt(5);\n"
+												"text": "\n```typescript\n// returns \"H\"\n'Hello'.CharAt(0);\n// returns \"o\"\n'Hello'.CharAt(4);\n// throws an Error while string has not enough letters\n'Hello'.CharAt(5);\n```\n"
 											}
 										]
 									},
@@ -4073,7 +4073,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 26,
+									"line": 28,
 									"character": 14
 								}
 							]
@@ -4102,7 +4102,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"ab\"\n'a'.Concat('b');\n// returns \"a#b\"\n'a'.Concat('b', '#');\n"
+												"text": "\n```typescript\n// returns \"ab\"\n'a'.Concat('b');\n// returns \"a#b\"\n'a'.Concat('b', '#');\n```\n"
 											}
 										]
 									},
@@ -4150,7 +4150,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 384,
+									"line": 432,
 									"character": 14
 								}
 							]
@@ -4179,7 +4179,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n'abbbc'.Contains('b');\n'abbbc'.Contains('bbb');\n// returns false\n'abbbc'.Contains('xxx');\n"
+												"text": "\n```typescript\n// returns true\n'abbbc'.Contains('b');\n'abbbc'.Contains('bbb');\n// returns false\n'abbbc'.Contains('xxx');\n```\n"
 											}
 										]
 									},
@@ -4210,7 +4210,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 637,
+									"line": 718,
 									"character": 16
 								}
 							]
@@ -4239,7 +4239,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 3\n'zzabcabcabczz'.ContainsCount('a');\n// returns 2\n'zzabcabcabczz'.ContainsCount('cabc', true);\n"
+												"text": "\n```typescript\n// returns 3\n'zzabcabcabczz'.ContainsCount('a');\n// returns 2\n'zzabcabcabczz'.ContainsCount('cabc', true);\n```\n"
 											}
 										]
 									},
@@ -4287,7 +4287,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 654,
+									"line": 737,
 									"character": 21
 								}
 							]
@@ -4316,7 +4316,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns a new Instance \"Test\"\n'Test'.Copy();\n"
+												"text": "\n```typescript\n// returns a new Instance \"Test\"\n'Test'.Copy();\n```\n"
 											}
 										]
 									},
@@ -4329,7 +4329,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 620,
+									"line": 699,
 									"character": 12
 								}
 							]
@@ -4358,7 +4358,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n'abcdefg'.EndsWith('efg');\n'abcdefg'.EndsWith('f', 6);\n// returns false\n'abcdefg'.EndsWith('f', 1);\n'abcdefg'.EndsWith('z');\n"
+												"text": "\n```typescript\n// returns true\n'abcdefg'.EndsWith('efg');\n'abcdefg'.EndsWith('f', 6);\n// returns false\n'abcdefg'.EndsWith('f', 1);\n'abcdefg'.EndsWith('z');\n```\n"
 											}
 										]
 									},
@@ -4406,7 +4406,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 79,
+									"line": 87,
 									"character": 16
 								}
 							]
@@ -4435,7 +4435,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n'Test'.Equals('Test');\n// returns false\n'Test'.Equals('test');\n"
+												"text": "\n```typescript\n// returns true\n'Test'.Equals('Test');\n// returns false\n'Test'.Equals('test');\n```\n"
 											}
 										]
 									},
@@ -4466,7 +4466,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 670,
+									"line": 755,
 									"character": 14
 								}
 							]
@@ -4495,7 +4495,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"fred, barney, &amp; pebbles\"\n'fred, barney, & pebbles'.HTMLEscape();\n"
+												"text": "\n```typescript\n// returns \"fred, barney, &amp; pebbles\"\n'fred, barney, & pebbles'.HTMLEscape();\n```\n"
 											}
 										]
 									},
@@ -4508,7 +4508,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 92,
+									"line": 102,
 									"character": 18
 								}
 							]
@@ -4537,7 +4537,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"fred, barney, & pebbles\"\n'fred, barney, &amp; pebbles'.HTMLUnescape();\n"
+												"text": "\n```typescript\n// returns \"fred, barney, & pebbles\"\n'fred, barney, &amp; pebbles'.HTMLUnescape();\n```\n"
 											}
 										]
 									},
@@ -4550,7 +4550,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 105,
+									"line": 117,
 									"character": 20
 								}
 							]
@@ -4579,7 +4579,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 0\n'aaaaa'.IndexOf('a');\n// returns 1\n'abc'.IndexOf('b');\n// returns -1\n'abc'.IndexOf('z');\n"
+												"text": "\n```typescript\n// returns 0\n'aaaaa'.IndexOf('a');\n// returns 1\n'abc'.IndexOf('b');\n// returns -1\n'abc'.IndexOf('z');\n```\n"
 											}
 										]
 									},
@@ -4610,7 +4610,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 747,
+									"line": 840,
 									"character": 15
 								}
 							]
@@ -4639,7 +4639,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"axbc\"\n'abc'.Insert(1, 'x');\n// returns \"xabc\"\n'abc'.Insert(-1, 'x');\n// returns \"abcx\"\n'abc'.Insert(100, 'x');\n"
+												"text": "\n```typescript\n// returns \"axbc\"\n'abc'.Insert(1, 'x');\n// returns \"xabc\"\n'abc'.Insert(-1, 'x');\n// returns \"abcx\"\n'abc'.Insert(100, 'x');\n```\n"
 											}
 										]
 									},
@@ -4686,7 +4686,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 689,
+									"line": 776,
 									"character": 14
 								}
 							]
@@ -4715,7 +4715,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.IsAlpha();\n// returns false\n'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1'.IsAlpha();\n'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZß'.IsAlpha();\n"
+												"text": "\n```typescript\n// returns true\n'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.IsAlpha();\n// returns false\n'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1'.IsAlpha();\n'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZß'.IsAlpha();\n```\n"
 											}
 										]
 									},
@@ -4728,7 +4728,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 811,
+									"line": 912,
 									"character": 15
 								}
 							]
@@ -4757,7 +4757,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n'ABCD'.IsAscii();\n// returns false\n'©'.IsAscii();\n"
+												"text": "\n```typescript\n// returns true\n'ABCD'.IsAscii();\n// returns false\n'©'.IsAscii();\n```\n"
 											}
 										]
 									},
@@ -4770,7 +4770,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 795,
+									"line": 894,
 									"character": 15
 								}
 							]
@@ -4799,7 +4799,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"testabc\"\n'test'.Join(['a','b','c']);\n// returns \"test#a#b#c\"\n'test'.Join(['a','b','c'], '#');\n// returns \"a#b#c\"\n''.Join(['a','b','c'], '#');\n"
+												"text": "\n```typescript\n// returns \"testabc\"\n'test'.Join(['a','b','c']);\n// returns \"test#a#b#c\"\n'test'.Join(['a','b','c'], '#');\n// returns \"a#b#c\"\n''.Join(['a','b','c'], '#');\n```\n"
 											}
 										]
 									},
@@ -4850,7 +4850,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 403,
+									"line": 453,
 									"character": 12
 								}
 							]
@@ -4879,7 +4879,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 4\n'aaaaa'.LastIndexOf('a');\n// returns 1\n'abc'.LastIndexOf('b');\n// returns -1\n'abc'.LastIndexOf('z');\n"
+												"text": "\n```typescript\n// returns 4\n'aaaaa'.LastIndexOf('a');\n// returns 1\n'abc'.LastIndexOf('b');\n// returns -1\n'abc'.LastIndexOf('z');\n```\n"
 											}
 										]
 									},
@@ -4910,7 +4910,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 765,
+									"line": 860,
 									"character": 19
 								}
 							]
@@ -4939,7 +4939,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"hello\"\n'Hello'.LowerFirst();\n'hello'.LowerFirst();\n"
+												"text": "\n```typescript\n// returns \"hello\"\n'Hello'.LowerFirst();\n'hello'.LowerFirst();\n```\n"
 											}
 										]
 									},
@@ -4952,7 +4952,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 330,
+									"line": 372,
 									"character": 18
 								}
 							]
@@ -4981,7 +4981,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"_-abc_-_\"\n'abc'.Pad(8, '_-');\n// returns \"  abc   \"\n'abc'.Pad(8);\n// returns \"abcdefg\"\n'abcdefg'.Pad(3, '-');\n"
+												"text": "\n```typescript\n// returns \"_-abc_-_\"\n'abc'.Pad(8, '_-');\n// returns \"  abc   \"\n'abc'.Pad(8);\n// returns \"abcdefg\"\n'abcdefg'.Pad(3, '-');\n```\n"
 											}
 										]
 									},
@@ -5029,7 +5029,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 422,
+									"line": 474,
 									"character": 11
 								}
 							]
@@ -5058,7 +5058,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"__abc\"\n'abc'.PadLeft(5, '_');\n// returns \"  abc\"\n'abc'.PadLeft(5);\n// returns \"abcdefg\"\n'abcdefg'.PadLeft(3, '-');\n"
+												"text": "\n```typescript\n// returns \"__abc\"\n'abc'.PadLeft(5, '_');\n// returns \"  abc\"\n'abc'.PadLeft(5);\n// returns \"abcdefg\"\n'abcdefg'.PadLeft(3, '-');\n```\n"
 											}
 										]
 									},
@@ -5106,7 +5106,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 441,
+									"line": 495,
 									"character": 15
 								}
 							]
@@ -5135,7 +5135,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"abc__\"\n'abc'.PadRight(5, '_');\n// returns \"abc  \"\n'abc'.PadRight(5);\n// returns \"abcdefg\"\n'abcdefg'.PadRight(3, '-');\n"
+												"text": "\n```typescript\n// returns \"abc__\"\n'abc'.PadRight(5, '_');\n// returns \"abc  \"\n'abc'.PadRight(5);\n// returns \"abcdefg\"\n'abcdefg'.PadRight(3, '-');\n```\n"
 											}
 										]
 									},
@@ -5183,7 +5183,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 460,
+									"line": 516,
 									"character": 16
 								}
 							]
@@ -5212,7 +5212,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"\\[lodash\\]\\(https://lodash\\.com/\\)\"\n'[lodash](https://lodash.com/)'.RegExpEscape();\n"
+												"text": "\n```typescript\n// returns \"\\[helloworld\\]\\(https://google\\.com/\\)\"\n'[helloworld](https://google.com/)'.RegExpEscape();\n```\n"
 											}
 										]
 									},
@@ -5225,7 +5225,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 118,
+									"line": 132,
 									"character": 20
 								}
 							]
@@ -5254,7 +5254,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"abc\"\n'axbc'.Remove(1);\n// returns \"a\"\n'axbc'.Remove(1, 3);\n// returns \"\"\n'abc'.Remove(10, 5);\n"
+												"text": "\n```typescript\n// returns \"abc\"\n'axbc'.Remove(1);\n// returns \"a\"\n'axbc'.Remove(1, 3);\n// returns \"\"\n'abc'.Remove(10, 5);\n```\n"
 											}
 										]
 									},
@@ -5302,7 +5302,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 708,
+									"line": 797,
 									"character": 14
 								}
 							]
@@ -5331,7 +5331,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"*****\"\n'*'.Repeat(5);\n"
+												"text": "\n```typescript\n// returns \"*****\"\n'*'.Repeat(5);\n```\n"
 											}
 										]
 									},
@@ -5362,7 +5362,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 474,
+									"line": 532,
 									"character": 14
 								}
 							]
@@ -5391,7 +5391,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"azcdefg\"\n'abcdefg'.Replace('b', 'z');\n// returns \"azbcdefg\"\n'abbcdefg'.Replace('b', 'z');\n"
+												"text": "\n```typescript\n// returns \"azcdefg\"\n'abcdefg'.Replace('b', 'z');\n// returns \"azbcdefg\"\n'abbcdefg'.Replace('b', 'z');\n```\n"
 											}
 										]
 									},
@@ -5438,7 +5438,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 491,
+									"line": 551,
 									"character": 15
 								}
 							]
@@ -5467,7 +5467,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"azzzcdezfg\"\n'abbbcdebfg'.ReplaceAll('b', 'z');\n"
+												"text": "\n```typescript\n// returns \"azzzcdezfg\"\n'abbbcdebfg'.ReplaceAll('b', 'z');\n```\n"
 											}
 										]
 									},
@@ -5514,7 +5514,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 506,
+									"line": 568,
 									"character": 18
 								}
 							]
@@ -5543,7 +5543,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns ['bbbb', 'bbb', 'c']\n'abbbbabbbac'.Split('a');\n"
+												"text": "\n```typescript\n// returns ['bbbb', 'bbb', 'c']\n'abbbbabbbac'.Split('a');\n```\n"
 											}
 										]
 									},
@@ -5577,7 +5577,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 520,
+									"line": 584,
 									"character": 13
 								}
 							]
@@ -5606,7 +5606,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns true\n'abcdefg'.StartsWith('abc');\n'abcdefg'.StartsWith('b', 1);\n// returns false\n'abcdefg'.StartsWith('b', 2);\n'abcdefg'.StartsWith('z');\n"
+												"text": "\n```typescript\n// returns true\n'abcdefg'.StartsWith('abc');\n'abcdefg'.StartsWith('b', 1);\n// returns false\n'abcdefg'.StartsWith('b', 2);\n'abcdefg'.StartsWith('z');\n```\n"
 											}
 										]
 									},
@@ -5654,7 +5654,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 60,
+									"line": 66,
 									"character": 18
 								}
 							]
@@ -5683,7 +5683,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"_\"\n'___Test'.Substring(0);\n// returns \"Test\"\n'___Test'.Substring(3, 4);\n// return \"Te\"\n'Test'.Substring(-1, 2);\n// return \"st\"\n'Test'.Substring(100, 2);\n"
+												"text": "\n```typescript\n// returns \"_\"\n'___Test'.Substring(0);\n// returns \"Test\"\n'___Test'.Substring(3, 4);\n// return \"Te\"\n'Test'.Substring(-1, 2);\n// return \"st\"\n'Test'.Substring(100, 2);\n```\n"
 											}
 										]
 									},
@@ -5731,7 +5731,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 729,
+									"line": 820,
 									"character": 17
 								}
 							]
@@ -5760,7 +5760,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"betweenmodule\"\n'beforemodule@NgModule({betweenmodule})aftermodule'.TextBetween('@NgModule({', '})');\n"
+												"text": "\n```typescript\n// returns \"betweenmodule\"\n'beforemodule@NgModule({betweenmodule})aftermodule'.TextBetween('@NgModule({', '})');\n```\n"
 											}
 										]
 									},
@@ -5810,7 +5810,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 780,
+									"line": 877,
 									"character": 19
 								}
 							]
@@ -5839,7 +5839,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"fooBar\"\n'Foo Bar'.ToCamelCase()\n'--foo-bar--'.ToCamelCase()\n'__FOO_BAR__'.ToCamelCase()\n"
+												"text": "\n```typescript\n// returns \"fooBar\"\n'Foo Bar'.ToCamelCase()\n'--foo-bar--'.ToCamelCase()\n'__FOO_BAR__'.ToCamelCase()\n```\n"
 											}
 										]
 									},
@@ -5852,7 +5852,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 167,
+									"line": 187,
 									"character": 19
 								}
 							]
@@ -5881,7 +5881,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"Test String\"\n'test string'.ToCapitalCase();\n"
+												"text": "\n```typescript\n// returns \"Test String\"\n'test string'.ToCapitalCase();\n```\n"
 											}
 										]
 									},
@@ -5894,7 +5894,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 195,
+									"line": 219,
 									"character": 21
 								}
 							]
@@ -5923,7 +5923,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"TEST_STRING\"\n'test string'.ToConstantCase();\n"
+												"text": "\n```typescript\n// returns \"TEST_STRING\"\n'test string'.ToConstantCase();\n```\n"
 											}
 										]
 									},
@@ -5936,7 +5936,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 208,
+									"line": 234,
 									"character": 22
 								}
 							]
@@ -5965,7 +5965,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"test.string\"\n'test string'.ToDotCase();\n"
+												"text": "\n```typescript\n// returns \"test.string\"\n'test string'.ToDotCase();\n```\n"
 											}
 										]
 									},
@@ -5978,7 +5978,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 221,
+									"line": 249,
 									"character": 17
 								}
 							]
@@ -6007,7 +6007,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 1.0\n'1'.ToDouble();\n'1.0'.ToDouble();\n// returns 1.5\n'1.5'.ToDouble();\n// returns 0.0\n'aaa'.ToDouble();\n"
+												"text": "\n```typescript\n// returns 1.0\n'1'.ToDouble();\n'1.0'.ToDouble();\n// returns 1.5\n'1.5'.ToDouble();\n// returns 0.0\n'aaa'.ToDouble();\n```\n"
 											}
 										]
 									},
@@ -6020,7 +6020,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 152,
+									"line": 170,
 									"character": 16
 								}
 							]
@@ -6049,7 +6049,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns 1\n'1'.ToInteger();\n'1.5'.ToInteger();\n// returns 0\n'aaa'.ToInteger();\n"
+												"text": "\n```typescript\n// returns 1\n'1'.ToInteger();\n'1.5'.ToInteger();\n// returns 0\n'aaa'.ToInteger();\n```\n"
 											}
 										]
 									},
@@ -6062,7 +6062,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 134,
+									"line": 150,
 									"character": 17
 								}
 							]
@@ -6091,7 +6091,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"foo-bar\"\n'Foo Bar'.ToKebabCase();\n'fooBar'.ToKebabCase();\n'__FOO_BAR__'.ToKebabCase();\n"
+												"text": "\n```typescript\n// returns \"foo-bar\"\n'Foo Bar'.ToKebabCase();\n'fooBar'.ToKebabCase();\n'__FOO_BAR__'.ToKebabCase();\n```\n"
 											}
 										]
 									},
@@ -6104,7 +6104,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 182,
+									"line": 204,
 									"character": 19
 								}
 							]
@@ -6129,11 +6129,11 @@
 									},
 									"comment": {
 										"shortText": "convert all letters of the string into lower case.",
-										"returns": "the lower case string",
+										"returns": "the lower case string\n",
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"ababab\"\n'aBaBaB'.ToLower();\n"
+												"text": "\n```typescript\n// returns \"ababab\"\n'aBaBaB'.ToLower();\n```\n"
 											}
 										]
 									},
@@ -6146,7 +6146,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 532,
+									"line": 599,
 									"character": 15
 								}
 							]
@@ -6175,7 +6175,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"hello\"\n'HELLO'.ToLowerCase();\n"
+												"text": "\n```typescript\n// returns \"hello\"\n'HELLO'.ToLowerCase();\n```\n"
 											}
 										]
 									},
@@ -6188,7 +6188,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 301,
+									"line": 341,
 									"character": 19
 								}
 							]
@@ -6217,7 +6217,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"test.string\"\n'test string'.ToNoCase();\n"
+												"text": "\n```typescript\n// returns \"test.string\"\n'test string'.ToNoCase();\n```\n"
 											}
 										]
 									},
@@ -6230,7 +6230,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 234,
+									"line": 264,
 									"character": 16
 								}
 							]
@@ -6259,7 +6259,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"Test string\"\n'TestString'.ToPascalCase();\n"
+												"text": "\n```typescript\n// returns \"Test string\"\n'TestString'.ToPascalCase();\n```\n"
 											}
 										]
 									},
@@ -6272,7 +6272,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 273,
+									"line": 309,
 									"character": 20
 								}
 							]
@@ -6301,7 +6301,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"test/string\"\n'test string'.ToPathCase();\n"
+												"text": "\n```typescript\n// returns \"test/string\"\n'test string'.ToPathCase();\n```\n"
 											}
 										]
 									},
@@ -6314,7 +6314,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 247,
+									"line": 279,
 									"character": 18
 								}
 							]
@@ -6343,7 +6343,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"Test string\"\n'test string'.ToSentenceCase();\n"
+												"text": "\n```typescript\n// returns \"Test string\"\n'test string'.ToSentenceCase();\n```\n"
 											}
 										]
 									},
@@ -6356,7 +6356,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 260,
+									"line": 294,
 									"character": 22
 								}
 							]
@@ -6385,7 +6385,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"foo_bar\"\n'Foo Bar'.ToSnakeCase();\n'fooBar'.ToSnakeCase();\n'--FOO-BAR--'.ToSnakeCase();\n"
+												"text": "\n```typescript\n// returns \"foo_bar\"\n'Foo Bar'.ToSnakeCase();\n'fooBar'.ToSnakeCase();\n'--FOO-BAR--'.ToSnakeCase();\n```\n"
 											}
 										]
 									},
@@ -6398,7 +6398,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 288,
+									"line": 326,
 									"character": 19
 								}
 							]
@@ -6427,7 +6427,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"ABABAB\"\n'aBaBaB'.ToLower();\n"
+												"text": "\n```typescript\n// returns \"ABABAB\"\n'aBaBaB'.ToLower();\n```\n"
 											}
 										]
 									},
@@ -6440,7 +6440,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 544,
+									"line": 613,
 									"character": 15
 								}
 							]
@@ -6469,7 +6469,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n```\n// returns \"HELLO\"\n'hello'.ToLowerCase();\n```\n"
+												"text": "\n```typescript\n// returns \"HELLO\"\n'hello'.ToLowerCase();\n```\n"
 											}
 										]
 									},
@@ -6482,7 +6482,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 316,
+									"line": 356,
 									"character": 19
 								}
 							]
@@ -6511,7 +6511,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"Test\"\n'___Test___'.Trim('_');\n'   Test   '.Trim();\n"
+												"text": "\n```typescript\n// returns \"Test\"\n'___Test___'.Trim('_');\n'   Test   '.Trim();\n```\n"
 											}
 										]
 									},
@@ -6543,7 +6543,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 559,
+									"line": 630,
 									"character": 12
 								}
 							]
@@ -6572,7 +6572,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"Test\"\n'Test___'.Trim('_');\n'Test   '.Trim();\n"
+												"text": "\n```typescript\n// returns \"Test\"\n'Test___'.Trim('_');\n'Test   '.Trim();\n```\n"
 											}
 										]
 									},
@@ -6604,7 +6604,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 589,
+									"line": 664,
 									"character": 15
 								}
 							]
@@ -6633,7 +6633,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"Test\"\n'___Test'.Trim('_');\n'   Test'.Trim();\n"
+												"text": "\n```typescript\n// returns \"Test\"\n'___Test'.Trim('_');\n'   Test'.Trim();\n```\n"
 											}
 										]
 									},
@@ -6665,7 +6665,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 574,
+									"line": 647,
 									"character": 17
 								}
 							]
@@ -6694,7 +6694,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"##...\"\n'##-##Chars##-##'.Truncate(5);\n// returns \"##-#X\"\n'##-##Chars##-##'.Truncate(5, 'X');\n"
+												"text": "\n```typescript\n// returns \"##...\"\n'##-##Chars##-##'.Truncate(5);\n// returns \"##-#X\"\n'##-##Chars##-##'.Truncate(5, 'X');\n```\n"
 											}
 										]
 									},
@@ -6757,7 +6757,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 607,
+									"line": 684,
 									"character": 16
 								}
 							]
@@ -6786,7 +6786,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns \"Hello\"\n'hello'.UpperFirst();\n'Hello'.UpperFirst();\n"
+												"text": "\n```typescript\n// returns \"Hello\"\n'hello'.UpperFirst();\n'Hello'.UpperFirst();\n```\n"
 											}
 										]
 									},
@@ -6799,7 +6799,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 344,
+									"line": 388,
 									"character": 18
 								}
 							]
@@ -6828,7 +6828,7 @@
 										"tags": [
 											{
 												"tag": "example",
-												"text": "\n// returns ['hello', 'is', 'a', 'word', 'of', 'a', 'sentence']\n'hello is a word of a sentence'.Words();\n// returns ['a']\n'abcd'.Words(null, 'a');\n// returns ['hello', 'word', 'sentence']\n'hello is a word of a sentence'\n    .Words(e => [\n        'hello', 'word', 'sentence'\n    ].Contains(e)\n);\n"
+												"text": "\n```typescript\n// returns ['hello', 'is', 'a', 'word', 'of', 'a', 'sentence']\n'hello is a word of a sentence'.Words();\n// returns ['a']\n'abcd'.Words(null, 'a');\n// returns ['hello', 'word', 'sentence']\n'hello is a word of a sentence'\n    .Words(e => [\n        'hello', 'word', 'sentence'\n    ].Contains(e)\n);\n```\n"
 											}
 										]
 									},
@@ -6888,7 +6888,7 @@
 													"sources": [
 														{
 															"fileName": "src/types/string/index.ts",
-															"line": 367,
+															"line": 413,
 															"character": 23
 														}
 													]
@@ -6925,7 +6925,7 @@
 							"sources": [
 								{
 									"fileName": "src/types/string/index.ts",
-									"line": 367,
+									"line": 413,
 									"character": 13
 								}
 							]
@@ -8362,23 +8362,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nclass User {"
-									},
-									{
-										"tag": "isdefined('name",
-										"text": "must be defined')\n    Name: string;\n"
-									},
-									{
-										"tag": "min(0,",
-										"text": "'Age must be greater -1')"
-									},
-									{
-										"tag": "max(200,",
-										"text": "'Age must me lower 201')\n    Age: number;\n"
-									},
-									{
-										"tag": "isemail('email",
-										"text": "must be a valid email address')\n    Email: string;\n}\nconst instance = new User();\n// returns [\n     {Message:'Name must be defined'},\n     {Message:'Age must be greater -1'},\n     {Message:'Age must me lower 201'},\n     {Message:'Email must be a valid email address'},\n]\nClassValidator.Validate(instance);\ninstance.Name = 'Udo';\ninstance.Age = 20;\ninstance.Email = 'udo@address.de';\n// returns []\nClassValidator.Validate(instance);\n"
+										"text": "\n```typescript\nclass User {\n    @IsDefined('Name must be defined')\n    Name: string;\n\n    @Min(0, 'Age must be greater -1')\n    @Max(200, 'Age must me lower 201')\n    Age: number;\n\n    @IsEmail('Email must be a valid email address')\n    Email: string;\n}\nconst instance = new User();\n// returns [\n     {Message:'Name must be defined'},\n     {Message:'Age must be greater -1'},\n     {Message:'Age must me lower 201'},\n     {Message:'Email must be a valid email address'},\n]\nClassValidator.Validate(instance);\ninstance.Name = 'Udo';\ninstance.Age = 20;\ninstance.Email = 'udo@address.de';\n// returns []\nClassValidator.Validate(instance);\n```\n"
 									}
 								]
 							},
@@ -8430,7 +8414,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/validation/class.validator.ts",
-							"line": 187,
+							"line": 189,
 							"character": 25
 						}
 					]
@@ -8458,23 +8442,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nclass User {"
-									},
-									{
-										"tag": "isdefined('name",
-										"text": "must be defined')\n    Name: string;\n"
-									},
-									{
-										"tag": "min(0,",
-										"text": "'Age must be greater -1')"
-									},
-									{
-										"tag": "max(200,",
-										"text": "'Age must me lower 201')\n    Age: number;\n"
-									},
-									{
-										"tag": "isemail('email",
-										"text": "must be a valid email address')\n    Email: string;\n}\nconst demoUser = {};\n// returns [\n     {Message:'Name must be defined'},\n     {Message:'Age must be greater -1'},\n     {Message:'Age must me lower 201'},\n     {Message:'Email must be a valid email address'},\n]\nClassValidator.Validate(demoUser);\ndemoUser.Name = 'Udo';\ndemoUser.Age = 20;\ndemoUser.Email = 'udo@address.de';\n// returns []\nClassValidator.Validate(demoUser);\n"
+										"text": "\n```typescript\nclass User {\n    @IsDefined('Name must be defined')\n    Name: string;\n\n    @Min(0, 'Age must be greater -1')\n    @Max(200, 'Age must me lower 201')\n    Age: number;\n\n    @IsEmail('Email must be a valid email address')\n    Email: string;\n}\nconst demoUser = {};\n// returns [\n     {Message:'Name must be defined'},\n     {Message:'Age must be greater -1'},\n     {Message:'Age must me lower 201'},\n     {Message:'Email must be a valid email address'},\n]\nClassValidator.Validate(demoUser);\ndemoUser.Name = 'Udo';\ndemoUser.Age = 20;\ndemoUser.Email = 'udo@address.de';\n// returns []\nClassValidator.Validate(demoUser);\n```\n"
 									}
 								]
 							},
@@ -8514,7 +8482,7 @@
 											"sources": [
 												{
 													"fileName": "src/utils/validation/class.validator.ts",
-													"line": 393,
+													"line": 397,
 													"character": 47
 												}
 											]
@@ -8557,7 +8525,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/validation/class.validator.ts",
-							"line": 393,
+							"line": 397,
 							"character": 31
 						}
 					]
@@ -8606,7 +8574,7 @@
 						"tags": [
 							{
 								"tag": "example",
-								"text": "\n// create a date in Europe Time Zone 2019-01-01 01:00:00.000\nnew DateTime('Europe/Berlin', 2019, 1, 1, 1, 0, 0, 0);\nnew DateTime('Europe/Berlin', 2019, 1, 1);\n// create a date in Europe Time Zone 2019-01-01 00:00:00.000\nnew DateTime('Europe/Berlin', 2019, 1, 1, null, null, null, null, true);\n"
+								"text": "\n```typescript\n// create a date in Europe Time Zone 2019-01-01 01:00:00.000\nnew DateTime('Europe/Berlin', 2019, 1, 1, 1, 0, 0, 0);\nnew DateTime('Europe/Berlin', 2019, 1, 1);\n// create a date in Europe Time Zone 2019-01-01 00:00:00.000\nnew DateTime('Europe/Berlin', 2019, 1, 1, null, null, null, null, true);\n```\n"
 							}
 						]
 					},
@@ -8624,7 +8592,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// create a date in Europe Time Zone 2019-01-01 01:00:00.000\nnew DateTime('Europe/Berlin', 2019, 1, 1, 1, 0, 0, 0);\nnew DateTime('Europe/Berlin', 2019, 1, 1);\n// create a date in Europe Time Zone 2019-01-01 00:00:00.000\nnew DateTime('Europe/Berlin', 2019, 1, 1, null, null, null, null, true);\n"
+										"text": "\n```typescript\n// create a date in Europe Time Zone 2019-01-01 01:00:00.000\nnew DateTime('Europe/Berlin', 2019, 1, 1, 1, 0, 0, 0);\nnew DateTime('Europe/Berlin', 2019, 1, 1);\n// create a date in Europe Time Zone 2019-01-01 00:00:00.000\nnew DateTime('Europe/Berlin', 2019, 1, 1, null, null, null, null, true);\n```\n"
 									}
 								]
 							},
@@ -9526,7 +9494,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns 4038-02-03 23:00:00.000\nDateTime.FromISOString('2019-01-01T00:00:00').Add(DateTime.FromISOString('2019-01-02T23:00:00'));\n"
+										"text": "\n```typescript\n// returns 4038-02-03 23:00:00.000\nDateTime.FromISOString('2019-01-01T00:00:00').Add(DateTime.FromISOString('2019-01-02T23:00:00'));\n```\n"
 									}
 								]
 							},
@@ -9559,7 +9527,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 356,
+							"line": 370,
 							"character": 7
 						}
 					]
@@ -9586,7 +9554,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns 2019-01-03 00:00:00.000\nDateTime.FromISOString('2019-01-01T00:00:00').AddDays(2);\n"
+										"text": "\n```typescript\n// returns 2019-01-03 00:00:00.000\nDateTime.FromISOString('2019-01-01T00:00:00').AddDays(2);\n```\n"
 									}
 								]
 							},
@@ -9618,7 +9586,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 443,
+							"line": 467,
 							"character": 11
 						}
 					]
@@ -9645,7 +9613,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns 2019-01-01 01:00:00.000\nDateTime.FromISOString('2019-01-01T00:00:00').AddHours(1);\n"
+										"text": "\n```typescript\n// returns 2019-01-01 01:00:00.000\nDateTime.FromISOString('2019-01-01T00:00:00').AddHours(1);\n```\n"
 									}
 								]
 							},
@@ -9677,7 +9645,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 457,
+							"line": 483,
 							"character": 12
 						}
 					]
@@ -9704,7 +9672,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns 2019-01-01 00:00:00.001\nDateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(1);\n"
+										"text": "\n```typescript\n// returns 2019-01-01 00:00:00.001\nDateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(1);\n```\n"
 									}
 								]
 							},
@@ -9736,7 +9704,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 499,
+							"line": 531,
 							"character": 19
 						}
 					]
@@ -9763,7 +9731,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns 2019-01-01 00:01:00.000\nDateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(1);\n"
+										"text": "\n```typescript\n// returns 2019-01-01 00:01:00.000\nDateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(1);\n```\n"
 									}
 								]
 							},
@@ -9795,7 +9763,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 471,
+							"line": 499,
 							"character": 14
 						}
 					]
@@ -9822,7 +9790,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns 2019-03-01 00:00:00.000\nDateTime.FromISOString('2019-01-01T00:00:00').AddMonths(2);\n"
+										"text": "\n```typescript\n// returns 2019-03-01 00:00:00.000\nDateTime.FromISOString('2019-01-01T00:00:00').AddMonths(2);\n```\n"
 									}
 								]
 							},
@@ -9854,7 +9822,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 429,
+							"line": 451,
 							"character": 13
 						}
 					]
@@ -9881,7 +9849,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns 2019-01-01 00:00:01.000\nDateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(1);\n"
+										"text": "\n```typescript\n// returns 2019-01-01 00:00:01.000\nDateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(1);\n```\n"
 									}
 								]
 							},
@@ -9913,7 +9881,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 485,
+							"line": 515,
 							"character": 14
 						}
 					]
@@ -9940,7 +9908,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns 2021-01-01 00:00:00.000\nDateTime.FromISOString('2019-01-01T00:00:00').AddYears(2);\n"
+										"text": "\n```typescript\n// returns 2021-01-01 00:00:00.000\nDateTime.FromISOString('2019-01-01T00:00:00').AddYears(2);\n```\n"
 									}
 								]
 							},
@@ -9972,7 +9940,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 415,
+							"line": 435,
 							"character": 12
 						}
 					]
@@ -9999,7 +9967,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns true\nDateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('2019-02-02T02:00:00'));\n// returns false\nDateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('2019-02-02T03:00:00'));\n"
+										"text": "\n```typescript\n// returns true\nDateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('2019-02-02T02:00:00'));\n// returns false\nDateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('2019-02-02T03:00:00'));\n```\n"
 									}
 								]
 							},
@@ -10031,7 +9999,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 380,
+							"line": 396,
 							"character": 10
 						}
 					]
@@ -10058,7 +10026,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns true\nDateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('2019-02-01T02:00:00'));\n// returns false\nDateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('2019-02-03T02:00:00'));\n"
+										"text": "\n```typescript\n// returns true\nDateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('2019-02-01T02:00:00'));\n// returns false\nDateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('2019-02-03T02:00:00'));\n```\n"
 									}
 								]
 							},
@@ -10090,7 +10058,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 530,
+							"line": 566,
 							"character": 11
 						}
 					]
@@ -10117,7 +10085,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns true\nDateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2019-02-03T02:00:00'));\n// returns false\nDateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2019-02-02T02:00:00'));\n"
+										"text": "\n```typescript\n// returns true\nDateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2019-02-03T02:00:00'));\n// returns false\nDateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2019-02-02T02:00:00'));\n```\n"
 									}
 								]
 							},
@@ -10149,7 +10117,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 515,
+							"line": 549,
 							"character": 12
 						}
 					]
@@ -10176,7 +10144,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns true\nDateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').IsDaylightSavingTime();\n// returns false\nDateTime.FromISOString('2019-11-02T02:00:00', 'Europe/Berlin').IsDaylightSavingTime();\nDateTime.FromISOString('2019-06-02T02:00:00', 'UTC').IsDaylightSavingTime();\nDateTime.FromISOString('2019-11-02T02:00:00', 'UTC').IsDaylightSavingTime();\n"
+										"text": "\n```typescript\n// returns true\nDateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').IsDaylightSavingTime();\n// returns false\nDateTime.FromISOString('2019-11-02T02:00:00', 'Europe/Berlin').IsDaylightSavingTime();\nDateTime.FromISOString('2019-06-02T02:00:00', 'UTC').IsDaylightSavingTime();\nDateTime.FromISOString('2019-11-02T02:00:00', 'UTC').IsDaylightSavingTime();\n```\n"
 									}
 								]
 							},
@@ -10189,7 +10157,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 545,
+							"line": 583,
 							"character": 24
 						}
 					]
@@ -10216,7 +10184,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns 2019-01-01 01:00:00.000\nDateTime.FromISOString('2019-02-02T02:00:00').Subtract(DateTime.FromISOString('0000-01-01T01:00:00'));\n"
+										"text": "\n```typescript\n// returns 2019-01-01 01:00:00.000\nDateTime.FromISOString('2019-02-02T02:00:00').Subtract(DateTime.FromISOString('0000-01-01T01:00:00'));\n```\n"
 									}
 								]
 							},
@@ -10249,7 +10217,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 393,
+							"line": 411,
 							"character": 12
 						}
 					]
@@ -10277,7 +10245,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns \"2019-01-01 12:23:54\"\nDateTime.FromISOString('2019-01-01T12:23:54').ToString();\n// returns \"2019\"\nDateTime.FromISOString('2019-01-01T12:23:54').ToString('yyyy');\n"
+										"text": "\n```typescript\n// returns \"2019-01-01 12:23:54\"\nDateTime.FromISOString('2019-01-01T12:23:54').ToString();\n// returns \"2019\"\nDateTime.FromISOString('2019-01-01T12:23:54').ToString('yyyy');\n```\n"
 									}
 								]
 							},
@@ -10309,7 +10277,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 562,
+							"line": 602,
 							"character": 12
 						}
 					]
@@ -10336,7 +10304,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst TARGET_ZONE = 'Europe/Berlin';\nconst dateEurope = new DateTime('Europe/Berlin', 2019, 1, 1, 1);\nconst dateUtc = new DateTime('UTC', 2019, 1, 1, 1);\n// returns 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone\ndateEurope.ToZone(TARGET_ZONE);\ndateEurope.ToZone(TARGET_ZONE, true);\ndateUtc.ToZone(TARGET_ZONE, true);\n// returns 2019-01-01 02:00:00.000 in Europe/Berlin Time Zone\ndateUtc.ToZone(TARGET_ZONE);\n"
+										"text": "\n```typescript\nconst TARGET_ZONE = 'Europe/Berlin';\nconst dateEurope = new DateTime('Europe/Berlin', 2019, 1, 1, 1);\nconst dateUtc = new DateTime('UTC', 2019, 1, 1, 1);\n// returns 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone\ndateEurope.ToZone(TARGET_ZONE);\ndateEurope.ToZone(TARGET_ZONE, true);\ndateUtc.ToZone(TARGET_ZONE, true);\n// returns 2019-01-01 02:00:00.000 in Europe/Berlin Time Zone\ndateUtc.ToZone(TARGET_ZONE);\n```\n"
 									}
 								]
 							},
@@ -10385,7 +10353,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 334,
+							"line": 346,
 							"character": 10
 						}
 					]
@@ -10414,7 +10382,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns DateTime 2019-01-01 01:00:00.000 in UTC Time Zone\nDateTime.FromISOString('2019-01-01T01:00:00.000');\n// returns DateTime 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone\nDateTime.FromISOString('2019-01-01T01:00:00.000', 'Europe/Berlin');\n"
+										"text": "\n```typescript\n// returns DateTime 2019-01-01 01:00:00.000 in UTC Time Zone\nDateTime.FromISOString('2019-01-01T01:00:00.000');\n// returns DateTime 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone\nDateTime.FromISOString('2019-01-01T01:00:00.000', 'Europe/Berlin');\n```\n"
 									}
 								]
 							},
@@ -10463,7 +10431,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 282,
+							"line": 290,
 							"character": 24
 						}
 					]
@@ -10492,7 +10460,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns DateTime 2019-01-01 01:00:00.000 in UTC Time Zone\nDateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0)));\n// returns DateTime 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone\nDateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0), 'Europe/Berlin'));\n"
+										"text": "\n```typescript\n// returns DateTime 2019-01-01 01:00:00.000 in UTC Time Zone\nDateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0)));\n// returns DateTime 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone\nDateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0), 'Europe/Berlin'));\n```\n"
 									}
 								]
 							},
@@ -10541,7 +10509,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 257,
+							"line": 263,
 							"character": 29
 						}
 					]
@@ -10570,7 +10538,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns the current time in utc\nconst vgl = LuxonDateTime.utc();\nDateTime.FromLuxon(vgl);\n"
+										"text": "\n```typescript\n// returns the current time in utc\nconst vgl = LuxonDateTime.utc();\nDateTime.FromLuxon(vgl);\n```\n"
 									}
 								]
 							},
@@ -10602,7 +10570,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 231,
+							"line": 235,
 							"character": 20
 						}
 					]
@@ -10630,7 +10598,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst vgl = LuxonDateTime.utc();\n// returns the current date time in UTC Time Zone\nDateTime.FromMilliseconds(vgl.toMillis());\n// returns the current date time in Europe/Berlin Time Zone\nDateTime.FromMilliseconds(vgl.toMillis(), 'Europe/Berlin');\n"
+										"text": "\n```typescript\nconst vgl = LuxonDateTime.utc();\n// returns the current date time in UTC Time Zone\nDateTime.FromMilliseconds(vgl.toMillis());\n// returns the current date time in Europe/Berlin Time Zone\nDateTime.FromMilliseconds(vgl.toMillis(), 'Europe/Berlin');\n```\n"
 									}
 								]
 							},
@@ -10679,7 +10647,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/datetime/date.time.ts",
-							"line": 306,
+							"line": 316,
 							"character": 27
 						}
 					]
@@ -11910,7 +11878,7 @@
 						"tags": [
 							{
 								"tag": "example",
-								"text": "\n// returns a new generated Guid\nnew Guid();\n// returns \"6bcb9d2c-ae48-4310-8d56-ea7accffcc8c\"\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c');\n"
+								"text": "\n```typescript\n// returns a new generated Guid\nnew Guid();\n// returns \"6bcb9d2c-ae48-4310-8d56-ea7accffcc8c\"\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c');\n```\n"
 							}
 						]
 					},
@@ -11929,7 +11897,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns a new generated Guid\nnew Guid();\n// returns \"6bcb9d2c-ae48-4310-8d56-ea7accffcc8c\"\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c');\n"
+										"text": "\n```typescript\n// returns a new generated Guid\nnew Guid();\n// returns \"6bcb9d2c-ae48-4310-8d56-ea7accffcc8c\"\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c');\n```\n"
 									}
 								]
 							},
@@ -11962,7 +11930,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/guid/guid.ts",
-							"line": 130,
+							"line": 136,
 							"character": 5
 						}
 					]
@@ -11981,7 +11949,7 @@
 						"tags": [
 							{
 								"tag": "example",
-								"text": "\n// returns true\nnew Guid('00000000-0000-0000-0000-000000000000').IsEmpty();\n// returns false\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').IsEmpty();\n"
+								"text": "\n```typescript\n// returns true\nnew Guid('00000000-0000-0000-0000-000000000000').IsEmpty();\n// returns false\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').IsEmpty();\n```\n"
 							}
 						]
 					},
@@ -12000,7 +11968,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns true\nnew Guid('00000000-0000-0000-0000-000000000000').IsEmpty();\n// returns false\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').IsEmpty();\n"
+										"text": "\n```typescript\n// returns true\nnew Guid('00000000-0000-0000-0000-000000000000').IsEmpty();\n// returns false\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').IsEmpty();\n```\n"
 									}
 								]
 							},
@@ -12013,7 +11981,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/guid/guid.ts",
-							"line": 128,
+							"line": 134,
 							"character": 15
 						}
 					]
@@ -12033,7 +12001,7 @@
 						"tags": [
 							{
 								"tag": "example",
-								"text": "\n// returns \"00000000-0000-0000-0000-000000000000\"\nGuid.Empty;\n"
+								"text": "\n```typescript\n// returns \"00000000-0000-0000-0000-000000000000\"\nGuid.Empty;\n```\n"
 							}
 						]
 					},
@@ -12052,7 +12020,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns \"00000000-0000-0000-0000-000000000000\"\nGuid.Empty;\n"
+										"text": "\n```typescript\n// returns \"00000000-0000-0000-0000-000000000000\"\nGuid.Empty;\n```\n"
 									}
 								]
 							},
@@ -12066,7 +12034,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/guid/guid.ts",
-							"line": 97,
+							"line": 99,
 							"character": 20
 						}
 					]
@@ -12094,7 +12062,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns true\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').Equals('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c');\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').Equals(new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c'));\n// returns false\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').Equals('4fa89189-03b5-43f2-b184-8a42adeebfe7');\n"
+										"text": "\n```typescript\n// returns true\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').Equals('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c');\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').Equals(new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c'));\n// returns false\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').Equals('4fa89189-03b5-43f2-b184-8a42adeebfe7');\n```\n"
 									}
 								]
 							},
@@ -12135,7 +12103,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/guid/guid.ts",
-							"line": 182,
+							"line": 194,
 							"character": 10
 						}
 					]
@@ -12163,7 +12131,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns \"6bcb9d2c-ae48-4310-8d56-ea7accffcc8c\"\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').ToString();\n"
+										"text": "\n```typescript\n// returns \"6bcb9d2c-ae48-4310-8d56-ea7accffcc8c\"\nnew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').ToString();\n```\n"
 									}
 								]
 							},
@@ -12176,7 +12144,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/guid/guid.ts",
-							"line": 165,
+							"line": 175,
 							"character": 12
 						}
 					]
@@ -12205,7 +12173,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns true\nGuid.Validate('00000000-0000-0000-0000-000000000000');\n// returns false\nGuid.Validate('00000000000000000000000000000000');\n"
+										"text": "\n```typescript\n// returns true\nGuid.Validate('00000000-0000-0000-0000-000000000000');\n// returns false\nGuid.Validate('00000000000000000000000000000000');\n```\n"
 									}
 								]
 							},
@@ -12236,7 +12204,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/guid/guid.ts",
-							"line": 113,
+							"line": 117,
 							"character": 19
 						}
 					]
@@ -12311,7 +12279,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// compress the Object to a zipped JSON String\nLZCompression.Compress({\"Hello\":\"World!\"});\n"
+										"text": "\n```typescript\n// compress the Object to a zipped JSON String\nLZCompression.Compress({\"Hello\":\"World!\"});\n```\n"
 									}
 								]
 							},
@@ -12342,7 +12310,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/compression/lz.ts",
-							"line": 19,
+							"line": 21,
 							"character": 19
 						}
 					]
@@ -12370,7 +12338,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// decompress the zipped JSON String to a Object\nLZCompression.Compress('N4IgEgpgNlD2IC4QHVYCcoBMCEIC+QA=');\n"
+										"text": "\n```typescript\n// decompress the zipped JSON String to a Object\nLZCompression.Compress('N4IgEgpgNlD2IC4QHVYCcoBMCEIC+QA=');\n```\n"
 									}
 								]
 							},
@@ -12401,7 +12369,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/compression/lz.ts",
-							"line": 32,
+							"line": 36,
 							"character": 21
 						}
 					]
@@ -12461,7 +12429,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns 1.5\nNumberFactory.NewDouble(1.5);\nNumberFactory.NewDouble('1.5');\n// returns 0.0\nNumberFactory.NewDouble('aaa');\n"
+										"text": "\n```typescript\n// returns 1.5\nNumberFactory.NewDouble(1.5);\nNumberFactory.NewDouble('1.5');\n// returns 0.0\nNumberFactory.NewDouble('aaa');\n```\n"
 									}
 								]
 							},
@@ -12501,7 +12469,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/number/number.factory.ts",
-							"line": 55,
+							"line": 59,
 							"character": 20
 						}
 					]
@@ -12530,7 +12498,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns 1\nNumberFactory.NewInteger(1);\nNumberFactory.NewInteger('1');\nNumberFactory.NewInteger(1.5);\n// returns 0\nNumberFactory.NewInteger('aaaa');\n"
+										"text": "\n```typescript\n// returns 1\nNumberFactory.NewInteger(1);\nNumberFactory.NewInteger('1');\nNumberFactory.NewInteger(1.5);\n// returns 0\nNumberFactory.NewInteger('aaaa');\n```\n"
 									}
 								]
 							},
@@ -12570,7 +12538,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/number/number.factory.ts",
-							"line": 32,
+							"line": 34,
 							"character": 21
 						}
 					]
@@ -12599,7 +12567,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// create all Double Numbers begins with 0.0 and ends with 1.0\nNumberFactory.RandomDouble(0, 1)\n"
+										"text": "\n```typescript\n// create all Double Numbers begins with 0.0 and ends with 1.0\nNumberFactory.RandomDouble(0, 1)\n```\n"
 									}
 								]
 							},
@@ -12646,7 +12614,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/number/number.factory.ts",
-							"line": 93,
+							"line": 101,
 							"character": 23
 						}
 					]
@@ -12675,7 +12643,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// creates the Javascript Numbers 1,2,3,4,5,6,7,8,9 and 10\nNumberFactory.RandomInteger(1, 10);\n"
+										"text": "\n```typescript\n// creates the Javascript Numbers 1,2,3,4,5,6,7,8,9 and 10\nNumberFactory.RandomInteger(1, 10);\n```\n"
 									}
 								]
 							},
@@ -12722,7 +12690,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/number/number.factory.ts",
-							"line": 76,
+							"line": 82,
 							"character": 24
 						}
 					]
@@ -12800,7 +12768,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns {Hello:'World!'}\nObjectFactory.Copy({Hello:'World!'});\n// returns false\nconst obj = {Hello:'World!'};\nobj === ObjectFactory.Copy(obj);\n"
+										"text": "\n```typescript\n// returns {Hello:'World!'}\nObjectFactory.Copy({Hello:'World!'});\n// returns false\nconst obj = {Hello:'World!'};\nobj === ObjectFactory.Copy(obj);\n```\n"
 									}
 								]
 							},
@@ -12842,7 +12810,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/object/object.factory.ts",
-							"line": 27,
+							"line": 29,
 							"character": 15
 						}
 					]
@@ -12870,7 +12838,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst obj1 = {hello:'world',c:null};\nconst obj2 = {test:'me',c:obj1};\nobj1.c = obj2;\nconst combined = {t1:obj1,t2:obj2,t3:null};\nconst obj3 = combined;\ncombined.t3 = obj3;\n// returns ['c', 'c', 't1']\nObjectFactory.GetCircular(combined);\n"
+										"text": "\n```typescript\nconst obj1 = {hello:'world',c:null};\nconst obj2 = {test:'me',c:obj1};\nobj1.c = obj2;\nconst combined = {t1:obj1,t2:obj2,t3:null};\nconst obj3 = combined;\ncombined.t3 = obj3;\n// returns ['c', 'c', 't1']\nObjectFactory.GetCircular(combined);\n```\n"
 									}
 								]
 							},
@@ -12904,7 +12872,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/object/object.factory.ts",
-							"line": 63,
+							"line": 69,
 							"character": 22
 						}
 					]
@@ -12932,7 +12900,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst obj1 = {hello:'world'};\nconst obj2 = {hello:'world'};\nobj2.ref = obj2;\n// returns false while the Object has no self references\nObjectFactory.IsCircular(obj1);\n// returns true while obj2 has a self reference on the ref Property\nObjectFactory.IsCircular(obj2);\n"
+										"text": "\n```typescript\nconst obj1 = {hello:'world'};\nconst obj2 = {hello:'world'};\nobj2.ref = obj2;\n// returns false while the Object has no self references\nObjectFactory.IsCircular(obj1);\n// returns true while obj2 has a self reference on the ref Property\nObjectFactory.IsCircular(obj2);\n```\n"
 									}
 								]
 							},
@@ -12963,7 +12931,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/object/object.factory.ts",
-							"line": 44,
+							"line": 48,
 							"character": 21
 						}
 					]
@@ -12991,7 +12959,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns {name:'muster',age:10,state:{active:true}}\nconst obj1 = {\n     name:'muster',\n     age:10,\n};\nconst obj2 = {\n     state:{\n         active:true\n     }\n};\nObjectFactory.Merge(obj1, obj2);\n"
+										"text": "\n```typescript\n// returns {name:'muster',age:10,state:{active:true}}\nconst obj1 = {\n     name:'muster',\n     age:10,\n};\nconst obj2 = {\n     state:{\n         active:true\n     }\n};\nObjectFactory.Merge(obj1, obj2);\n```\n"
 									}
 								]
 							},
@@ -13047,7 +13015,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/object/object.factory.ts",
-							"line": 118,
+							"line": 128,
 							"character": 16
 						}
 					]
@@ -13075,7 +13043,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns 22\nObjectFactory.SizeOf({Hello: 'World!'});\n"
+										"text": "\n```typescript\n// returns 22\nObjectFactory.SizeOf({Hello: 'World!'});\n```\n"
 									}
 								]
 							},
@@ -13106,7 +13074,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/object/object.factory.ts",
-							"line": 95,
+							"line": 103,
 							"character": 17
 						}
 					]
@@ -13258,7 +13226,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// write the data Property of the State into the console\nstore.Listen(s => s.data).subscribe(d => console.info(d));\n"
+										"text": "\n```typescript\n// write the data Property of the State into the console\nstore.Listen(s => s.data).subscribe(d => console.info(d));\n```\n"
 									}
 								]
 							},
@@ -13334,7 +13302,7 @@
 											"sources": [
 												{
 													"fileName": "src/pattern/store/reactive.store.ts",
-													"line": 56,
+													"line": 58,
 													"character": 23
 												}
 											]
@@ -13358,7 +13326,7 @@
 					"sources": [
 						{
 							"fileName": "src/pattern/store/reactive.store.ts",
-							"line": 56,
+							"line": 58,
 							"character": 10
 						}
 					]
@@ -13385,11 +13353,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// simple Example to set the State\nstore.Mutate(s => s.data, () => newData);\n"
-									},
-									{
-										"tag": "example",
-										"text": "\n// make a complex Mutation\nstore.Mutate(s => s, old => {\n    old.data = [];\n    old.loading = true;\n    return old;\n});\n"
+										"text": "\n```typescript\n// simple Example to set the State\nstore.Mutate(s => s.data, () => newData);\n// make a complex Mutation\nstore.Mutate(s => s, old => {\n    old.data = [];\n    old.loading = true;\n    return old;\n});\n```\n"
 									}
 								]
 							},
@@ -13465,7 +13429,7 @@
 											"sources": [
 												{
 													"fileName": "src/pattern/store/reactive.store.ts",
-													"line": 83,
+													"line": 85,
 													"character": 23
 												}
 											]
@@ -13526,7 +13490,7 @@
 											"sources": [
 												{
 													"fileName": "src/pattern/store/reactive.store.ts",
-													"line": 83,
+													"line": 85,
 													"character": 53
 												}
 											]
@@ -13543,7 +13507,7 @@
 					"sources": [
 						{
 							"fileName": "src/pattern/store/reactive.store.ts",
-							"line": 83,
+							"line": 85,
 							"character": 10
 						}
 					]
@@ -17903,7 +17867,7 @@
 						"tags": [
 							{
 								"tag": "example",
-								"text": "\nconst watch = new StopWatch();\n// returns the elapsed Ms from construction and this Line\nwatch.ElapsedMs();\n"
+								"text": "\n```typescript\nconst watch = new StopWatch();\n// returns the elapsed Ms from construction and this Line\nwatch.ElapsedMs();\n```\n"
 							}
 						]
 					},
@@ -17921,7 +17885,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst watch = new StopWatch();\n// returns the elapsed Ms from construction and this Line\nwatch.ElapsedMs();\n"
+										"text": "\n```typescript\nconst watch = new StopWatch();\n// returns the elapsed Ms from construction and this Line\nwatch.ElapsedMs();\n```\n"
 									}
 								]
 							},
@@ -17953,7 +17917,7 @@
 						"tags": [
 							{
 								"tag": "example",
-								"text": "\nconst sw = new StopWatch();\n// returns false\nsw.IsPause();\nsw.Pause();\n// returns true\nsw.IsPause();\n"
+								"text": "\n```typescript\nconst sw = new StopWatch();\n// returns false\nsw.IsPause();\nsw.Pause();\n// returns true\nsw.IsPause();\n```\n"
 							}
 						]
 					},
@@ -17971,7 +17935,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst sw = new StopWatch();\n// returns false\nsw.IsPause();\nsw.Pause();\n// returns true\nsw.IsPause();\n"
+										"text": "\n```typescript\nconst sw = new StopWatch();\n// returns false\nsw.IsPause();\nsw.Pause();\n// returns true\nsw.IsPause();\n```\n"
 									}
 								]
 							},
@@ -17984,7 +17948,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/stopwatch/stopwatch.ts",
-							"line": 88,
+							"line": 96,
 							"character": 15
 						}
 					]
@@ -18012,7 +17976,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst sw = StopWatch();\n// get the elapsed time in ms from StopWatch constructor\nsw.ElapsedMs();\n"
+										"text": "\n```typescript\nconst sw = StopWatch();\n// get the elapsed time in ms from StopWatch constructor\nsw.ElapsedMs();\n```\n"
 									}
 								]
 							},
@@ -18025,7 +17989,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/stopwatch/stopwatch.ts",
-							"line": 184,
+							"line": 204,
 							"character": 20
 						}
 					]
@@ -18053,7 +18017,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst sw = new StopWatch();\nsw.SectionStart('sw1');\n// returns false\nsw.IsSectionPause('sw1');\nsw.SectionPause('sw1');\n// returns true\nsw.IsSectionPause('sw1');\n"
+										"text": "\n```typescript\nconst sw = new StopWatch();\nsw.SectionStart('sw1');\n// returns false\nsw.IsSectionPause('sw1');\nsw.SectionPause('sw1');\n// returns true\nsw.IsSectionPause('sw1');\n```\n"
 									}
 								]
 							},
@@ -18084,7 +18048,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/stopwatch/stopwatch.ts",
-							"line": 73,
+							"line": 79,
 							"character": 25
 						}
 					]
@@ -18112,7 +18076,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst sw = new StopWatch();\n// pause the StopWatch\nsw.Pause();\n"
+										"text": "\n```typescript\nconst sw = new StopWatch();\n// pause the StopWatch\nsw.Pause();\n```\n"
 									}
 								]
 							},
@@ -18125,7 +18089,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/stopwatch/stopwatch.ts",
-							"line": 157,
+							"line": 173,
 							"character": 16
 						}
 					]
@@ -18153,7 +18117,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst sw = new StopWatch();\nsw.Pause();\n// resume the paused StopWatch\nsw.Resume();\n"
+										"text": "\n```typescript\nconst sw = new StopWatch();\nsw.Pause();\n// resume the paused StopWatch\nsw.Resume();\n```\n"
 									}
 								]
 							},
@@ -18166,7 +18130,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/stopwatch/stopwatch.ts",
-							"line": 171,
+							"line": 189,
 							"character": 17
 						}
 					]
@@ -18194,7 +18158,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst sw = new StopWatch();\nsw.SectionStart('sw1');\n// returns the elapsed milliseconds since start of section sw1\nsw.SectionElapsedMs('sw1');\n"
+										"text": "\n```typescript\nconst sw = new StopWatch();\nsw.SectionStart('sw1');\n// returns the elapsed milliseconds since start of section sw1\nsw.SectionElapsedMs('sw1');\n```\n"
 									}
 								]
 							},
@@ -18225,7 +18189,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/stopwatch/stopwatch.ts",
-							"line": 103,
+							"line": 113,
 							"character": 27
 						}
 					]
@@ -18253,7 +18217,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst sw = new StopWatch();\nsw.SectionStart('sw1');\n// pause the sw1 section\nsw.SectionPause('sw1');\n"
+										"text": "\n```typescript\nconst sw = new StopWatch();\nsw.SectionStart('sw1');\n// pause the sw1 section\nsw.SectionPause('sw1');\n```\n"
 									}
 								]
 							},
@@ -18284,7 +18248,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/stopwatch/stopwatch.ts",
-							"line": 127,
+							"line": 139,
 							"character": 23
 						}
 					]
@@ -18312,7 +18276,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst sw = new StopWatch();\nsw.SectionStart('sw1');\nsw.SectionPause('sw1');\n// restart the sw1 section\nsw.SectionResume('sw1');\n"
+										"text": "\n```typescript\nconst sw = new StopWatch();\nsw.SectionStart('sw1');\nsw.SectionPause('sw1');\n// restart the sw1 section\nsw.SectionResume('sw1');\n```\n"
 									}
 								]
 							},
@@ -18343,7 +18307,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/stopwatch/stopwatch.ts",
-							"line": 144,
+							"line": 158,
 							"character": 24
 						}
 					]
@@ -18371,7 +18335,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\nconst watch = new StopWatch();\nwatch.SectionStart('A');\n// logs the Time between SectionStart('A') and SectionElapsedMs('A')\nwatch.SectionElapsedMs('A');\nwatch.SectionStart('B');\n// logs the Time between SectionStart('B') and SectionElapsedMs('B')\nwatch.SectionElapsedMs('B');\n// logs the Time between SectionStart('A') and this Line with SectionStart('B') and SectionElapsedMs('B')\nwatch.SectionElapsedMs('A');\n"
+										"text": "\n```typescript\nconst watch = new StopWatch();\nwatch.SectionStart('A');\n// logs the Time between SectionStart('A') and SectionElapsedMs('A')\nwatch.SectionElapsedMs('A');\nwatch.SectionStart('B');\n// logs the Time between SectionStart('B') and SectionElapsedMs('B')\nwatch.SectionElapsedMs('B');\n// logs the Time between SectionStart('A') and this Line with SectionStart('B') and SectionElapsedMs('B')\nwatch.SectionElapsedMs('A');\n```\n"
 									}
 								]
 							},
@@ -18402,7 +18366,7 @@
 					"sources": [
 						{
 							"fileName": "src/utils/stopwatch/stopwatch.ts",
-							"line": 53,
+							"line": 57,
 							"character": 23
 						}
 					]
@@ -18482,7 +18446,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// is true\nStringFactory.IsNullOrEmpty(undefined);\nStringFactory.IsNullOrEmpty(null);\nStringFactory.IsNullOrEmpty('');\n// is false\nStringFactory.IsNullOrEmpty('a');\n"
+										"text": "\n```typescript\n// is true\nStringFactory.IsNullOrEmpty(undefined);\nStringFactory.IsNullOrEmpty(null);\nStringFactory.IsNullOrEmpty('');\n// is false\nStringFactory.IsNullOrEmpty('a');\n```\n"
 									}
 								]
 							},
@@ -18513,7 +18477,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/string/string.factory.ts",
-							"line": 28,
+							"line": 30,
 							"character": 24
 						}
 					]
@@ -18543,7 +18507,7 @@
 								"tags": [
 									{
 										"tag": "example",
-										"text": "\n// returns a random string with 12 bytes length\nStringFactory.RandomAlphaString(12);\n"
+										"text": "\n```typescript\n// returns a random string with 12 bytes length\nStringFactory.RandomAlphaString(12);\n```\n"
 									}
 								]
 							},
@@ -18574,7 +18538,7 @@
 					"sources": [
 						{
 							"fileName": "src/types/string/string.factory.ts",
-							"line": 46,
+							"line": 50,
 							"character": 28
 						}
 					]
@@ -20785,7 +20749,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 707,
+					"line": 711,
 					"character": 29
 				}
 			]
@@ -20855,7 +20819,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 635,
+					"line": 639,
 					"character": 25
 				}
 			]
@@ -20933,7 +20897,7 @@
 									"sources": [
 										{
 											"fileName": "src/utils/validation/class.validator.ts",
-											"line": 575,
+											"line": 579,
 											"character": 39
 										}
 									]
@@ -20967,7 +20931,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 575,
+					"line": 579,
 					"character": 32
 				}
 			]
@@ -21045,7 +21009,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 650,
+					"line": 654,
 					"character": 22
 				}
 			]
@@ -21098,7 +21062,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 809,
+					"line": 813,
 					"character": 23
 				}
 			]
@@ -21151,7 +21115,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 823,
+					"line": 827,
 					"character": 30
 				}
 			]
@@ -21204,7 +21168,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 837,
+					"line": 841,
 					"character": 23
 				}
 			]
@@ -21257,7 +21221,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 851,
+					"line": 855,
 					"character": 24
 				}
 			]
@@ -21311,7 +21275,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 751,
+					"line": 755,
 					"character": 31
 				}
 			]
@@ -21378,7 +21342,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 966,
+					"line": 970,
 					"character": 28
 				}
 			]
@@ -21431,7 +21395,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 488,
+					"line": 492,
 					"character": 25
 				}
 			]
@@ -21484,7 +21448,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 530,
+					"line": 534,
 					"character": 23
 				}
 			]
@@ -21537,7 +21501,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 502,
+					"line": 506,
 					"character": 23
 				}
 			]
@@ -21591,7 +21555,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 1026,
+					"line": 1030,
 					"character": 22
 				}
 			]
@@ -21645,7 +21609,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 867,
+					"line": 871,
 					"character": 26
 				}
 			]
@@ -21698,7 +21662,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 881,
+					"line": 885,
 					"character": 29
 				}
 			]
@@ -21751,7 +21715,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 679,
+					"line": 683,
 					"character": 21
 				}
 			]
@@ -21804,7 +21768,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 909,
+					"line": 913,
 					"character": 20
 				}
 			]
@@ -21857,7 +21821,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 937,
+					"line": 941,
 					"character": 22
 				}
 			]
@@ -21910,7 +21874,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 951,
+					"line": 955,
 					"character": 21
 				}
 			]
@@ -21963,7 +21927,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 895,
+					"line": 899,
 					"character": 28
 				}
 			]
@@ -22016,7 +21980,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 980,
+					"line": 984,
 					"character": 25
 				}
 			]
@@ -22069,7 +22033,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 735,
+					"line": 739,
 					"character": 26
 				}
 			]
@@ -22122,7 +22086,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 516,
+					"line": 520,
 					"character": 26
 				}
 			]
@@ -22175,7 +22139,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 765,
+					"line": 769,
 					"character": 30
 				}
 			]
@@ -22209,7 +22173,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 461,
+					"line": 465,
 					"character": 26
 				}
 			]
@@ -22262,7 +22226,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 923,
+					"line": 927,
 					"character": 22
 				}
 			]
@@ -22315,7 +22279,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 721,
+					"line": 725,
 					"character": 26
 				}
 			]
@@ -22368,7 +22332,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 1008,
+					"line": 1012,
 					"character": 22
 				}
 			]
@@ -22421,7 +22385,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 994,
+					"line": 998,
 					"character": 21
 				}
 			]
@@ -22488,7 +22452,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 560,
+					"line": 564,
 					"character": 19
 				}
 			]
@@ -22556,7 +22520,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 795,
+					"line": 799,
 					"character": 23
 				}
 			]
@@ -22623,7 +22587,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 605,
+					"line": 609,
 					"character": 25
 				}
 			]
@@ -22690,7 +22654,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 545,
+					"line": 549,
 					"character": 19
 				}
 			]
@@ -22758,7 +22722,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 780,
+					"line": 784,
 					"character": 23
 				}
 			]
@@ -22825,7 +22789,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 590,
+					"line": 594,
 					"character": 25
 				}
 			]
@@ -22892,7 +22856,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 665,
+					"line": 669,
 					"character": 25
 				}
 			]
@@ -22945,7 +22909,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 474,
+					"line": 478,
 					"character": 24
 				}
 			]
@@ -22998,7 +22962,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 693,
+					"line": 697,
 					"character": 27
 				}
 			]
@@ -23103,7 +23067,7 @@
 									"sources": [
 										{
 											"fileName": "src/utils/validation/class.validator.ts",
-											"line": 1042,
+											"line": 1046,
 											"character": 40
 										}
 									]
@@ -23137,7 +23101,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 1042,
+					"line": 1046,
 					"character": 29
 				}
 			]
@@ -23228,7 +23192,7 @@
 									"sources": [
 										{
 											"fileName": "src/utils/validation/class.validator.ts",
-											"line": 450,
+											"line": 454,
 											"character": 33
 										}
 									]
@@ -23245,7 +23209,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 450,
+					"line": 454,
 					"character": 26
 				}
 			]
@@ -23315,7 +23279,7 @@
 			"sources": [
 				{
 					"fileName": "src/utils/validation/class.validator.ts",
-					"line": 620,
+					"line": 624,
 					"character": 25
 				}
 			]
