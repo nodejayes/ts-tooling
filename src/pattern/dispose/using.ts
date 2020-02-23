@@ -2,9 +2,13 @@ import {IDisposable} from './disposable';
 
 /**
  * use a Instance and Dispose it after Execution
+ *
+ * @category Pattern
+ *
  * @param item a instance of a Class to Dispose after running the using section
  * @param cb what is to do in this using?
  *
+ * @example
  * ```typescript
  * class WithDisposable implements IDisposable {
  *   Name = 'WithoutDisposable';

@@ -1,7 +1,5 @@
 /**
- * deep copy a Javascript Object
- *
- * @param o the object to copy
+ * @ignore
  */
 export function recursiveDeepCopy(o) {
     let newO,
@@ -32,10 +30,7 @@ export function recursiveDeepCopy(o) {
 }
 
 /**
- * get a Object Value from a key definition
- *
- * @param obj the Object
- * @param key the Key definition
+ * @ignore
  */
 export function get(obj: any, key: string): any {
     let tmp = obj;
@@ -49,11 +44,7 @@ export function get(obj: any, key: string): any {
 }
 
 /**
- * set a Object key
- *
- * @param obj the Object
- * @param key the Key definition
- * @param value the Value to set
+ * @ignore
  */
 export function set(obj: any, key: string, value: any): any {
     let tmp = obj;
@@ -66,10 +57,7 @@ export function set(obj: any, key: string, value: any): any {
 }
 
 /**
- * combine slave into master
- *
- * @param master
- * @param slave
+ * @ignore
  */
 export function merge<T>(master: any, slave: any): T {
     for (const key in slave) {

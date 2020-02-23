@@ -1,9 +1,11 @@
 import {Subject, Subscription} from 'rxjs';
-import {Dictionary} from '../../complex/dictionary';
-import {StringFactory} from '../../utils/string.factory';
+import {Dictionary} from '../../types/dictionary';
+import {StringFactory} from '../../types/string';
 
 /**
  * lets create a Event Handler you can subscribe or unsubscribe
+ *
+ * @category Pattern
  */
 export class EventHandler<T> {
     private _stream = new Subject<T>();

@@ -3,6 +3,7 @@
 * merge simple Objects with ObjectFactory
 * ReactiveStore state only can changed by Mutation Function (using immer)
 * Array add Replace Method
+* create submodules (imported all in ts-tooling)
 
 ### 2.5.2
 

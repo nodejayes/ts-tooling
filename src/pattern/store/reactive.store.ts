@@ -1,8 +1,13 @@
 import {BehaviorSubject} from 'rxjs';
-import {Dictionary} from '../../complex/dictionary';
+import {Dictionary} from '../../types/dictionary';
 import {get, set} from '../../core/object';
-import produce from "immer";
+import produce, {Draft} from 'immer';
 
+/**
+ * extends the BehaviorSubject and prevent the next Method to execute
+ *
+ * @category Store
+ */
 export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
     /**
      * @deprecated please use state.Mutation() to change the State Value
@@ -18,6 +23,8 @@ export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
 
 /**
  * a Reactive Store to save States and listen to Changes
+ *
+ * @category Store
  */
 export class ReactiveStore<T> {
     /**
@@ -43,15 +50,17 @@ export class ReactiveStore<T> {
      * @param selector select the Part of the State to Listen
      *
      * @example
+     * ```typescript
      * // write the data Property of the State into the console
      * store.Listen(s => s.data).subscribe(d => console.info(d));
+     * ```
      */
-    Listen<K>(selector: (d: T) => K): SafeBehaviorSubject<K> {
+    Listen<K>(selector: (d: Draft<T>) => K): SafeBehaviorSubject<K> {
         let key = this.parseSelectorAccess(selector);
         if (this._behaviorSubjects.ContainsKey(key)) {
             return this._behaviorSubjects.TryGetValue(key);
         }
-        const subject = new SafeBehaviorSubject<K>(selector(<T>this._core));
+        const subject = new SafeBehaviorSubject<K>(selector(<Draft<T>>this._core));
         this._behaviorSubjects.Add(key, subject);
         return subject;
     }
@@ -62,18 +71,18 @@ export class ReactiveStore<T> {
      * @param mutation define how to change the State
      *
      * @example
+     * ```typescript
      * // simple Example to set the State
      * store.Mutate(s => s.data, () => newData);
-     *
-     * @example
      * // make a complex Mutation
      * store.Mutate(s => s, old => {
      *     old.data = [];
      *     old.loading = true;
      *     return old;
      * });
+     * ```
      */
-    Mutate<K>(selector: (d: T) => K, mutation: (s: K) => K): void {
+    Mutate<K>(selector: (d: Draft<T>) => K, mutation: (s: K) => K): void {
         const key = this.parseSelectorAccess(selector);
         const realKey = this.toRealKey(key);
         const behaviors = this.selectBehaviors(key);
@@ -126,10 +135,12 @@ export class ReactiveStore<T> {
      * adds "root" in front of the Key to have no empty Key when selector points to the State itself
      * @param selector
      * @example
+     * ```typescript
      * store.Listen(s => s.data) // generates the key: root.data
      * store.Listen(s => s) // generates the key: root
+     * ```
      */
-    private parseSelectorAccess<K>(selector: (d: T) => K): string {
+    private parseSelectorAccess<K>(selector: (d: Draft<T>) => K): string {
         let tmp = selector.toString();
         tmp = tmp.Split('{').ElementAt(1);
         tmp = tmp.Split('}').ElementAt(0);
@@ -159,9 +170,13 @@ export class ReactiveStore<T> {
 
     /**
      * creates the Original Path for a Object
+     *
      * @param key
+     *
      * @example
+     * ```typescript
      * root.data // generates: data
+     * ```
      */
     private toRealKey(key: string): string {
         return key.StartsWith('root.') ?

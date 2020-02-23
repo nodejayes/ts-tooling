@@ -1,6 +1,6 @@
 import {assert} from 'chai';
-import {create, createWithFactory} from '../../src/ts-tooling';
 import 'mocha';
+import {create, createWithFactory} from '../../src/ts-tooling';
 
 describe('construct Tests', () => {
    it('can define null safe Value', () => {

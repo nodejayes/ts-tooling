@@ -1,45 +1,21 @@
-import {DateTime} from './complex/date.time';
-import './type.extensions';
-
 // Types
-export {DateTime} from './complex/date.time';
-import {TimeSpan} from './complex/time.span';
-export {TimeSpan} from './complex/time.span';
-import {Guid} from './complex/guid';
-export {Guid} from './complex/guid';
-import {Byte} from './complex/byte';
-export {Byte} from './complex/byte';
-import {ByteStream} from './complex/byte.stream';
-export {ByteStream} from './complex/byte.stream';
-
-// Collections
-import {Dictionary} from './complex/dictionary';
-export {Dictionary} from './complex/dictionary';
-import {ListSortOrder} from './primitive/list.sort.order.enum';
-export {ListSortOrder} from './primitive/list.sort.order.enum';
+import {NumberFactory} from './types/number';
+import {StringFactory} from './types/string';
+import {ListSortOrder} from './types/array';
+import {ObjectFactory} from './types/object';
+import {TimeSpan, DateTime} from './types/datetime';
+import {Guid} from './types/guid';
+import {Byte, ByteStream} from './types/byte';
+import {Dictionary} from './types/dictionary';
 
 // Patterns
-import {using} from './pattern/dispose/using';
-export {using} from './pattern/dispose/using';
-export {IDisposable} from './pattern/dispose/disposable';
-import {create, createWithFactory} from './pattern/construct';
-export {create, createWithFactory} from './pattern/construct';
-import {EventHandler} from './pattern/events/event.handler';
-export {EventHandler} from './pattern/events/event.handler';
-import {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
-export {ReactiveStore, SafeBehaviorSubject} from './pattern/store/reactive.store';
-import {throttle, IThrottleOptions} from './pattern/functions/throttle';
-export {throttle, IThrottleOptions} from './pattern/functions/throttle';
+import {using, IDisposable, create, createWithFactory, IThrottleOptions, throttle} from './pattern';
+import {EventHandler} from './pattern/events';
+import {ReactiveStore, SafeBehaviorSubject} from './pattern/store';
 
 // Utils
-import {LZCompression} from './utils/lz';
-export {LZCompression} from './utils/lz';
+import {LZCompression} from './utils/compression';
 import {StopWatch} from './utils/stopwatch';
-export {StopWatch} from './utils/stopwatch';
-import {NumberFactory} from './utils/number.factory';
-export {NumberFactory} from './utils/number.factory';
-import {StringFactory} from "./utils/string.factory";
-export {StringFactory} from "./utils/string.factory";
 import {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty, IsEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, Equals, NotEquals,
@@ -67,10 +43,18 @@ import {
     UniqueArray,
     CustomValidation,
     ValidateClass
-} from './utils/class.validator';
+} from './utils/validation';
+import {TestDataGenerator} from './utils/generator';
+
 export {
-    ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty, IsEmpty,
-    MaxLength, MinLength, ValidateIf, Whitelist, Equals, NotEquals,
+    NumberFactory, StringFactory, ObjectFactory,
+    DateTime, TimeSpan, Guid, Byte, ByteStream,
+    ListSortOrder, Dictionary, TestDataGenerator,
+    LZCompression, StopWatch, ClassValidator,
+    IThrottleOptions, throttle, SafeBehaviorSubject, IDisposable,
+    create, createWithFactory, using, EventHandler, ReactiveStore,
+    IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
+    Equals, NotEquals,
     ArrayNotEmpty,
     IsAlpha,
     IsAlphanumeric,
@@ -94,18 +78,16 @@ export {
     Required,
     UniqueArray,
     CustomValidation,
-    ValidateClass
-} from './utils/class.validator';
-import {ObjectFactory} from "./utils/object.factory";
-export {ObjectFactory} from "./utils/object.factory";
-import {TestDataGenerator} from './utils/test.data.generator';
-export {TestDataGenerator} from './utils/test.data.generator';
+    ValidateClass,
+};
 
 export default {
+    NumberFactory, StringFactory, ObjectFactory,
     DateTime, TimeSpan, Guid, Byte, ByteStream,
-    Dictionary, ListSortOrder,
+    ListSortOrder, Dictionary, TestDataGenerator,
+    throttle, SafeBehaviorSubject,
     using, create, createWithFactory, EventHandler, ReactiveStore,
-    LZCompression, StopWatch, NumberFactory, StringFactory, ClassValidator, ObjectFactory,
+    LZCompression, StopWatch, ClassValidator,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
     Equals, NotEquals,
     ArrayNotEmpty,
