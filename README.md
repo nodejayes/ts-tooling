@@ -14,9 +14,6 @@ some tools for Typescript inspired by .NET Framework
 
 # Installation
 
-This Library was bundled with Webpack into a umd Module.
-It exports the tst variable!
-
 ```bash
 // install over npm
 npm install --save ts-tooling

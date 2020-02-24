@@ -1,19 +1,17 @@
 {
   "name": "ts-tooling",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "main": "lib/ts-tooling.js",
   "types": "lib/ts-tooling.d.ts",
   "scripts": {
-    "build": "webpack-cli",
+    "clear": "rimraf ./lib",
+    "build": "npm run clear && tsc && npm run docs",
     "test": "mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "cover": "nyc --extension=.ts --extension=.js --reporter=lcov --report-dir coverage mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
     "coveralls": "npm run build && npm run cover && cat ./coverage/lcov.info | coveralls",
     "build-test": "npm run build && npm run test",
     "release": "npm run build-test && npm publish",
-    "type-generation:main": "dts-generator --project . --out lib/ts-tooling.d.ts",
-    "type-generation:nodeworker": "dts-generator --project . --out lib/node-worker.d.ts",
-    "type-generation:webworker": "dts-generator --project . --out lib/web-worker.d.ts",
-    "analyze": "webpack --profile --json > profiling.json && webpack-bundle-analyzer profiling.json"
+    "docs": "typedoc --out ./docs --mode file --excludePrivate --excludeNotExported --excludeNotExported --exclude node_modules ./src/ts-tooling.ts"
   },
   "license": "MIT",
   "repository": {
@@ -38,9 +36,7 @@
     "change-case": "^4.1.1"
   },
   "devDependencies": {
-    "@types/async": "^3.0.7",
     "@types/chai": "^4.2.9",
-    "@types/lodash": "^4.14.149",
     "@types/luxon": "^1.21.0",
     "@types/mocha": "^7.0.1",
     "@types/node": "^13.7.1",
@@ -53,10 +49,6 @@
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
     "typedoc": "^0.16.10",
-    "typescript": "^3.8.2",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11",
-    "webpack-bundle-analyzer": "^3.6.0",
-    "dts-bundle-generator": "^3.3.1"
+    "typescript": "^3.8.2"
   }
 }

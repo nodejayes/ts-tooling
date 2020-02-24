@@ -1,4 +1,4 @@
-import '../../../lib/number';
+import '../../ts-tooling';
 import {assert} from 'chai';
 import 'mocha';
 

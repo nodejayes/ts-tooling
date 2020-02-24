@@ -1,3 +1,8 @@
+### 2.6.2
+
+* using typescript toolchain
+* remove webpack
+
 ### 2.6.1
 
 * fix Type generation

@@ -34,8 +34,8 @@ import {
     CustomValidation,
     ValidateClass,
 } from '../lib/ts-tooling';
-import {BackgroundWorker as NodeBackgroundWorker} from '../lib/node-worker';
-import {BackgroundWorker as WebBackgroundWorker} from '../lib/web-worker';
+import {BackgroundWorker as NodeBackgroundWorker} from '../lib/pattern/background.worker/node-worker';
+import {BackgroundWorker as WebBackgroundWorker} from '../lib/pattern/background.worker/web-worker';
 
 /**
  * Test if the Types are generated correctly in the Submodules from the lib folder
