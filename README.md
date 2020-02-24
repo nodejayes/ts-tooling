@@ -15,9 +15,9 @@ npm install --save ts-tooling
 | Build             | Coverage                                                                                                                                                                         |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Build State       | ![Node.js CI](https://github.com/nodejayes/ts-tooling/workflows/Node.js%20CI/badge.svg)                                                                                          |
-| Line Coverage     | ![Line Coverage](https://img.shields.io/badge/4736%2F4826%20-98.13510153336097%25-brightgreen)                         |
-| Function Coverage | ![Function Coverage](https://img.shields.io/badge/1443%2F1505%20-95.88039867109634%25-brightgreen) |
-| Branch Coverage   | ![Branch Coverage](https://img.shields.io/badge/749%2F868%20-86.29032258064517%25-yellow)               |
+| Line Coverage     | ![Line Coverage](https://img.shields.io/badge/4736%2F4826%20-98.14%25-brightgreen)                         |
+| Function Coverage | ![Function Coverage](https://img.shields.io/badge/1443%2F1505%20-95.88%25-brightgreen) |
+| Branch Coverage   | ![Branch Coverage](https://img.shields.io/badge/749%2F868%20-86.29%25-yellow)               |
 | Version           | [![npm version](https://badge.fury.io/js/ts-tooling.svg)](https://badge.fury.io/js/ts-tooling)                                                                                   |
 | Dependencies      | [![devDependency Status](https://david-dm.org/nodejayes/ts-tooling/dev-status.svg)](https://david-dm.org/nodejayes/ts-tooling#info=devDependencies)                              |
 | Licence           | ![npm](https://img.shields.io/npm/l/ts-tooling.svg)                                                                                                                              |
@@ -25,3 +25,4 @@ npm install --save ts-tooling
 |                   | ![npm](https://img.shields.io/npm/dw/ts-tooling.svg)                                                                                                                             |
 |                   | ![npm](https://img.shields.io/npm/dm/ts-tooling.svg)                                                                                                                             |
 |                   | ![npm](https://img.shields.io/npm/dy/ts-tooling.svg)                                                                                                                             |
+    

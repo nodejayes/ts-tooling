@@ -21,9 +21,9 @@ function getMarkdownTable(stats) {
 | Build             | Coverage                                                                                                                                                                         |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Build State       | ![Node.js CI](https://github.com/nodejayes/ts-tooling/workflows/Node.js%20CI/badge.svg)                                                                                          |
-| Line Coverage     | ![Line Coverage](https://img.shields.io/badge/${stats.hit.line}%2F${stats.total.line}%20-${stats.percentage.line}%25-${getColor(stats.percentage.line)})                         |
-| Function Coverage | ![Function Coverage](https://img.shields.io/badge/${stats.hit.functions}%2F${stats.total.functions}%20-${stats.percentage.functions}%25-${getColor(stats.percentage.functions)}) |
-| Branch Coverage   | ![Branch Coverage](https://img.shields.io/badge/${stats.hit.branch}%2F${stats.total.branch}%20-${stats.percentage.branch}%25-${getColor(stats.percentage.branch)})               |
+| Line Coverage     | ![Line Coverage](https://img.shields.io/badge/${stats.hit.line}%2F${stats.total.line}%20-${stats.percentage.line.toFixed(2)}%25-${getColor(stats.percentage.line)})                         |
+| Function Coverage | ![Function Coverage](https://img.shields.io/badge/${stats.hit.functions}%2F${stats.total.functions}%20-${stats.percentage.functions.toFixed(2)}%25-${getColor(stats.percentage.functions)}) |
+| Branch Coverage   | ![Branch Coverage](https://img.shields.io/badge/${stats.hit.branch}%2F${stats.total.branch}%20-${stats.percentage.branch.toFixed(2)}%25-${getColor(stats.percentage.branch)})               |
 | Version           | [![npm version](https://badge.fury.io/js/ts-tooling.svg)](https://badge.fury.io/js/ts-tooling)                                                                                   |
 | Dependencies      | [![devDependency Status](https://david-dm.org/nodejayes/ts-tooling/dev-status.svg)](https://david-dm.org/nodejayes/ts-tooling#info=devDependencies)                              |
 | Licence           | ![npm](https://img.shields.io/npm/l/ts-tooling.svg)                                                                                                                              |
