@@ -1,3 +1,9 @@
+### 2.6.3
+
+* using github ci
+* custom coverage generator
+* remove coveralls and travis ci
+
 ### 2.6.2
 
 * using typescript toolchain
