@@ -142,6 +142,19 @@ export class ReactiveStore<T> {
      */
     private parseSelectorAccess<K>(selector: (d: Draft<T>) => K): string {
         let tmp = selector.toString();
+        const isLambda = tmp.Contains('=>');
+        return isLambda ? this.parseLambdaSyntax(tmp) : this.parseFunctionSyntax(tmp);
+    }
+
+    private parseLambdaSyntax(tmp: string): string {
+        const key = tmp.Split('=>')
+            .ElementAt(1)
+            .Split(';')
+            .ElementAt(0);
+        return this.rootify(key);
+    }
+
+    private parseFunctionSyntax(tmp: string): string {
         tmp = tmp.Split('{').ElementAt(1);
         tmp = tmp.Split('}').ElementAt(0);
         if (tmp.Contains(';return ')) {
@@ -155,8 +168,11 @@ export class ReactiveStore<T> {
             .Split(';')
             .Reduce((target, e) => target.Concat(e), '')
             .Split('.');
-        let key = k.Reduce((target, e) => target.Concat(e, '.'), '');
-        key = key.ReplaceAll('[\'', '.')
+        return this.rootify(k.Reduce((target, e) => target.Concat(e, '.'), ''));
+    }
+
+    private rootify(selector: string): string {
+        const key = selector.ReplaceAll('[\'', '.')
             .ReplaceAll('["', '.')
             .ReplaceAll('\']', '')
             .ReplaceAll('"]', '');

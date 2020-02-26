@@ -5,13 +5,12 @@
     "moduleResolution": "node",
     "module": "commonjs",
     "target": "es5",
-    "allowJs": false,
-    "sourceMap": true,
+    "allowJs": true,
+    "sourceMap": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "lib": ["esnext", "dom"],
-    "declaration": true,
-    "declarationMap": true
+    "declaration": true
   },
   "include": [
     "src"

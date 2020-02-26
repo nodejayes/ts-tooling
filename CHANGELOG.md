@@ -1,3 +1,7 @@
+### 2.6.4
+
+* go back to webpack
+
 ### 2.6.3
 
 * using github ci

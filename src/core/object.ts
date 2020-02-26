@@ -1,5 +1,3 @@
-import '../types/string';
-
 /**
  * @ignore
  */
@@ -36,7 +34,7 @@ export function recursiveDeepCopy(o) {
  */
 export function get(obj: any, key: string): any {
     let tmp = obj;
-    for (const part of key.Split('.')) {
+    for (const part of key.split('.')) {
         if (!tmp || !tmp.hasOwnProperty(part)) {
             return null;
         }
@@ -50,7 +48,7 @@ export function get(obj: any, key: string): any {
  */
 export function set(obj: any, key: string, value: any): any {
     let tmp = obj;
-    const keys = key.Split('.');
+    const keys = key.split('.');
     for (let i = 0; i < keys.length-1; i++) {
         tmp = tmp[keys[i]];
     }
