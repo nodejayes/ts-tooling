@@ -10,7 +10,7 @@ b.setup(() => {
         data.Add(i);
     }
     return data;
-}, {executions: 100});
+}, {runtime: 1000});
 
 b.run('Array.filter', (d) => {
     d.filter(e => e > 3);

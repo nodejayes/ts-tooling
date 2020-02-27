@@ -1,6 +1,6 @@
 {
   "name": "ts-tooling",
-  "version": "2.6.4",
+  "version": "2.6.5",
   "main": "lib/ts-tooling.js",
   "module": "lib/ts-tooling.es.js",
   "types": "lib/ts-tooling.d.ts",
@@ -8,6 +8,9 @@
     "clear": "rimraf ./lib",
     "build": "npm run clear && webpack-cli",
     "test": "mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
+    "test:bundle": "mocha --timeout 30000 ./spec/bundle/**/*.spec.js",
+    "test:sub": "mocha --timeout 30000 --watch ./spec/submodule/**/*.spec.js",
+    "test:bundle:sub": "npm run test:bundle && npm run test:sub",
     "cover": "nyc --extension=.ts --extension=.js --reporter=lcov --report-dir coverage mocha --require ts-node/register --timeout 30000 **/*.spec.ts && npm run cover:publish",
     "cover:publish": "node ./scripts/coverage.js",
     "beforecommit": "npm run build && npm run cover && npm run docs",

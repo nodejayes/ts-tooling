@@ -1,3 +1,8 @@
+### 2.6.5
+
+* big bundle and submodule bundles
+* add testing generated bundles
+
 ### 2.6.4
 
 * go back to webpack

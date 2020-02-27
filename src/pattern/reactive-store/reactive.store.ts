@@ -2,6 +2,8 @@ import {BehaviorSubject} from 'rxjs';
 import {Dictionary} from '../../types/dictionary';
 import {get, set} from '../../core/object';
 import produce, {Draft} from 'immer';
+import '../../types/array';
+import '../../types/string';
 
 /**
  * extends the BehaviorSubject and prevent the next Method to execute

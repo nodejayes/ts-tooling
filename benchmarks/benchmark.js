@@ -4,37 +4,40 @@ class Benchmark {
     constructor(name) {
         this.name = name;
         this.data = null;
-        this.executions = 1;
+        this.runtime = 1;
         this.stats = [];
     }
 
     setup(cb, options) {
         this.data = cb();
-        if (options.executions > 1) {
-            this.executions = options.executions;
+        if (options.runtime > 1) {
+            this.runtime = options.runtime;
         }
     }
 
     run(name, cb) {
-        const sw = new StopWatch();
-        for (let i = 0; i < this.executions; i++) {
+        const sw1 = new StopWatch();
+        let runs = 0;
+        let totalTime = 0;
+        do {
             cb(this.data);
-        }
-        const swResult = sw.ElapsedMs() / this.executions;
+            runs++;
+            totalTime = sw1.ElapsedMs();
+        } while (totalTime < this.runtime);
+        const hz = (runs * this.runtime) / totalTime;
         this.stats.Add({
             name: name,
-            duration: swResult,
-            executions: this.executions,
+            duration: totalTime,
+            runtime: this.runtime,
+            ops: hz,
         });
     }
 
     print(accuracy) {
         console.info(`Benchmark ${this.name}`);
         console.info('-------------------------------------------------');
-        console.info(`Executions ${this.executions}`);
-        console.info(``);
-        for (const stat of this.stats.SortBy(['duration'], [ListSortOrder.ASC])) {
-            console.info(`${stat.duration.toFixed(accuracy || 3)} ms => ${stat.name}`);
+        for (const stat of this.stats.SortBy(['ops'], [ListSortOrder.DESC])) {
+            console.info(`${stat.ops.toFixed(accuracy || 0)} ops/sec ${stat.duration.toFixed(accuracy || 3)} ms => ${stat.name}`);
         }
         console.info('-------------------------------------------------');
     }
