@@ -1,18 +1,8 @@
-import '../array';
+require('../../array/extension');
 
-/**
- * representation of a string Dictionary
- *
- * @category Type
- */
-export class Dictionary<T> {
-    private _data = {};
-
-    /**
-     * create a new Dictionary you can fill it with predefined Data
-     * @param dictionary
-     */
-    constructor(dictionary?: { [key: string]: T }) {
+class Dictionary {
+    constructor(dictionary) {
+        this._data = {};
         if (dictionary) {
             this._data = dictionary;
         }
@@ -22,7 +12,7 @@ export class Dictionary<T> {
      * Number of Entries in the Dictionary
      * @constructor
      */
-    get Count(): number {
+    get Count() {
         return Object.keys(this._data).length;
     }
 
@@ -30,7 +20,7 @@ export class Dictionary<T> {
      * all Values of the Dictionary
      * @constructor
      */
-    get Values(): T[] {
+    get Values() {
         return Object.values(this._data);
     }
 
@@ -38,7 +28,7 @@ export class Dictionary<T> {
      * all Keys of the Dictionary
      * @constructor
      */
-    Keys(): string[] {
+    Keys() {
         return Object.keys(this._data);
     }
 
@@ -48,7 +38,7 @@ export class Dictionary<T> {
      * @param item
      * @constructor
      */
-    Add(key: string, item: T): Dictionary<T> {
+    Add(key, item) {
         this._data[key] = item;
         return this;
     }
@@ -57,7 +47,7 @@ export class Dictionary<T> {
      * clear the Dictionary
      * @constructor
      */
-    Clear(): Dictionary<T> {
+    Clear() {
         this._data = {};
         return this;
     }
@@ -67,7 +57,7 @@ export class Dictionary<T> {
      * @param key
      * @constructor
      */
-    Remove(key: string): Dictionary<T> {
+    Remove(key) {
         delete this._data[key];
         return this;
     }
@@ -77,7 +67,7 @@ export class Dictionary<T> {
      * @param key
      * @constructor
      */
-    ContainsKey(key: string): boolean {
+    ContainsKey(key) {
         return key in this._data;
     }
 
@@ -86,7 +76,7 @@ export class Dictionary<T> {
      * @param value
      * @constructor
      */
-    ContainsValue(value: T): boolean {
+    ContainsValue(value) {
         return this.Values.indexOf(value) > -1;
     }
 
@@ -94,7 +84,7 @@ export class Dictionary<T> {
      * get the Dictionary as Javascript Object
      * @constructor
      */
-    GetObject(): { [key: string]: T } {
+    GetObject() {
         return this._data;
     }
 
@@ -103,7 +93,7 @@ export class Dictionary<T> {
      * @param key
      * @constructor
      */
-    TryGetValue(key: string): T {
+    TryGetValue(key) {
         return this._data[key] || null;
     }
 
@@ -112,7 +102,7 @@ export class Dictionary<T> {
      * @param filter
      * @constructor
      */
-    Find(filter: (d: T) => boolean): T {
+    Find(filter) {
         for (const v of this.Values) {
             if (filter(v)) {
                 return v;
@@ -126,7 +116,7 @@ export class Dictionary<T> {
      * @param filter
      * @constructor
      */
-    FindAll(filter: (d: T) => boolean): T[] {
+    FindAll(filter) {
         const r = [];
         for (const key of Object.keys(this._data)) {
             if (filter(this._data[key])) {
@@ -136,3 +126,5 @@ export class Dictionary<T> {
         return r;
     }
 }
+
+module.exports = {Dictionary};

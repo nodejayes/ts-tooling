@@ -1,7 +1,5 @@
-import {assert} from 'chai';
-import 'mocha';
-import {Dictionary} from '../../../src/types/dictionary';
-import '../../../src/types/string';
+const {Dictionary} = require('./dictionary');
+const {assert} = require("chai");
 
 const DEMO_DATA = {'a': 1, 'b': 2, 'c': 3};
 const EMPTY = new Dictionary();
@@ -58,7 +56,7 @@ describe('Dictionary Tests', () => {
     });
 
     it('can find a Value by Filter', () => {
-        const d = new Dictionary<string>({
+        const d = new Dictionary({
             Hello: 'World',
             This: 'is',
             A: 'Dictionary',
@@ -67,7 +65,7 @@ describe('Dictionary Tests', () => {
     });
 
     it('can find multiple Values by a Filter', () => {
-        const d = new Dictionary<string>({
+        const d = new Dictionary({
             Hello: 'World',
             Hello2: 'World',
             Hello3: 'World',

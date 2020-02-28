@@ -47,6 +47,15 @@ describe('Core Module Export Tests', () => {
             assert.isFunction(Core.DateTime.ParseString);
         });
     });
+    describe('Guid Namespace', () => {
+        it('export Namespace', () => {
+            assert.isDefined(Core.Guid)
+        });
+        it('export functions', () => {
+            assert.isFunction(Core.Guid.Uuidv4);
+            assert.isFunction(Core.Guid.ValidateGuid);
+        });
+    });
     describe('Object Namespace', () => {
         it('export Namespace', () => {
             assert.isDefined(Core.Object)

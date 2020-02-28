@@ -1,6 +1,5 @@
-import {assert} from 'chai';
-import {Guid} from '../../../src/types/guid';
-import 'mocha';
+const {Guid} = require('./guid');
+const {assert} = require('chai');
 
 describe('Guid Tests', () => {
     it('can generate a new Guid', () => {

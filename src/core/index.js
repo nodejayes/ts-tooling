@@ -5,4 +5,5 @@ module.exports = {
     Object: require('./object/object'),
     String: require('./string/string'),
     DateTime: require('./datetime/datetime'),
+    Guid: require('./guid/guid'),
 };
