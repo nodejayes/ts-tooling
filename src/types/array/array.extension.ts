@@ -2,7 +2,7 @@
  * This is the doc comment for file1.ts
  * @packageDocumentation
  */
-import {recursiveDeepCopy} from '../../core/object';
+import {recursiveDeepCopy} from '../../core/object/object';
 import {
     filter,
     find,

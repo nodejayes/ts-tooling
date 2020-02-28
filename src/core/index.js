@@ -1,7 +1,6 @@
-const checker = require('./checker/checker');
-const array = require('./array/array');
-
 module.exports = {
-    Check: checker,
-    Array: array,
+    Check: require('./checker/checker'),
+    Array: require('./array/array'),
+    Object: require('./object/object'),
+    String: require('./string/string'),
 };

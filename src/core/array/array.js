@@ -1,3 +1,5 @@
+const {IsFunction} = require('../checker/checker');
+
 function _find(array, cb, getIdx = false, up = true) {
     if (up === true) {
         for (let i = 0; i < array.length; i++) {
@@ -19,8 +21,8 @@ function _find(array, cb, getIdx = false, up = true) {
 }
 
 const GetSortValue = (v1, v2) => {
-    if (typeof v1.IsBefore === typeof function () {} &&
-        typeof v1.IsAfter === typeof function () {}) {
+    if (IsFunction(v1.IsBefore) &&
+        IsFunction(v1.IsAfter)) {
         return v1.IsBefore(v2) ? [1, 2] :
             v1.IsAfter(v2) ? [2, 1] : [0, 0];
     }
@@ -32,7 +34,7 @@ const Sort = (array, columns, orders) => {
         for (let i = 0; i < columns.length; i++) {
             const column = columns[i];
             const reverse = orders[i];
-            const values = getSortValue(a[column], b[column]);
+            const values = GetSortValue(a[column], b[column]);
             if (values[0] < values[1]) {
                 return reverse ? 1 : -1;
             }
@@ -93,7 +95,7 @@ const Filter = (array, cb, remove = false) => {
 const Without = (array, elements) => {
     const tmp = [];
     for (const item of array) {
-        let found = indexOf(elements, item) > -1;
+        let found = IndexOf(elements, item) > -1;
         if (!found) {
             tmp.push(item);
         }
@@ -106,7 +108,7 @@ const IndexOf = (array, element, skip = 0) => {
         if (element === array[i] && i >= skip) {
             return i;
         }
-        if (isFunction(element['Equal']) && element['Equal'](array[i]) && i >= skip) {
+        if (IsFunction(element['Equal']) && element['Equal'](array[i]) && i >= skip) {
             return i;
         }
     }

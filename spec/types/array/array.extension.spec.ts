@@ -160,7 +160,7 @@ describe('Array Extension Tests', () => {
             assert.equal([].Add(1)[0], 1);
         });
     });
-    describe('[]: AddIfNotExists', () => {
+    describe('[Method]: AddIfNotExists', () => {
         it('add element that not exists', () => {
             assert.equal([1].AddIfNotExists(2).length, 2);
             assert.equal([1].AddIfNotExists(2)[0], 1);

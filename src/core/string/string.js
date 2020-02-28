@@ -1,7 +1,4 @@
-/**
- * @ignore
- */
-export function trimChar(string, charToRemove, mode = 0) {
+const TrimChar = (string, charToRemove, mode = 0) => {
     const l = charToRemove.length;
     if (mode === 0 || mode === 2) {
         while(string.substr(0, l) === charToRemove) {
@@ -16,23 +13,14 @@ export function trimChar(string, charToRemove, mode = 0) {
     }
 
     return string;
-}
+};
 
-/**
- * @ignore
- */
 const reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
 
-/**
- * @ignore
- */
 function hasUnicodeWord(string) {
     return reHasUnicodeWord.test(string);
 }
 
-/**
- * @ignore
- */
 const rsAstralRange = '\\ud800-\\udfff',
     rsComboMarksRange = '\\u0300-\\u036f',
     reComboHalfMarksRange = '\\ufe20-\\ufe2f',
@@ -47,9 +35,7 @@ const rsAstralRange = '\\ud800-\\udfff',
     rsUpperRange = 'A-Z\\xc0-\\xd6\\xd8-\\xde',
     rsVarRange = '\\ufe0e\\ufe0f',
     rsBreakRange = rsMathOpRange + rsNonCharRange + rsPunctuationRange + rsSpaceRange;
-/**
- * @ignore
- */
+
 const rsApos = "['\u2019]",
     rsBreak = '[' + rsBreakRange + ']',
     rsCombo = '[' + rsComboRange + ']',
@@ -64,9 +50,7 @@ const rsApos = "['\u2019]",
     rsSurrPair = '[\\ud800-\\udbff][\\udc00-\\udfff]',
     rsUpper = '[' + rsUpperRange + ']',
     rsZWJ = '\\u200d';
-/**
- * @ignore
- */
+
 const rsMiscLower = '(?:' + rsLower + '|' + rsMisc + ')',
     rsMiscUpper = '(?:' + rsUpper + '|' + rsMisc + ')',
     rsOptContrLower = '(?:' + rsApos + '(?:d|ll|m|re|s|t|ve))?',
@@ -78,9 +62,7 @@ const rsMiscLower = '(?:' + rsLower + '|' + rsMisc + ')',
     rsOrdUpper = '\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])',
     rsSeq = rsOptVar + reOptMod + rsOptJoin,
     rsEmoji = '(?:' + [rsDingbat, rsRegional, rsSurrPair].join('|') + ')' + rsSeq;
-/**
- * @ignore
- */
+
 const reUnicodeWord = RegExp([
     rsUpper + '?' + rsLower + '+' + rsOptContrLower + '(?=' + [rsBreak, rsUpper, '$'].join('|') + ')',
     rsMiscUpper + '+' + rsOptContrUpper + '(?=' + [rsBreak, rsUpper + rsMiscLower, '$'].join('|') + ')',
@@ -91,44 +73,32 @@ const reUnicodeWord = RegExp([
     rsDigits,
     rsEmoji
 ].join('|'), 'g');
-/**
- * @ignore
- */
+
 function unicodeWords(string) {
     return string.match(reUnicodeWord) || [];
 }
-/**
- * @ignore
- */
+
 const reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
-/**
- * @ignore
- */
+
 function asciiWords(string) {
     return string.match(reAsciiWord) || [];
 }
-/**
- * @ignore
- */
-export function words(string, pattern, guard = null) {
+
+const Words = (string, pattern, guard = null) => {
     pattern = guard ? undefined : pattern;
 
     if (pattern === undefined) {
         return hasUnicodeWord(string) ? unicodeWords(string) : asciiWords(string);
     }
     return string.match(pattern) || [];
-}
-/**
- * @ignore
- */
+};
+
 function basePropertyOf(object) {
     return function(key) {
         return object == null ? undefined : object[key];
     };
 }
-/**
- * @ignore
- */
+
 const htmlUnescapes = {
     '&amp;': '&',
     '&lt;': '<',
@@ -136,9 +106,7 @@ const htmlUnescapes = {
     '&quot;': '"',
     '&#39;': "'"
 };
-/**
- * @ignore
- */
+
 const htmlEscapes = {
     '&': '&amp;',
     '<': '&lt;',
@@ -146,50 +114,35 @@ const htmlEscapes = {
     '"': '&quot;',
     "'": '&#39;'
 };
-/**
- * @ignore
- */
+
 const unescapeHtmlChar = basePropertyOf(htmlUnescapes);
-/**
- * @ignore
- */
+
 const escapeHtmlChar = basePropertyOf(htmlEscapes);
-/**
- * @ignore
- */
+
 const reEscapedHtml = /&(?:amp|lt|gt|quot|#39);/g,
     reHasEscapedHtml = RegExp(reEscapedHtml.source);
-/**
- * @ignore
- */
+
 const reUnescapedHtml = /[&<>"']/g,
     reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
-/**
- * @ignore
- */
-export function unescape(string) {
+
+const Unescape = (string) => {
     return (string && reHasEscapedHtml.test(string))
         ? string.replace(reEscapedHtml, unescapeHtmlChar)
         : string;
-}
-/**
- * @ignore
- */
-export function escape(string) {
+};
+
+const Escape = (string) => {
     return (string && reHasUnescapedHtml.test(string))
         ? string.replace(reUnescapedHtml, escapeHtmlChar)
         : string;
-}
-/**
- * @ignore
- */
+};
+
 const reRegExpChar = /[\\^$.*+?()[\]{}|]/g,
     reHasRegExpChar = RegExp(reRegExpChar.source);
-/**
- * @ignore
- */
-export function escapeRegExp(string) {
+const EscapeRegExp = (string) => {
     return (string && reHasRegExpChar.test(string))
         ? string.replace(reRegExpChar, '\\$&')
         : string;
-}
+};
+
+module.exports = {EscapeRegExp, Escape, Unescape, Words, TrimChar};

@@ -1,4 +1,4 @@
-import {merge, recursiveDeepCopy} from '../../core/object';
+import {merge, recursiveDeepCopy} from '../../core/object/object';
 
 /**
  * @ignore
