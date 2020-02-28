@@ -1,13 +1,4 @@
 /**
- * @ignore
- */
-function random(min: number, max: number, floating: boolean): number {
-    return floating === true ?
-        Math.random() * (max - min) + min :
-        Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-/**
  * some Utils for Integer and Double numbers
  *
  * @category Type
@@ -31,13 +22,7 @@ export class NumberFactory {
      * NumberFactory.NewInteger('aaaa');
      * ```
      */
-    static NewInteger(value: number | string): number {
-        const tmp = parseInt(value.toString());
-        if (isNaN(tmp)) {
-            return 0;
-        }
-        return tmp;
-    }
+    static NewInteger(value: number | string): number;
 
     /**
      * create a new Double number from the given input
@@ -56,13 +41,7 @@ export class NumberFactory {
      * NumberFactory.NewDouble('aaa');
      * ```
      */
-    static NewDouble(value: number | string): number {
-        const tmp = parseFloat(value.toString());
-        if (isNaN(tmp)) {
-            return 0;
-        }
-        return tmp;
-    }
+    static NewDouble(value: number | string): number;
 
     /**
      * create Random Integers in the min/max Border
@@ -79,9 +58,7 @@ export class NumberFactory {
      * NumberFactory.RandomInteger(1, 10);
      * ```
      */
-    static RandomInteger(min: number, max: number): number {
-        return random(min, max, false);
-    }
+    static RandomInteger(min: number, max: number): number;
 
     /**
      * create Random Doubles in the min/max Border
@@ -98,7 +75,5 @@ export class NumberFactory {
      * NumberFactory.RandomDouble(0, 1)
      * ```
      */
-    static RandomDouble(min: number, max: number): number {
-        return random(min, max, true);
-    }
+    static RandomDouble(min: number, max: number): number;
 }

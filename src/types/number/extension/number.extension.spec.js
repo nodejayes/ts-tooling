@@ -1,6 +1,5 @@
-import '../../../src/types/number';
-import {assert} from 'chai';
-import 'mocha';
+require('./extension');
+const {assert} = require('chai');
 
 describe('Number Extension Tests', () => {
     describe('[Method]: Add', () => {

@@ -31,6 +31,14 @@ describe('Core Module Export Tests', () => {
             assert.isFunction(Core.Check.IsObject);
         });
     });
+    describe('Number Namespace', () => {
+        it('export Namespace', () => {
+            assert.isDefined(Core.Number)
+        });
+        it('export functions', () => {
+            assert.isFunction(Core.Number.Round);
+        });
+    });
     describe('Object Namespace', () => {
         it('export Namespace', () => {
             assert.isDefined(Core.Object)

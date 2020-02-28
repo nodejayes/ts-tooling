@@ -1,6 +1,5 @@
-import {assert} from 'chai';
-import 'mocha';
-import {NumberFactory} from '../../../src/types/number';
+const {assert} = require('chai');
+const {NumberFactory} = require('./number.factory');
 
 describe('Number Generator Tests', () => {
     it('generates Integer Numbers', () => {

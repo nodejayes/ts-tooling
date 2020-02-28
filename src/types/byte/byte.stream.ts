@@ -1,4 +1,4 @@
-import {Byte} from './byte';
+import {Byte} from './byte/byte';
 import '../array';
 
 /**
