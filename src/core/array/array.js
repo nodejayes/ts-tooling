@@ -1,74 +1,4 @@
-/**
- * @ignore
- */
-export function getSortValue(v1, v2) {
-    if (typeof v1.IsBefore === typeof function () {} &&
-        typeof v1.IsAfter === typeof function () {}) {
-        return v1.IsBefore(v2) ? [1, 2] :
-            v1.IsAfter(v2) ? [2, 1] : [0, 0];
-    }
-    return [v1, v2];
-}
-
-/**
- * @ignore
- */
-export function sort(array, columns, orders) {
-    return array.sort((a, b) => {
-        for (let i = 0; i < columns.length; i++) {
-            const column = columns[i];
-            const reverse = orders[i];
-            const values = getSortValue(a[column], b[column]);
-            if (values[0] < values[1]) {
-                return reverse ? 1 : -1;
-            }
-            if (values[0] > values[1]) {
-                return reverse ? -1 : 1;
-            }
-        }
-        return 0;
-    });
-}
-
-/**
- * @ignore
- */
-export function groupBy<T>(array: T[], select: (d: T) => any) {
-    const tmp = {};
-    for (const item of array) {
-        const v = select(item);
-        if (!tmp[v]) {
-            tmp[v] = [];
-        }
-        tmp[v].push(item);
-    }
-    return tmp;
-}
-
-/**
- * @ignore
- */
-export function reverse<T>(array: T[]): T[] {
-    const tmp = [];
-    let counter = 0;
-    for (let i = array.length-1; i >= 0; i--) {
-        tmp[counter] = array[i];
-        counter++;
-    }
-    return tmp;
-}
-
-/**
- * @ignore
- */
-export function isFunction(value: any): boolean {
-    return typeof value === typeof function() {};
-}
-
-/**
- * @ignore
- */
-export function _find<T>(array: T[], cb: (d: T) => boolean, getIdx = false, up = true) {
+function _find(array, cb, getIdx = false, up = true) {
     if (up === true) {
         for (let i = 0; i < array.length; i++) {
             const item = array[i];
@@ -88,24 +18,63 @@ export function _find<T>(array: T[], cb: (d: T) => boolean, getIdx = false, up =
     return getIdx ? -1 : null;
 }
 
-/**
- * @ignore
- */
-export function find<T>(array: T[], cb: (d: T) => boolean, getIdx = false) {
+const GetSortValue = (v1, v2) => {
+    if (typeof v1.IsBefore === typeof function () {} &&
+        typeof v1.IsAfter === typeof function () {}) {
+        return v1.IsBefore(v2) ? [1, 2] :
+            v1.IsAfter(v2) ? [2, 1] : [0, 0];
+    }
+    return [v1, v2];
+};
+
+const Sort = (array, columns, orders) => {
+    return array.sort((a, b) => {
+        for (let i = 0; i < columns.length; i++) {
+            const column = columns[i];
+            const reverse = orders[i];
+            const values = getSortValue(a[column], b[column]);
+            if (values[0] < values[1]) {
+                return reverse ? 1 : -1;
+            }
+            if (values[0] > values[1]) {
+                return reverse ? -1 : 1;
+            }
+        }
+        return 0;
+    });
+};
+
+const GroupBy = (array, select) => {
+    const tmp = {};
+    for (const item of array) {
+        const v = select(item);
+        if (!tmp[v]) {
+            tmp[v] = [];
+        }
+        tmp[v].push(item);
+    }
+    return tmp;
+};
+
+const Reverse = (array) => {
+    const tmp = [];
+    let counter = 0;
+    for (let i = array.length-1; i >= 0; i--) {
+        tmp[counter] = array[i];
+        counter++;
+    }
+    return tmp;
+};
+
+const Find = (array, cb, getIdx = false) => {
     return _find(array, cb, getIdx);
-}
+};
 
-/**
- * @ignore
- */
-export function findLast<T>(array: T[], cb: (d: T) => boolean, getIdx = false) {
+const FindLast = (array, cb, getIdx = false) => {
     return _find(array, cb, getIdx, false);
-}
+};
 
-/**
- * @ignore
- */
-export function filter<T>(array: T[], cb: (d: T) => boolean, remove = false): T[] {
+const Filter = (array, cb, remove = false) => {
     const tmp = [];
     for (const item of array) {
         if (remove === true) {
@@ -119,12 +88,9 @@ export function filter<T>(array: T[], cb: (d: T) => boolean, remove = false): T[
         }
     }
     return tmp;
-}
+};
 
-/**
- * @ignore
- */
-export function without<T>(array: T[], elements: T[]): T[] {
+const Without = (array, elements) => {
     const tmp = [];
     for (const item of array) {
         let found = indexOf(elements, item) > -1;
@@ -133,12 +99,9 @@ export function without<T>(array: T[], elements: T[]): T[] {
         }
     }
     return tmp;
-}
+};
 
-/**
- * @ignore
- */
-export function indexOf<T>(array: T[], element: T, skip = 0): number {
+const IndexOf = (array, element, skip = 0) => {
     for (let i = 0; i < array.length; i++) {
         if (element === array[i] && i >= skip) {
             return i;
@@ -148,12 +111,9 @@ export function indexOf<T>(array: T[], element: T, skip = 0): number {
         }
     }
     return -1;
-}
+};
 
-/**
- * @ignore
- */
-export function operateArray(arr, filter, operation) {
+const OperateArray = (arr, filter, operation) => {
     let value = null;
     let counter = 0;
     for (const item of arr) {
@@ -194,13 +154,12 @@ export function operateArray(arr, filter, operation) {
         value = value / counter;
     }
     return value;
-}
+};
 
-/**
- * @ignore
- */
-export function mergeArray(array, index, elements) {
+const MergeArray = (array, index, elements) => {
     const before = array.slice(0, index);
     const after = array.slice(index, array.length);
     return [...before, ...elements, ...after];
-}
+};
+
+module.exports = {MergeArray, Sort, OperateArray, IndexOf, Without, Filter, Find, FindLast, Reverse, GroupBy, GetSortValue};

@@ -1,7 +1,6 @@
-/**
- * @ignore
- */
-export function recursiveDeepCopy(o) {
+const MODUL = {};
+
+MODUL.prototype.RecursiveDeepCopy = (o) => {
     let newO,
         i;
 
@@ -15,7 +14,7 @@ export function recursiveDeepCopy(o) {
     if ('[object Array]' === Object.prototype.toString.apply(o)) {
         newO = [];
         for (i = 0; i < o.length; i += 1) {
-            newO[i] = recursiveDeepCopy(o[i]);
+            newO[i] = MODUL.prototype.RecursiveDeepCopy(o[i]);
         }
         return newO;
     }
@@ -23,16 +22,13 @@ export function recursiveDeepCopy(o) {
     newO = {};
     for (i in o) {
         if (o.hasOwnProperty(i)) {
-            newO[i] = recursiveDeepCopy(o[i]);
+            newO[i] = MODUL.prototype.RecursiveDeepCopy(o[i]);
         }
     }
     return newO;
-}
+};
 
-/**
- * @ignore
- */
-export function get(obj: any, key: string): any {
+MODUL.prototype.Get = (obj, key) => {
     let tmp = obj;
     for (const part of key.split('.')) {
         if (!tmp || !tmp.hasOwnProperty(part)) {
@@ -41,12 +37,9 @@ export function get(obj: any, key: string): any {
         tmp = tmp[part];
     }
     return tmp;
-}
+};
 
-/**
- * @ignore
- */
-export function set(obj: any, key: string, value: any): any {
+MODUL.prototype.Set = (obj, key, value) => {
     let tmp = obj;
     const keys = key.split('.');
     for (let i = 0; i < keys.length-1; i++) {
@@ -54,16 +47,13 @@ export function set(obj: any, key: string, value: any): any {
     }
     tmp[keys.LastOrDefault()] = value;
     return obj;
-}
+};
 
-/**
- * @ignore
- */
-export function merge<T>(master: any, slave: any): T {
+MODUL.prototype.Merge = (master, slave) => {
     for (const key in slave) {
         if (master.hasOwnProperty(key) && master[key] !== null && master[key] !== undefined) {
             if (typeof master[key] === typeof {}) {
-                master[key] = merge(master[key], slave[key]);
+                master[key] = MODUL.prototype.Merge(master[key], slave[key]);
                 continue;
             }
             master[key] = slave[key];
@@ -72,4 +62,6 @@ export function merge<T>(master: any, slave: any): T {
         }
     }
     return master;
-}
+};
+
+module.exports = MODUL;

@@ -1,8 +1,7 @@
 {
   "name": "ts-tooling",
-  "version": "2.6.5",
+  "version": "3.0.0",
   "main": "lib/ts-tooling.js",
-  "module": "lib/ts-tooling.es.js",
   "types": "lib/ts-tooling.d.ts",
   "scripts": {
     "clear": "rimraf ./lib",

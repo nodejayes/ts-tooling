@@ -13,7 +13,7 @@ import {
     operateArray,
     reverse, sort,
     without
-} from '../../core/array';
+} from '../../core/array/array';
 
 /**
  * represent a Sort Order of a List
