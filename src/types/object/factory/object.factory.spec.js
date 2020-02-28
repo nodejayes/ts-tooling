@@ -1,6 +1,5 @@
-import {assert} from 'chai';
-import 'mocha';
-import {ObjectFactory} from '../../../src/types/object';
+const {assert} = require('chai');
+const {ObjectFactory} = require('./object.factory');
 
 describe('Object Extension Tests', () => {
     it('detect Circular References', () => {

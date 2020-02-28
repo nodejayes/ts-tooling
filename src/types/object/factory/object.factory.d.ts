@@ -1,10 +1,3 @@
-import {merge, recursiveDeepCopy} from '../../core/object/object';
-
-/**
- * @ignore
- */
-const sizeof = require('object-sizeof');
-
 /**
  * Object Utils Class to perform some Operations on Objects
  *
@@ -26,9 +19,8 @@ export class ObjectFactory {
      * obj === ObjectFactory.Copy(obj);
      * ```
      */
-    static Copy<T>(instance: T): T {
-        return recursiveDeepCopy(instance);
-    }
+    static Copy<T>(instance: T): T;
+
     /**
      * check if the given Object has some self references
      *
@@ -45,9 +37,7 @@ export class ObjectFactory {
      * ObjectFactory.IsCircular(obj2);
      * ```
      */
-    static IsCircular(obj: any): boolean {
-        return ObjectFactory.GetCircular(obj).length > 0;
-    }
+    static IsCircular(obj: any): boolean;
 
     /**
      * returns the Keys of self references in Objects
@@ -66,28 +56,7 @@ export class ObjectFactory {
      * ObjectFactory.GetCircular(combined);
      * ```
      */
-    static GetCircular(obj: any): string[] {
-        const alreadyChecked = [];
-        const keyReferences = [];
-
-        function check(innerObj) {
-            if (innerObj && typeof innerObj === 'object') {
-                if (alreadyChecked.indexOf(innerObj) !== -1) {
-                    return ['yes'];
-                }
-                alreadyChecked.push(innerObj);
-                for (const key in innerObj) {
-                    if (innerObj.hasOwnProperty(key) && check(innerObj[key]).length > 0) {
-                        keyReferences.Add(key);
-                        return keyReferences;
-                    }
-                }
-            }
-            return keyReferences;
-        }
-
-        return check(obj);
-    }
+    static GetCircular(obj: any): string[];
 
     /**
      * returns the Size in Byte of a Object Instance
@@ -100,9 +69,7 @@ export class ObjectFactory {
      * ObjectFactory.SizeOf({Hello: 'World!'});
      * ```
      */
-    static SizeOf(obj: any): number {
-        return sizeof(obj);
-    }
+    static SizeOf(obj: any): number;
 
     /**
      * merge the child into the parent object
@@ -125,7 +92,5 @@ export class ObjectFactory {
      * ObjectFactory.Merge(obj1, obj2);
      * ```
      */
-    static Merge<T>(parent: any, child: any): T {
-        return merge(parent, child)
-    }
+    static Merge<T>(parent: any, child: any): T
 }

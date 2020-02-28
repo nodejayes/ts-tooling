@@ -1,5 +1,5 @@
 import {NumberFactory} from '../../types/number/factory/number.factory';
-import {ObjectFactory} from '../../types/object/object.factory';
+import {ObjectFactory} from '../../types/object/factory/object.factory';
 import {StringFactory} from '../../types/string/factory/string.factory';
 
 /**
