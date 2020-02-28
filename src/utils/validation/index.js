@@ -1,4 +1,4 @@
-import {
+const {
     ClassValidator,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
     Equals, NotEquals,
@@ -26,9 +26,9 @@ import {
     UniqueArray,
     CustomValidation,
     ValidateClass
-} from './class.validator';
+} = require('./class.validator/class.validator');
 
-export {
+module.exports = {
     ClassValidator,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
     Equals, NotEquals,
