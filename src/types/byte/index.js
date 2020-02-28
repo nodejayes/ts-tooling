@@ -1,4 +1,4 @@
-import {Byte} from './byte/byte';
-import {ByteStream} from './byte.stream';
+const {Byte} = require('./byte/byte');
+const {ByteStream} = require('./byte.stream/byte.stream');
 
-export {Byte, ByteStream};
+module.exports = {Byte, ByteStream};

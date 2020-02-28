@@ -1,21 +1,8 @@
-import {assert} from 'chai';
-import 'mocha';
-import {ListSortOrder} from '../../../src/ts-tooling';
+const {assert} = require('chai');
+const {ListSortOrder} = require('./extension');
+require('../string/extension/extension');
 
-interface TestAddress {
-    PLZ: string;
-    Street: string;
-    Town: string;
-}
-
-interface TestUser {
-    Name: string;
-    Age: number;
-    Birthday: Date;
-    Address: TestAddress;
-}
-
-const complexValues: TestUser[] = [
+const complexValues = [
     {
         Name: 'Jonas Schreiner',
         Age: 23,

@@ -1,6 +1,5 @@
-import '../../../src/types/string'
-import {assert} from 'chai';
-import 'mocha';
+require('./extension')
+const {assert} = require('chai');
 
 describe('String Extensions Tests', () => {
     describe('[Method]: CharAt', () => {

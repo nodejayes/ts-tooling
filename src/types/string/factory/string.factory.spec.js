@@ -1,6 +1,5 @@
-import 'mocha';
-import {assert} from 'chai';
-import {StringFactory} from '../../../src/types/string';
+const {assert} = require('chai');
+const {StringFactory} = require('./string.factory');
 
 describe('String Factory Tests', () => {
     it('generate Random String', () => {

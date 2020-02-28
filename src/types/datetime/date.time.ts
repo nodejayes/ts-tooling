@@ -1,6 +1,6 @@
 import {DateTime as LuxonDateTime} from 'luxon';
 import {TimeSpan} from './time.span';
-import {StringFactory} from '../string/string.factory';
+import {StringFactory} from '../string/factory/string.factory';
 
 /**
  * @ignore

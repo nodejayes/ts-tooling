@@ -1,6 +1,6 @@
 import {NumberFactory} from '../../types/number/factory/number.factory';
 import {ObjectFactory} from '../../types/object/object.factory';
-import {StringFactory} from '../../types/string/string.factory';
+import {StringFactory} from '../../types/string/factory/string.factory';
 
 /**
  * create some random Objects

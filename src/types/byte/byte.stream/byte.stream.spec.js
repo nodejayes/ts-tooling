@@ -1,6 +1,6 @@
-import {assert} from 'chai';
-import 'mocha';
-import {Byte, ByteStream} from '../../../src/types/byte';
+const {assert} = require('chai');
+const {ByteStream} = require('./byte.stream');
+const {Byte} = require('../byte/byte');
 
 describe('ByteStream Tests', () => {
     it('create a Empty Stream by default', () => {
@@ -19,7 +19,7 @@ describe('ByteStream Tests', () => {
     });
     it('set the Cursor Position manually', () => {
         const stream = new ByteStream();
-        stream.Write([1,2,3,4,5].Convert<Byte>(i => new Byte(i)));
+        stream.Write([1,2,3,4,5].Convert(i => new Byte(i)));
         assert.equal(stream.Position, 5);
         stream.SetCursor(0);
         assert.equal(stream.Position, 0);
@@ -30,7 +30,7 @@ describe('ByteStream Tests', () => {
     });
     it('set the Cursor Position on Read', () => {
         const stream = new ByteStream();
-        stream.Write([1,2,3,4,5].Convert<Byte>(i => new Byte(i)));
+        stream.Write([1,2,3,4,5].Convert(i => new Byte(i)));
         assert.equal(stream.Position, 5);
         stream.SetCursor(0);
         assert.equal(stream.Position, 0);
@@ -46,23 +46,23 @@ describe('ByteStream Tests', () => {
     });
     it('write/read into center of the stream', () => {
         const stream = new ByteStream();
-        stream.Write([1,2,3,4,5].Convert<Byte>(i => new Byte(i)));
+        stream.Write([1,2,3,4,5].Convert(i => new Byte(i)));
         stream.SetCursor(1);
-        stream.Write([10,20].Convert<Byte>(i => new Byte(i)));
+        stream.Write([10,20].Convert(i => new Byte(i)));
         assert.equal(stream.ReadByte(1), 10);
         assert.equal(stream.ReadByte(2), 20);
         assert.equal(stream.Position, 3);
     });
     it('reset the Cursor Position', () => {
         const stream = new ByteStream();
-        stream.Write([1,2,3,4,5].Convert<Byte>(i => new Byte(i)));
+        stream.Write([1,2,3,4,5].Convert(i => new Byte(i)));
         assert.equal(stream.Position, 5);
         stream.ResetCursor();
         assert.equal(stream.Position, 0);
     });
     it('read multiple values', () => {
         const stream = new ByteStream();
-        stream.Write([1,2,3,4,5].Convert<Byte>(i => new Byte(i)));
+        stream.Write([1,2,3,4,5].Convert(i => new Byte(i)));
         assert.deepEqual(stream.Read(), [1,2,3,4,5]);
         assert.deepEqual(stream.Read(0, 1), [1]);
         assert.deepEqual(stream.Read(1, 1), [2]);

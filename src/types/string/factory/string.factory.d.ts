@@ -1,7 +1,4 @@
-/**
- * some Utils for strings
- */
-import {NumberFactory} from '../number';
+import {NumberFactory} from '../../number';
 
 /**
  * some Utils for Strings
@@ -27,9 +24,7 @@ export class StringFactory {
      * StringFactory.IsNullOrEmpty('a');
      * ```
      */
-    static IsNullOrEmpty(value: string) {
-        return !value || value.length < 1;
-    }
+    static IsNullOrEmpty(value: string);
 
     /**
      * generate a Random String with given Size
@@ -47,16 +42,5 @@ export class StringFactory {
      * StringFactory.RandomAlphaString(12);
      * ```
      */
-    static RandomAlphaString(length: number): string {
-        if (length < 1) {
-            length = 1;
-        }
-        let tmp = '';
-        const upper = NumberFactory.RandomInteger(0, 1);
-        for (let i = 0; i < length; i++) {
-            const code = upper === 0 ? NumberFactory.RandomInteger(65, 90) : NumberFactory.RandomInteger(97, 122);
-            tmp += String.fromCharCode(code);
-        }
-        return tmp;
-    }
+    static RandomAlphaString(length: number): string;
 }
