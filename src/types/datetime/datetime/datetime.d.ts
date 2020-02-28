@@ -1,31 +1,5 @@
 import {DateTime as LuxonDateTime} from 'luxon';
-import {TimeSpan} from './time.span';
-import {StringFactory} from '../string/factory/string.factory';
-
-/**
- * @ignore
- */
-function checkLuxonTimeZone(zone: string, date: LuxonDateTime) {
-    if (!date.isValid && date.invalidReason === 'unsupported zone') {
-        throw new Error('Timezone ' + zone + ' not supported!');
-    }
-}
-
-/**
- * @ignore
- */
-function cloneLuxonDate(date: LuxonDateTime) {
-    return LuxonDateTime.fromObject({
-        year: date.year,
-        month: date.month,
-        day: date.day,
-        hour: date.hour,
-        minute: date.minute,
-        second: date.second,
-        millisecond: date.millisecond,
-        zone: date.zone,
-    });
-}
+import {TimeSpan} from '../timespan/timespan';
 
 /**
  * represent a DateTime DataType
@@ -33,151 +7,101 @@ function cloneLuxonDate(date: LuxonDateTime) {
  * @category Type
  */
 export class DateTime {
-    private _date = LuxonDateTime.utc();
-
     /**
      * Year of the Date
      */
-    get Year(): number {
-        return this._date.year;
-    }
+    get Year(): number;
 
     /**
      * Month of the Date
      */
-    get Month(): number {
-        return this._date.month;
-    }
+    get Month(): number;
 
     /**
      * Day of the Date in Month
      */
-    get Day(): number {
-        return this._date.day;
-    }
+    get Day(): number;
 
     /**
      * Hour of the Day
      */
-    get Hour(): number {
-        return this._date.hour;
-    }
+    get Hour(): number;
 
     /**
      * Minute of the Day
      */
-    get Minute(): number {
-        return this._date.minute;
-    }
+    get Minute(): number;
 
     /**
      * Second of the Day
      */
-    get Second(): number {
-        return this._date.second;
-    }
+    get Second(): number;
 
     /**
      * Millisecond of the Day
      */
-    get Millisecond(): number {
-        return this._date.millisecond;
-    }
+    get Millisecond(): number;
 
     /**
      * get the DateTime as UTC
      */
-    get UTC(): DateTime {
-        const tmp = cloneLuxonDate(this._date).toUTC();
-        return new DateTime(
-            'UTC',
-            tmp.year,
-            tmp.month,
-            tmp.day,
-            tmp.hour,
-            tmp.minute,
-            tmp.second,
-            tmp.millisecond,
-            true);
-    }
+    get UTC(): DateTime;
 
     /**
      * the offset to UTC Timezone in Minutes
      */
-    get UTCOffsetMinutes(): number {
-        return this._date.offset;
-    }
+    get UTCOffsetMinutes(): number;
 
     /**
      * the current Timezone Name
      */
-    get Zone(): string {
-        return this._date.zoneName;
-    }
+    get Zone(): string;
 
     /**
      * the Weekday of the DateTime
      */
-    get DayOfWeek(): number {
-        return this._date.weekday;
-    }
+    get DayOfWeek(): number;
 
     /**
      * the Day in the Year of the DateTime
      */
-    get DayOfYear(): number {
-        return this._date.ordinal;
-    }
+    get DayOfYear(): number;
 
     /**
      * the Number of the Days in the DateTime Year
      */
-    get DaysInYear(): number {
-        return this._date.daysInYear;
-    }
+    get DaysInYear(): number;
 
     /**
      * the Number of Days in the Month of the DateTime
      */
-    get DaysInMonth(): number {
-        return this._date.daysInMonth;
-    }
+    get DaysInMonth(): number;
 
     /**
      * the Quarter of the Year of the DateTime
      * @constructor
      */
-    get YearQuarter(): number {
-        return this._date.quarter;
-    }
+    get YearQuarter(): number;
 
     /**
      * the Week Number of the Year of DateTime
      */
-    get YearWeekNumber(): number {
-        return this._date.weekNumber;
-    }
+    get YearWeekNumber(): number;
 
     /**
      * the Date without the Time
      */
-    get Date(): DateTime {
-        return new DateTime(this.Zone, this.Year, this.Month, this.Day, 0, 0, 0, 0);
-    }
+    get Date(): DateTime;
 
     /**
      * the Time of the Day
      */
-    get TimeOfDay(): TimeSpan {
-        return new TimeSpan(this.Hour, this.Minute, this.Second, this.Millisecond, 0);
-    }
+    get TimeOfDay(): TimeSpan;
 
     /**
      * check if the DateTime is a valid DateTime
      */
-    get Valid(): boolean {
-        return this._date.isValid;
-    }
+    get Valid(): boolean;
 
     /**
      * create a new DateTime
@@ -201,22 +125,7 @@ export class DateTime {
      * new DateTime('Europe/Berlin', 2019, 1, 1, null, null, null, null, true);
      * ```
      */
-    constructor(zone?: string, year?: number, month?: number, day?: number, hour?: number, minute?: number, second?: number, millisecond?: number, keepTimeZone = false) {
-        if (StringFactory.IsNullOrEmpty(zone)) {
-            zone = 'UTC';
-        }
-        const isTimeSet = keepTimeZone === true || (hour >= 0 || minute >= 0 || second >= 0 || millisecond >= 0);
-        this._date = LuxonDateTime.utc(
-            year >= 0 ? year : undefined,
-            month ? month : undefined,
-            day ? day : undefined,
-            hour >= 0 ? hour : undefined,
-            minute >= 0 ? minute : undefined,
-            second >= 0 ? second : undefined,
-            millisecond >= 0 ? millisecond : undefined)
-            .setZone(zone, {keepLocalTime: isTimeSet});
-        checkLuxonTimeZone(zone, this._date);
-    }
+    constructor(zone?: string, year?: number, month?: number, day?: number, hour?: number, minute?: number, second?: number, millisecond?: number, keepTimeZone?: boolean);
 
     /**
      * create DateTime from a Luxon Date Object
@@ -232,17 +141,7 @@ export class DateTime {
      * DateTime.FromLuxon(vgl);
      * ```
      */
-    static FromLuxon(luxonDate: LuxonDateTime): DateTime {
-        return new DateTime(
-            luxonDate.zoneName,
-            luxonDate.year,
-            luxonDate.month,
-            luxonDate.day,
-            luxonDate.hour,
-            luxonDate.minute,
-            luxonDate.second,
-            luxonDate.millisecond);
-    }
+    static FromLuxon(luxonDate: LuxonDateTime): DateTime;
 
     /**
      * create a DateTime Type from a Javascript Date Object
@@ -260,16 +159,7 @@ export class DateTime {
      * DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0), 'Europe/Berlin'));
      * ```
      */
-    static FromJavascriptDate(date: Date, zone?: string): DateTime {
-        if (StringFactory.IsNullOrEmpty(zone)) {
-            zone = 'UTC';
-        }
-        const tmp = LuxonDateTime.fromJSDate(date, {
-            zone: zone,
-        });
-        checkLuxonTimeZone(zone, tmp);
-        return this.FromLuxon(tmp);
-    }
+    static FromJavascriptDate(date: Date, zone?: string): DateTime;
 
     /**
      * create DateTime from ISO string
@@ -287,16 +177,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-01-01T01:00:00.000', 'Europe/Berlin');
      * ```
      */
-    static FromISOString(isoStr: string, zone?: string): DateTime {
-        if (StringFactory.IsNullOrEmpty(zone)) {
-            zone = 'UTC';
-        }
-        const tmp = LuxonDateTime.fromISO(isoStr, {
-            zone,
-        });
-        checkLuxonTimeZone(zone, tmp);
-        return this.FromLuxon(tmp);
-    }
+    static FromISOString(isoStr: string, zone?: string): DateTime;
 
     /**
      * create DateTime from Milliseconds
@@ -313,16 +194,7 @@ export class DateTime {
      * DateTime.FromMilliseconds(vgl.toMillis(), 'Europe/Berlin');
      * ```
      */
-    static FromMilliseconds(milliseconds: number, zone?: string): DateTime {
-        if (StringFactory.IsNullOrEmpty(zone)) {
-            zone = 'UTC';
-        }
-        const tmp = LuxonDateTime.fromMillis(milliseconds, {
-            zone,
-        });
-        checkLuxonTimeZone(zone, tmp);
-        return this.FromLuxon(tmp);
-    }
+    static FromMilliseconds(milliseconds: number, zone?: string): DateTime;
 
     /**
      * get the DateTime in a specific Timezone
@@ -343,18 +215,7 @@ export class DateTime {
      * dateUtc.ToZone(TARGET_ZONE);
      * ```
      */
-    ToZone(zone: string, keepTimeZone = false): DateTime {
-        const tmp = cloneLuxonDate(this._date).setZone(zone, {keepLocalTime: keepTimeZone});
-        return new DateTime(
-            zone,
-            tmp.year,
-            tmp.month,
-            tmp.day,
-            tmp.hour,
-            tmp.minute,
-            tmp.second,
-            tmp.millisecond);
-    }
+    ToZone(zone: string, keepTimeZone?: boolean): DateTime;
 
     /**
      * add a DateTime to this DateTime
@@ -367,18 +228,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').Add(DateTime.FromISOString('2019-01-02T23:00:00'));
      * ```
      */
-    Add(dt: DateTime): DateTime {
-        this._date = this._date.plus({
-            year: dt.Year,
-            month: dt.Month,
-            day: dt.Day,
-            hour: dt.Hour,
-            minute: dt.Minute,
-            second: dt.Second,
-            millisecond: dt.Millisecond,
-        });
-        return this;
-    }
+    Add(dt: DateTime): DateTime;
 
     /**
      * check if the DateTime equals this DateTime
@@ -393,9 +243,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('2019-02-02T03:00:00'));
      * ```
      */
-    Equals(dt: DateTime): boolean {
-        return this._date.diff(dt._date).milliseconds === 0;
-    }
+    Equals(dt: DateTime): boolean;
 
     /**
      * subtract DateTime from this DateTime
@@ -408,18 +256,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-02-02T02:00:00').Subtract(DateTime.FromISOString('0000-01-01T01:00:00'));
      * ```
      */
-    Subtract(dt: DateTime): DateTime {
-        this._date = this._date.minus({
-            year: dt.Year,
-            month: dt.Month,
-            day: dt.Day,
-            hour: dt.Hour,
-            minute: dt.Minute,
-            second: dt.Second,
-            millisecond: dt.Millisecond,
-        });
-        return this;
-    }
+    Subtract(dt: DateTime): DateTime;
 
     /**
      * add a number of Years to this DateTime
@@ -432,10 +269,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddYears(2);
      * ```
      */
-    AddYears(years: number): DateTime {
-        this._date = this._date.plus({years});
-        return this;
-    }
+    AddYears(years: number): DateTime;
 
     /**
      * add a number of Months to this DateTime
@@ -448,10 +282,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(2);
      * ```
      */
-    AddMonths(months: number): DateTime {
-        this._date = this._date.plus({months});
-        return this;
-    }
+    AddMonths(months: number): DateTime;
 
     /**
      * add a number of Days to this DateTime
@@ -464,10 +295,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddDays(2);
      * ```
      */
-    AddDays(days: number): DateTime {
-        this._date = this._date.plus({days});
-        return this;
-    }
+    AddDays(days: number): DateTime;
 
     /**
      * add a number of Hours to this DateTime
@@ -480,10 +308,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddHours(1);
      * ```
      */
-    AddHours(hours: number): DateTime {
-        this._date = this._date.plus({hours});
-        return this;
-    }
+    AddHours(hours: number): DateTime;
 
     /**
      * add a number of Minutes to this DateTime
@@ -496,10 +321,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(1);
      * ```
      */
-    AddMinutes(minutes: number): DateTime {
-        this._date = this._date.plus({minutes});
-        return this;
-    }
+    AddMinutes(minutes: number): DateTime;
 
     /**
      * add a number of Seconds to this DateTime
@@ -512,10 +334,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(1);
      * ```
      */
-    AddSeconds(seconds: number): DateTime {
-        this._date = this._date.plus({seconds});
-        return this;
-    }
+    AddSeconds(seconds: number): DateTime;
 
     /**
      * add a number of Milliseconds to this DateTime
@@ -528,10 +347,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(1);
      * ```
      */
-    AddMilliseconds(milliseconds: number): DateTime {
-        this._date = this._date.plus({milliseconds});
-        return this;
-    }
+    AddMilliseconds(milliseconds: number): DateTime;
 
     /**
      * is this DateTime before
@@ -546,9 +362,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2019-02-02T02:00:00'));
      * ```
      */
-    IsBefore(dt: DateTime): boolean {
-        return this._date.diff(dt._date).milliseconds < 0;
-    }
+    IsBefore(dt: DateTime): boolean;
 
     /**
      * is this DateTime after
@@ -563,9 +377,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('2019-02-03T02:00:00'));
      * ```
      */
-    IsAfter(dt: DateTime): boolean {
-        return this._date.diff(dt._date).milliseconds > 0;
-    }
+    IsAfter(dt: DateTime): boolean;
 
     /**
      * if the Current DateTime in Daylight Saving Time
@@ -580,9 +392,7 @@ export class DateTime {
      * DateTime.FromISOString('2019-11-02T02:00:00', 'UTC').IsDaylightSavingTime();
      * ```
      */
-    IsDaylightSavingTime(): boolean {
-        return this._date.isInDST;
-    }
+    IsDaylightSavingTime(): boolean;
 
     /**
      * return the DateTime as a string
@@ -599,7 +409,5 @@ export class DateTime {
      * DateTime.FromISOString('2019-01-01T12:23:54').ToString('yyyy');
      * ```
      */
-    ToString(fmt?: string): string {
-        return this._date.toFormat(fmt ? fmt : 'yyyy-MM-dd HH:mm:ss');
-    }
+    ToString(fmt?: string): string;
 }

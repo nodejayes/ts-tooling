@@ -39,6 +39,14 @@ describe('Core Module Export Tests', () => {
             assert.isFunction(Core.Number.Round);
         });
     });
+    describe('DateTime Namespace', () => {
+        it('export Namespace', () => {
+            assert.isDefined(Core.DateTime)
+        });
+        it('export functions', () => {
+            assert.isFunction(Core.DateTime.ParseString);
+        });
+    });
     describe('Object Namespace', () => {
         it('export Namespace', () => {
             assert.isDefined(Core.Object)

@@ -1,9 +1,8 @@
-import {assert} from 'chai';
-import {DateTime as LuxonDateTime} from 'luxon';
-import {DateTime} from '../../../src/types/datetime';
-import 'mocha';
+const {DateTime} = require('./datetime');
+const {assert} = require('chai');
+const luxon = require('luxon');
 
-function assertDateValues(date: DateTime, year: number, month: number, day: number, hour: number, minute: number, second: number, millisecond: number, zone: string) {
+function assertDateValues(date, year, month, day, hour, minute, second, millisecond, zone) {
     assert.equal(date.Year, year);
     assert.equal(date.Month, month);
     assert.equal(date.Day, day);
@@ -14,7 +13,7 @@ function assertDateValues(date: DateTime, year: number, month: number, day: numb
     assert.equal(date.Zone, zone);
 }
 
-function assertDate(dt: DateTime, vgl: LuxonDateTime) {
+function assertDate(dt, vgl) {
     assert.equal(dt.Year, vgl.year);
     assert.equal(dt.Month, vgl.month);
     assert.equal(dt.Day, vgl.day);
@@ -27,7 +26,7 @@ function assertDate(dt: DateTime, vgl: LuxonDateTime) {
 describe('DateTime Tests', () => {
     it('can create empty DateTime is in UTC', () => {
         const dt = new DateTime();
-        const vgl = LuxonDateTime.utc();
+        const vgl = luxon.DateTime.utc();
         assertDate(dt, vgl);
     });
 
@@ -41,27 +40,27 @@ describe('DateTime Tests', () => {
             23,
             54,
             100);
-        const vgl = LuxonDateTime.utc(2019, 5, 1, 12, 23, 54, 100);
+        const vgl = luxon.DateTime.utc(2019, 5, 1, 12, 23, 54, 100);
         assertDate(dt, vgl);
     });
 
     it('can create now in other TimeZone', () => {
         const dt = new DateTime('Europe/Berlin');
-        const vgl = LuxonDateTime.utc().setZone('Europe/Berlin');
+        const vgl = luxon.DateTime.utc().setZone('Europe/Berlin');
         assertDate(dt, vgl);
     });
 
     it('create only date with no time in other timezone', () => {
         const dt = new DateTime('Europe/Berlin', 2019, 1, 1);
-        const vgl = LuxonDateTime.utc(2019, 1, 1).setZone('Europe/Berlin');
+        const vgl = luxon.DateTime.utc(2019, 1, 1).setZone('Europe/Berlin');
         assertDate(dt, vgl);
     });
 
     it('can convert the DateTime in UTC', () => {
         const dt1 = new DateTime('Europe/Berlin');
-        const luxonUtc1 = LuxonDateTime.utc();
+        const luxonUtc1 = luxon.DateTime.utc();
         const dt2 = new DateTime('Europe/Berlin', 2019, 1, 1, 1, 0, 0, 0);
-        const luxonUtc2 = LuxonDateTime.utc(2019, 1, 1, 0, 0, 0, 0);
+        const luxonUtc2 = luxon.DateTime.utc(2019, 1, 1, 0, 0, 0, 0);
         assertDate(dt1.UTC, luxonUtc1);
         assertDate(dt2.UTC, luxonUtc2);
     });
@@ -72,49 +71,49 @@ describe('DateTime Tests', () => {
     });
 
     it('can create DateTime from Luxon Date Object', () => {
-        const vgl = LuxonDateTime.utc();
+        const vgl = luxon.DateTime.utc();
         const dt = DateTime.FromLuxon(vgl);
         assertDate(dt, vgl);
     });
 
     it('can create DateTime from Luxon Date Object with a specific Timezone', () => {
-        const vgl = LuxonDateTime.utc().setZone('Europe/Berlin');
+        const vgl = luxon.DateTime.utc().setZone('Europe/Berlin');
         const dt = DateTime.FromLuxon(vgl);
         assert.isTrue(dt.UTCOffsetMinutes === 60 || dt.UTCOffsetMinutes === 120);
     });
 
     it('can create DateTime from Javascript Date Object', () => {
-        const vgl = LuxonDateTime.utc();
+        const vgl = luxon.DateTime.utc();
         const dt = DateTime.FromJavascriptDate(vgl.toJSDate());
         assertDate(dt, vgl);
     });
 
     it('can create DateTime from Javascript Date Object with a specific Timezone', () => {
-        const vgl = LuxonDateTime.utc();
+        const vgl = luxon.DateTime.utc();
         const dt = DateTime.FromJavascriptDate(vgl.toJSDate(), 'Europe/Berlin');
         assert.isTrue(dt.UTCOffsetMinutes === 60 || dt.UTCOffsetMinutes === 120);
     });
 
     it('can create DateTime from ISO Chars', () => {
-        const vgl = LuxonDateTime.utc();
+        const vgl = luxon.DateTime.utc();
         const dt = DateTime.FromISOString(vgl.toISO());
         assertDate(dt, vgl);
     });
 
     it('can create DateTime from ISO Chars with a specific Timezone', () => {
-        const vgl = LuxonDateTime.utc();
+        const vgl = luxon.DateTime.utc();
         const dt = DateTime.FromISOString(vgl.toISO(), 'Europe/Berlin');
         assert.isTrue(dt.UTCOffsetMinutes === 60 || dt.UTCOffsetMinutes === 120);
     });
 
     it('can create DateTime from Milliseconds', () => {
-        const vgl = LuxonDateTime.utc();
+        const vgl = luxon.DateTime.utc();
         const dt = DateTime.FromMilliseconds(vgl.toMillis());
         assertDate(dt, vgl);
     });
 
     it('can create DateTime from Milliseconds with specific Timezone', () => {
-        const vgl = LuxonDateTime.utc();
+        const vgl = luxon.DateTime.utc();
         const dt = DateTime.FromMilliseconds(vgl.toMillis(), 'Europe/Berlin');
         assert.isTrue(dt.UTCOffsetMinutes === 60 || dt.UTCOffsetMinutes === 120);
     });

@@ -1,7 +1,5 @@
-import {assert} from 'chai';
-import {TimeSpan} from '../../../src/types/datetime';
-import 'mocha';
-import {IMomentInstance} from '../../../src/types/datetime/time.span';
+const {assert} = require('chai');
+const {TimeSpan} = require('./timespan');
 
 describe('TimeSpan Tests', () => {
     it('can create empty TimeSpan', () => {
@@ -137,38 +135,38 @@ describe('TimeSpan Tests', () => {
         });
     });
     describe('[Method]: FromMoment', () => {
-        const MOMENT_1: IMomentInstance = {
-            hour(): number {
+        const MOMENT_1 = {
+            hour() {
                 return 1;
             },
-            minute(): number {
+            minute() {
                 return 0;
             },
-            second(): number {
+            second() {
                 return 0;
             },
-            millisecond(): number {
+            millisecond() {
                 return 0;
             },
-            valueOf(): number {
+            valueOf() {
                 return TimeSpan.MillisecondsPerHour;
             }
         };
 
-        const MOMENT_2: IMomentInstance = {
-            hour(): number {
+        const MOMENT_2 = {
+            hour() {
                 return 1;
             },
-            minute(): number {
+            minute() {
                 return 0;
             },
-            second(): number {
+            second() {
                 return 0;
             },
-            millisecond(): number {
+            millisecond() {
                 return 0;
             },
-            valueOf(): number {
+            valueOf() {
                 return 1581182006632;
             }
         };
@@ -259,4 +257,3 @@ describe('TimeSpan Tests', () => {
         });
     });
 });
-

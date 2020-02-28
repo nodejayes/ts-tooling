@@ -1,131 +1,23 @@
-import {StringFactory} from '../string';
+const {StringFactory} = require('../../string/factory/string.factory');
+const {ParseString} = require('../../../core/datetime/datetime');
 
-/**
- * Luxon representation
- * @ignore
- */
-export interface ILuxonDuration {
-    hours?: number;
-    minutes?: number;
-    seconds?: number;
-    milliseconds?: number;
-    days?: number;
-}
-
-/**
- * Moment Js representation
- * @ignore
- */
-export interface IMomentInstance {
-    valueOf(): number;
-    hour(): number;
-    minute(): number;
-    second(): number;
-    millisecond(): number;
-}
-
-/**
- * @ignore
- */
-function parseString(str: string): ILuxonDuration {
-    let d = 0;
-    let h = 0;
-    let m = 0;
-    let s = 0;
-    let ms = 0;
-
-    if (str.indexOf('.') !== -1) {
-        const tmp1 = str.split('.');
-        d = parseInt(tmp1[0]);
-        d = isNaN(d) ? 0 : d;
-        str = tmp1[1];
-    }
-    const tmp2 = str.split(':');
-    h = parseInt(tmp2[0]);
-    m = parseInt(tmp2[1]);
-    h = isNaN(h) ? 0 : h;
-    m = isNaN(m) ? 0 : m;
-
-    const tmp3 = tmp2[2].split(' ');
-
-    s = parseInt(tmp3[0]);
-    s = isNaN(s) ? 0 : s;
-    ms = parseInt(tmp3[1]);
-    ms = isNaN(ms) ? 0 : ms;
-
-    return {
-        days: d,
-        hours: h,
-        minutes: m,
-        seconds: s,
-        milliseconds: ms,
-    }
-}
-
-/**
- * represents a duration from milliseconds to days
- *
- * @category Type
- */
-export class TimeSpan {
-    private _days = 0;
-    private _hours = 0;
-    private _minutes = 0;
-    private _seconds = 0;
-    private _milliseconds = 0;
-
-    /**
-     * Milliseconds in a Second
-     */
+class TimeSpan {
     static MillisecondsPerSecond = 1000;
-    /**
-     * how much Hours have one Day
-     */
     static HoursPerDay = 24;
-    /**
-     * how much Minutes have one Day
-     */
     static MinutesPerDay = TimeSpan.HoursPerDay * 60;
-    /**
-     * how much Seconds have one Day
-     */
     static SecondsPerDay = TimeSpan.MinutesPerDay * 60;
-    /**
-     * how much Milliseconds have one Day
-     */
     static MillisecondsPerDay = TimeSpan.SecondsPerDay * TimeSpan.MillisecondsPerSecond;
-    /**
-     * Minutes in one Hour
-     */
     static MinutesPerHour = 60;
-    /**
-     * Seconds in one Hour
-     */
     static SecondsPerHour = TimeSpan.MinutesPerHour * 60;
-    /**
-     * Milliseconds in one Hour
-     */
     static MillisecondsPerHour = TimeSpan.SecondsPerHour * TimeSpan.MillisecondsPerSecond;
-    /**
-     * Seconds in one Minute
-     */
     static SecondsPerMinute = TimeSpan.SecondsPerHour / 60;
-    /**
-     * Milliseconds in one Minute
-     */
     static MillisecondsPerMinute = TimeSpan.SecondsPerMinute * TimeSpan.MillisecondsPerSecond;
 
-    /**
-     * the Days of this TimeSpan
-     */
-    get Day(): number {
+    get Day() {
         return this._days;
     }
 
-    /**
-     * the TimeSpan in Days
-     */
-    get TotalDays(): number {
+    get TotalDays() {
         const ms = (this._milliseconds / TimeSpan.MillisecondsPerDay);
         const s = (this._seconds / TimeSpan.SecondsPerDay);
         const m = (this._minutes / TimeSpan.MinutesPerDay);
@@ -133,17 +25,11 @@ export class TimeSpan {
         return this._days + ms + s + m + h;
     }
 
-    /**
-     * the Hour of this TimeSpan
-     */
-    get Hour(): number {
+    get Hour() {
         return this._hours;
     }
 
-    /**
-     * the TimeSpan in Hours
-     */
-    get TotalHours(): number {
+    get TotalHours() {
         const d = (this._days * TimeSpan.HoursPerDay);
         const m = (this._minutes / TimeSpan.MinutesPerHour);
         const s = (this._seconds / TimeSpan.SecondsPerHour);
@@ -151,17 +37,11 @@ export class TimeSpan {
         return this._hours + d + m + s + ms;
     }
 
-    /**
-     * the Minute of this TimeSpan
-     */
-    get Minute(): number {
+    get Minute() {
         return this._minutes;
     }
 
-    /**
-     * the TimeSpan in Minutes
-     */
-    get TotalMinutes(): number {
+    get TotalMinutes() {
         const d = this._days * TimeSpan.MinutesPerDay;
         const h = this._hours * TimeSpan.MinutesPerHour;
         const s = this._seconds / TimeSpan.SecondsPerMinute;
@@ -169,17 +49,11 @@ export class TimeSpan {
         return this._minutes + d + h + s + ms;
     }
 
-    /**
-     * the Second of this TimeSpan
-     */
-    get Second(): number {
+    get Second() {
         return this._seconds;
     }
 
-    /**
-     * the TimeSpan in Seconds
-     */
-    get TotalSeconds(): number {
+    get TotalSeconds() {
         const d = this._days * TimeSpan.SecondsPerDay;
         const h = this._hours * TimeSpan.SecondsPerHour;
         const m = this._minutes * TimeSpan.SecondsPerMinute;
@@ -187,17 +61,11 @@ export class TimeSpan {
         return this._seconds + d + h + m + ms;
     }
 
-    /**
-     * the Millisecond of this TimeSpan
-     */
-    get Millisecond(): number {
+    get Millisecond() {
         return this._milliseconds;
     }
 
-    /**
-     * the TimeSpan in Milliseconds
-     */
-    get TotalMilliseconds(): number {
+    get TotalMilliseconds() {
         const d = this._days * TimeSpan.MillisecondsPerDay;
         const h = this._hours * TimeSpan.MillisecondsPerHour;
         const m = this._minutes * TimeSpan.MillisecondsPerMinute;
@@ -205,22 +73,16 @@ export class TimeSpan {
         return this._milliseconds + d + h + m + s;
     }
 
-    /**
-     * get the Time Span in Weeks
-     */
-    get TotalWeeks(): number {
+    get TotalWeeks() {
         return this.TotalDays / 7;
     }
 
-    /**
-     * create a new TimeSpan
-     * @param hours
-     * @param minutes
-     * @param seconds
-     * @param milliseconds
-     * @param days
-     */
-    constructor(hours?: number, minutes?: number, seconds?: number, milliseconds?: number, days?: number) {
+    constructor(hours, minutes, seconds, milliseconds, days) {
+        this._days = 0;
+        this._hours = 0;
+        this._minutes = 0;
+        this._seconds = 0;
+        this._milliseconds = 0;
         if (days && days > 0) {
             this._days = days;
         }
@@ -238,12 +100,7 @@ export class TimeSpan {
         }
     }
 
-    /**
-     * create TimeSpan from Luxon Object
-     * @param luxon
-     * @constructor
-     */
-    static FromLuxon(luxon: ILuxonDuration): TimeSpan {
+    static FromLuxon(luxon) {
         return new TimeSpan(
             luxon.hours || 0,
             luxon.minutes || 0,
@@ -252,13 +109,7 @@ export class TimeSpan {
             luxon.days || 0);
     }
 
-    /**
-     * create a new TimeSpan from a moment js instance
-     *
-     * @param moment the moment js instance
-     * @param ignoreDate ignore the Date of the moment instance
-     */
-    static FromMoment(moment: IMomentInstance, ignoreDate = false): TimeSpan {
+    static FromMoment(moment, ignoreDate = false) {
         let millis = moment.valueOf();
         if (ignoreDate) {
             millis = moment.millisecond() +
@@ -269,13 +120,7 @@ export class TimeSpan {
         return TimeSpan.FromMilliseconds(millis);
     }
 
-    /**
-     * create a TimeSpan from a JavaScript Date
-     *
-     * @param date the JavaScript Date
-     * @param ignoreDate ignore the Date of the Date instance
-     */
-    static FromJavaScriptDate(date: Date, ignoreDate = false): TimeSpan {
+    static FromJavaScriptDate(date, ignoreDate = false) {
         let millis = date.valueOf();
         if (ignoreDate) {
             millis = date.getMilliseconds() +
@@ -286,22 +131,11 @@ export class TimeSpan {
         return TimeSpan.FromMilliseconds(millis);
     }
 
-    /**
-     * create TimeSpan from ISO Chars
-     * Format is "Day.Hour:Minute:Second Millisecond"
-     * @param isoStr
-     * @constructor
-     */
-    static FromISOString(isoStr: string): TimeSpan {
-        return this.FromLuxon(parseString(isoStr));
+    static FromISOString(isoStr) {
+        return this.FromLuxon(ParseString(isoStr));
     }
 
-    /**
-     * create TimeSpan from Milliseconds
-     * @param milliseconds
-     * @constructor
-     */
-    static FromMilliseconds(milliseconds: number): TimeSpan {
+    static FromMilliseconds(milliseconds) {
         const days = Math.floor(milliseconds / TimeSpan.MillisecondsPerDay);
         if (days > 0) {
             milliseconds = milliseconds - days * TimeSpan.MillisecondsPerDay;
@@ -321,12 +155,7 @@ export class TimeSpan {
         return new TimeSpan(hours, minutes, second, milliseconds, days);
     }
 
-    /**
-     * add a TimeSpan to this TimeSpan
-     * @param duration
-     * @constructor
-     */
-    Add(duration: TimeSpan): TimeSpan {
+    Add(duration) {
         this._days += duration.Day;
         this._hours += duration.Hour;
         this._minutes += duration.Minute;
@@ -335,20 +164,11 @@ export class TimeSpan {
         return this;
     }
 
-    /**
-     * check a TimeSpan of Equality with another TimeSpan
-     * @param duration
-     * @constructor
-     */
-    Equals(duration: TimeSpan): boolean {
+    Equals(duration) {
         return this.TotalMilliseconds === duration.TotalMilliseconds;
     }
 
-    /**
-     * negate the current TimeSpan
-     * @constructor
-     */
-    Negate(): TimeSpan {
+    Negate() {
         this._days = -this._days;
         this._hours = -this._hours;
         this._minutes = -this._minutes;
@@ -357,12 +177,7 @@ export class TimeSpan {
         return this;
     }
 
-    /**
-     * subtract a TimeSpan from this TimeSpan
-     * @param duration
-     * @constructor
-     */
-    Subtract(duration: TimeSpan): TimeSpan {
+    Subtract(duration) {
         this._days -= duration.Day;
         this._hours -= duration.Hour;
         this._minutes -= duration.Minute;
@@ -371,31 +186,15 @@ export class TimeSpan {
         return this;
     }
 
-    /**
-     * is the TimeSpan before this TimeSpan
-     * @param duration
-     * @constructor
-     */
-    IsBefore(duration: TimeSpan): boolean {
+    IsBefore(duration) {
         return duration.TotalMilliseconds > this.TotalMilliseconds;
     }
 
-    /**
-     * is the TimeSpan after this TimeSpan
-     * @param duration
-     * @constructor
-     */
-    IsAfter(duration: TimeSpan): boolean {
+    IsAfter(duration) {
         return duration.TotalMilliseconds < this.TotalMilliseconds;
     }
 
-    /**
-     * return the TimeSpan as a Chars
-     * you can define a Format Chars to format the TimeSpan
-     * @param fmt
-     * @constructor
-     */
-    ToString(fmt?: string): string {
+    ToString(fmt) {
         return (StringFactory.IsNullOrEmpty(fmt) ? this.Day > 0 ? 'D.HH:mm:ss' : 'HH:mm:ss' : fmt)
             .Replace('D', this.Day.toString(10))
             .Replace('HH', this.Hour.toString(10).PadLeft(2, '0'))
@@ -409,3 +208,5 @@ export class TimeSpan {
             .Replace('S', this.Millisecond.toString(10));
     }
 }
+
+module.exports = {TimeSpan};
