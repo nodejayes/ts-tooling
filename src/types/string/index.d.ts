@@ -1,2 +1,2 @@
 import './extension/extension';
-export {} from './factory/string.factory';
+export {StringFactory} from './factory/string.factory';

@@ -3,15 +3,15 @@ const {describe, it} = require('mocha');
 const {join} = require('path');
 const {BackgroundWorker} = require('./node');
 
-const WORKER_1_TYPESCRIPT = join(__dirname, 'stubs', 'worker1.ts');
-const WORKER_1_FAIL_TYPESCRIPT = join(__dirname, 'stubs', 'worker1_fail.ts');
+const WORKER_1_TYPESCRIPT = join(__dirname, 'stubs', 'worker2.js');
+const WORKER_1_FAIL_TYPESCRIPT = join(__dirname, 'stubs', 'worker1_fail.js');
 const WORKER_2_JAVASCRIPT = join(__dirname, 'stubs', 'worker2.js');
 const NOT_EXISTS_WORKER_FILE = join(__dirname, 'stubs', 'worker3.ts');
 const TEST_BASH_SCRIPT = join(__dirname, 'stubs', 'test.bash');
 
 describe('BackgroundWorker Tests', () => {
     it('run BackgroundWorker with external File', (done) => {
-        const worker = new BackgroundWorker(WORKER_2_JAVASCRIPT);
+        const worker = new BackgroundWorker(WORKER_1_TYPESCRIPT);
         worker.OnError.subscribe(err => {
             console.error(err);
             assert.fail('a Error was thrown in worker!');
@@ -25,7 +25,7 @@ describe('BackgroundWorker Tests', () => {
     it('run multiple Workers', (done) => {
         const WORKER_TO_START = 2;
         let counter = 1;
-        const worker1 = new BackgroundWorker(WORKER_2_JAVASCRIPT);
+        const worker1 = new BackgroundWorker(WORKER_1_TYPESCRIPT);
         worker1.OnFinish.subscribe((d) => {
             assert.equal(d, 2.6525285981219103e+32);
             counter++;

@@ -126,51 +126,6 @@ class DateTime {
         checkLuxonTimeZone(zone, this._date);
     }
 
-    static FromLuxon(luxonDate) {
-        return new DateTime(
-            luxonDate.zoneName,
-            luxonDate.year,
-            luxonDate.month,
-            luxonDate.day,
-            luxonDate.hour,
-            luxonDate.minute,
-            luxonDate.second,
-            luxonDate.millisecond);
-    }
-
-    static FromJavascriptDate(date, zone) {
-        if (StringFactory.IsNullOrEmpty(zone)) {
-            zone = 'UTC';
-        }
-        const tmp = luxon.DateTime.fromJSDate(date, {
-            zone: zone,
-        });
-        checkLuxonTimeZone(zone, tmp);
-        return this.FromLuxon(tmp);
-    }
-
-    static FromISOString(isoStr, zone) {
-        if (StringFactory.IsNullOrEmpty(zone)) {
-            zone = 'UTC';
-        }
-        const tmp = luxon.DateTime.fromISO(isoStr, {
-            zone,
-        });
-        checkLuxonTimeZone(zone, tmp);
-        return this.FromLuxon(tmp);
-    }
-
-    static FromMilliseconds(milliseconds, zone) {
-        if (StringFactory.IsNullOrEmpty(zone)) {
-            zone = 'UTC';
-        }
-        const tmp = luxon.DateTime.fromMillis(milliseconds, {
-            zone,
-        });
-        checkLuxonTimeZone(zone, tmp);
-        return this.FromLuxon(tmp);
-    }
-
     ToZone(zone, keepTimeZone = false) {
         const tmp = cloneLuxonDate(this._date).setZone(zone, {keepLocalTime: keepTimeZone});
         return new DateTime(
@@ -265,5 +220,50 @@ class DateTime {
         return this._date.toFormat(fmt ? fmt : 'yyyy-MM-dd HH:mm:ss');
     }
 }
+
+DateTime.FromLuxon = (luxonDate) => {
+    return new DateTime(
+        luxonDate.zoneName,
+        luxonDate.year,
+        luxonDate.month,
+        luxonDate.day,
+        luxonDate.hour,
+        luxonDate.minute,
+        luxonDate.second,
+        luxonDate.millisecond);
+};
+
+DateTime.FromJavascriptDate = (date, zone) => {
+    if (StringFactory.IsNullOrEmpty(zone)) {
+        zone = 'UTC';
+    }
+    const tmp = luxon.DateTime.fromJSDate(date, {
+        zone: zone,
+    });
+    checkLuxonTimeZone(zone, tmp);
+    return DateTime.FromLuxon(tmp);
+};
+
+DateTime.FromISOString = (isoStr, zone) => {
+    if (StringFactory.IsNullOrEmpty(zone)) {
+        zone = 'UTC';
+    }
+    const tmp = luxon.DateTime.fromISO(isoStr, {
+        zone,
+    });
+    checkLuxonTimeZone(zone, tmp);
+    return DateTime.FromLuxon(tmp);
+};
+
+DateTime.FromMilliseconds = (milliseconds, zone) => {
+    if (StringFactory.IsNullOrEmpty(zone)) {
+        zone = 'UTC';
+    }
+    const tmp = luxon.DateTime.fromMillis(milliseconds, {
+        zone,
+    });
+    checkLuxonTimeZone(zone, tmp);
+    return DateTime.FromLuxon(tmp);
+};
 
 module.exports = {DateTime};

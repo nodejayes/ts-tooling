@@ -1,6 +1,6 @@
-import { parentPort, workerData } from 'worker_threads';
+const { parentPort, workerData } = require('worker_threads');
 
-function factorial(n: number): number {
+function factorial(n) {
     throw new Error('want to fail in this Worker');
 }
 

@@ -4,17 +4,12 @@
   "main": "lib/ts-tooling.js",
   "types": "lib/ts-tooling.d.ts",
   "scripts": {
-    "clear": "rimraf ./lib",
-    "build": "npm run clear && webpack-cli",
-    "test": "mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
-    "test:bundle": "mocha --timeout 30000 ./spec/bundle/**/*.spec.js",
-    "test:sub": "mocha --timeout 30000 --watch ./spec/submodule/**/*.spec.js",
-    "test:bundle:sub": "npm run test:bundle && npm run test:sub",
-    "cover": "nyc --extension=.ts --extension=.js --reporter=lcov --report-dir coverage mocha --require ts-node/register --timeout 30000 **/*.spec.ts && npm run cover:publish",
+    "test": "mocha --timeout 5000 ./src/**/*.spec.js",
+    "cover": "nyc --reporter=lcov --report-dir coverage npm run test && npm run cover:publish",
     "cover:publish": "node ./scripts/coverage.js",
-    "beforecommit": "npm run build && npm run cover && npm run docs",
-    "release": "npm run beforecommit && npm publish",
-    "docs": "typedoc --out ./docs --mode file --excludePrivate --excludeNotExported --excludeNotExported --exclude node_modules ./src/ts-tooling.ts"
+    "docs": "typedoc --out ./docs --mode file --excludePrivate --excludeNotExported --excludeNotExported --exclude node_modules ./src/ts-tooling.d.ts",
+    "beforecommit": "npm run cover && npm run docs",
+    "release": "npm run beforecommit && npm publish"
   },
   "license": "MIT",
   "repository": {
@@ -46,9 +41,7 @@
     "fs-extra": "^8.1.0",
     "typedoc": "^0.16.10",
     "lcov-parse": "^1.0.0",
-    "lodash": "^4.17.15",
-    "webpack-cli": "^3.3.11",
-    "webpack": "^4.41.6"
+    "lodash": "^4.17.15"
   },
   "ngPackage": {
     "lib": {

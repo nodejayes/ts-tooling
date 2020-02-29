@@ -122,189 +122,189 @@ const VALIDATIONS = {
     IsDefined: v => !BASE_VALIDATIONS.IsDefined(v),
 };
 
-class ClassValidator {
-    static async Validate(instance) {
-        const errors = [];
-        checkForRequired(instance, errors);
-        for (const key of Object.keys(instance)) {
-            const validationRules = ValidationStore[`${instance.constructor.name}_${key}`];
-            const value = instance[key];
+class ClassValidator {}
 
-            if (validationRules) {
-                if (validationRules['ValidateIf'] && validationRules['ValidateIf'].Any() &&
-                    isFunction(validationRules['ValidateIf'][0]) && !validationRules['ValidateIf'][0](instance)) {
-                    continue;
-                } else if (validationRules['IsOptional'] && validationRules['IsOptional'][0] === true && !value) {
-                    continue;
-                }
+ClassValidator.Validate = async (instance) => {
+    const errors = [];
+    checkForRequired(instance, errors);
+    for (const key of Object.keys(instance)) {
+        const validationRules = ValidationStore[`${instance.constructor.name}_${key}`];
+        const value = instance[key];
 
-                for (const validationKey of Object.keys(validationRules)) {
-                    const validationValue = validationRules[validationKey][0];
-                    const validationMessage = validationRules[validationKey][1];
-                    switch (validationKey) {
-                        case 'IsDefined':
-                            executeValidation(value, BASE_VALIDATIONS.IsDefined, validationMessage, errors);
-                            break;
-                        case 'IsEmpty':
-                            executeValidation(value, BASE_VALIDATIONS.IsEmpty, validationMessage, errors);
-                            break;
-                        case 'IsNotEmpty':
-                            executeValidation(value, BASE_VALIDATIONS.IsNotEmpty, validationMessage, errors);
-                            break;
-                        case 'IsEmail':
-                            executeValidation(value, BASE_VALIDATIONS.IsEmail, validationMessage, errors);
-                            break;
-                        case 'Min':
-                            executeValidation(value, v => BASE_VALIDATIONS.Min(v, validationValue), validationMessage, errors);
-                            break;
-                        case 'Max':
-                            executeValidation(value, v => BASE_VALIDATIONS.Max(v, validationValue), validationMessage, errors);
-                            break;
-                        case 'MinLength':
-                            executeValidation(value, v => BASE_VALIDATIONS.MinLength(v, validationValue), validationMessage, errors);
-                            break;
-                        case 'MaxLength':
-                            executeValidation(value, v => BASE_VALIDATIONS.MaxLength(v, validationValue), validationMessage, errors);
-                            break;
-                        case 'Whitelist':
-                            executeValidation(value, v => BASE_VALIDATIONS.Whitelist(v, validationValue), validationMessage, errors);
-                            break;
-                        case 'Blacklist':
-                            executeValidation(value, v => BASE_VALIDATIONS.Blacklist(v, validationValue), validationMessage, errors);
-                            break;
-                        case 'Equals':
-                            executeValidation(value, v => BASE_VALIDATIONS.Equals(v, validationValue), validationMessage, errors);
-                            break;
-                        case 'NotEquals':
-                            executeValidation(value, v => BASE_VALIDATIONS.NotEquals(v, validationValue), validationMessage, errors);
-                            break;
-                        case 'IsInt':
-                            executeValidation(value, BASE_VALIDATIONS.IsInt, validationMessage, errors);
-                            break;
-                        case 'IsBooleanString':
-                            executeValidation(value, BASE_VALIDATIONS.IsBooleanString, validationMessage, errors);
-                            break;
-                        case 'IsNumberString':
-                            executeValidation(value, BASE_VALIDATIONS.IsNumberString, validationMessage, errors);
-                            break;
-                        case 'IsPositive':
-                            executeValidation(value, BASE_VALIDATIONS.IsPositive, validationMessage, errors);
-                            break;
-                        case 'IsNegative':
-                            executeValidation(value, BASE_VALIDATIONS.IsNegative, validationMessage, errors);
-                            break;
-                        case 'IsHash':
-                            executeValidation(value, BASE_VALIDATIONS.IsHash, validationMessage, errors);
-                            break;
-                        case 'IsUUID':
-                            executeValidation(value, BASE_VALIDATIONS.IsUUID, validationMessage, errors);
-                            break;
-                        case 'IsUrl':
-                            executeValidation(value, BASE_VALIDATIONS.IsUrl, validationMessage, errors);
-                            break;
-                        case 'IsAlpha':
-                            executeValidation(value, BASE_VALIDATIONS.IsAlpha, validationMessage, errors);
-                            break;
-                        case 'IsAlphanumeric':
-                            executeValidation(value, BASE_VALIDATIONS.IsAlphanumeric, validationMessage, errors);
-                            break;
-                        case 'IsAscii':
-                            executeValidation(value, BASE_VALIDATIONS.IsAscii, validationMessage, errors);
-                            break;
-                        case 'IsBase64':
-                            executeValidation(value, BASE_VALIDATIONS.IsBase64, validationMessage, errors);
-                            break;
-                        case 'IsHexColor':
-                            executeValidation(value, BASE_VALIDATIONS.IsHexColor, validationMessage, errors);
-                            break;
-                        case 'IsHexadecimal':
-                            executeValidation(value, BASE_VALIDATIONS.IsHexadecimal, validationMessage, errors);
-                            break;
-                        case 'IsMacAddress':
-                            executeValidation(value, BASE_VALIDATIONS.IsMacAddress, validationMessage, errors);
-                            break;
-                        case 'IsPort':
-                            executeValidation(value, BASE_VALIDATIONS.IsPort, validationMessage, errors);
-                            break;
-                        case 'IsIp':
-                            executeValidation(value, BASE_VALIDATIONS.IsIp, validationMessage, errors);
-                            break;
-                        case 'IsJSON':
-                            executeValidation(value, BASE_VALIDATIONS.IsJSON, validationMessage, errors);
-                            break;
-                        case 'IsJWT':
-                            executeValidation(value, BASE_VALIDATIONS.IsJWT, validationMessage, errors);
-                            break;
-                        case 'IsByteLength':
-                            executeValidation(value, v => BASE_VALIDATIONS.IsByteLength(v, validationValue), validationMessage, errors);
-                            break;
-                        case 'IsMongoId':
-                            executeValidation(value, BASE_VALIDATIONS.IsMongoId, validationMessage, errors);
-                            break;
-                        case 'MinDate':
-                            executeValidation(value, v => BASE_VALIDATIONS.MinDate(v, validationValue), validationMessage, errors);
-                            break;
-                        case 'MaxDate':
-                            executeValidation(value, v => BASE_VALIDATIONS.MaxDate(v, validationValue), validationMessage, errors);
-                            break;
-                        case 'ArrayNotEmpty':
-                            executeValidation(value, BASE_VALIDATIONS.ArrayNotEmpty, validationMessage, errors);
-                            break;
-                        case 'UniqueArray':
-                            executeValidation(value, BASE_VALIDATIONS.UniqueArray, validationMessage, errors);
-                            break;
-                        case 'CustomValidation':
-                            executeValidation(value, v => !validationValue(v), validationMessage, errors);
-                            break;
-                    }
-                }
+        if (validationRules) {
+            if (validationRules['ValidateIf'] && validationRules['ValidateIf'].Any() &&
+                isFunction(validationRules['ValidateIf'][0]) && !validationRules['ValidateIf'][0](instance)) {
+                continue;
+            } else if (validationRules['IsOptional'] && validationRules['IsOptional'][0] === true && !value) {
+                continue;
             }
 
-            if (Array.isArray(value) && value.Any()) {
-                for (const entry of value) {
-                    if (isObject(entry)) {
-                        // validate the SubObject but skip circulars
-                        if (!ObjectFactory.IsCircular(entry)) {
-                            const subErrors = await ClassValidator.Validate(entry);
-                            if (subErrors.Any()) {
-                                errors.AddRange(subErrors);
-                            }
+            for (const validationKey of Object.keys(validationRules)) {
+                const validationValue = validationRules[validationKey][0];
+                const validationMessage = validationRules[validationKey][1];
+                switch (validationKey) {
+                    case 'IsDefined':
+                        executeValidation(value, BASE_VALIDATIONS.IsDefined, validationMessage, errors);
+                        break;
+                    case 'IsEmpty':
+                        executeValidation(value, BASE_VALIDATIONS.IsEmpty, validationMessage, errors);
+                        break;
+                    case 'IsNotEmpty':
+                        executeValidation(value, BASE_VALIDATIONS.IsNotEmpty, validationMessage, errors);
+                        break;
+                    case 'IsEmail':
+                        executeValidation(value, BASE_VALIDATIONS.IsEmail, validationMessage, errors);
+                        break;
+                    case 'Min':
+                        executeValidation(value, v => BASE_VALIDATIONS.Min(v, validationValue), validationMessage, errors);
+                        break;
+                    case 'Max':
+                        executeValidation(value, v => BASE_VALIDATIONS.Max(v, validationValue), validationMessage, errors);
+                        break;
+                    case 'MinLength':
+                        executeValidation(value, v => BASE_VALIDATIONS.MinLength(v, validationValue), validationMessage, errors);
+                        break;
+                    case 'MaxLength':
+                        executeValidation(value, v => BASE_VALIDATIONS.MaxLength(v, validationValue), validationMessage, errors);
+                        break;
+                    case 'Whitelist':
+                        executeValidation(value, v => BASE_VALIDATIONS.Whitelist(v, validationValue), validationMessage, errors);
+                        break;
+                    case 'Blacklist':
+                        executeValidation(value, v => BASE_VALIDATIONS.Blacklist(v, validationValue), validationMessage, errors);
+                        break;
+                    case 'Equals':
+                        executeValidation(value, v => BASE_VALIDATIONS.Equals(v, validationValue), validationMessage, errors);
+                        break;
+                    case 'NotEquals':
+                        executeValidation(value, v => BASE_VALIDATIONS.NotEquals(v, validationValue), validationMessage, errors);
+                        break;
+                    case 'IsInt':
+                        executeValidation(value, BASE_VALIDATIONS.IsInt, validationMessage, errors);
+                        break;
+                    case 'IsBooleanString':
+                        executeValidation(value, BASE_VALIDATIONS.IsBooleanString, validationMessage, errors);
+                        break;
+                    case 'IsNumberString':
+                        executeValidation(value, BASE_VALIDATIONS.IsNumberString, validationMessage, errors);
+                        break;
+                    case 'IsPositive':
+                        executeValidation(value, BASE_VALIDATIONS.IsPositive, validationMessage, errors);
+                        break;
+                    case 'IsNegative':
+                        executeValidation(value, BASE_VALIDATIONS.IsNegative, validationMessage, errors);
+                        break;
+                    case 'IsHash':
+                        executeValidation(value, BASE_VALIDATIONS.IsHash, validationMessage, errors);
+                        break;
+                    case 'IsUUID':
+                        executeValidation(value, BASE_VALIDATIONS.IsUUID, validationMessage, errors);
+                        break;
+                    case 'IsUrl':
+                        executeValidation(value, BASE_VALIDATIONS.IsUrl, validationMessage, errors);
+                        break;
+                    case 'IsAlpha':
+                        executeValidation(value, BASE_VALIDATIONS.IsAlpha, validationMessage, errors);
+                        break;
+                    case 'IsAlphanumeric':
+                        executeValidation(value, BASE_VALIDATIONS.IsAlphanumeric, validationMessage, errors);
+                        break;
+                    case 'IsAscii':
+                        executeValidation(value, BASE_VALIDATIONS.IsAscii, validationMessage, errors);
+                        break;
+                    case 'IsBase64':
+                        executeValidation(value, BASE_VALIDATIONS.IsBase64, validationMessage, errors);
+                        break;
+                    case 'IsHexColor':
+                        executeValidation(value, BASE_VALIDATIONS.IsHexColor, validationMessage, errors);
+                        break;
+                    case 'IsHexadecimal':
+                        executeValidation(value, BASE_VALIDATIONS.IsHexadecimal, validationMessage, errors);
+                        break;
+                    case 'IsMacAddress':
+                        executeValidation(value, BASE_VALIDATIONS.IsMacAddress, validationMessage, errors);
+                        break;
+                    case 'IsPort':
+                        executeValidation(value, BASE_VALIDATIONS.IsPort, validationMessage, errors);
+                        break;
+                    case 'IsIp':
+                        executeValidation(value, BASE_VALIDATIONS.IsIp, validationMessage, errors);
+                        break;
+                    case 'IsJSON':
+                        executeValidation(value, BASE_VALIDATIONS.IsJSON, validationMessage, errors);
+                        break;
+                    case 'IsJWT':
+                        executeValidation(value, BASE_VALIDATIONS.IsJWT, validationMessage, errors);
+                        break;
+                    case 'IsByteLength':
+                        executeValidation(value, v => BASE_VALIDATIONS.IsByteLength(v, validationValue), validationMessage, errors);
+                        break;
+                    case 'IsMongoId':
+                        executeValidation(value, BASE_VALIDATIONS.IsMongoId, validationMessage, errors);
+                        break;
+                    case 'MinDate':
+                        executeValidation(value, v => BASE_VALIDATIONS.MinDate(v, validationValue), validationMessage, errors);
+                        break;
+                    case 'MaxDate':
+                        executeValidation(value, v => BASE_VALIDATIONS.MaxDate(v, validationValue), validationMessage, errors);
+                        break;
+                    case 'ArrayNotEmpty':
+                        executeValidation(value, BASE_VALIDATIONS.ArrayNotEmpty, validationMessage, errors);
+                        break;
+                    case 'UniqueArray':
+                        executeValidation(value, BASE_VALIDATIONS.UniqueArray, validationMessage, errors);
+                        break;
+                    case 'CustomValidation':
+                        executeValidation(value, v => !validationValue(v), validationMessage, errors);
+                        break;
+                }
+            }
+        }
+
+        if (Array.isArray(value) && value.Any()) {
+            for (const entry of value) {
+                if (isObject(entry)) {
+                    // validate the SubObject but skip circulars
+                    if (!ObjectFactory.IsCircular(entry)) {
+                        const subErrors = await ClassValidator.Validate(entry);
+                        if (subErrors.Any()) {
+                            errors.AddRange(subErrors);
                         }
                     }
                 }
-            } else if (isObject(value)) {
-                // validate the SubObject but skip circulars
-                if (!ObjectFactory.IsCircular(value)) {
-                    const subErrors = await ClassValidator.Validate(value);
-                    if (subErrors.Any()) {
-                        errors.AddRange(subErrors);
-                    }
+            }
+        } else if (isObject(value)) {
+            // validate the SubObject but skip circulars
+            if (!ObjectFactory.IsCircular(value)) {
+                const subErrors = await ClassValidator.Validate(value);
+                if (subErrors.Any()) {
+                    errors.AddRange(subErrors);
                 }
             }
         }
-        if (!errors.Any()) {
-            const validationRules = ValidationStore[`${instance.constructor.name}_`];
-            if (validationRules && validationRules['ValidateClass']) {
-                const validationValue = validationRules['ValidateClass'][0];
-                const validationMessage = validationRules['ValidateClass'][1];
-                if (typeof validationValue === typeof function () {}) {
-                    if (!validationValue(instance, VALIDATIONS)) {
-                        errors.Add({Message: validationMessage});
-                    }
-                }
-            }
-        }
-        return errors;
     }
+    if (!errors.Any()) {
+        const validationRules = ValidationStore[`${instance.constructor.name}_`];
+        if (validationRules && validationRules['ValidateClass']) {
+            const validationValue = validationRules['ValidateClass'][0];
+            const validationMessage = validationRules['ValidateClass'][1];
+            if (typeof validationValue === typeof function () {}) {
+                if (!validationValue(instance, VALIDATIONS)) {
+                    errors.Add({Message: validationMessage});
+                }
+            }
+        }
+    }
+    return errors;
+};
 
-    static async ValidateObject(constructor, value) {
-        const inst = new constructor();
-        for (const key of Object.keys(value)) {
-            inst[key] = value[key];
-        }
-        return await ClassValidator.Validate(inst);
+ClassValidator.ValidateObject = async (constructor, value) => {
+    const inst = new constructor();
+    for (const key of Object.keys(value)) {
+        inst[key] = value[key];
     }
-}
+    return ClassValidator.Validate(inst);
+};
 
 const ValidationStore = {};
 

@@ -7,20 +7,6 @@ class ByteStream {
         this._position = 0;
     }
 
-    static FromByteString(str) {
-        const tmp = new ByteStream();
-        const arr = [];
-        new TextEncoder().encode(str).forEach(i => arr.Add(new Byte(i)));
-        tmp.Write(arr);
-        return tmp;
-    }
-
-    static FromNumberArray(value) {
-        const tmp = new ByteStream();
-        tmp.Write(value.Convert(i => new Byte(i)));
-        return tmp;
-    }
-
     get Length() {
         return this._value.length;
     }
@@ -93,5 +79,19 @@ class ByteStream {
         return b;
     }
 }
+
+ByteStream.FromByteString = (str) => {
+    const tmp = new ByteStream();
+    const arr = [];
+    new TextEncoder().encode(str).forEach(i => arr.Add(new Byte(i)));
+    tmp.Write(arr);
+    return tmp;
+};
+
+ByteStream.FromNumberArray = (value) => {
+    const tmp = new ByteStream();
+    tmp.Write(value.Convert(i => new Byte(i)));
+    return tmp;
+};
 
 module.exports = {ByteStream};

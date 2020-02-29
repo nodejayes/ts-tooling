@@ -2,17 +2,6 @@ const {StringFactory} = require('../../string/factory/string.factory');
 const {ParseString} = require('../../../core/datetime/datetime');
 
 class TimeSpan {
-    static MillisecondsPerSecond = 1000;
-    static HoursPerDay = 24;
-    static MinutesPerDay = TimeSpan.HoursPerDay * 60;
-    static SecondsPerDay = TimeSpan.MinutesPerDay * 60;
-    static MillisecondsPerDay = TimeSpan.SecondsPerDay * TimeSpan.MillisecondsPerSecond;
-    static MinutesPerHour = 60;
-    static SecondsPerHour = TimeSpan.MinutesPerHour * 60;
-    static MillisecondsPerHour = TimeSpan.SecondsPerHour * TimeSpan.MillisecondsPerSecond;
-    static SecondsPerMinute = TimeSpan.SecondsPerHour / 60;
-    static MillisecondsPerMinute = TimeSpan.SecondsPerMinute * TimeSpan.MillisecondsPerSecond;
-
     get Day() {
         return this._days;
     }
@@ -100,61 +89,6 @@ class TimeSpan {
         }
     }
 
-    static FromLuxon(luxon) {
-        return new TimeSpan(
-            luxon.hours || 0,
-            luxon.minutes || 0,
-            luxon.seconds || 0,
-            luxon.milliseconds || 0,
-            luxon.days || 0);
-    }
-
-    static FromMoment(moment, ignoreDate = false) {
-        let millis = moment.valueOf();
-        if (ignoreDate) {
-            millis = moment.millisecond() +
-                (moment.second() * TimeSpan.MillisecondsPerSecond) +
-                (moment.minute() * TimeSpan.MillisecondsPerMinute) +
-                (moment.hour() * TimeSpan.MillisecondsPerHour);
-        }
-        return TimeSpan.FromMilliseconds(millis);
-    }
-
-    static FromJavaScriptDate(date, ignoreDate = false) {
-        let millis = date.valueOf();
-        if (ignoreDate) {
-            millis = date.getMilliseconds() +
-                (date.getSeconds() * TimeSpan.MillisecondsPerSecond) +
-                (date.getMinutes() * TimeSpan.MillisecondsPerMinute) +
-                (date.getHours() * TimeSpan.MillisecondsPerHour);
-        }
-        return TimeSpan.FromMilliseconds(millis);
-    }
-
-    static FromISOString(isoStr) {
-        return this.FromLuxon(ParseString(isoStr));
-    }
-
-    static FromMilliseconds(milliseconds) {
-        const days = Math.floor(milliseconds / TimeSpan.MillisecondsPerDay);
-        if (days > 0) {
-            milliseconds = milliseconds - days * TimeSpan.MillisecondsPerDay;
-        }
-        const hours = Math.floor(milliseconds / TimeSpan.MillisecondsPerHour);
-        if (hours > 0) {
-            milliseconds = milliseconds - hours * TimeSpan.MillisecondsPerHour;
-        }
-        const minutes = Math.floor(milliseconds / TimeSpan.MillisecondsPerMinute);
-        if (minutes > 0) {
-            milliseconds = milliseconds - minutes * TimeSpan.MillisecondsPerMinute;
-        }
-        const second = Math.floor(milliseconds / TimeSpan.MillisecondsPerSecond);
-        if (second > 0) {
-            milliseconds = milliseconds - second * TimeSpan.MillisecondsPerSecond;
-        }
-        return new TimeSpan(hours, minutes, second, milliseconds, days);
-    }
-
     Add(duration) {
         this._days += duration.Day;
         this._hours += duration.Hour;
@@ -208,5 +142,70 @@ class TimeSpan {
             .Replace('S', this.Millisecond.toString(10));
     }
 }
+TimeSpan.MillisecondsPerSecond = 1000;
+TimeSpan.HoursPerDay = 24;
+TimeSpan.MinutesPerDay = TimeSpan.HoursPerDay * 60;
+TimeSpan.SecondsPerDay = TimeSpan.MinutesPerDay * 60;
+TimeSpan.MillisecondsPerDay = TimeSpan.SecondsPerDay * TimeSpan.MillisecondsPerSecond;
+TimeSpan.MinutesPerHour = 60;
+TimeSpan.SecondsPerHour = TimeSpan.MinutesPerHour * 60;
+TimeSpan.MillisecondsPerHour = TimeSpan.SecondsPerHour * TimeSpan.MillisecondsPerSecond;
+TimeSpan.SecondsPerMinute = TimeSpan.SecondsPerHour / 60;
+TimeSpan.MillisecondsPerMinute = TimeSpan.SecondsPerMinute * TimeSpan.MillisecondsPerSecond;
+
+TimeSpan.FromLuxon = (luxon) => {
+    return new TimeSpan(
+        luxon.hours || 0,
+        luxon.minutes || 0,
+        luxon.seconds || 0,
+        luxon.milliseconds || 0,
+        luxon.days || 0);
+};
+
+TimeSpan.FromMoment = (moment, ignoreDate = false) => {
+    let millis = moment.valueOf();
+    if (ignoreDate) {
+        millis = moment.millisecond() +
+            (moment.second() * TimeSpan.MillisecondsPerSecond) +
+            (moment.minute() * TimeSpan.MillisecondsPerMinute) +
+            (moment.hour() * TimeSpan.MillisecondsPerHour);
+    }
+    return TimeSpan.FromMilliseconds(millis);
+};
+
+TimeSpan.FromJavaScriptDate = (date, ignoreDate = false) => {
+    let millis = date.valueOf();
+    if (ignoreDate) {
+        millis = date.getMilliseconds() +
+            (date.getSeconds() * TimeSpan.MillisecondsPerSecond) +
+            (date.getMinutes() * TimeSpan.MillisecondsPerMinute) +
+            (date.getHours() * TimeSpan.MillisecondsPerHour);
+    }
+    return TimeSpan.FromMilliseconds(millis);
+};
+
+TimeSpan.FromISOString = (isoStr) => {
+    return TimeSpan.FromLuxon(ParseString(isoStr));
+};
+
+TimeSpan.FromMilliseconds = (milliseconds) => {
+    const days = Math.floor(milliseconds / TimeSpan.MillisecondsPerDay);
+    if (days > 0) {
+        milliseconds = milliseconds - days * TimeSpan.MillisecondsPerDay;
+    }
+    const hours = Math.floor(milliseconds / TimeSpan.MillisecondsPerHour);
+    if (hours > 0) {
+        milliseconds = milliseconds - hours * TimeSpan.MillisecondsPerHour;
+    }
+    const minutes = Math.floor(milliseconds / TimeSpan.MillisecondsPerMinute);
+    if (minutes > 0) {
+        milliseconds = milliseconds - minutes * TimeSpan.MillisecondsPerMinute;
+    }
+    const second = Math.floor(milliseconds / TimeSpan.MillisecondsPerSecond);
+    if (second > 0) {
+        milliseconds = milliseconds - second * TimeSpan.MillisecondsPerSecond;
+    }
+    return new TimeSpan(hours, minutes, second, milliseconds, days);
+};
 
 module.exports = {TimeSpan};

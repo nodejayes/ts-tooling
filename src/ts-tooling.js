@@ -1,22 +1,22 @@
 // Types
-import {NumberFactory} from './types/number';
-import {StringFactory} from './types/string';
-import {ListSortOrder} from './types/array';
-import {ObjectFactory} from './types/object';
-import {TimeSpan, DateTime} from './types/datetime';
-import {Guid} from './types/guid';
-import {Byte, ByteStream} from './types/byte';
-import {Dictionary} from './types/dictionary';
+const {NumberFactory} = require('./types/number');
+const {StringFactory} = require('./types/string');
+const {ListSortOrder} = require('./types/array');
+const {ObjectFactory} = require('./types/object');
+const {TimeSpan, DateTime} = require('./types/datetime');
+const {Guid} = require('./types/guid');
+const {Byte, ByteStream} = require('./types/byte');
+const {Dictionary} = require('./types/dictionary');
 
 // Patterns
-import {using, IDisposable, create, createWithFactory, IThrottleOptions, throttle} from './pattern';
-import {EventHandler} from './pattern/event-handler';
-import {ReactiveStore, SafeBehaviorSubject} from './pattern/reactive-store';
+const {Using, Create, CreateWithFactory, Throttle} = require('./pattern');
+const {EventHandler} = require('./pattern/event-handler');
+const {ReactiveStore, SafeBehaviorSubject} = require('./pattern/reactive-store');
 
 // Utils
-import {LZCompression} from './utils/compression';
-import {StopWatch} from './utils/stopwatch';
-import {
+const {LZCompression} = require('./utils/compression');
+const {StopWatch} = require('./utils/stopwatch');
+const {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty, IsEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, Equals, NotEquals,
     ArrayNotEmpty,
@@ -43,16 +43,16 @@ import {
     UniqueArray,
     CustomValidation,
     ValidateClass
-} from './utils/validation';
-import {TestDataGenerator} from './utils/generator';
+} = require('./utils/validation');
+const {TestDataGenerator} = require('./utils/generator');
 
-export {
+module.exports = {
     NumberFactory, StringFactory, ObjectFactory,
     DateTime, TimeSpan, Guid, Byte, ByteStream,
     ListSortOrder, Dictionary, TestDataGenerator,
     LZCompression, StopWatch, ClassValidator,
-    IThrottleOptions, throttle, SafeBehaviorSubject, IDisposable,
-    create, createWithFactory, using, EventHandler, ReactiveStore,
+    Throttle, SafeBehaviorSubject,
+    Create, CreateWithFactory, Using, EventHandler, ReactiveStore,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
     Equals, NotEquals,
     ArrayNotEmpty,

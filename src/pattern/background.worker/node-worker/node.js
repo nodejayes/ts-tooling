@@ -46,11 +46,6 @@ class BackgroundWorker{
         worker.on('error', (err) => {
             this.OnError.next(err);
         });
-        worker.on('exit', (code) => {
-            if (!workerIsFinish) {
-                this.OnError.next(new Error('worker exited before Finish'));
-            }
-        });
     }
 }
 

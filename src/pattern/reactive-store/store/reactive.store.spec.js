@@ -6,8 +6,10 @@ const {describe, it} = require('mocha');
 const {assert} = require('chai');
 
 class ComplexObject {
-    name = null;
-    birthday = new DateTime('UTC', 1975, 1, 1);
+    constructor() {
+        this.name = null;
+        this.birthday = new DateTime('UTC', 1975, 1, 1);
+    }
 
     get Age() {
         return new DateTime().Subtract(this.birthday).Year;
