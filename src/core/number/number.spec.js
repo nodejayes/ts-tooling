@@ -1,4 +1,5 @@
 const {assert} = require('chai');
+const {describe, it} = require('mocha');
 const {Round, Random} = require('./number');
 
 describe('Core Number Tests', () => {

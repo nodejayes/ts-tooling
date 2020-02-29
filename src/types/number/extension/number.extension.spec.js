@@ -1,5 +1,6 @@
 require('./extension');
 const {assert} = require('chai');
+const {describe, it} = require('mocha');
 
 describe('Number Extension Tests', () => {
     describe('[Method]: Add', () => {

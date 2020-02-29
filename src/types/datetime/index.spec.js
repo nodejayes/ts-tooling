@@ -1,4 +1,5 @@
 const {assert} = require('chai');
+const {describe, it} = require('mocha');
 const {TimeSpan, DateTime} = require('./index');
 
 describe('Type DateTime Export Tests', () => {

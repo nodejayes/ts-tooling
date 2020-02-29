@@ -1,4 +1,5 @@
 const {assert} = require('chai');
+const {describe, it} = require('mocha');
 const {
     ClassValidator,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,

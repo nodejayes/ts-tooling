@@ -1,4 +1,5 @@
 const {Guid} = require('./guid');
+const {describe, it} = require('mocha');
 const {assert} = require('chai');
 
 describe('Guid Tests', () => {

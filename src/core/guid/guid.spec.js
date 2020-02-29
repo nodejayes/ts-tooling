@@ -1,4 +1,5 @@
 const chai = require('chai');
+const {describe, it} = require('mocha');
 chai.use(require('chai-uuid'));
 const {Uuidv4, ValidateGuid} = require('./guid');
 

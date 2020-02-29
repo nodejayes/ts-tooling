@@ -1,4 +1,5 @@
 const {Using} = require('./Using');
+const {describe, it} = require('mocha');
 const {assert} = require('chai');
 
 class WithDisposable {

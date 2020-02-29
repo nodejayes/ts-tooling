@@ -1,4 +1,5 @@
 const {EventHandler} = require('./event.handler');
+const {describe, it} = require('mocha');
 const {assert} = require('chai');
 
 describe('EventHandler Tests', () => {

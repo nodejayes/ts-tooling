@@ -1,4 +1,5 @@
 const {assert} = require('chai');
+const {describe, it} = require('mocha');
 const {LZCompression} = require('./lz');
 require('../../../types/array/extension');
 

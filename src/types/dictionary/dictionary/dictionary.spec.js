@@ -1,5 +1,6 @@
 const {Dictionary} = require('./dictionary');
-const {assert} = require("chai");
+const {describe, it} = require('mocha');
+const {assert} = require('chai');
 
 const DEMO_DATA = {'a': 1, 'b': 2, 'c': 3};
 const EMPTY = new Dictionary();

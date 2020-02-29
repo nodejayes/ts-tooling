@@ -1,4 +1,5 @@
 const {assert} = require('chai');
+const {describe, it} = require('mocha');
 const {EscapeRegExp, Unescape, Escape, Words, TrimChar} = require('./string');
 
 describe('Core String Tests', () => {

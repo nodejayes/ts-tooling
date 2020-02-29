@@ -1,9 +1,9 @@
-import {assert} from 'chai';
-import {ReactiveStore} from '../../../src/pattern/reactive-store';
-import {DateTime} from '../../../src/types/datetime';
-import 'mocha';
-import {filter} from 'rxjs/operators';
-import {zip} from 'rxjs';
+const {DateTime} = require('../../../types/datetime/datetime/datetime');
+const {ReactiveStore} = require('./reactive.store');
+const {zip} = require('rxjs');
+const {filter} = require('rxjs/operators');
+const {describe, it} = require('mocha');
+const {assert} = require('chai');
 
 class ComplexObject {
     name = null;
@@ -18,73 +18,49 @@ class ComplexObject {
     }
 }
 
-interface IComplexState {
-    obj: ComplexObject;
-}
-
-interface ITestUser {
-    name: string;
-}
-
-interface ITestState {
-    b: boolean;
-    n: number;
-    dt: DateTime;
-    o: ITestUser;
-}
-
-interface ITestStore {
-    test: ITestState;
-}
-
-interface ITestExact {
-    update: number,
-    updateComponent: number,
-}
-
 describe('Reactive Store Tests', () => {
-   it('can create a new Store with init State', () => {
-       const store = new ReactiveStore<ITestStore>({
-           test: {
-               b: true,
-               n: 5,
-               dt: DateTime.FromISOString('2019-01-01T00:00:00'),
-               o: {
-                   name: 'Paul'
-               }
-           }
-       });
-       assert.equal(store.Listen((s) => s.test.b).getValue(), true);
-       assert.equal(store.Listen((s) => s.test.n).getValue(), 5);
-       assert.equal(store.Listen((s) => s.test.dt.Year).getValue(), 2019);
-       assert.equal(store.Listen((s) => s.test.dt.Month).getValue(), 1);
-       assert.equal(store.Listen((s) => s.test.dt.Day).getValue(), 1);
-       assert.equal(store.Listen((s) => s.test.dt.Hour).getValue(), 0);
-       assert.equal(store.Listen((s) => s.test.dt.Minute).getValue(), 0);
-       assert.equal(store.Listen((s) => s.test.dt.Second).getValue(), 0);
-       assert.equal(store.Listen((s) => s.test.dt.Millisecond).getValue(), 0);
-       assert.equal(store.Listen((s) => s.test.o.name).getValue(), 'Paul');
-   });
+    it('can create a new Store with init State', () => {
+        const store = new ReactiveStore({
+            test: {
+                b: true,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        assert.equal(store.Listen((s) => s.test.b).getValue(), true);
+        assert.equal(store.Listen((s) => s.test.n).getValue(), 5);
+        assert.equal(store.Listen((s) => s.test.dt.Year).getValue(), 2019);
+        assert.equal(store.Listen((s) => s.test.dt.Month).getValue(), 1);
+        assert.equal(store.Listen((s) => s.test.dt.Day).getValue(), 1);
+        assert.equal(store.Listen((s) => s.test.dt.Hour).getValue(), 0);
+        assert.equal(store.Listen((s) => s.test.dt.Minute).getValue(), 0);
+        assert.equal(store.Listen((s) => s.test.dt.Second).getValue(), 0);
+        assert.equal(store.Listen((s) => s.test.dt.Millisecond).getValue(), 0);
+        assert.equal(store.Listen((s) => s.test.o.name).getValue(), 'Paul');
+    });
 
-   it('can mutate the State', () => {
-       const store = new ReactiveStore<ITestStore>({
-           test: {
-               b: true,
-               n: 5,
-               dt: DateTime.FromISOString('2019-01-01T00:00:00'),
-               o: {
-                   name: 'Paul'
-               }
-           }
-       });
-       store.Mutate(s => s.test.b, ov => false);
-       assert.equal(store.Listen(s => s.test.b).getValue(), false);
-   });
+    it('can mutate the State', () => {
+        const store = new ReactiveStore({
+            test: {
+                b: true,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Mutate(s => s.test.b, ov => false);
+        assert.equal(store.Listen(s => s.test.b).getValue(), false);
+    });
 
     it('exact match 1', (done) => {
         let callCount = 0;
         let callCount2 = 0;
-        const store = new ReactiveStore<ITestExact>({
+        const store = new ReactiveStore({
             update: 1,
             updateComponent: 2,
         });
@@ -107,7 +83,7 @@ describe('Reactive Store Tests', () => {
     it('exact match 2', (done) => {
         let callCount = 0;
         let callCount2 = 0;
-        const store = new ReactiveStore<ITestExact>({
+        const store = new ReactiveStore({
             update: 1,
             updateComponent: 2,
         });
@@ -127,85 +103,85 @@ describe('Reactive Store Tests', () => {
         store.Mutate(s => s.updateComponent, () => 5);
     });
 
-   it('listen multiple states', (done) => {
-       let callCount = 0;
-       let callCount2 = 0;
-       const store = new ReactiveStore<ITestStore>({
-           test: {
-               b: true,
-               n: 5,
-               dt: DateTime.FromISOString('2019-01-01T00:00:00'),
-               o: {
-                   name: 'Paul'
-               }
-           }
-       });
-       store.Listen(s => s.test.o).subscribe(() => {
-           callCount2++;
-           if (callCount2 > 1) {
-               assert.fail();
-           }
-       });
-       zip(
-           store.Listen(s => s),
-           store.Listen(s => s.test),
-           store.Listen(s => s.test.b),
-       )
-       .subscribe(d => {
-           callCount++;
-           const first = d[0] as ITestStore;
-           const second = d[1] as ITestState;
-           const third = d[2] as boolean;
-           if (callCount === 1) {
-               assert.isTrue(first.test.b);
-               assert.equal(first.test.n, 5);
-               assert.isTrue(second.b);
-               assert.equal(second.n, 5);
-               assert.isTrue(third);
-           }
-           if (callCount === 2) {
-               assert.isFalse(first.test.b);
-               assert.equal(first.test.n, 5);
-               assert.isFalse(second.b);
-               assert.equal(second.n, 5);
-               assert.isFalse(third);
-               done();
-           }
-       });
-       store.Mutate(s => s.test.b, () => false);
-   });
+    it('listen multiple states', (done) => {
+        let callCount = 0;
+        let callCount2 = 0;
+        const store = new ReactiveStore({
+            test: {
+                b: true,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s.test.o).subscribe(() => {
+            callCount2++;
+            if (callCount2 > 1) {
+                assert.fail();
+            }
+        });
+        zip(
+            store.Listen(s => s),
+            store.Listen(s => s.test),
+            store.Listen(s => s.test.b),
+        )
+            .subscribe(d => {
+                callCount++;
+                const first = d[0];
+                const second = d[1];
+                const third = d[2];
+                if (callCount === 1) {
+                    assert.isTrue(first.test.b);
+                    assert.equal(first.test.n, 5);
+                    assert.isTrue(second.b);
+                    assert.equal(second.n, 5);
+                    assert.isTrue(third);
+                }
+                if (callCount === 2) {
+                    assert.isFalse(first.test.b);
+                    assert.equal(first.test.n, 5);
+                    assert.isFalse(second.b);
+                    assert.equal(second.n, 5);
+                    assert.isFalse(third);
+                    done();
+                }
+            });
+        store.Mutate(s => s.test.b, () => false);
+    });
 
-   it('fire listener with other mutation', (done) => {
-       let callCount = 0;
-       const store = new ReactiveStore<ITestStore>({
-           test: {
-               b: true,
-               n: 5,
-               dt: DateTime.FromISOString('2019-01-01T00:00:00'),
-               o: {
-                   name: 'Paul'
-               }
-           }
-       });
-       store.Listen(s => s.test.b).subscribe(d => {
-           callCount++;
-           if (callCount === 1) {
-               assert.isTrue(d);
-           }
-           if (callCount === 2) {
-               assert.isFalse(d);
-               done();
-           }
-       });
-       store.Mutate(s => s.test, o => {
-           o.b = false;
-           return o;
-       });
-   });
+    it('fire listener with other mutation', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore({
+            test: {
+                b: true,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s.test.b).subscribe(d => {
+            callCount++;
+            if (callCount === 1) {
+                assert.isTrue(d);
+            }
+            if (callCount === 2) {
+                assert.isFalse(d);
+                done();
+            }
+        });
+        store.Mutate(s => s.test, o => {
+            o.b = false;
+            return o;
+        });
+    });
 
     it('mutate root state and fire to Listeners', (done) => {
         let callCount = 0;
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: true,
                 n: 5,
@@ -221,9 +197,9 @@ describe('Reactive Store Tests', () => {
             store.Listen(s => s)
         ).subscribe(d => {
             callCount++;
-            const first = d[0] as boolean;
-            const second = d[1] as number;
-            const third = d[2] as ITestStore;
+            const first = d[0];
+            const second = d[1];
+            const third = d[2];
             if (callCount === 1) {
                 assert.isTrue(first);
                 assert.equal(second, 5);
@@ -245,84 +221,84 @@ describe('Reactive Store Tests', () => {
         });
     });
 
-   it('can listen on mutation', (done) => {
-       let callCount = 0;
-       const store = new ReactiveStore<ITestStore>({
-           test: {
-               b: true,
-               n: 5,
-               dt: DateTime.FromISOString('2019-01-01T00:00:00'),
-               o: {
-                   name: 'Paul'
-               }
-           }
-       });
-       store.Listen(s => s.test.b).subscribe(d => {
-           callCount = callCount.Increment();
-           if (callCount.IsBelow(2)) {
-               // init call
-               assert.equal(d, true);
-               return;
-           }
-           // mutate call
-           assert.equal(d, false);
-           done();
-       });
-       store.Mutate(s => s.test.b, ov => false);
-   });
+    it('can listen on mutation', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore({
+            test: {
+                b: true,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s.test.b).subscribe(d => {
+            callCount = callCount.Increment();
+            if (callCount.IsBelow(2)) {
+                // init call
+                assert.equal(d, true);
+                return;
+            }
+            // mutate call
+            assert.equal(d, false);
+            done();
+        });
+        store.Mutate(s => s.test.b, ov => false);
+    });
 
-   it('can mutate complete State', (done) => {
-       let callCount = 0;
-       const store = new ReactiveStore<ITestStore>({
-           test: {
-               b: true,
-               n: 5,
-               dt: DateTime.FromISOString('2019-01-01T00:00:00'),
-               o: {
-                   name: 'Paul'
-               }
-           }
-       });
-       store.Listen(s => s.test).subscribe(d => {
-           callCount = callCount.Increment();
-           if (callCount.IsBelow(2)) {
-               // init call
-               assert.equal(d.o.name, 'Paul');
-               return;
-           }
-           // mutate call
-           assert.equal(d.o.name, 'Max');
-           done();
-       });
-       store.Mutate(s => s.test, d => {
-           d.o.name = 'Max';
-           return d;
-       });
-   });
-   it('accessors [\'\'] works with .', (done) => {
-       let callCount = 0;
-       const store = new ReactiveStore<ITestStore>({
-           test: {
-               b: false,
-               n: 5,
-               dt: DateTime.FromISOString('2019-01-01T00:00:00'),
-               o: {
-                   name: 'Paul'
-               }
-           }
-       });
-       store.Listen(s => s['test'].b).subscribe(v => {
-           if (callCount > 0) {
-               assert.isTrue(v);
-               done();
-           }
-           callCount++;
-       });
-       store.Mutate(s => s.test.b, () => true);
-   });
+    it('can mutate complete State', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore({
+            test: {
+                b: true,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s.test).subscribe(d => {
+            callCount = callCount.Increment();
+            if (callCount.IsBelow(2)) {
+                // init call
+                assert.equal(d.o.name, 'Paul');
+                return;
+            }
+            // mutate call
+            assert.equal(d.o.name, 'Max');
+            done();
+        });
+        store.Mutate(s => s.test, d => {
+            d.o.name = 'Max';
+            return d;
+        });
+    });
+    it('accessors [\'\'] works with .', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s['test'].b).subscribe(v => {
+            if (callCount > 0) {
+                assert.isTrue(v);
+                done();
+            }
+            callCount++;
+        });
+        store.Mutate(s => s.test.b, () => true);
+    });
     it('accessors [""] works with .', (done) => {
         let callCount = 0;
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: false,
                 n: 5,
@@ -343,7 +319,7 @@ describe('Reactive Store Tests', () => {
     });
     it('accessors . works with [\'\']', (done) => {
         let callCount = 0;
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: false,
                 n: 5,
@@ -364,7 +340,7 @@ describe('Reactive Store Tests', () => {
     });
     it('accessors . works with [""]', (done) => {
         let callCount = 0;
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: false,
                 n: 5,
@@ -385,7 +361,7 @@ describe('Reactive Store Tests', () => {
     });
     it('multiple accessors . works with [""]', (done) => {
         let callCount = 0;
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: false,
                 n: 5,
@@ -406,7 +382,7 @@ describe('Reactive Store Tests', () => {
     });
     it('multiple accessors . works with [\'\']', (done) => {
         let callCount = 0;
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: false,
                 n: 5,
@@ -427,7 +403,7 @@ describe('Reactive Store Tests', () => {
     });
     it('multiple accessors [\'\'] works with .', (done) => {
         let callCount = 0;
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: false,
                 n: 5,
@@ -448,7 +424,7 @@ describe('Reactive Store Tests', () => {
     });
     it('multiple accessors [""] works with .', (done) => {
         let callCount = 0;
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: false,
                 n: 5,
@@ -469,7 +445,7 @@ describe('Reactive Store Tests', () => {
     });
     it('multiple accessors mixed works', (done) => {
         let callCount = 0;
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: false,
                 n: 5,
@@ -489,7 +465,7 @@ describe('Reactive Store Tests', () => {
         store.Mutate(s => s['test'].b, () => true);
     });
     it('immutable values readed by getValue', async () => {
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: false,
                 n: 5,
@@ -506,7 +482,7 @@ describe('Reactive Store Tests', () => {
         assert.equal(store.Listen(s => s.test.o.name).getValue(), 'Paul');
     });
     it('using pipe of Listen Store', (done) => {
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: false,
                 n: 5,
@@ -527,7 +503,7 @@ describe('Reactive Store Tests', () => {
 
     it('next Function is disabled', (done) => {
         let callCount = 0;
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: false,
                 n: 5,
@@ -553,7 +529,7 @@ describe('Reactive Store Tests', () => {
 
     it('mutate complete state', (done) => {
         let callCount = 0;
-        const store = new ReactiveStore<ITestStore>({
+        const store = new ReactiveStore({
             test: {
                 b: false,
                 n: 5,
@@ -584,7 +560,7 @@ describe('Reactive Store Tests', () => {
     });
 
     it('set null value', (done) => {
-        const store = new ReactiveStore<ITestUser>({
+        const store = new ReactiveStore({
             name: null,
         });
         store.Listen(s => s.name).subscribe(name => {
@@ -597,7 +573,7 @@ describe('Reactive Store Tests', () => {
     });
 
     it('store can handle complex objects', (done) => {
-        const store = new ReactiveStore<IComplexState>({
+        const store = new ReactiveStore({
             obj: new ComplexObject(),
         });
         store.Listen(s => s.obj).subscribe(o => {

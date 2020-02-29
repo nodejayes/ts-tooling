@@ -1,5 +1,6 @@
 const {assert} = require('chai');
 const {ObjectFactory} = require('./object.factory');
+const {describe, it} = require('mocha');
 
 describe('Object Extension Tests', () => {
     it('detect Circular References', () => {

@@ -1,4 +1,5 @@
 const {StopWatch} = require('./stopwatch');
+const {describe, it} = require('mocha');
 const {assert} = require('chai');
 
 describe("Test StopWatch", () => {

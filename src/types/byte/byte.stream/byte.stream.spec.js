@@ -1,4 +1,5 @@
 const {assert} = require('chai');
+const {describe, it} = require('mocha');
 const {ByteStream} = require('./byte.stream');
 const {Byte} = require('../byte/byte');
 

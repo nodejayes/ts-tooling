@@ -1,4 +1,5 @@
 const {assert} = require('chai');
+const {describe, it} = require('mocha');
 const {IsFunction, IsObject} = require('./checker');
 
 describe('Core Checker Tests', () => {

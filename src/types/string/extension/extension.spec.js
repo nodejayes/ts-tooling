@@ -1,4 +1,5 @@
-require('./extension')
+require('./extension');
+const {describe, it} = require('mocha');
 const {assert} = require('chai');
 
 describe('String Extensions Tests', () => {

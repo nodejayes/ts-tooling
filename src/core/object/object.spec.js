@@ -1,4 +1,5 @@
 const {assert} = require('chai');
+const {describe, it} = require('mocha');
 const {RecursiveDeepCopy, Get, Set, Merge} = require('./object');
 
 describe('Core Object Tests', () => {

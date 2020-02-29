@@ -1,5 +1,6 @@
 const {assert} = require('chai');
 const {NumberFactory} = require('./number.factory');
+const {describe, it} = require('mocha');
 
 describe('Number Generator Tests', () => {
     it('generates Integer Numbers', () => {

@@ -1,4 +1,5 @@
 const {assert} = require('chai');
+const {describe, it} = require('mocha');
 const {Byte} = require('./byte');
 
 describe('Byte Tests', () => {

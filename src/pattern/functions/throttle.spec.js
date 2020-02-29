@@ -1,4 +1,5 @@
 const {Throttle} = require('./Throttle');
+const {describe, it} = require('mocha');
 const {assert} = require('chai');
 
 const exampleFn1 = () => {
