@@ -1,6 +1,6 @@
 {
   "name": "ts-tooling",
-  "version": "3.0.0",
+  "version": "3.0.0.beta.0",
   "main": "src/ts-tooling.js",
   "types": "src/ts-tooling.d.ts",
   "scripts": {
@@ -9,7 +9,8 @@
     "cover:publish": "node ./scripts/coverage.js",
     "docs": "typedoc --out ./docs --mode file --excludePrivate --excludeNotExported --excludeNotExported --exclude node_modules ./src/ts-tooling.d.ts",
     "beforecommit": "npm run cover && npm run docs",
-    "release": "npm run beforecommit && npm publish"
+    "release": "npm run beforecommit && npm publish",
+    "release:beta": "npm run beforecommit && npm publish --beta"
   },
   "license": "MIT",
   "repository": {
