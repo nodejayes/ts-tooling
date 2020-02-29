@@ -6,7 +6,7 @@
     <working-directory>$PROJECT_DIR$/src</working-directory>
     <pass-parent-env>true</pass-parent-env>
     <ui>bdd</ui>
-    <extra-mocha-options>--timeout 30000 --watch</extra-mocha-options>
+    <extra-mocha-options>--timeout 5000 --watch</extra-mocha-options>
     <test-kind>PATTERN</test-kind>
     <test-pattern>**/*.spec.js</test-pattern>
     <method v="2" />

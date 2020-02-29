@@ -1,64 +1,32 @@
-import {existsSync} from 'fs';
-import {Worker} from 'worker_threads';
-import {Subject} from 'rxjs';
-import {IBackgroundWorker, IWorkerInput} from '../worker.interface';
-import '../../../types/string';
+const {existsSync} = require('fs');
+const {Worker} = require('worker_threads');
+const {Subject} = require('rxjs');
+require('../../../types/string/extension/extension');
 
-/**
- * the Implementation of BackgroundWorker for the Backend (Node Js)
- *
- * @category Pattern
- */
-export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K>{
-    /**
-     * the Path of the Worker File
-     */
-    WorkPath: string;
-
-    /**
-     * fired when the Worker Task was finish
-     */
-    OnFinish = new Subject<K>();
-    /**
-     * fired when the Worker Task has a Error
-     */
-    OnError = new Subject<Error>();
-
-    /**
-     * detect if the Worker File to execute is a Typescript File
-     * Typescript files takes longer to execute while the compiler must compile it
-     */
-    get IsTypeScript(): boolean {
+class BackgroundWorker{
+    get IsTypeScript() {
         return this.WorkPath.EndsWith('.ts');
     }
 
-    /**
-     * detect if the Worker File to execute is a Javascript File
-     */
-    get IsJavaScript(): boolean {
+    get IsJavaScript() {
         return this.WorkPath.EndsWith('.js');
     }
 
-    /**
-     * create a new Background Worker
-     * @param path the Script File of the Worker
-     */
-    constructor(path: string) {
+    constructor(path) {
+        this.WorkPath = null;
+        this.OnFinish = new Subject();
+        this.OnError = new Subject();
         this.WorkPath = path;
     }
 
-    /**
-     * start a Execution of the Worker
-     * @param args arguments passed into the Worker
-     */
-    Run(args?: T) {
+    Run(args) {
         if (!this.WorkPath || this.WorkPath.length < 1 || !existsSync(this.WorkPath)) {
             throw new Error(`missing DoWork Path/File ${this.WorkPath}`);
         }
         if (!this.IsJavaScript && !this.IsTypeScript) {
             throw new Error(`${this.WorkPath} is not supported Script for BackgroundWorker`);
         }
-        const p = <IWorkerInput<T>>{
+        const p = {
             data: args || null,
             scriptPath: this.WorkPath,
         };
@@ -85,3 +53,5 @@ export class BackgroundWorker<T, K> implements IBackgroundWorker<T, K>{
         });
     }
 }
+
+module.exports = {BackgroundWorker};

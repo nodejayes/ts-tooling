@@ -1,13 +1,13 @@
-import {assert} from 'chai';
-import 'mocha';
-import {join} from 'path';
-import {BackgroundWorker} from '../../../src/pattern/background.worker/node-worker';
+const {assert} = require('chai');
+const {describe, it} = require('mocha');
+const {join} = require('path');
+const {BackgroundWorker} = require('./node');
 
-const WORKER_1_TYPESCRIPT = join(__dirname, './worker1.ts');
-const WORKER_1_FAIL_TYPESCRIPT = join(__dirname, './worker1_fail.ts');
-const WORKER_2_JAVASCRIPT = join(__dirname, './worker2.js');
-const NOT_EXISTS_WORKER_FILE = join(__dirname, './worker3.ts');
-const TEST_BASH_SCRIPT = join(__dirname, './test.bash');
+const WORKER_1_TYPESCRIPT = join(__dirname, 'stubs', 'worker1.ts');
+const WORKER_1_FAIL_TYPESCRIPT = join(__dirname, 'stubs', 'worker1_fail.ts');
+const WORKER_2_JAVASCRIPT = join(__dirname, 'stubs', 'worker2.js');
+const NOT_EXISTS_WORKER_FILE = join(__dirname, 'stubs', 'worker3.ts');
+const TEST_BASH_SCRIPT = join(__dirname, 'stubs', 'test.bash');
 
 describe('BackgroundWorker Tests', () => {
     it('run BackgroundWorker with external File', (done) => {
