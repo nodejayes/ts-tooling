@@ -1,4 +1,4 @@
-### 3.0.0 (beta 0)
+### 3.0.0 (beta)
 
 * pure Javascript Node Module (no bundle)
 
