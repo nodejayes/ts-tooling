@@ -82,7 +82,7 @@ const BASE_VALIDATIONS = {
 /**
  * @ignore
  */
-export const VALIDATIONS = {
+const VALIDATIONS = {
     IsBase64: v => !BASE_VALIDATIONS.IsBase64(v),
     IsHexColor: v => !BASE_VALIDATIONS.IsHexColor(v),
     IsHexadecimal: v => !BASE_VALIDATIONS.IsHexadecimal(v),
@@ -122,7 +122,7 @@ export const VALIDATIONS = {
     IsDefined: v => !BASE_VALIDATIONS.IsDefined(v),
 };
 
-export class ClassValidator {
+class ClassValidator {
     static async Validate(instance) {
         const errors = [];
         checkForRequired(instance, errors);
@@ -335,292 +335,292 @@ function registerInStore(target, propertyKey, targetKey, value, validationMessag
     ValidationStore[key][targetKey] = [value, validationMessage];
 }
 
-export function ValidateIf(cb) {
+function ValidateIf(cb) {
     return function (target, propertyKey) {
         registerInStore(target, propertyKey, 'ValidateIf', cb, '');
     }
 }
 
-export function IsOptional() {
+function IsOptional() {
     return function (target, propertyKey) {
         registerInStore(target, propertyKey, 'IsOptional', true, '');
     }
 }
 
-export function Required(validationMessage) {
+function Required(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be set.`;
         registerInStore(target, propertyKey, 'Required', true, message);
     }
 }
 
-export function IsDefined(validationMessage) {
+function IsDefined(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be defined.`;
         registerInStore(target, propertyKey, 'IsDefined', true, message);
     }
 }
 
-export function IsEmpty(validationMessage) {
+function IsEmpty(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be Empty.`;
         registerInStore(target, propertyKey, 'IsEmpty', true, message);
     }
 }
 
-export function IsNotEmpty(validationMessage) {
+function IsNotEmpty(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be Empty.`;
         registerInStore(target, propertyKey, 'IsNotEmpty', true, message);
     }
 }
 
-export function IsEmail(validationMessage) {
+function IsEmail(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Email Address.`;
         registerInStore(target, propertyKey, 'IsEmail', true, message);
     }
 }
 
-export function Min(value, validationMessage) {
+function Min(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be lower than ${value}.`;
         registerInStore(target, propertyKey, 'Min', value, message);
     };
 }
 
-export function Max(value, validationMessage) {
+function Max(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be bigger than ${value}.`;
         registerInStore(target, propertyKey, 'Max', value, message);
     };
 }
 
-export function CustomValidation(value, validationMessage) {
+function CustomValidation(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} Custom Validation was not successful.`;
         registerInStore(target, propertyKey, 'CustomValidation', value, message);
     }
 }
 
-export function MinLength(value, validationMessage) {
+function MinLength(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must have ${value} characters.`;
         registerInStore(target, propertyKey, 'MinLength', value, message);
     };
 }
 
-export function MaxLength(value, validationMessage) {
+function MaxLength(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have more than ${value} characters.`;
         registerInStore(target, propertyKey, 'MaxLength', value, message);
     };
 }
 
-export function Whitelist(value, validationMessage) {
+function Whitelist(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have the following values: ${value.join(',')}`;
         registerInStore(target, propertyKey, 'Whitelist', value, message);
     }
 }
 
-export function Blacklist(value, validationMessage) {
+function Blacklist(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have the following values: ${value.join(',')}`;
         registerInStore(target, propertyKey, 'Blacklist', value, message);
     }
 }
 
-export function Equals(value, validationMessage) {
+function Equals(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} not match the value: ${value}`;
         registerInStore(target, propertyKey, 'Equals', value, message);
     }
 }
 
-export function NotEquals(value, validationMessage) {
+function NotEquals(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} match the value: ${value}`;
         registerInStore(target, propertyKey, 'NotEquals', value, message);
     }
 }
 
-export function IsInt(validationMessage) {
+function IsInt(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Integer Value`;
         registerInStore(target, propertyKey, 'IsInt', true, message);
     }
 }
 
-export function UniqueArray(validationMessage) {
+function UniqueArray(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must have Unique Values`;
         registerInStore(target, propertyKey, 'UniqueArray', true, message);
     }
 }
 
-export function ArrayNotEmpty(validationMessage) {
+function ArrayNotEmpty(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be empty.`;
         registerInStore(target, propertyKey, 'ArrayNotEmpty', true, message);
     }
 }
 
-export function IsPositive(validationMessage) {
+function IsPositive(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have Positive Values.`;
         registerInStore(target, propertyKey, 'IsPositive', true, message);
     }
 }
 
-export function IsNegative(validationMessage) {
+function IsNegative(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have Positive Values.`;
         registerInStore(target, propertyKey, 'IsNegative', true, message);
     }
 }
 
-export function IsBooleanString(validationMessage) {
+function IsBooleanString(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Boolean String.`;
         registerInStore(target, propertyKey, 'IsBooleanString', true, message);
     }
 }
 
-export function IsNumberString(validationMessage) {
+function IsNumberString(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contain Numbers.`;
         registerInStore(target, propertyKey, 'IsNumberString', true, message);
     }
 }
 
-export function MinDate(value, validationMessage) {
+function MinDate(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be greater than ${value.toString()}.`;
         registerInStore(target, propertyKey, 'MinDate', value, message);
     }
 }
 
-export function MaxDate(value, validationMessage) {
+function MaxDate(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be lower than ${value.toString()}.`;
         registerInStore(target, propertyKey, 'MaxDate', value, message);
     }
 }
 
-export function IsAlpha(validationMessage) {
+function IsAlpha(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters (a-zA-Z).`;
         registerInStore(target, propertyKey, 'IsAlpha', true, message);
     }
 }
 
-export function IsAlphanumeric(validationMessage) {
+function IsAlphanumeric(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters and numbers.`;
         registerInStore(target, propertyKey, 'IsAlphanumeric', true, message);
     }
 }
 
-export function IsAscii(validationMessage) {
+function IsAscii(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Ascii String.`;
         registerInStore(target, propertyKey, 'IsAscii', true, message);
     }
 }
 
-export function IsBase64(validationMessage) {
+function IsBase64(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Base64 String.`;
         registerInStore(target, propertyKey, 'IsBase64', true, message);
     }
 }
 
-export function IsHexColor(validationMessage) {
+function IsHexColor(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hex Color String.`;
         registerInStore(target, propertyKey, 'IsHexColor', true, message);
     }
 }
 
-export function IsHexadecimal(validationMessage) {
+function IsHexadecimal(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hexadecimal String.`;
         registerInStore(target, propertyKey, 'IsHexadecimal', true, message);
     }
 }
 
-export function IsMacAddress(validationMessage) {
+function IsMacAddress(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MAC Address.`;
         registerInStore(target, propertyKey, 'IsMacAddress', true, message);
     }
 }
 
-export function IsIp(validationMessage) {
+function IsIp(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a IP Address.`;
         registerInStore(target, propertyKey, 'IsIp', true, message);
     }
 }
 
-export function IsPort(validationMessage) {
+function IsPort(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Port Number.`;
         registerInStore(target, propertyKey, 'IsPort', true, message);
     }
 }
 
-export function IsJSON(validationMessage) {
+function IsJSON(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON String.`;
         registerInStore(target, propertyKey, 'IsJSON', true, message);
     }
 }
 
-export function IsJWT(validationMessage) {
+function IsJWT(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON Web Token.`;
         registerInStore(target, propertyKey, 'IsJWT', true, message);
     }
 }
 
-export function IsByteLength(value, validationMessage) {
+function IsByteLength(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have a Length of ${value} Bytes.`;
         registerInStore(target, propertyKey, 'IsByteLength', value, message);
     }
 }
 
-export function IsMongoId(validationMessage) {
+function IsMongoId(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MongoDb ObjectId.`;
         registerInStore(target, propertyKey, 'IsMongoId', true, message);
     }
 }
 
-export function IsUrl(validationMessage) {
+function IsUrl(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a URL.`;
         registerInStore(target, propertyKey, 'IsUrl', true, message);
     }
 }
 
-export function IsUUID(validationMessage) {
+function IsUUID(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a UUID.`;
         registerInStore(target, propertyKey, 'IsUUID', true, message);
     }
 }
 
-export function IsHash(validationMessage) {
+function IsHash(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hash.`;
         registerInStore(target, propertyKey, 'IsHash', true, message);
     }
 }
 
-export function ValidateClass(method, validationMessage) {
+function ValidateClass(method, validationMessage) {
     return function (target) {
         const message = validationMessage ? validationMessage : `the Class ${target.constructor.name} is invalid.`;
         registerInStore({constructor: {name: target.name}}, '', 'ValidateClass', method, message);

@@ -1,6 +1,5 @@
-import {assert} from 'chai';
-import 'mocha';
-import {
+const {assert} = require('chai');
+const {
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals,
     ArrayNotEmpty, CustomValidation,
@@ -25,71 +24,78 @@ import {
     MinDate,
     Required,
     UniqueArray, ValidateClass
-} from '../../../src/utils/validation';
-import {DateTime} from '../../../src/types/datetime';
+} = require('../../../utils/validation/class.validator/class.validator');
+const {DateTime} = require('../../../types/datetime/datetime/datetime');
 
 class Test {
-    @IsDefined()
-    Name: string;
-
-    @Min(0)
-    @Max(200)
-    Age: number;
-
-    @IsEmail()
-    Email: string;
+    constructor() {
+        this.Name = null;
+        this.Age = null;
+        this.Email = null;
+    }
 }
+IsDefined()(new Test(), 'Name');
+Min(0)(new Test(), 'Age');
+Max(200)(new Test(), 'Age');
+IsEmail()(new Test(), 'Email');
 
 class Test2 {
-    @IsDefined('Invalid')
-    Name: string;
-
-    @Min(0, 'Invalid')
-    @Max(200, 'Invalid')
-    Age: number;
-
-    @IsEmail('Invalid')
-    Email: string;
+    constructor() {
+        this.Name = null;
+        this.Age = null;
+        this.Email = null;
+    }
 }
+IsDefined('Invalid')(new Test2(), 'Name');
+Min(0, 'Invalid')(new Test2(), 'Age');
+Max(200, 'Invalid')(new Test2(), 'Age');
+IsEmail('Invalid')(new Test2(), 'Email');
 
 class Test3 {
-    @IsDefined()
-    Name: string;
-    Detail: SubObject;
+    constructor() {
+        this.Name = null;
+        this.Detail = null;
+    }
 }
+IsDefined()(new Test3(), 'Name');
 
 class SubObject {
-    @IsDefined()
-    FirstName: string;
-
-    @IsDefined()
-    LastName: string;
+    constructor() {
+        this.FirstName = null;
+        this.LastName = null;
+    }
 }
+IsDefined()(new SubObject(), 'FirstName');
+IsDefined()(new SubObject(), 'LastName');
 
 class MultipleValidations {
-    @IsDefined()
-    @MinLength(3)
-    @MaxLength(25)
-    FirstName: string;
-
-    @IsDefined()
-    @MinLength(3)
-    @MaxLength(50)
-    LastName: string;
+    constructor() {
+        this.FirstName = null;
+        this.LastName = null;
+    }
 }
+IsDefined()(new MultipleValidations(), 'FirstName');
+MinLength(3)(new MultipleValidations(), 'FirstName');
+MaxLength(25)(new MultipleValidations(), 'FirstName');
+IsDefined()(new MultipleValidations(), 'LastName');
+MinLength(3)(new MultipleValidations(), 'LastName');
+MaxLength(50)(new MultipleValidations(), 'LastName');
 
 class ConditionalValidation {
-    Validate: boolean;
-
-    @ValidateIf<ConditionalValidation>(m => m.Validate)
-    @IsDefined()
-    Name: string;
+    constructor() {
+        this.Validate = null;
+        this.Name = null;
+    }
 }
+ValidateIf(m => m.Validate)(new ConditionalValidation(), 'Name');
+IsDefined()(new ConditionalValidation(), 'Name');
 
 class EmptyValue {
-    @IsNotEmpty()
-    prop: string;
+    constructor() {
+        this.prop = null;
+    }
 }
+IsNotEmpty()(new EmptyValue(), 'prop');
 
 describe('ClassValidator Tests', () => {
     it('validate decorated Class', async () => {
@@ -175,9 +181,11 @@ describe('ClassValidator Tests', () => {
     });
     it('check IsEmpty', async () => {
         class MustBeEmpty {
-            @IsEmpty('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsEmpty('Invalid')(new MustBeEmpty(), 'prop');
         const t = new MustBeEmpty();
         let res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 0);
@@ -200,9 +208,11 @@ describe('ClassValidator Tests', () => {
     });
     it('Blacklist check', async () => {
         class BlacklistCheck {
-            @Blacklist(['a', 'b', 'c'])
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        Blacklist(['a', 'b', 'c'])(new BlacklistCheck(), 'prop');
 
         const t = new BlacklistCheck();
         t.prop = 'a';
@@ -230,9 +240,11 @@ describe('ClassValidator Tests', () => {
     });
     it('Whitelist check', async () => {
         class WhitelistCheck {
-            @Whitelist(['x', 'y', 'z'])
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        Whitelist(['x', 'y', 'z'])(new WhitelistCheck(), 'prop');
 
         const t = new WhitelistCheck();
         t.prop = 'a';
@@ -258,9 +270,11 @@ describe('ClassValidator Tests', () => {
     });
     it('Equal check', async () => {
         class CheckEqual {
-            @Equals('-', 'Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        Equals('-', 'Invalid')(new CheckEqual(), 'prop');
         const t = new CheckEqual();
         t.prop = null;
         let res = await ClassValidator.Validate(t);
@@ -273,9 +287,11 @@ describe('ClassValidator Tests', () => {
     });
     it('NotEqual check', async () => {
         class CheckNotEqual {
-            @NotEquals('-', 'Invalid')
-            prop: string;
+            constructor(props) {
+                this.prop = null;
+            }
         }
+        NotEquals('-', 'Invalid')(new CheckNotEqual(), 'prop');
         const t = new CheckNotEqual();
         t.prop = '-';
         let res = await ClassValidator.Validate(t);
@@ -288,9 +304,11 @@ describe('ClassValidator Tests', () => {
     });
     it('Required check', async () => {
         class CheckIsRequired {
-            @Required('Invalid')
-            id: number;
+            constructor() {
+                this.id = null;
+            }
         }
+        Required('Invalid')(new CheckIsRequired(), 'id');
         const t = new CheckIsRequired();
         t.id = null;
 
@@ -304,10 +322,12 @@ describe('ClassValidator Tests', () => {
     });
     it('IsOptional check', async () => {
         class CheckIsOptional {
-            @IsOptional()
-            @Equals('test', 'Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsOptional()(new CheckIsOptional(), 'prop');
+        Equals('test', 'Invalid')(new CheckIsOptional(), 'prop');
         const t = new CheckIsOptional();
         t.prop = 'x';
 
@@ -325,9 +345,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsInt check', async () => {
         class CheckIsBoolean {
-            @IsInt('Invalid')
-            prop: any;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsInt('Invalid')(new CheckIsBoolean(), 'prop');
         const t = new CheckIsBoolean();
         t.prop = 1;
         let res = await ClassValidator.Validate(t);
@@ -345,9 +367,11 @@ describe('ClassValidator Tests', () => {
     });
     it('UniqueArray check', async () => {
         class UniqueArrayCheck {
-            @UniqueArray('Invalid')
-            prop: any[];
+            constructor() {
+                this.prop = null;
+            }
         }
+        UniqueArray('Invalid')(new UniqueArrayCheck(), 'prop');
         const tmp1 = {Hello:'World!'};
         const tmp2 = {Test:'World!'};
         const t = new UniqueArrayCheck();
@@ -371,9 +395,11 @@ describe('ClassValidator Tests', () => {
     });
     it('ArrayIsNotEmpty check', async () => {
         class ArrayIsNotEmptyCheck {
-            @ArrayNotEmpty('Invalid')
-            prop: any[];
+            constructor() {
+                this.prop = null;
+            }
         }
+        ArrayNotEmpty('Invalid')(new ArrayIsNotEmptyCheck(), 'prop');
         const t = new ArrayIsNotEmptyCheck();
         t.prop = [];
         let res = await ClassValidator.Validate(t);
@@ -390,9 +416,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsPositive check', async () => {
         class IsPositiveCheck {
-            @IsPositive('Invalid')
-            prop: number;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsPositive('Invalid')(new IsPositiveCheck(), 'prop');
         const t = new IsPositiveCheck();
         t.prop = 0;
         let res = await ClassValidator.Validate(t);
@@ -409,9 +437,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsNegative check', async () => {
         class IsNegativeCheck {
-            @IsNegative('Invalid')
-            prop: number;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsNegative('Invalid')(new IsNegativeCheck(), 'prop');
         const t = new IsNegativeCheck();
         t.prop = -1;
         let res = await ClassValidator.Validate(t);
@@ -429,9 +459,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsBooleanString check', async () => {
         class IsBooleanStringCheck {
-            @IsBooleanString('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsBooleanString('Invalid')(new IsBooleanStringCheck(), 'prop');
         const t = new IsBooleanStringCheck();
         t.prop = 'true';
         let res = await ClassValidator.Validate(t);
@@ -456,9 +488,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsNumberString check', async () => {
         class IsNumberStringCheck {
-            @IsNumberString('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsNumberString('Invalid')(new IsNumberStringCheck(), 'prop');
         const t = new IsNumberStringCheck();
         t.prop = '1';
         let res = await ClassValidator.Validate(t);
@@ -479,9 +513,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsHash check', async () => {
         class IsHashCheck {
-            @IsHash('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsHash('Invalid')(new IsHashCheck(), 'prop');
         const t = new IsHashCheck();
 
         // MD5
@@ -537,9 +573,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsUUID check', async () => {
         class IsUUIDCheck {
-            @IsUUID('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsUUID('Invalid')(new IsUUIDCheck(), 'prop');
         const t = new IsUUIDCheck();
         t.prop = '3e019b17-e95e-40fc-9606-4041efcb2684';
         let res = await ClassValidator.Validate(t);
@@ -556,9 +594,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsURL check', async () => {
         class IsURLCheck {
-            @IsUrl('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsUrl('Invalid')(new IsURLCheck(), 'prop');
 
         const t = new IsURLCheck();
         for (const url of [
@@ -586,9 +626,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsMongoId check', async () => {
         class IsMongoIdCheck {
-            @IsMongoId('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsMongoId('Invalid')(new IsMongoIdCheck(), 'prop');
         const t = new IsMongoIdCheck();
 
         t.prop = '5dfaa9da5fca3be0982a4301';
@@ -602,9 +644,11 @@ describe('ClassValidator Tests', () => {
     });
     it('MinDate check', async () => {
         class MinDateCheck {
-            @MinDate(new DateTime('UTC', 2019,1,1,0,0,0, 0), 'Invalid')
-            prop: DateTime;
+            constructor() {
+                this.prop = null;
+            }
         }
+        MinDate(new DateTime('UTC', 2019,1,1,0,0,0, 0), 'Invalid')(new MinDateCheck(), 'prop');
         const t = new MinDateCheck();
         t.prop = new DateTime('UTC', 2019,1,1,2,0,0, 0);
         let res = await ClassValidator.Validate(t);
@@ -621,9 +665,11 @@ describe('ClassValidator Tests', () => {
     });
     it('MaxDate check', async () => {
         class MaxDateCheck {
-            @MaxDate(new DateTime('UTC', 2019,1,1,0,0,0, 0), 'Invalid')
-            prop: DateTime;
+            constructor() {
+                this.prop = null;
+            }
         }
+        MaxDate(new DateTime('UTC', 2019,1,1,0,0,0,0), 'Invalid')(new MaxDateCheck(), 'prop');
         const t = new MaxDateCheck();
         t.prop = new DateTime('UTC', 2018,12,31,23,59,59, 999);
         let res = await ClassValidator.Validate(t);
@@ -640,9 +686,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsAlpha check', async () => {
         class IsAlphaCheck {
-            @IsAlpha('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsAlpha('Invalid')(new IsAlphaCheck(), 'prop');
         const t = new IsAlphaCheck();
         t.prop = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         let res = await ClassValidator.Validate(t);
@@ -655,9 +703,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsAlphanumeric check', async () => {
         class IsAlphanumericCheck {
-            @IsAlphanumeric('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsAlphanumeric('Invalid')(new IsAlphanumericCheck(), 'prop');
         const t = new IsAlphanumericCheck();
         t.prop = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         let res = await ClassValidator.Validate(t);
@@ -670,9 +720,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsAscii check', async () => {
         class IsAsciiCheck {
-            @IsAscii('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsAscii('Invalid')(new IsAsciiCheck(), 'prop');
         const t = new IsAsciiCheck();
 
         let asciiExample = '';
@@ -695,9 +747,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsBase64 check',async () => {
         class IsBase64Check {
-            @IsBase64('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsBase64('Invalid')(new IsBase64Check(), 'prop');
         const t = new IsBase64Check();
 
         t.prop = 'aGVsbG86d29ybGQhPyQqJigpJy09QH4=';
@@ -711,9 +765,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsHexColor check', async () => {
         class IsHexColorCheck {
-            @IsHexColor('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsHexColor('Invalid')(new IsHexColorCheck(), 'prop');
         const t = new IsHexColorCheck();
 
         t.prop = '#ffffff';
@@ -731,9 +787,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsHexadecimal check', async () => {
         class IsHexadecimalCheck {
-            @IsHexadecimal('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsHexadecimal('Invalid')(new IsHexadecimalCheck(), 'prop');
         const t = new IsHexadecimalCheck();
 
         t.prop = 'AF050505';
@@ -759,9 +817,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsByteLength check', async () => {
         class IsByteLengthCheck {
-            @IsByteLength(4, 'Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsByteLength(4, 'Invalid')(new IsByteLengthCheck(), 'prop');
         const t = new IsByteLengthCheck();
 
         t.prop = '1234';
@@ -775,9 +835,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsMacAddress check', async () => {
         class IsMacAddressCheck {
-            @IsMacAddress('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsMacAddress('Invalid')(new IsMacAddressCheck(), 'prop');
         const t = new IsMacAddressCheck();
 
         t.prop = '3D-F2-C9-A6-B3-4F';
@@ -795,9 +857,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsPort check', async () => {
         class IsPortCheck {
-            @IsPort('Invalid')
-            prop: number | string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsPort('Invalid')(new IsPortCheck(), 'prop');
         const t = new IsPortCheck();
 
         t.prop = 1;
@@ -843,9 +907,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsIp check', async () => {
         class IsIpCheck {
-            @IsIp('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsIp('Invalid')(new IsIpCheck(), 'prop');
         const t = new IsIpCheck();
 
         t.prop = '192.168.1.1';
@@ -864,9 +930,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsJson check', async () => {
         class IsJsonCheck {
-            @IsJSON('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsJSON('Invalid')(new IsJsonCheck(), 'prop');
         const t = new IsJsonCheck();
 
         t.prop = JSON.stringify({Hello:'World'});
@@ -880,9 +948,11 @@ describe('ClassValidator Tests', () => {
     });
     it('IsJWT check', async () => {
         class IsJWTCheck {
-            @IsJWT('Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        IsJWT('Invalid')(new IsJWTCheck(), 'prop');
         const t = new IsJWTCheck();
 
         t.prop = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ';
@@ -896,9 +966,11 @@ describe('ClassValidator Tests', () => {
     });
     it('CustomValidator check', async () => {
         class CustomValidatorCheck {
-            @CustomValidation(v => v === 5, 'Invalid')
-            prop: number;
+            constructor() {
+                this.prop = null;
+            }
         }
+        CustomValidation(v => v === 5, 'Invalid')(new CustomValidatorCheck(), 'prop');
         const t = new CustomValidatorCheck();
 
         t.prop = 5;
@@ -912,14 +984,20 @@ describe('ClassValidator Tests', () => {
     });
     it('validate Array with SubObjects', async () => {
         class ArrayWithSubObjectsSub {
-            @CustomValidation(v => v === 'a', 'Invalid')
-            prop: string;
+            constructor() {
+                this.prop = null;
+            }
         }
+        CustomValidation(v => v === 'a', 'Invalid')(new ArrayWithSubObjectsSub(), 'prop');
         class ArrayWithSubObjectsMain {
-            sub: ArrayWithSubObjectsSub;
+            constructor() {
+                this.sub = null;
+            }
         }
         class ArrayWithSubObjects {
-            prop: ArrayWithSubObjectsMain[];
+            constructor() {
+                this.prop = null;
+            }
         }
         const t = new ArrayWithSubObjects();
         const main1 = new ArrayWithSubObjectsMain();
@@ -945,13 +1023,15 @@ describe('ClassValidator Tests', () => {
         assert.equal(res.ElementAt(0).Message, 'Invalid');
     });
     it('ValidateClass check', async () => {
-        @ValidateClass<ValidateClassCheck>((i, v) => {
-            return v.IsEmail(i.prop1) && v.Max(i.prop2, 20);
-        }, 'Invalid')
         class ValidateClassCheck {
-            prop1: string;
-            prop2: number;
+            constructor() {
+                this.prop1 = null;
+                this.prop2 = null;
+            }
         }
+        ValidateClass((i, v) => {
+            return v.IsEmail(i.prop1) && v.Max(i.prop2, 20);
+        }, 'Invalid')(ValidateClassCheck);
         const t = new ValidateClassCheck();
         t.prop1 = 'a@b.de';
         t.prop2 = 9;
