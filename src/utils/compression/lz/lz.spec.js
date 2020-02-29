@@ -1,22 +1,8 @@
-import {assert} from 'chai';
-import {LZCompression} from '../../../src/utils/compression';
-import '../../../src/types/array';
-import 'mocha';
+const {assert} = require('chai');
+const {LZCompression} = require('./lz');
+require('../../../types/array/extension');
 
-interface TestAddress {
-    PLZ: string;
-    Street: string;
-    Town: string;
-}
-
-interface TestUser {
-    Name: string;
-    Age: number;
-    Birthday: Date;
-    Address: TestAddress;
-}
-
-const complexValues: TestUser[] = [
+const complexValues = [
     {
         Name: 'Jonas Schreiner',
         Age: 23,

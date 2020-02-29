@@ -1,5 +1,3 @@
-import * as LZString from 'lz-string';
-
 /**
  * implementation of lz compression
  * with lz-string
@@ -18,9 +16,7 @@ export class LZCompression {
      * LZCompression.Compress({"Hello":"World!"});
      * ```
      */
-    static Compress(data: any): string {
-        return LZString.compressToBase64(JSON.stringify(data));
-    }
+    static Compress(data: any): string;
 
     /**
      * Decompress a LZ String to any Javascript Value
@@ -33,7 +29,5 @@ export class LZCompression {
      * LZCompression.Compress('N4IgEgpgNlD2IC4QHVYCcoBMCEIC+QA=');
      * ```
      */
-    static Decompress(compressed: string): any {
-        return JSON.parse(LZString.decompressFromBase64(compressed));
-    }
+    static Decompress(compressed: string): any;
 }
