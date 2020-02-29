@@ -1,3 +1,9 @@
+/**
+ * The Module contains some Validation Functions that can used as Decorator and a Validator
+ *
+ * @module utils/validation
+ */
+
 const {
     ClassValidator,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,

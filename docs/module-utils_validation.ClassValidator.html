@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: ClassValidator</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: ClassValidator</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-utils_validation.html">utils/validation</a>.</span>ClassValidator<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    
+    <h4 class="name" id="ClassValidator"><span class="type-signature"></span>new ClassValidator<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    a Validator to validate decorated Typescript Classes
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a>, <a href="utils_validation_class.validator_class.validator.js.html#line125">line 125</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Validate"><span class="type-signature"></span>Validate<span class="signature">(instance)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    validate again a Decorated Class Instance
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>instance</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the Instance of the Class to Validate</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a>, <a href="utils_validation_class.validator_class.validator.js.html#line132">line 132</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>class User {    IsDefined('Name must be defined')    Name: string;    Min(0, 'Age must be greater -1')    Max(200, 'Age must me lower 201')    Age: number;    IsEmail('Email must be a valid email address')    Email: string;}const instance = new User();// returns [     {Message:'Name must be defined'},     {Message:'Age must be greater -1'},     {Message:'Age must me lower 201'},     {Message:'Email must be a valid email address'},]ClassValidator.Validate(instance);instance.Name = 'Udo';instance.Age = 20;instance.Email = 'udo@address.de';// returns []ClassValidator.Validate(instance);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="ValidateObject"><span class="type-signature"></span>ValidateObject<span class="signature">(constructor, value)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    validate a plain Object again a Class
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>constructor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">constructor</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the Class with the Validation Decorators</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the raw JSON Object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a>, <a href="utils_validation_class.validator_class.validator.js.html#line339">line 339</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>class User {    IsDefined('Name must be defined')    Name: string;    Min(0, 'Age must be greater -1')    Max(200, 'Age must me lower 201')    Age: number;    IsEmail('Email must be a valid email address')    Email: string;}const demoUser = {};// returns [     {Message:'Name must be defined'},     {Message:'Age must be greater -1'},     {Message:'Age must me lower 201'},     {Message:'Email must be a valid email address'},]ClassValidator.Validate(demoUser);demoUser.Name = 'Udo';demoUser.Age = 20;demoUser.Email = 'udo@address.de';// returns []ClassValidator.Validate(demoUser);</code></pre>
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-utils_validation.html">utils/validation</a></li></ul><h3>Classes</h3><ul><li><a href="module-utils_validation.ClassValidator.html">ClassValidator</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sat Feb 29 2020 20:01:33 GMT+0100 (GMT+01:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

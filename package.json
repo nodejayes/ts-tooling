@@ -7,7 +7,7 @@
     "test": "mocha --timeout 5000 ./src/**/*.spec.js",
     "cover": "nyc --reporter=lcov --report-dir coverage npm run test && npm run cover:publish",
     "cover:publish": "node ./scripts/coverage.js",
-    "docs": "typedoc --out ./docs --mode file --excludePrivate --excludeNotExported --excludeNotExported --exclude node_modules ./src/ts-tooling.d.ts",
+    "docs": "jsdoc -r -c ./jsdoc.config.json -d ./docs ./src",
     "beforecommit": "npm run cover",
     "release": "npm run beforecommit && npm publish",
     "release:beta": "npm run beforecommit && npm publish --tag beta"
@@ -39,9 +39,7 @@
     "mocha": "^7.0.1",
     "chai": "^4.2.0",
     "chai-uuid": "^1.0.6",
-    "fs-extra": "^8.1.0",
-    "typedoc": "^0.16.10",
-    "readts": "^0.2.0",
+    "jsdoc": "^3.6.3",
     "lcov-parse": "^1.0.0",
     "lodash": "^4.17.15",
     "collatio": "^1.0.1"
