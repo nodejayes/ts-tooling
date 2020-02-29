@@ -31,10 +31,8 @@ export class ReactiveStore<T> {
      * @param selector select the Part of the State to Listen
      *
      * @example
-     * ```typescript
      * // write the data Property of the State into the console
      * store.Listen(s => s.data).subscribe(d => console.info(d));
-     * ```
      */
     Listen<K>(selector: (d: T) => K): SafeBehaviorSubject<K>;
 
@@ -44,7 +42,6 @@ export class ReactiveStore<T> {
      * @param mutation define how to change the State
      *
      * @example
-     * ```typescript
      * // simple Example to set the State
      * store.Mutate(s => s.data, () => newData);
      * // make a complex Mutation
@@ -53,7 +50,6 @@ export class ReactiveStore<T> {
      *     old.loading = true;
      *     return old;
      * });
-     * ```
      */
     Mutate<K>(selector: (d: T) => K, mutation: (s: K) => K): void;
 }

@@ -21,12 +21,10 @@ declare global {
          * @returns the Number of Elements
          *
          * @example
-         * ```typescript
          * // returns 3
          * [1,2,3].Count();
          * // returns 0
          * [].Count();
-         * ```
          */
         Count?(): number;
 
@@ -41,14 +39,12 @@ declare global {
          * @returns the maximum value
          *
          * @example
-         * ```typescript
          * // returns 3
          * [1,2,3].Max();
          * // returns 2
          * [1,2,3].Max(i => i < 3);
          * // returns 4
          * [1,2,'3',4,'5'].Max();
-         * ```
          */
         Max?(filterMethod?: (d: T) => boolean): number;
 
@@ -63,14 +59,12 @@ declare global {
          * @returns the minimum value
          *
          * @example
-         * ```typescript
          * // returns 3
          * [1,2,3].Min();
          * // returns 2
          * [1,2,3].Min(i => i > 1);
          * // returns 4
          * ['1','2','3',4,'5'].Min();
-         * ```
          */
         Min?(filterMethod?: (d: T) => boolean): number;
 
@@ -83,14 +77,12 @@ declare global {
          * @returns the mean value
          *
          * @example
-         * ```typescript
          * // returns 9.866666666666667
          * [1, 25.6, 3].Mean();
          * // returns 2
          * [1,2,3,4].Mean(i => i < 4);
          * // returns 4
          * ['1','2','3',4,'5'].Mean();
-         * ```
          */
         Mean?(filterMethod?: (d: T) => boolean): number;
 
@@ -103,14 +95,12 @@ declare global {
          * @returns the sum value
          *
          * @example
-         * ```typescript
          * // returns 6
          * [1,2,3].Sum();
          * // returns 5
          * [1,2,3].Sum(i => i > 1);
          * // returns 4
          * ['1','2','3',4,'5'].Sum();
-         * ```
          */
         Sum?(filterMethod?: (d: T) => boolean): number;
 
@@ -123,10 +113,8 @@ declare global {
          * @returns the list after element added
          *
          * @example
-         * ```typescript
          * // returns [1]
          * [].Add(1);
-         * ```
          */
         Add?(element: T): T[];
 
@@ -139,12 +127,10 @@ declare global {
          * @returns the list after eventually added element
          *
          * @example
-         * ```typescript
          * // returns [1,2]
          * [1].AddIfNotExists(2);
          * // returns [1]
          * [1].AddIfNotExists(1);
-         * ```
          */
         AddIfNotExists?(element: T): T[];
 
@@ -158,12 +144,10 @@ declare global {
          * @returns the shrinked object
          *
          * @example
-         * ```typescript
          * // returns "a,b,c"
          * ['a', 'b', 'c'].Reduce((target, e) => {
          *      return target.Concat(e, ',');
          *  }, '')
-         * ```
          */
         Reduce?<K>(reducer: (target: K, e: T) => K, initial: K): K;
 
@@ -176,10 +160,8 @@ declare global {
          * @returns the array after add all elements
          *
          * @example
-         * ```typescript
          * // returns [1,2,3,4]
          * [1].AddRange([2,3,4]);
-         * ```
          */
         AddRange?(elements: T[]): T[];
 
@@ -192,12 +174,10 @@ declare global {
          * @returns the array after add all elements
          *
          * @example
-         * ```typescript
          * // returns [1,2,3,4]
          * [1].AddRangeIfNotExists([2,3,4]);
          * // returns [1]
          * [1].AddRangeIfNotExists([1,1,1]);
-         * ```
          */
         AddRangeIfNotExists?(elements: T[]): T[];
 
@@ -209,10 +189,8 @@ declare global {
          * @returns the empty array
          *
          * @example
-         * ```typescript
          * // returns []
          * [1,2,3].Clear();
-         * ```
          */
         Clear?(): T[];
 
@@ -225,7 +203,6 @@ declare global {
          * @returns element is in the list or not
          *
          * @example
-         * ```typescript
          * // returns true
          * [1,2,3].Contains(2);
          * const element = {x:'y'};
@@ -235,7 +212,6 @@ declare global {
          * // returns false
          * [1,2,3].Contains(50);
          * [{hello:'world'}].Contains({hello:'world'});
-         * ```
          */
         Contains?(element: T): boolean;
 
@@ -247,10 +223,8 @@ declare global {
          * @returns the new instance
          *
          * @example
-         * ```typescript
          * // returns [1,2,3]
          * [1,2,3].Copy();
-         * ```
          */
         Copy?(): T[];
 
@@ -263,12 +237,10 @@ declare global {
          * @returns element exists or not
          *
          * @example
-         * ```typescript
          * // returns true
          * [1,2,3].Exists(e => e === 2);
          * // returns false
          * [1,2,3].Exists(e => e === 20);
-         * ```
          */
         Exists?(condition: (d: T) => boolean): boolean;
 
@@ -281,10 +253,8 @@ declare global {
          * @returns the element that matches
          *
          * @example
-         * ```typescript
          * // returns 2
          * [1,2,3].Find((e) => e > 1);
-         * ```
          */
         Find?(condition: (d: T) => boolean): T;
 
@@ -297,10 +267,8 @@ declare global {
          * @returns the element that matches
          *
          * @example
-         * ```typescript
          * // returns 3
          * [1,2,3].FindLast((e) => e > 1);
-         * ```
          */
         FindLast?(condition: (d: T) => boolean): T;
 
@@ -314,10 +282,8 @@ declare global {
          * @returns the list with the inserted Item
          *
          * @example
-         * ```typescript
          * // returns [1,2,3]
          * [1,5,3].Replace((e) => e === 5, 2);
-         * ```
          */
         Replace?(condition: (d: T) => boolean, item: T): T[];
 
@@ -330,10 +296,8 @@ declare global {
          * @returns the index number
          *
          * @example
-         * ```typescript
          * // returns 1
          * [1,2,3,1,2,3].FindIndex(e => e === 2);
-         * ```
          */
         FindIndex?(condition: (d: T) => boolean): number;
 
@@ -346,10 +310,8 @@ declare global {
          * @returns a array of matched elements
          *
          * @example
-         * ```typescript
          * // returns [2,3]
          * [1,2,3].FindAll(i => i > 1);
-         * ```
          */
         FindAll?(condition: (d: T) => boolean): T[];
 
@@ -362,10 +324,8 @@ declare global {
          * @returns the index number
          *
          * @example
-         * ```typescript
          * // returns 4
          * [1,2,3,1,2,3].FindLastIndex(e => e === 2);
-         * ```
          */
         FindLastIndex?(condition: (d: T) => boolean): number;
 
@@ -378,12 +338,10 @@ declare global {
          * @returns condition is true for all elements or not
          *
          * @example
-         * ```typescript
          * // returns true
          * [1,2,3].TrueForAll(e => typeof e === typeof 0);
          * // returns false
          * [1,2,3].TrueForAll(e => e === 1);
-         * ```
          */
         TrueForAll?(condition: (d: T) => boolean): boolean;
 
@@ -397,10 +355,8 @@ declare global {
          * @returns the array with inserted element
          *
          * @example
-         * ```typescript
          * // returns [1,5,2,3]
          * [1,2,3].Insert(1, 5);
-         * ```
          */
         Insert?(index: number, element: T): T[];
 
@@ -414,10 +370,8 @@ declare global {
          * @returns the array with inserted elements
          *
          * @example
-         * ```typescript
          * // returns [1,4,5,6,2,3]
          * [1,2,3].Insert(1, [4,5,6]);
-         * ```
          */
         InsertRange?(index: number, elements: T[]): T[];
 
@@ -431,12 +385,10 @@ declare global {
          * @returns the array index of the target element
          *
          * @example
-         * ```typescript
          * // returns 1
          * [1,2,3,1,2,3].IndexOf(2);
          * // returns 4
          * [1,2,3,1,2,3].IndexOf(2, 2);
-         * ```
          */
         IndexOf?(element: T, fromIndex?: number): number;
 
@@ -449,10 +401,8 @@ declare global {
          * @returns the array without the element to remove
          *
          * @example
-         * ```typescript
          * // returns [1,3]
          * [1,2,3].Remove(2);
-         * ```
          */
         Remove?(element: T): T[];
 
@@ -465,12 +415,10 @@ declare global {
          * @returns the array without the condition matching elements
          *
          * @example
-         * ```typescript
          * // return [1,3]
          * [1,2,3].RemoveAll(e => e === 2);
          * // return []
          * [1,2,3].RemoveAll(() => true);
-         * ```
          */
         RemoveAll?(match: (d: T) => boolean): T[];
 
@@ -483,10 +431,8 @@ declare global {
          * @returns the array without the element to remove
          *
          * @example
-         * ```typescript
          * // returns [1,3]
          * [1,2,3].RemoveAt(1);
-         * ```
          */
         RemoveAt?(index: number): T[];
 
@@ -499,11 +445,9 @@ declare global {
          * @returns the array without the elements to remove
          *
          * @example
-         * ```typescript
          * // returns [1,2,3]
          * [1,2,3,4,5,6].RemoveRange([4,5,6]);
          * [1,2,3].RemoveRange([4,5,6]);
-         * ```
          */
         RemoveRange?(elements: T[]): T[];
 
@@ -515,10 +459,8 @@ declare global {
          * @returns the reverse of the array
          *
          * @example
-         * ```typescript
          * // returns [3,2,1]
          * [1,2,3].Reverse();
-         * ```
          */
         Reverse?(): T[];
 
@@ -531,14 +473,12 @@ declare global {
          * @returns the sorted array
          *
          * @example
-         * ```typescript
          * // returns [1, 2, 3]
          * [1, 2, 3].Sort();
          * // returns [3, 2, 1]
          * [1, 2, 3].Sort(ListSortOrder.DESC);
          * // returns ['c', 'b', 'a']
          * ['a', 'b', 'c'].Sort(ListSortOrder.DESC);
-         * ```
          */
         Sort?(order?: ListSortOrder): T[];
 
@@ -552,7 +492,6 @@ declare global {
          * @returns the sorted list of objects
          *
          * @example
-         * ```typescript
          * // returns [
          * // {
          * //       Name: 'Anne Klein',
@@ -653,7 +592,6 @@ declare global {
          *           }
          *       }
          *    ].SortBy(['Name'], [ListSortOrder.ASC]);
-         * ```
          */
         SortBy?(keys: string[], orders?: ListSortOrder[]): T[];
 
@@ -666,10 +604,8 @@ declare global {
          * @returns the element at the given index
          *
          * @example
-         * ```typescript
          * // returns 2
          * [1,2,3].ElementAt(1);
-         * ```
          */
         ElementAt?(index: number): T;
 
@@ -682,12 +618,10 @@ declare global {
          * @returns array has a element or not
          *
          * @example
-         * ```typescript
          * // returns true
          * [1,2,3].Any();
          * // returns false
          * [].Any();
-         * ```
          */
         Any?(condition?: (d: T) => boolean): boolean;
 
@@ -703,14 +637,12 @@ declare global {
          * @returns the element that matches first
          *
          * @example
-         * ```typescript
          * // return 1
          * [1,2,3,4,5,6].FirstOrDefault();
          * // return 2
          * [1,2,3,4,5,6].FirstOrDefault(e => e > 1);
          * // return 10
          * [1,2,3,4,5,6].FirstOrDefault(() => false, 10);
-         * ```
          */
         FirstOrDefault?(condition?: (d: T) => boolean, def?: T): T;
 
@@ -726,13 +658,11 @@ declare global {
          * @returns the element that matches last
          *
          * @example
-         * ```typescript
          * // return 6
          * [1,2,3,4,5,6].LastOrDefault();
          * [1,2,3,4,5,6].LastOrDefault(e => e > 1);
          * // return 10
          * [1,2,3,4,5,6].LastOrDefault(() => false, 10);
-         * ```
          */
         LastOrDefault?(condition?: (d: T) => boolean, def?: T): T;
 
@@ -745,10 +675,8 @@ declare global {
          * @returns the grouped object with splatted arrays from the current array
          *
          * @example
-         * ```typescript
          * // returns {'1': [1], '2': [2], '3': [3,3,3]}
          * [1,2,3,3,3].GroupBy(e => e);
-         * ```
          */
         GroupBy?(condition: (d: T) => any): {[key: string]: T[]};
 
@@ -761,10 +689,8 @@ declare global {
          * @returns the grouped keys as string array
          *
          * @example
-         * ```typescript
          * // returns ['1', '2', '3']
          * [1,2,3,3,3].GroupKey(e => e);
-         * ```
          */
         GroupKey?(condition: (d: T) => any): string[];
 
@@ -777,10 +703,8 @@ declare global {
          * @returns a new converted array
          *
          * @example
-         * ```typescript
          * // returns ['Test1', 'Test2', 'Test3']
          * [1,2,3].Convert(e => 'Test' + e);
-         * ```
          */
         Convert?<K>(convertMethod: ((d: T) => K) | ((d: T) => Promise<K>)): K[];
 
@@ -793,10 +717,8 @@ declare global {
          * @returns the string with array elements
          *
          * @example
-         * ```typescript
          * // returns "1,2,3"
          * [1,2,3].Join(',');
-         * ```
          */
         Join?(separator?: string): string;
 
@@ -810,10 +732,8 @@ declare global {
          * @returns the merged array
          *
          * @example
-         * ```typescript
          * // returns [1,2,3,6]
          * [1,2,3].UnionBy([4,5,6], e => e === 6);
-         * ```
          */
         UnionBy?<T>(items: T[], check: (d: T) => boolean): T[];
     }

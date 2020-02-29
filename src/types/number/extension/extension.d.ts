@@ -14,14 +14,12 @@ declare global {
          * @param upper the upper limit
          *
          * @example
-         * ```typescript
          * // returns true
          * 1.2.IsInRange(1.0, 2.0);
          * 1.0.IsInRange(1.0, 2.0);
          * 2.0.IsInRange(1.0, 2.0);
          * // returns false
          * 5.2.IsInRange(1.0, 2.0)
-         * ```
          */
         IsInRange?(lower: number, upper: number): boolean;
 
@@ -31,12 +29,10 @@ declare global {
          * @param value the Number to check again the current Number
          *
          * @example
-         * ```typescript
          * // returns true
          * (1).Equals(1)
          * // returns false
          * (1).Equals(2)
-         * ```
          */
         Equals?(value: number): boolean;
 
@@ -46,13 +42,11 @@ declare global {
          * @param value the Number to check again the current Number
          *
          * @example
-         * ```typescript
          * // returns true
          * (1).IsAbove(0)
          * // returns false
          * (1).IsAbove(1)
          * (1).IsAbove(5)
-         * ```
          */
         IsAbove?(value: number): boolean;
 
@@ -62,13 +56,11 @@ declare global {
          * @param value the Number to check again the current Number
          *
          * @example
-         * ```typescript
          * // returns true
          * (1).IsBelow(5)
          * // returns false
          * (1).IsBelow(1)
          * (1).IsBelow(0)
-         * ```
          */
         IsBelow?(value: number): boolean;
 
@@ -96,12 +88,10 @@ declare global {
          * @param value the Number to add to the current Number
          *
          * @example
-         * ```typescript
          * // returns 2
          * (1).Add(1);
          * // returns 3
          * (1).Add(1).Add(1);
-         * ```
          */
         Add?(value: number): number;
 
@@ -111,12 +101,10 @@ declare global {
          * @param value the Number to subtract from the current Number
          *
          * @example
-         * ```typescript
          * // returns 1
          * (2).Subtract(1);
          * // returns 0
          * (2).Subtract(1).Subtract(1);
-         * ```
          */
         Subtract?(value: number): number;
 
@@ -126,12 +114,10 @@ declare global {
          * @param value the Number to multiply from the current Number
          *
          * @example
-         * ```typescript
          * // returns 10
          * (1).Multiply(10);
          * // returns 20
          * (1).Multiply(10).Multiply(2);
-         * ```
          */
         Multiply?(value: number): number;
 
@@ -141,14 +127,12 @@ declare global {
          * @param value the Number to multiply from the current Number
          *
          * @example
-         * ```typescript
          * // returns 5
          * (10).Divide(2);
          * // returns 5
          * (20). Divide(2).Divide(2);
          * // throws an Error
          * (10).Divide(0);
-         * ```
          */
         Divide?(value: number): number;
 
@@ -158,12 +142,10 @@ declare global {
          * @param step Number to be incremented by
          *
          * @example
-         * ```typescript
          * // returns 2
          * (1).Increment();
          * // returns 5
          * (1).Increment(4);
-         * ```
          */
         Increment?(step?: number): number;
 
@@ -173,12 +155,10 @@ declare global {
          * @param step Number to be decremented by
          *
          * @example
-         * ```typescript
          * // returns 4
          * (5).Decrement();
          * // returns 1
          * (5).Decrement(4);
-         * ```
          */
         Decrement?(step?: number): number;
 
@@ -188,14 +168,12 @@ declare global {
          * @param precision Number of digits used for rounding
          *
          * @example
-         * ```typescript
          * // returns 4
          * 4.006.Round();
          * // returns 4.01
          * 4.006.Round(2);
          * // returns 4100
          * (4060).Round(-2);
-         * ```
          */
         Round?(precision?: number): number;
 
@@ -205,14 +183,12 @@ declare global {
          * @param precision Number of digits used for rounding
          *
          * @example
-         * ```typescript
          * // returns 4
          * 4.006.Floor();
          * // returns 0.04
          * 0.046.Floor(2);
          * // returns 4000
          * (4060).Floor(-2);
-         * ```
          */
         Floor?(precision?: number): number;
 
@@ -222,14 +198,12 @@ declare global {
          * @param precision Number of digits used for rounding
          *
          * @example
-         * ```typescript
          * // returns 5
          * 4.006.Ceil();
          * // returns 6.01
          * 6.004.Ceil(2);
          * // returns 6100
          * (6040).Ceil(-2);
-         * ```
          */
         Ceil?(precision?: number): number;
 
@@ -237,13 +211,11 @@ declare global {
          * number of digits before the decimal point
          *
          * @example
-         * ```typescript
          * // returns 1
          * (1.5).Numerals();
          * (1).Numerals();
          * // returns 2
          * (10).Numerals();
-         * ```
          */
         Numerals?(): number;
 
@@ -251,12 +223,10 @@ declare global {
          * Number of digits after the decimal point
          *
          * @example
-         * ```typescript
          * // returns 0
          * (1).DecimalPlaces();
          * // returns 1
          * (1.5).DecimalPlaces();
-         * ```
          */
         DecimalPlaces?(): number;
     }

@@ -14,14 +14,12 @@ declare global {
          * @returns the Letter at the Position
          *
          * @example
-         * ```typescript
          * // returns "H"
          * 'Hello'.CharAt(0);
          * // returns "o"
          * 'Hello'.CharAt(4);
          * // throws an Error while string has not enough letters
          * 'Hello'.CharAt(5);
-         * ```
          */
         CharAt?(pos: number): string;
 
@@ -33,12 +31,10 @@ declare global {
          * @returns the capitalized String
          *
          * @example
-         * ```typescript
          * // retruns "Hello"
          * 'hello'.Capitalize();
          * 'HELLO'.Capitalize();
          * 'Hello'.Capitalize();
-         * ```
          */
         Capitalize?(): string;
 
@@ -52,14 +48,12 @@ declare global {
          * @returns the string begins with the string
          *
          * @example
-         * ```typescript
          * // returns true
          * 'abcdefg'.StartsWith('abc');
          * 'abcdefg'.StartsWith('b', 1);
          * // returns false
          * 'abcdefg'.StartsWith('b', 2);
          * 'abcdefg'.StartsWith('z');
-         * ```
          */
         StartsWith?(search: string, position?: number): boolean;
 
@@ -73,14 +67,12 @@ declare global {
          * @returns the string ends with the search
          *
          * @example
-         * ```typescript
          * // returns true
          * 'abcdefg'.EndsWith('efg');
          * 'abcdefg'.EndsWith('f', 6);
          * // returns false
          * 'abcdefg'.EndsWith('f', 1);
          * 'abcdefg'.EndsWith('z');
-         * ```
          */
         EndsWith?(search: string, position?: number): boolean;
 
@@ -92,10 +84,8 @@ declare global {
          * @returns a escaped HTML String
          *
          * @example
-         * ```typescript
          * // returns "fred, barney, &amp; pebbles"
          * 'fred, barney, & pebbles'.HTMLEscape();
-         * ```
          */
         HTMLEscape?(): string;
 
@@ -107,10 +97,8 @@ declare global {
          * @returns a unescaped HTML String
          *
          * @example
-         * ```typescript
          * // returns "fred, barney, & pebbles"
          * 'fred, barney, &amp; pebbles'.HTMLUnescape();
-         * ```
          */
         HTMLUnescape?(): string;
 
@@ -122,10 +110,8 @@ declare global {
          * @returns a escaped Regular Expression
          *
          * @example
-         * ```typescript
          * // returns "\[helloworld\]\(https://google\.com/\)"
          * '[helloworld](https://google.com/)'.RegExpEscape();
-         * ```
          */
         RegExpEscape?(): string;
 
@@ -137,13 +123,11 @@ declare global {
          * @returns a number instance that represents a integer
          *
          * @example
-         * ```typescript
          * // returns 1
          * '1'.ToInteger();
          * '1.5'.ToInteger();
          * // returns 0
          * 'aaa'.ToInteger();
-         * ```
          */
         ToInteger?(): number;
 
@@ -155,7 +139,6 @@ declare global {
          * @returns a number instance that represents a double
          *
          * @example
-         * ```typescript
          * // returns 1.0
          * '1'.ToDouble();
          * '1.0'.ToDouble();
@@ -163,7 +146,6 @@ declare global {
          * '1.5'.ToDouble();
          * // returns 0.0
          * 'aaa'.ToDouble();
-         * ```
          */
         ToDouble?(): number;
 
@@ -175,12 +157,10 @@ declare global {
          * @returns the Camel Case String
          *
          * @example
-         * ```typescript
          * // returns "fooBar"
          * 'Foo Bar'.ToCamelCase()
          * '--foo-bar--'.ToCamelCase()
          * '__FOO_BAR__'.ToCamelCase()
-         * ```
          */
         ToCamelCase?(): string;
 
@@ -192,12 +172,10 @@ declare global {
          * @returns the Kebab Case String
          *
          * @example
-         * ```typescript
          * // returns "foo-bar"
          * 'Foo Bar'.ToKebabCase();
          * 'fooBar'.ToKebabCase();
          * '__FOO_BAR__'.ToKebabCase();
-         * ```
          */
         ToKebabCase?(): string;
 
@@ -209,10 +187,8 @@ declare global {
          * @returns the Capital Case String
          *
          * @example
-         * ```typescript
          * // returns "Test String"
          * 'test string'.ToCapitalCase();
-         * ```
          */
         ToCapitalCase?(): string;
 
@@ -224,10 +200,8 @@ declare global {
          * @returns the Constant Case String
          *
          * @example
-         * ```typescript
          * // returns "TEST_STRING"
          * 'test string'.ToConstantCase();
-         * ```
          */
         ToConstantCase?(): string;
 
@@ -239,10 +213,8 @@ declare global {
          * @returns the Dot Case String
          *
          * @example
-         * ```typescript
          * // returns "test.string"
          * 'test string'.ToDotCase();
-         * ```
          */
         ToDotCase?(): string;
 
@@ -254,10 +226,8 @@ declare global {
          * @returns the No Case String
          *
          * @example
-         * ```typescript
          * // returns "test.string"
          * 'test string'.ToNoCase();
-         * ```
          */
         ToNoCase?(): string;
 
@@ -269,10 +239,8 @@ declare global {
          * @returns the Path Case String
          *
          * @example
-         * ```typescript
          * // returns "test/string"
          * 'test string'.ToPathCase();
-         * ```
          */
         ToPathCase?(): string;
 
@@ -284,10 +252,8 @@ declare global {
          * @returns the Sentence Case String
          *
          * @example
-         * ```typescript
          * // returns "Test string"
          * 'test string'.ToSentenceCase();
-         * ```
          */
         ToSentenceCase?(): string;
 
@@ -299,10 +265,8 @@ declare global {
          * @returns the Pascal Case String
          *
          * @example
-         * ```typescript
          * // returns "Test string"
          * 'TestString'.ToPascalCase();
-         * ```
          */
         ToPascalCase?(): string;
 
@@ -314,12 +278,10 @@ declare global {
          * @returns the Snake Case String
          *
          * @example
-         * ```typescript
          * // returns "foo_bar"
          * 'Foo Bar'.ToSnakeCase();
          * 'fooBar'.ToSnakeCase();
          * '--FOO-BAR--'.ToSnakeCase();
-         * ```
          */
         ToSnakeCase?(): string;
 
@@ -331,10 +293,8 @@ declare global {
          * @returns the lower case string
          *
          * @example
-         * ```typescript
          * // returns "hello"
          * 'HELLO'.ToLowerCase();
-         * ```
          */
         ToLowerCase?(): string;
 
@@ -346,10 +306,8 @@ declare global {
          * @returns the upper case string
          *
          * @example
-         * ```typescript
          * // returns "HELLO"
          * 'hello'.ToLowerCase();
-         * ```
          */
         ToUpperCase?(): string;
 
@@ -361,11 +319,9 @@ declare global {
          * @returns the new string with the lower case first letter
          *
          * @example
-         * ```typescript
          * // returns "hello"
          * 'Hello'.LowerFirst();
          * 'hello'.LowerFirst();
-         * ```
          */
         LowerFirst?(): string;
 
@@ -377,11 +333,9 @@ declare global {
          * @returns the new string with the upper case first letter
          *
          * @example
-         * ```typescript
          * // returns "Hello"
          * 'hello'.UpperFirst();
          * 'Hello'.UpperFirst();
-         * ```
          */
         UpperFirst?(): string;
 
@@ -395,7 +349,6 @@ declare global {
          * @returns a Array of Words
          *
          * @example
-         * ```typescript
          * // returns ['hello', 'is', 'a', 'word', 'of', 'a', 'sentence']
          * 'hello is a word of a sentence'.Words();
          * // returns ['a']
@@ -406,7 +359,6 @@ declare global {
          *         'hello', 'word', 'sentence'
          *     ].Contains(e)
          * );
-         * ```
          */
         Words?(filter?: (word: string) => boolean, pattern?: string): string[];
 
@@ -420,12 +372,10 @@ declare global {
          * @returns the concated string
          *
          * @example
-         * ```typescript
          * // returns "ab"
          * 'a'.Concat('b');
          * // returns "a#b"
          * 'a'.Concat('b', '#');
-         * ```
          */
         Concat?(appender: string, separator?: string): string;
 
@@ -439,14 +389,12 @@ declare global {
          * @returns the joinded string
          *
          * @example
-         * ```typescript
          * // returns "testabc"
          * 'test'.Join(['a','b','c']);
          * // returns "test#a#b#c"
          * 'test'.Join(['a','b','c'], '#');
          * // returns "a#b#c"
          * ''.Join(['a','b','c'], '#');
-         * ```
          */
         Join?(appender: string[], separator?: string): string;
 
@@ -460,14 +408,12 @@ declare global {
          * @returns the padded string
          *
          * @example
-         * ```typescript
          * // returns "_-abc_-_"
          * 'abc'.Pad(8, '_-');
          * // returns "  abc   "
          * 'abc'.Pad(8);
          * // returns "abcdefg"
          * 'abcdefg'.Pad(3, '-');
-         * ```
          */
         Pad?(length: number, template?: string): string;
 
@@ -481,14 +427,12 @@ declare global {
          * @returns the padded string
          *
          * @example
-         * ```typescript
          * // returns "__abc"
          * 'abc'.PadLeft(5, '_');
          * // returns "  abc"
          * 'abc'.PadLeft(5);
          * // returns "abcdefg"
          * 'abcdefg'.PadLeft(3, '-');
-         * ```
          */
         PadLeft?(length: number, template?: string): string;
 
@@ -502,14 +446,12 @@ declare global {
          * @returns the padded string
          *
          * @example
-         * ```typescript
          * // returns "abc__"
          * 'abc'.PadRight(5, '_');
          * // returns "abc  "
          * 'abc'.PadRight(5);
          * // returns "abcdefg"
          * 'abcdefg'.PadRight(3, '-');
-         * ```
          */
         PadRight?(length: number, template?: string): string;
 
@@ -522,10 +464,8 @@ declare global {
          * @returns repeated string
          *
          * @example
-         * ```typescript
          * // returns "*****"
          * '*'.Repeat(5);
-         * ```
          */
         Repeat?(times: number): string;
 
@@ -539,12 +479,10 @@ declare global {
          * @returns the replaced string
          *
          * @example
-         * ```typescript
          * // returns "azcdefg"
          * 'abcdefg'.Replace('b', 'z');
          * // returns "azbcdefg"
          * 'abbcdefg'.Replace('b', 'z');
-         * ```
          */
         Replace?(search: string, replacer: string): string;
 
@@ -558,10 +496,8 @@ declare global {
          * @returns the replaced string
          *
          * @example
-         * ```typescript
          * // returns "azzzcdezfg"
          * 'abbbcdebfg'.ReplaceAll('b', 'z');
-         * ```
          */
         ReplaceAll?(search: string, replacer: string): string;
 
@@ -574,10 +510,8 @@ declare global {
          * @returns the splitted array
          *
          * @example
-         * ```typescript
          * // returns ['bbbb', 'bbb', 'c']
          * 'abbbbabbbac'.Split('a');
-         * ```
          */
         Split?(pattern: string): string[];
 
@@ -589,10 +523,8 @@ declare global {
          * @returns the lower case string
          *
          * @example
-         * ```typescript
          * // returns "ababab"
          * 'aBaBaB'.ToLower();
-         * ```
          */
         ToLower?(): string;
 
@@ -603,10 +535,8 @@ declare global {
          *
          * @returns the upper case string
          * @example
-         * ```typescript
          * // returns "ABABAB"
          * 'aBaBaB'.ToLower();
-         * ```
          */
         ToUpper?(): string;
 
@@ -619,11 +549,9 @@ declare global {
          * @returns the trimmed string
          *
          * @example
-         * ```typescript
          * // returns "Test"
          * '___Test___'.Trim('_');
          * '   Test   '.Trim();
-         * ```
          */
         Trim?(sequence?: string): string;
 
@@ -636,11 +564,9 @@ declare global {
          * @returns the trimmed string
          *
          * @example
-         * ```typescript
          * // returns "Test"
          * '___Test'.Trim('_');
          * '   Test'.Trim();
-         * ```
          */
         TrimStart?(sequence?: string): string;
 
@@ -653,11 +579,9 @@ declare global {
          * @returns the trimmed string
          *
          * @example
-         * ```typescript
          * // returns "Test"
          * 'Test___'.Trim('_');
          * 'Test   '.Trim();
-         * ```
          */
         TrimEnd?(sequence?: string): string;
 
@@ -672,12 +596,10 @@ declare global {
          * @returns the truncated string
          *
          * @example
-         * ```typescript
          * // returns "##..."
          * '##-##Chars##-##'.Truncate(5);
          * // returns "##-#X"
          * '##-##Chars##-##'.Truncate(5, 'X');
-         * ```
          */
         Truncate?(length: number, omission?: string, separator?: string): string;
 
@@ -689,10 +611,8 @@ declare global {
          * @returns a new Instance of a String
          *
          * @example
-         * ```typescript
          * // returns a new Instance "Test"
          * 'Test'.Copy();
-         * ```
          */
         Copy?(): string;
 
@@ -705,13 +625,11 @@ declare global {
          * @returns search string is in this string or not
          *
          * @example
-         * ```typescript
          * // returns true
          * 'abbbc'.Contains('b');
          * 'abbbc'.Contains('bbb');
          * // returns false
          * 'abbbc'.Contains('xxx');
-         * ```
          */
         Contains?(search: string): boolean;
 
@@ -725,12 +643,10 @@ declare global {
          * @returns the number of matches
          *
          * @example
-         * ```typescript
          * // returns 3
          * 'zzabcabcabczz'.ContainsCount('a');
          * // returns 2
          * 'zzabcabcabczz'.ContainsCount('cabc', true);
-         * ```
          */
         ContainsCount?(search: string, allowOverlapping?: boolean): number;
 
@@ -743,12 +659,10 @@ declare global {
          * @returns are both strings the same
          *
          * @example
-         * ```typescript
          * // returns true
          * 'Test'.Equals('Test');
          * // returns false
          * 'Test'.Equals('test');
-         * ```
          */
         Equals?(value: string): boolean;
 
@@ -762,14 +676,12 @@ declare global {
          * @returns the combined string
          *
          * @example
-         * ```typescript
          * // returns "axbc"
          * 'abc'.Insert(1, 'x');
          * // returns "xabc"
          * 'abc'.Insert(-1, 'x');
          * // returns "abcx"
          * 'abc'.Insert(100, 'x');
-         * ```
          */
         Insert?(startIndex: number, value: string): string;
 
@@ -783,14 +695,12 @@ declare global {
          * @returns the cleaned string
          *
          * @example
-         * ```typescript
          * // returns "abc"
          * 'axbc'.Remove(1);
          * // returns "a"
          * 'axbc'.Remove(1, 3);
          * // returns ""
          * 'abc'.Remove(10, 5);
-         * ```
          */
         Remove?(position: number, count?: number): string;
 
@@ -804,7 +714,6 @@ declare global {
          * @returns the string part
          *
          * @example
-         * ```typescript
          * // returns "_"
          * '___Test'.Substring(0);
          * // returns "Test"
@@ -813,7 +722,6 @@ declare global {
          * 'Test'.Substring(-1, 2);
          * // return "st"
          * 'Test'.Substring(100, 2);
-         * ```
          */
         Substring?(position: number, length?: number): string;
 
@@ -826,14 +734,12 @@ declare global {
          * @returns the position index
          *
          * @example
-         * ```typescript
          * // returns 0
          * 'aaaaa'.IndexOf('a');
          * // returns 1
          * 'abc'.IndexOf('b');
          * // returns -1
          * 'abc'.IndexOf('z');
-         * ```
          */
         IndexOf?(value: string): number;
 
@@ -846,14 +752,12 @@ declare global {
          * @returns the position index
          *
          * @example
-         * ```typescript
          * // returns 4
          * 'aaaaa'.LastIndexOf('a');
          * // returns 1
          * 'abc'.LastIndexOf('b');
          * // returns -1
          * 'abc'.LastIndexOf('z');
-         * ```
          */
         LastIndexOf?(value: string): number;
 
@@ -867,10 +771,8 @@ declare global {
          * @returns the texts between the text marks
          *
          * @example
-         * ```typescript
          * // returns "betweenmodule"
          * 'beforemodule@NgModule({betweenmodule})aftermodule'.TextBetween('@NgModule({', '})');
-         * ```
          */
         TextBetween?(begin: string, end: string): string[];
 
@@ -882,12 +784,10 @@ declare global {
          * @returns has only Ascii letters or not
          *
          * @example
-         * ```typescript
          * // returns true
          * 'ABCD'.IsAscii();
          * // returns false
          * '©'.IsAscii();
-         * ```
          */
         IsAscii?(): boolean;
 
@@ -899,13 +799,11 @@ declare global {
          * @returns has only alphabetical letters or not
          *
          * @example
-         * ```typescript
          * // returns true
          * 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.IsAlpha();
          * // returns false
          * 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1'.IsAlpha();
          * 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZß'.IsAlpha();
-         * ```
          */
         IsAlpha?(): boolean;
 
@@ -917,10 +815,8 @@ declare global {
          * @returns the Byte Length
          *
          * @example
-         * ```typescript
          * // returns 3
          * 'ABC'.Bytes();
-         * ```
          */
         Bytes?(): number;
     }

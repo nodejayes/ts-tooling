@@ -11,13 +11,11 @@ export class ObjectFactory {
      * @returns the new Object instance
      *
      * @example
-     * ```typescript
      * // returns {Hello:'World!'}
      * ObjectFactory.Copy({Hello:'World!'});
      * // returns false
      * const obj = {Hello:'World!'};
      * obj === ObjectFactory.Copy(obj);
-     * ```
      */
     static Copy<T>(instance: T): T;
 
@@ -27,7 +25,6 @@ export class ObjectFactory {
      * @param obj the Object to check
      *
      * @example
-     * ```typescript
      * const obj1 = {hello:'world'};
      * const obj2 = {hello:'world'};
      * obj2.ref = obj2;
@@ -35,7 +32,6 @@ export class ObjectFactory {
      * ObjectFactory.IsCircular(obj1);
      * // returns true while obj2 has a self reference on the ref Property
      * ObjectFactory.IsCircular(obj2);
-     * ```
      */
     static IsCircular(obj: any): boolean;
 
@@ -45,7 +41,6 @@ export class ObjectFactory {
      * @param obj the Object to check
      *
      * @example
-     * ```typescript
      * const obj1 = {hello:'world',c:null};
      * const obj2 = {test:'me',c:obj1};
      * obj1.c = obj2;
@@ -54,7 +49,6 @@ export class ObjectFactory {
      * combined.t3 = obj3;
      * // returns ['c', 'c', 't1']
      * ObjectFactory.GetCircular(combined);
-     * ```
      */
     static GetCircular(obj: any): string[];
 
@@ -64,10 +58,8 @@ export class ObjectFactory {
      * @param obj the Object to check
      *
      * @example
-     * ```typescript
      * // returns 22
      * ObjectFactory.SizeOf({Hello: 'World!'});
-     * ```
      */
     static SizeOf(obj: any): number;
 
@@ -78,7 +70,6 @@ export class ObjectFactory {
      * @param child
      *
      * @example
-     * ```typescript
      * // returns {name:'muster',age:10,state:{active:true}}
      * const obj1 = {
      *      name:'muster',
@@ -90,7 +81,6 @@ export class ObjectFactory {
      *      }
      * };
      * ObjectFactory.Merge(obj1, obj2);
-     * ```
      */
     static Merge<T>(parent: any, child: any): T
 }
