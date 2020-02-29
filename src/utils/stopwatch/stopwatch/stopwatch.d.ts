@@ -1,11 +1,3 @@
-import '../../types/array';
-
-/**
- * Nanoseconds in one Second
- * @ignore
- */
-const NS_PER_SEC = 1e9;
-
 /**
  * measure the Time between Code Lines in ms
  *
@@ -16,13 +8,6 @@ const NS_PER_SEC = 1e9;
  * @category Util
  */
 export class StopWatch {
-    private _time: number | [number, number];
-    private readonly _multipleTimes: {[key: string]: number | [number, number]};
-    private _measures: number[] = [];
-    private _isPause = false;
-    private _multipleMeasures: {[key: string]: number[]} = {};
-    private _multipleIsPause: {[key: string]: boolean} = {};
-
     /**
      * create a new StopWatch Instance at this Time the StopWatch was started
      *
@@ -33,10 +18,7 @@ export class StopWatch {
      * watch.ElapsedMs();
      * ```
      */
-    constructor() {
-        this._time = this.getTimestamp();
-        this._multipleTimes = {};
-    }
+    constructor();
 
     /**
      * starts the StopWatch for a specific Section marks by the given key
@@ -56,11 +38,7 @@ export class StopWatch {
      * watch.SectionElapsedMs('A');
      * ```
      */
-    public SectionStart(key: string): void {
-        this._multipleTimes[key] = this.getTimestamp();
-        this._multipleMeasures[key] = [];
-        this._multipleIsPause[key] = false;
-    }
+    public SectionStart(key: string): void;
 
     /**
      * checks if a Section was paused
@@ -78,9 +56,7 @@ export class StopWatch {
      * sw.IsSectionPause('sw1');
      * ```
      */
-    public IsSectionPause(key: string): boolean {
-        return this._multipleIsPause[key] === true;
-    }
+    public IsSectionPause(key: string): boolean;
 
     /**
      * if the current StopWatch in pause mode
@@ -95,9 +71,7 @@ export class StopWatch {
      * sw.IsPause();
      * ```
      */
-    get IsPause(): boolean {
-        return this._isPause === true;
-    }
+    get IsPause(): boolean;
 
     /**
      * get the Time in ms Elapsed by the Section matches the given key
@@ -112,18 +86,7 @@ export class StopWatch {
      * sw.SectionElapsedMs('sw1');
      * ```
      */
-    public SectionElapsedMs(key: string): number {
-        let tmp = this._multipleIsPause[key] ? 0 : this.getMultipleTimeDiff(key);
-        if (!this._multipleMeasures[key]) {
-            this._multipleMeasures[key] = [];
-        }
-        if (this._multipleMeasures[key].Any()) {
-            for (const t of this._multipleMeasures[key]) {
-                tmp += t;
-            }
-        }
-        return tmp;
-    }
+    public SectionElapsedMs(key: string): number;
 
     /**
      * same as Pause only for Sections
@@ -138,10 +101,7 @@ export class StopWatch {
      * sw.SectionPause('sw1');
      * ```
      */
-    public SectionPause(key: string) {
-        this._multipleMeasures[key].Add(this.getMultipleTimeDiff(key));
-        this._multipleIsPause[key] = true;
-    }
+    public SectionPause(key: string): void;
 
     /**
      * same as Resume only for Sections
@@ -157,10 +117,7 @@ export class StopWatch {
      * sw.SectionResume('sw1');
      * ```
      */
-    public SectionResume(key: string) {
-        this._multipleIsPause[key] = false;
-        this._multipleTimes[key] = this.getTimestamp();
-    }
+    public SectionResume(key: string): void;
 
     /**
      * stops the StopWatch from measure Time
@@ -172,10 +129,7 @@ export class StopWatch {
      * sw.Pause();
      * ```
      */
-    public Pause() {
-        this._measures.Add(this.getTimeDiff());
-        this._isPause = true;
-    }
+    public Pause(): void;
 
     /**
      * starts the StopWatch at the Point from the Last Pause
@@ -188,10 +142,7 @@ export class StopWatch {
      * sw.Resume();
      * ```
      */
-    public Resume() {
-        this._time = this.getTimestamp();
-        this._isPause = false;
-    }
+    public Resume(): void;
 
     /**
      * gets the Elapsed Time in ms from the StopWatch
@@ -203,51 +154,5 @@ export class StopWatch {
      * sw.ElapsedMs();
      * ```
      */
-    public ElapsedMs(): number {
-        let tmp = this._isPause ? 0 : this.getTimeDiff();
-        if (this._measures.Any()) {
-            for (const t of this._measures) {
-                tmp += t;
-            }
-        }
-        return tmp;
-    }
-
-    private getTimestamp(): number | [number, number] {
-        if (this.isBrowser()) {
-            return window.performance.now();
-        }
-        return global['process'].hrtime();
-    }
-
-    private getTimeDiff(): number {
-        if (!this.isBrowser()) {
-            const tmp2 = this._time as [number, number];
-            const t = global['process'].hrtime(tmp2);
-            return (t[0] * NS_PER_SEC + t[1])/1000000
-        }
-        const tmp = this._time as number;
-        return window.performance.now() - tmp;
-    }
-
-    private getMultipleTimeDiff(key: string): number {
-        if (!this.isBrowser()) {
-            const tmp2 = this._multipleTimes[key] as [number, number];
-            if (!tmp2) {
-                return 0
-            }
-            const t = global['process'].hrtime(tmp2);
-            return (t[0] * NS_PER_SEC + t[1])/1000000
-        }
-        const tmp = this._multipleTimes[key] as number;
-        return window.performance.now() - tmp;
-    }
-
-    private isBrowser(): boolean {
-        try {
-            return !!(window && window.performance);
-        } catch(e) {
-            return false;
-        }
-    }
+    public ElapsedMs(): number;
 }

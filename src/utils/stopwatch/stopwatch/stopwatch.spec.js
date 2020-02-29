@@ -1,6 +1,5 @@
-import {assert} from 'chai';
-import 'mocha';
-import {StopWatch} from '../../../src/utils/stopwatch';
+const {StopWatch} = require('./stopwatch');
+const {assert} = require('chai');
 
 describe("Test StopWatch", () => {
     it('can create the Stopwatch and measure the Time', (done) => {
