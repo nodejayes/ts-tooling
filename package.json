@@ -1,6 +1,6 @@
 {
   "name": "ts-tooling",
-  "version": "3.0.0-beta.0",
+  "version": "3.0.0-beta.2",
   "main": "src/ts-tooling.js",
   "types": "src/ts-tooling.d.ts",
   "scripts": {
@@ -10,7 +10,7 @@
     "docs": "typedoc --out ./docs --mode file --excludePrivate --excludeNotExported --excludeNotExported --exclude node_modules ./src/ts-tooling.d.ts",
     "beforecommit": "npm run cover",
     "release": "npm run beforecommit && npm publish",
-    "release:beta": "npm run beforecommit && npm publish --beta"
+    "release:beta": "npm run beforecommit && npm publish --tag beta"
   },
   "license": "MIT",
   "repository": {
@@ -22,7 +22,7 @@
     "email": "markusgilg@outlook.de"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "dependencies": {
     "luxon": "^1.22.0",

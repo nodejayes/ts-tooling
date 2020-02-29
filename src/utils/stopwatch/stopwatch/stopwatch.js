@@ -1,4 +1,5 @@
 require('../../../types/array/extension');
+require('../../../types/number/extension/extension');
 
 const NS_PER_SEC = 1e9;
 
