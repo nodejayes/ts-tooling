@@ -78,7 +78,7 @@ class ReactiveStore {
 
     _parseSelectorAccess(selector) {
         let tmp = selector.toString();
-        const isLambda = tmp.Contains('=>');
+        const isLambda = tmp.Contains('=>') && !tmp.Contains('return ') && !tmp.Contains('{') && !tmp.Contains('}');
         return isLambda ? this._parseLambdaSyntax(tmp) : this._parseFunctionSyntax(tmp);
     }
 
@@ -93,11 +93,7 @@ class ReactiveStore {
     _parseFunctionSyntax(tmp) {
         tmp = tmp.Split('{').ElementAt(1);
         tmp = tmp.Split('}').ElementAt(0);
-        if (tmp.Contains(';return ')) {
-            // coverage stuff found
-            tmp = 'return ' + tmp.Split(';return')
-                .ElementAt(1)
-        }
+        tmp = this._removeCoverageStuff(tmp);
         const k = tmp.Trim(' ')
             .Split('return ')
             .Reduce((target, e) => target.Concat(e), '')
@@ -105,6 +101,15 @@ class ReactiveStore {
             .Reduce((target, e) => target.Concat(e), '')
             .Split('.');
         return this._rootify(k.Reduce((target, e) => target.Concat(e, '.'), ''));
+    }
+
+    _removeCoverageStuff(tmp) {
+        if (tmp.Contains(';return ')) {
+            // coverage stuff found
+            tmp = 'return ' + tmp.Split(';return')
+                .ElementAt(1);
+        }
+        return tmp;
     }
 
     _rootify(selector) {
