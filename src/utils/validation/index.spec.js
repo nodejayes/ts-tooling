@@ -29,7 +29,7 @@ const {
     ValidateClass
 } = require('./index');
 
-describe('Type Byte Export Tests', () => {
+describe('Type Validation Export Tests', () => {
     it('ClassValidator', () => {
         assert.isDefined(ClassValidator);
     });
