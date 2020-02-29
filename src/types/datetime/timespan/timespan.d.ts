@@ -50,57 +50,57 @@ export class TimeSpan {
     /**
      * the Days of this TimeSpan
      */
-    get Day(): number;
+    readonly Day: number;
 
     /**
      * the TimeSpan in Days
      */
-    get TotalDays(): number;
+    readonly TotalDays: number;
 
     /**
      * the Hour of this TimeSpan
      */
-    get Hour(): number;
+    readonly Hour: number;
 
     /**
      * the TimeSpan in Hours
      */
-    get TotalHours(): number;
+    readonly TotalHours: number;
 
     /**
      * the Minute of this TimeSpan
      */
-    get Minute(): number;
+    readonly Minute: number;
 
     /**
      * the TimeSpan in Minutes
      */
-    get TotalMinutes(): number;
+    readonly TotalMinutes: number;
 
     /**
      * the Second of this TimeSpan
      */
-    get Second(): number;
+    readonly Second: number;
 
     /**
      * the TimeSpan in Seconds
      */
-    get TotalSeconds(): number;
+    readonly TotalSeconds: number;
 
     /**
      * the Millisecond of this TimeSpan
      */
-    get Millisecond(): number;
+    readonly Millisecond: number;
 
     /**
      * the TimeSpan in Milliseconds
      */
-    get TotalMilliseconds(): number;
+    readonly TotalMilliseconds: number;
 
     /**
      * get the Time Span in Weeks
      */
-    get TotalWeeks(): number;
+    readonly TotalWeeks: number;
 
     /**
      * create a new TimeSpan

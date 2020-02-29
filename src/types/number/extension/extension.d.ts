@@ -1,3 +1,5 @@
+export {};
+
 declare global {
     /**
      * extends the basic Javascript Number

@@ -71,7 +71,7 @@ export class StopWatch {
      * sw.IsPause();
      * ```
      */
-    get IsPause(): boolean;
+    readonly IsPause: boolean;
 
     /**
      * get the Time in ms Elapsed by the Section matches the given key

@@ -15,7 +15,7 @@ export class Guid {
      * Guid.Empty;
      * ```
      */
-    static get Empty(): Guid;
+    static readonly Empty: Guid;
 
     /**
      * validate a Guid
@@ -46,7 +46,7 @@ export class Guid {
      * new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').IsEmpty();
      * ```
      */
-    get IsEmpty(): boolean;
+    readonly IsEmpty: boolean;
 
     /**
      * create a new Guid

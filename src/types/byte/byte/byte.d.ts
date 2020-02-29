@@ -16,5 +16,5 @@ export class Byte {
     /**
      * get the Byte Value
      */
-    get Value(): number;
+    readonly Value: number;
 }

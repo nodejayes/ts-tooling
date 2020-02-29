@@ -23,12 +23,12 @@ export class ByteStream {
     /**
      * the size of the Stream
      */
-    get Length(): number;
+    readonly Length: number;
 
     /**
      * the current Position of the Read/Write Cursor in the Stream
      */
-    get Position(): number;
+    readonly Position: number;
 
     /**
      * reset the Read/Write Cursor of the Stream

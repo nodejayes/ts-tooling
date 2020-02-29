@@ -14,13 +14,13 @@ export class Dictionary<T> {
      * Number of Entries in the Dictionary
      * @constructor
      */
-    get Count(): number;
+    readonly Count: number;
 
     /**
      * all Values of the Dictionary
      * @constructor
      */
-    get Values(): T[];
+    readonly Values: T[];
 
     /**
      * all Keys of the Dictionary

@@ -10,98 +10,98 @@ export class DateTime {
     /**
      * Year of the Date
      */
-    get Year(): number;
+    readonly Year: number;
 
     /**
      * Month of the Date
      */
-    get Month(): number;
+    readonly Month: number;
 
     /**
      * Day of the Date in Month
      */
-    get Day(): number;
+    readonly Day: number;
 
     /**
      * Hour of the Day
      */
-    get Hour(): number;
+    readonly Hour: number;
 
     /**
      * Minute of the Day
      */
-    get Minute(): number;
+    readonly Minute: number;
 
     /**
      * Second of the Day
      */
-    get Second(): number;
+    readonly Second: number;
 
     /**
      * Millisecond of the Day
      */
-    get Millisecond(): number;
+    readonly Millisecond: number;
 
     /**
      * get the DateTime as UTC
      */
-    get UTC(): DateTime;
+    readonly UTC: DateTime;
 
     /**
      * the offset to UTC Timezone in Minutes
      */
-    get UTCOffsetMinutes(): number;
+    readonly UTCOffsetMinutes: number;
 
     /**
      * the current Timezone Name
      */
-    get Zone(): string;
+    readonly Zone: string;
 
     /**
      * the Weekday of the DateTime
      */
-    get DayOfWeek(): number;
+    readonly DayOfWeek: number;
 
     /**
      * the Day in the Year of the DateTime
      */
-    get DayOfYear(): number;
+    readonly DayOfYear: number;
 
     /**
      * the Number of the Days in the DateTime Year
      */
-    get DaysInYear(): number;
+    readonly DaysInYear: number;
 
     /**
      * the Number of Days in the Month of the DateTime
      */
-    get DaysInMonth(): number;
+    readonly DaysInMonth: number;
 
     /**
      * the Quarter of the Year of the DateTime
      * @constructor
      */
-    get YearQuarter(): number;
+    readonly YearQuarter: number;
 
     /**
      * the Week Number of the Year of DateTime
      */
-    get YearWeekNumber(): number;
+    readonly YearWeekNumber: number;
 
     /**
      * the Date without the Time
      */
-    get Date(): DateTime;
+    readonly Date: DateTime;
 
     /**
      * the Time of the Day
      */
-    get TimeOfDay(): TimeSpan;
+    readonly TimeOfDay: TimeSpan;
 
     /**
      * check if the DateTime is a valid DateTime
      */
-    get Valid(): boolean;
+    readonly Valid: boolean;
 
     /**
      * create a new DateTime
