@@ -30,7 +30,7 @@ class BackgroundWorker{
             data: args || null,
             scriptPath: this.WorkPath,
         };
-        let workerScript = './src/pattern/background.worker/worker.js';
+        let workerScript = './pattern/background.worker/worker.js';
         if (!this.IsTypeScript && this.IsJavaScript) {
             workerScript = this.WorkPath;
         }
@@ -46,7 +46,7 @@ class BackgroundWorker{
         worker.on('error', (err) => {
             this.OnError.next(err);
         });
-        worker.on('exit', () => {
+        worker.on('exit', (code) => {
             if (!workerIsFinish) {
                 this.OnError.next(new Error('worker exited before Finish'));
             }

@@ -464,7 +464,7 @@ describe('Reactive Store Tests', () => {
         });
         store.Mutate(s => s['test'].b, () => true);
     });
-    it('immutable values readed by getValue', async () => {
+    it('immutable values readed by getValue', (done) => {
         const store = new ReactiveStore({
             test: {
                 b: false,
@@ -475,11 +475,12 @@ describe('Reactive Store Tests', () => {
                 }
             }
         });
-        assert.throws(() => {
-            let o = store.Listen(s => s.test.o).getValue();
-            o.name = 'Peter';
-        });
-        assert.equal(store.Listen(s => s.test.o.name).getValue(), 'Paul');
+        let o = store.Listen(s => s.test.o).getValue();
+        o.name = 'Peter';
+        setTimeout(() => {
+            assert.equal(store.Listen(s => s.test.o.name).getValue(), 'Paul');
+            done();
+        }, 500);
     });
     it('using pipe of Listen Store', (done) => {
         const store = new ReactiveStore({

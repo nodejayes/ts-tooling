@@ -11,7 +11,7 @@ const TEST_BASH_SCRIPT = join(__dirname, 'stubs', 'test.bash');
 
 describe('BackgroundWorker Tests', () => {
     it('run BackgroundWorker with external File', (done) => {
-        const worker = new BackgroundWorker(WORKER_1_TYPESCRIPT);
+        const worker = new BackgroundWorker(WORKER_2_JAVASCRIPT);
         worker.OnError.subscribe(err => {
             console.error(err);
             assert.fail('a Error was thrown in worker!');
@@ -25,13 +25,17 @@ describe('BackgroundWorker Tests', () => {
     it('run multiple Workers', (done) => {
         const WORKER_TO_START = 2;
         let counter = 1;
-        const worker1 = new BackgroundWorker(WORKER_1_TYPESCRIPT);
+        const worker1 = new BackgroundWorker(WORKER_2_JAVASCRIPT);
         worker1.OnFinish.subscribe((d) => {
             assert.equal(d, 2.6525285981219103e+32);
             counter++;
             if (counter === WORKER_TO_START) {
                 done();
             }
+        });
+        worker1.OnError.subscribe(err => {
+            console.error(err);
+            assert.fail('a Error was thrown in worker!');
         });
         for (let i = 0; i < WORKER_TO_START; i++) {
             worker1.Run(30);
