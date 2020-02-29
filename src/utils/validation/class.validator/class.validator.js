@@ -496,6 +496,14 @@ function Whitelist(value, validationMessage) {
     }
 }
 
+/**
+ * blacklisting some values for the Property
+ *
+ * @function module:utils/validation.Blacklist
+ * @param value {any[]} values that are not allowed on this Property
+ * @param validationMessage {string} the Message string that was written in the Validation Error Message
+ * @return {Decorator}
+ */
 function Blacklist(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have the following values: ${value.join(',')}`;
@@ -531,6 +539,13 @@ function UniqueArray(validationMessage) {
     }
 }
 
+/**
+ * the Array must contain some Values
+ *
+ * @function module:utils/validation.ArrayNotEmpty
+ * @param validationMessage {string} the Message string that was written in the Validation Error Message
+ * @return {Decorator}
+ */
 function ArrayNotEmpty(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be empty.`;

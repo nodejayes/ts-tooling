@@ -7,7 +7,7 @@
     "test": "mocha --timeout 5000 ./src/**/*.spec.js",
     "cover": "nyc --reporter=lcov --report-dir coverage npm run test && npm run cover:publish",
     "cover:publish": "node ./scripts/coverage.js",
-    "docs": "jsdoc -r -c ./jsdoc.config.json -d ./docs ./src",
+    "docs": "jsdoc -r -c ./jsdoc.config.json -t ./jsdoc-template -d ./docs -R ./README.md ./src",
     "beforecommit": "npm run cover",
     "release": "npm run beforecommit && npm publish",
     "release:beta": "npm run beforecommit && npm publish --tag beta"

@@ -10,8 +10,16 @@
     "allowUnknownTags": true,
     "dictionaries": ["jsdoc","closure"]
   },
+  "opts": {},
   "templates": {
-    "cleverLinks": false,
-    "monospaceLinks": false
+    "name": "v3.0.0",
+    "footerText": "  ",
+    "useCollapsibles": true,
+    "logo": {
+      "url": "/ts-tooling/ts-tooling.svg",
+      "width": "150px",
+      "height": "35px",
+      "link": "https://github.com/nodejayes/ts-tooling"
+    }
   }
 }
