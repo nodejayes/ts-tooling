@@ -1,4 +1,4 @@
-const {Benchmark} = require('../benchmark');
+const {Benchmark} = require('collatio');
 require('../../src/ts-tooling');
 const {filter} = require('lodash');
 
