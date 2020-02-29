@@ -1,16 +1,9 @@
-import {Subject, Subscription} from 'rxjs';
-import {Dictionary} from '../../types/dictionary';
-import {StringFactory} from '../../types/string';
-
 /**
  * lets create a Event Handler you can subscribe or unsubscribe
  *
  * @category Pattern
  */
 export class EventHandler<T> {
-    private _stream = new Subject<T>();
-    private _subscriptions: Dictionary<Subscription> = new Dictionary<Subscription>();
-
     /**
      * invoke the Event on the Handler
      * @param args
@@ -21,9 +14,7 @@ export class EventHandler<T> {
      * handler.Invoke(1);
      * ```
      */
-    Invoke(args: T): void {
-        this._stream.next(args);
-    }
+    Invoke(args: T): void;
 
     /**
      * do something when the Handler is invoked
@@ -39,9 +30,7 @@ export class EventHandler<T> {
      * handler.Invoke(2);
      * ```
      */
-    Subscribe(key: string, cb: (d: T) => void) {
-        this._subscriptions.Add(key, this._stream.subscribe(cb));
-    }
+    Subscribe(key: string, cb: (d: T) => void): void;
 
     /**
      * unsubscribe all callbacks
@@ -59,19 +48,5 @@ export class EventHandler<T> {
      * handler.Invoke(2);
      * ```
      */
-    Unsubscribe(key?: string) {
-        if (StringFactory.IsNullOrEmpty(key)) {
-            for (const k of this._subscriptions.Keys()) {
-                this.unsubscribeByKey(k);
-            }
-        } else {
-            this.unsubscribeByKey(key);
-        }
-    }
-
-    private unsubscribeByKey(key: string): void {
-        const sub = this._subscriptions.TryGetValue(key);
-        sub.unsubscribe();
-        this._subscriptions.Remove(key);
-    }
+    Unsubscribe(key?: string): void;
 }

@@ -1,4 +1,11 @@
-import {IDisposable} from './disposable';
+/**
+ * implements Methods to make a Class Disposable
+ *
+ * @category Pattern
+ */
+export interface IDisposable {
+    Dispose(): void;
+}
 
 /**
  * use a Instance and Dispose it after Execution
@@ -22,8 +29,4 @@ import {IDisposable} from './disposable';
  * });
  * ```
  */
-export function using<T extends IDisposable>(item: new () => T, cb: (d: T) => void): void {
-    const tmp = new item();
-    cb(tmp);
-    tmp.Dispose();
-}
+export function Using<T extends IDisposable>(item: new () => T, cb: (d: T) => void): void;

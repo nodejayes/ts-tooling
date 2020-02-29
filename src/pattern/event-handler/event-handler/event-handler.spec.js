@@ -1,10 +1,9 @@
-import {assert} from 'chai';
-import {EventHandler} from '../../../src/pattern/event-handler';
-import 'mocha';
+const {EventHandler} = require('./event.handler');
+const {assert} = require('chai');
 
 describe('EventHandler Tests', () => {
     it('can subscribe', (done) => {
-        const eventHandler = new EventHandler<string>();
+        const eventHandler = new EventHandler();
         eventHandler.Subscribe('s1', (args) => {
             assert.equal(args, 'data');
             done();
@@ -13,7 +12,7 @@ describe('EventHandler Tests', () => {
     });
 
     it('unsubscribes', (done) => {
-        const eventHandler = new EventHandler<string>();
+        const eventHandler = new EventHandler();
         eventHandler.Subscribe('s1', (args) => {
             assert.fail();
         });
@@ -23,7 +22,7 @@ describe('EventHandler Tests', () => {
     });
 
     it('unsubscribe only once', (done) => {
-        const eventHandler = new EventHandler<string>();
+        const eventHandler = new EventHandler();
         eventHandler.Subscribe('s1', (args) => {
             assert.fail();
         });
@@ -36,7 +35,7 @@ describe('EventHandler Tests', () => {
     });
 
     it('unsubscribe all', (done) => {
-        const eventHandler = new EventHandler<string>();
+        const eventHandler = new EventHandler();
         eventHandler.Subscribe('s1', (args) => {
             assert.fail();
         });
