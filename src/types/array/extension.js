@@ -122,7 +122,14 @@ Array.prototype.FindIndex = function (condition) {
 };
 
 Array.prototype.FindAll = function (condition) {
-    return Filter(this, condition);
+    const tmp = [];
+    for (let i = 0; i < this.length; i++) {
+        if (condition(this[i])) {
+            tmp.push(this[i]);
+        }
+    }
+    return tmp;
+    // return Filter(this, condition);
 };
 
 Array.prototype.Insert = function (index, element) {

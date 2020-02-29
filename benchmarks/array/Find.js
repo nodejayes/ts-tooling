@@ -1,5 +1,5 @@
-const Benchmark = require('../benchmark');
-require('../../lib/ts-tooling');
+const {Benchmark} = require('../benchmark');
+require('../../src/ts-tooling');
 const {find} = require('lodash');
 
 const b = new Benchmark('Find');

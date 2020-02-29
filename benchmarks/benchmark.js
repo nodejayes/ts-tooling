@@ -1,17 +1,17 @@
-const {StopWatch, ListSortOrder} = require('../lib/ts-tooling');
+const {StopWatch, ListSortOrder} = require('../src/ts-tooling');
 
 class Benchmark {
     constructor(name) {
         this.name = name;
         this.data = null;
-        this.runtime = 1;
+        this.runtime = 1000;
         this.stats = [];
     }
 
-    setup(cb, options) {
+    setup(cb, runtime) {
         this.data = cb();
-        if (options.runtime > 1) {
-            this.runtime = options.runtime;
+        if (runtime > 1) {
+            this.runtime = runtime;
         }
     }
 
@@ -43,4 +43,4 @@ class Benchmark {
     }
 }
 
-module.exports = Benchmark;
+module.exports = {Benchmark};

@@ -1,8 +1,8 @@
 {
   "name": "ts-tooling",
   "version": "3.0.0",
-  "main": "lib/ts-tooling.js",
-  "types": "lib/ts-tooling.d.ts",
+  "main": "src/ts-tooling.js",
+  "types": "src/ts-tooling.d.ts",
   "scripts": {
     "test": "mocha --timeout 5000 ./src/**/*.spec.js",
     "cover": "nyc --reporter=lcov --report-dir coverage npm run test && npm run cover:publish",
@@ -40,13 +40,8 @@
     "chai-uuid": "^1.0.6",
     "fs-extra": "^8.1.0",
     "typedoc": "^0.16.10",
+    "readts": "^0.2.0",
     "lcov-parse": "^1.0.0",
     "lodash": "^4.17.15"
-  },
-  "ngPackage": {
-    "lib": {
-      "entryFile": "./src/ts-tooling.ts"
-    },
-    "dest": "dist"
   }
 }

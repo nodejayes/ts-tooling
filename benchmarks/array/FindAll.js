@@ -1,5 +1,5 @@
-const Benchmark = require('../benchmark');
-require('../../lib/ts-tooling');
+const {Benchmark} = require('../benchmark');
+require('../../src/ts-tooling');
 const {filter} = require('lodash');
 
 const b = new Benchmark('FindAll');
@@ -10,17 +10,26 @@ b.setup(() => {
         data.Add(i);
     }
     return data;
-}, {runtime: 1000});
+}, 10000);
+
+b.run('for i loop ++', d => {
+    const filtered = [];
+    for (let i = 0; i < d.length; i++) {
+        if (d[i] > 3) {
+            filtered.push(d[i]);
+        }
+    }
+});
 
 b.run('Array.filter', (d) => {
     d.filter(e => e > 3);
-}, {counter: 10});
+});
 
 b.run('ts-tooling FindAll', (d) => {
     d.FindAll(e => e > 3);
-}, {counter: 10});
+});
 
 b.run('lodash filter', d => {
     filter(d, e => e > 3);
-}, {counter: 10});
-b.print();
+});
+b.print(3);
