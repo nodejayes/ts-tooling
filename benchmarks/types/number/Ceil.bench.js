@@ -1,4 +1,4 @@
-const {filter} = require('lodash');
+const {ceil} = require('lodash');
 const { PerformanceObserver, performance } = require('perf_hooks');
 const {EventHandler} = require('../../../src/ts-tooling');
 
@@ -10,53 +10,32 @@ const obs = new PerformanceObserver((items) => {
     counter++;
     const entries = items.getEntries();
     data[entries[0].name] = entries[0].duration;
-    if (counter === 4) {
+    if (counter === 3) {
         emitter.Invoke(data);
     }
 });
 obs.observe({ entryTypes: ['function'] });
 
-const LIST = [];
-for (let i = 0; i < 1000000; i++) {
-    LIST.push(i);
-}
-
 function run() {
     function native() {
-        const RESULT = [];
-        for (let i = 0; i < LIST.length; i++) {
-            if (LIST[i] > 3) {
-                RESULT.push(LIST[i]);
-            }
-        }
-        if (RESULT.length < 999996) {
-            throw new Error('invalid result');
-        }
-    }
-
-    function nativeArray() {
-        const RESULT = LIST.filter(e => e > 3);
-        if (RESULT.length < 999996) {
+        if ((Math.ceil((2.054224) * 100) / 100) !== 2.06) {
             throw new Error('invalid result');
         }
     }
 
     function lodash() {
-        const RESULT = filter(LIST, e => e > 3);
-        if (RESULT.length < 999996) {
+        if (ceil(2.054224, 2) !== 2.06) {
             throw new Error('invalid result');
         }
     }
 
     function tsTooling() {
-        const RESULT = LIST.FindAll(e => e > 3);
-        if (RESULT.length < 999996) {
+        if (2.054224.Ceil(2) !== 2.06) {
             throw new Error('invalid result');
         }
     }
 
     performance.timerify(native)();
-    performance.timerify(nativeArray)();
     performance.timerify(lodash)();
     performance.timerify(tsTooling)();
 }
