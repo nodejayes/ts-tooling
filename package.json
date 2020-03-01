@@ -10,7 +10,8 @@
     "docs": "jsdoc -r -c ./jsdoc.config.json -t ./jsdoc-template -d ./docs -R ./README.md ./src",
     "beforecommit": "npm run cover",
     "release": "npm run beforecommit && npm publish",
-    "release:beta": "npm run beforecommit && npm publish --tag beta"
+    "release:beta": "npm run beforecommit && npm publish --tag beta",
+    "bench": "node ./benchmarks/benchmarks.js"
   },
   "license": "MIT",
   "repository": {
