@@ -11,7 +11,7 @@
     "beforecommit": "npm run cover",
     "release": "npm run beforecommit && npm publish",
     "release:beta": "npm run beforecommit && npm publish --tag beta",
-    "bench": "node ./benchmarks/benchmarks.js"
+    "bench": "node ./benchmarks/run.js"
   },
   "license": "MIT",
   "repository": {

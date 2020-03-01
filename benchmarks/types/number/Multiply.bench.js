@@ -1,28 +1,43 @@
-const {Benchmark} = require('collatio');
 const {multiply} = require('lodash');
-require('../../../src/types/number/extension/extension');
+const { PerformanceObserver, performance } = require('perf_hooks');
+const {EventHandler} = require('../../../src/ts-tooling');
 
-const b = new Benchmark('types/number.Number#Multiply');
+const emitter = new EventHandler();
+const data = {};
+let counter = 0;
 
-b.run('ts-tooling', () => {
-    if ((5).Multiply(5) !== 25) {
-        throw Error('invalid Result');
+const obs = new PerformanceObserver((items) => {
+    counter++;
+    const entries = items.getEntries();
+    data[entries[0].name] = entries[0].duration;
+    if (counter === 3) {
+        emitter.Invoke(data);
     }
 });
+obs.observe({ entryTypes: ['function'] });
 
-b.run('native', () => {
-    if ((5*5) !== 25) {
-        throw Error('invalid Result');
+function run() {
+    function native() {
+        if ((6*2) !== 12) {
+            throw new Error('invalid result');
+        }
     }
-});
 
-b.run('lodash', () => {
-    if (multiply(5, 5) !== 25) {
-        throw Error('invalid Result');
+    function lodash() {
+        if (multiply(6, 2) !== 12) {
+            throw new Error('invalid result');
+        }
     }
-});
 
-module.exports = {
-    name: b.name,
-    stats: b.stats,
-};
+    function tsTooling() {
+        if ((6).Multiply(2) !== 12) {
+            throw new Error('invalid result');
+        }
+    }
+
+    performance.timerify(native)();
+    performance.timerify(lodash)();
+    performance.timerify(tsTooling)();
+}
+
+module.exports = {emitter, run};

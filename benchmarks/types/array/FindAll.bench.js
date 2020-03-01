@@ -1,4 +1,4 @@
-const {add} = require('lodash');
+const {filter} = require('lodash');
 const { PerformanceObserver, performance } = require('perf_hooks');
 const {EventHandler} = require('../../../src/ts-tooling');
 
@@ -16,21 +16,34 @@ const obs = new PerformanceObserver((items) => {
 });
 obs.observe({ entryTypes: ['function'] });
 
+const LIST = [];
+for (let i = 0; i < 1000000; i++) {
+    LIST.push(i);
+}
+
 function run() {
     function native() {
-        if ((1+5) !== 6) {
+        const RESULT = [];
+        for (let i = 0; i < LIST.length; i++) {
+            if (LIST[i] > 3) {
+                RESULT.push(LIST[i]);
+            }
+        }
+        if (RESULT.length < 999996) {
             throw new Error('invalid result');
         }
     }
 
     function lodash() {
-        if (add(1, 5) !== 6) {
+        const RESULT = filter(LIST, e => e > 3);
+        if (RESULT.length < 999996) {
             throw new Error('invalid result');
         }
     }
 
     function tsTooling() {
-        if ((1).Add(5) !== 6) {
+        const RESULT = LIST.FindAll(e => e > 3);
+        if (RESULT.length < 999996) {
             throw new Error('invalid result');
         }
     }
