@@ -1,5 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Benchmark Reduce" type="NodeJSConfigurationType" path-to-js-file="array/Reduce.js" working-dir="$PROJECT_DIR$/benchmarks">
-    <method v="2" />
-  </configuration>
-</component>

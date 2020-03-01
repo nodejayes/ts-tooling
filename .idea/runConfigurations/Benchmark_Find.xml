@@ -1,5 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Benchmark Find" type="NodeJSConfigurationType" path-to-js-file="array/Find.js" working-dir="$PROJECT_DIR$/benchmarks">
-    <method v="2" />
-  </configuration>
-</component>
