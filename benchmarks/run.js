@@ -8,7 +8,7 @@ const BENCHMARKS = {
     'types.number.Number.Subtract': {source: './types/number/Subtract.bench.js', executions: 1},
     'types.number.Number.Multiply': {source: './types/number/Multiply.bench.js', executions: 1},
     'types.number.Number.Divide': {source: './types/number/Divide.bench.js', executions: 1},
-    'types.array.Array.FindAll': {source: './types/array/FindAll.bench.js', executions: 1},
+    'types.array.Array.FindAll': {source: './types/array/FindAll.bench.js', executions: 1000000},
 };
 
 const TIME = new DateTime();
