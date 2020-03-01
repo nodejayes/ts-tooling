@@ -3,12 +3,12 @@
     <node-interpreter>node</node-interpreter>
     <node-options />
     <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
-    <working-directory>$PROJECT_DIR$</working-directory>
+    <working-directory>$PROJECT_DIR$/src</working-directory>
     <pass-parent-env>true</pass-parent-env>
     <ui>bdd</ui>
-    <extra-mocha-options>--require ts-node/register --timeout 30000</extra-mocha-options>
+    <extra-mocha-options>--timeout 5000 --watch</extra-mocha-options>
     <test-kind>PATTERN</test-kind>
-    <test-pattern>**/*.spec.ts</test-pattern>
+    <test-pattern>**/*.spec.js</test-pattern>
     <method v="2" />
   </configuration>
 </component>

@@ -1,21 +1,17 @@
 {
   "name": "ts-tooling",
-  "version": "2.6.5",
-  "main": "lib/ts-tooling.js",
-  "module": "lib/ts-tooling.es.js",
-  "types": "lib/ts-tooling.d.ts",
+  "version": "3.0.0-beta.6",
+  "main": "src/ts-tooling.js",
+  "types": "src/ts-tooling.d.ts",
   "scripts": {
-    "clear": "rimraf ./lib",
-    "build": "npm run clear && webpack-cli",
-    "test": "mocha --require ts-node/register --timeout 30000 **/*.spec.ts",
-    "test:bundle": "mocha --timeout 30000 ./spec/bundle/**/*.spec.js",
-    "test:sub": "mocha --timeout 30000 --watch ./spec/submodule/**/*.spec.js",
-    "test:bundle:sub": "npm run test:bundle && npm run test:sub",
-    "cover": "nyc --extension=.ts --extension=.js --reporter=lcov --report-dir coverage mocha --require ts-node/register --timeout 30000 **/*.spec.ts && npm run cover:publish",
+    "test": "mocha --timeout 5000 ./src/**/*.spec.js",
+    "cover": "nyc --reporter=lcov --report-dir coverage npm run test && npm run cover:publish",
     "cover:publish": "node ./scripts/coverage.js",
-    "beforecommit": "npm run build && npm run cover && npm run docs",
+    "docs": "jsdoc -r -c ./jsdoc.config.json -t ./jsdoc-template -d ./docs -R ./README.md ./src",
+    "beforecommit": "npm run cover",
     "release": "npm run beforecommit && npm publish",
-    "docs": "typedoc --out ./docs --mode file --excludePrivate --excludeNotExported --excludeNotExported --exclude node_modules ./src/ts-tooling.ts"
+    "release:beta": "npm run beforecommit && npm publish --tag beta",
+    "bench": "node ./benchmarks/run.js"
   },
   "license": "MIT",
   "repository": {
@@ -27,7 +23,7 @@
     "email": "markusgilg@outlook.de"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "dependencies": {
     "luxon": "^1.22.0",
@@ -40,28 +36,13 @@
     "change-case": "^4.1.1"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.9",
-    "@types/luxon": "^1.21.0",
-    "@types/mocha": "^7.0.1",
-    "@types/node": "^13.7.1",
-    "chai": "^4.2.0",
-    "fs-extra": "^8.1.0",
-    "mocha": "^7.0.1",
     "nyc": "^15.0.0",
-    "tslint": "^6.0.0",
-    "tslint-config-prettier": "^1.18.0",
-    "typedoc": "^0.16.10",
-    "typescript": "~3.7.5",
+    "mocha": "^7.0.1",
+    "chai": "^4.2.0",
+    "chai-uuid": "^1.0.6",
+    "jsdoc": "^3.6.3",
     "lcov-parse": "^1.0.0",
     "lodash": "^4.17.15",
-    "ts-loader": "^6.2.1",
-    "webpack-cli": "^3.3.11",
-    "webpack": "^4.41.6"
-  },
-  "ngPackage": {
-    "lib": {
-      "entryFile": "./src/ts-tooling.ts"
-    },
-    "dest": "dist"
+    "collatio": "^1.0.2"
   }
 }

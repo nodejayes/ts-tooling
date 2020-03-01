@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: types/number/factory/number.factory.js | v3.0.0</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="width: 150px; height: 35px">
+        
+            <a href="https://github.com/nodejayes/ts-tooling" rel="noopener noreferrer" target="_blank">
+                <img src="/ts-tooling/ts-tooling.svg" width="100%" height="100%">
+            </a>
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">v3.0.0</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+    <div class="lnb-api hidden"><h3>Modules</h3><ul><li><a href="module-types_number.html">types/number</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:types/number_sub"></div></li><li><a href="module-utils_validation.html">utils/validation</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:utils/validation_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-utils_validation.html#.ArrayNotEmpty">ArrayNotEmpty</a></li><li><a href="module-utils_validation.html#.Blacklist">Blacklist</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="module-types_number.Number.html">Number</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:types/number.Number_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-types_number.Number.html#IsInRange">IsInRange</a></li></ul></div></li><li><a href="module-types_number.NumberFactory.html">NumberFactory</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:types/number.NumberFactory_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-types_number.NumberFactory.html#NewDouble">NewDouble</a></li><li><a href="module-types_number.NumberFactory.html#NewInteger">NewInteger</a></li><li><a href="module-types_number.NumberFactory.html#RandomDouble">RandomDouble</a></li><li><a href="module-types_number.NumberFactory.html#RandomInteger">RandomInteger</a></li></ul></div></li><li><a href="module-utils_validation.ClassValidator.html">ClassValidator</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:utils/validation.ClassValidator_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-utils_validation.ClassValidator.html#Validate">Validate</a></li><li><a href="module-utils_validation.ClassValidator.html#ValidateObject">ValidateObject</a></li></ul></div></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const {Random} = require('../../../core/number/number');
+
+/**
+ * With the factory you can create new integer or double values,
+ * it does not matter if the numbers are entered as string or as number datatype.
+ *
+ * furthermore it is possible to create random integer or double values.
+ *
+ * @class module:types/number.NumberFactory
+ */
+class NumberFactory {}
+
+/**
+ * create a new Integer from the given input
+ *
+ * @function module:types/number.NumberFactory#NewInteger
+ * @static
+ *
+ * @param value {number | string} Javascript Number or String that represent the new Integer
+ * @returns {number} new integer representation of the string or number
+ *
+ * @example
+ * // returns 1
+ * NumberFactory.NewInteger(1);
+ * NumberFactory.NewInteger('1');
+ * NumberFactory.NewInteger(1.5);
+ * // returns 0
+ * NumberFactory.NewInteger('aaaa');
+ */
+NumberFactory.NewInteger = (value) => {
+    const tmp = parseInt(value.toString());
+    if (isNaN(tmp)) {
+        return 0;
+    }
+    return tmp;
+};
+
+/**
+ * create a new Double number from the given input
+ *
+ * @function module:types/number.NumberFactory#NewDouble
+ * @static
+ *
+ * @param value {number | string} Javascript Number or String
+ * @returns {string} the double number representation of the string or number input
+ *
+ * @example
+ * // returns 1.5
+ * NumberFactory.NewDouble(1.5);
+ * NumberFactory.NewDouble('1.5');
+ * // returns 0.0
+ * NumberFactory.NewDouble('aaa');
+ */
+NumberFactory.NewDouble = (value) => {
+    const tmp = parseFloat(value.toString());
+    if (isNaN(tmp)) {
+        return 0;
+    }
+    return tmp;
+};
+
+/**
+ * create Random Integers in the min/max Border
+ *
+ * @function module:types/number.NumberFactory#RandomInteger
+ * @static
+ *
+ * @param min {number} the minimum Integer that can be created
+ * @param max {number} the maximum Integer that can be created
+ * @returns {number} a integer number between min and max
+ *
+ * @example
+ * // creates the Javascript Numbers 1,2,3,4,5,6,7,8,9 and 10
+ * NumberFactory.RandomInteger(1, 10);
+ */
+NumberFactory.RandomInteger = (min, max) => {
+    return Random(min, max, false);
+};
+
+/**
+ * create Random Doubles in the min/max Border
+ *
+ * @function module:types/number.NumberFactory#RandomDouble
+ * @static
+ *
+ * @param min {number} the minimum Double that can be created
+ * @param max {number} the maximum Double that can be created
+ * @returns {number} a double number between min and max
+ *
+ * @example
+ * // create all Double Numbers begins with 0.0 and ends with 1.0
+ * NumberFactory.RandomDouble(0, 1)
+ */
+NumberFactory.RandomDouble = (min, max) => {
+    return Random(min, max, true);
+};
+
+module.exports = {NumberFactory};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<footer>
+    <div class="footer-text">  </div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = '_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "plugins": [],
+  "recurseDepth": 10,
+  "source": {
+    "includePattern": ".+\\.js?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "sourceType": "module",
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc","closure"]
+  },
+  "opts": {},
+  "templates": {
+    "name": "v3.0.0",
+    "footerText": "  ",
+    "useCollapsibles": true,
+    "logo": {
+      "url": "/ts-tooling/ts-tooling.svg",
+      "width": "150px",
+      "height": "35px",
+      "link": "https://github.com/nodejayes/ts-tooling"
+    }
+  }
+}
