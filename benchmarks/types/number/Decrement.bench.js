@@ -18,7 +18,7 @@ obs.observe({ entryTypes: ['function'] });
 function run() {
     function native() {
         let RESULT = 5;
-        RESULT--;
+        RESULT = RESULT -1;
         if (RESULT !== 4) {
             throw new Error('invalid result');
         }
