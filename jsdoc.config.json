@@ -16,7 +16,7 @@
     "footerText": "  ",
     "useCollapsibles": true,
     "logo": {
-      "url": "/ts-tooling/ts-tooling.svg",
+      "url": "/ts-tooling.svg",
       "width": "150px",
       "height": "35px",
       "link": "https://github.com/nodejayes/ts-tooling"
