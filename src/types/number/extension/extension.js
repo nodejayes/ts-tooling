@@ -55,6 +55,8 @@ Number.prototype.Equals = function (value) {
  * @param value {number} the Number to check again the current Number
  * @return {boolean}
  *
+ * @deprecated use native additions its faster and shorter
+ *
  * @example
  * // returns true
  * (1).IsAbove(0)
@@ -73,6 +75,8 @@ Number.prototype.IsAbove = function (value) {
  *
  * @param value {number} the Number to check again the current Number
  * @return {boolean}
+ *
+ * @deprecated use native additions its faster and shorter
  *
  * @example
  * // returns true
@@ -122,6 +126,8 @@ Number.prototype.Clamp = function (lower, upper) {
  * @param value {number} the Number to add to the current Number
  * @return {number}
  *
+ * @deprecated use native additions its faster and shorter
+ *
  * @example
  * // returns 2
  * (1).Add(1);
@@ -139,6 +145,8 @@ Number.prototype.Add = function (value) {
  *
  * @param value {number} the Number to subtract from the current Number
  * @return {number}
+ *
+ * @deprecated use native additions its faster and shorter
  *
  * @example
  * // returns 1
@@ -158,6 +166,8 @@ Number.prototype.Subtract = function (value) {
  * @param value {number} the Number to multiply from the current Number
  * @return {number}
  *
+ * @deprecated use native additions its faster and shorter
+ *
  * @example
  * // returns 10
  * (1).Multiply(10);
@@ -175,6 +185,8 @@ Number.prototype.Multiply = function (value) {
  *
  * @param value {number} the Number to multiply from the current Number
  * @return {number}
+ *
+ * @deprecated use native additions its faster and shorter
  *
  * @example
  * // returns 5
@@ -295,6 +307,8 @@ Number.prototype.DecimalPlaces = function () {
  * @param step {number} Number to be incremented by
  * @return {number}
  *
+ * @deprecated use native additions its faster and shorter
+ *
  * @example
  * // returns 2
  * (1).Increment();
@@ -313,6 +327,8 @@ Number.prototype.Increment = function (step) {
  *
  * @param step {number} Number to be decremented by
  * @return {number}
+ *
+ * @deprecated use native additions its faster and shorter
  *
  * @example
  * // returns 4

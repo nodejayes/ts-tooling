@@ -8,7 +8,7 @@
     "cover": "nyc --reporter=lcov --report-dir coverage npm run test && npm run cover:publish",
     "cover:publish": "node ./scripts/coverage.js",
     "docs": "jsdoc -r -c ./jsdoc.config.json -t ./jsdoc-template -d ./docs -R ./README.md ./src",
-    "beforecommit": "npm run cover",
+    "beforecommit": "npm run cover && npm run docs",
     "release": "npm run beforecommit && npm publish",
     "release:beta": "npm run beforecommit && npm publish --tag beta",
     "bench": "node ./benchmarks/run.js"
@@ -41,6 +41,7 @@
     "chai": "^4.2.0",
     "chai-uuid": "^1.0.6",
     "jsdoc": "^3.6.3",
+    "tui-jsdoc-template": "^1.2.2",
     "lcov-parse": "^1.0.0",
     "lodash": "^4.17.15",
     "collatio": "^1.0.2"
