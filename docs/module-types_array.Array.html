@@ -1,0 +1,6867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Class: Array | v3.0.0</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="width: 150px; height: 35px">
+        
+            <a href="https://github.com/nodejayes/ts-tooling" rel="noopener noreferrer" target="_blank">
+                <img src="/ts-tooling.svg" width="100%" height="100%">
+            </a>
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">v3.0.0</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+    <div class="lnb-api hidden"><h3>Modules</h3><ul><li><a href="module-types_array.html">types/array</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:types/array_sub"></div></li><li><a href="module-types_number.html">types/number</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:types/number_sub"></div></li><li><a href="module-types_string.html">types/string</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:types/string_sub"></div></li><li><a href="module-utils_validation.html">utils/validation</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:utils/validation_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-utils_validation.html#.ArrayNotEmpty">ArrayNotEmpty</a></li><li><a href="module-utils_validation.html#.Blacklist">Blacklist</a></li><li><a href="module-utils_validation.html#.CustomValidation">CustomValidation</a></li><li><a href="module-utils_validation.html#.Equals">Equals</a></li><li><a href="module-utils_validation.html#.IsAlpha">IsAlpha</a></li><li><a href="module-utils_validation.html#.IsAlphanumeric">IsAlphanumeric</a></li><li><a href="module-utils_validation.html#.IsAscii">IsAscii</a></li><li><a href="module-utils_validation.html#.IsBase64">IsBase64</a></li><li><a href="module-utils_validation.html#.IsBooleanString">IsBooleanString</a></li><li><a href="module-utils_validation.html#.IsByteLength">IsByteLength</a></li><li><a href="module-utils_validation.html#.IsDefined">IsDefined</a></li><li><a href="module-utils_validation.html#.IsEmail">IsEmail</a></li><li><a href="module-utils_validation.html#.IsEmpty">IsEmpty</a></li><li><a href="module-utils_validation.html#.IsHash">IsHash</a></li><li><a href="module-utils_validation.html#.IsHexadecimal">IsHexadecimal</a></li><li><a href="module-utils_validation.html#.IsHexColor">IsHexColor</a></li><li><a href="module-utils_validation.html#.IsInt">IsInt</a></li><li><a href="module-utils_validation.html#.IsIp">IsIp</a></li><li><a href="module-utils_validation.html#.IsJSON">IsJSON</a></li><li><a href="module-utils_validation.html#.IsJWT">IsJWT</a></li><li><a href="module-utils_validation.html#.IsMacAddress">IsMacAddress</a></li><li><a href="module-utils_validation.html#.IsMongoId">IsMongoId</a></li><li><a href="module-utils_validation.html#.IsNegative">IsNegative</a></li><li><a href="module-utils_validation.html#.IsNotEmpty">IsNotEmpty</a></li><li><a href="module-utils_validation.html#.IsNumberString">IsNumberString</a></li><li><a href="module-utils_validation.html#.IsOptional">IsOptional</a></li><li><a href="module-utils_validation.html#.IsPort">IsPort</a></li><li><a href="module-utils_validation.html#.IsPositive">IsPositive</a></li><li><a href="module-utils_validation.html#.IsUrl">IsUrl</a></li><li><a href="module-utils_validation.html#.IsUUID">IsUUID</a></li><li><a href="module-utils_validation.html#.Max">Max</a></li><li><a href="module-utils_validation.html#.MaxDate">MaxDate</a></li><li><a href="module-utils_validation.html#.MaxLength">MaxLength</a></li><li><a href="module-utils_validation.html#.Min">Min</a></li><li><a href="module-utils_validation.html#.MinDate">MinDate</a></li><li><a href="module-utils_validation.html#.MinLength">MinLength</a></li><li><a href="module-utils_validation.html#.NotEquals">NotEquals</a></li><li><a href="module-utils_validation.html#.Required">Required</a></li><li><a href="module-utils_validation.html#.UniqueArray">UniqueArray</a></li><li><a href="module-utils_validation.html#.ValidateClass">ValidateClass</a></li><li><a href="module-utils_validation.html#.ValidateIf">ValidateIf</a></li><li><a href="module-utils_validation.html#.Whitelist">Whitelist</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="module-types_array.Array.html">Array</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:types/array.Array_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-types_array.Array.html#Add">Add</a></li><li><a href="module-types_array.Array.html#AddIfNotExists">AddIfNotExists</a></li><li><a href="module-types_array.Array.html#AddRange">AddRange</a></li><li><a href="module-types_array.Array.html#AddRangeIfNotExists">AddRangeIfNotExists</a></li><li><a href="module-types_array.Array.html#Any">Any</a></li><li><a href="module-types_array.Array.html#Clear">Clear</a></li><li><a href="module-types_array.Array.html#Contains">Contains</a></li><li><a href="module-types_array.Array.html#Convert">Convert</a></li><li><a href="module-types_array.Array.html#Copy">Copy</a></li><li><a href="module-types_array.Array.html#Count">Count</a></li><li><a href="module-types_array.Array.html#ElementAt">ElementAt</a></li><li><a href="module-types_array.Array.html#Exists">Exists</a></li><li><a href="module-types_array.Array.html#Find">Find</a></li><li><a href="module-types_array.Array.html#FindAll">FindAll</a></li><li><a href="module-types_array.Array.html#FindIndex">FindIndex</a></li><li><a href="module-types_array.Array.html#FindIndex">FindIndex</a></li><li><a href="module-types_array.Array.html#FindLast">FindLast</a></li><li><a href="module-types_array.Array.html#FindLastIndex">FindLastIndex</a></li><li><a href="module-types_array.Array.html#FirstOrDefault">FirstOrDefault</a></li><li><a href="module-types_array.Array.html#GroupBy">GroupBy</a></li><li><a href="module-types_array.Array.html#GroupKey">GroupKey</a></li><li><a href="module-types_array.Array.html#IndexOf">IndexOf</a></li><li><a href="module-types_array.Array.html#Insert">Insert</a></li><li><a href="module-types_array.Array.html#InsertRange">InsertRange</a></li><li><a href="module-types_array.Array.html#Join">Join</a></li><li><a href="module-types_array.Array.html#LastOrDefault">LastOrDefault</a></li><li><a href="module-types_array.Array.html#Max">Max</a></li><li><a href="module-types_array.Array.html#Mean">Mean</a></li><li><a href="module-types_array.Array.html#Min">Min</a></li><li><a href="module-types_array.Array.html#Reduce">Reduce</a></li><li><a href="module-types_array.Array.html#Remove">Remove</a></li><li><a href="module-types_array.Array.html#RemoveAll">RemoveAll</a></li><li><a href="module-types_array.Array.html#RemoveAt">RemoveAt</a></li><li><a href="module-types_array.Array.html#RemoveRange">RemoveRange</a></li><li><a href="module-types_array.Array.html#Reverse">Reverse</a></li><li><a href="module-types_array.Array.html#Sort">Sort</a></li><li><a href="module-types_array.Array.html#SortBy">SortBy</a></li><li><a href="module-types_array.Array.html#Sum">Sum</a></li><li><a href="module-types_array.Array.html#TrueForAll">TrueForAll</a></li><li><a href="module-types_array.Array.html#UnionBy">UnionBy</a></li></ul></div></li><li><a href="module-types_number.Number.html">Number</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:types/number.Number_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-types_number.Number.html#Add">Add</a></li><li><a href="module-types_number.Number.html#Ceil">Ceil</a></li><li><a href="module-types_number.Number.html#Clamp">Clamp</a></li><li><a href="module-types_number.Number.html#DecimalPlaces">DecimalPlaces</a></li><li><a href="module-types_number.Number.html#Decrement">Decrement</a></li><li><a href="module-types_number.Number.html#Divide">Divide</a></li><li><a href="module-types_number.Number.html#Equals">Equals</a></li><li><a href="module-types_number.Number.html#Floor">Floor</a></li><li><a href="module-types_number.Number.html#Increment">Increment</a></li><li><a href="module-types_number.Number.html#IsAbove">IsAbove</a></li><li><a href="module-types_number.Number.html#IsBelow">IsBelow</a></li><li><a href="module-types_number.Number.html#IsInRange">IsInRange</a></li><li><a href="module-types_number.Number.html#Multiply">Multiply</a></li><li><a href="module-types_number.Number.html#Numerals">Numerals</a></li><li><a href="module-types_number.Number.html#Round">Round</a></li><li><a href="module-types_number.Number.html#Subtract">Subtract</a></li></ul></div></li><li><a href="module-types_number.NumberFactory.html">NumberFactory</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:types/number.NumberFactory_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-types_number.NumberFactory.html#NewDouble">NewDouble</a></li><li><a href="module-types_number.NumberFactory.html#NewInteger">NewInteger</a></li><li><a href="module-types_number.NumberFactory.html#RandomDouble">RandomDouble</a></li><li><a href="module-types_number.NumberFactory.html#RandomInteger">RandomInteger</a></li></ul></div></li><li><a href="module-types_string.String.html">String</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:types/string.String_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-types_string.String.html#Bytes">Bytes</a></li><li><a href="module-types_string.String.html#Capitalize">Capitalize</a></li><li><a href="module-types_string.String.html#CharAt">CharAt</a></li><li><a href="module-types_string.String.html#Concat">Concat</a></li><li><a href="module-types_string.String.html#Contains">Contains</a></li><li><a href="module-types_string.String.html#ContainsCount">ContainsCount</a></li><li><a href="module-types_string.String.html#Copy">Copy</a></li><li><a href="module-types_string.String.html#EndsWith">EndsWith</a></li><li><a href="module-types_string.String.html#Equals">Equals</a></li><li><a href="module-types_string.String.html#HTMLEscape">HTMLEscape</a></li><li><a href="module-types_string.String.html#HTMLUnescape">HTMLUnescape</a></li><li><a href="module-types_string.String.html#IndexOf">IndexOf</a></li><li><a href="module-types_string.String.html#Insert">Insert</a></li><li><a href="module-types_string.String.html#IsAlpha">IsAlpha</a></li><li><a href="module-types_string.String.html#IsAscii">IsAscii</a></li><li><a href="module-types_string.String.html#Join">Join</a></li><li><a href="module-types_string.String.html#LastIndexOf">LastIndexOf</a></li><li><a href="module-types_string.String.html#LowerFirst">LowerFirst</a></li><li><a href="module-types_string.String.html#Pad">Pad</a></li><li><a href="module-types_string.String.html#PadLeft">PadLeft</a></li><li><a href="module-types_string.String.html#PadRight">PadRight</a></li><li><a href="module-types_string.String.html#RegExpEscape">RegExpEscape</a></li><li><a href="module-types_string.String.html#Remove">Remove</a></li><li><a href="module-types_string.String.html#Repeat">Repeat</a></li><li><a href="module-types_string.String.html#Replace">Replace</a></li><li><a href="module-types_string.String.html#ReplaceAll">ReplaceAll</a></li><li><a href="module-types_string.String.html#Split">Split</a></li><li><a href="module-types_string.String.html#StartsWith">StartsWith</a></li><li><a href="module-types_string.String.html#Substring">Substring</a></li><li><a href="module-types_string.String.html#TextBetween">TextBetween</a></li><li><a href="module-types_string.String.html#ToCamelCase">ToCamelCase</a></li><li><a href="module-types_string.String.html#ToCapitalCase">ToCapitalCase</a></li><li><a href="module-types_string.String.html#ToConstantCase">ToConstantCase</a></li><li><a href="module-types_string.String.html#ToDotCase">ToDotCase</a></li><li><a href="module-types_string.String.html#ToDouble">ToDouble</a></li><li><a href="module-types_string.String.html#ToInteger">ToInteger</a></li><li><a href="module-types_string.String.html#ToKebabCase">ToKebabCase</a></li><li><a href="module-types_string.String.html#ToLower">ToLower</a></li><li><a href="module-types_string.String.html#ToLowerCase">ToLowerCase</a></li><li><a href="module-types_string.String.html#ToNoCase">ToNoCase</a></li><li><a href="module-types_string.String.html#ToPascalCase">ToPascalCase</a></li><li><a href="module-types_string.String.html#ToPathCase">ToPathCase</a></li><li><a href="module-types_string.String.html#ToSentenceCase">ToSentenceCase</a></li><li><a href="module-types_string.String.html#ToSnakeCase">ToSnakeCase</a></li><li><a href="module-types_string.String.html#ToUpper">ToUpper</a></li><li><a href="module-types_string.String.html#ToUpperCase">ToUpperCase</a></li><li><a href="module-types_string.String.html#Trim">Trim</a></li><li><a href="module-types_string.String.html#TrimEnd">TrimEnd</a></li><li><a href="module-types_string.String.html#TrimStart">TrimStart</a></li><li><a href="module-types_string.String.html#Truncate">Truncate</a></li><li><a href="module-types_string.String.html#UpperFirst">UpperFirst</a></li><li><a href="module-types_string.String.html#Words">Words</a></li></ul></div></li><li><a href="module-types_string.StringFactory.html">StringFactory</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:types/string.StringFactory_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-types_string.StringFactory.html#IsNullOrEmpty">IsNullOrEmpty</a></li><li><a href="module-types_string.StringFactory.html#RandomAlphaString">RandomAlphaString</a></li></ul></div></li><li><a href="module-utils_validation.ClassValidator.html">ClassValidator</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:utils/validation.ClassValidator_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-utils_validation.ClassValidator.html#Validate">Validate</a></li><li><a href="module-utils_validation.ClassValidator.html#ValidateObject">ValidateObject</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li><a href="global.html#ListSortOrder">ListSortOrder</a></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-types_array.html">types/array</a>.</span>Array<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dt>
+    
+        <h4 class="name" id="Array">
+            
+                new <span class="type-signature"></span>Array<span class="signature">()</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line24">line 24</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+                
+
+<dt>
+    
+        <h4 class="name" id="Add">
+            
+                <span class="type-signature"></span>Add<span class="signature">(element)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line129">line 129</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        add the given element at the end of the list
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the element to add in the list</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the list after element added
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1][].Add(1);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="AddIfNotExists">
+            
+                <span class="type-signature"></span>AddIfNotExists<span class="signature">(element)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line146">line 146</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        add the element at the end of the list when the element not exists in the list.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the element to add in the list</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the list after eventually added element
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1,2][1].AddIfNotExists(2);// returns [1][1].AddIfNotExists(1);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="AddRange">
+            
+                <span class="type-signature"></span>AddRange<span class="signature">(elements)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line189">line 189</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        add multiple elements at the end of this array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elements</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;any></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the elements to add into this array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the array after add all elements
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1,2,3,4][1].AddRange([2,3,4]);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="AddRangeIfNotExists">
+            
+                <span class="type-signature"></span>AddRangeIfNotExists<span class="signature">(elements)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line208">line 208</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        add multiple elements at the end of this array when not exists
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elements</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;any></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the elements to add into this array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the array after add all elements
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1,2,3,4][1].AddRangeIfNotExists([2,3,4]);// returns [1][1].AddRangeIfNotExists([1,1,1]);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Any">
+            
+                <span class="type-signature"></span>Any<span class="signature">(condition)</span><span class="type-signature"> &rarr; {boolean}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line698">line 698</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        check if any element is in the array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the condition to search the element</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">boolean</span>
+
+
+
+
+
+- array has a element or not
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns true[1,2,3].Any();// returns false[].Any();</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Clear">
+            
+                <span class="type-signature"></span>Clear<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line229">line 229</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        remove all Elements from this array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the empty array
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [][1,2,3].Clear();</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Contains">
+            
+                <span class="type-signature"></span>Contains<span class="signature">(element)</span><span class="type-signature"> &rarr; {boolean}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line245">line 245</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        check if this array have the given element
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the element to be find</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">boolean</span>
+
+
+
+
+
+- element is in the list or not
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns true[1,2,3].Contains(2);const element = {x:'y'};[element].Contains(element);const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};[element2].Contains(element2);// returns false[1,2,3].Contains(50);[{hello:'world'}].Contains({hello:'world'});</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Convert">
+            
+                <span class="type-signature"></span>Convert<span class="signature">(convertMethod)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line841">line 841</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        convert all elements of the array into other form
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>convertMethod</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the method that execute with any element and convert them</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- a new converted array
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns ['Test1', 'Test2', 'Test3'][1,2,3].Convert(e => 'Test' + e);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Copy">
+            
+                <span class="type-signature"></span>Copy<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line278">line 278</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get a new instance of the array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the new instance
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1,2,3][1,2,3].Copy();</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Count">
+            
+                <span class="type-signature"></span>Count<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line28">line 28</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get the Number of Items in the Array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">number</span>
+
+
+
+
+
+- the Number of Elements
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns 3[1,2,3].Count();// returns 0[].Count();</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="ElementAt">
+            
+                <span class="type-signature"></span>ElementAt<span class="signature">(index)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line682">line 682</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get the array element at the given index or null
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the index of the element to get from array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the element at the given index
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns 2[1,2,3].ElementAt(1);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Exists">
+            
+                <span class="type-signature"></span>Exists<span class="signature">(condition)</span><span class="type-signature"> &rarr; {boolean}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line297">line 297</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        check if the find Method returns true for a element in the list
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the method executed for each element in the list</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">boolean</span>
+
+
+
+
+
+- element exists or not
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns true[1,2,3].Exists(e => e === 2);// returns false[1,2,3].Exists(e => e === 20);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Find">
+            
+                <span class="type-signature"></span>Find<span class="signature">(condition)</span><span class="type-signature"> &rarr; {any}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line315">line 315</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        find the first element that matches the condition in the array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the method executed for each element in the list</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">any</span>
+
+
+
+
+
+- the element that matches
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns 2[1,2,3].Find((e) => e > 1);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="FindAll">
+            
+                <span class="type-signature"></span>FindAll<span class="signature">(condition)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line363">line 363</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get all elements that match the condition
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the method executed for each element in the list</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- a array of matched elements
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [2,3][1,2,3].FindAll(i => i > 1);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="FindIndex">
+            
+                <span class="type-signature"></span>FindIndex<span class="signature">(condition)</span><span class="type-signature"> &rarr; {number}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line347">line 347</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get the index number of the first matched element in the array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the method executed for each element in the list</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">number</span>
+
+
+
+
+
+- the index number
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns 1[1,2,3,1,2,3].FindIndex(e => e === 2);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="FindIndex">
+            
+                <span class="type-signature"></span>FindIndex<span class="signature">(condition, item)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line863">line 863</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        replace a Item in the List takes the first match
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the method executed for each element in the list</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the Item to replace with</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the list with the inserted Item
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1,2,3][1,5,3].Replace((e) => e === 5, 2);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="FindLast">
+            
+                <span class="type-signature"></span>FindLast<span class="signature">(condition)</span><span class="type-signature"> &rarr; {any}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line331">line 331</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        find the last element that matches the condition in the array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the method executed for each element in the list</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">any</span>
+
+
+
+
+
+- the element that matches
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns 3[1,2,3].FindLast((e) => e > 1);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="FindLastIndex">
+            
+                <span class="type-signature"></span>FindLastIndex<span class="signature">(condition)</span><span class="type-signature"> &rarr; {number}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line745">line 745</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get the index number of the last matched element in the array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the method executed for each element in the list</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">number</span>
+
+
+
+
+
+- the index number
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns 4[1,2,3,1,2,3].FindLastIndex(e => e === 2);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="FirstOrDefault">
+            
+                <span class="type-signature"></span>FirstOrDefault<span class="signature">(condition, def<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {any}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line719">line 719</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get the First element of the array or the first that match the conditionwhen no element was found the default value or null was returned
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">the condition executed ba any array element</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>def</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">the default value to return</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">any</span>
+
+
+
+
+
+- the element that matches first
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// return 1[1,2,3,4,5,6].FirstOrDefault();// return 2[1,2,3,4,5,6].FirstOrDefault(e => e > 1);// return 10[1,2,3,4,5,6].FirstOrDefault(() => false, 10);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="GroupBy">
+            
+                <span class="type-signature"></span>GroupBy<span class="signature">(condition)</span><span class="type-signature"> &rarr; {any}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line809">line 809</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        groups a array of elements by a condition
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the condition to group the array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">any</span>
+
+
+
+
+
+- the grouped object with splatted arrays from the current array
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns {'1': [1], '2': [2], '3': [3,3,3]}[1,2,3,3,3].GroupBy(e => e);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="GroupKey">
+            
+                <span class="type-signature"></span>GroupKey<span class="signature">(condition)</span><span class="type-signature"> &rarr; {Array.&lt;string>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line825">line 825</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        groups a array of elements by a condition and returns the group keys
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the condition to group the array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;string></span>
+
+
+
+
+
+- the grouped keys as string array
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns ['1', '2', '3'][1,2,3,3,3].GroupKey(e => e);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="IndexOf">
+            
+                <span class="type-signature"></span>IndexOf<span class="signature">(element, fromIndex<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {number}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line420">line 420</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get the array index of a element
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">the element to find in the array</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fromIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">the index to skip</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">number</span>
+
+
+
+
+
+- the array index of the target element
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns 1[1,2,3,1,2,3].IndexOf(2);// returns 4[1,2,3,1,2,3].IndexOf(2, 2);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Insert">
+            
+                <span class="type-signature"></span>Insert<span class="signature">(index, element)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line386">line 386</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        insert a element in the array at a specific position
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the position where to insert the element</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the element to insert</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the array with inserted element
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1,5,2,3][1,2,3].Insert(1, 5);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="InsertRange">
+            
+                <span class="type-signature"></span>InsertRange<span class="signature">(index, elements)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line403">line 403</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        insert a array of elements in the array at a specific position
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the position where to insert the element</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>elements</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;any></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the elements to insert</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the array with inserted elements
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1,4,5,6,2,3][1,2,3].Insert(1, [4,5,6]);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Join">
+            
+                <span class="type-signature"></span>Join<span class="signature">(separator)</span><span class="type-signature"> &rarr; {string}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line887">line 887</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        joins the array elements into a string with separator
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>separator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the separator to split the array elements in the string</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">string</span>
+
+
+
+
+
+- the string with array elements
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns "1,2,3"[1,2,3].Join(',');</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="LastOrDefault">
+            
+                <span class="type-signature"></span>LastOrDefault<span class="signature">(condition, def<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {any}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line784">line 784</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get the last element of the array or the last that match the conditionwhen no element was found the default value or null was returned
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">the condition executed ba any array element</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>def</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">the default value to return</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">any</span>
+
+
+
+
+
+- the element that matches last
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// return 6[1,2,3,4,5,6].LastOrDefault();[1,2,3,4,5,6].LastOrDefault(e => e > 1);// return 10[1,2,3,4,5,6].LastOrDefault(() => false, 10);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Max">
+            
+                <span class="type-signature"></span>Max<span class="signature">(filterMethod)</span><span class="type-signature"> &rarr; {number}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line45">line 45</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get the maximum number in the Arrayonly number types are checked!!!
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>filterMethod</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">a filter function to remove some number values</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">number</span>
+
+
+
+
+
+- the maximum value
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns 3[1,2,3].Max();// returns 2[1,2,3].Max(i => i &lt; 3);// returns 4[1,2,'3',4,'5'].Max();</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Mean">
+            
+                <span class="type-signature"></span>Mean<span class="signature">(filterMethod)</span><span class="type-signature"> &rarr; {number}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line89">line 89</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get the Mean from all numbers in this array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>filterMethod</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">a filter function to remove some number values</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">number</span>
+
+
+
+
+
+- the mean value
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns 9.866666666666667[1, 25.6, 3].Mean();// returns 2[1,2,3,4].Mean(i => i &lt; 4);// returns 4['1','2','3',4,'5'].Mean();</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Min">
+            
+                <span class="type-signature"></span>Min<span class="signature">(filterMethod)</span><span class="type-signature"> &rarr; {number}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line67">line 67</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get the minimum number in the Arrayonly number types are checked!!!
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>filterMethod</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">a filter function to remove some number values</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">number</span>
+
+
+
+
+
+- the minimum value
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns 3[1,2,3].Min();// returns 2[1,2,3].Min(i => i > 1);// returns 4['1','2','3',4,'5'].Min();</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Reduce">
+            
+                <span class="type-signature"></span>Reduce<span class="signature">(reducer, initial)</span><span class="type-signature"> &rarr; {any}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line167">line 167</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        shrink the array into a new object with a convert function.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>reducer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the reducer function to convert each array element</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>initial</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the initial value pass to each element</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">any</span>
+
+
+
+
+
+- the shrinked object
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns "a,b,c"['a', 'b', 'c'].Reduce((target, e) => {     return target.Concat(e, ','); }, '')</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Remove">
+            
+                <span class="type-signature"></span>Remove<span class="signature">(element)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line445">line 445</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        remove a element from the list
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the element to remove from the list</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the array without the element to remove
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1,3][1,2,3].Remove(2);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="RemoveAll">
+            
+                <span class="type-signature"></span>RemoveAll<span class="signature">(match)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line464">line 464</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        remove all elements that match the given condition
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>match</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the condition executed by any element in the array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the array without the condition matching elements
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// return [1,3][1,2,3].RemoveAll(e => e === 2);// return [][1,2,3].RemoveAll(() => true);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="RemoveAt">
+            
+                <span class="type-signature"></span>RemoveAt<span class="signature">(index)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line485">line 485</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        remove element at specific position
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the position where the element was removed</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the array without the element to remove
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1,3][1,2,3].RemoveAt(1);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="RemoveRange">
+            
+                <span class="type-signature"></span>RemoveRange<span class="signature">(elements)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line505">line 505</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        remove multiple elements from the array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elements</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;any></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the elements to remove from the array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the array without the elements to remove
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1,2,3][1,2,3,4,5,6].RemoveRange([4,5,6]);[1,2,3].RemoveRange([4,5,6]);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Reverse">
+            
+                <span class="type-signature"></span>Reverse<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line525">line 525</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        turn around the array elements
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the reverse of the array
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [3,2,1][1,2,3].Reverse();</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Sort">
+            
+                <span class="type-signature"></span>Sort<span class="signature">(order)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line540">line 540</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        sort the elements in a array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>order</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#ListSortOrder">ListSortOrder</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the direction to sort the array elements</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the sorted array
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1, 2, 3][1, 2, 3].Sort();// returns [3, 2, 1][1, 2, 3].Sort(ListSortOrder.DESC);// returns ['c', 'b', 'a']['a', 'b', 'c'].Sort(ListSortOrder.DESC);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="SortBy">
+            
+                <span class="type-signature"></span>SortBy<span class="signature">(keys, orders)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line567">line 567</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        sort a array of objects by the given keys
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>keys</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">a list of keys to sort with</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>orders</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="global.html#ListSortOrder">ListSortOrder</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the sort direction to the keys</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the sorted list of objects
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [// {//       Name: 'Anne Klein',//       Age: 23,//       Birthday: new Date(1965, 8, 12, 0, 0, 0),//       Address: {//           Street: 'Jenaer Strasse 26',//           PLZ: '47053',//           Town: 'Duisburg',//       }//   },{//       Name: 'Christine Ehrlichmann',//       Age: 37,//       Birthday: new Date(1982, 4, 23, 0, 0, 0),//       Address: {//           Street: 'Paul-Nevermann-Platz 59',//           PLZ: '97657',//           Town: 'Sandberg'//       }//   },{//       Name: 'Jonas Schreiner',//       Age: 23,//       Birthday: new Date(1965, 4, 12, 0, 0, 0),//       Address: {//           Street: 'Gotthardstrasse 69',//           PLZ: '99094',//           Town: 'Erfurt'//       }//   },{//       Name: 'Sandra Eichmann',//       Age: 45,//       Birthday: new Date(1969, 0, 22, 0, 0, 0),//       Address: {//           Street: 'Inge Beisheim Platz 20',//           PLZ: '25313',//           Town: 'Elmshorn'//       }//   },{//       Name: 'Ulrich Gärtner',//       Age: 60,//       Birthday: new Date(1959, 2, 23, 0, 0, 0),//       Address: {//           Street: 'Koenigstrasse 50',//           PLZ: '99750',//           Town: 'Bleicherode'//       }//   }// ][   {          Name: 'Jonas Schreiner',          Age: 23,          Birthday: new Date(1965, 4, 12, 0, 0, 0),          Address: {              Street: 'Gotthardstrasse 69',              PLZ: '99094',              Town: 'Erfurt'          }      },   {          Name: 'Sandra Eichmann',          Age: 45,          Birthday: new Date(1969, 0, 22, 0, 0, 0),          Address: {              Street: 'Inge Beisheim Platz 20',              PLZ: '25313',              Town: 'Elmshorn'          }      },   {          Name: 'Ulrich Gärtner',          Age: 60,          Birthday: new Date(1959, 2, 23, 0, 0, 0),          Address: {              Street: 'Koenigstrasse 50',              PLZ: '99750',              Town: 'Bleicherode'          }      },   {          Name: 'Christine Ehrlichmann',          Age: 37,          Birthday: new Date(1982, 4, 23, 0, 0, 0),          Address: {              Street: 'Paul-Nevermann-Platz 59',              PLZ: '97657',              Town: 'Sandberg'          }      },   {          Name: 'Anne Klein',          Age: 23,          Birthday: new Date(1965, 8, 12, 0, 0, 0),          Address: {              Street: 'Jenaer Strasse 26',              PLZ: '47053',              Town: 'Duisburg',          }      }   ].SortBy(['Name'], [ListSortOrder.ASC]);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Sum">
+            
+                <span class="type-signature"></span>Sum<span class="signature">(filterMethod)</span><span class="type-signature"> &rarr; {number}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line109">line 109</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get the Sum from all numbers in this array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>filterMethod</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">a filter function to remove some number values</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">number</span>
+
+
+
+
+
+- the sum value
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns 6[1,2,3].Sum();// returns 5[1,2,3].Sum(i => i > 1);// returns 4['1','2','3',4,'5'].Sum();</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="TrueForAll">
+            
+                <span class="type-signature"></span>TrueForAll<span class="signature">(condition)</span><span class="type-signature"> &rarr; {boolean}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line761">line 761</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        check if a condition returns true for any element in the array
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>condition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the method to check each element</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">boolean</span>
+
+
+
+
+
+- condition is true for all elements or not
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns true[1,2,3].TrueForAll(e => typeof e === typeof 0);// returns false[1,2,3].TrueForAll(e => e === 1);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="UnionBy">
+            
+                <span class="type-signature"></span>UnionBy<span class="signature">(items, check)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
+                <code><a href="types_array_extension.js.html#line903">line 903</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        merge two arrays by the condition
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>items</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;any></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the items to add at the end of the array</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>check</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the condition that executed by the given items</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Array.&lt;any></span>
+
+
+
+
+
+- the merged array
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>// returns [1,2,3,6][1,2,3].UnionBy([4,5,6], e => e === 6);</code></pre>
+
+    
+
+</dd>
+
+            </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<footer>
+    <div class="footer-text">  </div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = 'module:types/array.Array_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>
