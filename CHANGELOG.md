@@ -1,4 +1,10 @@
-### 3.0.0 (beta)
+### 3.0.1 (beta)
+
+* improve performance of Convert
+* add more Benchmarks
+* add more Documentation
+
+### 3.0.0
 
 * pure Javascript Node Module (no bundle)
 * change documentation tool

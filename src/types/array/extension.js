@@ -1,4 +1,3 @@
-const {RecursiveDeepCopy} = require('../../core/object/object');
 const {
     Filter,
     Find,
@@ -11,39 +10,153 @@ const {
 } = require('../../core/array/array');
 const {IsFunction} = require('../../core/checker/checker');
 
+/**
+ * represent a Sort Order of a List
+ *
+ * @enum module:types/array.ListSortOrder
+ * @readonly
+ */
 const ListSortOrder = Object.freeze({
     ASC: 'asc',
     DESC: 'desc',
 });
 
 /**
- * @return {number}
+ * @class module:types/array.Array
+ */
+
+/**
+ * get the Number of Items in the Array
+ *
+ * @function module:types/array.Array#Count
+ *
+ * @returns {number} the Number of Elements
+ *
+ * @example
+ * // returns 3
+ * [1,2,3].Count();
+ * // returns 0
+ * [].Count();
  */
 Array.prototype.Count = function () {
     return this.length;
 };
 
+/**
+ * get the maximum number in the Array
+ *
+ * only number types are checked!!!
+ *
+ * @function module:types/array.Array#Max
+ *
+ * @param filterMethod {function} a filter function to remove some number values
+ * @returns {number} the maximum value
+ *
+ * @example
+ * // returns 3
+ * [1,2,3].Max();
+ * // returns 2
+ * [1,2,3].Max(i => i < 3);
+ * // returns 4
+ * [1,2,'3',4,'5'].Max();
+ */
 Array.prototype.Max = function (filterMethod) {
     return OperateArray(this, filterMethod, 1);
 };
 
+/**
+ * get the minimum number in the Array
+ *
+ * only number types are checked!!!
+ *
+ * @function module:types/array.Array#Min
+ *
+ * @param filterMethod {function} a filter function to remove some number values
+ * @returns {number} the minimum value
+ *
+ * @example
+ * // returns 3
+ * [1,2,3].Min();
+ * // returns 2
+ * [1,2,3].Min(i => i > 1);
+ * // returns 4
+ * ['1','2','3',4,'5'].Min();
+ */
 Array.prototype.Min = function (filterMethod) {
     return OperateArray(this, filterMethod, 2);
 };
 
+/**
+ * get the Mean from all numbers in this array
+ *
+ * @function module:types/array.Array#Mean
+ *
+ * @param filterMethod {function} a filter function to remove some number values
+ * @returns {number} the mean value
+ *
+ * @example
+ * // returns 9.866666666666667
+ * [1, 25.6, 3].Mean();
+ * // returns 2
+ * [1,2,3,4].Mean(i => i < 4);
+ * // returns 4
+ * ['1','2','3',4,'5'].Mean();
+ */
 Array.prototype.Mean = function (filterMethod) {
     return OperateArray(this, filterMethod, 4);
 };
 
+/**
+ * get the Sum from all numbers in this array
+ *
+ * @function module:types/array.Array#Sum
+ *
+ * @param filterMethod {function} a filter function to remove some number values
+ * @returns {number} the sum value
+ *
+ * @example
+ * // returns 6
+ * [1,2,3].Sum();
+ * // returns 5
+ * [1,2,3].Sum(i => i > 1);
+ * // returns 4
+ * ['1','2','3',4,'5'].Sum();
+ */
 Array.prototype.Sum = function (filterMethod) {
     return OperateArray(this, filterMethod, 3);
 };
 
+/**
+ * add the given element at the end of the list
+ *
+ * @function module:types/array.Array#Add
+ *
+ * @param element {any} the element to add in the list
+ * @returns {any[]} the list after element added
+ *
+ * @example
+ * // returns [1]
+ * [].Add(1);
+ */
 Array.prototype.Add = function (element) {
     this.push(element);
     return this;
 };
 
+/**
+ * add the element at the end of the list when the element not exists in the list.
+ *
+ * @function module:types/array.Array#AddIfNotExists
+ *
+ * @param element {any} the element to add in the list
+ * @returns {any[]} the list after eventually added element
+ *
+ * @example
+ * // returns [1,2]
+ * [1].AddIfNotExists(2);
+ * // returns [1]
+ * [1].AddIfNotExists(1);
+ */
 Array.prototype.AddIfNotExists = function (element) {
     if (!this.Contains(element)) {
         this.Add(element);
@@ -51,6 +164,21 @@ Array.prototype.AddIfNotExists = function (element) {
     return this;
 };
 
+/**
+ * shrink the array into a new object with a convert function.
+ *
+ * @function module:types/array.Array#Reduce
+ *
+ * @param reducer {function} the reducer function to convert each array element
+ * @param initial {any} the initial value pass to each element
+ * @returns {any} the shrinked object
+ *
+ * @example
+ * // returns "a,b,c"
+ * ['a', 'b', 'c'].Reduce((target, e) => {
+ *      return target.Concat(e, ',');
+ *  }, '')
+ */
 Array.prototype.Reduce = function (reducer, initial) {
     for (const element of this) {
         initial = reducer(initial, element);
@@ -58,6 +186,18 @@ Array.prototype.Reduce = function (reducer, initial) {
     return initial;
 };
 
+/**
+ * add multiple elements at the end of this array
+ *
+ * @function module:types/array.Array#AddRange
+ *
+ * @param elements {any[]} the elements to add into this array
+ * @returns {any[]} the array after add all elements
+ *
+ * @example
+ * // returns [1,2,3,4]
+ * [1].AddRange([2,3,4]);
+ */
 Array.prototype.AddRange = function (elements) {
     for (const el of elements) {
         this.Add(el);
@@ -65,6 +205,20 @@ Array.prototype.AddRange = function (elements) {
     return this;
 };
 
+/**
+ * add multiple elements at the end of this array when not exists
+ *
+ * @function module:types/array.Array#AddRangeIfNotExists
+ *
+ * @param elements {any[]} the elements to add into this array
+ * @returns {any[]} the array after add all elements
+ *
+ * @example
+ * // returns [1,2,3,4]
+ * [1].AddRangeIfNotExists([2,3,4]);
+ * // returns [1]
+ * [1].AddRangeIfNotExists([1,1,1]);
+ */
 Array.prototype.AddRangeIfNotExists = function (elements) {
     for (const el of elements) {
         this.AddIfNotExists(el);
@@ -72,13 +226,40 @@ Array.prototype.AddRangeIfNotExists = function (elements) {
     return this;
 };
 
+/**
+ * remove all Elements from this array
+ *
+ * @function module:types/array.Array#Clear
+ *
+ * @returns {any[]} the empty array
+ *
+ * @example
+ * // returns []
+ * [1,2,3].Clear();
+ */
 Array.prototype.Clear = function () {
     this.splice(0, this.length);
     return this;
 };
 
 /**
- * @return {boolean}
+ * check if this array have the given element
+ *
+ * @function module:types/array.Array#Contains
+ *
+ * @param element {any} the element to be find
+ * @returns {boolean} element is in the list or not
+ *
+ * @example
+ * // returns true
+ * [1,2,3].Contains(2);
+ * const element = {x:'y'};
+ * [element].Contains(element);
+ * const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
+ * [element2].Contains(element2);
+ * // returns false
+ * [1,2,3].Contains(50);
+ * [{hello:'world'}].Contains({hello:'world'});
  */
 Array.prototype.Contains = function (element) {
     for (const el of this) {
@@ -94,6 +275,17 @@ Array.prototype.Contains = function (element) {
     return false;
 };
 
+/**
+ * get a new instance of the array
+ *
+ * @function module:types/array.Array#Copy
+ *
+ * @returns {any[]} the new instance
+ *
+ * @example
+ * // returns [1,2,3]
+ * [1,2,3].Copy();
+ */
 Array.prototype.Copy = function () {
     const tmp = [];
     for (const el of this) {
@@ -103,24 +295,83 @@ Array.prototype.Copy = function () {
 };
 
 /**
- * @return {boolean}
+ * check if the find Method returns true for a element in the list
+ *
+ * @function module:types/array.Array#Exists
+ *
+ * @param condition {function} the method executed for each element in the list
+ * @returns {boolean} element exists or not
+ *
+ * @example
+ * // returns true
+ * [1,2,3].Exists(e => e === 2);
+ * // returns false
+ * [1,2,3].Exists(e => e === 20);
  */
 Array.prototype.Exists = function (condition) {
     return !!Find(this, condition);
 };
 
+/**
+ * find the first element that matches the condition in the array
+ *
+ * @function module:types/array.Array#Find
+ *
+ * @param condition {function} the method executed for each element in the list
+ * @returns {any} the element that matches
+ *
+ * @example
+ * // returns 2
+ * [1,2,3].Find((e) => e > 1);
+ */
 Array.prototype.Find = function (condition) {
     return Find(this, condition) || null;
 };
 
+/**
+ * find the last element that matches the condition in the array
+ *
+ * @function module:types/array.Array#FindLast
+ *
+ * @param condition {function} the method executed for each element in the list
+ * @returns {any} the element that matches
+ *
+ * @example
+ * // returns 3
+ * [1,2,3].FindLast((e) => e > 1);
+ */
 Array.prototype.FindLast = function (condition) {
     return FindLast(this, condition) || null;
 };
 
+/**
+ * get the index number of the first matched element in the array
+ *
+ * @function module:types/array.Array#FindIndex
+ *
+ * @param condition {function} the method executed for each element in the list
+ * @returns {number} the index number
+ *
+ * @example
+ * // returns 1
+ * [1,2,3,1,2,3].FindIndex(e => e === 2);
+ */
 Array.prototype.FindIndex = function (condition) {
     return Find(this, condition, true);
 };
 
+/**
+ * get all elements that match the condition
+ *
+ * @function module:types/array.Array#FindAll
+ *
+ * @param condition {function} the method executed for each element in the list
+ * @returns {any[]} a array of matched elements
+ *
+ * @example
+ * // returns [2,3]
+ * [1,2,3].FindAll(i => i > 1);
+ */
 Array.prototype.FindAll = function (condition) {
     const tmp = [];
     for (let i = 0; i < this.length; i++) {
@@ -132,14 +383,55 @@ Array.prototype.FindAll = function (condition) {
     // return Filter(this, condition);
 };
 
+/**
+ * insert a element in the array at a specific position
+ *
+ * @function module:types/array.Array#Insert
+ *
+ * @param index {number} the position where to insert the element
+ * @param element {any} the element to insert
+ * @returns {any[]} the array with inserted element
+ *
+ * @example
+ * // returns [1,5,2,3]
+ * [1,2,3].Insert(1, 5);
+ */
 Array.prototype.Insert = function (index, element) {
     return MergeArray(this, index, [element]);
 };
 
+/**
+ * insert a array of elements in the array at a specific position
+ *
+ * @function module:types/array.Array#InsertRange
+ *
+ * @param index {number} the position where to insert the element
+ * @param elements {any[]} the elements to insert
+ * @returns {any[]} the array with inserted elements
+ *
+ * @example
+ * // returns [1,4,5,6,2,3]
+ * [1,2,3].Insert(1, [4,5,6]);
+ */
 Array.prototype.InsertRange = function (index, elements) {
     return MergeArray(this, index, elements);
 };
 
+/**
+ * get the array index of a element
+ *
+ * @function module:types/array.Array#IndexOf
+ *
+ * @param element {any} the element to find in the array
+ * @param fromIndex {number?} the index to skip
+ * @returns {number} the array index of the target element
+ *
+ * @example
+ * // returns 1
+ * [1,2,3,1,2,3].IndexOf(2);
+ * // returns 4
+ * [1,2,3,1,2,3].IndexOf(2, 2);
+ */
 Array.prototype.IndexOf = function (element, fromIndex) {
     let tmp;
     if (fromIndex) {
@@ -150,6 +442,18 @@ Array.prototype.IndexOf = function (element, fromIndex) {
     return tmp;
 };
 
+/**
+ * remove a element from the list
+ *
+ * @function module:types/array.Array#Remove
+ *
+ * @param element {any} the element to remove from the list
+ * @returns {any[]} the array without the element to remove
+ *
+ * @example
+ * // returns [1,3]
+ * [1,2,3].Remove(2);
+ */
 Array.prototype.Remove = function (element) {
     const tmp = Without(this, [element]);
     this.Clear();
@@ -157,6 +461,20 @@ Array.prototype.Remove = function (element) {
     return this;
 };
 
+/**
+ * remove all elements that match the given condition
+ *
+ * @function module:types/array.Array#RemoveAll
+ *
+ * @param match {function} the condition executed by any element in the array
+ * @returns {any[]} the array without the condition matching elements
+ *
+ * @example
+ * // return [1,3]
+ * [1,2,3].RemoveAll(e => e === 2);
+ * // return []
+ * [1,2,3].RemoveAll(() => true);
+ */
 Array.prototype.RemoveAll = function (match) {
     const tmp = Filter(this, i => match(i), true);
     this.Clear();
@@ -164,6 +482,18 @@ Array.prototype.RemoveAll = function (match) {
     return this;
 };
 
+/**
+ * remove element at specific position
+ *
+ * @function module:types/array.Array#RemoveAt
+ *
+ * @param index {number} the position where the element was removed
+ * @returns {any[]} the array without the element to remove
+ *
+ * @example
+ * // returns [1,3]
+ * [1,2,3].RemoveAt(1);
+ */
 Array.prototype.RemoveAt = function (index) {
     if (index >= this.length || index < 0) {
         return this;
@@ -172,6 +502,19 @@ Array.prototype.RemoveAt = function (index) {
     return this;
 };
 
+/**
+ * remove multiple elements from the array
+ *
+ * @function module:types/array.Array#RemoveRange
+ *
+ * @param elements {any[]} the elements to remove from the array
+ * @returns {any[]} the array without the elements to remove
+ *
+ * @example
+ * // returns [1,2,3]
+ * [1,2,3,4,5,6].RemoveRange([4,5,6]);
+ * [1,2,3].RemoveRange([4,5,6]);
+ */
 Array.prototype.RemoveRange = function (elements) {
     const tmp = Without(this, elements);
     this.Clear();
@@ -179,10 +522,37 @@ Array.prototype.RemoveRange = function (elements) {
     return this;
 };
 
+/**
+ * turn around the array elements
+ *
+ * @function module:types/array.Array#Reverse
+ *
+ * @returns {any[]} the reverse of the array
+ *
+ * @example
+ * // returns [3,2,1]
+ * [1,2,3].Reverse();
+ */
 Array.prototype.Reverse = function () {
     return Reverse(this);
 };
 
+/**
+ * sort the elements in a array
+ *
+ * @function module:types/array.Array#Sort
+ *
+ * @param order {ListSortOrder} the direction to sort the array elements
+ * @returns {any[]} the sorted array
+ *
+ * @example
+ * // returns [1, 2, 3]
+ * [1, 2, 3].Sort();
+ * // returns [3, 2, 1]
+ * [1, 2, 3].Sort(ListSortOrder.DESC);
+ * // returns ['c', 'b', 'a']
+ * ['a', 'b', 'c'].Sort(ListSortOrder.DESC);
+ */
 Array.prototype.Sort = function (order) {
     const o = !order ? 'asc' : order;
     let sorted = this
@@ -194,16 +564,150 @@ Array.prototype.Sort = function (order) {
     return sorted;
 };
 
+/**
+ * sort a array of objects by the given keys
+ *
+ * @function module:types/array.Array#SortBy
+ *
+ * @param keys {string[]} a list of keys to sort with
+ * @param orders {ListSortOrder[]} the sort direction to the keys
+ * @returns {any[]} the sorted list of objects
+ *
+ * @example
+ * // returns [
+ * // {
+ * //       Name: 'Anne Klein',
+ * //       Age: 23,
+ * //       Birthday: new Date(1965, 8, 12, 0, 0, 0),
+ * //       Address: {
+ * //           Street: 'Jenaer Strasse 26',
+ * //           PLZ: '47053',
+ * //           Town: 'Duisburg',
+ * //       }
+ * //   },{
+ * //       Name: 'Christine Ehrlichmann',
+ * //       Age: 37,
+ * //       Birthday: new Date(1982, 4, 23, 0, 0, 0),
+ * //       Address: {
+ * //           Street: 'Paul-Nevermann-Platz 59',
+ * //           PLZ: '97657',
+ * //           Town: 'Sandberg'
+ * //       }
+ * //   },{
+ * //       Name: 'Jonas Schreiner',
+ * //       Age: 23,
+ * //       Birthday: new Date(1965, 4, 12, 0, 0, 0),
+ * //       Address: {
+ * //           Street: 'Gotthardstrasse 69',
+ * //           PLZ: '99094',
+ * //           Town: 'Erfurt'
+ * //       }
+ * //   },{
+ * //       Name: 'Sandra Eichmann',
+ * //       Age: 45,
+ * //       Birthday: new Date(1969, 0, 22, 0, 0, 0),
+ * //       Address: {
+ * //           Street: 'Inge Beisheim Platz 20',
+ * //           PLZ: '25313',
+ * //           Town: 'Elmshorn'
+ * //       }
+ * //   },{
+ * //       Name: 'Ulrich Gärtner',
+ * //       Age: 60,
+ * //       Birthday: new Date(1959, 2, 23, 0, 0, 0),
+ * //       Address: {
+ * //           Street: 'Koenigstrasse 50',
+ * //           PLZ: '99750',
+ * //           Town: 'Bleicherode'
+ * //       }
+ * //   }
+ * // ]
+ * [
+ *    {
+ *           Name: 'Jonas Schreiner',
+ *           Age: 23,
+ *           Birthday: new Date(1965, 4, 12, 0, 0, 0),
+ *           Address: {
+ *               Street: 'Gotthardstrasse 69',
+ *               PLZ: '99094',
+ *               Town: 'Erfurt'
+ *           }
+ *       },
+ *    {
+ *           Name: 'Sandra Eichmann',
+ *           Age: 45,
+ *           Birthday: new Date(1969, 0, 22, 0, 0, 0),
+ *           Address: {
+ *               Street: 'Inge Beisheim Platz 20',
+ *               PLZ: '25313',
+ *               Town: 'Elmshorn'
+ *           }
+ *       },
+ *    {
+ *           Name: 'Ulrich Gärtner',
+ *           Age: 60,
+ *           Birthday: new Date(1959, 2, 23, 0, 0, 0),
+ *           Address: {
+ *               Street: 'Koenigstrasse 50',
+ *               PLZ: '99750',
+ *               Town: 'Bleicherode'
+ *           }
+ *       },
+ *    {
+ *           Name: 'Christine Ehrlichmann',
+ *           Age: 37,
+ *           Birthday: new Date(1982, 4, 23, 0, 0, 0),
+ *           Address: {
+ *               Street: 'Paul-Nevermann-Platz 59',
+ *               PLZ: '97657',
+ *               Town: 'Sandberg'
+ *           }
+ *       },
+ *    {
+ *           Name: 'Anne Klein',
+ *           Age: 23,
+ *           Birthday: new Date(1965, 8, 12, 0, 0, 0),
+ *           Address: {
+ *               Street: 'Jenaer Strasse 26',
+ *               PLZ: '47053',
+ *               Town: 'Duisburg',
+ *           }
+ *       }
+ *    ].SortBy(['Name'], [ListSortOrder.ASC]);
+ */
 Array.prototype.SortBy = function (keys, orders) {
     return Sort(this, keys, orders.Convert(o => o === ListSortOrder.DESC));
 };
 
+/**
+ * get the array element at the given index or null
+ *
+ * @function module:types/array.Array#ElementAt
+ *
+ * @param index {number} the index of the element to get from array
+ * @returns {any[]} the element at the given index
+ *
+ * @example
+ * // returns 2
+ * [1,2,3].ElementAt(1);
+ */
 Array.prototype.ElementAt = function (index) {
     return this[index] || null;
 };
 
 /**
- * @return {boolean}
+ * check if any element is in the array
+ *
+ * @function module:types/array.Array#Any
+ *
+ * @param condition {function} the condition to search the element
+ * @returns {boolean} array has a element or not
+ *
+ * @example
+ * // returns true
+ * [1,2,3].Any();
+ * // returns false
+ * [].Any();
  */
 Array.prototype.Any = function (condition) {
     if (typeof condition !== typeof function() {}) {
@@ -212,6 +716,25 @@ Array.prototype.Any = function (condition) {
     return !!this.Find(condition);
 };
 
+/**
+ * get the First element of the array or the first that match the condition
+ *
+ * when no element was found the default value or null was returned
+ *
+ * @function module:types/array.Array#FirstOrDefault
+ *
+ * @param condition {function} the condition executed ba any array element
+ * @param def {any?} the default value to return
+ * @returns {any} the element that matches first
+ *
+ * @example
+ * // return 1
+ * [1,2,3,4,5,6].FirstOrDefault();
+ * // return 2
+ * [1,2,3,4,5,6].FirstOrDefault(e => e > 1);
+ * // return 10
+ * [1,2,3,4,5,6].FirstOrDefault(() => false, 10);
+ */
 Array.prototype.FirstOrDefault = function (condition, def) {
     if (!IsFunction(condition)) {
         return this[0] || (def ? def : null);
@@ -219,12 +742,35 @@ Array.prototype.FirstOrDefault = function (condition, def) {
     return Find(this, condition) || (def ? def : null);
 };
 
+/**
+ * get the index number of the last matched element in the array
+ *
+ * @function module:types/array.Array#FindLastIndex
+ *
+ * @param condition {function} the method executed for each element in the list
+ * @returns {number} the index number
+ *
+ * @example
+ * // returns 4
+ * [1,2,3,1,2,3].FindLastIndex(e => e === 2);
+ */
 Array.prototype.FindLastIndex = function (condition) {
     return FindLast(this, condition, true);
 };
 
 /**
- * @return {boolean}
+ * check if a condition returns true for any element in the array
+ *
+ * @function module:types/array.Array#TrueForAll
+ *
+ * @param condition {function} the method to check each element
+ * @returns {boolean} condition is true for all elements or not
+ *
+ * @example
+ * // returns true
+ * [1,2,3].TrueForAll(e => typeof e === typeof 0);
+ * // returns false
+ * [1,2,3].TrueForAll(e => e === 1);
  */
 Array.prototype.TrueForAll = function (condition) {
     for (const item of this) {
@@ -235,6 +781,24 @@ Array.prototype.TrueForAll = function (condition) {
     return true;
 };
 
+/**
+ * get the last element of the array or the last that match the condition
+ *
+ * when no element was found the default value or null was returned
+ *
+ * @function module:types/array.Array#LastOrDefault
+ *
+ * @param condition {function} the condition executed ba any array element
+ * @param def {any?} the default value to return
+ * @returns {any} the element that matches last
+ *
+ * @example
+ * // return 6
+ * [1,2,3,4,5,6].LastOrDefault();
+ * [1,2,3,4,5,6].LastOrDefault(e => e > 1);
+ * // return 10
+ * [1,2,3,4,5,6].LastOrDefault(() => false, 10);
+ */
 Array.prototype.LastOrDefault = function (condition, def) {
     if (!IsFunction(condition)) {
         return this[this.length-1] || (def ? def : null);
@@ -242,18 +806,73 @@ Array.prototype.LastOrDefault = function (condition, def) {
     return FindLast(this, condition) || (def ? def : null);
 };
 
+/**
+ * groups a array of elements by a condition
+ *
+ * @function module:types/array.Array#GroupBy
+ *
+ * @param condition {function} the condition to group the array
+ * @returns {any} the grouped object with splatted arrays from the current array
+ *
+ * @example
+ * // returns {'1': [1], '2': [2], '3': [3,3,3]}
+ * [1,2,3,3,3].GroupBy(e => e);
+ */
 Array.prototype.GroupBy = function (condition) {
     return GroupBy(this, condition);
 };
 
+/**
+ * groups a array of elements by a condition and returns the group keys
+ *
+ * @function module:types/array.Array#GroupKey
+ *
+ * @param condition {function} the condition to group the array
+ * @returns {string[]} the grouped keys as string array
+ *
+ * @example
+ * // returns ['1', '2', '3']
+ * [1,2,3,3,3].GroupKey(e => e);
+ */
 Array.prototype.GroupKey = function (condition) {
     return Object.keys(GroupBy(this, condition));
 };
 
+/**
+ * convert all elements of the array into other form
+ *
+ * @function module:types/array.Array#Convert
+ *
+ * @param convertMethod {function} the method that execute with any element and convert them
+ * @returns {any[]} a new converted array
+ *
+ * @example
+ * // returns ['Test1', 'Test2', 'Test3']
+ * [1,2,3].Convert(e => 'Test' + e);
+ */
 Array.prototype.Convert = function (convertMethod) {
-    return this.map(convertMethod);
+    const len = this ? this.length : 0;
+    const tmp = new Array(len);
+    for (let i = 0; i < len; i++) {
+        const el = this[i];
+        tmp[i] = convertMethod(el, i, this);
+    }
+    return tmp;
 };
 
+/**
+ * replace a Item in the List takes the first match
+ *
+ * @function module:types/array.Array#FindIndex
+ *
+ * @param condition {function} the method executed for each element in the list
+ * @param item {any} the Item to replace with
+ * @returns {any[]} the list with the inserted Item
+ *
+ * @example
+ * // returns [1,2,3]
+ * [1,5,3].Replace((e) => e === 5, 2);
+ */
 Array.prototype.Replace = function (condition, item) {
     const tmp = this;
     const pos = this.FindIndex(condition);
@@ -266,12 +885,34 @@ Array.prototype.Replace = function (condition, item) {
 };
 
 /**
- * @return {string}
+ * joins the array elements into a string with separator
+ *
+ * @function module:types/array.Array#Join
+ *
+ * @param separator {string} the separator to split the array elements in the string
+ * @returns {string} the string with array elements
+ *
+ * @example
+ * // returns "1,2,3"
+ * [1,2,3].Join(',');
  */
-Array.prototype.Join = function (sep) {
-    return this.join(sep || ',');
+Array.prototype.Join = function (separator) {
+    return this.join(separator || ',');
 };
 
+/**
+ * merge two arrays by the condition
+ *
+ * @function module:types/array.Array#UnionBy
+ *
+ * @param items {any[]} the items to add at the end of the array
+ * @param check {function} the condition that executed by the given items
+ * @returns {any[]} the merged array
+ *
+ * @example
+ * // returns [1,2,3,6]
+ * [1,2,3].UnionBy([4,5,6], e => e === 6);
+ */
 Array.prototype.UnionBy = function(items, check) {
     for (const el of items) {
         if (check(el)) {
