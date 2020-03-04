@@ -407,18 +407,40 @@ function registerInStore(target, propertyKey, targetKey, value, validationMessag
     ValidationStore[key][targetKey] = [value, validationMessage];
 }
 
+/**
+ * only Validate the Property when the check Method returns True
+ *
+ * @function module:utils/validation.ValidateIf
+ *
+ * @param cb {function} define the check Method
+ * @return {ClassDecorator}
+ */
 function ValidateIf(cb) {
     return function (target, propertyKey) {
         registerInStore(target, propertyKey, 'ValidateIf', cb, '');
     }
 }
 
+/**
+ * check if the Value is missing and ignore all Validations
+ *
+ * @function module:utils/validation.IsOptional
+ * @return {ClassDecorator}
+ */
 function IsOptional() {
     return function (target, propertyKey) {
         registerInStore(target, propertyKey, 'IsOptional', true, '');
     }
 }
 
+/**
+ * check if the Property was in the Object and have a Value
+ *
+ * @function module:utils/validation.Required
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function Required(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be set.`;
@@ -426,6 +448,14 @@ function Required(validationMessage) {
     }
 }
 
+/**
+ * the Property must have a Valid Value
+ *
+ * @function module:utils/validation.IsDefined
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsDefined(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be defined.`;
@@ -433,6 +463,14 @@ function IsDefined(validationMessage) {
     }
 }
 
+/**
+ * the Property must have a Empty value like empty String or null or undefined
+ *
+ * @function module:utils/validation.IsEmpty
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsEmpty(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be Empty.`;
@@ -440,6 +478,14 @@ function IsEmpty(validationMessage) {
     }
 }
 
+/**
+ * the Property must can not have a Empty value like empty String or null or undefined
+ *
+ * @function module:utils/validation.IsNotEmpty
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsNotEmpty(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be Empty.`;
@@ -447,6 +493,14 @@ function IsNotEmpty(validationMessage) {
     }
 }
 
+/**
+ * the String at this Property must be a Email Address
+ *
+ * @function module:utils/validation.IsEmail
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsEmail(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Email Address.`;
@@ -454,6 +508,15 @@ function IsEmail(validationMessage) {
     }
 }
 
+/**
+ * the numeric Value must be greater or Equal the given Value
+ *
+ * @function module:utils/validation.Min
+ *
+ * @param value {number}
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function Min(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be lower than ${value}.`;
@@ -461,6 +524,15 @@ function Min(value, validationMessage) {
     };
 }
 
+/**
+ * the numeric Value mut be lower or equal the given Value
+ *
+ * @function module:utils/validation.Max
+ *
+ * @param value {number}
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function Max(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be bigger than ${value}.`;
@@ -468,6 +540,15 @@ function Max(value, validationMessage) {
     };
 }
 
+/**
+ * can execute a Function that returns true or false, can perform any Validation you want
+ *
+ * @function module:utils/validation.CustomValidation
+ *
+ * @param value {function}
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function CustomValidation(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} Custom Validation was not successful.`;
@@ -475,6 +556,15 @@ function CustomValidation(value, validationMessage) {
     }
 }
 
+/**
+ * the String or Array must have the given Length or more
+ *
+ * @function module:utils/validation.MinLength
+ *
+ * @param value {number}
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function MinLength(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must have ${value} characters.`;
@@ -482,6 +572,15 @@ function MinLength(value, validationMessage) {
     };
 }
 
+/**
+ * the String or Array must have the given Length or lesser
+ *
+ * @function module:utils/validation.MaxLength
+ *
+ * @param value {number}
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function MaxLength(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have more than ${value} characters.`;
@@ -489,6 +588,15 @@ function MaxLength(value, validationMessage) {
     };
 }
 
+/**
+ * implements a Whitelist check for the Property
+ *
+ * @function module:utils/validation.Whitelist
+ *
+ * @param value {any[]}
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function Whitelist(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have the following values: ${value.join(',')}`;
@@ -502,7 +610,7 @@ function Whitelist(value, validationMessage) {
  * @function module:utils/validation.Blacklist
  * @param value {any[]} values that are not allowed on this Property
  * @param validationMessage {string} the Message string that was written in the Validation Error Message
- * @return {Decorator}
+ * @return {ClassDecorator}
  */
 function Blacklist(value, validationMessage) {
     return function (target, propertyKey) {
@@ -511,6 +619,15 @@ function Blacklist(value, validationMessage) {
     }
 }
 
+/**
+ * check if the Property Value Equals the given Value using (===)
+ *
+ * @function module:utils/validation.Equals
+ *
+ * @param value {any}
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function Equals(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} not match the value: ${value}`;
@@ -518,6 +635,15 @@ function Equals(value, validationMessage) {
     }
 }
 
+/**
+ * check if the Property Value Equals the given Value using (!==)
+ *
+ * @function module:utils/validation.NotEquals
+ *
+ * @param value {any}
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function NotEquals(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} match the value: ${value}`;
@@ -525,6 +651,14 @@ function NotEquals(value, validationMessage) {
     }
 }
 
+/**
+ * check if the given Value is an Integer number
+ *
+ * @function module:utils/validation.IsInt
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsInt(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Integer Value`;
@@ -532,6 +666,14 @@ function IsInt(validationMessage) {
     }
 }
 
+/**
+ * check an Array if it has Unique Values
+ *
+ * @function module:utils/validation.UniqueArray
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function UniqueArray(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must have Unique Values`;
@@ -544,7 +686,7 @@ function UniqueArray(validationMessage) {
  *
  * @function module:utils/validation.ArrayNotEmpty
  * @param validationMessage {string} the Message string that was written in the Validation Error Message
- * @return {Decorator}
+ * @return {ClassDecorator}
  */
 function ArrayNotEmpty(validationMessage) {
     return function (target, propertyKey) {
@@ -553,6 +695,14 @@ function ArrayNotEmpty(validationMessage) {
     }
 }
 
+/**
+ * check the Value for a Positive number
+ *
+ * @function module:utils/validation.IsPositive
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsPositive(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have Positive Values.`;
@@ -560,6 +710,14 @@ function IsPositive(validationMessage) {
     }
 }
 
+/**
+ * check the Value for a Negative number
+ *
+ * @function module:utils/validation.IsNegative
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsNegative(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have Positive Values.`;
@@ -567,6 +725,16 @@ function IsNegative(validationMessage) {
     }
 }
 
+/**
+ * check if the String has any valid Boolean declaration like
+ *
+ * true, false, TRUE, FALSE
+ *
+ * @function module:utils/validation.IsBooleanString
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsBooleanString(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Boolean String.`;
@@ -574,6 +742,14 @@ function IsBooleanString(validationMessage) {
     }
 }
 
+/**
+ * check if the String contain Numbers Only
+ *
+ * @function module:utils/validation.IsNumberString
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsNumberString(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contain Numbers.`;
@@ -581,6 +757,15 @@ function IsNumberString(validationMessage) {
     }
 }
 
+/**
+ * check if a DateTime is After the value
+ *
+ * @function module:utils/validation.MinDate
+ *
+ * @param value {DateTime}
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function MinDate(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be greater than ${value.toString()}.`;
@@ -588,6 +773,15 @@ function MinDate(value, validationMessage) {
     }
 }
 
+/**
+ * check if a DateTime is Before the value
+ *
+ * @function module:utils/validation.MaxDate
+ *
+ * @param value {DateTime}
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function MaxDate(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be lower than ${value.toString()}.`;
@@ -595,6 +789,14 @@ function MaxDate(value, validationMessage) {
     }
 }
 
+/**
+ * check if the String contains only letters a-z
+ *
+ * @function module:utils/validation.IsAlpha
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsAlpha(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters (a-zA-Z).`;
@@ -602,6 +804,14 @@ function IsAlpha(validationMessage) {
     }
 }
 
+/**
+ * check if the string only contains letters a-z and numbers 0-9
+ *
+ * @function module:utils/validation.IsAlphanumeric
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsAlphanumeric(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters and numbers.`;
@@ -609,6 +819,14 @@ function IsAlphanumeric(validationMessage) {
     }
 }
 
+/**
+ * check if the String only contains Ascii Characters
+ *
+ * @function module:utils/validation.IsAscii
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsAscii(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Ascii String.`;
@@ -616,6 +834,14 @@ function IsAscii(validationMessage) {
     }
 }
 
+/**
+ * check if the String is a Base64 string
+ *
+ * @function module:utils/validation.IsBase64
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsBase64(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Base64 String.`;
@@ -623,6 +849,16 @@ function IsBase64(validationMessage) {
     }
 }
 
+/**
+ * check if a String is a Hex Color
+ *
+ * supported Hex Color with 8 (with Alpha), 6 (Default) or 3 (Short) Characters
+ *
+ * @function module:utils/validation.IsHexColor
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsHexColor(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hex Color String.`;
@@ -630,6 +866,14 @@ function IsHexColor(validationMessage) {
     }
 }
 
+/**
+ * check if a String is a Hexadecimal String
+ *
+ * @function module:utils/validation.IsHexadecimal
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsHexadecimal(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hexadecimal String.`;
@@ -637,6 +881,14 @@ function IsHexadecimal(validationMessage) {
     }
 }
 
+/**
+ * check if the String is a MAC Address
+ *
+ * @function module:utils/validation.IsMacAddress
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsMacAddress(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MAC Address.`;
@@ -644,6 +896,14 @@ function IsMacAddress(validationMessage) {
     }
 }
 
+/**
+ * check if the String is a IP Address
+ *
+ * @function module:utils/validation.IsIp
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsIp(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a IP Address.`;
@@ -651,6 +911,14 @@ function IsIp(validationMessage) {
     }
 }
 
+/**
+ * check if the String or Number is a Port Number
+ *
+ * @function module:utils/validation.IsPort
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsPort(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Port Number.`;
@@ -658,6 +926,14 @@ function IsPort(validationMessage) {
     }
 }
 
+/**
+ * check if the String is a JSON String
+ *
+ * @function module:utils/validation.IsJSON
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsJSON(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON String.`;
@@ -665,6 +941,14 @@ function IsJSON(validationMessage) {
     }
 }
 
+/**
+ * check if the String is a JSON Web Token
+ *
+ * @function module:utils/validation.IsJWT
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsJWT(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON Web Token.`;
@@ -672,6 +956,15 @@ function IsJWT(validationMessage) {
     }
 }
 
+/**
+ * check if the String has the Maximum Bytes Size of the given Value
+ *
+ * @function module:utils/validation.IsByteLength
+ *
+ * @param value {number}
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsByteLength(value, validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have a Length of ${value} Bytes.`;
@@ -679,6 +972,14 @@ function IsByteLength(value, validationMessage) {
     }
 }
 
+/**
+ * check if a String is a MongoDb Object Id
+ *
+ * @function module:utils/validation.IsMongoId
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsMongoId(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MongoDb ObjectId.`;
@@ -686,6 +987,14 @@ function IsMongoId(validationMessage) {
     }
 }
 
+/**
+ * check if a String is a valid URL
+ *
+ * @function module:utils/validation.IsUrl
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsUrl(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a URL.`;
@@ -693,6 +1002,14 @@ function IsUrl(validationMessage) {
     }
 }
 
+/**
+ * check if a String is a UUID
+ *
+ * @function module:utils/validation.IsUUID
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsUUID(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a UUID.`;
@@ -700,6 +1017,18 @@ function IsUUID(validationMessage) {
     }
 }
 
+/**
+ * check if the String can be a Hash
+ *
+ * supported are all Hashes with 32, 40, 64 and 128 bit size
+ *
+ * for Example MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, Snefru, GHOST and Whirlpool
+ *
+ * @function module:utils/validation.IsHash
+ *
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function IsHash(validationMessage) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hash.`;
@@ -707,6 +1036,15 @@ function IsHash(validationMessage) {
     }
 }
 
+/**
+ * validate the Class with a Function
+ *
+ * @function module:utils/validation.ValidateClass
+ *
+ * @param method {function}
+ * @param validationMessage {string}
+ * @return {ClassDecorator}
+ */
 function ValidateClass(method, validationMessage) {
     return function (target) {
         const message = validationMessage ? validationMessage : `the Class ${target.constructor.name} is invalid.`;

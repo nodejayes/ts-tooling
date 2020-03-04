@@ -1,5 +1,3 @@
-import {NumberFactory} from '../../number';
-
 /**
  * some Utils for Strings
  *
