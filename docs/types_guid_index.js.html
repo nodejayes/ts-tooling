@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: types/byte/byte/byte.js | v3.0.0</title>
+    <title>Source: types/guid/index.js | v3.0.0</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -48,37 +48,14 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>require('../../number/extension/extension');
-
-/**
- * a Number represent as Byte
+            <pre class="prettyprint source linenums"><code>/**
+ * add a Guid DataType
  *
- * @memberof module:types/byte
+ * @module types/guid
  */
-class Byte {
-    /**
-     * create a new Byte
-     * Numbers that are higher or lower than the maximum or minimum byte values are truncated.
-     *
-     * @constructor
-     *
-     * @param value the byte Value
-     */
-    constructor(value) {
-        this._value = value.Clamp(0, 255);
-    }
+const {Guid} = require('./guid/guid');
 
-    /**
-     * get the Byte Value
-     *
-     * @readonly
-     */
-    get Value() {
-        return this._value;
-    }
-}
-
-module.exports = {Byte};
+module.exports = {Guid};
 </code></pre>
         </article>
     </section>
