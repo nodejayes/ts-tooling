@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: types/string | v3.0.0</title>
+    <title>Source: types/byte/byte/byte.js | v3.0.0</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -43,152 +45,43 @@
 
 
 
-
-<section>
-
-<header>
     
-        <h2>types/string</h2>
-        
-            
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>require('../../number/extension/extension');
 
-<article>
-    
-        <div class="container-overview">
-        
-            
-                <div class="description">This Module extends the basic Javascript String</div>
-            
+/**
+ * a Number represent as Byte
+ *
+ * @memberof module:types/byte
+ */
+class Byte {
+    /**
+     * create a new Byte
+     * Numbers that are higher or lower than the maximum or minimum byte values are truncated.
+     *
+     * @constructor
+     *
+     * @param value the byte Value
+     */
+    constructor(value) {
+        this._value = value.Clamp(0, 255);
+    }
 
-            
-                
+    /**
+     * get the Byte Value
+     *
+     * @readonly
+     */
+    get Value() {
+        return this._value;
+    }
+}
 
-<dt>
-    
-</dt>
-<dd>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-</dd>
-
-            
-        
-        </div>
-    
-
-    
-
-    
-
-    
-            <h3 class="subsection-title">Classes</h3>
-            
-
-<dl>
-    
-        <dt>
-            <h4 class="name">
-                <a href="module-types_string.String.html">String</a>
-                <div class="container-source members">
-                    <code><a href="module-types_string.String.html">module:types/string.String</a></code>
-                </div>
-            </h4>
-        </dt>
-        
-    
-        <dt>
-            <h4 class="name">
-                <a href="module-types_string.StringFactory.html">StringFactory</a>
-                <div class="container-source members">
-                    <code><a href="module-types_string.StringFactory.html">module:types/string.StringFactory</a></code>
-                </div>
-            </h4>
-        </dt>
-        
-    
-</dl>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+module.exports = {Byte};
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -204,7 +97,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:types/string_sub'.replace(/"/g, '_');
+        var id = '_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

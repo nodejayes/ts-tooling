@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Class: NumberFactory | v3.0.0</title>
+    <title>Class: Byte | v3.0.0</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -49,7 +49,9 @@
 <header>
     
         <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="module-types_number.html">types/number</a>.</span>NumberFactory<span class="signature">()</span><span class="type-signature"></span></h2>
+            <span class="ancestors"><a href="module-types_byte.html">types/byte</a>~</span>Byte<span class="signature">(value)</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">a Number represent as Byte</div>
         
     
 </header>
@@ -62,14 +64,14 @@
 
 <dt>
     
-        <h4 class="name" id="NumberFactory">
+        <h4 class="name" id="Byte">
             
-                new <span class="type-signature"></span>NumberFactory<span class="signature">()</span><span class="type-signature"></span>
+                new <span class="type-signature"></span>Byte<span class="signature">(value)</span><span class="type-signature"></span>
                 
             
             <div class="container-source members">
-                <code><a href="types_number_factory_number.factory.js.html">types/number/factory/number.factory.js</a></code>,
-                <code><a href="types_number_factory_number.factory.js.html#line3">line 3</a></code>
+                <code><a href="types_byte_byte_byte.js.html">types/byte/byte/byte.js</a></code>,
+                <code><a href="types_byte_byte_byte.js.html#line17">line 17</a></code>
             </div>
             
         </h4>
@@ -81,7 +83,7 @@
 
     
     <div class="description">
-        With the factory you can create new integer or double values,it does not matter if the numbers are entered as string or as number datatype.furthermore it is possible to create random integer or double values.
+        create a new ByteNumbers that are higher or lower than the maximum or minimum byte values are truncated.
     </div>
     
 
@@ -91,6 +93,51 @@
 
     
 
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the byte Value</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
     
 
     
@@ -163,131 +210,34 @@
     
 
     
-
-    
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Members</h3>
 
         <dl>
-                
+            
 
 <dt>
+<h4 class="name" id="Value">
+    <span class="type-signature"><span class="icon green">readonly</span> </span>Value<span class="type-signature"></span>
     
-        <h4 class="name" id="NewDouble">
-            
-                <span class="type-signature"></span>NewDouble<span class="signature">(value)</span><span class="type-signature"> &rarr; {string}</span>
-                
-            
-            <div class="container-source members">
-                <code><a href="types_number_factory_number.factory.js.html">types/number/factory/number.factory.js</a></code>,
-                <code><a href="types_number_factory_number.factory.js.html#line38">line 38</a></code>
-            </div>
-            
-        </h4>
+    <div class="container-source members">
+        <code><a href="types_byte_byte_byte.js.html">types/byte/byte/byte.js</a></code>,
+        <code><a href="types_byte_byte_byte.js.html#line26">line 26</a></code>
+    </div>
+    
+</h4>
 
-        
-    
+
 </dt>
 <dd>
-
     
     <div class="description">
-        create a new Double number from the given input
+        get the Byte Value
     </div>
     
 
+    <!--
     
-
-    
-
-    
-
-    
-    <div class="container-params">
-        <h5>Parameters:</h5>
-        
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Javascript Number or String</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <div class="container-returns">
-        <h5>Returns:</h5>
-        
-                
-
-
-
-<span class="param-type">string</span>
-
-
-
-
-
-- the double number representation of the string or number input
-
-
-
-
-            
-    </div>
-    
+    -->
 
     
 
@@ -327,559 +277,13 @@
 
 
     
-        <h5>Example</h5>
-        
-    <pre class="prettyprint"><code>// returns 1.5NumberFactory.NewDouble(1.5);NumberFactory.NewDouble('1.5');// returns 0.0NumberFactory.NewDouble('aaa');</code></pre>
 
     
-
 </dd>
 
-            
-                
-
-<dt>
-    
-        <h4 class="name" id="NewInteger">
-            
-                <span class="type-signature"></span>NewInteger<span class="signature">(value)</span><span class="type-signature"> &rarr; {number}</span>
-                
-            
-            <div class="container-source members">
-                <code><a href="types_number_factory_number.factory.js.html">types/number/factory/number.factory.js</a></code>,
-                <code><a href="types_number_factory_number.factory.js.html#line13">line 13</a></code>
-            </div>
-            
-        </h4>
-
-        
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        create a new Integer from the given input
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-    <div class="container-params">
-        <h5>Parameters:</h5>
-        
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Javascript Number or String that represent the new Integer</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <div class="container-returns">
-        <h5>Returns:</h5>
-        
-                
-
-
-
-<span class="param-type">number</span>
-
-
-
-
-
-- new integer representation of the string or number
-
-
-
-
-            
-    </div>
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-        <h5>Example</h5>
-        
-    <pre class="prettyprint"><code>// returns 1NumberFactory.NewInteger(1);NumberFactory.NewInteger('1');NumberFactory.NewInteger(1.5);// returns 0NumberFactory.NewInteger('aaaa');</code></pre>
-
-    
-
-</dd>
-
-            
-                
-
-<dt>
-    
-        <h4 class="name" id="RandomDouble">
-            
-                <span class="type-signature"></span>RandomDouble<span class="signature">(min, max)</span><span class="type-signature"> &rarr; {number}</span>
-                
-            
-            <div class="container-source members">
-                <code><a href="types_number_factory_number.factory.js.html">types/number/factory/number.factory.js</a></code>,
-                <code><a href="types_number_factory_number.factory.js.html#line80">line 80</a></code>
-            </div>
-            
-        </h4>
-
-        
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        create Random Doubles in the min/max Border
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-    <div class="container-params">
-        <h5>Parameters:</h5>
-        
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>min</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the minimum Double that can be created</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>max</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the maximum Double that can be created</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <div class="container-returns">
-        <h5>Returns:</h5>
-        
-                
-
-
-
-<span class="param-type">number</span>
-
-
-
-
-
-- a double number between min and max
-
-
-
-
-            
-    </div>
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-        <h5>Example</h5>
-        
-    <pre class="prettyprint"><code>// create all Double Numbers begins with 0.0 and ends with 1.0NumberFactory.RandomDouble(0, 1)</code></pre>
-
-    
-
-</dd>
-
-            
-                
-
-<dt>
-    
-        <h4 class="name" id="RandomInteger">
-            
-                <span class="type-signature"></span>RandomInteger<span class="signature">(min, max)</span><span class="type-signature"> &rarr; {number}</span>
-                
-            
-            <div class="container-source members">
-                <code><a href="types_number_factory_number.factory.js.html">types/number/factory/number.factory.js</a></code>,
-                <code><a href="types_number_factory_number.factory.js.html#line62">line 62</a></code>
-            </div>
-            
-        </h4>
-
-        
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        create Random Integers in the min/max Border
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-    <div class="container-params">
-        <h5>Parameters:</h5>
-        
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>min</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the minimum Integer that can be created</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>max</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the maximum Integer that can be created</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <div class="container-returns">
-        <h5>Returns:</h5>
-        
-                
-
-
-
-<span class="param-type">number</span>
-
-
-
-
-
-- a integer number between min and max
-
-
-
-
-            
-    </div>
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
+        </dl>
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-        <h5>Example</h5>
-        
-    <pre class="prettyprint"><code>// creates the Javascript Numbers 1,2,3,4,5,6,7,8,9 and 10NumberFactory.RandomInteger(1, 10);</code></pre>
-
-    
-
-</dd>
 
-            </dl>
     
 
     
@@ -903,7 +307,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:types/number.NumberFactory_sub'.replace(/"/g, '_');
+        var id = 'module:types/byte.Byte_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 
