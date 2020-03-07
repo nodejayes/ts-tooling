@@ -20,7 +20,8 @@ export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
 export class ReactiveStore<T> {
     /**
      * create a new Store with a Initial State
-     * @param initialState
+     *
+     * @param initialState the default State Value
      */
     constructor(initialState: T);
 
@@ -28,6 +29,7 @@ export class ReactiveStore<T> {
      * listen to a specific Property or a complete State change
      * you can use the SafeBehaviorSubject same as a BehaviorSubject but follow Functions has no effect
      * next, complete, error
+     *
      * @param selector select the Part of the State to Listen
      *
      * @example

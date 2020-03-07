@@ -16,7 +16,6 @@ export interface IDisposable {
  * @param cb what is to do in this using?
  *
  * @example
- * ```typescript
  * class WithDisposable implements IDisposable {
  *   Name = 'WithoutDisposable';
  *
@@ -27,6 +26,5 @@ export interface IDisposable {
  * using(WithDisposable, (i) => {
  *   // Do whatever you want to do with the new Instance of the Class
  * });
- * ```
  */
 export function Using<T extends IDisposable>(item: new () => T, cb: (d: T) => void): void;

@@ -1,3 +1,6 @@
+/**
+ * @module pattern
+ */
 const {Using} = require('./dispose/using');
 const {Throttle} = require('./functions/throttle');
 const {Create, CreateWithFactory} = require('./construct/construct');

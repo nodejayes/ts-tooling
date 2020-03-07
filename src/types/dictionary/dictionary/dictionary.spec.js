@@ -20,9 +20,9 @@ describe('Dictionary Tests', () => {
     });
 
     it('can get Keys', () => {
-        assert.deepEqual(FILLED.Keys().ElementAt(0), 'a');
-        assert.deepEqual(FILLED.Keys().ElementAt(1), 'b');
-        assert.deepEqual(FILLED.Keys().ElementAt(2), 'c');
+        assert.deepEqual(FILLED.Keys.ElementAt(0), 'a');
+        assert.deepEqual(FILLED.Keys.ElementAt(1), 'b');
+        assert.deepEqual(FILLED.Keys.ElementAt(2), 'c');
     });
 
     it('can get Values', () => {

@@ -5,7 +5,18 @@ const im = require('immer');
 require('../../../types/array/extension');
 require('../../../types/string/extension/extension');
 
+/**
+ * extends the BehaviorSubject and prevent the next Method to execute
+ *
+ * @memberof module:pattern/reactive-store
+ * @extends {BehaviorSubject} the BehaviorSubject from RxJs
+ */
 class SafeBehaviorSubject extends BehaviorSubject {
+    /**
+     * disable the Method from BehaviorSubject to not allow to get another value Instance other than the Store
+     *
+     * @deprecated please use state.Mutation() to change the State Value
+     */
     next(value) {
         throw new Error(`cannot emit value ${value} please use the Mutation Function to do that`);
     }
@@ -15,13 +26,37 @@ class SafeBehaviorSubject extends BehaviorSubject {
     }
 }
 
+/**
+ * a Reactive Store to save States and listen to Changes
+ *
+ * @memberof module:pattern/reactive-store
+ */
 class ReactiveStore {
+    /**
+     * create a new Store with a Initial State
+     *
+     * @constructor
+     *
+     * @param initialState {any} the default State Value
+     */
     constructor(initialState) {
         this._core = null;
         this._behaviorSubjects = new Dictionary();
         this._core = im.produce(initialState, () => {});
     }
 
+    /**
+     * listen to a specific Property or a complete State change
+     * you can use the SafeBehaviorSubject same as a BehaviorSubject but follow Functions has no effect
+     * next, complete, error
+     *
+     * @param selector {function} select the Part of the State to Listen
+     * @return {SafeBehaviorSubject}
+     *
+     * @example
+     * // write the data Property of the State into the console
+     * store.Listen(s => s.data).subscribe(d => console.info(d));
+     */
     Listen(selector) {
         let key = this._parseSelectorAccess(selector);
         if (this._behaviorSubjects.ContainsKey(key)) {
@@ -32,6 +67,22 @@ class ReactiveStore {
         return subject;
     }
 
+    /**
+     * mutate a specific Property or a complete State
+     *
+     * @param selector {function} select the Part of the State to Mutate
+     * @param mutation {function} define how to change the State
+     *
+     * @example
+     * // simple Example to set the State
+     * store.Mutate(s => s.data, () => newData);
+     * // make a complex Mutation
+     * store.Mutate(s => s, old => {
+     *     old.data = [];
+     *     old.loading = true;
+     *     return old;
+     * });
+     */
     Mutate(selector, mutation) {
         const key = this._parseSelectorAccess(selector);
         const realKey = this._toRealKey(key);
@@ -59,7 +110,7 @@ class ReactiveStore {
 
     _selectBehaviors(key) {
         const res = {};
-        const behaviorKeys = this._behaviorSubjects.Keys().FindAll(i => {
+        const behaviorKeys = this._behaviorSubjects.Keys.FindAll(i => {
             if (i.Equals(key)) {
                 return true;
             }

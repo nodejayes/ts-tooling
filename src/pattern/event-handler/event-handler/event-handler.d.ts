@@ -22,8 +22,6 @@ export class EventHandler<T> {
      * @param key the key to identify the subscription
      * @param cb
      *
-     * @returns the Idx of the Subscription
-     *
      * @example
      * const handler = new EventHandler<number>();
      * handler.Subscribe('X', (i) => {

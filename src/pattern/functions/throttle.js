@@ -1,3 +1,11 @@
+/**
+ * throttle the function execution
+ *
+ * @memberof module:pattern
+ *
+ * @param options {IThrottleOptions} the options to control the execution
+ * @param fn {function} the Function to throttle
+ */
 const Throttle = (function () {
     let locked = false;
     return function (options, fn, ...args) {
