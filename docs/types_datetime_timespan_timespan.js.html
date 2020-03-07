@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home | v3.0.0</title>
+    <title>Source: types/datetime/timespan/timespan.js | v3.0.0</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -44,84 +46,444 @@
 
 
     
-
-
-
-
-
-
-
-
-
-    
-
-
     <section>
-        <article class="readme"><h1>ts-tooling</h1>
-<p>some tools for Typescript inspired by .NET Framework</p>
-<h1>Installation</h1>
-<pre class="prettyprint source lang-bash"><code>// install over npm
-npm install --save ts-tooling
+        <article>
+            <pre class="prettyprint source linenums"><code>const {StringFactory} = require('../../string/factory/string.factory');
+const {ParseString} = require('../../../core/datetime/datetime');
+
+/**
+ * represents a duration from milliseconds to days
+ *
+ * @memberof module:types/datetime
+ */
+class TimeSpan {
+    /**
+     * the Days of this TimeSpan
+     *
+     * @readonly
+     */
+    get Day() {
+        return this._days;
+    }
+
+    /**
+     * the TimeSpan in Days
+     *
+     * @readonly
+     */
+    get TotalDays() {
+        const ms = (this._milliseconds / TimeSpan.MillisecondsPerDay);
+        const s = (this._seconds / TimeSpan.SecondsPerDay);
+        const m = (this._minutes / TimeSpan.MinutesPerDay);
+        const h = (this._hours / TimeSpan.HoursPerDay);
+        return this._days + ms + s + m + h;
+    }
+
+    /**
+     * the Hour of this TimeSpan
+     *
+     * @readonly
+     */
+    get Hour() {
+        return this._hours;
+    }
+
+    /**
+     * the TimeSpan in Hours
+     *
+     * @readonly
+     */
+    get TotalHours() {
+        const d = (this._days * TimeSpan.HoursPerDay);
+        const m = (this._minutes / TimeSpan.MinutesPerHour);
+        const s = (this._seconds / TimeSpan.SecondsPerHour);
+        const ms = (this._milliseconds / TimeSpan.MillisecondsPerHour);
+        return this._hours + d + m + s + ms;
+    }
+
+    /**
+     * the Minute of this TimeSpan
+     *
+     * @readonly
+     */
+    get Minute() {
+        return this._minutes;
+    }
+
+    /**
+     * the TimeSpan in Minutes
+     *
+     * @readonly
+     */
+    get TotalMinutes() {
+        const d = this._days * TimeSpan.MinutesPerDay;
+        const h = this._hours * TimeSpan.MinutesPerHour;
+        const s = this._seconds / TimeSpan.SecondsPerMinute;
+        const ms = this._milliseconds / TimeSpan.MillisecondsPerMinute;
+        return this._minutes + d + h + s + ms;
+    }
+
+    /**
+     * the Second of this TimeSpan
+     *
+     * @readonly
+     */
+    get Second() {
+        return this._seconds;
+    }
+
+    /**
+     * the TimeSpan in Seconds
+     *
+     * @readonly
+     */
+    get TotalSeconds() {
+        const d = this._days * TimeSpan.SecondsPerDay;
+        const h = this._hours * TimeSpan.SecondsPerHour;
+        const m = this._minutes * TimeSpan.SecondsPerMinute;
+        const ms = this._milliseconds / TimeSpan.MillisecondsPerSecond;
+        return this._seconds + d + h + m + ms;
+    }
+
+    /**
+     * the Millisecond of this TimeSpan
+     *
+     * @readonly
+     */
+    get Millisecond() {
+        return this._milliseconds;
+    }
+
+    /**
+     * the TimeSpan in Milliseconds
+     *
+     * @readonly
+     */
+    get TotalMilliseconds() {
+        const d = this._days * TimeSpan.MillisecondsPerDay;
+        const h = this._hours * TimeSpan.MillisecondsPerHour;
+        const m = this._minutes * TimeSpan.MillisecondsPerMinute;
+        const s = this._seconds * TimeSpan.MillisecondsPerSecond;
+        return this._milliseconds + d + h + m + s;
+    }
+
+    /**
+     * get the Time Span in Weeks
+     *
+     * @readonly
+     */
+    get TotalWeeks() {
+        return this.TotalDays / 7;
+    }
+
+    /**
+     * create a new TimeSpan
+     *
+     * @constructor
+     *
+     * @param hours {number?}
+     * @param minutes {number?}
+     * @param seconds {number?}
+     * @param milliseconds {number?}
+     * @param days {number?}
+     * @return {TimeSpan}
+     */
+    constructor(hours, minutes, seconds, milliseconds, days) {
+        this._days = 0;
+        this._hours = 0;
+        this._minutes = 0;
+        this._seconds = 0;
+        this._milliseconds = 0;
+        if (days &amp;&amp; days > 0) {
+            this._days = days;
+        }
+        if (hours &amp;&amp; hours > 0) {
+            this._hours = hours;
+        }
+        if (minutes &amp;&amp; minutes > 0) {
+            this._minutes = minutes;
+        }
+        if (seconds &amp;&amp; seconds > 0) {
+            this._seconds = seconds;
+        }
+        if (milliseconds &amp;&amp; milliseconds > 0) {
+            this._milliseconds = milliseconds;
+        }
+    }
+
+    /**
+     * add a TimeSpan to this TimeSpan
+     *
+     * @param duration {TimeSpan}
+     * @return {TimeSpan}
+     */
+    Add(duration) {
+        this._days += duration.Day;
+        this._hours += duration.Hour;
+        this._minutes += duration.Minute;
+        this._seconds += duration.Second;
+        this._milliseconds += duration.Millisecond;
+        return this;
+    }
+
+    /**
+     * check a TimeSpan of Equality with another TimeSpan
+     *
+     * @param duration {TimeSpan}
+     * @return {boolean}
+     */
+    Equals(duration) {
+        return this.TotalMilliseconds === duration.TotalMilliseconds;
+    }
+
+    /**
+     * negate the current TimeSpan
+     *
+     * @return {TimeSpan} the negated TimeSpan
+     */
+    Negate() {
+        this._days = -this._days;
+        this._hours = -this._hours;
+        this._minutes = -this._minutes;
+        this._seconds = -this._seconds;
+        this._milliseconds = -this._milliseconds;
+        return this;
+    }
+
+    /**
+     * subtract a TimeSpan from this TimeSpan
+     *
+     * @param duration {TimeSpan}
+     * @return {TimeSpan}
+     */
+    Subtract(duration) {
+        this._days -= duration.Day;
+        this._hours -= duration.Hour;
+        this._minutes -= duration.Minute;
+        this._seconds -= duration.Second;
+        this._milliseconds -= duration.Millisecond;
+        return this;
+    }
+
+    /**
+     * is the TimeSpan before this TimeSpan
+     *
+     * @param duration {TimeSpan}
+     * @return {boolean}
+     */
+    IsBefore(duration) {
+        return duration.TotalMilliseconds > this.TotalMilliseconds;
+    }
+
+    /**
+     * is the TimeSpan after this TimeSpan
+     *
+     * @param duration {TimeSpan}
+     * @return {boolean}
+     */
+    IsAfter(duration) {
+        return duration.TotalMilliseconds &lt; this.TotalMilliseconds;
+    }
+
+    /**
+     * return the TimeSpan as a Chars
+     * you can define a Format Chars to format the TimeSpan
+     *
+     * @param fmt {string?}
+     * @return {string}
+     */
+    ToString(fmt) {
+        return (StringFactory.IsNullOrEmpty(fmt) ? this.Day > 0 ? 'D.HH:mm:ss' : 'HH:mm:ss' : fmt)
+            .Replace('D', this.Day.toString(10))
+            .Replace('HH', this.Hour.toString(10).PadLeft(2, '0'))
+            .Replace('mm', this.Minute.toString(10).PadLeft(2, '0'))
+            .Replace('ss', this.Second.toString(10).PadLeft(2, '0'))
+            .Replace('SSS', this.Millisecond.toString(10).PadLeft(3, '0'))
+            .Replace('H', this.Hour.toString(10))
+            .Replace('m', this.Minute.toString(10))
+            .Replace('s', this.Second.toString(10))
+            .Replace('SS', this.Millisecond.toString(10).PadLeft(2, '0'))
+            .Replace('S', this.Millisecond.toString(10));
+    }
+}
+/**
+ * Milliseconds in a Second
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @static
+ * @private
+ */
+TimeSpan.MillisecondsPerSecond = 1000;
+/**
+ * how much Hours have one Day
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @static
+ * @private
+ */
+TimeSpan.HoursPerDay = 24;
+/**
+ * how much Minutes have one Day
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @static
+ * @private
+ */
+TimeSpan.MinutesPerDay = TimeSpan.HoursPerDay * 60;
+/**
+ * how much Seconds have one Day
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @static
+ * @private
+ */
+TimeSpan.SecondsPerDay = TimeSpan.MinutesPerDay * 60;
+/**
+ * how much Milliseconds have one Day
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @static
+ * @private
+ */
+TimeSpan.MillisecondsPerDay = TimeSpan.SecondsPerDay * TimeSpan.MillisecondsPerSecond;
+/**
+ * Minutes in one Hour
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @static
+ * @private
+ */
+TimeSpan.MinutesPerHour = 60;
+/**
+ * Seconds in one Hour
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @static
+ * @private
+ */
+TimeSpan.SecondsPerHour = TimeSpan.MinutesPerHour * 60;
+/**
+ * Milliseconds in one Hour
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @static
+ * @private
+ */
+TimeSpan.MillisecondsPerHour = TimeSpan.SecondsPerHour * TimeSpan.MillisecondsPerSecond;
+/**
+ * Seconds in one Minute
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @static
+ * @private
+ */
+TimeSpan.SecondsPerMinute = TimeSpan.SecondsPerHour / 60;
+/**
+ * Milliseconds in one Minute
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @static
+ * @private
+ */
+TimeSpan.MillisecondsPerMinute = TimeSpan.SecondsPerMinute * TimeSpan.MillisecondsPerSecond;
+
+/**
+ * create TimeSpan from Luxon Object
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @param luxon {any}
+ * @static
+ */
+TimeSpan.FromLuxon = (luxon) => {
+    return new TimeSpan(
+        luxon.hours || 0,
+        luxon.minutes || 0,
+        luxon.seconds || 0,
+        luxon.milliseconds || 0,
+        luxon.days || 0);
+};
+
+/**
+ * create a new TimeSpan from a moment js instance
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @param moment {any} the moment js instance
+ * @param ignoreDate {boolean?} ignore the Date of the moment instance
+ * @static
+ */
+TimeSpan.FromMoment = (moment, ignoreDate = false) => {
+    let millis = moment.valueOf();
+    if (ignoreDate) {
+        millis = moment.millisecond() +
+            (moment.second() * TimeSpan.MillisecondsPerSecond) +
+            (moment.minute() * TimeSpan.MillisecondsPerMinute) +
+            (moment.hour() * TimeSpan.MillisecondsPerHour);
+    }
+    return TimeSpan.FromMilliseconds(millis);
+};
+
+/**
+ * create a TimeSpan from a JavaScript Date
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @param date {Date} the JavaScript Date
+ * @param ignoreDate {boolean?} ignore the Date of the Date instance
+ * @static
+ */
+TimeSpan.FromJavaScriptDate = (date, ignoreDate = false) => {
+    let millis = date.valueOf();
+    if (ignoreDate) {
+        millis = date.getMilliseconds() +
+            (date.getSeconds() * TimeSpan.MillisecondsPerSecond) +
+            (date.getMinutes() * TimeSpan.MillisecondsPerMinute) +
+            (date.getHours() * TimeSpan.MillisecondsPerHour);
+    }
+    return TimeSpan.FromMilliseconds(millis);
+};
+
+/**
+ * create TimeSpan from ISO Chars
+ * Format is "Day.Hour:Minute:Second Millisecond"
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @param isoStr {string}
+ * @static
+ */
+TimeSpan.FromISOString = (isoStr) => {
+    return TimeSpan.FromLuxon(ParseString(isoStr));
+};
+
+/**
+ * create TimeSpan from Milliseconds
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @param milliseconds {number}
+ * @static
+ */
+TimeSpan.FromMilliseconds = (milliseconds) => {
+    const days = Math.floor(milliseconds / TimeSpan.MillisecondsPerDay);
+    if (days > 0) {
+        milliseconds = milliseconds - days * TimeSpan.MillisecondsPerDay;
+    }
+    const hours = Math.floor(milliseconds / TimeSpan.MillisecondsPerHour);
+    if (hours > 0) {
+        milliseconds = milliseconds - hours * TimeSpan.MillisecondsPerHour;
+    }
+    const minutes = Math.floor(milliseconds / TimeSpan.MillisecondsPerMinute);
+    if (minutes > 0) {
+        milliseconds = milliseconds - minutes * TimeSpan.MillisecondsPerMinute;
+    }
+    const second = Math.floor(milliseconds / TimeSpan.MillisecondsPerSecond);
+    if (second > 0) {
+        milliseconds = milliseconds - second * TimeSpan.MillisecondsPerSecond;
+    }
+    return new TimeSpan(hours, minutes, second, milliseconds, days);
+};
+
+module.exports = {TimeSpan};
 </code></pre>
-<hr>
-<h1>Reports</h1>
-<table>
-<thead>
-<tr>
-<th>Build</th>
-<th>Coverage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Build State</td>
-<td><img src="https://github.com/nodejayes/ts-tooling/workflows/Node.js%20CI/badge.svg" alt="Node.js CI"></td>
-</tr>
-<tr>
-<td>Line Coverage</td>
-<td><img src="https://img.shields.io/badge/4905%2F5010%20-97.90%25-brightgreen" alt="Line Coverage"></td>
-</tr>
-<tr>
-<td>Function Coverage</td>
-<td><img src="https://img.shields.io/badge/1628%2F1701%20-95.71%25-brightgreen" alt="Function Coverage"></td>
-</tr>
-<tr>
-<td>Branch Coverage</td>
-<td><img src="https://img.shields.io/badge/734%2F857%20-85.65%25-yellow" alt="Branch Coverage"></td>
-</tr>
-<tr>
-<td>Version</td>
-<td><a href="https://badge.fury.io/js/ts-tooling"><img src="https://badge.fury.io/js/ts-tooling.svg" alt="npm version"></a></td>
-</tr>
-<tr>
-<td>Dependencies</td>
-<td><a href="https://david-dm.org/nodejayes/ts-tooling#info=devDependencies"><img src="https://david-dm.org/nodejayes/ts-tooling/dev-status.svg" alt="devDependency Status"></a></td>
-</tr>
-<tr>
-<td>Licence</td>
-<td><img src="https://img.shields.io/npm/l/ts-tooling.svg" alt="npm"></td>
-</tr>
-<tr>
-<td>Downloads</td>
-<td><img src="https://img.shields.io/npm/dt/ts-tooling.svg" alt="npm"></td>
-</tr>
-<tr>
-<td></td>
-<td><img src="https://img.shields.io/npm/dw/ts-tooling.svg" alt="npm"></td>
-</tr>
-<tr>
-<td></td>
-<td><img src="https://img.shields.io/npm/dm/ts-tooling.svg" alt="npm"></td>
-</tr>
-<tr>
-<td></td>
-<td><img src="https://img.shields.io/npm/dy/ts-tooling.svg" alt="npm"></td>
-</tr>
-</tbody>
-</table></article>
+        </article>
     </section>
-
-
 
 
 
@@ -137,7 +499,7 @@ npm install --save ts-tooling
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'package:undefined_sub'.replace(/"/g, '_');
+        var id = '_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

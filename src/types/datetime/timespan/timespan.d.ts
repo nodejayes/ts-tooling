@@ -104,6 +104,7 @@ export class TimeSpan {
 
     /**
      * create a new TimeSpan
+     *
      * @param hours
      * @param minutes
      * @param seconds
@@ -114,8 +115,8 @@ export class TimeSpan {
 
     /**
      * create TimeSpan from Luxon Object
+     *
      * @param luxon
-     * @constructor
      */
     static FromLuxon(luxon: ILuxonDuration): TimeSpan
 
@@ -138,64 +139,65 @@ export class TimeSpan {
     /**
      * create TimeSpan from ISO Chars
      * Format is "Day.Hour:Minute:Second Millisecond"
+     *
      * @param isoStr
-     * @constructor
      */
     static FromISOString(isoStr: string): TimeSpan;
 
     /**
      * create TimeSpan from Milliseconds
+     *
      * @param milliseconds
-     * @constructor
      */
     static FromMilliseconds(milliseconds: number): TimeSpan;
 
     /**
      * add a TimeSpan to this TimeSpan
+     *
      * @param duration
-     * @constructor
      */
     Add(duration: TimeSpan): TimeSpan;
 
     /**
      * check a TimeSpan of Equality with another TimeSpan
+     *
      * @param duration
-     * @constructor
      */
     Equals(duration: TimeSpan): boolean;
 
     /**
      * negate the current TimeSpan
-     * @constructor
+     *
+     * @return the negated TimeSpan
      */
     Negate(): TimeSpan;
 
     /**
      * subtract a TimeSpan from this TimeSpan
+     *
      * @param duration
-     * @constructor
      */
     Subtract(duration: TimeSpan): TimeSpan;
 
     /**
      * is the TimeSpan before this TimeSpan
+     *
      * @param duration
-     * @constructor
      */
     IsBefore(duration: TimeSpan): boolean;
 
     /**
      * is the TimeSpan after this TimeSpan
+     *
      * @param duration
-     * @constructor
      */
     IsAfter(duration: TimeSpan): boolean;
 
     /**
      * return the TimeSpan as a Chars
      * you can define a Format Chars to format the TimeSpan
+     *
      * @param fmt
-     * @constructor
      */
     ToString(fmt?: string): string;
 }

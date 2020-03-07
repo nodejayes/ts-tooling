@@ -79,7 +79,6 @@ export class DateTime {
 
     /**
      * the Quarter of the Year of the DateTime
-     * @constructor
      */
     readonly YearQuarter: number;
 
