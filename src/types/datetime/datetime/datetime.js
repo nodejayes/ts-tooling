@@ -531,6 +531,24 @@ class DateTime {
     ToString(fmt) {
         return this._date.toFormat(fmt ? fmt : 'yyyy-MM-dd HH:mm:ss');
     }
+
+    /**
+     * convert the DateTime into a Unix Timestamp in ms
+     *
+     * @param inMs {boolean} get the Timestamp in ms
+     * @return {number} the unix timestamp
+     *
+     * @example
+     * // returns 1559433600000
+     * DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').ToUnixTimestamp();
+     * // returns 1559433600
+     * DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').ToUnixTimestamp(false);
+     */
+    ToUnixTimestamp(inMs = true) {
+        return inMs ?
+            this._date.toMillis() :
+            this._date.toMillis() / 1000;
+    }
 }
 
 /**

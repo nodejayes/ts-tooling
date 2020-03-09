@@ -403,4 +403,10 @@ describe('DateTime Tests', () => {
         assertDateValues(convertedUtc, 2019, 1 , 1, 2, 0, 0, 0, 'Europe/Berlin');
         assertDateValues(convertedUtcKeep, 2019, 1 , 1, 1, 0, 0, 0, 'Europe/Berlin');
     });
+
+    it('[Method]: ToUnixTimestamp', () => {
+        const dt = DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin');
+        assert.equal(dt.ToUnixTimestamp(), 1559433600000);
+        assert.equal(dt.ToUnixTimestamp(false), 1559433600);
+    });
 });

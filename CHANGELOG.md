@@ -3,6 +3,8 @@
 * improve performance of Convert
 * add more Benchmarks
 * add more Documentation
+* add ToUnixTimeStamp at DateTime
+* Reactive Store emits Subscription only when the value was changed
 
 ### 3.0.0
 

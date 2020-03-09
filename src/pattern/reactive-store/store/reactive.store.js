@@ -88,8 +88,14 @@ class ReactiveStore {
         const realKey = this._toRealKey(key);
         const behaviors = this._selectBehaviors(key);
         this._core = im.produce(this._core, draft => {
+            const original = selector(this._core);
             const currentValue = selector(draft);
             const newValue = mutation(currentValue);
+            const hash1 = JSON.stringify(original);
+            const hash2 = JSON.stringify(newValue);
+            if (hash1 === hash2) {
+                return;
+            }
             if (!realKey) {
                 draft = newValue;
             } else {

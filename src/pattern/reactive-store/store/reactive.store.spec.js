@@ -546,15 +546,8 @@ describe('Reactive Store Tests', () => {
             callCount++;
             if (callCount === 2) {
                 assert.isTrue(d.test.b);
-            }
-            if (callCount === 3) {
                 done();
-                assert.isTrue(d.test.b);
             }
-        });
-        store.Mutate(s => s.test, o => {
-            o.b = true;
-            return o;
         });
         store.Mutate(s => s.test, o => {
             o.b = true;
@@ -584,5 +577,30 @@ describe('Reactive Store Tests', () => {
             assert.equal(o.greet(), 'Hello null');
             done();
         });
+    });
+
+    it('sends only store value changes', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s.test.n).subscribe(d => {
+            callCount++;
+        });
+        store.Mutate(s => s.test.n, () => 5);
+        store.Mutate(s => s.test.n, () => 5);
+        store.Mutate(s => s.test.n, () => 5);
+        store.Mutate(s => s.test.n, () => 5);
+        setTimeout(() => {
+            assert.equal(callCount, 1);
+            done();
+        }, 100);
     });
 });

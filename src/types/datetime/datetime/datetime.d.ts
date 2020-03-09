@@ -369,4 +369,13 @@ export class DateTime {
      * DateTime.FromISOString('2019-01-01T12:23:54').ToString('yyyy');
      */
     ToString(fmt?: string): string;
+
+    /**
+     * convert the DateTime into a Unix Timestamp in ms
+     *
+     * @param inMs {boolean} get the Timestamp in ms
+     *
+     * @example
+     */
+    ToUnixTimestamp(inMs?: number): number;
 }
