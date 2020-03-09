@@ -376,6 +376,10 @@ export class DateTime {
      * @param inMs {boolean} get the Timestamp in ms
      *
      * @example
+     * // returns 1559433600000
+     * DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').ToUnixTimestamp();
+     * // returns 1559433600
+     * DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').ToUnixTimestamp(false);
      */
     ToUnixTimestamp(inMs?: number): number;
 }
