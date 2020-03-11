@@ -381,5 +381,5 @@ export class DateTime {
      * // returns 1559433600
      * DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').ToUnixTimestamp(false);
      */
-    ToUnixTimestamp(inMs?: number): number;
+    ToUnixTimestamp(inMs?: boolean): number;
 }
