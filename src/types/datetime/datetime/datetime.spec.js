@@ -405,8 +405,8 @@ describe('DateTime Tests', () => {
     });
 
     it('[Method]: ToUnixTimestamp', () => {
-        const dt = DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin');
-        assert.equal(dt.ToUnixTimestamp(), 1559433600000);
-        assert.equal(dt.ToUnixTimestamp(false), 1559433600);
+        const dt = DateTime.FromISOString('2019-06-02T02:30:56', 'Europe/Berlin');
+        assert.equal(dt.ToUnixTimestamp(), 1559435456000);
+        assert.equal(dt.ToUnixTimestamp(false), 1559435456);
     });
 });

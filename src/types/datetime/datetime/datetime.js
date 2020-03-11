@@ -1,3 +1,4 @@
+const {NumberFactory} = require('../../number');
 const luxon = require('luxon');
 const {TimeSpan} = require('../timespan/timespan');
 const {StringFactory} = require('../../string/factory/string.factory');
@@ -547,7 +548,7 @@ class DateTime {
     ToUnixTimestamp(inMs = true) {
         return inMs ?
             this._date.toMillis() :
-            this._date.toMillis() / 1000;
+            NumberFactory.NewInteger(this._date.toMillis() / 1000);
     }
 }
 
