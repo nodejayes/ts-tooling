@@ -243,7 +243,9 @@
 
     
     <div class="description">
-        listen to a specific Property or a complete State changeyou can use the SafeBehaviorSubject same as a BehaviorSubject but follow Functions has no effectnext, complete, error
+        listen to a specific Property or a complete State change
+you can use the SafeBehaviorSubject same as a BehaviorSubject but follow Functions has no effect
+next, complete, error
     </div>
     
 
@@ -376,7 +378,8 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// write the data Property of the State into the consolestore.Listen(s => s.data).subscribe(d => console.info(d));</code></pre>
+    <pre class="prettyprint"><code>// write the data Property of the State into the console
+store.Listen(s => s.data).subscribe(d => console.info(d));</code></pre>
 
     
 
@@ -543,7 +546,14 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// simple Example to set the Statestore.Mutate(s => s.data, () => newData);// make a complex Mutationstore.Mutate(s => s, old => {    old.data = [];    old.loading = true;    return old;});</code></pre>
+    <pre class="prettyprint"><code>// simple Example to set the State
+store.Mutate(s => s.data, () => newData);
+// make a complex Mutation
+store.Mutate(s => s, old => {
+    old.data = [];
+    old.loading = true;
+    return old;
+});</code></pre>
 
     
 

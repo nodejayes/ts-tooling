@@ -603,4 +603,34 @@ describe('Reactive Store Tests', () => {
             done();
         }, 100);
     });
+
+    it('perform get on proxy', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        store.Listen(s => s.test).subscribe(d => {
+            callCount++;
+            if (callCount === 1) {
+                assert.equal(d['n'], 5);
+            }
+            if (callCount === 2) {
+                assert.equal(d['n'], 6);
+            }
+        });
+        store.Mutate(s => s.test.n, () => 6);
+        setTimeout(() => {
+            store.Listen(s => s.test).subscribe(d => {
+                assert.equal(d['n'], 6);
+                done();
+            });
+        }, 1000);
+    });
 });

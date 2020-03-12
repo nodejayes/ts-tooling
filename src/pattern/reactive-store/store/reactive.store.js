@@ -87,6 +87,7 @@ class ReactiveStore {
         const key = this._parseSelectorAccess(selector);
         const realKey = this._toRealKey(key);
         const behaviors = this._selectBehaviors(key);
+        let changed = true;
         this._core = im.produce(this._core, draft => {
             const original = selector(this._core);
             const currentValue = selector(draft);
@@ -94,6 +95,7 @@ class ReactiveStore {
             const hash1 = JSON.stringify(original);
             const hash2 = JSON.stringify(newValue);
             if (hash1 === hash2) {
+                changed = false;
                 return;
             }
             if (!realKey) {
@@ -101,17 +103,20 @@ class ReactiveStore {
             } else {
                 Set(draft, realKey, newValue);
             }
+        });
+
+        if (changed) {
             for (const behaviorKey of Object.keys(behaviors)) {
                 const realKey = behaviorKey.StartsWith('root.') ? behaviorKey.Replace('root.', '') :
                     behaviorKey === 'root' ? '' : behaviorKey;
                 const behavior = behaviors[behaviorKey];
                 if (!realKey) {
-                    behavior['_innerNext'](draft);
+                    behavior['_innerNext'](this._core);
                     continue;
                 }
-                behavior['_innerNext'](Get(draft, realKey));
+                behavior['_innerNext'](Get(this._core, realKey));
             }
-        });
+        }
     }
 
     _selectBehaviors(key) {

@@ -1,4 +1,4 @@
-const {Using} = require('./Using');
+const {Using} = require('./using');
 const {describe, it} = require('mocha');
 const {assert} = require('chai');
 

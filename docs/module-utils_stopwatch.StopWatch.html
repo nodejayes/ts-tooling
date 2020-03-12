@@ -51,7 +51,11 @@
         <h2><span class="attribs"><span class="type-signature"></span></span>
             <span class="ancestors"><a href="module-utils_stopwatch.html">utils/stopwatch</a>~</span>StopWatch<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">measure the Time between Code Lines in msthe StopWatch starts when a new Instance was created and can give the Elapsed ms when ElapsedMs was called.measure multiple Times is also possible with SectionStart and SectionElapsedMs</div>
+            <div class="class-description">measure the Time between Code Lines in ms
+
+the StopWatch starts when a new Instance was created and can give the Elapsed ms when ElapsedMs was called.
+
+measure multiple Times is also possible with SectionStart and SectionElapsedMs</div>
         
     
 </header>
@@ -147,7 +151,9 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const watch = new StopWatch();// returns the elapsed Ms from construction and this Linewatch.ElapsedMs();</code></pre>
+    <pre class="prettyprint"><code>const watch = new StopWatch();
+// returns the elapsed Ms from construction and this Line
+watch.ElapsedMs();</code></pre>
 
     
 
@@ -241,7 +247,12 @@
     
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const sw = new StopWatch();// returns falsesw.IsPause();sw.Pause();// returns truesw.IsPause();</code></pre>
+    <pre class="prettyprint"><code>const sw = new StopWatch();
+// returns false
+sw.IsPause();
+sw.Pause();
+// returns true
+sw.IsPause();</code></pre>
 
     
 </dd>
@@ -359,7 +370,9 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const sw = StopWatch();// get the elapsed time in ms from StopWatch constructorsw.ElapsedMs();</code></pre>
+    <pre class="prettyprint"><code>const sw = StopWatch();
+// get the elapsed time in ms from StopWatch constructor
+sw.ElapsedMs();</code></pre>
 
     
 
@@ -522,7 +535,13 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const sw = new StopWatch();sw.SectionStart('sw1');// returns falsesw.IsSectionPause('sw1');sw.SectionPause('sw1');// returns truesw.IsSectionPause('sw1');</code></pre>
+    <pre class="prettyprint"><code>const sw = new StopWatch();
+sw.SectionStart('sw1');
+// returns false
+sw.IsSectionPause('sw1');
+sw.SectionPause('sw1');
+// returns true
+sw.IsSectionPause('sw1');</code></pre>
 
     
 
@@ -616,7 +635,9 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const sw = new StopWatch();// pause the StopWatchsw.Pause();</code></pre>
+    <pre class="prettyprint"><code>const sw = new StopWatch();
+// pause the StopWatch
+sw.Pause();</code></pre>
 
     
 
@@ -710,7 +731,10 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const sw = new StopWatch();sw.Pause();// resume the paused StopWatchsw.Resume();</code></pre>
+    <pre class="prettyprint"><code>const sw = new StopWatch();
+sw.Pause();
+// resume the paused StopWatch
+sw.Resume();</code></pre>
 
     
 
@@ -873,7 +897,10 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const sw = new StopWatch();sw.SectionStart('sw1');// returns the elapsed milliseconds since start of section sw1sw.SectionElapsedMs('sw1');</code></pre>
+    <pre class="prettyprint"><code>const sw = new StopWatch();
+sw.SectionStart('sw1');
+// returns the elapsed milliseconds since start of section sw1
+sw.SectionElapsedMs('sw1');</code></pre>
 
     
 
@@ -1017,7 +1044,10 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const sw = new StopWatch();sw.SectionStart('sw1');// pause the sw1 sectionsw.SectionPause('sw1');</code></pre>
+    <pre class="prettyprint"><code>const sw = new StopWatch();
+sw.SectionStart('sw1');
+// pause the sw1 section
+sw.SectionPause('sw1');</code></pre>
 
     
 
@@ -1161,7 +1191,11 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const sw = new StopWatch();sw.SectionStart('sw1');sw.SectionPause('sw1');// restart the sw1 sectionsw.SectionResume('sw1');</code></pre>
+    <pre class="prettyprint"><code>const sw = new StopWatch();
+sw.SectionStart('sw1');
+sw.SectionPause('sw1');
+// restart the sw1 section
+sw.SectionResume('sw1');</code></pre>
 
     
 
@@ -1305,7 +1339,15 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const watch = new StopWatch();watch.SectionStart('A');// logs the Time between SectionStart('A') and SectionElapsedMs('A')watch.SectionElapsedMs('A');watch.SectionStart('B');// logs the Time between SectionStart('B') and SectionElapsedMs('B')watch.SectionElapsedMs('B');// logs the Time between SectionStart('A') and this Line with SectionStart('B') and SectionElapsedMs('B')watch.SectionElapsedMs('A');</code></pre>
+    <pre class="prettyprint"><code>const watch = new StopWatch();
+watch.SectionStart('A');
+// logs the Time between SectionStart('A') and SectionElapsedMs('A')
+watch.SectionElapsedMs('A');
+watch.SectionStart('B');
+// logs the Time between SectionStart('B') and SectionElapsedMs('B')
+watch.SectionElapsedMs('B');
+// logs the Time between SectionStart('A') and this Line with SectionStart('B') and SectionElapsedMs('B')
+watch.SectionElapsedMs('A');</code></pre>
 
     
 

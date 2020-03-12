@@ -49,7 +49,7 @@ describe("Test StopWatch", () => {
             assert.isTrue(sw.IsPause);
             setTimeout(() => {
                 assert.isAbove(sw.ElapsedMs(), 9);
-                assert.isBelow(sw.ElapsedMs(), 20);
+                assert.isBelow(sw.ElapsedMs(), 40);
                 done();
             }, 10);
         }, 10);

@@ -1,4 +1,4 @@
-const {Throttle} = require('./Throttle');
+const {Throttle} = require('./throttle');
 const {describe, it} = require('mocha');
 const {assert} = require('chai');
 
