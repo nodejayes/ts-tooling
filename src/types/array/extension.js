@@ -922,4 +922,33 @@ Array.prototype.UnionBy = function(items, check) {
     return this;
 };
 
+/**
+ * remove the Element at the index from the Array and give it back
+ *
+ * @function module:types/array.Array#Pull
+ *
+ * @param index {number} the index of the element to remove from array
+ * @returns {any} the removed element
+ *
+ * @example
+ * // returns 2
+ * const tmp = [1,2,3];
+ * tmp.Pull(1);
+ * console.info(tmp)
+ * // prints [1,3]
+ */
+Array.prototype.Pull = function(index) {
+    let el = this.ElementAt(index);
+    if (index > this.length-1) {
+        index = this.length-1;
+        el = this.ElementAt(index);
+    }
+    if (index < 0) {
+        index = 0;
+        el = this.ElementAt(index);
+    }
+    this.splice(index, 1);
+    return el;
+};
+
 module.exports = {ListSortOrder};

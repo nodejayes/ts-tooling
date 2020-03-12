@@ -778,4 +778,21 @@ describe('Array Extension Tests', () => {
             assert.deepEqual([1,2,3].UnionBy([], () => true), [1,2,3]);
         });
     });
+    describe('[Method]: Pull', () => {
+        it('pull 2 from 1,2,3', () => {
+            const tmp = [1,2,3];
+            assert.equal(tmp.Pull(1), 2);
+            assert.deepEqual(tmp, [1,3]);
+        });
+        it('to high index remove the last element', () => {
+            const tmp = [1,2,3];
+            assert.equal(tmp.Pull(10), 3);
+            assert.deepEqual(tmp, [1,2]);
+        });
+        it('to low index remove the first element', () => {
+            const tmp = [1,2,3];
+            assert.equal(tmp.Pull(-1), 1);
+            assert.deepEqual(tmp, [2,3]);
+        });
+    });
 });

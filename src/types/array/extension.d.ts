@@ -736,5 +736,20 @@ declare global {
          * [1,2,3].UnionBy([4,5,6], e => e === 6);
          */
         UnionBy?<T>(items: T[], check: (d: T) => boolean): T[];
+
+        /**
+         * remove the Element at the index from the Array and give it back
+         *
+         * @param index the index of the element to remove from array
+         * @returns the removed element
+         *
+         * @example
+         * // returns 2
+         * const tmp = [1,2,3];
+         * tmp.Pull(1);
+         * console.info(tmp)
+         * // prints [1,3]
+         */
+        Pull?<T>(index: number): T;
     }
 }
