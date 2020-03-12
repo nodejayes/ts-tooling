@@ -322,8 +322,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1]
-[].Add(1);</code></pre>
+    <pre class="prettyprint"><code>// returns [1][].Add(1);</code></pre>
 
     
 
@@ -488,10 +487,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1,2]
-[1].AddIfNotExists(2);
-// returns [1]
-[1].AddIfNotExists(1);</code></pre>
+    <pre class="prettyprint"><code>// returns [1,2][1].AddIfNotExists(2);// returns [1][1].AddIfNotExists(1);</code></pre>
 
     
 
@@ -656,8 +652,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1,2,3,4]
-[1].AddRange([2,3,4]);</code></pre>
+    <pre class="prettyprint"><code>// returns [1,2,3,4][1].AddRange([2,3,4]);</code></pre>
 
     
 
@@ -822,10 +817,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1,2,3,4]
-[1].AddRangeIfNotExists([2,3,4]);
-// returns [1]
-[1].AddRangeIfNotExists([1,1,1]);</code></pre>
+    <pre class="prettyprint"><code>// returns [1,2,3,4][1].AddRangeIfNotExists([2,3,4]);// returns [1][1].AddRangeIfNotExists([1,1,1]);</code></pre>
 
     
 
@@ -990,10 +982,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns true
-[1,2,3].Any();
-// returns false
-[].Any();</code></pre>
+    <pre class="prettyprint"><code>// returns true[1,2,3].Any();// returns false[].Any();</code></pre>
 
     
 
@@ -1108,8 +1097,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns []
-[1,2,3].Clear();</code></pre>
+    <pre class="prettyprint"><code>// returns [][1,2,3].Clear();</code></pre>
 
     
 
@@ -1274,15 +1262,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns true
-[1,2,3].Contains(2);
-const element = {x:'y'};
-[element].Contains(element);
-const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
-[element2].Contains(element2);
-// returns false
-[1,2,3].Contains(50);
-[{hello:'world'}].Contains({hello:'world'});</code></pre>
+    <pre class="prettyprint"><code>// returns true[1,2,3].Contains(2);const element = {x:'y'};[element].Contains(element);const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};[element2].Contains(element2);// returns false[1,2,3].Contains(50);[{hello:'world'}].Contains({hello:'world'});</code></pre>
 
     
 
@@ -1447,8 +1427,7 @@ const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns ['Test1', 'Test2', 'Test3']
-[1,2,3].Convert(e => 'Test' + e);</code></pre>
+    <pre class="prettyprint"><code>// returns ['Test1', 'Test2', 'Test3'][1,2,3].Convert(e => 'Test' + e);</code></pre>
 
     
 
@@ -1563,8 +1542,7 @@ const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1,2,3]
-[1,2,3].Copy();</code></pre>
+    <pre class="prettyprint"><code>// returns [1,2,3][1,2,3].Copy();</code></pre>
 
     
 
@@ -1679,10 +1657,7 @@ const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 3
-[1,2,3].Count();
-// returns 0
-[].Count();</code></pre>
+    <pre class="prettyprint"><code>// returns 3[1,2,3].Count();// returns 0[].Count();</code></pre>
 
     
 
@@ -1847,8 +1822,7 @@ const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 2
-[1,2,3].ElementAt(1);</code></pre>
+    <pre class="prettyprint"><code>// returns 2[1,2,3].ElementAt(1);</code></pre>
 
     
 
@@ -2013,10 +1987,7 @@ const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns true
-[1,2,3].Exists(e => e === 2);
-// returns false
-[1,2,3].Exists(e => e === 20);</code></pre>
+    <pre class="prettyprint"><code>// returns true[1,2,3].Exists(e => e === 2);// returns false[1,2,3].Exists(e => e === 20);</code></pre>
 
     
 
@@ -2181,8 +2152,7 @@ const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 2
-[1,2,3].Find((e) => e > 1);</code></pre>
+    <pre class="prettyprint"><code>// returns 2[1,2,3].Find((e) => e > 1);</code></pre>
 
     
 
@@ -2347,8 +2317,7 @@ const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [2,3]
-[1,2,3].FindAll(i => i > 1);</code></pre>
+    <pre class="prettyprint"><code>// returns [2,3][1,2,3].FindAll(i => i > 1);</code></pre>
 
     
 
@@ -2513,8 +2482,7 @@ const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 1
-[1,2,3,1,2,3].FindIndex(e => e === 2);</code></pre>
+    <pre class="prettyprint"><code>// returns 1[1,2,3,1,2,3].FindIndex(e => e === 2);</code></pre>
 
     
 
@@ -2702,8 +2670,7 @@ const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1,2,3]
-[1,5,3].Replace((e) => e === 5, 2);</code></pre>
+    <pre class="prettyprint"><code>// returns [1,2,3][1,5,3].Replace((e) => e === 5, 2);</code></pre>
 
     
 
@@ -2868,8 +2835,7 @@ const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 3
-[1,2,3].FindLast((e) => e > 1);</code></pre>
+    <pre class="prettyprint"><code>// returns 3[1,2,3].FindLast((e) => e > 1);</code></pre>
 
     
 
@@ -3034,8 +3000,7 @@ const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 4
-[1,2,3,1,2,3].FindLastIndex(e => e === 2);</code></pre>
+    <pre class="prettyprint"><code>// returns 4[1,2,3,1,2,3].FindLastIndex(e => e === 2);</code></pre>
 
     
 
@@ -3065,9 +3030,7 @@ const element2 = {hello:'world',Equals:(i) => this.hello === i.hello};
 
     
     <div class="description">
-        get the First element of the array or the first that match the condition
-
-when no element was found the default value or null was returned
+        get the First element of the array or the first that match the conditionwhen no element was found the default value or null was returned
     </div>
     
 
@@ -3245,12 +3208,7 @@ when no element was found the default value or null was returned
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// return 1
-[1,2,3,4,5,6].FirstOrDefault();
-// return 2
-[1,2,3,4,5,6].FirstOrDefault(e => e > 1);
-// return 10
-[1,2,3,4,5,6].FirstOrDefault(() => false, 10);</code></pre>
+    <pre class="prettyprint"><code>// return 1[1,2,3,4,5,6].FirstOrDefault();// return 2[1,2,3,4,5,6].FirstOrDefault(e => e > 1);// return 10[1,2,3,4,5,6].FirstOrDefault(() => false, 10);</code></pre>
 
     
 
@@ -3415,8 +3373,7 @@ when no element was found the default value or null was returned
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns {'1': [1], '2': [2], '3': [3,3,3]}
-[1,2,3,3,3].GroupBy(e => e);</code></pre>
+    <pre class="prettyprint"><code>// returns {'1': [1], '2': [2], '3': [3,3,3]}[1,2,3,3,3].GroupBy(e => e);</code></pre>
 
     
 
@@ -3581,8 +3538,7 @@ when no element was found the default value or null was returned
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns ['1', '2', '3']
-[1,2,3,3,3].GroupKey(e => e);</code></pre>
+    <pre class="prettyprint"><code>// returns ['1', '2', '3'][1,2,3,3,3].GroupKey(e => e);</code></pre>
 
     
 
@@ -3790,10 +3746,7 @@ when no element was found the default value or null was returned
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 1
-[1,2,3,1,2,3].IndexOf(2);
-// returns 4
-[1,2,3,1,2,3].IndexOf(2, 2);</code></pre>
+    <pre class="prettyprint"><code>// returns 1[1,2,3,1,2,3].IndexOf(2);// returns 4[1,2,3,1,2,3].IndexOf(2, 2);</code></pre>
 
     
 
@@ -3981,8 +3934,7 @@ when no element was found the default value or null was returned
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1,5,2,3]
-[1,2,3].Insert(1, 5);</code></pre>
+    <pre class="prettyprint"><code>// returns [1,5,2,3][1,2,3].Insert(1, 5);</code></pre>
 
     
 
@@ -4170,8 +4122,7 @@ when no element was found the default value or null was returned
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1,4,5,6,2,3]
-[1,2,3].Insert(1, [4,5,6]);</code></pre>
+    <pre class="prettyprint"><code>// returns [1,4,5,6,2,3][1,2,3].Insert(1, [4,5,6]);</code></pre>
 
     
 
@@ -4336,8 +4287,7 @@ when no element was found the default value or null was returned
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns "1,2,3"
-[1,2,3].Join(',');</code></pre>
+    <pre class="prettyprint"><code>// returns "1,2,3"[1,2,3].Join(',');</code></pre>
 
     
 
@@ -4367,9 +4317,7 @@ when no element was found the default value or null was returned
 
     
     <div class="description">
-        get the last element of the array or the last that match the condition
-
-when no element was found the default value or null was returned
+        get the last element of the array or the last that match the conditionwhen no element was found the default value or null was returned
     </div>
     
 
@@ -4547,11 +4495,7 @@ when no element was found the default value or null was returned
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// return 6
-[1,2,3,4,5,6].LastOrDefault();
-[1,2,3,4,5,6].LastOrDefault(e => e > 1);
-// return 10
-[1,2,3,4,5,6].LastOrDefault(() => false, 10);</code></pre>
+    <pre class="prettyprint"><code>// return 6[1,2,3,4,5,6].LastOrDefault();[1,2,3,4,5,6].LastOrDefault(e => e > 1);// return 10[1,2,3,4,5,6].LastOrDefault(() => false, 10);</code></pre>
 
     
 
@@ -4581,9 +4525,7 @@ when no element was found the default value or null was returned
 
     
     <div class="description">
-        get the maximum number in the Array
-
-only number types are checked!!!
+        get the maximum number in the Arrayonly number types are checked!!!
     </div>
     
 
@@ -4718,12 +4660,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 3
-[1,2,3].Max();
-// returns 2
-[1,2,3].Max(i => i &lt; 3);
-// returns 4
-[1,2,'3',4,'5'].Max();</code></pre>
+    <pre class="prettyprint"><code>// returns 3[1,2,3].Max();// returns 2[1,2,3].Max(i => i &lt; 3);// returns 4[1,2,'3',4,'5'].Max();</code></pre>
 
     
 
@@ -4888,12 +4825,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 9.866666666666667
-[1, 25.6, 3].Mean();
-// returns 2
-[1,2,3,4].Mean(i => i &lt; 4);
-// returns 4
-['1','2','3',4,'5'].Mean();</code></pre>
+    <pre class="prettyprint"><code>// returns 9.866666666666667[1, 25.6, 3].Mean();// returns 2[1,2,3,4].Mean(i => i &lt; 4);// returns 4['1','2','3',4,'5'].Mean();</code></pre>
 
     
 
@@ -4923,9 +4855,7 @@ only number types are checked!!!
 
     
     <div class="description">
-        get the minimum number in the Array
-
-only number types are checked!!!
+        get the minimum number in the Arrayonly number types are checked!!!
     </div>
     
 
@@ -5060,12 +4990,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 3
-[1,2,3].Min();
-// returns 2
-[1,2,3].Min(i => i > 1);
-// returns 4
-['1','2','3',4,'5'].Min();</code></pre>
+    <pre class="prettyprint"><code>// returns 3[1,2,3].Min();// returns 2[1,2,3].Min(i => i > 1);// returns 4['1','2','3',4,'5'].Min();</code></pre>
 
     
 
@@ -5253,10 +5178,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns "a,b,c"
-['a', 'b', 'c'].Reduce((target, e) => {
-     return target.Concat(e, ',');
- }, '')</code></pre>
+    <pre class="prettyprint"><code>// returns "a,b,c"['a', 'b', 'c'].Reduce((target, e) => {     return target.Concat(e, ','); }, '')</code></pre>
 
     
 
@@ -5421,8 +5343,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1,3]
-[1,2,3].Remove(2);</code></pre>
+    <pre class="prettyprint"><code>// returns [1,3][1,2,3].Remove(2);</code></pre>
 
     
 
@@ -5587,10 +5508,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// return [1,3]
-[1,2,3].RemoveAll(e => e === 2);
-// return []
-[1,2,3].RemoveAll(() => true);</code></pre>
+    <pre class="prettyprint"><code>// return [1,3][1,2,3].RemoveAll(e => e === 2);// return [][1,2,3].RemoveAll(() => true);</code></pre>
 
     
 
@@ -5755,8 +5673,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1,3]
-[1,2,3].RemoveAt(1);</code></pre>
+    <pre class="prettyprint"><code>// returns [1,3][1,2,3].RemoveAt(1);</code></pre>
 
     
 
@@ -5921,9 +5838,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1,2,3]
-[1,2,3,4,5,6].RemoveRange([4,5,6]);
-[1,2,3].RemoveRange([4,5,6]);</code></pre>
+    <pre class="prettyprint"><code>// returns [1,2,3][1,2,3,4,5,6].RemoveRange([4,5,6]);[1,2,3].RemoveRange([4,5,6]);</code></pre>
 
     
 
@@ -6038,8 +5953,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [3,2,1]
-[1,2,3].Reverse();</code></pre>
+    <pre class="prettyprint"><code>// returns [3,2,1][1,2,3].Reverse();</code></pre>
 
     
 
@@ -6204,12 +6118,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1, 2, 3]
-[1, 2, 3].Sort();
-// returns [3, 2, 1]
-[1, 2, 3].Sort(ListSortOrder.DESC);
-// returns ['c', 'b', 'a']
-['a', 'b', 'c'].Sort(ListSortOrder.DESC);</code></pre>
+    <pre class="prettyprint"><code>// returns [1, 2, 3][1, 2, 3].Sort();// returns [3, 2, 1][1, 2, 3].Sort(ListSortOrder.DESC);// returns ['c', 'b', 'a']['a', 'b', 'c'].Sort(ListSortOrder.DESC);</code></pre>
 
     
 
@@ -6397,106 +6306,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [
-// {
-//       Name: 'Anne Klein',
-//       Age: 23,
-//       Birthday: new Date(1965, 8, 12, 0, 0, 0),
-//       Address: {
-//           Street: 'Jenaer Strasse 26',
-//           PLZ: '47053',
-//           Town: 'Duisburg',
-//       }
-//   },{
-//       Name: 'Christine Ehrlichmann',
-//       Age: 37,
-//       Birthday: new Date(1982, 4, 23, 0, 0, 0),
-//       Address: {
-//           Street: 'Paul-Nevermann-Platz 59',
-//           PLZ: '97657',
-//           Town: 'Sandberg'
-//       }
-//   },{
-//       Name: 'Jonas Schreiner',
-//       Age: 23,
-//       Birthday: new Date(1965, 4, 12, 0, 0, 0),
-//       Address: {
-//           Street: 'Gotthardstrasse 69',
-//           PLZ: '99094',
-//           Town: 'Erfurt'
-//       }
-//   },{
-//       Name: 'Sandra Eichmann',
-//       Age: 45,
-//       Birthday: new Date(1969, 0, 22, 0, 0, 0),
-//       Address: {
-//           Street: 'Inge Beisheim Platz 20',
-//           PLZ: '25313',
-//           Town: 'Elmshorn'
-//       }
-//   },{
-//       Name: 'Ulrich Gärtner',
-//       Age: 60,
-//       Birthday: new Date(1959, 2, 23, 0, 0, 0),
-//       Address: {
-//           Street: 'Koenigstrasse 50',
-//           PLZ: '99750',
-//           Town: 'Bleicherode'
-//       }
-//   }
-// ]
-[
-   {
-          Name: 'Jonas Schreiner',
-          Age: 23,
-          Birthday: new Date(1965, 4, 12, 0, 0, 0),
-          Address: {
-              Street: 'Gotthardstrasse 69',
-              PLZ: '99094',
-              Town: 'Erfurt'
-          }
-      },
-   {
-          Name: 'Sandra Eichmann',
-          Age: 45,
-          Birthday: new Date(1969, 0, 22, 0, 0, 0),
-          Address: {
-              Street: 'Inge Beisheim Platz 20',
-              PLZ: '25313',
-              Town: 'Elmshorn'
-          }
-      },
-   {
-          Name: 'Ulrich Gärtner',
-          Age: 60,
-          Birthday: new Date(1959, 2, 23, 0, 0, 0),
-          Address: {
-              Street: 'Koenigstrasse 50',
-              PLZ: '99750',
-              Town: 'Bleicherode'
-          }
-      },
-   {
-          Name: 'Christine Ehrlichmann',
-          Age: 37,
-          Birthday: new Date(1982, 4, 23, 0, 0, 0),
-          Address: {
-              Street: 'Paul-Nevermann-Platz 59',
-              PLZ: '97657',
-              Town: 'Sandberg'
-          }
-      },
-   {
-          Name: 'Anne Klein',
-          Age: 23,
-          Birthday: new Date(1965, 8, 12, 0, 0, 0),
-          Address: {
-              Street: 'Jenaer Strasse 26',
-              PLZ: '47053',
-              Town: 'Duisburg',
-          }
-      }
-   ].SortBy(['Name'], [ListSortOrder.ASC]);</code></pre>
+    <pre class="prettyprint"><code>// returns [// {//       Name: 'Anne Klein',//       Age: 23,//       Birthday: new Date(1965, 8, 12, 0, 0, 0),//       Address: {//           Street: 'Jenaer Strasse 26',//           PLZ: '47053',//           Town: 'Duisburg',//       }//   },{//       Name: 'Christine Ehrlichmann',//       Age: 37,//       Birthday: new Date(1982, 4, 23, 0, 0, 0),//       Address: {//           Street: 'Paul-Nevermann-Platz 59',//           PLZ: '97657',//           Town: 'Sandberg'//       }//   },{//       Name: 'Jonas Schreiner',//       Age: 23,//       Birthday: new Date(1965, 4, 12, 0, 0, 0),//       Address: {//           Street: 'Gotthardstrasse 69',//           PLZ: '99094',//           Town: 'Erfurt'//       }//   },{//       Name: 'Sandra Eichmann',//       Age: 45,//       Birthday: new Date(1969, 0, 22, 0, 0, 0),//       Address: {//           Street: 'Inge Beisheim Platz 20',//           PLZ: '25313',//           Town: 'Elmshorn'//       }//   },{//       Name: 'Ulrich Gärtner',//       Age: 60,//       Birthday: new Date(1959, 2, 23, 0, 0, 0),//       Address: {//           Street: 'Koenigstrasse 50',//           PLZ: '99750',//           Town: 'Bleicherode'//       }//   }// ][   {          Name: 'Jonas Schreiner',          Age: 23,          Birthday: new Date(1965, 4, 12, 0, 0, 0),          Address: {              Street: 'Gotthardstrasse 69',              PLZ: '99094',              Town: 'Erfurt'          }      },   {          Name: 'Sandra Eichmann',          Age: 45,          Birthday: new Date(1969, 0, 22, 0, 0, 0),          Address: {              Street: 'Inge Beisheim Platz 20',              PLZ: '25313',              Town: 'Elmshorn'          }      },   {          Name: 'Ulrich Gärtner',          Age: 60,          Birthday: new Date(1959, 2, 23, 0, 0, 0),          Address: {              Street: 'Koenigstrasse 50',              PLZ: '99750',              Town: 'Bleicherode'          }      },   {          Name: 'Christine Ehrlichmann',          Age: 37,          Birthday: new Date(1982, 4, 23, 0, 0, 0),          Address: {              Street: 'Paul-Nevermann-Platz 59',              PLZ: '97657',              Town: 'Sandberg'          }      },   {          Name: 'Anne Klein',          Age: 23,          Birthday: new Date(1965, 8, 12, 0, 0, 0),          Address: {              Street: 'Jenaer Strasse 26',              PLZ: '47053',              Town: 'Duisburg',          }      }   ].SortBy(['Name'], [ListSortOrder.ASC]);</code></pre>
 
     
 
@@ -6661,12 +6471,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 6
-[1,2,3].Sum();
-// returns 5
-[1,2,3].Sum(i => i > 1);
-// returns 4
-['1','2','3',4,'5'].Sum();</code></pre>
+    <pre class="prettyprint"><code>// returns 6[1,2,3].Sum();// returns 5[1,2,3].Sum(i => i > 1);// returns 4['1','2','3',4,'5'].Sum();</code></pre>
 
     
 
@@ -6831,10 +6636,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns true
-[1,2,3].TrueForAll(e => typeof e === typeof 0);
-// returns false
-[1,2,3].TrueForAll(e => e === 1);</code></pre>
+    <pre class="prettyprint"><code>// returns true[1,2,3].TrueForAll(e => typeof e === typeof 0);// returns false[1,2,3].TrueForAll(e => e === 1);</code></pre>
 
     
 
@@ -7022,8 +6824,7 @@ only number types are checked!!!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns [1,2,3,6]
-[1,2,3].UnionBy([4,5,6], e => e === 6);</code></pre>
+    <pre class="prettyprint"><code>// returns [1,2,3,6][1,2,3].UnionBy([4,5,6], e => e === 6);</code></pre>
 
     
 

@@ -700,16 +700,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class WithDisposable implements IDisposable {
-  Name = 'WithoutDisposable';
-
-  Dispose(): void {
-    this.Name = '';
-  }
-}
-using(WithDisposable, (i) => {
-  // Do whatever you want to do with the new Instance of the Class
-});</code></pre>
+    <pre class="prettyprint"><code>class WithDisposable implements IDisposable {  Name = 'WithoutDisposable';  Dispose(): void {    this.Name = '';  }}using(WithDisposable, (i) => {  // Do whatever you want to do with the new Instance of the Class});</code></pre>
 
     
 

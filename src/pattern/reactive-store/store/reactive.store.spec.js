@@ -616,9 +616,11 @@ describe('Reactive Store Tests', () => {
                 }
             }
         });
+        let ref = null;
         store.Listen(s => s.test).subscribe(d => {
             callCount++;
             if (callCount === 1) {
+                ref = d;
                 assert.equal(d['n'], 5);
             }
             if (callCount === 2) {
@@ -629,6 +631,7 @@ describe('Reactive Store Tests', () => {
         setTimeout(() => {
             store.Listen(s => s.test).subscribe(d => {
                 assert.equal(d['n'], 6);
+                assert.equal(ref.n, 5);
                 done();
             });
         }, 1000);
