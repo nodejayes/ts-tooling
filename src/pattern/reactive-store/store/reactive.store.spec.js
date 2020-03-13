@@ -649,7 +649,7 @@ describe('Reactive Store Tests', () => {
                 }
             }
         });
-        let ref = store.Listen(s => s.test.n).snapshot();
+        let ref = store.Listen(s => s.test.n).getValue();
         store.Listen(s => s.test.n).subscribe(d => {
             callCount++;
             if (callCount === 1) {

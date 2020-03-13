@@ -31,7 +31,7 @@ class SafeBehaviorSubject extends BehaviorSubject {
      *
      * @returns {T} the copy of the current Value
      */
-    snapshot() {
+    getValue() {
         return ObjectFactory.Copy(super.getValue());
     }
 }

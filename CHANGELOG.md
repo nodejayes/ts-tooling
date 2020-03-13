@@ -6,7 +6,6 @@
 * add ToUnixTimeStamp at DateTime
 * Reactive Store emits Subscription only when the value was changed
 * add Pull Function to Array
-* add snapshot to SafeBehaviorSubject
 
 ### 3.0.0
 
