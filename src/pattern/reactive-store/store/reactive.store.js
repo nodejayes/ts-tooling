@@ -1,5 +1,4 @@
 const {BehaviorSubject} = require('rxjs');
-const {ObjectFactory} = require('../../../types/object');
 const {Dictionary} = require('../../../types/dictionary/dictionary/dictionary');
 const {Get, Set} = require('../../../core/object/object');
 const im = require('immer');
@@ -25,15 +24,6 @@ class SafeBehaviorSubject extends BehaviorSubject {
     _innerNext(value) {
         super.next(value);
     }
-
-    /**
-     * returns a copy of the current Value
-     *
-     * @returns {T} the copy of the current Value
-     */
-    getValue() {
-        return ObjectFactory.Copy(super.getValue());
-    }
 }
 
 /**
@@ -50,7 +40,6 @@ class ReactiveStore {
      * @param initialState {any} the default State Value
      */
     constructor(initialState) {
-        this._core = null;
         this._behaviorSubjects = new Dictionary();
         this._core = im.produce(initialState, () => {});
     }

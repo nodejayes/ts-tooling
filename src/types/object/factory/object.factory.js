@@ -24,7 +24,7 @@ class ObjectFactory {}
  * obj === ObjectFactory.Copy(obj);
  */
 ObjectFactory.Copy = (instance) => {
-    return RecursiveDeepCopy(instance);
+    return RecursiveDeepCopy(instance, []);
 };
 
 /**

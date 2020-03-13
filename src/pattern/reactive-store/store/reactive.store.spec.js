@@ -646,10 +646,13 @@ describe('Reactive Store Tests', () => {
                 dt: DateTime.FromISOString('2019-01-01T00:00:00'),
                 o: {
                     name: 'Paul'
-                }
+                },
+                arr: [1,2,3]
             }
         });
         let ref = store.Listen(s => s.test.n).getValue();
+        let ref2 = store.Listen(s => s.test).getValue();
+        let ref3 = store.Listen(s => s.test.arr).getValue();
         store.Listen(s => s.test.n).subscribe(d => {
             callCount++;
             if (callCount === 1) {
@@ -663,6 +666,15 @@ describe('Reactive Store Tests', () => {
         store.Mutate(s => s.test.n, () => 6);
         let afterMutate = store.Listen(s => s.test.n).getValue();
         assert.equal(ref, 5);
+        assert.equal(ref2.n, 5);
         assert.equal(afterMutate, 6);
+        ref = 10;
+        ref2.n = 10;
+        assert.equal(ref, 10);
+        assert.equal(ref2.n, 10);
+        assert.equal(afterMutate, 6);
+        const sortedref3 = ref3.sort((a, b) => a > b ? -1 : a<b ? 1 : 0);
+        assert.deepEqual(sortedref3, [3,2,1]);
+        assert.deepEqual(store.Listen(s => s.test.arr).getValue(), [1,2,3]);
     });
 });

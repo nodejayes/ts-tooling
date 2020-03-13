@@ -1,4 +1,4 @@
-const RecursiveDeepCopy = (o) => {
+const RecursiveDeepCopy = (o, cache = []) => {
     let newO,
         i;
 
@@ -9,10 +9,15 @@ const RecursiveDeepCopy = (o) => {
         return o;
     }
 
+    if (cache.indexOf(o) > -1) {
+        return o;
+    }
+    cache.push(o);
+
     if ('[object Array]' === Object.prototype.toString.apply(o)) {
         newO = [];
         for (i = 0; i < o.length; i += 1) {
-            newO[i] = RecursiveDeepCopy(o[i]);
+            newO[i] = RecursiveDeepCopy(o[i], cache);
         }
         return newO;
     }
@@ -20,7 +25,7 @@ const RecursiveDeepCopy = (o) => {
     newO = {};
     for (i in o) {
         if (o.hasOwnProperty(i)) {
-            newO[i] = RecursiveDeepCopy(o[i]);
+            newO[i] = RecursiveDeepCopy(o[i], cache);
         }
     }
     return newO;

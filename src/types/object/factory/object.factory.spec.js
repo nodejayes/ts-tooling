@@ -26,6 +26,19 @@ describe('Object Extension Tests', () => {
             const tmp = {Hello: 'World!'};
             assert.notEqual(tmp, ObjectFactory.Copy(tmp));
         });
+        it('not copy self reference', () => {
+            const tmp1 = {hello: 'world'};
+            const tmp2 = {hello: 'world'};
+            tmp1.self = tmp1;
+            tmp1.other = tmp2;
+            tmp2.other = tmp1;
+            const clone = ObjectFactory.Copy(tmp1);
+            assert.deepEqual(clone, tmp1);
+            tmp1.hello = '1234';
+            tmp2.hello = '1234';
+            assert.equal(clone.hello, 'world');
+            assert.equal(clone.other.hello, 'world');
+        });
     });
     describe('[Method]: SizeOf', () => {
         it('check {Hello: \'World!\'}', () => {
