@@ -6,6 +6,7 @@
 * add ToUnixTimeStamp at DateTime
 * Reactive Store emits Subscription only when the value was changed
 * add Pull Function to Array
+* reactive store listen every change as flag
 
 ### 3.0.0
 

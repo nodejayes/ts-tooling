@@ -88,10 +88,12 @@ class ReactiveStore {
      * @constructor
      *
      * @param initialState {any} the default State Value
+     * @param everyChange {boolean?} listen to every change
      */
-    constructor(initialState) {
+    constructor(initialState, everyChange = false) {
         this._behaviorSubjects = new Dictionary();
         this._core = im.produce(initialState, () => {});
+        this._everyChange = everyChange;
     }
 
     /**
@@ -141,11 +143,13 @@ class ReactiveStore {
             const original = selector(this._core);
             const currentValue = selector(draft);
             const newValue = mutation(currentValue);
-            const hash1 = JSON.stringify(original);
-            const hash2 = JSON.stringify(newValue);
-            if (hash1 === hash2) {
-                changed = false;
-                return;
+            if (!this._everyChange) {
+                const hash1 = JSON.stringify(original);
+                const hash2 = JSON.stringify(newValue);
+                if (hash1 === hash2) {
+                    changed = false;
+                    return;
+                }
             }
             if (!realKey) {
                 draft = newValue;

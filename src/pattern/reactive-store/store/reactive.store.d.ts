@@ -22,8 +22,9 @@ export class ReactiveStore<T> {
      * create a new Store with a Initial State
      *
      * @param initialState the default State Value
+     * @param everyChange listen to every change
      */
-    constructor(initialState: T);
+    constructor(initialState: T, everyChange?: boolean);
 
     /**
      * listen to a specific Property or a complete State change
