@@ -1,4 +1,5 @@
 const {BehaviorSubject} = require('rxjs');
+const {ObjectFactory} = require('../../../types/object');
 const {Dictionary} = require('../../../types/dictionary/dictionary/dictionary');
 const {Get, Set} = require('../../../core/object/object');
 const im = require('immer');
@@ -23,6 +24,15 @@ class SafeBehaviorSubject extends BehaviorSubject {
 
     _innerNext(value) {
         super.next(value);
+    }
+
+    /**
+     * returns a copy of the current Value
+     *
+     * @returns {T} the copy of the current Value
+     */
+    snapshot() {
+        return ObjectFactory.Copy(super.getValue());
     }
 }
 

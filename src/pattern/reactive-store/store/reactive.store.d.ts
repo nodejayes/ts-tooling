@@ -10,6 +10,12 @@ export class SafeBehaviorSubject<T> extends BehaviorSubject<T> {
      * @deprecated please use state.Mutation() to change the State Value
      */
     next(value: T): void;
+    /**
+     * returns a copy of the current Value
+     *
+     * @returns the copy of the current Value
+     */
+    snapshot(): T;
 }
 
 /**

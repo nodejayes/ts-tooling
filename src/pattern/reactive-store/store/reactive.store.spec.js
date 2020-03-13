@@ -636,4 +636,33 @@ describe('Reactive Store Tests', () => {
             });
         }, 1000);
     });
+
+    it('can get snapshot', (done) => {
+        let callCount = 0;
+        const store = new ReactiveStore({
+            test: {
+                b: false,
+                n: 5,
+                dt: DateTime.FromISOString('2019-01-01T00:00:00'),
+                o: {
+                    name: 'Paul'
+                }
+            }
+        });
+        let ref = store.Listen(s => s.test.n).snapshot();
+        store.Listen(s => s.test.n).subscribe(d => {
+            callCount++;
+            if (callCount === 1) {
+                assert.equal(d, 5);
+            }
+            if (callCount === 2) {
+                assert.equal(d, 6);
+                done();
+            }
+        });
+        store.Mutate(s => s.test.n, () => 6);
+        let afterMutate = store.Listen(s => s.test.n).getValue();
+        assert.equal(ref, 5);
+        assert.equal(afterMutate, 6);
+    });
 });
