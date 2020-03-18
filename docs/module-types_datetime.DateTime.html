@@ -513,11 +513,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// create a date in Europe Time Zone 2019-01-01 01:00:00.000
-new DateTime('Europe/Berlin', 2019, 1, 1, 1, 0, 0, 0);
-new DateTime('Europe/Berlin', 2019, 1, 1);
-// create a date in Europe Time Zone 2019-01-01 00:00:00.000
-new DateTime('Europe/Berlin', 2019, 1, 1, null, null, null, null, true);</code></pre>
+    <pre class="prettyprint"><code>// create a date in Europe Time Zone 2019-01-01 01:00:00.000new DateTime('Europe/Berlin', 2019, 1, 1, 1, 0, 0, 0);new DateTime('Europe/Berlin', 2019, 1, 1);// create a date in Europe Time Zone 2019-01-01 00:00:00.000new DateTime('Europe/Berlin', 2019, 1, 1, null, null, null, null, true);</code></pre>
 
     
 
@@ -1883,9 +1879,7 @@ new DateTime('Europe/Berlin', 2019, 1, 1, null, null, null, null, true);</code><
 
     
     <div class="description">
-        create DateTime from ISO string
-
-you have to specify the Timezone or UTC was taken!
+        create DateTime from ISO stringyou have to specify the Timezone or UTC was taken!
     </div>
     
 
@@ -2042,10 +2036,7 @@ you have to specify the Timezone or UTC was taken!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns DateTime 2019-01-01 01:00:00.000 in UTC Time Zone
-DateTime.FromISOString('2019-01-01T01:00:00.000');
-// returns DateTime 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone
-DateTime.FromISOString('2019-01-01T01:00:00.000', 'Europe/Berlin');</code></pre>
+    <pre class="prettyprint"><code>// returns DateTime 2019-01-01 01:00:00.000 in UTC Time ZoneDateTime.FromISOString('2019-01-01T01:00:00.000');// returns DateTime 2019-01-01 01:00:00.000 in Europe/Berlin Time ZoneDateTime.FromISOString('2019-01-01T01:00:00.000', 'Europe/Berlin');</code></pre>
 
     
 
@@ -2075,9 +2066,7 @@ DateTime.FromISOString('2019-01-01T01:00:00.000', 'Europe/Berlin');</code></pre>
 
     
     <div class="description">
-        create a DateTime Type from a Javascript Date Object
-
-you have to specify the Timezone or UTC was taken!
+        create a DateTime Type from a Javascript Date Objectyou have to specify the Timezone or UTC was taken!
     </div>
     
 
@@ -2234,10 +2223,7 @@ you have to specify the Timezone or UTC was taken!
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns DateTime 2019-01-01 01:00:00.000 in UTC Time Zone
-DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0)));
-// returns DateTime 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone
-DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0), 'Europe/Berlin'));</code></pre>
+    <pre class="prettyprint"><code>// returns DateTime 2019-01-01 01:00:00.000 in UTC Time ZoneDateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0)));// returns DateTime 2019-01-01 01:00:00.000 in Europe/Berlin Time ZoneDateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0), 'Europe/Berlin'));</code></pre>
 
     
 
@@ -2267,9 +2253,7 @@ DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0), 'Europe/Berlin'))
 
     
     <div class="description">
-        create DateTime from a Luxon Date Object
-
-uses the Timezone from the Luxon Object
+        create DateTime from a Luxon Date Objectuses the Timezone from the Luxon Object
     </div>
     
 
@@ -2383,9 +2367,7 @@ uses the Timezone from the Luxon Object
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns the current time in utc
-const vgl = LuxonDateTime.utc();
-DateTime.FromLuxon(vgl);</code></pre>
+    <pre class="prettyprint"><code>// returns the current time in utcconst vgl = LuxonDateTime.utc();DateTime.FromLuxon(vgl);</code></pre>
 
     
 
@@ -2572,11 +2554,7 @@ DateTime.FromLuxon(vgl);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const vgl = LuxonDateTime.utc();
-// returns the current date time in UTC Time Zone
-DateTime.FromMilliseconds(vgl.toMillis());
-// returns the current date time in Europe/Berlin Time Zone
-DateTime.FromMilliseconds(vgl.toMillis(), 'Europe/Berlin');</code></pre>
+    <pre class="prettyprint"><code>const vgl = LuxonDateTime.utc();// returns the current date time in UTC Time ZoneDateTime.FromMilliseconds(vgl.toMillis());// returns the current date time in Europe/Berlin Time ZoneDateTime.FromMilliseconds(vgl.toMillis(), 'Europe/Berlin');</code></pre>
 
     
 
@@ -2739,8 +2717,7 @@ DateTime.FromMilliseconds(vgl.toMillis(), 'Europe/Berlin');</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 4038-02-03 23:00:00.000
-DateTime.FromISOString('2019-01-01T00:00:00').Add(DateTime.FromISOString('2019-01-02T23:00:00'));</code></pre>
+    <pre class="prettyprint"><code>// returns 4038-02-03 23:00:00.000DateTime.FromISOString('2019-01-01T00:00:00').Add(DateTime.FromISOString('2019-01-02T23:00:00'));</code></pre>
 
     
 
@@ -2903,8 +2880,7 @@ DateTime.FromISOString('2019-01-01T00:00:00').Add(DateTime.FromISOString('2019-0
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 2019-01-03 00:00:00.000
-DateTime.FromISOString('2019-01-01T00:00:00').AddDays(2);</code></pre>
+    <pre class="prettyprint"><code>// returns 2019-01-03 00:00:00.000DateTime.FromISOString('2019-01-01T00:00:00').AddDays(2);</code></pre>
 
     
 
@@ -3067,8 +3043,7 @@ DateTime.FromISOString('2019-01-01T00:00:00').AddDays(2);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 2019-01-01 01:00:00.000
-DateTime.FromISOString('2019-01-01T00:00:00').AddHours(1);</code></pre>
+    <pre class="prettyprint"><code>// returns 2019-01-01 01:00:00.000DateTime.FromISOString('2019-01-01T00:00:00').AddHours(1);</code></pre>
 
     
 
@@ -3231,8 +3206,7 @@ DateTime.FromISOString('2019-01-01T00:00:00').AddHours(1);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 2019-01-01 00:00:00.001
-DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(1);</code></pre>
+    <pre class="prettyprint"><code>// returns 2019-01-01 00:00:00.001DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(1);</code></pre>
 
     
 
@@ -3395,8 +3369,7 @@ DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(1);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 2019-01-01 00:01:00.000
-DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(1);</code></pre>
+    <pre class="prettyprint"><code>// returns 2019-01-01 00:01:00.000DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(1);</code></pre>
 
     
 
@@ -3559,8 +3532,7 @@ DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(1);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 2019-03-01 00:00:00.000
-DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(2);</code></pre>
+    <pre class="prettyprint"><code>// returns 2019-03-01 00:00:00.000DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(2);</code></pre>
 
     
 
@@ -3723,8 +3695,7 @@ DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(2);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 2019-01-01 00:00:01.000
-DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(1);</code></pre>
+    <pre class="prettyprint"><code>// returns 2019-01-01 00:00:01.000DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(1);</code></pre>
 
     
 
@@ -3887,8 +3858,7 @@ DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(1);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 2021-01-01 00:00:00.000
-DateTime.FromISOString('2019-01-01T00:00:00').AddYears(2);</code></pre>
+    <pre class="prettyprint"><code>// returns 2021-01-01 00:00:00.000DateTime.FromISOString('2019-01-01T00:00:00').AddYears(2);</code></pre>
 
     
 
@@ -4051,10 +4021,7 @@ DateTime.FromISOString('2019-01-01T00:00:00').AddYears(2);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns true
-DateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('2019-02-02T02:00:00'));
-// returns false
-DateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('2019-02-02T03:00:00'));</code></pre>
+    <pre class="prettyprint"><code>// returns trueDateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('2019-02-02T02:00:00'));// returns falseDateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('2019-02-02T03:00:00'));</code></pre>
 
     
 
@@ -4217,10 +4184,7 @@ DateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('201
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns true
-DateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('2019-02-01T02:00:00'));
-// returns false
-DateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('2019-02-03T02:00:00'));</code></pre>
+    <pre class="prettyprint"><code>// returns trueDateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('2019-02-01T02:00:00'));// returns falseDateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('2019-02-03T02:00:00'));</code></pre>
 
     
 
@@ -4383,10 +4347,7 @@ DateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('20
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns true
-DateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2019-02-03T02:00:00'));
-// returns false
-DateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2019-02-02T02:00:00'));</code></pre>
+    <pre class="prettyprint"><code>// returns trueDateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2019-02-03T02:00:00'));// returns falseDateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2019-02-02T02:00:00'));</code></pre>
 
     
 
@@ -4499,12 +4460,7 @@ DateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns true
-DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').IsDaylightSavingTime();
-// returns false
-DateTime.FromISOString('2019-11-02T02:00:00', 'Europe/Berlin').IsDaylightSavingTime();
-DateTime.FromISOString('2019-06-02T02:00:00', 'UTC').IsDaylightSavingTime();
-DateTime.FromISOString('2019-11-02T02:00:00', 'UTC').IsDaylightSavingTime();</code></pre>
+    <pre class="prettyprint"><code>// returns trueDateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').IsDaylightSavingTime();// returns falseDateTime.FromISOString('2019-11-02T02:00:00', 'Europe/Berlin').IsDaylightSavingTime();DateTime.FromISOString('2019-06-02T02:00:00', 'UTC').IsDaylightSavingTime();DateTime.FromISOString('2019-11-02T02:00:00', 'UTC').IsDaylightSavingTime();</code></pre>
 
     
 
@@ -4667,8 +4623,7 @@ DateTime.FromISOString('2019-11-02T02:00:00', 'UTC').IsDaylightSavingTime();</co
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 2019-01-01 01:00:00.000
-DateTime.FromISOString('2019-02-02T02:00:00').Subtract(DateTime.FromISOString('0000-01-01T01:00:00'));</code></pre>
+    <pre class="prettyprint"><code>// returns 2019-01-01 01:00:00.000DateTime.FromISOString('2019-02-02T02:00:00').Subtract(DateTime.FromISOString('0000-01-01T01:00:00'));</code></pre>
 
     
 
@@ -4698,9 +4653,7 @@ DateTime.FromISOString('2019-02-02T02:00:00').Subtract(DateTime.FromISOString('0
 
     
     <div class="description">
-        return the DateTime as a string
-
-you can define a Format string to format the DateTime
+        return the DateTime as a stringyou can define a Format string to format the DateTime
     </div>
     
 
@@ -4845,10 +4798,7 @@ you can define a Format string to format the DateTime
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns "2019-01-01 12:23:54"
-DateTime.FromISOString('2019-01-01T12:23:54').ToString();
-// returns "2019"
-DateTime.FromISOString('2019-01-01T12:23:54').ToString('yyyy');</code></pre>
+    <pre class="prettyprint"><code>// returns "2019-01-01 12:23:54"DateTime.FromISOString('2019-01-01T12:23:54').ToString();// returns "2019"DateTime.FromISOString('2019-01-01T12:23:54').ToString('yyyy');</code></pre>
 
     
 
@@ -5021,10 +4971,7 @@ DateTime.FromISOString('2019-01-01T12:23:54').ToString('yyyy');</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 1559433600000
-DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').ToUnixTimestamp();
-// returns 1559433600
-DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').ToUnixTimestamp(false);</code></pre>
+    <pre class="prettyprint"><code>// returns 1559433600000DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').ToUnixTimestamp();// returns 1559433600DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').ToUnixTimestamp(false);</code></pre>
 
     
 
@@ -5242,15 +5189,7 @@ DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').ToUnixTimestamp(f
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const TARGET_ZONE = 'Europe/Berlin';
-const dateEurope = new DateTime('Europe/Berlin', 2019, 1, 1, 1);
-const dateUtc = new DateTime('UTC', 2019, 1, 1, 1);
-// returns 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone
-dateEurope.ToZone(TARGET_ZONE);
-dateEurope.ToZone(TARGET_ZONE, true);
-dateUtc.ToZone(TARGET_ZONE, true);
-// returns 2019-01-01 02:00:00.000 in Europe/Berlin Time Zone
-dateUtc.ToZone(TARGET_ZONE);</code></pre>
+    <pre class="prettyprint"><code>const TARGET_ZONE = 'Europe/Berlin';const dateEurope = new DateTime('Europe/Berlin', 2019, 1, 1, 1);const dateUtc = new DateTime('UTC', 2019, 1, 1, 1);// returns 2019-01-01 01:00:00.000 in Europe/Berlin Time ZonedateEurope.ToZone(TARGET_ZONE);dateEurope.ToZone(TARGET_ZONE, true);dateUtc.ToZone(TARGET_ZONE, true);// returns 2019-01-01 02:00:00.000 in Europe/Berlin Time ZonedateUtc.ToZone(TARGET_ZONE);</code></pre>
 
     
 

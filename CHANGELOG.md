@@ -1,4 +1,4 @@
-### 3.0.1 (beta)
+### 3.0.1
 
 * improve performance of Convert
 * add more Benchmarks
