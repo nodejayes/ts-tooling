@@ -676,6 +676,21 @@ Array.prototype.Sort = function (order) {
  *    ].SortBy(['Name'], [ListSortOrder.ASC]);
  */
 Array.prototype.SortBy = function (keys, orders) {
+    if (!orders) {
+        orders = [];
+        for (let i = 0; i < keys.length; i++) {
+            orders.push(ListSortOrder.ASC);
+        }
+    }
+    const missingOrders = keys.length - orders.length;
+    if (missingOrders > 0) {
+        for (let i = 0; i < missingOrders; i++) {
+            orders.push(ListSortOrder.ASC);
+        }
+    }
+    if (missingOrders < 0) {
+        orders = orders.slice(0, keys.length - 1);
+    }
     return Sort(this, keys, orders.Convert(o => o === ListSortOrder.DESC));
 };
 

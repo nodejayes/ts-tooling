@@ -3,7 +3,7 @@ const {describe, it} = require('mocha');
 const {ListSortOrder} = require('./extension');
 require('../string/extension/extension');
 
-const complexValues = [
+const complexValues = () => [
     {
         Name: 'Jonas Schreiner',
         Age: 23,
@@ -530,7 +530,216 @@ describe('Array Extension Tests', () => {
                     }
                 }
             ];
-            assert.deepEqual(complexValues.SortBy([], []), result);
+            assert.deepEqual(complexValues().SortBy([], []), result);
+        });
+        it('default sort is ASC', () => {
+            const result = [
+                {
+                    Name: 'Anne Klein',
+                    Age: 23,
+                    Birthday: new Date(1965, 8, 12, 0, 0, 0),
+                    Address: {
+                        Street: 'Jenaer Strasse 26',
+                        PLZ: '47053',
+                        Town: 'Duisburg',
+                    }
+                },{
+                    Name: 'Christine Ehrlichmann',
+                    Age: 37,
+                    Birthday: new Date(1982, 4, 23, 0, 0, 0),
+                    Address: {
+                        Street: 'Paul-Nevermann-Platz 59',
+                        PLZ: '97657',
+                        Town: 'Sandberg'
+                    }
+                },{
+                    Name: 'Jonas Schreiner',
+                    Age: 23,
+                    Birthday: new Date(1965, 4, 12, 0, 0, 0),
+                    Address: {
+                        Street: 'Gotthardstrasse 69',
+                        PLZ: '99094',
+                        Town: 'Erfurt'
+                    }
+                },{
+                    Name: 'Jonas Schreiner',
+                    Age: 24,
+                    Birthday: new Date(1965, 4, 11, 0, 0, 0),
+                    Address: {
+                        Street: 'Gotthardstrasse 69',
+                        PLZ: '99094',
+                        Town: 'Erfurt'
+                    }
+                },{
+                    Name: 'Jonas Schreiner',
+                    Age: 22,
+                    Birthday: new Date(1965, 4, 13, 0, 0, 0),
+                    Address: {
+                        Street: 'Gotthardstrasse 69',
+                        PLZ: '99094',
+                        Town: 'Erfurt'
+                    }
+                },{
+                    Name: 'Sandra Eichmann',
+                    Age: 45,
+                    Birthday: new Date(1969, 0, 22, 0, 0, 0),
+                    Address: {
+                        Street: 'Inge Beisheim Platz 20',
+                        PLZ: '25313',
+                        Town: 'Elmshorn'
+                    }
+                },{
+                    Name: 'Ulrich Gärtner',
+                    Age: 60,
+                    Birthday: new Date(1959, 2, 23, 0, 0, 0),
+                    Address: {
+                        Street: 'Koenigstrasse 50',
+                        PLZ: '99750',
+                        Town: 'Bleicherode'
+                    }
+                }
+            ];
+            assert.deepEqual(complexValues().SortBy(['Name']), result);
+        });
+        it('extends sort direction', () => {
+            const result = [
+                {
+                    Name: 'Jonas Schreiner',
+                    Age: 22,
+                    Birthday: new Date(1965, 4, 13, 0, 0, 0),
+                    Address: {
+                        Street: 'Gotthardstrasse 69',
+                        PLZ: '99094',
+                        Town: 'Erfurt'
+                    }
+                },
+                {
+                    Name: 'Anne Klein',
+                    Age: 23,
+                    Birthday: new Date(1965, 8, 12, 0, 0, 0),
+                    Address: {
+                        Street: 'Jenaer Strasse 26',
+                        PLZ: '47053',
+                        Town: 'Duisburg',
+                    }
+                },{
+                    Name: 'Jonas Schreiner',
+                    Age: 23,
+                    Birthday: new Date(1965, 4, 12, 0, 0, 0),
+                    Address: {
+                        Street: 'Gotthardstrasse 69',
+                        PLZ: '99094',
+                        Town: 'Erfurt'
+                    }
+                },{
+                    Name: 'Jonas Schreiner',
+                    Age: 24,
+                    Birthday: new Date(1965, 4, 11, 0, 0, 0),
+                    Address: {
+                        Street: 'Gotthardstrasse 69',
+                        PLZ: '99094',
+                        Town: 'Erfurt'
+                    }
+                },{
+                    Name: 'Christine Ehrlichmann',
+                    Age: 37,
+                    Birthday: new Date(1982, 4, 23, 0, 0, 0),
+                    Address: {
+                        Street: 'Paul-Nevermann-Platz 59',
+                        PLZ: '97657',
+                        Town: 'Sandberg'
+                    }
+                },{
+                    Name: 'Sandra Eichmann',
+                    Age: 45,
+                    Birthday: new Date(1969, 0, 22, 0, 0, 0),
+                    Address: {
+                        Street: 'Inge Beisheim Platz 20',
+                        PLZ: '25313',
+                        Town: 'Elmshorn'
+                    }
+                },{
+                    Name: 'Ulrich Gärtner',
+                    Age: 60,
+                    Birthday: new Date(1959, 2, 23, 0, 0, 0),
+                    Address: {
+                        Street: 'Koenigstrasse 50',
+                        PLZ: '99750',
+                        Town: 'Bleicherode'
+                    }
+                }
+            ];
+            assert.deepEqual(complexValues().SortBy(['Age', 'Name'], [ListSortOrder.ASC]), result);
+        });
+        it('ignore to many orders', () => {
+            const result = [
+                {
+                    Name: 'Jonas Schreiner',
+                    Age: 22,
+                    Birthday: new Date(1965, 4, 13, 0, 0, 0),
+                    Address: {
+                        Street: 'Gotthardstrasse 69',
+                        PLZ: '99094',
+                        Town: 'Erfurt'
+                    }
+                },
+                {
+                    Name: 'Anne Klein',
+                    Age: 23,
+                    Birthday: new Date(1965, 8, 12, 0, 0, 0),
+                    Address: {
+                        Street: 'Jenaer Strasse 26',
+                        PLZ: '47053',
+                        Town: 'Duisburg',
+                    }
+                },{
+                    Name: 'Jonas Schreiner',
+                    Age: 23,
+                    Birthday: new Date(1965, 4, 12, 0, 0, 0),
+                    Address: {
+                        Street: 'Gotthardstrasse 69',
+                        PLZ: '99094',
+                        Town: 'Erfurt'
+                    }
+                },{
+                    Name: 'Jonas Schreiner',
+                    Age: 24,
+                    Birthday: new Date(1965, 4, 11, 0, 0, 0),
+                    Address: {
+                        Street: 'Gotthardstrasse 69',
+                        PLZ: '99094',
+                        Town: 'Erfurt'
+                    }
+                },{
+                    Name: 'Christine Ehrlichmann',
+                    Age: 37,
+                    Birthday: new Date(1982, 4, 23, 0, 0, 0),
+                    Address: {
+                        Street: 'Paul-Nevermann-Platz 59',
+                        PLZ: '97657',
+                        Town: 'Sandberg'
+                    }
+                },{
+                    Name: 'Sandra Eichmann',
+                    Age: 45,
+                    Birthday: new Date(1969, 0, 22, 0, 0, 0),
+                    Address: {
+                        Street: 'Inge Beisheim Platz 20',
+                        PLZ: '25313',
+                        Town: 'Elmshorn'
+                    }
+                },{
+                    Name: 'Ulrich Gärtner',
+                    Age: 60,
+                    Birthday: new Date(1959, 2, 23, 0, 0, 0),
+                    Address: {
+                        Street: 'Koenigstrasse 50',
+                        PLZ: '99750',
+                        Town: 'Bleicherode'
+                    }
+                }
+            ];
+            assert.deepEqual(complexValues().SortBy(['Age', 'Name'], [ListSortOrder.ASC, ListSortOrder.ASC, ListSortOrder.ASC]), result);
         });
         it('sort by Name', () => {
             const result = [
@@ -599,7 +808,7 @@ describe('Array Extension Tests', () => {
                     }
                 }
             ];
-            assert.deepEqual(complexValues.SortBy(['Name'], [ListSortOrder.ASC]), result);
+            assert.deepEqual(complexValues().SortBy(['Name'], [ListSortOrder.ASC]), result);
         });
         it('sort by Age and Name', () => {
             const result = [
@@ -669,7 +878,7 @@ describe('Array Extension Tests', () => {
                     }
                 }
             ];
-            assert.deepEqual(complexValues.SortBy(['Age', 'Name'], [ListSortOrder.ASC, ListSortOrder.ASC]), result);
+            assert.deepEqual(complexValues().SortBy(['Age', 'Name'], [ListSortOrder.ASC, ListSortOrder.ASC]), result);
         });
     });
     describe('[Method]: Replace', () => {

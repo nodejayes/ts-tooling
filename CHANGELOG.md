@@ -1,3 +1,7 @@
+### 3.0.2
+
+* bugfix SortBy with empty direction (default is ASC)
+
 ### 3.0.1
 
 * improve performance of Convert
