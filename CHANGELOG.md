@@ -1,3 +1,7 @@
+### 3.0.3
+
+* bugfix export types of EventHandler
+
 ### 3.0.2
 
 * bugfix SortBy with empty direction (default is ASC)
