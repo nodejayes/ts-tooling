@@ -1004,4 +1004,18 @@ describe('Array Extension Tests', () => {
             assert.deepEqual(tmp, [2,3]);
         });
     });
+    describe('[Method]: Chunk', () => {
+        it('chunk Array with uneven length', () => {
+            assert.deepEqual([1,2,3,4,5].Chunk(2), [[1,2], [3,4], [5]]);
+        });
+        it('chunk Array with even length', () => {
+            assert.deepEqual([1,2,3,4].Chunk(2), [[1,2], [3,4]]);
+        });
+        it('empty is empty', () => {
+            assert.deepEqual([].Chunk(2), []);
+        });
+        it('zero length returns original result as one chunk', () => {
+            assert.deepEqual([1,2,3,4].Chunk(-1), [[1,2,3,4]]);
+        });
+    });
 });

@@ -1,3 +1,7 @@
+### 3.1.0
+
+* chunk Arrays
+
 ### 3.0.3
 
 * bugfix export types of EventHandler

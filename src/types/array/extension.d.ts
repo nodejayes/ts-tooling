@@ -751,5 +751,18 @@ declare global {
          * // prints [1,3]
          */
         Pull?<T>(index: number): T;
+
+        /**
+         * split a Array into chunks
+         *
+         * @function module:types/array.Array#Chunk
+         *
+         * @param chunkSize {number} the length of a Chunk Size
+         * @return {T[][]} the List of Chunks
+         * @example
+         * // returns [[1,2], [3,4], [5]]
+         * [1,2,3,4,5].Chunk(2);
+         */
+        Chunk<T>(chunkSize: number): T[][];
     }
 }

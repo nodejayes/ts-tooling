@@ -966,4 +966,34 @@ Array.prototype.Pull = function(index) {
     return el;
 };
 
+/**
+ * split a Array into chunks
+ *
+ * @function module:types/array.Array#Chunk
+ *
+ * @param chunkSize {number} the length of a Chunk Size
+ * @return {T[][]} the List of Chunks
+ * @example
+ * // returns [[1,2], [3,4], [5]]
+ * [1,2,3,4,5].Chunk(2);
+ */
+Array.prototype.Chunk = function (chunkSize) {
+    if (chunkSize < 1) {
+        return [this];
+    }
+    const chunks = [];
+    let tmp = [];
+    for (let i = 0; i < this.length; i++) {
+        if (tmp.length >= chunkSize) {
+            chunks.Add(tmp);
+            tmp = [];
+        }
+        tmp.Add(this[i]);
+    }
+    if (tmp.Any()) {
+        chunks.Add(tmp);
+    }
+    return chunks;
+}
+
 module.exports = {ListSortOrder};
