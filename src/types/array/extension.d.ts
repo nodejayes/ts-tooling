@@ -763,6 +763,6 @@ declare global {
          * // returns [[1,2], [3,4], [5]]
          * [1,2,3,4,5].Chunk(2);
          */
-        Chunk<T>(chunkSize: number): T[][];
+        Chunk?<T>(chunkSize: number): T[][];
     }
 }
