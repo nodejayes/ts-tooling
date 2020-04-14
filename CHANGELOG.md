@@ -1,6 +1,7 @@
 ### 3.1.0
 
 * chunk Arrays
+* WhenReady Function Execution
 
 ### 3.0.3
 
