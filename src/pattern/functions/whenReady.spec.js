@@ -110,4 +110,37 @@ describe('WhenReady Tests', () => {
         });
         setTimeout(() => start = true, 40);
     });
+    it('can fire multiple times', (done) => {
+        let start = false;
+        let calls = 0;
+        const todo = async () => {
+            return await WhenReady({
+                timeout: -1,
+                maxCalls: -1,
+            }, () => {
+                return start;
+            }, async (a, b) => {
+                calls++;
+                return await new Promise((resolve) => resolve(a+b));
+            }, 1, 1);
+        };
+        todo().then(res => {
+            assert.equal(res, 2);
+            assert.equal(calls, 2);
+        });
+        setTimeout(() => {
+            start = true;
+            todo().then(res => {
+                assert.equal(res, 2);
+                assert.equal(calls, 1);
+            });
+            setTimeout(() => {
+                todo().then(res => {
+                    assert.equal(res, 2);
+                    assert.equal(calls, 3);
+                    done();
+                });
+            }, 50);
+        }, 50);
+    });
 });
