@@ -66,7 +66,7 @@ describe("Test StopWatch", () => {
                 assert.isFalse(sw.IsPause);
                 setTimeout(() => {
                     assert.isAbove(sw.ElapsedMs(), 19);
-                    assert.isBelow(sw.ElapsedMs(), 30);
+                    assert.isBelow(sw.ElapsedMs(), 60);
                     done();
                 }, 10);
             }, 10);
@@ -82,7 +82,7 @@ describe("Test StopWatch", () => {
             assert.isTrue(sw.IsSectionPause('1'));
             setTimeout(() => {
                 assert.isAbove(sw.SectionElapsedMs('1'), 9);
-                assert.isBelow(sw.SectionElapsedMs('1'), 20);
+                assert.isBelow(sw.SectionElapsedMs('1'), 40);
                 done();
             }, 10);
         }, 10);
@@ -100,7 +100,7 @@ describe("Test StopWatch", () => {
                 assert.isFalse(sw.IsSectionPause('1'));
                 setTimeout(() => {
                     assert.isAbove(sw.SectionElapsedMs('1'), 19);
-                    assert.isBelow(sw.SectionElapsedMs('1'), 30);
+                    assert.isBelow(sw.SectionElapsedMs('1'), 60);
                     done();
                 }, 10);
             }, 10);

@@ -409,4 +409,18 @@ describe('DateTime Tests', () => {
         assert.equal(dt.ToUnixTimestamp(), 1559435456000);
         assert.equal(dt.ToUnixTimestamp(false), 1559435456);
     });
+
+    it('[Method]: ToJavascriptDate', () => {
+        const dt = DateTime.FromISOString('2019-06-02T02:30:56');
+        const jsDate = dt.ToJavascriptDate();
+        assert.equal(jsDate.toISOString(), '2019-06-02T02:30:56.000Z');
+        assert.equal(jsDate.getTime(), 1559442656000);
+        // Javascript was UTC
+        assert.equal(DateTime.FromISOString('2019-06-02T02:30:56', 'Europe/Berlin').ToJavascriptDate().toISOString(), '2019-06-02T00:30:56.000Z');
+    });
+
+    it('[Method]: ToJSON', () => {
+        assert.equal(DateTime.FromISOString('2019-06-02T02:30:56', 'Europe/Berlin').ToJSON(), '2019-06-02T02:30:56.000+02:00');
+        assert.equal(DateTime.FromISOString('2019-06-02T02:30:56').ToJSON(), '2019-06-02T02:30:56.000Z');
+    });
 });

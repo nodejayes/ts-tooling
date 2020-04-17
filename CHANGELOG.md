@@ -1,7 +1,8 @@
 ### 3.1.0
 
-* chunk Arrays
-* WhenReady Function Execution
+* add Arrays Chunk Function
+* add WhenReady Function Execution
+* add DateTime ToDate Function
 
 ### 3.0.3
 

@@ -550,6 +550,38 @@ class DateTime {
             this._date.toMillis() :
             NumberFactory.NewInteger(this._date.toMillis() / 1000);
     }
+
+    /**
+     * returns the DateTime as a Javascript Date Object
+     *
+     * the DateTime was converted to UTC before given as Javascript Date to prevent Javascript to change the Value!!
+     *
+     * @return {Date} the Javascript Date Instance
+     *
+     * @example
+     * // returns '2019-06-02T02:30:56.000Z'
+     * DateTime.FromISOString('2019-06-02T02:30:56').ToJavascriptDate().toISOString();
+     * // returns '2019-06-02T00:30:56.000Z'
+     * DateTime.FromISOString('2019-06-02T02:30:56', 'Europe/Berlin').ToJavascriptDate().toISOString();
+     */
+    ToJavascriptDate() {
+        return this._date.toJSDate();
+    }
+
+    /**
+     * returns the DateTime as a JSON String representation
+     *
+     * @return {string} the JSON String Value
+     *
+     * @example
+     * // returns '2019-06-02T02:30:56.000Z'
+     * DateTime.FromISOString('2019-06-02T02:30:56').ToJSON();
+     * // returns '2019-06-02T02:30:56.000+02:00'
+     * DateTime.FromISOString('2019-06-02T02:30:56', 'Europe/Berlin').ToJSON();
+     */
+    ToJSON() {
+        return this._date.toJSON();
+    }
 }
 
 /**
