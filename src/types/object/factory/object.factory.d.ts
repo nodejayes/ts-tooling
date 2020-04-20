@@ -101,7 +101,7 @@ export class ObjectFactory {
      * // returns null
      * ObjectFactory.Get({Hello:{Name:'Paul',World:'World'}}, 'hello');
      */
-    static Get<T>(obj: T, key: string): Partial<T>;
+    static Get<T>(obj: any, key: string): T;
 
     /**
      * set the Value of a Object by key
