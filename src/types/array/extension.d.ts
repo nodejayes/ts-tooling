@@ -764,5 +764,16 @@ declare global {
          * [1,2,3,4,5].Chunk(2);
          */
         Chunk?<T>(chunkSize: number): T[][];
+
+        /**
+         * remove all Duplicates in the list
+         *
+         * @return {[]}
+         *
+         * @example
+         * // returns [1,2,3]
+         * [1,1,2,2,3].Unique();
+         */
+        Unique?<T>(): T;
     }
 }

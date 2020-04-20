@@ -1018,4 +1018,34 @@ describe('Array Extension Tests', () => {
             assert.deepEqual([1,2,3,4].Chunk(-1), [[1,2,3,4]]);
         });
     });
+    describe('[Method]: Unique', () => {
+        it('unique array not change', () => {
+            assert.deepEqual([1,2,3].Unique(), [1,2,3]);
+        });
+        it('make unique number array', () => {
+            assert.deepEqual([1,1,2,2,3].Unique(), [1,2,3]);
+        });
+        it('make unique string array', () => {
+            assert.deepEqual(['1','1','2','2','3'].Unique(), ['1','2','3']);
+        });
+        it('make unique object array', () => {
+            assert.deepEqual([{a:1},{a:2},{a:1},{a:4}].Unique(), [{a:1},{a:2},{a:1},{a:4}]);
+        });
+        it('use Equal implementation in Objects', () => {
+            class Test {
+                constructor(a, b) {
+                    this.a = a;
+                    this.b = b;
+                }
+
+                Equals(obj) {
+                    return this.a === obj.a && this.b === obj.b;
+                }
+            }
+            const t1 = new Test(1,2);
+            const t2 = new Test(1,2);
+            const t3 = new Test(1,5);
+            assert.deepEqual([t1, t2, t3].Unique(), [t1, t3]);
+        });
+    });
 });

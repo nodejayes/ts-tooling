@@ -5,6 +5,7 @@
 * add DateTime ToDate Function
 * add Get to ObjectFactory
 * add Set to ObjectFactory
+* add Unique to Array
 
 ### 3.0.3
 

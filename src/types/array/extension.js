@@ -996,4 +996,24 @@ Array.prototype.Chunk = function (chunkSize) {
     return chunks;
 }
 
+/**
+ * remove all Duplicates in the list
+ *
+ * @return {any[]}
+ *
+ * @example
+ * // returns [1,2,3]
+ * [1,1,2,2,3].Unique();
+ */
+Array.prototype.Unique = function () {
+    const tmp = [];
+    for (let i = 0; i < this.length; i++) {
+        if (tmp.Contains(this[i])) {
+            continue;
+        }
+        tmp.Add(this[i]);
+    }
+    return tmp;
+};
+
 module.exports = {ListSortOrder};
