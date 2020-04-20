@@ -76,4 +76,37 @@ describe('Object Extension Tests', () => {
             });
         });
     });
+    describe('[Method]: Get', () => {
+        it('not found is null', () => {
+            const test = {Hello:'World'};
+            assert.isNull(ObjectFactory.Get(test, 'hello'));
+        });
+        it('get simple key', () => {
+            const test = {Hello:'World'};
+            assert.equal(ObjectFactory.Get(test, 'Hello'), 'World');
+            assert.isNull(ObjectFactory.Get(test, 'hello'));
+        });
+        it('get sub keys', () => {
+            const test = {Hello:{Name:'Paul',World:'World'}};
+            assert.equal(ObjectFactory.Get(test, 'Hello.Name'), 'Paul');
+        });
+    });
+    describe('[Method]: Set', () => {
+        it('changes nothing when not possible to change', () => {
+            const test = {Hello:'World'};
+            assert.deepEqual(ObjectFactory.Set(test, 'Hello.key', 'MyWorld'), {Hello:'World'});
+        });
+        it('not found append key', () => {
+            const test = {Hello:'World'};
+            assert.deepEqual(ObjectFactory.Set(test, 'hello', 'MyWorld'), {Hello:'World',hello:'MyWorld'});
+        });
+        it('set simple key', () => {
+            const test = {Hello:'World'};
+            assert.deepEqual(ObjectFactory.Set(test, 'Hello', 'X'), {Hello:'X'});
+        });
+        it('set sub key', () => {
+            const test = {Hello:{Name:'Paul',World:'World'}}
+            assert.deepEqual(ObjectFactory.Set(test, 'Hello.Name', 'Sabrina'), {Hello:{Name:'Sabrina',World:'World'}})
+        });
+    });
 });

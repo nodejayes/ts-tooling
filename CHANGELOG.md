@@ -3,6 +3,8 @@
 * add Arrays Chunk Function
 * add WhenReady Function Execution
 * add DateTime ToDate Function
+* add Get to ObjectFactory
+* add Set to ObjectFactory
 
 ### 3.0.3
 

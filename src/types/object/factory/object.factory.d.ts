@@ -83,4 +83,40 @@ export class ObjectFactory {
      * ObjectFactory.Merge(obj1, obj2);
      */
     static Merge<T>(parent: any, child: any): T
+
+    /**
+     * get the Key of the Object by String Key
+     *
+     * @memberof module:types/object.ObjectFactory
+     * @static
+     * @param obj {any}
+     * @param key {string}
+     * @return {any}
+     *
+     * @example
+     * // returns 'Paul'
+     * ObjectFactory.Get({Hello:{Name:'Paul',World:'World'}}, 'Hello.World');
+     * // returns {Name:'Paul',World:'World'}
+     * ObjectFactory.Get({Hello:{Name:'Paul',World:'World'}}, 'Hello');
+     * // returns null
+     * ObjectFactory.Get({Hello:{Name:'Paul',World:'World'}}, 'hello');
+     */
+    static Get<T>(obj: T, key: string): Partial<T>;
+
+    /**
+     * set the Value of a Object by key
+     * @param obj {any} the Object to modify
+     * @param key {string} the Key of the Object to modify
+     * @param value {any} the Value to set
+     * @return {any}
+     *
+     * @example
+     * // returns {Hello:'MyWorld'}
+     * ObjectFactory.Set({Hello:'World'}, 'Hello', 'MyWorld');
+     * // returns {Hello:'World'}
+     * ObjectFactory.Set({Hello:'World'}, 'Hello.key', 'MyWorld');
+     * // returns {Hello:'World',hello:'MyWorld'}
+     * ObjectFactory.Set({Hello:'World'}, 'hello', 'MyWorld');
+     */
+    static Set<T>(obj: T, key: string, value: any): T;
 }

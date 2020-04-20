@@ -1,4 +1,4 @@
-const {Merge, RecursiveDeepCopy} = require('../../../core/object/object');
+const {Merge, RecursiveDeepCopy, Get, Set} = require('../../../core/object/object');
 const sizeof = require('object-sizeof');
 
 /**
@@ -129,6 +129,46 @@ ObjectFactory.SizeOf = (obj) => {
  */
 ObjectFactory.Merge = (parent, child) => {
     return Merge(parent, child)
+};
+
+/**
+ * get the Key of the Object by String Key
+ *
+ * @memberof module:types/object.ObjectFactory
+ * @static
+ * @param obj {any}
+ * @param key {string}
+ * @return {any}
+ *
+ * @example
+ * // returns 'Paul'
+ * ObjectFactory.Get({Hello:{Name:'Paul',World:'World'}}, 'Hello.World');
+ * // returns {Name:'Paul',World:'World'}
+ * ObjectFactory.Get({Hello:{Name:'Paul',World:'World'}}, 'Hello');
+ * // returns null
+ * ObjectFactory.Get({Hello:{Name:'Paul',World:'World'}}, 'hello');
+ */
+ObjectFactory.Get = (obj, key) => {
+    return Get(obj, key);
+};
+
+/**
+ * set the Value of a Object by key
+ * @param obj {any} the Object to modify
+ * @param key {string} the Key of the Object to modify
+ * @param value {any} the Value to set
+ * @return {any}
+ *
+ * @example
+ * // returns {Hello:'MyWorld'}
+ * ObjectFactory.Set({Hello:'World'}, 'Hello', 'MyWorld');
+ * // returns {Hello:'World'}
+ * ObjectFactory.Set({Hello:'World'}, 'Hello.key', 'MyWorld');
+ * // returns {Hello:'World',hello:'MyWorld'}
+ * ObjectFactory.Set({Hello:'World'}, 'hello', 'MyWorld');
+ */
+ObjectFactory.Set = (obj, key, value) => {
+    return Set(obj, key, value);
 };
 
 module.exports = {ObjectFactory};
