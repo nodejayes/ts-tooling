@@ -17,6 +17,7 @@ export {ReactiveStore, SafeBehaviorSubject} from './pattern/reactive-store';
 export {LZCompression} from './utils/compression';
 export {StopWatch} from './utils/stopwatch';
 export {
+    VALIDATIONS,
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty, IsEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, Equals, NotEquals,
     ArrayNotEmpty,
