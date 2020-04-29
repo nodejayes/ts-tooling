@@ -1,6 +1,7 @@
 const {assert} = require('chai');
 const {describe, it} = require('mocha');
 const {
+    VALIDATIONS,
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, IsEmpty, Equals, NotEquals,
     ArrayNotEmpty, CustomValidation,
@@ -1044,5 +1045,45 @@ describe('ClassValidator Tests', () => {
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('should export Validation Functions', () => {
+        assert.isDefined(VALIDATIONS);
+        assert.isFunction(VALIDATIONS.ArrayNotEmpty);
+        assert.isFunction(VALIDATIONS.Blacklist);
+        assert.isFunction(VALIDATIONS.Equals);
+        assert.isFunction(VALIDATIONS.IsAlpha);
+        assert.isFunction(VALIDATIONS.IsAlphanumeric);
+        assert.isFunction(VALIDATIONS.IsAscii);
+        assert.isFunction(VALIDATIONS.IsBase64);
+        assert.isFunction(VALIDATIONS.IsBooleanString);
+        assert.isFunction(VALIDATIONS.IsByteLength);
+        assert.isFunction(VALIDATIONS.IsDefined);
+        assert.isFunction(VALIDATIONS.IsEmail);
+        assert.isFunction(VALIDATIONS.IsEmpty);
+        assert.isFunction(VALIDATIONS.IsHash);
+        assert.isFunction(VALIDATIONS.IsHexadecimal);
+        assert.isFunction(VALIDATIONS.IsHexColor);
+        assert.isFunction(VALIDATIONS.IsInt);
+        assert.isFunction(VALIDATIONS.IsIp);
+        assert.isFunction(VALIDATIONS.IsJSON);
+        assert.isFunction(VALIDATIONS.IsJWT);
+        assert.isFunction(VALIDATIONS.IsMacAddress);
+        assert.isFunction(VALIDATIONS.IsMongoId);
+        assert.isFunction(VALIDATIONS.IsNegative);
+        assert.isFunction(VALIDATIONS.IsNotEmpty);
+        assert.isFunction(VALIDATIONS.IsNumberString);
+        assert.isFunction(VALIDATIONS.IsPort);
+        assert.isFunction(VALIDATIONS.IsPositive);
+        assert.isFunction(VALIDATIONS.IsUrl);
+        assert.isFunction(VALIDATIONS.IsUUID);
+        assert.isFunction(VALIDATIONS.Max);
+        assert.isFunction(VALIDATIONS.MaxDate);
+        assert.isFunction(VALIDATIONS.MaxLength);
+        assert.isFunction(VALIDATIONS.Min);
+        assert.isFunction(VALIDATIONS.MinDate);
+        assert.isFunction(VALIDATIONS.MinLength);
+        assert.isFunction(VALIDATIONS.NotEquals);
+        assert.isFunction(VALIDATIONS.UniqueArray);
+        assert.isFunction(VALIDATIONS.Whitelist);
     });
 });

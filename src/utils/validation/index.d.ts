@@ -1,4 +1,5 @@
 export {
+    VALIDATIONS,
     ClassValidator,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
     Equals, NotEquals,

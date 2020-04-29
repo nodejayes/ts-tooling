@@ -1,3 +1,8 @@
+### 3.2.1
+
+* add DateRange Class
+* export VALIDATIONS
+
 ### 3.1.0
 
 * add Arrays Chunk Function

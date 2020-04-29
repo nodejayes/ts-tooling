@@ -5,6 +5,7 @@
  */
 
 const {
+    VALIDATIONS,
     ClassValidator,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
     Equals, NotEquals,
@@ -35,6 +36,7 @@ const {
 } = require('./class.validator/class.validator');
 
 module.exports = {
+    VALIDATIONS,
     ClassValidator,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
     Equals, NotEquals,

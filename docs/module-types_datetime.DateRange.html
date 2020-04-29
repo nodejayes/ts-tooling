@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: types/string | v3.0.0</title>
+    <title>Class: DateRange | v3.0.0</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -48,9 +48,10 @@
 
 <header>
     
-        <h2>types/string</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-types_datetime.html">types/datetime</a>~</span>DateRange<span class="signature">(begin, to)</span><span class="type-signature"></span></h2>
         
-            
+            <div class="class-description">some Calculations for DateTime Ranges</div>
         
     
 </header>
@@ -60,25 +61,111 @@
         <div class="container-overview">
         
             
-                <div class="description">This Module extends the basic Javascript String</div>
-            
-
-            
-                
 
 <dt>
+    
+        <h4 class="name" id="DateRange">
+            
+                new <span class="type-signature"></span>DateRange<span class="signature">(begin, to)</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+                <code><a href="types_datetime_daterange_daterange.js.html#line33">line 33</a></code>
+            </div>
+            
+        </h4>
+
+        
     
 </dt>
 <dd>
 
     
-
+    <div class="description">
+        create a new DateRange from two DateTime Objects
+    </div>
     
 
     
 
     
 
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>begin</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DateTime</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the start DateTime of the DateRange</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>to</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DateTime</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the end DateTime of the DateRange</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
     
 
     
@@ -134,7 +221,6 @@
 
 </dd>
 
-            
         
         </div>
     
@@ -144,33 +230,125 @@
     
 
     
-            <h3 class="subsection-title">Classes</h3>
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
             
 
-<dl>
+<dt>
+<h4 class="name" id="Begin">
+    <span class="type-signature"><span class="icon green">readonly</span> </span>Begin<span class="type-signature"></span>
     
-        <dt>
-            <h4 class="name">
-                <a href="module-types_string.String.html">String</a>
-                <div class="container-source members">
-                    <code><a href="module-types_string.String.html">module:types/string.String</a></code>
-                </div>
-            </h4>
-        </dt>
-        
+    <div class="container-source members">
+        <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+        <code><a href="types_datetime_daterange_daterange.js.html#line13">line 13</a></code>
+    </div>
     
-        <dt>
-            <h4 class="name">
-                <a href="module-types_string.StringFactory.html">StringFactory</a>
-                <div class="container-source members">
-                    <code><a href="module-types_string.StringFactory.html">module:types/string.StringFactory</a></code>
-                </div>
-            </h4>
-        </dt>
-        
+</h4>
+
+
+</dt>
+<dd>
+    
+    <div class="description">
+        the Start DateTime
+    </div>
+    
+
+    <!--
+    
+    -->
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 </dl>
 
+
+    
+
+    
+</dd>
+
+        
+            
+
+<dt>
+<h4 class="name" id="End">
+    <span class="type-signature"><span class="icon green">readonly</span> </span>End<span class="type-signature"></span>
+    
+    <div class="container-source members">
+        <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+        <code><a href="types_datetime_daterange_daterange.js.html#line23">line 23</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+    <div class="description">
+        the End DateTime
+    </div>
+    
+
+    <!--
+    
+    -->
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
     
 
     
@@ -181,6 +359,664 @@
 
     
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+                
+
+<dt>
+    
+        <h4 class="name" id="IsAfter">
+            
+                <span class="type-signature"></span>IsAfter<span class="signature">(value)</span><span class="type-signature"> &rarr; {boolean}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+                <code><a href="types_datetime_daterange_daterange.js.html#line75">line 75</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        is the given DateTime after the DateRange
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DateTime</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the DateTime to check</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">boolean</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="IsBefore">
+            
+                <span class="type-signature"></span>IsBefore<span class="signature">(value)</span><span class="type-signature"> &rarr; {boolean}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+                <code><a href="types_datetime_daterange_daterange.js.html#line65">line 65</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        is the given DateTime before the DateRange
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DateTime</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the DateTime to check</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">boolean</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="IsIn">
+            
+                <span class="type-signature"></span>IsIn<span class="signature">(value)</span><span class="type-signature"> &rarr; {boolean}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+                <code><a href="types_datetime_daterange_daterange.js.html#line55">line 55</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        is the given DateTime in the DateRange
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DateTime</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the DateTime to check</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">boolean</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Overlaps">
+            
+                <span class="type-signature"></span>Overlaps<span class="signature">(range)</span><span class="type-signature"> &rarr; {boolean}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+                <code><a href="types_datetime_daterange_daterange.js.html#line44">line 44</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        overlaps the given DateRange the current DateRange
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>range</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DateRange</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the DateRange to check</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">boolean</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            </dl>
     
 
     
@@ -204,7 +1040,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:types/string_sub'.replace(/"/g, '_');
+        var id = 'module:types/datetime.DateRange_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

@@ -3,7 +3,7 @@ export {NumberFactory} from './types/number';
 export {StringFactory} from './types/string';
 export {ListSortOrder} from './types/array';
 export {ObjectFactory} from './types/object';
-export {TimeSpan, DateTime} from './types/datetime';
+export {TimeSpan, DateTime, DateRange} from './types/datetime';
 export {Guid} from './types/guid';
 export {Byte, ByteStream} from './types/byte';
 export {Dictionary} from './types/dictionary';

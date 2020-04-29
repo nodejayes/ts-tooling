@@ -6,5 +6,6 @@
 
 const {DateTime} = require('./datetime/datetime');
 const {TimeSpan} = require('./timespan/timespan');
+const {DateRange} = require('./daterange/daterange');
 
-module.exports = {DateTime, TimeSpan};
+module.exports = {DateTime, TimeSpan, DateRange};

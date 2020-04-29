@@ -3,7 +3,7 @@ const {NumberFactory} = require('./types/number');
 const {StringFactory} = require('./types/string');
 const {ListSortOrder} = require('./types/array');
 const {ObjectFactory} = require('./types/object');
-const {TimeSpan, DateTime} = require('./types/datetime');
+const {TimeSpan, DateTime, DateRange} = require('./types/datetime');
 const {Guid} = require('./types/guid');
 const {Byte, ByteStream} = require('./types/byte');
 const {Dictionary} = require('./types/dictionary');
@@ -17,6 +17,7 @@ const {ReactiveStore, SafeBehaviorSubject} = require('./pattern/reactive-store')
 const {LZCompression} = require('./utils/compression');
 const {StopWatch} = require('./utils/stopwatch');
 const {
+    VALIDATIONS,
     ClassValidator, IsDefined, IsEmail, Max, Min, Blacklist, IsNotEmpty, IsEmpty,
     MaxLength, MinLength, ValidateIf, Whitelist, Equals, NotEquals,
     ArrayNotEmpty,
@@ -48,11 +49,12 @@ const {TestDataGenerator} = require('./utils/generator');
 
 module.exports = {
     NumberFactory, StringFactory, ObjectFactory,
-    DateTime, TimeSpan, Guid, Byte, ByteStream,
+    DateTime, TimeSpan, DateRange, Guid, Byte, ByteStream,
     ListSortOrder, Dictionary, TestDataGenerator,
     LZCompression, StopWatch, ClassValidator,
     Throttle, SafeBehaviorSubject,
     Create, CreateWithFactory, Using, EventHandler, ReactiveStore,
+    VALIDATIONS,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
     Equals, NotEquals,
     ArrayNotEmpty,
