@@ -154,6 +154,9 @@ ObjectFactory.Get = (obj, key) => {
 
 /**
  * set the Value of a Object by key
+ *
+ * @memberof module:types/object.ObjectFactory
+ * @static
  * @param obj {any} the Object to modify
  * @param key {string} the Key of the Object to modify
  * @param value {any} the Value to set
@@ -169,6 +172,31 @@ ObjectFactory.Get = (obj, key) => {
  */
 ObjectFactory.Set = (obj, key, value) => {
     return Set(obj, key, value);
+};
+
+/**
+ * detect changes on javascript values
+ *
+ * @memberof module:types/object.ObjectFactory
+ * @static
+ * @param value1 {any} first value to compare with
+ * @param value2 {any} second value to compare with
+ * @return {boolean} are the values equal or not
+ *
+ * @example
+ * // returns true
+ * ObjectFactory.Equal(1,1);
+ * ObjectFactory.Equal('a','a');
+ * ObjectFactory.Equal({Hello:'World'},{Hello:'World'});
+ * ObjectFactory.Equal([{Hello:'World'}],[{Hello:'World'}]);
+ * // returns false
+ * ObjectFactory.Equal(1,2);
+ * ObjectFactory.Equal('a','b');
+ * ObjectFactory.Equal({Hello:'World'},{Hello:'World!'});
+ * ObjectFactory.Equal([{Hello:'World'}],[{Hello:'World!'}]);
+ */
+ObjectFactory.Equal = (value1, value2) => {
+    return JSON.stringify(value1) === JSON.stringify(value2);
 };
 
 module.exports = {ObjectFactory};

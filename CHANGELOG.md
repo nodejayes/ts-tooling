@@ -1,6 +1,7 @@
 ### 3.2.1
 
 * add DateRange Class
+* add Equal Method to ObjectFactory
 * export VALIDATIONS
 
 ### 3.1.0

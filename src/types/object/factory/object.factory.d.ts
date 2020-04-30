@@ -119,4 +119,24 @@ export class ObjectFactory {
      * ObjectFactory.Set({Hello:'World'}, 'hello', 'MyWorld');
      */
     static Set<T>(obj: T, key: string, value: any): T;
+
+    /**
+     * detect changes on javascript values
+     * @param value1 first value to compare with
+     * @param value2 second value to compare with
+     * @return are the values equal or not
+     *
+     * @example
+     * // returns true
+     * ObjectFactory.Equal(1,1);
+     * ObjectFactory.Equal('a','a');
+     * ObjectFactory.Equal({Hello:'World'},{Hello:'World'});
+     * ObjectFactory.Equal([{Hello:'World'}],[{Hello:'World'}]);
+     * // returns false
+     * ObjectFactory.Equal(1,2);
+     * ObjectFactory.Equal('a','b');
+     * ObjectFactory.Equal({Hello:'World'},{Hello:'World!'});
+     * ObjectFactory.Equal([{Hello:'World'}],[{Hello:'World!'}]);
+     */
+    static Equal(value1: any, value2: any): boolean;
 }

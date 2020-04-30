@@ -1,6 +1,7 @@
 const {assert} = require('chai');
 const {ObjectFactory} = require('./object.factory');
 const {describe, it} = require('mocha');
+const {DateTime} = require('../../datetime');
 
 describe('Object Extension Tests', () => {
     it('detect Circular References', () => {
@@ -107,6 +108,36 @@ describe('Object Extension Tests', () => {
         it('set sub key', () => {
             const test = {Hello:{Name:'Paul',World:'World'}}
             assert.deepEqual(ObjectFactory.Set(test, 'Hello.Name', 'Sabrina'), {Hello:{Name:'Sabrina',World:'World'}})
+        });
+    });
+    describe('[Method]: Equal', () => {
+        it('should compare number', () => {
+            assert.isTrue(ObjectFactory.Equal(1, 1));
+            assert.isFalse(ObjectFactory.Equal(1, 2));
+        });
+        it('should compare bool', () => {
+            assert.isTrue(ObjectFactory.Equal(true, true));
+            assert.isFalse(ObjectFactory.Equal(true, false));
+        });
+        it('should compare string', () => {
+            assert.isTrue(ObjectFactory.Equal('a', 'a'));
+            assert.isFalse(ObjectFactory.Equal('a', 'b'));
+        });
+        it('should compare Object', () => {
+            assert.isTrue(ObjectFactory.Equal({Hello:'World'}, {Hello:'World'}));
+            assert.isFalse(ObjectFactory.Equal({Hello:'World'}, {Hello:'World!'}));
+        });
+        it('should compare Array', () => {
+            assert.isTrue(ObjectFactory.Equal([{Hello:'World'}], [{Hello:'World'}]));
+            assert.isFalse(ObjectFactory.Equal([{Hello:'World'}], [{Hello:'World!'}]));
+        });
+        it('should compare Date', () => {
+            assert.isTrue(ObjectFactory.Equal(new Date(2018,1,1,0,0,0), new Date(2018,1,1,0,0,0)));
+            assert.isFalse(ObjectFactory.Equal(new Date(2018,1,1,0,0,0), new Date(2018,1,2,0,0,0)));
+        });
+        it('should compare DateTime', () => {
+            assert.isTrue(ObjectFactory.Equal(DateTime.FromISOString('2019-01-01T00:00:00'), DateTime.FromISOString('2019-01-01T00:00:00')));
+            assert.isFalse(ObjectFactory.Equal(DateTime.FromISOString('2019-01-01T00:00:00'), DateTime.FromISOString('2019-01-02T00:00:00')));
         });
     });
 });
