@@ -590,6 +590,7 @@ class DateTime {
  * uses the Timezone from the Luxon Object
  *
  * @memberof module:types/datetime.DateTime
+ * @static
  * @param luxonDate {any} the luxon datetime object instance
  *
  * @example
@@ -615,6 +616,7 @@ DateTime.FromLuxon = (luxonDate) => {
  * you have to specify the Timezone or UTC was taken!
  *
  * @memberof module:types/datetime.DateTime
+ * @static
  * @param date {Date} the javascript date object
  * @param zone {string?} the time zone to use
  *
@@ -641,6 +643,7 @@ DateTime.FromJavascriptDate = (date, zone) => {
  * you have to specify the Timezone or UTC was taken!
  *
  * @memberof module:types/datetime.DateTime
+ * @static
  * @param isoStr {string} the iso date time string
  * @param zone {string?} the time zone to use
  *
@@ -665,6 +668,7 @@ DateTime.FromISOString = (isoStr, zone) => {
  * create DateTime from Milliseconds
  *
  * @memberof module:types/datetime.DateTime
+ * @static
  * @param milliseconds {number} the total milliseconds since 1970-01-01 00:00:00.000
  * @param zone {string?} the time zone to use
  *
@@ -684,6 +688,29 @@ DateTime.FromMilliseconds = (milliseconds, zone) => {
     });
     checkLuxonTimeZone(zone, tmp);
     return DateTime.FromLuxon(tmp);
+};
+
+/**
+ * check if a Value is a Javascript Date Object
+ *
+ * @memberof module:types/datetime.DateTime
+ * @static
+ * @param value {any} some Javascript Value to check
+ * @return {boolean} if the Value is a Javascript Date Object
+ *
+ * @example
+ * // returns true
+ * DateTime.IsJavascriptDate(new Date());
+ * // returns false
+ * DateTime.IsJavascriptDate(undefined);
+ * DateTime.IsJavascriptDate(null);
+ * DateTime.IsJavascriptDate(0);
+ * DateTime.IsJavascriptDate('');
+ * DateTime.IsJavascriptDate({});
+ * DateTime.IsJavascriptDate([]);
+ */
+DateTime.IsJavascriptDate = (value) => {
+    return Object.prototype.toString.call(value) === '[object Date]';
 };
 
 module.exports = {DateTime};

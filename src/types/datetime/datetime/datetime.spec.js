@@ -423,4 +423,28 @@ describe('DateTime Tests', () => {
         assert.equal(DateTime.FromISOString('2019-06-02T02:30:56', 'Europe/Berlin').ToJSON(), '2019-06-02T02:30:56.000+02:00');
         assert.equal(DateTime.FromISOString('2019-06-02T02:30:56').ToJSON(), '2019-06-02T02:30:56.000Z');
     });
+
+    describe('[Method]: IsJavascriptDate', () => {
+        it('found Javascript Date', () => {
+            assert.isTrue(DateTime.IsJavascriptDate(new Date()));
+        });
+        it('negative check undefined', () => {
+            assert.isFalse(DateTime.IsJavascriptDate(undefined));
+        });
+        it('negative check null', () => {
+            assert.isFalse(DateTime.IsJavascriptDate(null));
+        });
+        it('negative check number', () => {
+            assert.isFalse(DateTime.IsJavascriptDate(0));
+        });
+        it('negative check string', () => {
+            assert.isFalse(DateTime.IsJavascriptDate('test'));
+        });
+        it('negative check object', () => {
+            assert.isFalse(DateTime.IsJavascriptDate({}));
+        });
+        it('negative check array', () => {
+            assert.isFalse(DateTime.IsJavascriptDate([]));
+        });
+    });
 });

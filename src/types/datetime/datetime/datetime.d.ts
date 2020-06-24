@@ -186,6 +186,27 @@ export class DateTime {
     static FromMilliseconds(milliseconds: number, zone?: string): DateTime;
 
     /**
+     * check if a Value is a Javascript Date Object
+     *
+     * @memberof module:types/datetime.DateTime
+     * @static
+     * @param value some Javascript Value to check
+     * @return if the Value is a Javascript Date Object
+     *
+     * @example
+     * // returns true
+     * DateTime.IsJavascriptDate(new Date());
+     * // returns false
+     * DateTime.IsJavascriptDate(undefined);
+     * DateTime.IsJavascriptDate(null);
+     * DateTime.IsJavascriptDate(0);
+     * DateTime.IsJavascriptDate('');
+     * DateTime.IsJavascriptDate({});
+     * DateTime.IsJavascriptDate([]);
+     */
+    static IsJavascriptDate(value: any): boolean;
+
+    /**
      * get the DateTime in a specific Timezone
      *
      * @param zone the time zone to convert this time

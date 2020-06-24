@@ -1,6 +1,7 @@
 ### 3.3.0-beta
 
 * add Difference Function in ObjectFactory
+* add IsJavascriptDate Function to DateTime
 
 ### 3.2.1
 
