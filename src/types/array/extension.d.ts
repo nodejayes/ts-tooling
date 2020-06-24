@@ -775,6 +775,6 @@ declare global {
          * // returns [1,2,3]
          * [1,1,2,2,3].Unique();
          */
-        Unique?<T>(cb?: (a: T, b: T) => boolean): T;
+        Unique?<T>(cb?: (a: T, b: T) => boolean): T[];
     }
 }
