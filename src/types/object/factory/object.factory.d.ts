@@ -139,4 +139,23 @@ export class ObjectFactory {
      * ObjectFactory.Equal([{Hello:'World'}],[{Hello:'World!'}]);
      */
     static Equal(value1: any, value2: any): boolean;
+
+    /**
+     * removes all Items from list2 in list1
+     *
+     * @memberof module:types/object.ObjectFactory
+     * @static
+     * @param list1 the first list
+     * @param list2 the second list
+     * @param equal a custom compare function
+     * @return the difference of list1 and list2
+     * @example
+     * // returns [1,2,3]
+     * ObjectFactory.Difference([1,2,3], [4,5,6])
+     * // returns [1,2]
+     * ObjectFactory.Difference([1,2,3], [3,4,5])
+     * // returns []
+     * ObjectFactory.Difference([1,2,3], [1,2,3])
+     */
+    static Difference<T, K>(list1: T[], list2: K[], equal?: (item1: T, item2: K) => boolean): T[];
 }

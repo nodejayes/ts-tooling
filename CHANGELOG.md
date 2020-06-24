@@ -1,3 +1,7 @@
+### 3.3.0-beta
+
+* add Difference Function in ObjectFactory
+
 ### 3.2.1
 
 * add DateRange Class

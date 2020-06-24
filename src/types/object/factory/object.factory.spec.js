@@ -140,4 +140,36 @@ describe('Object Extension Tests', () => {
             assert.isFalse(ObjectFactory.Equal(DateTime.FromISOString('2019-01-01T00:00:00'), DateTime.FromISOString('2019-01-02T00:00:00')));
         });
     });
+    describe('[Method]: Difference', () => {
+        it('returns list1 when list2 has no matches', () => {
+            assert.deepEqual(ObjectFactory.Difference([1,2,3], [4,5,6]), [1,2,3]);
+        });
+        it('returns difference', () => {
+            assert.deepEqual(ObjectFactory.Difference([1,2,3], [3,4,5]), [1,2]);
+        });
+        it('returns empty list when list1 is list2', () => {
+            assert.deepEqual(ObjectFactory.Difference([1,2,3], [1,2,3]), []);
+        });
+        it('test custom compare function no matches', () => {
+            const comp = (a, b) => a.hello === b.hello;
+            assert.deepEqual(
+                ObjectFactory.Difference([{hello:'1'},{hello:'2'},{hello:'3'}], [{hello:'4'},{hello:'5'},{hello:'6'}], comp),
+                [{hello:'1'},{hello:'2'},{hello:'3'}]
+            );
+        });
+        it('test custom compare function one overlapping', () => {
+            const comp = (a, b) => a.hello === b.hello;
+            assert.deepEqual(
+                ObjectFactory.Difference([{hello:'1'},{hello:'2'},{hello:'3'}], [{hello:'3'},{hello:'4'},{hello:'5'}], comp),
+                [{hello:'1'},{hello:'2'}]
+            );
+        });
+        it('test custom compare function full overlapping', () => {
+            const comp = (a, b) => a.hello === b.hello;
+            assert.deepEqual(
+                ObjectFactory.Difference([{hello:'1'},{hello:'2'},{hello:'3'}], [{hello:'1'},{hello:'2'},{hello:'3'}], comp),
+                []
+            );
+        });
+    });
 });

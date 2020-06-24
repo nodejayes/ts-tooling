@@ -199,4 +199,30 @@ ObjectFactory.Equal = (value1, value2) => {
     return JSON.stringify(value1) === JSON.stringify(value2);
 };
 
+/**
+ * removes all Items from list2 in list1
+ *
+ * @memberof module:types/object.ObjectFactory
+ * @static
+ * @param list1 {any[]} the first list
+ * @param list2 {any[]} the second list
+ * @param equal {function?} a custom compare function
+ * @return {any[]} the difference of list1 and list2
+ * @example
+ * // returns [1,2,3]
+ * ObjectFactory.Difference([1,2,3], [4,5,6])
+ * // returns [1,2]
+ * ObjectFactory.Difference([1,2,3], [3,4,5])
+ * // returns []
+ * ObjectFactory.Difference([1,2,3], [1,2,3])
+ */
+ObjectFactory.Difference = (list1, list2, equal) => {
+    const tmp = [...list1];
+    for (const keyL2 in list2) {
+        const item = list2[keyL2];
+        tmp.RemoveAll(e => typeof equal === 'function' ? equal(e, item) : e === item);
+    }
+    return tmp;
+};
+
 module.exports = {ObjectFactory};
