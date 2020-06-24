@@ -1049,17 +1049,25 @@ Array.prototype.Chunk = function (chunkSize) {
 /**
  * remove all Duplicates in the list
  *
+ * @param cb {function?} a optional compare function
  * @return {any[]}
  *
  * @example
  * // returns [1,2,3]
  * [1,1,2,2,3].Unique();
  */
-Array.prototype.Unique = function () {
+Array.prototype.Unique = function (cb) {
     const tmp = [];
     for (let i = 0; i &lt; this.length; i++) {
-        if (tmp.Contains(this[i])) {
-            continue;
+        if (typeof cb === 'function') {
+            const found = tmp.Find(t => cb(t, this[i]));
+            if (found) {
+                continue;
+            }
+        } else {
+            if (tmp.Contains(this[i])) {
+                continue;
+            }
         }
         tmp.Add(this[i]);
     }

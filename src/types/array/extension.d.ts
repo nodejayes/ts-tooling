@@ -768,12 +768,13 @@ declare global {
         /**
          * remove all Duplicates in the list
          *
-         * @return {[]}
+         * @param cb a optional compare function
+         * @return
          *
          * @example
          * // returns [1,2,3]
          * [1,1,2,2,3].Unique();
          */
-        Unique?<T>(): T;
+        Unique?<T>(cb?: (a: T, b: T) => boolean): T;
     }
 }

@@ -1047,5 +1047,13 @@ describe('Array Extension Tests', () => {
             const t3 = new Test(1,5);
             assert.deepEqual([t1, t2, t3].Unique(), [t1, t3]);
         });
+        it('can make custom compare function some matches', () => {
+            const list = [{hello: 1},{hello: 2},{hello: 2},{hello: 3},{hello: 3},{hello: 3}];
+            assert.deepEqual(list.Unique((a, b) => a.hello === b.hello), [{hello: 1},{hello: 2},{hello: 3}])
+        });
+        it('can make custom compare function nothing match', () => {
+            const list = [{hello: 1},{hello: 2},{hello: 3}];
+            assert.deepEqual(list.Unique((a, b) => a.hello === b.hello), list)
+        });
     });
 });

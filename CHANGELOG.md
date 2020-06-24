@@ -2,6 +2,7 @@
 
 * add Difference Function in ObjectFactory
 * add IsJavascriptDate Function to DateTime
+* add custom detection strategy for Unique
 
 ### 3.2.1
 
