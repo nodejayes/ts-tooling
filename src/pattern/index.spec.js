@@ -1,6 +1,6 @@
 const {assert} = require('chai');
 const {describe, it} = require('mocha');
-const {CreateWithFactory, Create, Throttle, Using} = require('./index');
+const {CreateWithFactory, Create, Throttle, Using, Retry} = require('./index');
 
 describe('Type Pattern Export Tests', () => {
     it('Create', () => {
@@ -14,5 +14,8 @@ describe('Type Pattern Export Tests', () => {
     });
     it('Using', () => {
         assert.isDefined(Using);
+    });
+    it('Retry', () => {
+        assert.isDefined(Retry);
     });
 });

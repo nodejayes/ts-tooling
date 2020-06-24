@@ -3,6 +3,7 @@
 * add Difference Function in ObjectFactory
 * add IsJavascriptDate Function to DateTime
 * add custom detection strategy for Unique
+* add Retry Function to the Pattern
 
 ### 3.2.1
 
