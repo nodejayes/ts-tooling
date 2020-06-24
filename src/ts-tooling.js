@@ -9,7 +9,7 @@ const {Byte, ByteStream} = require('./types/byte');
 const {Dictionary} = require('./types/dictionary');
 
 // Patterns
-const {Using, Create, CreateWithFactory, Throttle} = require('./pattern');
+const {Using, Create, CreateWithFactory, Throttle, Retry} = require('./pattern');
 const {EventHandler} = require('./pattern/event-handler');
 const {ReactiveStore, SafeBehaviorSubject} = require('./pattern/reactive-store');
 
@@ -52,7 +52,7 @@ module.exports = {
     DateTime, TimeSpan, DateRange, Guid, Byte, ByteStream,
     ListSortOrder, Dictionary, TestDataGenerator,
     LZCompression, StopWatch, ClassValidator,
-    Throttle, SafeBehaviorSubject,
+    Throttle, Retry, SafeBehaviorSubject,
     Create, CreateWithFactory, Using, EventHandler, ReactiveStore,
     VALIDATIONS,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
