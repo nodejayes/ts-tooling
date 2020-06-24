@@ -53,7 +53,9 @@ const Retry = function (options, fn, ...args) {
         }
         throw new Error('function can`t execute');
     } catch (e) {
-        options.onError(e);
+        if (typeof options.onError === 'function') {
+            options.onError(e);
+        }
         options.executions++;
         setTimeout(() => Retry(options, fn, ...args), timer);
     }
