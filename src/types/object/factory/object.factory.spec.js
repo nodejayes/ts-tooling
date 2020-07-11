@@ -172,4 +172,23 @@ describe('Object Extension Tests', () => {
             );
         });
     });
+    describe('[Method]: EqualsKey', () => {
+        it('objects with same keys', () => {
+            assert.isTrue(ObjectFactory.EqualKeys({Hello:'World'}, {Hello:'World!'}));
+        });
+        it('objects with different keys', () => {
+            assert.isFalse(ObjectFactory.EqualKeys({Hello1:'World'}, {Hello:'World!'}));
+            assert.isFalse(ObjectFactory.EqualKeys({Hello:'World'}, {Hello:'World!', Test: '1'}));
+            assert.isFalse(ObjectFactory.EqualKeys({Hello:'World', Test: '2'}, {Hello:'World!'}));
+        });
+        it('check lowercase and uppercase', () => {
+            assert.isFalse(ObjectFactory.EqualKeys({hello:'World'}, {Hello:'World!'}));
+        });
+        it('key must have the same position on default', () => {
+            assert.isFalse(ObjectFactory.EqualKeys({Hello:'World', Test: '2'}, {Test: '1', Hello:'World!'}));
+        });
+        it('key can be on other position', () => {
+            assert.isTrue(ObjectFactory.EqualKeys({Hello:'World', Test: '2'}, {Test: '1', Hello:'World!'}, true));
+        });
+    });
 });

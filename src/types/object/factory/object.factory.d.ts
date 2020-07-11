@@ -141,6 +141,28 @@ export class ObjectFactory {
     static Equal(value1: any, value2: any): boolean;
 
     /**
+     *
+     * check if one object has same keys as the other Object
+     *
+     * @param value1 the first Object
+     * @param value2 the second Object
+     * @param notCheckPosition the keys must have the same Position
+     * @return
+     *
+     * @example
+     * // returns true
+     * ObjectFactory.EqualKeys({Hello:'World'}, {Hello:'World!'});
+     * ObjectFactory.EqualKeys({Hello:'World', Test: '2'}, {Test: '1', Hello:'World!'}, true);
+     * // returns false
+     * ObjectFactory.EqualKeys({Hello1:'World'}, {Hello:'World!'});
+     * ObjectFactory.EqualKeys({Hello:'World'}, {Hello:'World!', Test: '1'});
+     * ObjectFactory.EqualKeys({Hello:'World', Test: '2'}, {Hello:'World!'});
+     * ObjectFactory.EqualKeys({hello:'World'}, {Hello:'World!'});
+     * ObjectFactory.EqualKeys({Hello:'World', Test: '2'}, {Test: '1', Hello:'World!'});
+     */
+    static EqualKeys(value1: any, value2: any, notCheckPosition?: boolean): boolean;
+
+    /**
      * removes all Items from list2 in list1
      *
      * @memberof module:types/object.ObjectFactory

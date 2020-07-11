@@ -200,6 +200,48 @@ ObjectFactory.Equal = (value1, value2) => {
 };
 
 /**
+ *
+ * check if one object has same keys as the other Object
+ *
+ * @memberof module:types/object.ObjectFactory
+ * @param value1 {any} the first Object
+ * @param value2 {any} the second Object
+ * @param notCheckPosition {boolean} the keys must have the same Position
+ * @return {boolean}
+ *
+ * @example
+ * // returns true
+ * ObjectFactory.EqualKeys({Hello:'World'}, {Hello:'World!'});
+ * ObjectFactory.EqualKeys({Hello:'World', Test: '2'}, {Test: '1', Hello:'World!'}, true);
+ * // returns false
+ * ObjectFactory.EqualKeys({Hello1:'World'}, {Hello:'World!'});
+ * ObjectFactory.EqualKeys({Hello:'World'}, {Hello:'World!', Test: '1'});
+ * ObjectFactory.EqualKeys({Hello:'World', Test: '2'}, {Hello:'World!'});
+ * ObjectFactory.EqualKeys({hello:'World'}, {Hello:'World!'});
+ * ObjectFactory.EqualKeys({Hello:'World', Test: '2'}, {Test: '1', Hello:'World!'});
+ */
+ObjectFactory.EqualKeys = (value1, value2, notCheckPosition) => {
+    notCheckPosition = notCheckPosition === true;
+    const k1 = Object.keys(value1);
+    const k2 = Object.keys(value2);
+    if (k1.length !== k2.length) {
+        return false;
+    }
+    for (let i = 0; i < k1.length; i++) {
+        if (!notCheckPosition) {
+            if (k1[i] !== k2[i]) {
+                return false;
+            }
+            continue;
+        }
+        if (!k2.Contains(k1[i])) {
+            return false;
+        }
+    }
+    return true;
+};
+
+/**
  * removes all Items from list2 in list1
  *
  * @memberof module:types/object.ObjectFactory

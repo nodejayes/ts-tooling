@@ -1,9 +1,10 @@
-### 3.3.0-beta
+### 3.3.0
 
 * add Difference Function in ObjectFactory
 * add IsJavascriptDate Function to DateTime
 * add custom detection strategy for Unique
 * add Retry Function to the Pattern
+* add EqualKeys Function to ObjectFactory
 
 ### 3.2.1
 
