@@ -12,7 +12,6 @@ class ObjectFactory {}
  * copy a Object Instance and get a new one
  *
  * @memberof module:types/object.ObjectFactory
- * @static
  * @param instance {any} the object to copy
  * @returns {any} the new Object instance
  *
@@ -31,7 +30,6 @@ ObjectFactory.Copy = (instance) => {
  * check if the given Object has some self references
  *
  * @memberof module:types/object.ObjectFactory
- * @static
  * @param obj {any} the Object to check
  * @return {boolean}
  *
@@ -52,7 +50,6 @@ ObjectFactory.IsCircular = (obj) => {
  * returns the Keys of self references in Objects
  *
  * @memberof module:types/object.ObjectFactory
- * @static
  * @param obj {any} the Object to check
  * @return {string[]}
  *
@@ -93,7 +90,6 @@ ObjectFactory.GetCircular = (obj) => {
  * returns the Size in Byte of a Object Instance
  *
  * @memberof module:types/object.ObjectFactory
- * @static
  * @param obj {any} the Object to check
  * @return {number}
  *
@@ -109,7 +105,6 @@ ObjectFactory.SizeOf = (obj) => {
  * merge the child into the parent object
  *
  * @memberof module:types/object.ObjectFactory
- * @static
  * @param parent {any}
  * @param child {any}
  * @return {any}
@@ -135,7 +130,6 @@ ObjectFactory.Merge = (parent, child) => {
  * get the Key of the Object by String Key
  *
  * @memberof module:types/object.ObjectFactory
- * @static
  * @param obj {any}
  * @param key {string}
  * @return {any}
@@ -156,7 +150,6 @@ ObjectFactory.Get = (obj, key) => {
  * set the Value of a Object by key
  *
  * @memberof module:types/object.ObjectFactory
- * @static
  * @param obj {any} the Object to modify
  * @param key {string} the Key of the Object to modify
  * @param value {any} the Value to set
@@ -178,7 +171,6 @@ ObjectFactory.Set = (obj, key, value) => {
  * detect changes on javascript values
  *
  * @memberof module:types/object.ObjectFactory
- * @static
  * @param value1 {any} first value to compare with
  * @param value2 {any} second value to compare with
  * @return {boolean} are the values equal or not
@@ -245,7 +237,6 @@ ObjectFactory.EqualKeys = (value1, value2, notCheckPosition) => {
  * removes all Items from list2 in list1
  *
  * @memberof module:types/object.ObjectFactory
- * @static
  * @param list1 {any[]} the first list
  * @param list2 {any[]} the second list
  * @param equal {function?} a custom compare function
