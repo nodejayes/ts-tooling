@@ -26,24 +26,24 @@
     "src"
   ],
   "dependencies": {
-    "luxon": "^1.23.0",
-    "immer": "^6.0.3",
+    "luxon": "^1.24.1",
+    "immer": "^7.0.5",
     "lz-string": "^1.4.4",
-    "rxjs": "^6.5.5",
-    "ts-node": "^8.8.2",
-    "uuid": "^7.0.3",
-    "object-sizeof": "^1.6.0",
+    "rxjs": "^6.6.0",
+    "ts-node": "^8.10.2",
+    "uuid": "^8.2.0",
+    "object-sizeof": "^1.6.1",
     "change-case": "^4.1.1"
   },
   "devDependencies": {
-    "nyc": "^15.0.1",
-    "mocha": "^7.1.1",
+    "nyc": "^15.1.0",
+    "mocha": "^8.0.1",
     "chai": "^4.2.0",
     "chai-uuid": "^1.0.6",
     "jsdoc": "^3.6.4",
     "tui-jsdoc-template": "^1.2.2",
     "lcov-parse": "^1.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "collatio": "^1.0.2"
   }
 }
