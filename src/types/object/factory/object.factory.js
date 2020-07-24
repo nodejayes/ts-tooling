@@ -258,4 +258,44 @@ ObjectFactory.Difference = (list1, list2, equal) => {
     return tmp;
 };
 
+/**
+ * freeze the Object
+ *
+ * @memberof module:types/object.ObjectFactory
+ * @param obj {any} the Object to freeze
+ * @param complete {boolean} freeze the Object recursive or not
+ * @returns {any} the frozen Object
+ *
+ * @example
+ * const tmp = {hello:'world!',subobj:{hello:'world'}};
+ * let frozen1 = ObjectFactory.Freeze(tmp);
+ * // that throws a Error
+ * frozen1.hello = 'x';
+ * // that is possible
+ * frozen1.subobj.hello = 'x';
+ *
+ * let frozen2 = ObjectFactory.Freeze(tmp, true);
+ * // that throws a Error
+ * frozen2.hello = 'x';
+ * frozen2.subobj.hello = 'x';
+ */
+ObjectFactory.Freeze = (obj, complete) => {
+    if (!complete) {
+        return Object.freeze(obj);
+    }
+    for (const key of Object.keys(obj)) {
+        if (Array.isArray(obj[key])) {
+            for (let i = 0; i < obj[key].length; i++) {
+                obj[key][i] = ObjectFactory.Freeze(obj[key][i], true);
+            }
+            continue;
+        }
+        if (typeof obj[key] !== typeof {}) {
+            continue;
+        }
+        obj[key] = Object.freeze(obj[key]);
+    }
+    return Object.freeze(obj);
+};
+
 module.exports = {ObjectFactory};

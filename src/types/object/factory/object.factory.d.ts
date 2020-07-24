@@ -165,7 +165,6 @@ export class ObjectFactory {
     /**
      * removes all Items from list2 in list1
      *
-     * @memberof module:types/object.ObjectFactory
      * @static
      * @param list1 the first list
      * @param list2 the second list
@@ -180,4 +179,26 @@ export class ObjectFactory {
      * ObjectFactory.Difference([1,2,3], [1,2,3])
      */
     static Difference<T, K>(list1: T[], list2: K[], equal?: (item1: T, item2: K) => boolean): T[];
+
+    /**
+     * freeze the Object
+     *
+     * @param obj the Object to freeze
+     * @param complete freeze the Object recursive or not
+     * @returns the frozen Object
+     *
+     * @example
+     * const tmp = {hello:'world!',subobj:{hello:'world'}};
+     * let frozen1 = ObjectFactory.Freeze(tmp);
+     * // that throws a Error
+     * frozen1.hello = 'x';
+     * // that is possible
+     * frozen1.subobj.hello = 'x';
+     *
+     * let frozen2 = ObjectFactory.Freeze(tmp, true);
+     * // that throws a Error
+     * frozen2.hello = 'x';
+     * frozen2.subobj.hello = 'x';
+     */
+    static Freeze<T>(obj: T, complete?: boolean): T;
 }
