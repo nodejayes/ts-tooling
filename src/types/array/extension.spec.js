@@ -1056,4 +1056,22 @@ describe('Array Extension Tests', () => {
             assert.deepEqual(list.Unique((a, b) => a.hello === b.hello), list)
         });
     });
+    describe('[Method]: ForSegment', () => {
+        it('execute some function for each segments of an array', () => {
+            let counter = 0;
+            [1,2,3,4,5].ForSegment((c, n) => {
+                counter++;
+                assert.isDefined(c);
+                assert.isDefined(n);
+            });
+            assert.equal(counter, 4);
+        });
+        it('catch not enough segments', () => {
+            let counter = 0;
+            [1].ForSegment(() => {
+                counter++;
+            });
+            assert.equal(counter, 0);
+        });
+    });
 });

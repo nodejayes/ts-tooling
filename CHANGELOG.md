@@ -1,6 +1,7 @@
 ### 3.4.0
 
 * add Freeze Method to ObjectFactory
+* add ForSegment Method to Array
 
 ### 3.3.0
 
