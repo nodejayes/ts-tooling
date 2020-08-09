@@ -191,4 +191,24 @@ describe('Object Extension Tests', () => {
             assert.isTrue(ObjectFactory.EqualKeys({Hello:'World', Test: '2'}, {Test: '1', Hello:'World!'}, true));
         });
     });
+    describe('[Method]: Freeze', () => {
+        it('freeze object not complete', () => {
+            let frozenObject = ObjectFactory.Freeze({hello:'world', sub: {hello: 'world'}, limit: 1});
+            frozenObject.hello = 'x';
+            frozenObject.limit = 50;
+            frozenObject.sub.hello = 'x';
+            assert.equal(frozenObject.sub.hello, 'x');
+            assert.equal(frozenObject.hello, 'world');
+            assert.equal(frozenObject.limit, 1);
+        });
+        it('freeze object complete', () => {
+            let frozenObject = ObjectFactory.Freeze({hello:'world', sub: {hello: 'world'}, limit: 1}, true);
+            frozenObject.hello = 'x';
+            frozenObject.limit = 50;
+            frozenObject.sub.hello = 'x';
+            assert.equal(frozenObject.sub.hello, 'world');
+            assert.equal(frozenObject.hello, 'world');
+            assert.equal(frozenObject.limit, 1);
+        });
+    });
 });

@@ -999,6 +999,8 @@ Array.prototype.Chunk = function (chunkSize) {
 /**
  * remove all Duplicates in the list
  *
+ * @function module:types/array.Array#Unique
+ *
  * @param cb {function?} a optional compare function
  * @return {any[]}
  *
@@ -1022,6 +1024,39 @@ Array.prototype.Unique = function (cb) {
         tmp.Add(this[i]);
     }
     return tmp;
+};
+
+/**
+ * execute a callback for each Array Segment
+ *
+ * @function module:types/array.Array#ForSegment
+ *
+ * @param cb {function} the callback to execute with current element and next element
+ * @example
+ * // the counter after the execution is 4
+ * let counter = 0;
+ * [1,2,3,4,5].ForSegment((c, n) => {
+ *     // c is the current element and n are the next element
+ *     // both elements are defined when the next element have a next element and the value in the array are not undefined or null
+ *     counter++;
+ * });
+ *
+ * // the callback was never ben called so the counter after the execution is 0
+ * let counter = 0;
+ * [1].ForSegment(() => {
+ *     counter++;
+ * });
+ */
+Array.prototype.ForSegment = function (cb) {
+    const length = this.length;
+    for (let i = 0; i < length; i++) {
+        const current = this[i];
+        const next = this[i+1];
+        if (!next || !current) {
+            break;
+        }
+        cb(current, next);
+    }
 };
 
 module.exports = {ListSortOrder};

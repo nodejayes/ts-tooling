@@ -776,5 +776,26 @@ declare global {
          * [1,1,2,2,3].Unique();
          */
         Unique?<T>(cb?: (a: T, b: T) => boolean): T[];
+
+        /**
+         * execute a callback for each Array Segment
+         *
+         * @param cb the callback to execute with current element and next element
+         * @example
+         * // the counter after the execution is 4
+         * let counter = 0;
+         * [1,2,3,4,5].ForSegment((c, n) => {
+         *     // c is the current element and n are the next element
+         *     // both elements are defined when the next element have a next element and the value in the array are not undefined or null
+         *     counter++;
+         * });
+         *
+         * // the callback was never ben called so the counter after the execution is 0
+         * let counter = 0;
+         * [1].ForSegment(() => {
+         *     counter++;
+         * });
+         */
+        ForSegment?(cb: (current: T, next: T) => void);
     }
 }
