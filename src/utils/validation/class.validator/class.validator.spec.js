@@ -162,9 +162,21 @@ describe('ClassValidator Tests', () => {
     });
     it('support multiple Validations at one Property', async () => {
         const t = new MultipleValidations();
-        t.FirstName = '';
-        t.LastName = '';
+        t.FirstName = '1234567890123456789012345';
+        t.LastName = '12345678901234567890123456789012345678901234567890';
         let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.FirstName = '12345678901234567890123456';
+        t.LastName = '123456789012345678901234567890123456789012345678901';
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 2);
+        assert.equal(res.ElementAt(0).Message, 'the Property FirstName in MultipleValidations can not have more than 25 characters.');
+        assert.equal(res.ElementAt(1).Message, 'the Property LastName in MultipleValidations can not have more than 50 characters.');
+
+        t.FirstName = '12345678901234567890123456';
+        t.LastName = '123456789012345678901234567890123456789012345678901';
+        res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 2);
         assert.equal(res.ElementAt(0).Message, 'the Property FirstName in MultipleValidations can not have more than 25 characters.');
         assert.equal(res.ElementAt(1).Message, 'the Property LastName in MultipleValidations can not have more than 50 characters.');
