@@ -1,3 +1,7 @@
+### 3.4.2
+
+* security update
+
 ### 3.4.1
 
 * fix MaxLength and MinLength Validators

@@ -36,14 +36,14 @@
     "change-case": "^4.1.1"
   },
   "devDependencies": {
-    "nyc": "^15.1.0",
-    "mocha": "^8.0.1",
     "chai": "^4.2.0",
     "chai-uuid": "^1.0.6",
+    "collatio": "^1.0.2",
     "jsdoc": "^3.6.4",
-    "tui-jsdoc-template": "^1.2.2",
     "lcov-parse": "^1.0.0",
     "lodash": "^4.17.19",
-    "collatio": "^1.0.2"
+    "mocha": "^8.1.1",
+    "nyc": "^15.1.0",
+    "tui-jsdoc-template": "^1.2.2"
   }
 }
