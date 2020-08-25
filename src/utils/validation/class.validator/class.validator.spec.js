@@ -99,6 +99,14 @@ class EmptyValue {
 }
 IsNotEmpty()(new EmptyValue(), 'prop');
 
+class MainObject {
+    constructor() {
+        this.data = null;
+        this.sub = null;
+    }
+}
+MinLength(3, 'the data property needs min 3 characters')
+
 describe('ClassValidator Tests', () => {
     it('validate decorated Class', async () => {
         const valid = new Test();
@@ -995,6 +1003,25 @@ describe('ClassValidator Tests', () => {
         res = await ClassValidator.Validate(t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('CustomValidator async function', async () => {
+        class CustomValidatorCheck {
+            constructor() {
+                this.prop = null;
+            }
+        }
+        CustomValidation(async v => (await ClassValidator.ValidateObject(Test3, v)).length === 0, 'Invalid')(new CustomValidatorCheck(), 'prop');
+        const t = new CustomValidatorCheck();
+
+        t.prop = new Test3();
+        t.prop.Name = 'some value';
+        let res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 0);
+
+        t.prop.Name = null;
+        res = await ClassValidator.Validate(t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'the Property Name in Test3 must be defined.');
     });
     it('validate Array with SubObjects', async () => {
         class ArrayWithSubObjectsSub {

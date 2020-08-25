@@ -1,3 +1,7 @@
+### 3.4.3
+
+* support async functions in CustomValidation Decorator (type fix)
+
 ### 3.4.2
 
 * security update

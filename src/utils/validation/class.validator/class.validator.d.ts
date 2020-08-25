@@ -215,7 +215,7 @@ export function Max(value: number, validationMessage?: string);
  * @param value
  * @param validationMessage
  */
-export function CustomValidation(value: (v) => boolean, validationMessage?: string);
+export function CustomValidation(value: (v) => boolean | Promise<boolean>, validationMessage?: string);
 
 /**
  * the String or Array must have the given Length or more
