@@ -1,3 +1,7 @@
+### 3.4.1
+
+* fix MaxLength and MinLength Validators
+
 ### 3.4.0
 
 * add Freeze Method to ObjectFactory
