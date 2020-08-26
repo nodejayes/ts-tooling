@@ -135,6 +135,7 @@ class ClassValidator {}
  * @function module:utils/validation.ClassValidator#Validate
  * @static
  * @param {any} instance the Instance of the Class to Validate
+ * @param {string} scenario the Name of the Scenario to Validate with
  *
  * @example
  * class User {
@@ -162,7 +163,7 @@ class ClassValidator {}
  * // returns []
  * ClassValidator.Validate(instance);
  */
-ClassValidator.Validate = async (instance) => {
+ClassValidator.Validate = async (scenario, instance) => {
     const errors = [];
     checkForRequired(instance, errors);
     for (const key of Object.keys(instance)) {
@@ -170,16 +171,29 @@ ClassValidator.Validate = async (instance) => {
         const value = instance[key];
 
         if (validationRules) {
-            if (validationRules['ValidateIf'] && validationRules['ValidateIf'].Any() &&
-                isFunction(validationRules['ValidateIf'][0]) && !validationRules['ValidateIf'][0](instance)) {
-                continue;
-            } else if (validationRules['IsOptional'] && validationRules['IsOptional'][0] === true && !value) {
-                continue;
+
+            if (validationRules['ValidateIf'] && validationRules['ValidateIf'].Any()) {
+                const validationScenarios = validationRules['ValidateIf'][2];
+                if ((Array.isArray(validationScenarios) && !validationScenarios.Contains(scenario)) ||
+                    (isFunction(validationRules['ValidateIf'][0]) && !validationRules['ValidateIf'][0](instance))) {
+                    continue;
+                }
+            } else if (validationRules['IsOptional']) {
+                const validationScenarios = validationRules['IsOptional'][2];
+                if ((Array.isArray(validationScenarios) && !validationScenarios.Contains(scenario)) ||
+                    (validationRules['IsOptional'][0] === true && !value)) {
+                    continue;
+                }
             }
 
             for (const validationKey of Object.keys(validationRules)) {
                 const validationValue = validationRules[validationKey][0];
                 const validationMessage = validationRules[validationKey][1];
+                const validationScenarios = validationRules[validationKey][2];
+                if (Array.isArray(validationScenarios) && !validationScenarios.Contains(scenario)) {
+                    // can't execute the validation its not in the scenario
+                    continue;
+                }
                 switch (validationKey) {
                     case 'IsDefined':
                         executeValidation(value, BASE_VALIDATIONS.IsDefined, validationMessage, errors);
@@ -342,6 +356,7 @@ ClassValidator.Validate = async (instance) => {
  * @function module:utils/validation.ClassValidator#ValidateObject
  * @static
  * @param {constructor} constructor the Class with the Validation Decorators
+ * @param {string} scenario the Name of the Scenario to Validate with
  * @param {any} value the raw JSON Object
  *
  * @example
@@ -370,12 +385,12 @@ ClassValidator.Validate = async (instance) => {
  * // returns []
  * ClassValidator.Validate(demoUser);
  */
-ClassValidator.ValidateObject = async (constructor, value) => {
+ClassValidator.ValidateObject = async (constructor, scenario, value) => {
     const inst = new constructor();
     for (const key of Object.keys(value)) {
         inst[key] = value[key];
     }
-    return ClassValidator.Validate(inst);
+    return ClassValidator.Validate(scenario, inst);
 };
 
 const ValidationStore = {};
@@ -399,12 +414,12 @@ function executeValidation(value, cb, validationMessage, errors) {
     }
 }
 
-function registerInStore(target, propertyKey, targetKey, value, validationMessage) {
+function registerInStore(target, propertyKey, targetKey, value, validationMessage, scenarios) {
     const key = `${target.constructor.name}_${propertyKey}`;
     if (!ValidationStore[key]) {
         ValidationStore[key] = {};
     }
-    ValidationStore[key][targetKey] = [value, validationMessage];
+    ValidationStore[key][targetKey] = [value, validationMessage, scenarios];
 }
 
 /**
@@ -413,11 +428,12 @@ function registerInStore(target, propertyKey, targetKey, value, validationMessag
  * @function module:utils/validation.ValidateIf
  *
  * @param cb {function} define the check Method
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function ValidateIf(cb) {
+function ValidateIf(cb, scenarios) {
     return function (target, propertyKey) {
-        registerInStore(target, propertyKey, 'ValidateIf', cb, '');
+        registerInStore(target, propertyKey, 'ValidateIf', cb, '', scenarios);
     }
 }
 
@@ -425,11 +441,12 @@ function ValidateIf(cb) {
  * check if the Value is missing and ignore all Validations
  *
  * @function module:utils/validation.IsOptional
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsOptional() {
+function IsOptional(scenarios) {
     return function (target, propertyKey) {
-        registerInStore(target, propertyKey, 'IsOptional', true, '');
+        registerInStore(target, propertyKey, 'IsOptional', true, '', scenarios);
     }
 }
 
@@ -439,12 +456,13 @@ function IsOptional() {
  * @function module:utils/validation.Required
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function Required(validationMessage) {
+function Required(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be set.`;
-        registerInStore(target, propertyKey, 'Required', true, message);
+        registerInStore(target, propertyKey, 'Required', true, message, scenarios);
     }
 }
 
@@ -454,12 +472,13 @@ function Required(validationMessage) {
  * @function module:utils/validation.IsDefined
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsDefined(validationMessage) {
+function IsDefined(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be defined.`;
-        registerInStore(target, propertyKey, 'IsDefined', true, message);
+        registerInStore(target, propertyKey, 'IsDefined', true, message, scenarios);
     }
 }
 
@@ -469,12 +488,13 @@ function IsDefined(validationMessage) {
  * @function module:utils/validation.IsEmpty
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsEmpty(validationMessage) {
+function IsEmpty(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be Empty.`;
-        registerInStore(target, propertyKey, 'IsEmpty', true, message);
+        registerInStore(target, propertyKey, 'IsEmpty', true, message, scenarios);
     }
 }
 
@@ -484,12 +504,13 @@ function IsEmpty(validationMessage) {
  * @function module:utils/validation.IsNotEmpty
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsNotEmpty(validationMessage) {
+function IsNotEmpty(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be Empty.`;
-        registerInStore(target, propertyKey, 'IsNotEmpty', true, message);
+        registerInStore(target, propertyKey, 'IsNotEmpty', true, message, scenarios);
     }
 }
 
@@ -499,12 +520,13 @@ function IsNotEmpty(validationMessage) {
  * @function module:utils/validation.IsEmail
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsEmail(validationMessage) {
+function IsEmail(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Email Address.`;
-        registerInStore(target, propertyKey, 'IsEmail', true, message);
+        registerInStore(target, propertyKey, 'IsEmail', true, message, scenarios);
     }
 }
 
@@ -515,12 +537,13 @@ function IsEmail(validationMessage) {
  *
  * @param value {number}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function Min(value, validationMessage) {
+function Min(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be lower than ${value}.`;
-        registerInStore(target, propertyKey, 'Min', value, message);
+        registerInStore(target, propertyKey, 'Min', value, message, scenarios);
     };
 }
 
@@ -531,12 +554,13 @@ function Min(value, validationMessage) {
  *
  * @param value {number}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function Max(value, validationMessage) {
+function Max(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be bigger than ${value}.`;
-        registerInStore(target, propertyKey, 'Max', value, message);
+        registerInStore(target, propertyKey, 'Max', value, message, scenarios);
     };
 }
 
@@ -547,12 +571,13 @@ function Max(value, validationMessage) {
  *
  * @param value {function}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function CustomValidation(value, validationMessage) {
+function CustomValidation(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} Custom Validation was not successful.`;
-        registerInStore(target, propertyKey, 'CustomValidation', value, message);
+        registerInStore(target, propertyKey, 'CustomValidation', value, message, scenarios);
     }
 }
 
@@ -563,12 +588,13 @@ function CustomValidation(value, validationMessage) {
  *
  * @param value {number}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function MinLength(value, validationMessage) {
+function MinLength(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must have ${value} characters.`;
-        registerInStore(target, propertyKey, 'MinLength', value, message);
+        registerInStore(target, propertyKey, 'MinLength', value, message, scenarios);
     };
 }
 
@@ -579,12 +605,13 @@ function MinLength(value, validationMessage) {
  *
  * @param value {number}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function MaxLength(value, validationMessage) {
+function MaxLength(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have more than ${value} characters.`;
-        registerInStore(target, propertyKey, 'MaxLength', value, message);
+        registerInStore(target, propertyKey, 'MaxLength', value, message, scenarios);
     };
 }
 
@@ -595,12 +622,13 @@ function MaxLength(value, validationMessage) {
  *
  * @param value {any[]}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function Whitelist(value, validationMessage) {
+function Whitelist(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have the following values: ${value.join(',')}`;
-        registerInStore(target, propertyKey, 'Whitelist', value, message);
+        registerInStore(target, propertyKey, 'Whitelist', value, message, scenarios);
     }
 }
 
@@ -610,12 +638,13 @@ function Whitelist(value, validationMessage) {
  * @function module:utils/validation.Blacklist
  * @param value {any[]} values that are not allowed on this Property
  * @param validationMessage {string} the Message string that was written in the Validation Error Message
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function Blacklist(value, validationMessage) {
+function Blacklist(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have the following values: ${value.join(',')}`;
-        registerInStore(target, propertyKey, 'Blacklist', value, message);
+        registerInStore(target, propertyKey, 'Blacklist', value, message, scenarios);
     }
 }
 
@@ -626,12 +655,13 @@ function Blacklist(value, validationMessage) {
  *
  * @param value {any}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function Equals(value, validationMessage) {
+function Equals(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} not match the value: ${value}`;
-        registerInStore(target, propertyKey, 'Equals', value, message);
+        registerInStore(target, propertyKey, 'Equals', value, message, scenarios);
     }
 }
 
@@ -642,12 +672,13 @@ function Equals(value, validationMessage) {
  *
  * @param value {any}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function NotEquals(value, validationMessage) {
+function NotEquals(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} match the value: ${value}`;
-        registerInStore(target, propertyKey, 'NotEquals', value, message);
+        registerInStore(target, propertyKey, 'NotEquals', value, message, scenarios);
     }
 }
 
@@ -657,12 +688,13 @@ function NotEquals(value, validationMessage) {
  * @function module:utils/validation.IsInt
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsInt(validationMessage) {
+function IsInt(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Integer Value`;
-        registerInStore(target, propertyKey, 'IsInt', true, message);
+        registerInStore(target, propertyKey, 'IsInt', true, message, scenarios);
     }
 }
 
@@ -672,12 +704,13 @@ function IsInt(validationMessage) {
  * @function module:utils/validation.UniqueArray
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function UniqueArray(validationMessage) {
+function UniqueArray(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must have Unique Values`;
-        registerInStore(target, propertyKey, 'UniqueArray', true, message);
+        registerInStore(target, propertyKey, 'UniqueArray', true, message, scenarios);
     }
 }
 
@@ -686,12 +719,13 @@ function UniqueArray(validationMessage) {
  *
  * @function module:utils/validation.ArrayNotEmpty
  * @param validationMessage {string} the Message string that was written in the Validation Error Message
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function ArrayNotEmpty(validationMessage) {
+function ArrayNotEmpty(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be empty.`;
-        registerInStore(target, propertyKey, 'ArrayNotEmpty', true, message);
+        registerInStore(target, propertyKey, 'ArrayNotEmpty', true, message, scenarios);
     }
 }
 
@@ -701,12 +735,13 @@ function ArrayNotEmpty(validationMessage) {
  * @function module:utils/validation.IsPositive
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsPositive(validationMessage) {
+function IsPositive(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have Positive Values.`;
-        registerInStore(target, propertyKey, 'IsPositive', true, message);
+        registerInStore(target, propertyKey, 'IsPositive', true, message, scenarios);
     }
 }
 
@@ -716,12 +751,13 @@ function IsPositive(validationMessage) {
  * @function module:utils/validation.IsNegative
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsNegative(validationMessage) {
+function IsNegative(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have Positive Values.`;
-        registerInStore(target, propertyKey, 'IsNegative', true, message);
+        registerInStore(target, propertyKey, 'IsNegative', true, message, scenarios);
     }
 }
 
@@ -733,12 +769,13 @@ function IsNegative(validationMessage) {
  * @function module:utils/validation.IsBooleanString
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsBooleanString(validationMessage) {
+function IsBooleanString(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Boolean String.`;
-        registerInStore(target, propertyKey, 'IsBooleanString', true, message);
+        registerInStore(target, propertyKey, 'IsBooleanString', true, message, scenarios);
     }
 }
 
@@ -748,12 +785,13 @@ function IsBooleanString(validationMessage) {
  * @function module:utils/validation.IsNumberString
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsNumberString(validationMessage) {
+function IsNumberString(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contain Numbers.`;
-        registerInStore(target, propertyKey, 'IsNumberString', true, message);
+        registerInStore(target, propertyKey, 'IsNumberString', true, message, scenarios);
     }
 }
 
@@ -764,12 +802,13 @@ function IsNumberString(validationMessage) {
  *
  * @param value {DateTime}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function MinDate(value, validationMessage) {
+function MinDate(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be greater than ${value.toString()}.`;
-        registerInStore(target, propertyKey, 'MinDate', value, message);
+        registerInStore(target, propertyKey, 'MinDate', value, message, scenarios);
     }
 }
 
@@ -780,12 +819,13 @@ function MinDate(value, validationMessage) {
  *
  * @param value {DateTime}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function MaxDate(value, validationMessage) {
+function MaxDate(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be lower than ${value.toString()}.`;
-        registerInStore(target, propertyKey, 'MaxDate', value, message);
+        registerInStore(target, propertyKey, 'MaxDate', value, message, scenarios);
     }
 }
 
@@ -795,12 +835,13 @@ function MaxDate(value, validationMessage) {
  * @function module:utils/validation.IsAlpha
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsAlpha(validationMessage) {
+function IsAlpha(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters (a-zA-Z).`;
-        registerInStore(target, propertyKey, 'IsAlpha', true, message);
+        registerInStore(target, propertyKey, 'IsAlpha', true, message, scenarios);
     }
 }
 
@@ -810,12 +851,13 @@ function IsAlpha(validationMessage) {
  * @function module:utils/validation.IsAlphanumeric
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsAlphanumeric(validationMessage) {
+function IsAlphanumeric(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters and numbers.`;
-        registerInStore(target, propertyKey, 'IsAlphanumeric', true, message);
+        registerInStore(target, propertyKey, 'IsAlphanumeric', true, message, scenarios);
     }
 }
 
@@ -825,12 +867,13 @@ function IsAlphanumeric(validationMessage) {
  * @function module:utils/validation.IsAscii
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsAscii(validationMessage) {
+function IsAscii(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Ascii String.`;
-        registerInStore(target, propertyKey, 'IsAscii', true, message);
+        registerInStore(target, propertyKey, 'IsAscii', true, message, scenarios);
     }
 }
 
@@ -840,12 +883,13 @@ function IsAscii(validationMessage) {
  * @function module:utils/validation.IsBase64
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsBase64(validationMessage) {
+function IsBase64(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Base64 String.`;
-        registerInStore(target, propertyKey, 'IsBase64', true, message);
+        registerInStore(target, propertyKey, 'IsBase64', true, message, scenarios);
     }
 }
 
@@ -857,12 +901,13 @@ function IsBase64(validationMessage) {
  * @function module:utils/validation.IsHexColor
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsHexColor(validationMessage) {
+function IsHexColor(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hex Color String.`;
-        registerInStore(target, propertyKey, 'IsHexColor', true, message);
+        registerInStore(target, propertyKey, 'IsHexColor', true, message, scenarios);
     }
 }
 
@@ -872,12 +917,13 @@ function IsHexColor(validationMessage) {
  * @function module:utils/validation.IsHexadecimal
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsHexadecimal(validationMessage) {
+function IsHexadecimal(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hexadecimal String.`;
-        registerInStore(target, propertyKey, 'IsHexadecimal', true, message);
+        registerInStore(target, propertyKey, 'IsHexadecimal', true, message, scenarios);
     }
 }
 
@@ -887,12 +933,13 @@ function IsHexadecimal(validationMessage) {
  * @function module:utils/validation.IsMacAddress
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsMacAddress(validationMessage) {
+function IsMacAddress(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MAC Address.`;
-        registerInStore(target, propertyKey, 'IsMacAddress', true, message);
+        registerInStore(target, propertyKey, 'IsMacAddress', true, message, scenarios);
     }
 }
 
@@ -902,12 +949,13 @@ function IsMacAddress(validationMessage) {
  * @function module:utils/validation.IsIp
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsIp(validationMessage) {
+function IsIp(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a IP Address.`;
-        registerInStore(target, propertyKey, 'IsIp', true, message);
+        registerInStore(target, propertyKey, 'IsIp', true, message, scenarios);
     }
 }
 
@@ -917,12 +965,13 @@ function IsIp(validationMessage) {
  * @function module:utils/validation.IsPort
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsPort(validationMessage) {
+function IsPort(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Port Number.`;
-        registerInStore(target, propertyKey, 'IsPort', true, message);
+        registerInStore(target, propertyKey, 'IsPort', true, message, scenarios);
     }
 }
 
@@ -932,12 +981,13 @@ function IsPort(validationMessage) {
  * @function module:utils/validation.IsJSON
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsJSON(validationMessage) {
+function IsJSON(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON String.`;
-        registerInStore(target, propertyKey, 'IsJSON', true, message);
+        registerInStore(target, propertyKey, 'IsJSON', true, message, scenarios);
     }
 }
 
@@ -947,12 +997,13 @@ function IsJSON(validationMessage) {
  * @function module:utils/validation.IsJWT
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsJWT(validationMessage) {
+function IsJWT(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON Web Token.`;
-        registerInStore(target, propertyKey, 'IsJWT', true, message);
+        registerInStore(target, propertyKey, 'IsJWT', true, message, scenarios);
     }
 }
 
@@ -963,12 +1014,13 @@ function IsJWT(validationMessage) {
  *
  * @param value {number}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsByteLength(value, validationMessage) {
+function IsByteLength(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have a Length of ${value} Bytes.`;
-        registerInStore(target, propertyKey, 'IsByteLength', value, message);
+        registerInStore(target, propertyKey, 'IsByteLength', value, message, scenarios);
     }
 }
 
@@ -978,12 +1030,13 @@ function IsByteLength(value, validationMessage) {
  * @function module:utils/validation.IsMongoId
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsMongoId(validationMessage) {
+function IsMongoId(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MongoDb ObjectId.`;
-        registerInStore(target, propertyKey, 'IsMongoId', true, message);
+        registerInStore(target, propertyKey, 'IsMongoId', true, message, scenarios);
     }
 }
 
@@ -993,12 +1046,13 @@ function IsMongoId(validationMessage) {
  * @function module:utils/validation.IsUrl
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsUrl(validationMessage) {
+function IsUrl(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a URL.`;
-        registerInStore(target, propertyKey, 'IsUrl', true, message);
+        registerInStore(target, propertyKey, 'IsUrl', true, message, scenarios);
     }
 }
 
@@ -1008,12 +1062,13 @@ function IsUrl(validationMessage) {
  * @function module:utils/validation.IsUUID
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsUUID(validationMessage) {
+function IsUUID(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a UUID.`;
-        registerInStore(target, propertyKey, 'IsUUID', true, message);
+        registerInStore(target, propertyKey, 'IsUUID', true, message, scenarios);
     }
 }
 
@@ -1027,12 +1082,13 @@ function IsUUID(validationMessage) {
  * @function module:utils/validation.IsHash
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsHash(validationMessage) {
+function IsHash(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hash.`;
-        registerInStore(target, propertyKey, 'IsHash', true, message);
+        registerInStore(target, propertyKey, 'IsHash', true, message, scenarios);
     }
 }
 
@@ -1043,12 +1099,13 @@ function IsHash(validationMessage) {
  *
  * @param method {function}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function ValidateClass(method, validationMessage) {
+function ValidateClass(method, validationMessage, scenarios) {
     return function (target) {
         const message = validationMessage ? validationMessage : `the Class ${target.constructor.name} is invalid.`;
-        registerInStore({constructor: {name: target.name}}, '', 'ValidateClass', method, message);
+        registerInStore({constructor: {name: target.name}}, '', 'ValidateClass', method, message, scenarios);
     }
 }
 

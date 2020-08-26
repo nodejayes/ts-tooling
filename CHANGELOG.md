@@ -1,6 +1,7 @@
-### 3.4.3
+### 3.5.0
 
 * support async functions in CustomValidation Decorator (type fix)
+* scenario in validation
 
 ### 3.4.2
 

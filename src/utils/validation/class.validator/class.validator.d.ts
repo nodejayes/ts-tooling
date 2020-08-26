@@ -132,15 +132,18 @@ export class ClassValidator {
  * @category Validation Decorator
  *
  * @param cb define the check Method
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function ValidateIf<T>(cb: (d: T) => boolean);
+export function ValidateIf<T>(cb: (d: T) => boolean, scenarios?: string[]);
 
 /**
  * check if the Value is missing and ignore all Validations
  *
  * @category Validation Decorator
+ *
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsOptional();
+export function IsOptional(scenarios?: string[]);
 
 /**
  * check if the Property was in the Object and have a Value
@@ -148,8 +151,9 @@ export function IsOptional();
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function Required(validationMessage?: string);
+export function Required(validationMessage?: string, scenarios?: string[]);
 
 /**
  * the Property must have a Valid Value
@@ -157,8 +161,9 @@ export function Required(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsDefined(validationMessage?: string);
+export function IsDefined(validationMessage?: string, scenarios?: string[]);
 
 /**
  * the Property must have a Empty value like empty String or null or undefined
@@ -166,8 +171,9 @@ export function IsDefined(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsEmpty(validationMessage?: string);
+export function IsEmpty(validationMessage?: string, scenarios?: string[]);
 
 /**
  * the Property must can not have a Empty value like empty String or null or undefined
@@ -175,8 +181,9 @@ export function IsEmpty(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsNotEmpty(validationMessage?: string);
+export function IsNotEmpty(validationMessage?: string, scenarios?: string[]);
 
 /**
  * the String at this Property must be a Email Address
@@ -184,8 +191,9 @@ export function IsNotEmpty(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsEmail(validationMessage?: string);
+export function IsEmail(validationMessage?: string, scenarios?: string[]);
 
 /**
  * the numeric Value must be greater or Equal the given Value
@@ -194,8 +202,9 @@ export function IsEmail(validationMessage?: string);
  *
  * @param value
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function Min(value: number, validationMessage?: string);
+export function Min(value: number, validationMessage?: string, scenarios?: string[]);
 
 /**
  * the numeric Value mut be lower or equal the given Value
@@ -204,8 +213,9 @@ export function Min(value: number, validationMessage?: string);
  *
  * @param value
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function Max(value: number, validationMessage?: string);
+export function Max(value: number, validationMessage?: string, scenarios?: string[]);
 
 /**
  * can execute a Function that returns true or false, can perform any Validation you want
@@ -214,8 +224,9 @@ export function Max(value: number, validationMessage?: string);
  *
  * @param value
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function CustomValidation(value: (v) => boolean | Promise<boolean>, validationMessage?: string);
+export function CustomValidation(value: (v) => boolean | Promise<boolean>, validationMessage?: string, scenarios?: string[]);
 
 /**
  * the String or Array must have the given Length or more
@@ -224,8 +235,9 @@ export function CustomValidation(value: (v) => boolean | Promise<boolean>, valid
  *
  * @param value
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function MinLength(value: number, validationMessage?: string);
+export function MinLength(value: number, validationMessage?: string, scenarios?: string[]);
 
 /**
  * the String or Array must have the given Length or lesser
@@ -234,8 +246,9 @@ export function MinLength(value: number, validationMessage?: string);
  *
  * @param value
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function MaxLength(value: number, validationMessage?: string);
+export function MaxLength(value: number, validationMessage?: string, scenarios?: string[]);
 
 /**
  * implements a Whitelist check for the Property
@@ -244,8 +257,9 @@ export function MaxLength(value: number, validationMessage?: string);
  *
  * @param value
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function Whitelist(value: any[], validationMessage?: string);
+export function Whitelist(value: any[], validationMessage?: string, scenarios?: string[]);
 
 /**
  * implements a Blacklist check for the Property
@@ -254,8 +268,9 @@ export function Whitelist(value: any[], validationMessage?: string);
  *
  * @param value
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function Blacklist(value: any[], validationMessage?: string);
+export function Blacklist(value: any[], validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the Property Value Equals the given Value using (===)
@@ -264,8 +279,9 @@ export function Blacklist(value: any[], validationMessage?: string);
  *
  * @param value
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function Equals<T>(value: T, validationMessage?: string);
+export function Equals<T>(value: T, validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the Property Value Equals the given Value using (!==)
@@ -274,8 +290,9 @@ export function Equals<T>(value: T, validationMessage?: string);
  *
  * @param value
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function NotEquals(value: any, validationMessage?: string);
+export function NotEquals(value: any, validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the given Value is an Integer number
@@ -283,8 +300,9 @@ export function NotEquals(value: any, validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsInt(validationMessage?: string);
+export function IsInt(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check an Array if it has Unique Values
@@ -292,8 +310,9 @@ export function IsInt(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function UniqueArray(validationMessage?: string);
+export function UniqueArray(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the Array not Empty
@@ -301,8 +320,9 @@ export function UniqueArray(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function ArrayNotEmpty(validationMessage?: string);
+export function ArrayNotEmpty(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check the Value for a Positive number
@@ -310,8 +330,9 @@ export function ArrayNotEmpty(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsPositive(validationMessage?: string);
+export function IsPositive(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check the Value for a Negative number
@@ -319,8 +340,9 @@ export function IsPositive(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsNegative(validationMessage?: string);
+export function IsNegative(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the String has any valid Boolean declaration like
@@ -330,8 +352,9 @@ export function IsNegative(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsBooleanString(validationMessage?: string);
+export function IsBooleanString(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the String contain Numbers Only
@@ -339,8 +362,9 @@ export function IsBooleanString(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsNumberString(validationMessage?: string);
+export function IsNumberString(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if a DateTime is After the value
@@ -349,8 +373,9 @@ export function IsNumberString(validationMessage?: string);
  *
  * @param value
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function MinDate(value: DateTime, validationMessage?: string);
+export function MinDate(value: DateTime, validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if a DateTime is Before the value
@@ -359,8 +384,9 @@ export function MinDate(value: DateTime, validationMessage?: string);
  *
  * @param value
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function MaxDate(value: DateTime, validationMessage?: string);
+export function MaxDate(value: DateTime, validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the String contains only letters a-z
@@ -368,8 +394,9 @@ export function MaxDate(value: DateTime, validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsAlpha(validationMessage?: string);
+export function IsAlpha(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the string only contains letters a-z and numbers 0-9
@@ -377,8 +404,9 @@ export function IsAlpha(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsAlphanumeric(validationMessage?: string);
+export function IsAlphanumeric(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the String only contains Ascii Characters
@@ -386,8 +414,9 @@ export function IsAlphanumeric(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsAscii(validationMessage?: string);
+export function IsAscii(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the String is a Base64 string
@@ -395,8 +424,9 @@ export function IsAscii(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsBase64(validationMessage?: string);
+export function IsBase64(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if a String is a Hex Color
@@ -406,8 +436,9 @@ export function IsBase64(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsHexColor(validationMessage?: string);
+export function IsHexColor(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if a String is a Hexadecimal String
@@ -415,8 +446,9 @@ export function IsHexColor(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsHexadecimal(validationMessage?: string);
+export function IsHexadecimal(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the String is a MAC Address
@@ -424,8 +456,9 @@ export function IsHexadecimal(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsMacAddress(validationMessage?: string);
+export function IsMacAddress(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the String is a IP Address
@@ -433,8 +466,9 @@ export function IsMacAddress(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsIp(validationMessage?: string);
+export function IsIp(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the String or Number is a Port Number
@@ -442,8 +476,9 @@ export function IsIp(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsPort(validationMessage?: string);
+export function IsPort(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the String is a JSON String
@@ -451,8 +486,9 @@ export function IsPort(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsJSON(validationMessage?: string);
+export function IsJSON(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the String is a JSON Web Token
@@ -460,8 +496,9 @@ export function IsJSON(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsJWT(validationMessage?: string);
+export function IsJWT(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the String has the Maximum Bytes Size of the given Value
@@ -470,8 +507,9 @@ export function IsJWT(validationMessage?: string);
  *
  * @param value
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsByteLength(value: number, validationMessage?: string);
+export function IsByteLength(value: number, validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if a String is a MongoDb Object Id
@@ -479,8 +517,9 @@ export function IsByteLength(value: number, validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsMongoId(validationMessage?: string);
+export function IsMongoId(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if a String is a valid URL
@@ -488,8 +527,9 @@ export function IsMongoId(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsUrl(validationMessage?: string);
+export function IsUrl(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if a String is a UUID
@@ -497,8 +537,9 @@ export function IsUrl(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsUUID(validationMessage?: string);
+export function IsUUID(validationMessage?: string, scenarios?: string[]);
 
 /**
  * check if the String can be a Hash
@@ -510,8 +551,9 @@ export function IsUUID(validationMessage?: string);
  * @category Validation Decorator
  *
  * @param validationMessage
+ * @param scenarios the scenario strings where the validation was executed
  */
-export function IsHash(validationMessage?: string);
+export function IsHash(validationMessage?: string, scenarios?: string[]);
 
 /**
  * validate the Class with a Function
