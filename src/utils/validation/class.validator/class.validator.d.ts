@@ -61,18 +61,19 @@ export class ClassValidator {
     /**
      * validate again a Decorated Class Instance
      *
+     * @param scenario scenario the Name of the Scenario to Validate with
      * @param instance the Instance of the Class to Validate
      *
      * @example
      * class User {
-     *     @IsDefined('Name must be defined')
+     *     `@`IsDefined('Name must be defined', ['Insert', 'Read'])
      *     Name: string;
      *
-     *     @Min(0, 'Age must be greater -1')
-     *     @Max(200, 'Age must me lower 201')
+     *     `@`Min(0, 'Age must be greater -1', ['Insert', 'Update', 'Read'])
+     *     `@`Max(200, 'Age must me lower 201', ['Insert', 'Update', 'Read'])
      *     Age: number;
      *
-     *     @IsEmail('Email must be a valid email address')
+     *     `@`IsEmail('Email must be a valid email address', ['Insert', 'Update', 'Read'])
      *     Email: string;
      * }
      * const instance = new User();
@@ -82,48 +83,50 @@ export class ClassValidator {
      *      {Message:'Age must me lower 201'},
      *      {Message:'Email must be a valid email address'},
      * ]
-     * ClassValidator.Validate(instance);
+     * ClassValidator.Validate('Insert', instance);
      * instance.Name = 'Udo';
      * instance.Age = 20;
      * instance.Email = 'udo@address.de';
      * // returns []
-     * ClassValidator.Validate(instance);
+     * ClassValidator.Validate('Insert', instance);
      */
-    static Validate<T>(instance: T): Promise<IValidationError[]>;
+    static Validate<T>(scenario: string, instance: T): Promise<IValidationError[]>;
 
     /**
      * validate a plain Object again a Class
      *
      * @param constructor the Class with the Validation Decorators
+     * @param scenario scenario the Name of the Scenario to Validate with
      * @param value the raw JSON Object
      *
      * @example
      * class User {
-     *     @IsDefined('Name must be defined')
+     *     `@`IsDefined('Name must be defined', ['Insert', 'Read'])
      *     Name: string;
      *
-     *     @Min(0, 'Age must be greater -1')
-     *     @Max(200, 'Age must me lower 201')
+     *     `@`Min(0, 'Age must be greater -1', ['Insert', 'Update', 'Read'])
+     *     `@`Max(200, 'Age must me lower 201', ['Insert', 'Update', 'Read'])
      *     Age: number;
      *
-     *     @IsEmail('Email must be a valid email address')
+     *     `@`IsEmail('Email must be a valid email address', ['Insert', 'Update', 'Read'])
      *     Email: string;
      * }
-     * const demoUser = {};
+     * const instance = {
+     *     Name: 'Udo',
+     *     Age: 20,
+     *     Email: 'udo@address.de',
+     * };
      * // returns [
      *      {Message:'Name must be defined'},
      *      {Message:'Age must be greater -1'},
      *      {Message:'Age must me lower 201'},
      *      {Message:'Email must be a valid email address'},
      * ]
-     * ClassValidator.Validate(demoUser);
-     * demoUser.Name = 'Udo';
-     * demoUser.Age = 20;
-     * demoUser.Email = 'udo@address.de';
+     * ClassValidator.ValidateObject(User, 'Insert', {});
      * // returns []
-     * ClassValidator.Validate(demoUser);
+     * ClassValidator.ValidateObject(User, 'Insert', instance);
      */
-    static ValidateObject<T>(constructor: new () => T, value: any): Promise<IValidationError[]>;
+    static ValidateObject<T>(constructor: new () => T, scenario: string, value: any): Promise<IValidationError[]>;
 }
 
 /**

@@ -139,14 +139,14 @@ class ClassValidator {}
  *
  * @example
  * class User {
- *     IsDefined('Name must be defined')
+ *     `@`IsDefined('Name must be defined', ['Insert', 'Read'])
  *     Name: string;
  *
- *     Min(0, 'Age must be greater -1')
- *     Max(200, 'Age must me lower 201')
+ *     `@`Min(0, 'Age must be greater -1', ['Insert', 'Update', 'Read'])
+ *     `@`Max(200, 'Age must me lower 201', ['Insert', 'Update', 'Read'])
  *     Age: number;
  *
- *     IsEmail('Email must be a valid email address')
+ *     `@`IsEmail('Email must be a valid email address', ['Insert', 'Update', 'Read'])
  *     Email: string;
  * }
  * const instance = new User();
@@ -156,12 +156,12 @@ class ClassValidator {}
  *      {Message:'Age must me lower 201'},
  *      {Message:'Email must be a valid email address'},
  * ]
- * ClassValidator.Validate(instance);
+ * ClassValidator.Validate('Insert', instance);
  * instance.Name = 'Udo';
  * instance.Age = 20;
  * instance.Email = 'udo@address.de';
  * // returns []
- * ClassValidator.Validate(instance);
+ * ClassValidator.Validate('Insert', instance);
  */
 ClassValidator.Validate = async (scenario, instance) => {
     const errors = [];
@@ -318,7 +318,7 @@ ClassValidator.Validate = async (scenario, instance) => {
                 if (isObject(entry)) {
                     // validate the SubObject but skip circulars
                     if (!ObjectFactory.IsCircular(entry)) {
-                        const subErrors = await ClassValidator.Validate(entry);
+                        const subErrors = await ClassValidator.Validate(scenario, entry);
                         if (subErrors.Any()) {
                             errors.AddRange(subErrors);
                         }
@@ -328,7 +328,7 @@ ClassValidator.Validate = async (scenario, instance) => {
         } else if (isObject(value)) {
             // validate the SubObject but skip circulars
             if (!ObjectFactory.IsCircular(value)) {
-                const subErrors = await ClassValidator.Validate(value);
+                const subErrors = await ClassValidator.Validate(scenario, value);
                 if (subErrors.Any()) {
                     errors.AddRange(subErrors);
                 }
@@ -361,29 +361,30 @@ ClassValidator.Validate = async (scenario, instance) => {
  *
  * @example
  * class User {
- *     IsDefined('Name must be defined')
+ *     `@`IsDefined('Name must be defined', ['Insert', 'Read'])
  *     Name: string;
  *
- *     Min(0, 'Age must be greater -1')
- *     Max(200, 'Age must me lower 201')
+ *     `@`Min(0, 'Age must be greater -1', ['Insert', 'Update', 'Read'])
+ *     `@`Max(200, 'Age must me lower 201', ['Insert', 'Update', 'Read'])
  *     Age: number;
  *
- *     IsEmail('Email must be a valid email address')
+ *     `@`IsEmail('Email must be a valid email address', ['Insert', 'Update', 'Read'])
  *     Email: string;
  * }
- * const demoUser = {};
+ * const instance = {
+ *     Name: 'Udo',
+ *     Age: 20,
+ *     Email: 'udo@address.de',
+ * };
  * // returns [
  *      {Message:'Name must be defined'},
  *      {Message:'Age must be greater -1'},
  *      {Message:'Age must me lower 201'},
  *      {Message:'Email must be a valid email address'},
  * ]
- * ClassValidator.Validate(demoUser);
- * demoUser.Name = 'Udo';
- * demoUser.Age = 20;
- * demoUser.Email = 'udo@address.de';
+ * ClassValidator.ValidateObject(User, 'Insert', {});
  * // returns []
- * ClassValidator.Validate(demoUser);
+ * ClassValidator.ValidateObject(User, 'Insert', instance);
  */
 ClassValidator.ValidateObject = async (constructor, scenario, value) => {
     const inst = new constructor();
@@ -715,12 +716,28 @@ function UniqueArray(validationMessage, scenarios) {
 }
 
 /**
- * the Array must contain some Values
+ * the Array must contain some Values to be valid
  *
  * @function module:utils/validation.ArrayNotEmpty
+ *
  * @param validationMessage {string} the Message string that was written in the Validation Error Message
  * @param scenarios {string[]} the scenario strings where the validation was executed
+ *
  * @return {ClassDecorator}
+ *
+ * @example
+ * class SomeEntity {
+ *     `@`ArrayNotEmpty('array can not be empty', ['S1'])
+ *     primeNumbers: number[];
+ * }
+ * const invalid = new SomeEntity();
+ * // returns [{Message: 'array can not be empty'}]
+ * ClassValidator.Validate('S1', invalid);
+ *
+ * const valid = new SomeEntity();
+ * valid.primeNumbers = [2,3,5,7];
+ * // returns []
+ * ClassValidator.Validate('S1', valid);
  */
 function ArrayNotEmpty(validationMessage, scenarios) {
     return function (target, propertyKey) {

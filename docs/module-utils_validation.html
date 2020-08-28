@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: utils/validation | v3.3.0</title>
+    <title>Module: utils/validation | v3.5.0</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -26,7 +26,7 @@
         
     </div>
     <div class="title">
-        <h1><a href="index.html" class="link">v3.3.0</a></h1>
+        <h1><a href="index.html" class="link">v3.5.0</a></h1>
         
     </div>
     <div class="search-container" id="search-container">
@@ -181,12 +181,12 @@
     
         <h4 class="name" id=".ArrayNotEmpty">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>ArrayNotEmpty<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>ArrayNotEmpty<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line684">line 684</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line718">line 718</a></code>
             </div>
             
         </h4>
@@ -198,7 +198,7 @@
 
     
     <div class="description">
-        the Array must contain some Values
+        the Array must contain some Values to be valid
     </div>
     
 
@@ -251,6 +251,29 @@
             
 
             <td class="description last">the Message string that was written in the Validation Error Message</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -329,6 +352,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class SomeEntity {    `@`ArrayNotEmpty('array can not be empty', ['S1'])    primeNumbers: number[];}const invalid = new SomeEntity();// returns [{Message: 'array can not be empty'}]ClassValidator.Validate('S1', invalid);const valid = new SomeEntity();valid.primeNumbers = [2,3,5,7];// returns []ClassValidator.Validate('S1', valid);</code></pre>
+
+    
 
 </dd>
 
@@ -339,12 +367,12 @@
     
         <h4 class="name" id=".Blacklist">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>Blacklist<span class="signature">(value, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>Blacklist<span class="signature">(value, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line607">line 607</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line636">line 636</a></code>
             </div>
             
         </h4>
@@ -398,7 +426,7 @@
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;any></span>
+<span class="param-type"><a href="Array.html">Array</a>.&lt;any></span>
 
 
             
@@ -432,6 +460,29 @@
             
 
             <td class="description last">the Message string that was written in the Validation Error Message</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -520,12 +571,12 @@
     
         <h4 class="name" id=".CustomValidation">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>CustomValidation<span class="signature">(value, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>CustomValidation<span class="signature">(value, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line543">line 543</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line568">line 568</a></code>
             </div>
             
         </h4>
@@ -616,6 +667,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -701,12 +775,12 @@
     
         <h4 class="name" id=".Equals">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>Equals<span class="signature">(value, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>Equals<span class="signature">(value, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line622">line 622</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line652">line 652</a></code>
             </div>
             
         </h4>
@@ -797,6 +871,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -882,12 +979,12 @@
     
         <h4 class="name" id=".IsAlpha">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsAlpha<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsAlpha<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line792">line 792</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line849">line 849</a></code>
             </div>
             
         </h4>
@@ -952,6 +1049,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -1040,12 +1160,12 @@
     
         <h4 class="name" id=".IsAlphanumeric">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsAlphanumeric<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsAlphanumeric<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line807">line 807</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line865">line 865</a></code>
             </div>
             
         </h4>
@@ -1110,6 +1230,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -1198,12 +1341,12 @@
     
         <h4 class="name" id=".IsAscii">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsAscii<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsAscii<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line822">line 822</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line881">line 881</a></code>
             </div>
             
         </h4>
@@ -1268,6 +1411,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -1356,12 +1522,12 @@
     
         <h4 class="name" id=".IsBase64">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsBase64<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsBase64<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line837">line 837</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line897">line 897</a></code>
             </div>
             
         </h4>
@@ -1426,6 +1592,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -1514,12 +1703,12 @@
     
         <h4 class="name" id=".IsBooleanString">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsBooleanString<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsBooleanString<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line728">line 728</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line781">line 781</a></code>
             </div>
             
         </h4>
@@ -1584,6 +1773,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -1672,12 +1884,12 @@
     
         <h4 class="name" id=".IsByteLength">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsByteLength<span class="signature">(value, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsByteLength<span class="signature">(value, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line959">line 959</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1027">line 1027</a></code>
             </div>
             
         </h4>
@@ -1768,6 +1980,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -1853,12 +2088,12 @@
     
         <h4 class="name" id=".IsDefined">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsDefined<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsDefined<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line451">line 451</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line470">line 470</a></code>
             </div>
             
         </h4>
@@ -1923,6 +2158,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -2011,12 +2269,12 @@
     
         <h4 class="name" id=".IsEmail">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsEmail<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsEmail<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line496">line 496</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line518">line 518</a></code>
             </div>
             
         </h4>
@@ -2081,6 +2339,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -2169,12 +2450,12 @@
     
         <h4 class="name" id=".IsEmpty">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsEmpty<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsEmpty<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line466">line 466</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line486">line 486</a></code>
             </div>
             
         </h4>
@@ -2239,6 +2520,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -2327,12 +2631,12 @@
     
         <h4 class="name" id=".IsHash">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsHash<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsHash<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1020">line 1020</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1092">line 1092</a></code>
             </div>
             
         </h4>
@@ -2397,6 +2701,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -2485,12 +2812,12 @@
     
         <h4 class="name" id=".IsHexadecimal">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsHexadecimal<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsHexadecimal<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line869">line 869</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line931">line 931</a></code>
             </div>
             
         </h4>
@@ -2555,6 +2882,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -2643,12 +2993,12 @@
     
         <h4 class="name" id=".IsHexColor">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsHexColor<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsHexColor<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line852">line 852</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line913">line 913</a></code>
             </div>
             
         </h4>
@@ -2713,6 +3063,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -2801,12 +3174,12 @@
     
         <h4 class="name" id=".IsInt">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsInt<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsInt<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line654">line 654</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line686">line 686</a></code>
             </div>
             
         </h4>
@@ -2871,6 +3244,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -2959,12 +3355,12 @@
     
         <h4 class="name" id=".IsIp">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsIp<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsIp<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line899">line 899</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line963">line 963</a></code>
             </div>
             
         </h4>
@@ -3029,6 +3425,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -3117,12 +3536,12 @@
     
         <h4 class="name" id=".IsJSON">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsJSON<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsJSON<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line929">line 929</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line995">line 995</a></code>
             </div>
             
         </h4>
@@ -3187,6 +3606,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -3275,12 +3717,12 @@
     
         <h4 class="name" id=".IsJWT">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsJWT<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsJWT<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line944">line 944</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1011">line 1011</a></code>
             </div>
             
         </h4>
@@ -3345,6 +3787,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -3433,12 +3898,12 @@
     
         <h4 class="name" id=".IsMacAddress">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsMacAddress<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsMacAddress<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line884">line 884</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line947">line 947</a></code>
             </div>
             
         </h4>
@@ -3503,6 +3968,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -3591,12 +4079,12 @@
     
         <h4 class="name" id=".IsMongoId">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsMongoId<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsMongoId<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line975">line 975</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1044">line 1044</a></code>
             </div>
             
         </h4>
@@ -3661,6 +4149,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -3749,12 +4260,12 @@
     
         <h4 class="name" id=".IsNegative">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsNegative<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsNegative<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line713">line 713</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line765">line 765</a></code>
             </div>
             
         </h4>
@@ -3819,6 +4330,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -3907,12 +4441,12 @@
     
         <h4 class="name" id=".IsNotEmpty">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsNotEmpty<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsNotEmpty<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line481">line 481</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line502">line 502</a></code>
             </div>
             
         </h4>
@@ -3977,6 +4511,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -4065,12 +4622,12 @@
     
         <h4 class="name" id=".IsNumberString">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsNumberString<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsNumberString<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line745">line 745</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line799">line 799</a></code>
             </div>
             
         </h4>
@@ -4135,6 +4692,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -4223,12 +4803,12 @@
     
         <h4 class="name" id=".IsOptional">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsOptional<span class="signature">()</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsOptional<span class="signature">(scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line424">line 424</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line441">line 441</a></code>
             </div>
             
         </h4>
@@ -4250,6 +4830,56 @@
 
     
 
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
     
 
     
@@ -4331,12 +4961,12 @@
     
         <h4 class="name" id=".IsPort">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsPort<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsPort<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line914">line 914</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line979">line 979</a></code>
             </div>
             
         </h4>
@@ -4401,6 +5031,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -4489,12 +5142,12 @@
     
         <h4 class="name" id=".IsPositive">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsPositive<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsPositive<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line698">line 698</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line749">line 749</a></code>
             </div>
             
         </h4>
@@ -4559,6 +5212,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -4647,12 +5323,12 @@
     
         <h4 class="name" id=".IsUrl">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsUrl<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsUrl<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line990">line 990</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1060">line 1060</a></code>
             </div>
             
         </h4>
@@ -4717,6 +5393,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -4805,12 +5504,12 @@
     
         <h4 class="name" id=".IsUUID">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>IsUUID<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>IsUUID<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1005">line 1005</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1076">line 1076</a></code>
             </div>
             
         </h4>
@@ -4875,6 +5574,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -4963,12 +5685,12 @@
     
         <h4 class="name" id=".Max">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>Max<span class="signature">(value, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>Max<span class="signature">(value, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line527">line 527</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line551">line 551</a></code>
             </div>
             
         </h4>
@@ -5059,6 +5781,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -5144,12 +5889,12 @@
     
         <h4 class="name" id=".MaxDate">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>MaxDate<span class="signature">(value, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>MaxDate<span class="signature">(value, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line776">line 776</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line832">line 832</a></code>
             </div>
             
         </h4>
@@ -5240,6 +5985,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -5325,12 +6093,12 @@
     
         <h4 class="name" id=".MaxLength">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>MaxLength<span class="signature">(value, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>MaxLength<span class="signature">(value, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line575">line 575</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line602">line 602</a></code>
             </div>
             
         </h4>
@@ -5421,6 +6189,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -5506,12 +6297,12 @@
     
         <h4 class="name" id=".Min">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>Min<span class="signature">(value, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>Min<span class="signature">(value, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line511">line 511</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line534">line 534</a></code>
             </div>
             
         </h4>
@@ -5602,6 +6393,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -5687,12 +6501,12 @@
     
         <h4 class="name" id=".MinDate">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>MinDate<span class="signature">(value, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>MinDate<span class="signature">(value, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line760">line 760</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line815">line 815</a></code>
             </div>
             
         </h4>
@@ -5783,6 +6597,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -5868,12 +6705,12 @@
     
         <h4 class="name" id=".MinLength">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>MinLength<span class="signature">(value, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>MinLength<span class="signature">(value, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line559">line 559</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line585">line 585</a></code>
             </div>
             
         </h4>
@@ -5964,6 +6801,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -6049,12 +6909,12 @@
     
         <h4 class="name" id=".NotEquals">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>NotEquals<span class="signature">(value, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>NotEquals<span class="signature">(value, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line638">line 638</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line669">line 669</a></code>
             </div>
             
         </h4>
@@ -6145,6 +7005,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -6230,12 +7113,12 @@
     
         <h4 class="name" id=".Required">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>Required<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>Required<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line436">line 436</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line454">line 454</a></code>
             </div>
             
         </h4>
@@ -6300,6 +7183,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -6388,12 +7294,12 @@
     
         <h4 class="name" id=".UniqueArray">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>UniqueArray<span class="signature">(validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>UniqueArray<span class="signature">(validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line669">line 669</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line702">line 702</a></code>
             </div>
             
         </h4>
@@ -6458,6 +7364,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -6546,12 +7475,12 @@
     
         <h4 class="name" id=".ValidateClass">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>ValidateClass<span class="signature">(method, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>ValidateClass<span class="signature">(method, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1039">line 1039</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1112">line 1112</a></code>
             </div>
             
         </h4>
@@ -6642,6 +7571,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -6727,12 +7679,12 @@
     
         <h4 class="name" id=".ValidateIf">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>ValidateIf<span class="signature">(cb)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>ValidateIf<span class="signature">(cb, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line410">line 410</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line426">line 426</a></code>
             </div>
             
         </h4>
@@ -6797,6 +7749,29 @@
             
 
             <td class="description last">define the check Method</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     
@@ -6885,12 +7860,12 @@
     
         <h4 class="name" id=".Whitelist">
             
-                <span class="type-signature"><span class="icon green">static</span> </span>Whitelist<span class="signature">(value, validationMessage)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
+                <span class="type-signature"><span class="icon green">static</span> </span>Whitelist<span class="signature">(value, validationMessage, scenarios)</span><span class="type-signature"> &rarr; {ClassDecorator}</span>
                 
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line591">line 591</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line619">line 619</a></code>
             </div>
             
         </h4>
@@ -6944,7 +7919,7 @@
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;any></span>
+<span class="param-type"><a href="Array.html">Array</a>.&lt;any></span>
 
 
             
@@ -6978,6 +7953,29 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scenarios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the scenario strings where the validation was executed</td>
         </tr>
 
     

@@ -2,6 +2,7 @@
 
 * support async functions in CustomValidation Decorator (type fix)
 * scenario in validation
+* add Without Method to Array
 
 ### 3.4.2
 
