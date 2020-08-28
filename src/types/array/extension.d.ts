@@ -797,5 +797,20 @@ declare global {
          * });
          */
         ForSegment?(cb: (current: T, next: T) => void);
+
+        /**
+         * iterate over the items they are not in the given indexes
+         *
+         * @param indexes the indexes to skip
+         * @param cb the operation to do
+         *
+         * @example
+         * [1,2,3,4,5].Without([0,2], e => console.info(e));
+         * // print into console
+         * // 2
+         * // 4
+         * // 5
+         */
+        Without?(indexes: number[], cb: (current: T) => void);
     }
 }
