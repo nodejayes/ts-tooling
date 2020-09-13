@@ -754,6 +754,22 @@ function ArrayNotEmpty(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ *
+ * @example
+ * class IsPositiveCheck {
+ *      `@`IsPositive('Invalid', ['S1'])
+ *      prop: int;
+ * }
+ * const instance = new IsPositiveCheck();
+ * instance.prop = 0;
+ * // no error was return
+ * await ClassValidator.Validate('S1', instance);
+ * instance.prop = 1;
+ * // no error was return
+ * await ClassValidator.Validate('S1', instance);
+ * instance.prop = -1;
+ * // one error was returned
+ * await ClassValidator.Validate('S1', instance);
  */
 function IsPositive(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -770,6 +786,22 @@ function IsPositive(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ *
+ * @example
+ * class IsNegativeCheck {
+ *      `@`IsNegative('Invalid', ['S1'])
+ *      prop: int;
+ * }
+ * const instance = new IsNegativeCheck();
+ * instance.prop = 0;
+ * // one error was returned
+ * await ClassValidator.Validate('S1', instance);
+ * instance.prop = 1;
+ * // one error was returned
+ * await ClassValidator.Validate('S1', instance);
+ * instance.prop = -1;
+ * // no error was returned
+ * await ClassValidator.Validate('S1', instance);
  */
 function IsNegative(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -788,6 +820,28 @@ function IsNegative(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsBooleanStringTest {
+ *     `@`IsBooleanString('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsBooleanStringTest();
+ * // is valid
+ * instance.value = 'abc';
+ * // returns a error
+ * await ClassValidator.Validate('S1', instance);
+ * instance.value = 'true';
+ * // returns no error
+ * await ClassValidator.Validate('S1', instance);
+ * instance.value = 'false';
+ * // returns no error
+ * await ClassValidator.Validate('S1', instance);
+ * instance.value = 'TRUE';
+ * // returns no error
+ * await ClassValidator.Validate('S1', instance);
+ * instance.value = 'FALSE';
+ * // returns no error
+ * await ClassValidator.Validate('S1', instance);
  */
 function IsBooleanString(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -804,6 +858,16 @@ function IsBooleanString(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsNumberStringTest {
+ *     `@`IsNumberString('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsNumberStringTest();
+ * // is valid
+ * instance.value = '1';
+ * // is invalid
+ * instance.value = '1a';
  */
 function IsNumberString(validationMessage, scenarios) {
     return function (target, propertyKey) {
