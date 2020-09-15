@@ -675,6 +675,16 @@ function Equals(value, validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class NotEqualsTest {
+ *     `@`NotEquals('a', 'Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new NotEqualsTest();
+ * // is invalid
+ * instance.value = 'a';
+ * // is valid
+ * instance.value = 'ab';
  */
 function NotEquals(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -691,6 +701,16 @@ function NotEquals(value, validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsIntTest {
+ *     `@`IsInt('Invalid', ['S1'])
+ *     value: any;
+ * }
+ * const instance = new IsIntTest();
+ * // is valid
+ * instance.value = 1;
+ * // is invalid
+ * instance.value = 'a';
  */
 function IsInt(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -707,6 +727,16 @@ function IsInt(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class UniqueArrayTest {
+ *     `@`UniqueArray('Invalid', ['S1'])
+ *     value: number[];
+ * }
+ * const instance = UniqueArrayTest();
+ * // is valid
+ * instance.value = [1,2,3,4];
+ * // is invalid
+ * instance.value = [1,1,3,4];
  */
 function UniqueArray(validationMessage, scenarios) {
     return function (target, propertyKey) {

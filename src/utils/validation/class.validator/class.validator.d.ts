@@ -294,6 +294,16 @@ export function Equals<T>(value: T, validationMessage?: string, scenarios?: stri
  * @param value
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class NotEqualsTest {
+ *     `@`NotEquals('a', 'Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new NotEqualsTest();
+ * // is invalid
+ * instance.value = 'a';
+ * // is valid
+ * instance.value = 'ab';
  */
 export function NotEquals(value: any, validationMessage?: string, scenarios?: string[]);
 
@@ -304,6 +314,16 @@ export function NotEquals(value: any, validationMessage?: string, scenarios?: st
  *
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class IsIntTest {
+ *     `@`IsInt('Invalid', ['S1'])
+ *     value: any;
+ * }
+ * const instance = new IsIntTest();
+ * // is valid
+ * instance.value = 1;
+ * // is invalid
+ * instance.value = 'a';
  */
 export function IsInt(validationMessage?: string, scenarios?: string[]);
 
@@ -314,6 +334,16 @@ export function IsInt(validationMessage?: string, scenarios?: string[]);
  *
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class UniqueArrayTest {
+ *     `@`UniqueArray('Invalid', ['S1'])
+ *     value: number[];
+ * }
+ * const instance = UniqueArrayTest();
+ * // is valid
+ * instance.value = [1,2,3,4];
+ * // is invalid
+ * instance.value = [1,1,3,4];
  */
 export function UniqueArray(validationMessage?: string, scenarios?: string[]);
 
