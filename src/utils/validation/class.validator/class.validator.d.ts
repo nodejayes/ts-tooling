@@ -310,6 +310,17 @@ export function Max(value: number, validationMessage?: string, scenarios?: strin
  * @param value
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class CustomValidationClass {
+ *     `@`CustomValidation(v => v > 5, 'Invalid', ['S1'])
+ *     value: number;
+ * }
+ * const instance = new CustomValidationClass();
+ * // is valid
+ * instance.value = 6;
+ * // is invalid
+ * instance.value = 5;
+ * instance.value = 4;
  */
 export function CustomValidation(value: (v) => boolean | Promise<boolean>, validationMessage?: string, scenarios?: string[]);
 
@@ -321,6 +332,17 @@ export function CustomValidation(value: (v) => boolean | Promise<boolean>, valid
  * @param value
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class MinLengthClass {
+ *     `@`MinLength(3, 'Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new MinLengthClass();
+ * // is invalid
+ * instance.value = 'a';
+ * instance.value = 'ab';
+ * // is valid
+ * instance.value = 'abc';
  */
 export function MinLength(value: number, validationMessage?: string, scenarios?: string[]);
 
@@ -332,6 +354,18 @@ export function MinLength(value: number, validationMessage?: string, scenarios?:
  * @param value
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class MaxLengthClass {
+ *     `@`MaxLength(3, 'Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new MaxLengthClass();
+ * // is valid
+ * instance.value = 'a';
+ * instance.value = 'ab';
+ * instance.value = 'abc';
+ * // is invalid
+ * instance.value = 'abcd';
  */
 export function MaxLength(value: number, validationMessage?: string, scenarios?: string[]);
 
@@ -343,6 +377,18 @@ export function MaxLength(value: number, validationMessage?: string, scenarios?:
  * @param value
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class WhiteListClass {
+ *     `@`Whitelist([1,4,8], 'Invalid', ['S1'])
+ *     value: number;
+ * }
+ * const instance = new WhiteListClass();
+ * // is valid
+ * instance.value = 1;
+ * instance.value = 4;
+ * instance.value = 8;
+ * // is invalid
+ * instance.value = 9;
  */
 export function Whitelist(value: any[], validationMessage?: string, scenarios?: string[]);
 
@@ -354,6 +400,18 @@ export function Whitelist(value: any[], validationMessage?: string, scenarios?: 
  * @param value
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class BlacklistClass {
+ *     `@`Blacklist([1,4,8], 'Invalid', ['S1'])
+ *     value: number;
+ * }
+ * const instance = new BlacklistClass();
+ * // is invalid
+ * instance.value = 1;
+ * instance.value = 4;
+ * instance.value = 8;
+ * // is valid
+ * instance.value = 9;
  */
 export function Blacklist(value: any[], validationMessage?: string, scenarios?: string[]);
 
@@ -365,6 +423,16 @@ export function Blacklist(value: any[], validationMessage?: string, scenarios?: 
  * @param value
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class EqualsClass {
+ *     `@`Equals('-', 'Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new EqualsClass();
+ * // is invalid
+ * instance.value = 'a';
+ * // is valid
+ * instance.value = '-';
  */
 export function Equals<T>(value: T, validationMessage?: string, scenarios?: string[]);
 
