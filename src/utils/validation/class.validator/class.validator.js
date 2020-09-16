@@ -1170,6 +1170,20 @@ function IsAlphanumeric(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsAsciiTest {
+ *     `@`IsAscii('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsAsciiTest();
+ * // is valid
+ * for (let i = 0; i <= 127; i++) {
+ *     instance.value += String.fromCharCode(i);
+ * }
+ * // is invalid
+ * for (let i = 128; i <= 255; i++) {
+ *     instance.value += String.fromCharCode(i);
+ * }
  */
 function IsAscii(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1186,6 +1200,16 @@ function IsAscii(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsBase64Test {
+ *     `@`IsBase64('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsBase64Test();
+ * // is valid
+ * instance.value = 'aGVsbG86d29ybGQhPyQqJigpJy09QH4=';
+ * // is invalid
+ * instance.value = 'hello:world!?$*&()'-=@~';
  */
 function IsBase64(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1204,6 +1228,17 @@ function IsBase64(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsHexColorTest {
+ *     `@`IsHexColor('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsHexColor();
+ * // is valid
+ * instance.value = '#ffffff';
+ * instance.value = '#ffffffff';
+ * // is invalid
+ * instance.value = '#ffffffffff';
  */
 function IsHexColor(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1220,6 +1255,19 @@ function IsHexColor(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsHexadecimalTest {
+ *     `@`IsHexadecimal('Invalid', ['S1])
+ *     value: string;
+ * }
+ * const instance = new IsHexadecimalTest();
+ * // is valid
+ * instance.value = 'AF050505';
+ * instance.value = 'af050505';
+ * instance.value = '0xAF050505';
+ * instance.value = '#AF050505';
+ * // is invalid
+ * instance.value = 'xxxxxxxx';
  */
 function IsHexadecimal(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1236,6 +1284,17 @@ function IsHexadecimal(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsMacAddressTest {
+ *     `@`IsMacAddress('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsMacAddressTest();
+ * // is valid
+ * instance.value = '3D-F2-C9-A6-B3-4F';
+ * instance.value = '3D:F2:C9:A6:B3:4F';
+ * // is invalid
+ * instance.value = '3D:F2:C9:A6:B3:4F:';
  */
 function IsMacAddress(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1252,6 +1311,17 @@ function IsMacAddress(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsIpTest {
+ *     `@`IsIp('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsIpTest();
+ * // is valid
+ * instance.value = '192.168.1.1';
+ * // is invalid
+ * instance.value = '000.0000.00.00';
+ * instance.value = '912.456.123.123';
  */
 function IsIp(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1268,6 +1338,18 @@ function IsIp(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsPortTest {
+ *     `@`IsPort('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsPortTest();
+ * // is valid
+ * instance.value = '1';
+ * instance.value = '65536';
+ * // is invalid
+ * instance.value = '65537';
+ * instance.value = '0';
  */
 function IsPort(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1284,6 +1366,16 @@ function IsPort(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsJSONTest {
+ *     `@`IsJSON('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsJSONTest();
+ * // is valid
+ * instance.value = '{"Hello":"World"}';
+ * // is invalid
+ * instance.value = 'xxxxxxx';
  */
 function IsJSON(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1300,6 +1392,16 @@ function IsJSON(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsJWTTest {
+ *     `@`IsJWT('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsJWTTest();
+ * // is valid
+ * instance.value = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ';
+ * // is invalid
+ * instance.value = 'Hello';
  */
 function IsJWT(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1317,6 +1419,16 @@ function IsJWT(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsByteLengthTest {
+ *     `@`IsByteLength(4, 'Invalid', ['S1])
+ *     value: string
+ * }
+ * const instance = new IsByteLengthTest();
+ * // is valid
+ * instance.value = '1234';
+ * // is invalid
+ * instance.value = '12345';
  */
 function IsByteLength(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1333,6 +1445,16 @@ function IsByteLength(value, validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsMongoIdTest {
+ *     `@`IsMongoId('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsMongoIdTest();
+ * // is valid
+ * instance.value = '5dfaa9da5fca3be0982a4301';
+ * // is invalid
+ * instance.value = 'abc';
  */
 function IsMongoId(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1349,6 +1471,18 @@ function IsMongoId(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsUrlTest {
+ *     `@`IsUrl('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsUrlTest();
+ * // is valid
+ * instance.value = 'http://foo.bar.com/';
+ * instance.value = 'http://thingiverse.com/download:1894343';
+ * // is invalid
+ * instance.value = 'aaa';
+ * instance.value = 'https://w';
  */
 function IsUrl(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1365,6 +1499,17 @@ function IsUrl(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsUUIDTest {
+ *     `@`IsUUID('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsUUIDTest();
+ * // is valid
+ * instance.value = '3e019b17-e95e-40fc-9606-4041efcb2684';
+ * instance.value = '{3e019b17-e95e-40fc-9606-4041efcb2684}';
+ * // is invalid
+ * instance.value = 'no uuid';
  */
 function IsUUID(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1385,6 +1530,31 @@ function IsUUID(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsHashTest {
+ *     `@`IsHash('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsHashTest();
+ * // is valid
+ * // MD5
+ * instance.value = 'd41d8cd98f00b204e9800998ecf8427e';
+ * // SHA-1
+ * instance.value = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
+ * // SHA-256
+ * instance.value = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
+ * // SHA-512
+ * instance.value = 'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e';
+ * // RIPEMD-160
+ * instance.value = '9c1185a5c5e9fc54612808977ee8f548b2258d31';
+ * // Snefru
+ * instance.value = '8617f366566a011837f4fb4ba5bedea2b892f3ed8b894023d16ae344b2be5881';
+ * // GHOST
+ * instance.value = 'ce85b99cc46752fffee35cab9a7b0278abb4c2d2055cff685af4912c49490f8d';
+ * // Whirlpool
+ * instance.value = '19fa61d75522a4669b44e39c1d2e1726c530232130d407f89afee0964997f7a73e83be698b288febcf88e3e03c4f0757ea8964e59b63d93708b138cc42a66eb3';
+ * // is invalid
+ * instance.value = 'HalloWelt';
  */
 function IsHash(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -1402,6 +1572,19 @@ function IsHash(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * `@`ValidateClass((instance, validators) => validators.IsEmail(instance.email) && validators.Max(instance.num, 20), 'Invalid')
+ * class ValidateClassTest {
+ *     email: string;
+ *     num: number;
+ * }
+ * const instance = new ValidateClassTest();
+ * // is invalid
+ * instance.email = 'test@example.com';
+ * instance.num = 21;
+ * // is valid
+ * instance.email = 'test@example.com';
+ * instance.num = 19;
  */
 function ValidateClass(method, validationMessage, scenarios) {
     return function (target) {
