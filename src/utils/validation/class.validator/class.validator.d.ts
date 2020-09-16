@@ -618,6 +618,17 @@ export function IsNumberString(validationMessage?: string, scenarios?: string[])
  * @param value
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class MinDateTest {
+ *     `@`MinDate(new DateTime('UTC', 2019,1,1,0,0,0, 0), 'Invalid', ['S1'])
+ *     value: DateTime;
+ * }
+ * const instance = new MinDateTest();
+ * // is valid
+ * instance.value = new DateTime('UTC', 2019,1,1,2,0,0, 0);
+ * instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 0);
+ * // is invalid
+ * instance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);
  */
 export function MinDate(value: DateTime, validationMessage?: string, scenarios?: string[]);
 
@@ -629,6 +640,17 @@ export function MinDate(value: DateTime, validationMessage?: string, scenarios?:
  * @param value
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class MaxDateTest {
+ *     `@`MaxDate(new DateTime('UTC', 2019,1,1,0,0,0,0), 'Invalid', ['S1'])
+ *     value: DateTime;
+ * }
+ * const instance = new MaxDateTest();
+ * // is invalid
+ * instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 1);
+ * // is valid
+ * instance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);
+ * instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 0);
  */
 export function MaxDate(value: DateTime, validationMessage?: string, scenarios?: string[]);
 
@@ -639,6 +661,16 @@ export function MaxDate(value: DateTime, validationMessage?: string, scenarios?:
  *
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class IsAlphaTest {
+ *     `@`IsAlpha('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsAlphaTest();
+ * // is valid
+ * instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+ * // is invalid
+ * instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1';
  */
 export function IsAlpha(validationMessage?: string, scenarios?: string[]);
 
@@ -649,6 +681,17 @@ export function IsAlpha(validationMessage?: string, scenarios?: string[]);
  *
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @return {ClassDecorator}
+ * @example
+ * class IsAlphanumericTest {
+ *     `@`IsAlphanumeric('Invalid', ['S1'])
+ *     values: string;
+ * }
+ * const instance = new IsAlphanumericTest();
+ * // is valid
+ * instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+ * // is invalid
+ * instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?';
  */
 export function IsAlphanumeric(validationMessage?: string, scenarios?: string[]);
 

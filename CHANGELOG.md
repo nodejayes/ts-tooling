@@ -3,7 +3,7 @@
 * support async functions in CustomValidation Decorator (type fix)
 * scenario in validation
 * add Without Method to Array
-* remove duplicate validators (IsEmpty, IsNotEmpty)
+* add more documentation and tests
 
 ### 3.4.2
 
