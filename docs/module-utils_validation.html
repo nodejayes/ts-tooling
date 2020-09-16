@@ -186,7 +186,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line718">line 718</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line896">line 896</a></code>
             </div>
             
         </h4>
@@ -372,7 +372,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line636">line 636</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line762">line 762</a></code>
             </div>
             
         </h4>
@@ -561,6 +561,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class BlacklistClass {    `@`Blacklist([1,4,8], 'Invalid', ['S1'])    value: number;}const instance = new BlacklistClass();// is invalidinstance.value = 1;instance.value = 4;instance.value = 8;// is validinstance.value = 9;</code></pre>
+
+    
 
 </dd>
 
@@ -576,7 +581,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line568">line 568</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line648">line 648</a></code>
             </div>
             
         </h4>
@@ -765,6 +770,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class CustomValidationClass {    `@`CustomValidation(v => v > 5, 'Invalid', ['S1'])    value: number;}const instance = new CustomValidationClass();// is validinstance.value = 6;// is invalidinstance.value = 5;instance.value = 4;</code></pre>
+
+    
 
 </dd>
 
@@ -780,7 +790,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line652">line 652</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line790">line 790</a></code>
             </div>
             
         </h4>
@@ -969,6 +979,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class EqualsClass {    `@`Equals('-', 'Invalid', ['S1'])    value: string;}const instance = new EqualsClass();// is invalidinstance.value = 'a';// is validinstance.value = '-';</code></pre>
+
+    
 
 </dd>
 
@@ -984,7 +999,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line914">line 914</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1113">line 1113</a></code>
             </div>
             
         </h4>
@@ -1150,6 +1165,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsAlphaTest {    `@`IsAlpha('Invalid', ['S1'])    value: string;}const instance = new IsAlphaTest();// is validinstance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';// is invalidinstance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1';</code></pre>
+
+    
 
 </dd>
 
@@ -1165,7 +1185,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line930">line 930</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1139">line 1139</a></code>
             </div>
             
         </h4>
@@ -1331,6 +1351,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsAlphanumericTest {    `@`IsAlphanumeric('Invalid', ['S1'])    values: string;}const instance = new IsAlphanumericTest();// is validinstance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';// is invalidinstance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?';</code></pre>
+
+    
 
 </dd>
 
@@ -1346,7 +1371,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line946">line 946</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1165">line 1165</a></code>
             </div>
             
         </h4>
@@ -1512,6 +1537,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsAsciiTest {    `@`IsAscii('Invalid', ['S1'])    value: string;}const instance = new IsAsciiTest();// is validfor (let i = 0; i &lt;= 127; i++) {    instance.value += String.fromCharCode(i);}// is invalidfor (let i = 128; i &lt;= 255; i++) {    instance.value += String.fromCharCode(i);}</code></pre>
+
+    
 
 </dd>
 
@@ -1527,7 +1557,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line962">line 962</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1195">line 1195</a></code>
             </div>
             
         </h4>
@@ -1693,6 +1723,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsBase64Test {    `@`IsBase64('Invalid', ['S1'])    value: string;}const instance = new IsBase64Test();// is validinstance.value = 'aGVsbG86d29ybGQhPyQqJigpJy09QH4=';// is invalidinstance.value = 'hello:world!?$*&amp;()'-=@~';</code></pre>
+
+    
 
 </dd>
 
@@ -1708,7 +1743,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line813">line 813</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line991">line 991</a></code>
             </div>
             
         </h4>
@@ -1876,7 +1911,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsBooleanStringTest {    `@`IsBooleanString('Invalid', ['S1'])    value: string;}const instance = new IsBooleanStringTest();instance.value = 'abc';// returns a errorawait ClassValidator.Validate('S1', instance);instance.value = 'true';// returns no errorawait ClassValidator.Validate('S1', instance);instance.value = 'false';// returns no errorawait ClassValidator.Validate('S1', instance);instance.value = 'TRUE';// returns no errorawait ClassValidator.Validate('S1', instance);instance.value = 'FALSE';// returns no errorawait ClassValidator.Validate('S1', instance);</code></pre>
+    <pre class="prettyprint"><code>class IsBooleanStringTest {    `@`IsBooleanString('Invalid', ['S1'])    value: string;}const instance = new IsBooleanStringTest();// is validinstance.value = 'abc';// returns a errorawait ClassValidator.Validate('S1', instance);instance.value = 'true';// returns no errorawait ClassValidator.Validate('S1', instance);instance.value = 'false';// returns no errorawait ClassValidator.Validate('S1', instance);instance.value = 'TRUE';// returns no errorawait ClassValidator.Validate('S1', instance);instance.value = 'FALSE';// returns no errorawait ClassValidator.Validate('S1', instance);</code></pre>
 
     
 
@@ -1894,7 +1929,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1092">line 1092</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1413">line 1413</a></code>
             </div>
             
         </h4>
@@ -2083,6 +2118,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsByteLengthTest {    `@`IsByteLength(4, 'Invalid', ['S1])    value: string}const instance = new IsByteLengthTest();// is validinstance.value = '1234';// is invalidinstance.value = '12345';</code></pre>
+
+    
 
 </dd>
 
@@ -2098,7 +2138,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line470">line 470</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line482">line 482</a></code>
             </div>
             
         </h4>
@@ -2264,6 +2304,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsDefinedTest {    `@`IsDefined('Invalid', ['S1'])    value: any;}const instance = new IsDefinedTest();// is invalidinstance.value = undefined;instance.value = null;// is validinstance.value = 1;instance.value = 'a';</code></pre>
+
+    
 
 </dd>
 
@@ -2279,7 +2324,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line518">line 518</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line566">line 566</a></code>
             </div>
             
         </h4>
@@ -2445,6 +2490,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsEmailClass {    `@`IsEmail('Invalid', ['S1])    value: string;}const instance = new IsEmailClass();// is invalidinstance.value = 'xxxxxxxx';// is validinstance.value = 'test@example.com';</code></pre>
+
+    
 
 </dd>
 
@@ -2460,7 +2510,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line486">line 486</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line510">line 510</a></code>
             </div>
             
         </h4>
@@ -2626,6 +2676,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsEmptyTest {    `@`IsEmpty('Invalid', ['S1'])    value: any;}const instance = new IsEmptyTest();// is validinstance.value = undefined;instance.value = null;// is invalidinstance.value = 1;instance.value = 'a';</code></pre>
+
+    
 
 </dd>
 
@@ -2641,7 +2696,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1157">line 1157</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1521">line 1521</a></code>
             </div>
             
         </h4>
@@ -2807,6 +2862,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsHashTest {    `@`IsHash('Invalid', ['S1'])    value: string;}const instance = new IsHashTest();// is valid// MD5instance.value = 'd41d8cd98f00b204e9800998ecf8427e';// SHA-1instance.value = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';// SHA-256instance.value = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';// SHA-512instance.value = 'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e';// RIPEMD-160instance.value = '9c1185a5c5e9fc54612808977ee8f548b2258d31';// Snefruinstance.value = '8617f366566a011837f4fb4ba5bedea2b892f3ed8b894023d16ae344b2be5881';// GHOSTinstance.value = 'ce85b99cc46752fffee35cab9a7b0278abb4c2d2055cff685af4912c49490f8d';// Whirlpoolinstance.value = '19fa61d75522a4669b44e39c1d2e1726c530232130d407f89afee0964997f7a73e83be698b288febcf88e3e03c4f0757ea8964e59b63d93708b138cc42a66eb3';// is invalidinstance.value = 'HalloWelt';</code></pre>
+
+    
 
 </dd>
 
@@ -2822,7 +2882,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line996">line 996</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1250">line 1250</a></code>
             </div>
             
         </h4>
@@ -2988,6 +3048,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsHexadecimalTest {    `@`IsHexadecimal('Invalid', ['S1])    value: string;}const instance = new IsHexadecimalTest();// is validinstance.value = 'AF050505';instance.value = 'af050505';instance.value = '0xAF050505';instance.value = '#AF050505';// is invalidinstance.value = 'xxxxxxxx';</code></pre>
+
+    
 
 </dd>
 
@@ -3003,7 +3068,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line978">line 978</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1221">line 1221</a></code>
             </div>
             
         </h4>
@@ -3169,6 +3234,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsHexColorTest {    `@`IsHexColor('Invalid', ['S1'])    value: string;}const instance = new IsHexColor();// is validinstance.value = '#ffffff';instance.value = '#ffffffff';// is invalidinstance.value = '#ffffffffff';</code></pre>
+
+    
 
 </dd>
 
@@ -3184,7 +3254,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line686">line 686</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line844">line 844</a></code>
             </div>
             
         </h4>
@@ -3350,6 +3420,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsIntTest {    `@`IsInt('Invalid', ['S1'])    value: any;}const instance = new IsIntTest();// is validinstance.value = 1;// is invalidinstance.value = 'a';</code></pre>
+
+    
 
 </dd>
 
@@ -3365,7 +3440,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1028">line 1028</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1306">line 1306</a></code>
             </div>
             
         </h4>
@@ -3531,6 +3606,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsIpTest {    `@`IsIp('Invalid', ['S1'])    value: string;}const instance = new IsIpTest();// is validinstance.value = '192.168.1.1';// is invalidinstance.value = '000.0000.00.00';instance.value = '912.456.123.123';</code></pre>
+
+    
 
 </dd>
 
@@ -3546,7 +3626,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1060">line 1060</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1361">line 1361</a></code>
             </div>
             
         </h4>
@@ -3712,6 +3792,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsJSONTest {    `@`IsJSON('Invalid', ['S1'])    value: string;}const instance = new IsJSONTest();// is validinstance.value = '{"Hello":"World"}';// is invalidinstance.value = 'xxxxxxx';</code></pre>
+
+    
 
 </dd>
 
@@ -3727,7 +3812,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1076">line 1076</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1387">line 1387</a></code>
             </div>
             
         </h4>
@@ -3893,6 +3978,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsJWTTest {    `@`IsJWT('Invalid', ['S1'])    value: string;}const instance = new IsJWTTest();// is validinstance.value = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ';// is invalidinstance.value = 'Hello';</code></pre>
+
+    
 
 </dd>
 
@@ -3908,7 +3998,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1012">line 1012</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1279">line 1279</a></code>
             </div>
             
         </h4>
@@ -4074,6 +4164,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsMacAddressTest {    `@`IsMacAddress('Invalid', ['S1'])    value: string;}const instance = new IsMacAddressTest();// is validinstance.value = '3D-F2-C9-A6-B3-4F';instance.value = '3D:F2:C9:A6:B3:4F';// is invalidinstance.value = '3D:F2:C9:A6:B3:4F:';</code></pre>
+
+    
 
 </dd>
 
@@ -4089,7 +4184,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1109">line 1109</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1440">line 1440</a></code>
             </div>
             
         </h4>
@@ -4255,6 +4350,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsMongoIdTest {    `@`IsMongoId('Invalid', ['S1'])    value: string;}const instance = new IsMongoIdTest();// is validinstance.value = '5dfaa9da5fca3be0982a4301';// is invalidinstance.value = 'abc';</code></pre>
+
+    
 
 </dd>
 
@@ -4270,7 +4370,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line781">line 781</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line959">line 959</a></code>
             </div>
             
         </h4>
@@ -4456,7 +4556,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line502">line 502</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line538">line 538</a></code>
             </div>
             
         </h4>
@@ -4622,6 +4722,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsNotEmptyTest {    `@`IsNotEmpty('Invalid', ['S1])    value: string;}const instance = new IsNotEmptyTest();// is invalidinstance.value = '';instance.value = null;instance.value = undefined;// is validinstance.value = 'a';</code></pre>
+
+    
 
 </dd>
 
@@ -4637,7 +4742,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line852">line 852</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1031">line 1031</a></code>
             </div>
             
         </h4>
@@ -4805,7 +4910,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsNumberStringTest {    `@`IsNumberString('Invalid', ['S1'])    value: string;}const instance = new IsNumberStringTest();instance.value = '1';// returns no errorawait ClassValidator.Validate('S1', instance);instance.value = '1a';// returns one errorawait ClassValidator.Validate('S1', instance);</code></pre>
+    <pre class="prettyprint"><code>class IsNumberStringTest {    `@`IsNumberString('Invalid', ['S1'])    value: string;}const instance = new IsNumberStringTest();// is validinstance.value = '1';// is invalidinstance.value = '1a';</code></pre>
 
     
 
@@ -4981,7 +5086,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1044">line 1044</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1333">line 1333</a></code>
             </div>
             
         </h4>
@@ -5147,6 +5252,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsPortTest {    `@`IsPort('Invalid', ['S1'])    value: string;}const instance = new IsPortTest();// is validinstance.value = '1';instance.value = '65536';// is invalidinstance.value = '65537';instance.value = '0';</code></pre>
+
+    
 
 </dd>
 
@@ -5162,7 +5272,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line749">line 749</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line927">line 927</a></code>
             </div>
             
         </h4>
@@ -5348,7 +5458,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1125">line 1125</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1466">line 1466</a></code>
             </div>
             
         </h4>
@@ -5514,6 +5624,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsUrlTest {    `@`IsUrl('Invalid', ['S1'])    value: string;}const instance = new IsUrlTest();// is validinstance.value = 'http://foo.bar.com/';instance.value = 'http://thingiverse.com/download:1894343';// is invalidinstance.value = 'aaa';instance.value = 'https://w';</code></pre>
+
+    
 
 </dd>
 
@@ -5529,7 +5644,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1141">line 1141</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1494">line 1494</a></code>
             </div>
             
         </h4>
@@ -5695,6 +5810,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class IsUUIDTest {    `@`IsUUID('Invalid', ['S1'])    value: string;}const instance = new IsUUIDTest();// is validinstance.value = '3e019b17-e95e-40fc-9606-4041efcb2684';instance.value = '{3e019b17-e95e-40fc-9606-4041efcb2684}';// is invalidinstance.value = 'no uuid';</code></pre>
+
+    
 
 </dd>
 
@@ -5710,7 +5830,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line551">line 551</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line620">line 620</a></code>
             </div>
             
         </h4>
@@ -5899,6 +6019,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class MaxClass {    `@`Max(3, 'Invalid', ['S1'])    value: number;}const instance = new MaxClass();// is validinstance.value = 2;instance.value = 3;// is invalidinstance.value = 4;</code></pre>
+
+    
 
 </dd>
 
@@ -5914,7 +6039,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line897">line 897</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1085">line 1085</a></code>
             </div>
             
         </h4>
@@ -6103,6 +6228,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class MaxDateTest {    `@`MaxDate(new DateTime('UTC', 2019,1,1,0,0,0,0), 'Invalid', ['S1'])    value: DateTime;}const instance = new MaxDateTest();// is invalidinstance.value = new DateTime('UTC', 2019,1,1,0,0,0, 1);// is validinstance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 0);</code></pre>
+
+    
 
 </dd>
 
@@ -6118,7 +6248,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line602">line 602</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line704">line 704</a></code>
             </div>
             
         </h4>
@@ -6307,6 +6437,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class MaxLengthClass {    `@`MaxLength(3, 'Invalid', ['S1'])    value: string;}const instance = new MaxLengthClass();// is validinstance.value = 'a';instance.value = 'ab';instance.value = 'abc';// is invalidinstance.value = 'abcd';</code></pre>
+
+    
 
 </dd>
 
@@ -6322,7 +6457,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line534">line 534</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line592">line 592</a></code>
             </div>
             
         </h4>
@@ -6511,6 +6646,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class MinClass {    `@`Min(10, 'Invalid', ['S1'])    value: number;}const instance = new MinClass();// is validinstance.value = 10;instance.value = 11;// is invalidinstance.value = 9;</code></pre>
+
+    
 
 </dd>
 
@@ -6526,7 +6666,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line880">line 880</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1057">line 1057</a></code>
             </div>
             
         </h4>
@@ -6715,6 +6855,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class MinDateTest {    `@`MinDate(new DateTime('UTC', 2019,1,1,0,0,0, 0), 'Invalid', ['S1'])    value: DateTime;}const instance = new MinDateTest();// is validinstance.value = new DateTime('UTC', 2019,1,1,2,0,0, 0);instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 0);// is invalidinstance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);</code></pre>
+
+    
 
 </dd>
 
@@ -6730,7 +6875,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line585">line 585</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line676">line 676</a></code>
             </div>
             
         </h4>
@@ -6919,6 +7064,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class MinLengthClass {    `@`MinLength(3, 'Invalid', ['S1'])    value: string;}const instance = new MinLengthClass();// is invalidinstance.value = 'a';instance.value = 'ab';// is validinstance.value = 'abc';</code></pre>
+
+    
 
 </dd>
 
@@ -6934,7 +7084,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line669">line 669</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line817">line 817</a></code>
             </div>
             
         </h4>
@@ -7123,6 +7273,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class NotEqualsTest {    `@`NotEquals('a', 'Invalid', ['S1'])    value: string;}const instance = new NotEqualsTest();// is invalidinstance.value = 'a';// is validinstance.value = 'ab';</code></pre>
+
+    
 
 </dd>
 
@@ -7304,6 +7459,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class RequiredTest {    `@`Required('Invalid', ['S1'])    value: any;}const instance = new RequiredTest();// is invalidinstance.value = undefined;instance.value = null;// is validinstance.value = 1;instance.value = 'a';</code></pre>
+
+    
 
 </dd>
 
@@ -7319,7 +7479,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line702">line 702</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line870">line 870</a></code>
             </div>
             
         </h4>
@@ -7485,6 +7645,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class UniqueArrayTest {    `@`UniqueArray('Invalid', ['S1'])    value: number[];}const instance = UniqueArrayTest();// is validinstance.value = [1,2,3,4];// is invalidinstance.value = [1,1,3,4];</code></pre>
+
+    
 
 </dd>
 
@@ -7500,7 +7665,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line1177">line 1177</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line1566">line 1566</a></code>
             </div>
             
         </h4>
@@ -7687,6 +7852,11 @@
     
 </dl>
 
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>`@`ValidateClass((instance, validators) => validators.IsEmail(instance.email) &amp;&amp; validators.Max(instance.num, 20), 'Invalid')class ValidateClassTest {    email: string;    num: number;}const instance = new ValidateClassTest();// is invalidinstance.email = 'test@example.com';instance.num = 21;// is validinstance.email = 'test@example.com';instance.num = 19;</code></pre>
 
     
 
@@ -7885,7 +8055,7 @@
             
             <div class="container-source members">
                 <code><a href="utils_validation_class.validator_class.validator.js.html">utils/validation/class.validator/class.validator.js</a></code>,
-                <code><a href="utils_validation_class.validator_class.validator.js.html#line619">line 619</a></code>
+                <code><a href="utils_validation_class.validator_class.validator.js.html#line733">line 733</a></code>
             </div>
             
         </h4>
@@ -8072,6 +8242,11 @@
     
 </dl>
 
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>class WhiteListClass {    `@`Whitelist([1,4,8], 'Invalid', ['S1'])    value: number;}const instance = new WhiteListClass();// is validinstance.value = 1;instance.value = 4;instance.value = 8;// is invalidinstance.value = 9;</code></pre>
 
     
 
