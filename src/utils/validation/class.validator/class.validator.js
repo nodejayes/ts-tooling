@@ -459,6 +459,18 @@ function IsOptional(scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class RequiredTest {
+ *     `@`Required('Invalid', ['S1'])
+ *     value: any;
+ * }
+ * const instance = new RequiredTest();
+ * // is invalid
+ * instance.value = undefined;
+ * instance.value = null;
+ * // is valid
+ * instance.value = 1;
+ * instance.value = 'a';
  */
 function Required(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -475,6 +487,18 @@ function Required(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsDefinedTest {
+ *     `@`IsDefined('Invalid', ['S1'])
+ *     value: any;
+ * }
+ * const instance = new IsDefinedTest();
+ * // is invalid
+ * instance.value = undefined;
+ * instance.value = null;
+ * // is valid
+ * instance.value = 1;
+ * instance.value = 'a';
  */
 function IsDefined(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -491,6 +515,18 @@ function IsDefined(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsEmptyTest {
+ *     `@`IsEmpty('Invalid', ['S1'])
+ *     value: any;
+ * }
+ * const instance = new IsEmptyTest();
+ * // is valid
+ * instance.value = undefined;
+ * instance.value = null;
+ * // is invalid
+ * instance.value = 1;
+ * instance.value = 'a';
  */
 function IsEmpty(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -507,6 +543,18 @@ function IsEmpty(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsNotEmptyTest {
+ *     `@`IsNotEmpty('Invalid', ['S1])
+ *     value: string;
+ * }
+ * const instance = new IsNotEmptyTest();
+ * // is invalid
+ * instance.value = '';
+ * instance.value = null;
+ * instance.value = undefined;
+ * // is valid
+ * instance.value = 'a';
  */
 function IsNotEmpty(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -523,6 +571,16 @@ function IsNotEmpty(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsEmailClass {
+ *     `@`IsEmail('Invalid', ['S1])
+ *     value: string;
+ * }
+ * const instance = new IsEmailClass();
+ * // is invalid
+ * instance.value = 'xxxxxxxx';
+ * // is valid
+ * instance.value = 'test@example.com';
  */
 function IsEmail(validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -540,6 +598,17 @@ function IsEmail(validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class MinClass {
+ *     `@`Min(10, 'Invalid', ['S1'])
+ *     value: number;
+ * }
+ * const instance = new MinClass();
+ * // is valid
+ * instance.value = 10;
+ * instance.value = 11;
+ * // is invalid
+ * instance.value = 9;
  */
 function Min(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
@@ -557,6 +626,17 @@ function Min(value, validationMessage, scenarios) {
  * @param validationMessage {string}
  * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class MaxClass {
+ *     `@`Max(3, 'Invalid', ['S1'])
+ *     value: number;
+ * }
+ * const instance = new MaxClass();
+ * // is valid
+ * instance.value = 2;
+ * instance.value = 3;
+ * // is invalid
+ * instance.value = 4;
  */
 function Max(value, validationMessage, scenarios) {
     return function (target, propertyKey) {

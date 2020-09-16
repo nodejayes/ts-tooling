@@ -150,7 +150,7 @@ describe('ClassValidator Tests', () => {
         valid.Name = 'Max';
         valid.Age = 25;
         valid.Email = 'max@mustermann.de';
-        const invalid = new Test();
+        let invalid = new Test();
         invalid.Name = null;
         invalid.Age = 1500;
         invalid.Email = 'abcdefg';
@@ -158,6 +158,12 @@ describe('ClassValidator Tests', () => {
         assert.lengthOf(res, 0);
         res = await ClassValidator.Validate('S1', invalid);
         assert.lengthOf(res, 3);
+        invalid = new Test();
+        invalid.Name = undefined;
+        invalid.Age = 25;
+        invalid.Email = 'max@mustermann.de';
+        res = await ClassValidator.Validate('S1', invalid);
+        assert.lengthOf(res, 1);
     });
     it('has Custom Validation Messages', async () => {
         const invalid = new Test2();

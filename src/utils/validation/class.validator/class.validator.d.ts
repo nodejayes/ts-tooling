@@ -155,6 +155,19 @@ export function IsOptional(scenarios?: string[]);
  *
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class RequiredTest {
+ *     `@`Required('Invalid', ['S1'])
+ *     value: any;
+ * }
+ * const instance = new RequiredTest();
+ * // is invalid
+ * instance.value = undefined;
+ * instance.value = null;
+ * // is valid
+ * instance.value = '';
+ * instance.value = 1;
+ * instance.value = 'a';
  */
 export function Required(validationMessage?: string, scenarios?: string[]);
 
@@ -165,6 +178,18 @@ export function Required(validationMessage?: string, scenarios?: string[]);
  *
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class IsDefinedTest {
+ *     `@`IsDefined('Invalid', ['S1'])
+ *     value: any;
+ * }
+ * const instance = new IsDefinedTest();
+ * // is invalid
+ * instance.value = undefined;
+ * instance.value = null;
+ * // is valid
+ * instance.value = 1;
+ * instance.value = 'a';
  */
 export function IsDefined(validationMessage?: string, scenarios?: string[]);
 
@@ -175,6 +200,19 @@ export function IsDefined(validationMessage?: string, scenarios?: string[]);
  *
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class IsEmptyTest {
+ *     `@`IsEmpty('Invalid', ['S1'])
+ *     value: any;
+ * }
+ * const instance = new IsEmptyTest();
+ * // is valid
+ * instance.value = '';
+ * instance.value = undefined;
+ * instance.value = null;
+ * // is invalid
+ * instance.value = 1;
+ * instance.value = 'a';
  */
 export function IsEmpty(validationMessage?: string, scenarios?: string[]);
 
@@ -185,6 +223,18 @@ export function IsEmpty(validationMessage?: string, scenarios?: string[]);
  *
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class IsNotEmptyTest {
+ *     `@`IsNotEmpty('Invalid', ['S1])
+ *     value: string;
+ * }
+ * const instance = new IsNotEmptyTest();
+ * // is invalid
+ * instance.value = '';
+ * instance.value = null;
+ * instance.value = undefined;
+ * // is valid
+ * instance.value = 'a';
  */
 export function IsNotEmpty(validationMessage?: string, scenarios?: string[]);
 
@@ -195,6 +245,16 @@ export function IsNotEmpty(validationMessage?: string, scenarios?: string[]);
  *
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class IsEmailClass {
+ *     `@`IsEmail('Invalid', ['S1])
+ *     value: string;
+ * }
+ * const instance = new IsEmailClass();
+ * // is invalid
+ * instance.value = 'xxxxxxxx';
+ * // is valid
+ * instance.value = 'test@example.com';
  */
 export function IsEmail(validationMessage?: string, scenarios?: string[]);
 
@@ -206,6 +266,17 @@ export function IsEmail(validationMessage?: string, scenarios?: string[]);
  * @param value
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class MinClass {
+ *     `@`Min(10, 'Invalid', ['S1'])
+ *     value: number;
+ * }
+ * const instance = new MinClass();
+ * // is valid
+ * instance.value = 10;
+ * instance.value = 11;
+ * // is invalid
+ * instance.value = 9;
  */
 export function Min(value: number, validationMessage?: string, scenarios?: string[]);
 
@@ -217,6 +288,17 @@ export function Min(value: number, validationMessage?: string, scenarios?: strin
  * @param value
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
+ * @example
+ * class MaxClass {
+ *     `@`Max(3, 'Invalid', ['S1'])
+ *     value: number;
+ * }
+ * const instance = new MaxClass();
+ * // is valid
+ * instance.value = 2;
+ * instance.value = 3;
+ * // is invalid
+ * instance.value = 4;
  */
 export function Max(value: number, validationMessage?: string, scenarios?: string[]);
 
