@@ -110,6 +110,9 @@ export class TimeSpan {
      * @param seconds
      * @param milliseconds
      * @param days
+     * @example
+     * // create a TimeSpan of 2 Days, 2 Hours, 5 Minutes and 8 Seconds
+     * const time = new TimeSpan(2, 5, 8, 2);
      */
     constructor(hours?: number, minutes?: number, seconds?: number, milliseconds?: number, days?: number);
 
@@ -155,6 +158,9 @@ export class TimeSpan {
      * add a TimeSpan to this TimeSpan
      *
      * @param duration
+     * @example
+     * // returns 0.00:00:05
+     * const time = new TimeSpan().Add(new TimeSpan(0, 0, 5, 0, 0));
      */
     Add(duration: TimeSpan): TimeSpan;
 
@@ -162,6 +168,11 @@ export class TimeSpan {
      * check a TimeSpan of Equality with another TimeSpan
      *
      * @param duration
+     * @example
+     * // is true
+     * new TimeSpan().Equals(new TimeSpan());
+     * // is false
+     * new TimeSpan(5).Equals(new TimeSpan());
      */
     Equals(duration: TimeSpan): boolean;
 
@@ -169,6 +180,9 @@ export class TimeSpan {
      * negate the current TimeSpan
      *
      * @return the negated TimeSpan
+     * @example
+     * // returns 0.-05:00:00
+     * new TimeSpan(5).Negate();
      */
     Negate(): TimeSpan;
 
@@ -176,6 +190,9 @@ export class TimeSpan {
      * subtract a TimeSpan from this TimeSpan
      *
      * @param duration
+     * @example
+     * // returns 0.04:00:00
+     * new TimeSpan(5).Subtract(new TimeSpan(1));
      */
     Subtract(duration: TimeSpan): TimeSpan;
 
@@ -183,6 +200,11 @@ export class TimeSpan {
      * is the TimeSpan before this TimeSpan
      *
      * @param duration
+     * @example
+     * // is true
+     * new TimeSpan(5).IsBefore(new TimeSpan(6));
+     * // is false
+     * new TimeSpan(5).IsBefore(new TimeSpan(2));
      */
     IsBefore(duration: TimeSpan): boolean;
 
@@ -190,6 +212,11 @@ export class TimeSpan {
      * is the TimeSpan after this TimeSpan
      *
      * @param duration
+     * @example
+     * // is true
+     * new TimeSpan(5).IsAfter(new TimeSpan(2));
+     * // is false
+     * new TimeSpan(5).IsAfter(new TimeSpan(6));
      */
     IsAfter(duration: TimeSpan): boolean;
 
@@ -198,6 +225,11 @@ export class TimeSpan {
      * you can define a Format Chars to format the TimeSpan
      *
      * @param fmt
+     * @example
+     * // returns 1.01:01:01
+     * new TimeSpan(1,1,1,1,1).ToString();
+     * // returns 05:03:04
+     * new TimeSpan(5, 3, 4).ToString();
      */
     ToString(fmt?: string): string;
 }
