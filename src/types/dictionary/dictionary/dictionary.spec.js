@@ -51,9 +51,17 @@ describe('Dictionary Tests', () => {
         assert.isFalse(FILLED.ContainsValue(300));
     });
 
-    it('can get a Value out of the Dictionary', () => {
-        assert.equal(FILLED.TryGetValue('b'), 2);
-        assert.isNull(FILLED.TryGetValue('z'));
+    it('[Method]: TryGetValue', () => {
+        let res;
+        assert.isTrue(FILLED.TryGetValue('b', (v) => res = v));
+        assert.equal(res, 2);
+        assert.isFalse(FILLED.TryGetValue('z', (v) => res = v));
+        assert.isNull(res);
+    });
+
+    it('[Method]: GetValue', () => {
+        assert.equal(FILLED.GetValue('b'), 2);
+        assert.isNull(FILLED.GetValue('z'));
     });
 
     it('can find a Value by Filter', () => {

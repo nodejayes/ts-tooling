@@ -71,7 +71,7 @@ class EventHandler {
     }
 
     _unsubscribeByKey(key) {
-        const sub = this._subscriptions.TryGetValue(key);
+        const sub = this._subscriptions.GetValue(key);
         sub.unsubscribe();
         this._subscriptions.Remove(key);
     }

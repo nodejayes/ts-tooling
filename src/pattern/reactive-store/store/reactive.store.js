@@ -61,7 +61,7 @@ class ReactiveStore {
     Listen(selector) {
         let key = this._parseSelectorAccess(selector);
         if (this._behaviorSubjects.ContainsKey(key)) {
-            return this._behaviorSubjects.TryGetValue(key);
+            return this._behaviorSubjects.GetValue(key);
         }
         const subject = new SafeBehaviorSubject(selector(this._core));
         this._behaviorSubjects.Add(key, subject);
@@ -133,7 +133,7 @@ class ReactiveStore {
                 i.Split(key).FirstOrDefault().StartsWith('.');
         });
         for (const behaviorKey of behaviorKeys) {
-            const behavior = this._behaviorSubjects.TryGetValue(behaviorKey);
+            const behavior = this._behaviorSubjects.GetValue(behaviorKey);
             if (behavior) {
                 res[behaviorKey] = behavior;
             }

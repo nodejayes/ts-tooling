@@ -4,6 +4,8 @@
 * scenario in validation
 * add Without Method to Array
 * add more documentation and tests
+* add GetValue function to the Dictionary
+* TryGetValue function on Dictionary other api
 
 ### 3.4.2
 
