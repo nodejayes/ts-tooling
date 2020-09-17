@@ -137,6 +137,9 @@ class TimeSpan {
      * @param milliseconds {number?}
      * @param days {number?}
      * @return {TimeSpan}
+     * @example
+     * // create a TimeSpan of 2 Days, 2 Hours, 5 Minutes and 8 Seconds
+     * const time = new TimeSpan(2, 5, 8, 2);
      */
     constructor(hours, minutes, seconds, milliseconds, days) {
         this._days = 0;
@@ -166,6 +169,9 @@ class TimeSpan {
      *
      * @param duration {TimeSpan}
      * @return {TimeSpan}
+     * @example
+     * // returns 0.00:00:05
+     * const time = new TimeSpan().Add(new TimeSpan(0, 0, 5, 0, 0));
      */
     Add(duration) {
         this._days += duration.Day;
@@ -181,6 +187,11 @@ class TimeSpan {
      *
      * @param duration {TimeSpan}
      * @return {boolean}
+     * @example
+     * // is true
+     * new TimeSpan().Equals(new TimeSpan());
+     * // is false
+     * new TimeSpan(5).Equals(new TimeSpan());
      */
     Equals(duration) {
         return this.TotalMilliseconds === duration.TotalMilliseconds;
@@ -190,6 +201,9 @@ class TimeSpan {
      * negate the current TimeSpan
      *
      * @return {TimeSpan} the negated TimeSpan
+     * @example
+     * // returns 0.-05:00:00
+     * new TimeSpan(5).Negate();
      */
     Negate() {
         this._days = -this._days;
@@ -205,6 +219,9 @@ class TimeSpan {
      *
      * @param duration {TimeSpan}
      * @return {TimeSpan}
+     * @example
+     * // returns 0.04:00:00
+     * new TimeSpan(5).Subtract(new TimeSpan(1));
      */
     Subtract(duration) {
         this._days -= duration.Day;
@@ -220,6 +237,11 @@ class TimeSpan {
      *
      * @param duration {TimeSpan}
      * @return {boolean}
+     * @example
+     * // is true
+     * new TimeSpan(5).IsBefore(new TimeSpan(6));
+     * // is false
+     * new TimeSpan(5).IsBefore(new TimeSpan(2));
      */
     IsBefore(duration) {
         return duration.TotalMilliseconds > this.TotalMilliseconds;
@@ -230,6 +252,11 @@ class TimeSpan {
      *
      * @param duration {TimeSpan}
      * @return {boolean}
+     * @example
+     * // is true
+     * new TimeSpan(5).IsAfter(new TimeSpan(2));
+     * // is false
+     * new TimeSpan(5).IsAfter(new TimeSpan(6));
      */
     IsAfter(duration) {
         return duration.TotalMilliseconds < this.TotalMilliseconds;
@@ -241,6 +268,11 @@ class TimeSpan {
      *
      * @param fmt {string?}
      * @return {string}
+     * @example
+     * // returns 1.01:01:01
+     * new TimeSpan(1,1,1,1,1).ToString();
+     * // returns 05:03:04
+     * new TimeSpan(5, 3, 4).ToString();
      */
     ToString(fmt) {
         return (StringFactory.IsNullOrEmpty(fmt) ? this.Day > 0 ? 'D.HH:mm:ss' : 'HH:mm:ss' : fmt)

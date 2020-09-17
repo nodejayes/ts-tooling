@@ -2,6 +2,7 @@
  * throttle the function execution
  *
  * @memberof module:pattern
+ * @function
  *
  * @param options {IThrottleOptions} the options to control the execution
  * @param fn {function} the Function to throttle

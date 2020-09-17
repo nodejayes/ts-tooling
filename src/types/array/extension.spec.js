@@ -1074,4 +1074,31 @@ describe('Array Extension Tests', () => {
             assert.equal(counter, 0);
         });
     });
+    describe('[Method]: Without', () => {
+        it('can skip first element', () => {
+            let res = '';
+            [1,2,3,4,5].Without([0], e => res += e);
+            assert.equal(res, '2345');
+        });
+        it('can skip last element', () => {
+            let res = '';
+            [1,2,3,4,5].Without([4], e => res += e);
+            assert.equal(res, '1234');
+        });
+        it('can skip middle element', () => {
+            let res = '';
+            [1,2,3,4,5].Without([2], e => res += e);
+            assert.equal(res, '1245');
+        });
+        it('can skip random elements', () => {
+            let res = '';
+            [1,2,3,4,5].Without([0, 2, 4], e => res += e);
+            assert.equal(res, '24');
+        });
+        it('indexes they not exists makes no problem', () => {
+            let res = '';
+            [1,2,3,4,5].Without([10], e => res += e);
+            assert.equal(res, '12345');
+        });
+    });
 });

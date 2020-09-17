@@ -1059,4 +1059,27 @@ Array.prototype.ForSegment = function (cb) {
     }
 };
 
+/**
+ * iterate over the items they are not in the given indexes
+ *
+ * @param indexes {number[]} the indexes to skip
+ * @param cb {function} the operation to do
+ *
+ * @example
+ * [1,2,3,4,5].Without([0,2], e => console.info(e));
+ * // print into console
+ * // 2
+ * // 4
+ * // 5
+ */
+Array.prototype.Without = function (indexes, cb) {
+    const length = this.length;
+    for (let i = 0; i < length; i++) {
+        if (indexes.Contains(i)) {
+            continue;
+        }
+        cb(this[i]);
+    }
+}
+
 module.exports = {ListSortOrder};

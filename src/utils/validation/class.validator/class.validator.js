@@ -135,17 +135,18 @@ class ClassValidator {}
  * @function module:utils/validation.ClassValidator#Validate
  * @static
  * @param {any} instance the Instance of the Class to Validate
+ * @param {string} scenario the Name of the Scenario to Validate with
  *
  * @example
  * class User {
- *     IsDefined('Name must be defined')
+ *     `@`IsDefined('Name must be defined', ['Insert', 'Read'])
  *     Name: string;
  *
- *     Min(0, 'Age must be greater -1')
- *     Max(200, 'Age must me lower 201')
+ *     `@`Min(0, 'Age must be greater -1', ['Insert', 'Update', 'Read'])
+ *     `@`Max(200, 'Age must me lower 201', ['Insert', 'Update', 'Read'])
  *     Age: number;
  *
- *     IsEmail('Email must be a valid email address')
+ *     `@`IsEmail('Email must be a valid email address', ['Insert', 'Update', 'Read'])
  *     Email: string;
  * }
  * const instance = new User();
@@ -155,14 +156,14 @@ class ClassValidator {}
  *      {Message:'Age must me lower 201'},
  *      {Message:'Email must be a valid email address'},
  * ]
- * ClassValidator.Validate(instance);
+ * ClassValidator.Validate('Insert', instance);
  * instance.Name = 'Udo';
  * instance.Age = 20;
  * instance.Email = 'udo@address.de';
  * // returns []
- * ClassValidator.Validate(instance);
+ * ClassValidator.Validate('Insert', instance);
  */
-ClassValidator.Validate = async (instance) => {
+ClassValidator.Validate = async (scenario, instance) => {
     const errors = [];
     checkForRequired(instance, errors);
     for (const key of Object.keys(instance)) {
@@ -170,16 +171,29 @@ ClassValidator.Validate = async (instance) => {
         const value = instance[key];
 
         if (validationRules) {
-            if (validationRules['ValidateIf'] && validationRules['ValidateIf'].Any() &&
-                isFunction(validationRules['ValidateIf'][0]) && !validationRules['ValidateIf'][0](instance)) {
-                continue;
-            } else if (validationRules['IsOptional'] && validationRules['IsOptional'][0] === true && !value) {
-                continue;
+
+            if (validationRules['ValidateIf'] && validationRules['ValidateIf'].Any()) {
+                const validationScenarios = validationRules['ValidateIf'][2];
+                if ((Array.isArray(validationScenarios) && !validationScenarios.Contains(scenario)) ||
+                    (isFunction(validationRules['ValidateIf'][0]) && !validationRules['ValidateIf'][0](instance))) {
+                    continue;
+                }
+            } else if (validationRules['IsOptional']) {
+                const validationScenarios = validationRules['IsOptional'][2];
+                if ((Array.isArray(validationScenarios) && !validationScenarios.Contains(scenario)) ||
+                    (validationRules['IsOptional'][0] === true && !value)) {
+                    continue;
+                }
             }
 
             for (const validationKey of Object.keys(validationRules)) {
                 const validationValue = validationRules[validationKey][0];
                 const validationMessage = validationRules[validationKey][1];
+                const validationScenarios = validationRules[validationKey][2];
+                if (Array.isArray(validationScenarios) && !validationScenarios.Contains(scenario)) {
+                    // can't execute the validation its not in the scenario
+                    continue;
+                }
                 switch (validationKey) {
                     case 'IsDefined':
                         executeValidation(value, BASE_VALIDATIONS.IsDefined, validationMessage, errors);
@@ -304,7 +318,7 @@ ClassValidator.Validate = async (instance) => {
                 if (isObject(entry)) {
                     // validate the SubObject but skip circulars
                     if (!ObjectFactory.IsCircular(entry)) {
-                        const subErrors = await ClassValidator.Validate(entry);
+                        const subErrors = await ClassValidator.Validate(scenario, entry);
                         if (subErrors.Any()) {
                             errors.AddRange(subErrors);
                         }
@@ -314,7 +328,7 @@ ClassValidator.Validate = async (instance) => {
         } else if (isObject(value)) {
             // validate the SubObject but skip circulars
             if (!ObjectFactory.IsCircular(value)) {
-                const subErrors = await ClassValidator.Validate(value);
+                const subErrors = await ClassValidator.Validate(scenario, value);
                 if (subErrors.Any()) {
                     errors.AddRange(subErrors);
                 }
@@ -342,40 +356,42 @@ ClassValidator.Validate = async (instance) => {
  * @function module:utils/validation.ClassValidator#ValidateObject
  * @static
  * @param {constructor} constructor the Class with the Validation Decorators
+ * @param {string} scenario the Name of the Scenario to Validate with
  * @param {any} value the raw JSON Object
  *
  * @example
  * class User {
- *     IsDefined('Name must be defined')
+ *     `@`IsDefined('Name must be defined', ['Insert', 'Read'])
  *     Name: string;
  *
- *     Min(0, 'Age must be greater -1')
- *     Max(200, 'Age must me lower 201')
+ *     `@`Min(0, 'Age must be greater -1', ['Insert', 'Update', 'Read'])
+ *     `@`Max(200, 'Age must me lower 201', ['Insert', 'Update', 'Read'])
  *     Age: number;
  *
- *     IsEmail('Email must be a valid email address')
+ *     `@`IsEmail('Email must be a valid email address', ['Insert', 'Update', 'Read'])
  *     Email: string;
  * }
- * const demoUser = {};
+ * const instance = {
+ *     Name: 'Udo',
+ *     Age: 20,
+ *     Email: 'udo@address.de',
+ * };
  * // returns [
  *      {Message:'Name must be defined'},
  *      {Message:'Age must be greater -1'},
  *      {Message:'Age must me lower 201'},
  *      {Message:'Email must be a valid email address'},
  * ]
- * ClassValidator.Validate(demoUser);
- * demoUser.Name = 'Udo';
- * demoUser.Age = 20;
- * demoUser.Email = 'udo@address.de';
+ * ClassValidator.ValidateObject(User, 'Insert', {});
  * // returns []
- * ClassValidator.Validate(demoUser);
+ * ClassValidator.ValidateObject(User, 'Insert', instance);
  */
-ClassValidator.ValidateObject = async (constructor, value) => {
+ClassValidator.ValidateObject = async (constructor, scenario, value) => {
     const inst = new constructor();
     for (const key of Object.keys(value)) {
         inst[key] = value[key];
     }
-    return ClassValidator.Validate(inst);
+    return ClassValidator.Validate(scenario, inst);
 };
 
 const ValidationStore = {};
@@ -399,12 +415,12 @@ function executeValidation(value, cb, validationMessage, errors) {
     }
 }
 
-function registerInStore(target, propertyKey, targetKey, value, validationMessage) {
+function registerInStore(target, propertyKey, targetKey, value, validationMessage, scenarios) {
     const key = `${target.constructor.name}_${propertyKey}`;
     if (!ValidationStore[key]) {
         ValidationStore[key] = {};
     }
-    ValidationStore[key][targetKey] = [value, validationMessage];
+    ValidationStore[key][targetKey] = [value, validationMessage, scenarios];
 }
 
 /**
@@ -413,11 +429,12 @@ function registerInStore(target, propertyKey, targetKey, value, validationMessag
  * @function module:utils/validation.ValidateIf
  *
  * @param cb {function} define the check Method
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function ValidateIf(cb) {
+function ValidateIf(cb, scenarios) {
     return function (target, propertyKey) {
-        registerInStore(target, propertyKey, 'ValidateIf', cb, '');
+        registerInStore(target, propertyKey, 'ValidateIf', cb, '', scenarios);
     }
 }
 
@@ -425,11 +442,12 @@ function ValidateIf(cb) {
  * check if the Value is missing and ignore all Validations
  *
  * @function module:utils/validation.IsOptional
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
  */
-function IsOptional() {
+function IsOptional(scenarios) {
     return function (target, propertyKey) {
-        registerInStore(target, propertyKey, 'IsOptional', true, '');
+        registerInStore(target, propertyKey, 'IsOptional', true, '', scenarios);
     }
 }
 
@@ -439,12 +457,25 @@ function IsOptional() {
  * @function module:utils/validation.Required
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class RequiredTest {
+ *     `@`Required('Invalid', ['S1'])
+ *     value: any;
+ * }
+ * const instance = new RequiredTest();
+ * // is invalid
+ * instance.value = undefined;
+ * instance.value = null;
+ * // is valid
+ * instance.value = 1;
+ * instance.value = 'a';
  */
-function Required(validationMessage) {
+function Required(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be set.`;
-        registerInStore(target, propertyKey, 'Required', true, message);
+        registerInStore(target, propertyKey, 'Required', true, message, scenarios);
     }
 }
 
@@ -454,12 +485,25 @@ function Required(validationMessage) {
  * @function module:utils/validation.IsDefined
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsDefinedTest {
+ *     `@`IsDefined('Invalid', ['S1'])
+ *     value: any;
+ * }
+ * const instance = new IsDefinedTest();
+ * // is invalid
+ * instance.value = undefined;
+ * instance.value = null;
+ * // is valid
+ * instance.value = 1;
+ * instance.value = 'a';
  */
-function IsDefined(validationMessage) {
+function IsDefined(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be defined.`;
-        registerInStore(target, propertyKey, 'IsDefined', true, message);
+        registerInStore(target, propertyKey, 'IsDefined', true, message, scenarios);
     }
 }
 
@@ -469,12 +513,25 @@ function IsDefined(validationMessage) {
  * @function module:utils/validation.IsEmpty
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsEmptyTest {
+ *     `@`IsEmpty('Invalid', ['S1'])
+ *     value: any;
+ * }
+ * const instance = new IsEmptyTest();
+ * // is valid
+ * instance.value = undefined;
+ * instance.value = null;
+ * // is invalid
+ * instance.value = 1;
+ * instance.value = 'a';
  */
-function IsEmpty(validationMessage) {
+function IsEmpty(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be Empty.`;
-        registerInStore(target, propertyKey, 'IsEmpty', true, message);
+        registerInStore(target, propertyKey, 'IsEmpty', true, message, scenarios);
     }
 }
 
@@ -484,12 +541,25 @@ function IsEmpty(validationMessage) {
  * @function module:utils/validation.IsNotEmpty
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsNotEmptyTest {
+ *     `@`IsNotEmpty('Invalid', ['S1])
+ *     value: string;
+ * }
+ * const instance = new IsNotEmptyTest();
+ * // is invalid
+ * instance.value = '';
+ * instance.value = null;
+ * instance.value = undefined;
+ * // is valid
+ * instance.value = 'a';
  */
-function IsNotEmpty(validationMessage) {
+function IsNotEmpty(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be Empty.`;
-        registerInStore(target, propertyKey, 'IsNotEmpty', true, message);
+        registerInStore(target, propertyKey, 'IsNotEmpty', true, message, scenarios);
     }
 }
 
@@ -499,12 +569,23 @@ function IsNotEmpty(validationMessage) {
  * @function module:utils/validation.IsEmail
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsEmailClass {
+ *     `@`IsEmail('Invalid', ['S1])
+ *     value: string;
+ * }
+ * const instance = new IsEmailClass();
+ * // is invalid
+ * instance.value = 'xxxxxxxx';
+ * // is valid
+ * instance.value = 'test@example.com';
  */
-function IsEmail(validationMessage) {
+function IsEmail(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Email Address.`;
-        registerInStore(target, propertyKey, 'IsEmail', true, message);
+        registerInStore(target, propertyKey, 'IsEmail', true, message, scenarios);
     }
 }
 
@@ -515,12 +596,24 @@ function IsEmail(validationMessage) {
  *
  * @param value {number}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class MinClass {
+ *     `@`Min(10, 'Invalid', ['S1'])
+ *     value: number;
+ * }
+ * const instance = new MinClass();
+ * // is valid
+ * instance.value = 10;
+ * instance.value = 11;
+ * // is invalid
+ * instance.value = 9;
  */
-function Min(value, validationMessage) {
+function Min(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be lower than ${value}.`;
-        registerInStore(target, propertyKey, 'Min', value, message);
+        registerInStore(target, propertyKey, 'Min', value, message, scenarios);
     };
 }
 
@@ -531,12 +624,24 @@ function Min(value, validationMessage) {
  *
  * @param value {number}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class MaxClass {
+ *     `@`Max(3, 'Invalid', ['S1'])
+ *     value: number;
+ * }
+ * const instance = new MaxClass();
+ * // is valid
+ * instance.value = 2;
+ * instance.value = 3;
+ * // is invalid
+ * instance.value = 4;
  */
-function Max(value, validationMessage) {
+function Max(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be bigger than ${value}.`;
-        registerInStore(target, propertyKey, 'Max', value, message);
+        registerInStore(target, propertyKey, 'Max', value, message, scenarios);
     };
 }
 
@@ -547,12 +652,24 @@ function Max(value, validationMessage) {
  *
  * @param value {function}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class CustomValidationClass {
+ *     `@`CustomValidation(v => v > 5, 'Invalid', ['S1'])
+ *     value: number;
+ * }
+ * const instance = new CustomValidationClass();
+ * // is valid
+ * instance.value = 6;
+ * // is invalid
+ * instance.value = 5;
+ * instance.value = 4;
  */
-function CustomValidation(value, validationMessage) {
+function CustomValidation(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} Custom Validation was not successful.`;
-        registerInStore(target, propertyKey, 'CustomValidation', value, message);
+        registerInStore(target, propertyKey, 'CustomValidation', value, message, scenarios);
     }
 }
 
@@ -563,12 +680,24 @@ function CustomValidation(value, validationMessage) {
  *
  * @param value {number}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class MinLengthClass {
+ *     `@`MinLength(3, 'Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new MinLengthClass();
+ * // is invalid
+ * instance.value = 'a';
+ * instance.value = 'ab';
+ * // is valid
+ * instance.value = 'abc';
  */
-function MinLength(value, validationMessage) {
+function MinLength(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must have ${value} characters.`;
-        registerInStore(target, propertyKey, 'MinLength', value, message);
+        registerInStore(target, propertyKey, 'MinLength', value, message, scenarios);
     };
 }
 
@@ -579,12 +708,25 @@ function MinLength(value, validationMessage) {
  *
  * @param value {number}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class MaxLengthClass {
+ *     `@`MaxLength(3, 'Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new MaxLengthClass();
+ * // is valid
+ * instance.value = 'a';
+ * instance.value = 'ab';
+ * instance.value = 'abc';
+ * // is invalid
+ * instance.value = 'abcd';
  */
-function MaxLength(value, validationMessage) {
+function MaxLength(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have more than ${value} characters.`;
-        registerInStore(target, propertyKey, 'MaxLength', value, message);
+        registerInStore(target, propertyKey, 'MaxLength', value, message, scenarios);
     };
 }
 
@@ -595,12 +737,25 @@ function MaxLength(value, validationMessage) {
  *
  * @param value {any[]}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class WhiteListClass {
+ *     `@`Whitelist([1,4,8], 'Invalid', ['S1'])
+ *     value: number;
+ * }
+ * const instance = new WhiteListClass();
+ * // is valid
+ * instance.value = 1;
+ * instance.value = 4;
+ * instance.value = 8;
+ * // is invalid
+ * instance.value = 9;
  */
-function Whitelist(value, validationMessage) {
+function Whitelist(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have the following values: ${value.join(',')}`;
-        registerInStore(target, propertyKey, 'Whitelist', value, message);
+        registerInStore(target, propertyKey, 'Whitelist', value, message, scenarios);
     }
 }
 
@@ -610,12 +765,25 @@ function Whitelist(value, validationMessage) {
  * @function module:utils/validation.Blacklist
  * @param value {any[]} values that are not allowed on this Property
  * @param validationMessage {string} the Message string that was written in the Validation Error Message
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class BlacklistClass {
+ *     `@`Blacklist([1,4,8], 'Invalid', ['S1'])
+ *     value: number;
+ * }
+ * const instance = new BlacklistClass();
+ * // is invalid
+ * instance.value = 1;
+ * instance.value = 4;
+ * instance.value = 8;
+ * // is valid
+ * instance.value = 9;
  */
-function Blacklist(value, validationMessage) {
+function Blacklist(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have the following values: ${value.join(',')}`;
-        registerInStore(target, propertyKey, 'Blacklist', value, message);
+        registerInStore(target, propertyKey, 'Blacklist', value, message, scenarios);
     }
 }
 
@@ -626,12 +794,23 @@ function Blacklist(value, validationMessage) {
  *
  * @param value {any}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class EqualsClass {
+ *     `@`Equals('-', 'Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new EqualsClass();
+ * // is invalid
+ * instance.value = 'a';
+ * // is valid
+ * instance.value = '-';
  */
-function Equals(value, validationMessage) {
+function Equals(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} not match the value: ${value}`;
-        registerInStore(target, propertyKey, 'Equals', value, message);
+        registerInStore(target, propertyKey, 'Equals', value, message, scenarios);
     }
 }
 
@@ -642,12 +821,23 @@ function Equals(value, validationMessage) {
  *
  * @param value {any}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class NotEqualsTest {
+ *     `@`NotEquals('a', 'Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new NotEqualsTest();
+ * // is invalid
+ * instance.value = 'a';
+ * // is valid
+ * instance.value = 'ab';
  */
-function NotEquals(value, validationMessage) {
+function NotEquals(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} match the value: ${value}`;
-        registerInStore(target, propertyKey, 'NotEquals', value, message);
+        registerInStore(target, propertyKey, 'NotEquals', value, message, scenarios);
     }
 }
 
@@ -657,12 +847,23 @@ function NotEquals(value, validationMessage) {
  * @function module:utils/validation.IsInt
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsIntTest {
+ *     `@`IsInt('Invalid', ['S1'])
+ *     value: any;
+ * }
+ * const instance = new IsIntTest();
+ * // is valid
+ * instance.value = 1;
+ * // is invalid
+ * instance.value = 'a';
  */
-function IsInt(validationMessage) {
+function IsInt(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Integer Value`;
-        registerInStore(target, propertyKey, 'IsInt', true, message);
+        registerInStore(target, propertyKey, 'IsInt', true, message, scenarios);
     }
 }
 
@@ -672,26 +873,54 @@ function IsInt(validationMessage) {
  * @function module:utils/validation.UniqueArray
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class UniqueArrayTest {
+ *     `@`UniqueArray('Invalid', ['S1'])
+ *     value: number[];
+ * }
+ * const instance = UniqueArrayTest();
+ * // is valid
+ * instance.value = [1,2,3,4];
+ * // is invalid
+ * instance.value = [1,1,3,4];
  */
-function UniqueArray(validationMessage) {
+function UniqueArray(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must have Unique Values`;
-        registerInStore(target, propertyKey, 'UniqueArray', true, message);
+        registerInStore(target, propertyKey, 'UniqueArray', true, message, scenarios);
     }
 }
 
 /**
- * the Array must contain some Values
+ * the Array must contain some Values to be valid
  *
  * @function module:utils/validation.ArrayNotEmpty
+ *
  * @param validationMessage {string} the Message string that was written in the Validation Error Message
+ * @param scenarios {string[]} the scenario strings where the validation was executed
+ *
  * @return {ClassDecorator}
+ *
+ * @example
+ * class SomeEntity {
+ *     `@`ArrayNotEmpty('array can not be empty', ['S1'])
+ *     primeNumbers: number[];
+ * }
+ * const invalid = new SomeEntity();
+ * // returns [{Message: 'array can not be empty'}]
+ * ClassValidator.Validate('S1', invalid);
+ *
+ * const valid = new SomeEntity();
+ * valid.primeNumbers = [2,3,5,7];
+ * // returns []
+ * ClassValidator.Validate('S1', valid);
  */
-function ArrayNotEmpty(validationMessage) {
+function ArrayNotEmpty(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be empty.`;
-        registerInStore(target, propertyKey, 'ArrayNotEmpty', true, message);
+        registerInStore(target, propertyKey, 'ArrayNotEmpty', true, message, scenarios);
     }
 }
 
@@ -701,12 +930,29 @@ function ArrayNotEmpty(validationMessage) {
  * @function module:utils/validation.IsPositive
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ *
+ * @example
+ * class IsPositiveCheck {
+ *      `@`IsPositive('Invalid', ['S1'])
+ *      prop: int;
+ * }
+ * const instance = new IsPositiveCheck();
+ * instance.prop = 0;
+ * // no error was return
+ * await ClassValidator.Validate('S1', instance);
+ * instance.prop = 1;
+ * // no error was return
+ * await ClassValidator.Validate('S1', instance);
+ * instance.prop = -1;
+ * // one error was returned
+ * await ClassValidator.Validate('S1', instance);
  */
-function IsPositive(validationMessage) {
+function IsPositive(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have Positive Values.`;
-        registerInStore(target, propertyKey, 'IsPositive', true, message);
+        registerInStore(target, propertyKey, 'IsPositive', true, message, scenarios);
     }
 }
 
@@ -716,12 +962,29 @@ function IsPositive(validationMessage) {
  * @function module:utils/validation.IsNegative
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ *
+ * @example
+ * class IsNegativeCheck {
+ *      `@`IsNegative('Invalid', ['S1'])
+ *      prop: int;
+ * }
+ * const instance = new IsNegativeCheck();
+ * instance.prop = 0;
+ * // one error was returned
+ * await ClassValidator.Validate('S1', instance);
+ * instance.prop = 1;
+ * // one error was returned
+ * await ClassValidator.Validate('S1', instance);
+ * instance.prop = -1;
+ * // no error was returned
+ * await ClassValidator.Validate('S1', instance);
  */
-function IsNegative(validationMessage) {
+function IsNegative(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have Positive Values.`;
-        registerInStore(target, propertyKey, 'IsNegative', true, message);
+        registerInStore(target, propertyKey, 'IsNegative', true, message, scenarios);
     }
 }
 
@@ -733,12 +996,35 @@ function IsNegative(validationMessage) {
  * @function module:utils/validation.IsBooleanString
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsBooleanStringTest {
+ *     `@`IsBooleanString('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsBooleanStringTest();
+ * // is valid
+ * instance.value = 'abc';
+ * // returns a error
+ * await ClassValidator.Validate('S1', instance);
+ * instance.value = 'true';
+ * // returns no error
+ * await ClassValidator.Validate('S1', instance);
+ * instance.value = 'false';
+ * // returns no error
+ * await ClassValidator.Validate('S1', instance);
+ * instance.value = 'TRUE';
+ * // returns no error
+ * await ClassValidator.Validate('S1', instance);
+ * instance.value = 'FALSE';
+ * // returns no error
+ * await ClassValidator.Validate('S1', instance);
  */
-function IsBooleanString(validationMessage) {
+function IsBooleanString(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Boolean String.`;
-        registerInStore(target, propertyKey, 'IsBooleanString', true, message);
+        registerInStore(target, propertyKey, 'IsBooleanString', true, message, scenarios);
     }
 }
 
@@ -748,12 +1034,23 @@ function IsBooleanString(validationMessage) {
  * @function module:utils/validation.IsNumberString
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsNumberStringTest {
+ *     `@`IsNumberString('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsNumberStringTest();
+ * // is valid
+ * instance.value = '1';
+ * // is invalid
+ * instance.value = '1a';
  */
-function IsNumberString(validationMessage) {
+function IsNumberString(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contain Numbers.`;
-        registerInStore(target, propertyKey, 'IsNumberString', true, message);
+        registerInStore(target, propertyKey, 'IsNumberString', true, message, scenarios);
     }
 }
 
@@ -764,12 +1061,24 @@ function IsNumberString(validationMessage) {
  *
  * @param value {DateTime}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class MinDateTest {
+ *     `@`MinDate(new DateTime('UTC', 2019,1,1,0,0,0, 0), 'Invalid', ['S1'])
+ *     value: DateTime;
+ * }
+ * const instance = new MinDateTest();
+ * // is valid
+ * instance.value = new DateTime('UTC', 2019,1,1,2,0,0, 0);
+ * instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 0);
+ * // is invalid
+ * instance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);
  */
-function MinDate(value, validationMessage) {
+function MinDate(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be greater than ${value.toString()}.`;
-        registerInStore(target, propertyKey, 'MinDate', value, message);
+        registerInStore(target, propertyKey, 'MinDate', value, message, scenarios);
     }
 }
 
@@ -780,12 +1089,24 @@ function MinDate(value, validationMessage) {
  *
  * @param value {DateTime}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class MaxDateTest {
+ *     `@`MaxDate(new DateTime('UTC', 2019,1,1,0,0,0,0), 'Invalid', ['S1'])
+ *     value: DateTime;
+ * }
+ * const instance = new MaxDateTest();
+ * // is invalid
+ * instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 1);
+ * // is valid
+ * instance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);
+ * instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 0);
  */
-function MaxDate(value, validationMessage) {
+function MaxDate(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be lower than ${value.toString()}.`;
-        registerInStore(target, propertyKey, 'MaxDate', value, message);
+        registerInStore(target, propertyKey, 'MaxDate', value, message, scenarios);
     }
 }
 
@@ -795,12 +1116,23 @@ function MaxDate(value, validationMessage) {
  * @function module:utils/validation.IsAlpha
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsAlphaTest {
+ *     `@`IsAlpha('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsAlphaTest();
+ * // is valid
+ * instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+ * // is invalid
+ * instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1';
  */
-function IsAlpha(validationMessage) {
+function IsAlpha(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters (a-zA-Z).`;
-        registerInStore(target, propertyKey, 'IsAlpha', true, message);
+        registerInStore(target, propertyKey, 'IsAlpha', true, message, scenarios);
     }
 }
 
@@ -810,12 +1142,23 @@ function IsAlpha(validationMessage) {
  * @function module:utils/validation.IsAlphanumeric
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsAlphanumericTest {
+ *     `@`IsAlphanumeric('Invalid', ['S1'])
+ *     values: string;
+ * }
+ * const instance = new IsAlphanumericTest();
+ * // is valid
+ * instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+ * // is invalid
+ * instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?';
  */
-function IsAlphanumeric(validationMessage) {
+function IsAlphanumeric(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters and numbers.`;
-        registerInStore(target, propertyKey, 'IsAlphanumeric', true, message);
+        registerInStore(target, propertyKey, 'IsAlphanumeric', true, message, scenarios);
     }
 }
 
@@ -825,12 +1168,27 @@ function IsAlphanumeric(validationMessage) {
  * @function module:utils/validation.IsAscii
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsAsciiTest {
+ *     `@`IsAscii('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsAsciiTest();
+ * // is valid
+ * for (let i = 0; i <= 127; i++) {
+ *     instance.value += String.fromCharCode(i);
+ * }
+ * // is invalid
+ * for (let i = 128; i <= 255; i++) {
+ *     instance.value += String.fromCharCode(i);
+ * }
  */
-function IsAscii(validationMessage) {
+function IsAscii(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Ascii String.`;
-        registerInStore(target, propertyKey, 'IsAscii', true, message);
+        registerInStore(target, propertyKey, 'IsAscii', true, message, scenarios);
     }
 }
 
@@ -840,12 +1198,23 @@ function IsAscii(validationMessage) {
  * @function module:utils/validation.IsBase64
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsBase64Test {
+ *     `@`IsBase64('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsBase64Test();
+ * // is valid
+ * instance.value = 'aGVsbG86d29ybGQhPyQqJigpJy09QH4=';
+ * // is invalid
+ * instance.value = 'hello:world!?$*&()'-=@~';
  */
-function IsBase64(validationMessage) {
+function IsBase64(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Base64 String.`;
-        registerInStore(target, propertyKey, 'IsBase64', true, message);
+        registerInStore(target, propertyKey, 'IsBase64', true, message, scenarios);
     }
 }
 
@@ -857,12 +1226,24 @@ function IsBase64(validationMessage) {
  * @function module:utils/validation.IsHexColor
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsHexColorTest {
+ *     `@`IsHexColor('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsHexColor();
+ * // is valid
+ * instance.value = '#ffffff';
+ * instance.value = '#ffffffff';
+ * // is invalid
+ * instance.value = '#ffffffffff';
  */
-function IsHexColor(validationMessage) {
+function IsHexColor(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hex Color String.`;
-        registerInStore(target, propertyKey, 'IsHexColor', true, message);
+        registerInStore(target, propertyKey, 'IsHexColor', true, message, scenarios);
     }
 }
 
@@ -872,12 +1253,26 @@ function IsHexColor(validationMessage) {
  * @function module:utils/validation.IsHexadecimal
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsHexadecimalTest {
+ *     `@`IsHexadecimal('Invalid', ['S1])
+ *     value: string;
+ * }
+ * const instance = new IsHexadecimalTest();
+ * // is valid
+ * instance.value = 'AF050505';
+ * instance.value = 'af050505';
+ * instance.value = '0xAF050505';
+ * instance.value = '#AF050505';
+ * // is invalid
+ * instance.value = 'xxxxxxxx';
  */
-function IsHexadecimal(validationMessage) {
+function IsHexadecimal(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hexadecimal String.`;
-        registerInStore(target, propertyKey, 'IsHexadecimal', true, message);
+        registerInStore(target, propertyKey, 'IsHexadecimal', true, message, scenarios);
     }
 }
 
@@ -887,12 +1282,24 @@ function IsHexadecimal(validationMessage) {
  * @function module:utils/validation.IsMacAddress
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsMacAddressTest {
+ *     `@`IsMacAddress('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsMacAddressTest();
+ * // is valid
+ * instance.value = '3D-F2-C9-A6-B3-4F';
+ * instance.value = '3D:F2:C9:A6:B3:4F';
+ * // is invalid
+ * instance.value = '3D:F2:C9:A6:B3:4F:';
  */
-function IsMacAddress(validationMessage) {
+function IsMacAddress(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MAC Address.`;
-        registerInStore(target, propertyKey, 'IsMacAddress', true, message);
+        registerInStore(target, propertyKey, 'IsMacAddress', true, message, scenarios);
     }
 }
 
@@ -902,12 +1309,24 @@ function IsMacAddress(validationMessage) {
  * @function module:utils/validation.IsIp
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsIpTest {
+ *     `@`IsIp('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsIpTest();
+ * // is valid
+ * instance.value = '192.168.1.1';
+ * // is invalid
+ * instance.value = '000.0000.00.00';
+ * instance.value = '912.456.123.123';
  */
-function IsIp(validationMessage) {
+function IsIp(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a IP Address.`;
-        registerInStore(target, propertyKey, 'IsIp', true, message);
+        registerInStore(target, propertyKey, 'IsIp', true, message, scenarios);
     }
 }
 
@@ -917,12 +1336,25 @@ function IsIp(validationMessage) {
  * @function module:utils/validation.IsPort
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsPortTest {
+ *     `@`IsPort('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsPortTest();
+ * // is valid
+ * instance.value = '1';
+ * instance.value = '65536';
+ * // is invalid
+ * instance.value = '65537';
+ * instance.value = '0';
  */
-function IsPort(validationMessage) {
+function IsPort(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Port Number.`;
-        registerInStore(target, propertyKey, 'IsPort', true, message);
+        registerInStore(target, propertyKey, 'IsPort', true, message, scenarios);
     }
 }
 
@@ -932,12 +1364,23 @@ function IsPort(validationMessage) {
  * @function module:utils/validation.IsJSON
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsJSONTest {
+ *     `@`IsJSON('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsJSONTest();
+ * // is valid
+ * instance.value = '{"Hello":"World"}';
+ * // is invalid
+ * instance.value = 'xxxxxxx';
  */
-function IsJSON(validationMessage) {
+function IsJSON(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON String.`;
-        registerInStore(target, propertyKey, 'IsJSON', true, message);
+        registerInStore(target, propertyKey, 'IsJSON', true, message, scenarios);
     }
 }
 
@@ -947,12 +1390,23 @@ function IsJSON(validationMessage) {
  * @function module:utils/validation.IsJWT
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsJWTTest {
+ *     `@`IsJWT('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsJWTTest();
+ * // is valid
+ * instance.value = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ';
+ * // is invalid
+ * instance.value = 'Hello';
  */
-function IsJWT(validationMessage) {
+function IsJWT(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON Web Token.`;
-        registerInStore(target, propertyKey, 'IsJWT', true, message);
+        registerInStore(target, propertyKey, 'IsJWT', true, message, scenarios);
     }
 }
 
@@ -963,12 +1417,23 @@ function IsJWT(validationMessage) {
  *
  * @param value {number}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsByteLengthTest {
+ *     `@`IsByteLength(4, 'Invalid', ['S1])
+ *     value: string
+ * }
+ * const instance = new IsByteLengthTest();
+ * // is valid
+ * instance.value = '1234';
+ * // is invalid
+ * instance.value = '12345';
  */
-function IsByteLength(value, validationMessage) {
+function IsByteLength(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have a Length of ${value} Bytes.`;
-        registerInStore(target, propertyKey, 'IsByteLength', value, message);
+        registerInStore(target, propertyKey, 'IsByteLength', value, message, scenarios);
     }
 }
 
@@ -978,12 +1443,23 @@ function IsByteLength(value, validationMessage) {
  * @function module:utils/validation.IsMongoId
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsMongoIdTest {
+ *     `@`IsMongoId('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsMongoIdTest();
+ * // is valid
+ * instance.value = '5dfaa9da5fca3be0982a4301';
+ * // is invalid
+ * instance.value = 'abc';
  */
-function IsMongoId(validationMessage) {
+function IsMongoId(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MongoDb ObjectId.`;
-        registerInStore(target, propertyKey, 'IsMongoId', true, message);
+        registerInStore(target, propertyKey, 'IsMongoId', true, message, scenarios);
     }
 }
 
@@ -993,12 +1469,25 @@ function IsMongoId(validationMessage) {
  * @function module:utils/validation.IsUrl
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsUrlTest {
+ *     `@`IsUrl('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsUrlTest();
+ * // is valid
+ * instance.value = 'http://foo.bar.com/';
+ * instance.value = 'http://thingiverse.com/download:1894343';
+ * // is invalid
+ * instance.value = 'aaa';
+ * instance.value = 'https://w';
  */
-function IsUrl(validationMessage) {
+function IsUrl(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a URL.`;
-        registerInStore(target, propertyKey, 'IsUrl', true, message);
+        registerInStore(target, propertyKey, 'IsUrl', true, message, scenarios);
     }
 }
 
@@ -1008,12 +1497,24 @@ function IsUrl(validationMessage) {
  * @function module:utils/validation.IsUUID
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsUUIDTest {
+ *     `@`IsUUID('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsUUIDTest();
+ * // is valid
+ * instance.value = '3e019b17-e95e-40fc-9606-4041efcb2684';
+ * instance.value = '{3e019b17-e95e-40fc-9606-4041efcb2684}';
+ * // is invalid
+ * instance.value = 'no uuid';
  */
-function IsUUID(validationMessage) {
+function IsUUID(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a UUID.`;
-        registerInStore(target, propertyKey, 'IsUUID', true, message);
+        registerInStore(target, propertyKey, 'IsUUID', true, message, scenarios);
     }
 }
 
@@ -1027,12 +1528,38 @@ function IsUUID(validationMessage) {
  * @function module:utils/validation.IsHash
  *
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * class IsHashTest {
+ *     `@`IsHash('Invalid', ['S1'])
+ *     value: string;
+ * }
+ * const instance = new IsHashTest();
+ * // is valid
+ * // MD5
+ * instance.value = 'd41d8cd98f00b204e9800998ecf8427e';
+ * // SHA-1
+ * instance.value = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
+ * // SHA-256
+ * instance.value = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
+ * // SHA-512
+ * instance.value = 'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e';
+ * // RIPEMD-160
+ * instance.value = '9c1185a5c5e9fc54612808977ee8f548b2258d31';
+ * // Snefru
+ * instance.value = '8617f366566a011837f4fb4ba5bedea2b892f3ed8b894023d16ae344b2be5881';
+ * // GHOST
+ * instance.value = 'ce85b99cc46752fffee35cab9a7b0278abb4c2d2055cff685af4912c49490f8d';
+ * // Whirlpool
+ * instance.value = '19fa61d75522a4669b44e39c1d2e1726c530232130d407f89afee0964997f7a73e83be698b288febcf88e3e03c4f0757ea8964e59b63d93708b138cc42a66eb3';
+ * // is invalid
+ * instance.value = 'HalloWelt';
  */
-function IsHash(validationMessage) {
+function IsHash(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hash.`;
-        registerInStore(target, propertyKey, 'IsHash', true, message);
+        registerInStore(target, propertyKey, 'IsHash', true, message, scenarios);
     }
 }
 
@@ -1043,12 +1570,26 @@ function IsHash(validationMessage) {
  *
  * @param method {function}
  * @param validationMessage {string}
+ * @param scenarios {string[]} the scenario strings where the validation was executed
  * @return {ClassDecorator}
+ * @example
+ * `@`ValidateClass((instance, validators) => validators.IsEmail(instance.email) && validators.Max(instance.num, 20), 'Invalid')
+ * class ValidateClassTest {
+ *     email: string;
+ *     num: number;
+ * }
+ * const instance = new ValidateClassTest();
+ * // is invalid
+ * instance.email = 'test@example.com';
+ * instance.num = 21;
+ * // is valid
+ * instance.email = 'test@example.com';
+ * instance.num = 19;
  */
-function ValidateClass(method, validationMessage) {
+function ValidateClass(method, validationMessage, scenarios) {
     return function (target) {
         const message = validationMessage ? validationMessage : `the Class ${target.constructor.name} is invalid.`;
-        registerInStore({constructor: {name: target.name}}, '', 'ValidateClass', method, message);
+        registerInStore({constructor: {name: target.name}}, '', 'ValidateClass', method, message, scenarios);
     }
 }
 
