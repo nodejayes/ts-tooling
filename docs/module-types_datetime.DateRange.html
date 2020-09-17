@@ -71,7 +71,7 @@
             
             <div class="container-source members">
                 <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
-                <code><a href="types_datetime_daterange_daterange.js.html#line33">line 33</a></code>
+                <code><a href="types_datetime_daterange_daterange.js.html#line50">line 50</a></code>
             </div>
             
         </h4>
@@ -218,6 +218,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');// create a date range object from 2019-01-01 to 2019-01-10const range = new DateRange(a, b);</code></pre>
+
+    
 
 </dd>
 
@@ -249,7 +254,7 @@
     
     <div class="container-source members">
         <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
-        <code><a href="types_datetime_daterange_daterange.js.html#line13">line 13</a></code>
+        <code><a href="types_datetime_daterange_daterange.js.html#line19">line 19</a></code>
     </div>
     
 </h4>
@@ -307,6 +312,11 @@
     
 
     
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');const range = new DateRange(a, b);// log 2019-01-01T00:00:00 into consoleconsole.info(range.Begin)</code></pre>
+
+    
 </dd>
 
         
@@ -318,7 +328,7 @@
     
     <div class="container-source members">
         <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
-        <code><a href="types_datetime_daterange_daterange.js.html#line23">line 23</a></code>
+        <code><a href="types_datetime_daterange_daterange.js.html#line35">line 35</a></code>
     </div>
     
 </h4>
@@ -376,6 +386,11 @@
     
 
     
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');const range = new DateRange(a, b);// log 2019-01-10T00:00:00 into consoleconsole.info(range.End)</code></pre>
+
+    
 </dd>
 
         </dl>
@@ -396,7 +411,7 @@
             
             <div class="container-source members">
                 <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
-                <code><a href="types_datetime_daterange_daterange.js.html#line75">line 75</a></code>
+                <code><a href="types_datetime_daterange_daterange.js.html#line147">line 147</a></code>
             </div>
             
         </h4>
@@ -539,6 +554,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');const range = new DateRange(a, b);const before = DateTime.FromISOString('2018-12-02T00:00:00');const after = DateTime.FromISOString('2019-01-12T00:00:00');// is truerange.IsAfter(after);// is falserange.IsAfter(b);range.IsAfter(a);range.IsAfter(before);</code></pre>
+
+    
 
 </dd>
 
@@ -554,7 +574,7 @@
             
             <div class="container-source members">
                 <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
-                <code><a href="types_datetime_daterange_daterange.js.html#line65">line 65</a></code>
+                <code><a href="types_datetime_daterange_daterange.js.html#line125">line 125</a></code>
             </div>
             
         </h4>
@@ -697,6 +717,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');const range = new DateRange(a, b);const before = DateTime.FromISOString('2018-12-02T00:00:00');const after = DateTime.FromISOString('2019-01-12T00:00:00');// is truerange.IsBefore(before);// is falserange.IsBefore(a);range.IsBefore(b);range.IsBefore(after);</code></pre>
+
+    
 
 </dd>
 
@@ -712,7 +737,7 @@
             
             <div class="container-source members">
                 <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
-                <code><a href="types_datetime_daterange_daterange.js.html#line55">line 55</a></code>
+                <code><a href="types_datetime_daterange_daterange.js.html#line103">line 103</a></code>
             </div>
             
         </h4>
@@ -855,6 +880,11 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');const range = new DateRange(a, b);const inRange = DateTime.FromISOString('2019-01-02T00:00:00');const notInRange = DateTime.FromISOString('2019-01-12T00:00:00');// is truerange.IsIn(inRange);range.IsIn(a);range.IsIn(b);// is falserange.IsIn(notInRange);</code></pre>
+
+    
 
 </dd>
 
@@ -870,7 +900,7 @@
             
             <div class="container-source members">
                 <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
-                <code><a href="types_datetime_daterange_daterange.js.html#line44">line 44</a></code>
+                <code><a href="types_datetime_daterange_daterange.js.html#line80">line 80</a></code>
             </div>
             
         </h4>
@@ -1011,6 +1041,11 @@
     
 </dl>
 
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');const range = new DateRange(a, b);const bothIn = new DateRange(DateTime.FromISOString('2019-01-02T00:00:00'), DateTime.FromISOString('2019-01-03T00:00:00'));const beginIn = new DateRange(DateTime.FromISOString('2019-01-02T00:00:00'), DateTime.FromISOString('2019-01-11T00:00:00'));const endIn = new DateRange(DateTime.FromISOString('2018-12-02T00:00:00'), DateTime.FromISOString('2019-01-02T00:00:00'));const bothOut = new DateRange(DateTime.FromISOString('2018-12-02T00:00:00'), DateTime.FromISOString('2019-01-12T00:00:00'));const bothBefore = new DateRange(DateTime.FromISOString('2018-12-02T00:00:00'), DateTime.FromISOString('2018-12-03T00:00:00'));const bothAfter = new DateRange(DateTime.FromISOString('2019-01-12T00:00:00'), DateTime.FromISOString('2019-01-13T00:00:00'));// is truerange.Overlaps(bothIn);range.Overlaps(beginIn);range.Overlaps(endIn);range.Overlaps(bothOut);range.Overlaps(range);// is falserange.Overlaps(bothBefore);range.Overlaps(bothAfter);</code></pre>
 
     
 

@@ -13,6 +13,8 @@ class Byte {
      * @constructor
      *
      * @param value the byte Value
+     * @example
+     * const b = new Byte(1);
      */
     constructor(value) {
         this._value = value.Clamp(0, 255);
@@ -22,6 +24,11 @@ class Byte {
      * get the Byte Value
      *
      * @readonly
+     *
+     * @example
+     * const b = new Byte(1);
+     * // logs 1 in the console
+     * console.info(b.value);
      */
     get Value() {
         return this._value;
