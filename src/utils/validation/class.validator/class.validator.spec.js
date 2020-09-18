@@ -118,7 +118,7 @@ class MainObject {
         this.sub = null;
     }
 }
-MinLength(3, 'the data property needs min 3 characters', ['S1'])
+MinLength(3, 'the data property needs min 3 characters', ['S1'])(new MainObject(), 'data')
 
 describe('ClassValidator Tests', () => {
     it('can use scenarios', async () => {
@@ -1127,6 +1127,26 @@ describe('ClassValidator Tests', () => {
         res = await ClassValidator.Validate('S1', t);
         assert.lengthOf(res, 1);
         assert.equal(res.ElementAt(0).Message, 'Invalid');
+    });
+    it('check MinLength', async () => {
+        const t = new MainObject();
+        t.data = '';
+        let res = await ClassValidator.Validate('S1', t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'the data property needs min 3 characters');
+
+        t.data = 'ab';
+        res = await ClassValidator.Validate('S1', t);
+        assert.lengthOf(res, 1);
+        assert.equal(res.ElementAt(0).Message, 'the data property needs min 3 characters');
+
+        t.data = 'abc';
+        res = await ClassValidator.Validate('S1', t);
+        assert.lengthOf(res, 0);
+
+        t.data = 'abcd';
+        res = await ClassValidator.Validate('S1', t);
+        assert.lengthOf(res, 0);
     });
     it('should export Validation Functions', () => {
         assert.isDefined(VALIDATIONS);
