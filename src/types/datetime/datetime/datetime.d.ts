@@ -145,6 +145,7 @@ export class DateTime {
      *
      * @param date the javascript date object
      * @param zone the time zone to use
+     * @param keepTimeZone
      *
      * @example
      * // returns DateTime 2019-01-01 01:00:00.000 in UTC Time Zone
@@ -152,7 +153,7 @@ export class DateTime {
      * // returns DateTime 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone
      * DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0), 'Europe/Berlin'));
      */
-    static FromJavascriptDate(date: Date, zone?: string): DateTime;
+    static FromJavascriptDate(date: Date, zone?: string, keepTimeZone?: boolean): DateTime;
 
     /**
      * create DateTime from ISO string

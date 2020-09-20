@@ -124,6 +124,11 @@ describe('DateTime Tests', () => {
         assert.equal(dt.ToString(), '2019-01-01 12:23:54');
     });
 
+    it('can return the String with milliseconds', () => {
+        const dt = DateTime.FromISOString('2019-01-01T12:23:54.555');
+        assert.equal(dt.ToString("yyyy-MM-dd hh:mm:ss.SSS"), '2019-01-01 12:23:54.555');
+    });
+
     it('can return custom DateTime Chars', () => {
         const dt = DateTime.FromISOString('2019-01-01T12:23:54');
         assert.equal(dt.ToString('yyyy'), '2019');

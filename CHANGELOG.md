@@ -1,3 +1,7 @@
+### 3.5.2
+
+* add keepTimeZone Flag for FromJavascriptDate Method in DateTime
+
 ### 3.5.1
 
 * bugfix Validator MinLength

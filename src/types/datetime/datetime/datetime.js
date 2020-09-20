@@ -619,6 +619,7 @@ DateTime.FromLuxon = (luxonDate) => {
  * @static
  * @param date {Date} the javascript date object
  * @param zone {string?} the time zone to use
+ * @param keepTimeZone {boolean?} not convert the time only set the new time zone
  *
  * @example
  * // returns DateTime 2019-01-01 01:00:00.000 in UTC Time Zone
@@ -626,13 +627,13 @@ DateTime.FromLuxon = (luxonDate) => {
  * // returns DateTime 2019-01-01 01:00:00.000 in Europe/Berlin Time Zone
  * DateTime.FromJavascriptDate(new Date(Date.UTC(2019,0,1,1,0,0), 'Europe/Berlin'));
  */
-DateTime.FromJavascriptDate = (date, zone) => {
+DateTime.FromJavascriptDate = (date, zone, keepTimeZone) => {
     if (StringFactory.IsNullOrEmpty(zone)) {
         zone = 'UTC';
     }
     const tmp = luxon.DateTime.fromJSDate(date, {
         zone: zone,
-    });
+    }).setZone(zone, {keepLocalTime: keepTimeZone});
     checkLuxonTimeZone(zone, tmp);
     return DateTime.FromLuxon(tmp);
 };
