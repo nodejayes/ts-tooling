@@ -71,7 +71,7 @@ const BASE_VALIDATIONS = {
     Blacklist: (v, validationValue) => validationValue.Contains(v),
     Whitelist: (v, validationValue) => !validationValue.Contains(v),
     MaxLength: (v, validationValue) => v.length > validationValue,
-    MinLength: (v, validationValue) => v.length <= validationValue,
+    MinLength: (v, validationValue) => v.length < validationValue,
     Max: (v, validationValue) => v > validationValue,
     Min: (v, validationValue) => v < validationValue,
     IsEmail: v => !/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v),

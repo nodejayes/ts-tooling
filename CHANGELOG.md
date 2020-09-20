@@ -1,3 +1,7 @@
+### 3.5.1
+
+* bugfix Validator MinLength
+
 ### 3.5.0
 
 * support async functions in CustomValidation Decorator (type fix)
