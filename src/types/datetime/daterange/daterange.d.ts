@@ -116,4 +116,17 @@ export class DateRange {
      * range.IsAfter(before);
      */
     IsAfter(value: DateTime): boolean;
+
+    /**
+     * print the DateRange into a String
+     *
+     * @param fmt the format of the DateTime strings look {@link DateTime} for more informations
+     * @example
+     * const dateRange = new DateRange(new DateTime('UTC', 2020, 1, 1, 1), new DateTime('UTC', 2020, 1, 2, 1));
+     * // returns [2020-01-01 01:00:00 => 2020-01-02 01:00:00]
+     * dateRange.ToString();
+     * // returns [2020-01-01 01:00:00 000 => 2020-01-02 01:00:00 000]
+     * dateRange.ToString('yyyy-MM-dd hh:mm:ss SSS');
+     */
+    ToString(fmt?: string): string;
 }
