@@ -1,4 +1,5 @@
 const {ReferenceSystem} = require('./reference.system');
+const {transform, Proj} = require('proj4');
 
 class MultiPoint {
     constructor(coordinates, srid) {
@@ -18,6 +19,14 @@ class MultiPoint {
             type: this.type,
             coordinates: this.coordinates,
         }
+    }
+
+    Transform(srid) {
+        this.coordinates = this.coordinates.Convert(c => {
+            const tmp = transform(new Proj('EPSG:' + this.crs.GetSrId()), new Proj('EPSG:' + srid), c);
+            return [tmp.x, tmp.y];
+        });
+        this.crs = new ReferenceSystem(srid);
     }
 }
 

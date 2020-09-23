@@ -1,4 +1,7 @@
-export {ReferenceSystem, ReferenceSystemProperties} from './reference.system';
+export {
+    ReferenceSystem, ReferenceSystemProperties,
+    WEB_MERCATOR, WGS84, registerProjection,
+} from './reference.system';
 export {Point} from './point';
 export {Line} from './line';
 export {Polygon} from './polygon';

@@ -1,6 +1,7 @@
 require('mocha');
 const {assert} = require('chai');
-const {ReferenceSystem} = require('./reference.system');
+const {Point} = require('./point');
+const {ReferenceSystem, registerProjection, WGS84, WEB_MERCATOR} = require('./reference.system');
 
 describe('ReferenceSystem Tests', () => {
     const rawSystem = {
@@ -56,6 +57,30 @@ describe('ReferenceSystem Tests', () => {
         it('returns the srid', () => {
             const rs = new ReferenceSystem(4326);
             assert.equal(rs.GetSrId(), 4326);
+        });
+    });
+    describe('[Method]: Register Projection', () => {
+        it('can register a new Projection and use it', () => {
+            registerProjection(3819, '+proj=longlat +ellps=bessel +towgs84=595.48,121.69,515.35,4.115,-2.9383,0.853,-3.408 +no_defs ');
+            const pt = new Point([1,1], 4326);
+            pt.Transform(3819);
+            assert.deepEqual(pt.coordinates, [
+                0.9987826546610273,
+                0.9945714665851069,
+            ]);
+            assert.equal(pt.crs.GetSrId(), 3819);
+        });
+    });
+    describe('[const] WEB_MERCATOR', () => {
+        it('are defined', () => {
+            assert.isDefined(WEB_MERCATOR);
+            assert.equal(WEB_MERCATOR.GetSrId(), 3857);
+        });
+    });
+    describe('[const] WGS84', () => {
+        it('are defined', () => {
+            assert.isDefined(WGS84);
+            assert.equal(WGS84.GetSrId(), 4326);
         });
     });
 });

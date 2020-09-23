@@ -90,4 +90,33 @@ describe('MultiPolygon Tests', () => {
             });
         });
     });
+    describe('[Method]: Transform', () => {
+        it('transform from 4326 to 3857', () => {
+            const p = new MultiPolygon([[[[0,0], [0,1], [1,1], [1,0], [0, 0]]]], 4326);
+            p.Transform(3857);
+            assert.deepEqual(p.crs.GetSrId(), 3857);
+            assert.deepEqual(p.coordinates, [[[
+                [
+                    0,
+                    -7.081154551613622e-10,
+                ],
+                [
+                    0,
+                    111325.14286638486,
+                ],
+                [
+                    111319.49079327357,
+                    111325.14286638486,
+                ],
+                [
+                    111319.49079327357,
+                    -7.081154551613622e-10,
+                ],
+                [
+                    0,
+                    -7.081154551613622e-10,
+                ],
+            ]]]);
+        });
+    });
 });

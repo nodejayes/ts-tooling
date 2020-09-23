@@ -1,4 +1,5 @@
 const {ReferenceSystem} = require('./reference.system');
+const {Proj, transform} = require('proj4');
 
 class Point {
     constructor(coordinates, srid) {
@@ -18,6 +19,12 @@ class Point {
             type: this.type,
             coordinates: this.coordinates,
         };
+    }
+
+    Transform(srid) {
+        const tmp = transform(new Proj('EPSG:' + this.crs.GetSrId()), new Proj('EPSG:' + srid), this.coordinates);
+        this.coordinates = [tmp.x, tmp.y];
+        this.crs = new ReferenceSystem(srid);
     }
 }
 

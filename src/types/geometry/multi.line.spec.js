@@ -90,4 +90,21 @@ describe('MultiLine Tests', () => {
             });
         });
     });
+    describe('[Method]: Transform', () => {
+        it('transform from 4326 to 3857', () => {
+            const p = new MultiLine([[[0,0], [1,1]]], 4326);
+            p.Transform(3857);
+            assert.deepEqual(p.crs.GetSrId(), 3857);
+            assert.deepEqual(p.coordinates, [[
+                [
+                    0,
+                    -7.081154551613622e-10,
+                ],
+                [
+                    111319.49079327357,
+                    111325.14286638486,
+                ],
+            ]]);
+        });
+    });
 });

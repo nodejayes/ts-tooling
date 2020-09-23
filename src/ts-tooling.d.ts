@@ -9,7 +9,8 @@ export {Byte, ByteStream} from './types/byte';
 export {Dictionary} from './types/dictionary';
 export {
     FeatureCollection, Feature, IGeometry, Point, Line, Polygon,
-    MultiPoint, MultiLine, MultiPolygon, ReferenceSystem, ReferenceSystemProperties
+    MultiPoint, MultiLine, MultiPolygon,
+    ReferenceSystem, ReferenceSystemProperties, WGS84, WEB_MERCATOR, registerProjection
 } from './types/geometry';
 
 // Patterns

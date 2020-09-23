@@ -10,4 +10,5 @@ export class Polygon {
     constructor(coordinates: number[][][], srid?: number);
 
     ToJSON(): {type: string, coordinates: number[][][], crs?: ReferenceSystem};
+    Transform(srid: number);
 }

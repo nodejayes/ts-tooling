@@ -9,7 +9,8 @@ const {Byte, ByteStream} = require('./types/byte');
 const {Dictionary} = require('./types/dictionary');
 const {
     FeatureCollection, Feature, Point, Line, Polygon,
-    MultiPoint, MultiLine, MultiPolygon, ReferenceSystem
+    MultiPoint, MultiLine, MultiPolygon,
+    ReferenceSystem, WGS84, WEB_MERCATOR, registerProjection
 } = require('./types/geometry');
 
 // Patterns
