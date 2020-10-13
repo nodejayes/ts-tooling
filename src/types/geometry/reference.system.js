@@ -1,10 +1,10 @@
 require('../string');
 const {NumberFactory} = require('../number/factory/number.factory');
 require('../array');
-const {defs} = require('proj4');
+const proj4 = require('proj4');
 
 function registerProjection(srid, projection) {
-    defs('EPSG:' + srid, projection);
+    proj4.defs('EPSG:' + srid, projection);
 }
 
 registerProjection(4326, '+proj=longlat +datum=WGS84 +no_defs');
