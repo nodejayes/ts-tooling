@@ -1,3 +1,10 @@
+### 3.6.0
+
+* DateRange can't construct when end DateTime is before start DateTime
+* add DateRange ToString function
+* add Geometry Types Point, Line, Polygon, MultiPoint, MultiLine, MultiPolygon, Feature, FeatureCollection
+* add more tests
+
 ### 3.5.1
 
 * bugfix Validator MinLength

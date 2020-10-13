@@ -7,6 +7,11 @@ export {TimeSpan, DateTime, DateRange} from './types/datetime';
 export {Guid} from './types/guid';
 export {Byte, ByteStream} from './types/byte';
 export {Dictionary} from './types/dictionary';
+export {
+    FeatureCollection, Feature, IGeometry, Point, Line, Polygon,
+    MultiPoint, MultiLine, MultiPolygon,
+    ReferenceSystem, ReferenceSystemProperties, WGS84, WEB_MERCATOR, registerProjection
+} from './types/geometry';
 
 // Patterns
 export {Using, IDisposable, Create, CreateWithFactory, IThrottleOptions, Throttle, IRetryOptions, Retry} from './pattern';

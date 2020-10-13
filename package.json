@@ -1,6 +1,6 @@
 {
   "name": "ts-tooling",
-  "version": "3.5.1",
+  "version": "3.6.0",
   "main": "src/ts-tooling.js",
   "types": "src/ts-tooling.d.ts",
   "scripts": {
@@ -33,7 +33,8 @@
     "ts-node": "^9.0.0",
     "uuid": "^8.3.0",
     "object-sizeof": "^1.6.1",
-    "change-case": "^4.1.1"
+    "change-case": "^4.1.1",
+    "proj4": "^2.6.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",

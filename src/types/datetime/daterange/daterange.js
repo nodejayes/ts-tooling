@@ -48,6 +48,9 @@ class DateRange {
      * const range = new DateRange(a, b);
      */
     constructor(begin, to) {
+        if (begin.IsAfter(to)) {
+            throw new Error(`the start date must be before the end date`);
+        }
         this.begin = begin;
         this.end = to;
     }
@@ -146,6 +149,22 @@ class DateRange {
      */
     IsAfter(value) {
         return value.IsAfter(this.end);
+    }
+
+    /**
+     * print the DateRange into a String
+     *
+     * @param fmt {string?} the format of the DateTime strings look {@link DateTime} for more informations
+     * @returns {string}
+     * @example
+     * const dateRange = new DateRange(new DateTime('UTC', 2020, 1, 1, 1), new DateTime('UTC', 2020, 1, 2, 1));
+     * // returns [2020-01-01 01:00:00 => 2020-01-02 01:00:00]
+     * dateRange.ToString();
+     * // returns [2020-01-01 01:00:00 000 => 2020-01-02 01:00:00 000]
+     * dateRange.ToString('yyyy-MM-dd hh:mm:ss SSS');
+     */
+    ToString(fmt) {
+        return `[${this.Begin.ToString(fmt)} => ${this.End.ToString(fmt)}]`;
     }
 }
 
