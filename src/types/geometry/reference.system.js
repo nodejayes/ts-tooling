@@ -4,6 +4,10 @@ require('../array');
 const proj4 = require('proj4');
 
 function registerProjection(srid, projection) {
+    if (proj4.default) {
+        proj4.default.defs('EPSG:' + srid, projection);
+        return;
+    }
     proj4.defs('EPSG:' + srid, projection);
 }
 
