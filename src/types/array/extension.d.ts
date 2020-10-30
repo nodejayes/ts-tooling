@@ -107,6 +107,14 @@ declare global {
         /**
          * add the given element at the end of the list
          *
+         * ##### Benchmarks
+         *
+         * | Method          | Time                                          |
+         * |-----------------|-----------------------------------------------|
+         * | ts-tooling Add  | x 57,804,458 ops/sec ±1.47% (91 runs sampled) |
+         * | native push     | x 58,264,211 ops/sec ±0.87% (88 runs sampled) |
+         * | lodash union    | x 5,189,805 ops/sec ±0.56% (91 runs sampled)  |
+         *
          * @category array
          *
          * @param element the element to add in the list
@@ -120,6 +128,14 @@ declare global {
 
         /**
          * add the element at the end of the list when the element not exists in the list.
+         *
+         * ##### Benchmarks
+         *
+         * | Method                     | Time                                           |
+         * |----------------------------|------------------------------------------------|
+         * | ts-tooling AddIfNotExists  | x 107,188,538 ops/sec ±0.52% (92 runs sampled) |
+         * | native push                | x 107,892,115 ops/sec ±0.41% (92 runs sampled) |
+         * | lodash uniq                | x 3,280,625 ops/sec ±0.45% (93 runs sampled)   |
          *
          * @category array
          *
@@ -154,6 +170,14 @@ declare global {
         /**
          * add multiple elements at the end of this array
          *
+         * ##### Benchmarks
+         *
+         * | Method                 | Time                                          |
+         * |------------------------|-----------------------------------------------|
+         * | ts-tooling AddRange    | x 39,273,414 ops/sec ±0.33% (94 runs sampled) |
+         * | native spread operator | x 34,448,109 ops/sec ±0.57% (91 runs sampled) |
+         * | lodash union           | x 3,644,336 ops/sec ±0.27% (98 runs sampled)  |
+         *
          * @category array
          *
          * @param elements the elements to add into this array
@@ -167,6 +191,14 @@ declare global {
 
         /**
          * add multiple elements at the end of this array when not exists
+         *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                          |
+         * |--------------------------------|-----------------------------------------------|
+         * | ts-tooling AddRangeIfNotExists | x 44,300,453 ops/sec ±0.51% (95 runs sampled) |
+         * | native loop in loop            | x 33,207,676 ops/sec ±0.18% (94 runs sampled) |
+         * | lodash unique                  | x 3,313,261 ops/sec ±0.50% (92 runs sampled)  |
          *
          * @category array
          *
@@ -847,6 +879,8 @@ declare global {
          * | ts-tooling Flat     | x 3,391,031 ops/sec ±0.39% (93 runs sampled) |
          * | native flat         | x 643,445 ops/sec ±0.56% (96 runs sampled)   |
          * | lodash flattenDepth | x 7,127,927 ops/sec ±0.91% (93 runs sampled) |
+         *
+         * @category array
          *
          * @param depth the number of planes to be resolved
          *

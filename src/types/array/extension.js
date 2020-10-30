@@ -130,6 +130,14 @@ Array.prototype.Sum = function (filterMethod) {
 /**
  * add the given element at the end of the list
  *
+ * ##### Benchmarks
+ *
+ * | Method          | Time                                          |
+ * |-----------------|-----------------------------------------------|
+ * | ts-tooling Add  | x 57,804,458 ops/sec ±1.47% (91 runs sampled) |
+ * | native push     | x 58,264,211 ops/sec ±0.87% (88 runs sampled) |
+ * | lodash union    | x 5,189,805 ops/sec ±0.56% (91 runs sampled)  |
+ *
  * @function module:types/array.Array#Add
  *
  * @param element {any} the element to add in the list
@@ -147,6 +155,14 @@ Array.prototype.Add = function (element) {
 /**
  * add the element at the end of the list when the element not exists in the list.
  *
+ * ##### Benchmarks
+ *
+ * | Method                     | Time                                           |
+ * |----------------------------|------------------------------------------------|
+ * | ts-tooling AddIfNotExists  | x 107,188,538 ops/sec ±0.52% (92 runs sampled) |
+ * | native push                | x 107,892,115 ops/sec ±0.41% (92 runs sampled) |
+ * | lodash uniq                | x 3,280,625 ops/sec ±0.45% (93 runs sampled)   |
+ *
  * @function module:types/array.Array#AddIfNotExists
  *
  * @param element {any} the element to add in the list
@@ -159,8 +175,8 @@ Array.prototype.Add = function (element) {
  * [1].AddIfNotExists(1);
  */
 Array.prototype.AddIfNotExists = function (element) {
-    if (!this.Contains(element)) {
-        this.Add(element);
+    if (this.indexOf(element) < 0) {
+        this.push(element);
     }
     return this;
 };
@@ -190,6 +206,14 @@ Array.prototype.Reduce = function (reducer, initial) {
 /**
  * add multiple elements at the end of this array
  *
+ * ##### Benchmarks
+ *
+ * | Method                 | Time                                          |
+ * |------------------------|-----------------------------------------------|
+ * | ts-tooling AddRange    | x 39,273,414 ops/sec ±0.33% (94 runs sampled) |
+ * | native spread operator | x 34,448,109 ops/sec ±0.57% (91 runs sampled) |
+ * | lodash union           | x 3,644,336 ops/sec ±0.27% (98 runs sampled)  |
+ *
  * @function module:types/array.Array#AddRange
  *
  * @param elements {any[]} the elements to add into this array
@@ -208,6 +232,14 @@ Array.prototype.AddRange = function (elements) {
 
 /**
  * add multiple elements at the end of this array when not exists
+ *
+ * ##### Benchmarks
+ *
+ * | Method                         | Time                                          |
+ * |--------------------------------|-----------------------------------------------|
+ * | ts-tooling AddRangeIfNotExists | x 44,300,453 ops/sec ±0.51% (95 runs sampled) |
+ * | native loop in loop            | x 33,207,676 ops/sec ±0.18% (94 runs sampled) |
+ * | lodash unique                  | x 3,313,261 ops/sec ±0.50% (92 runs sampled)  |
  *
  * @function module:types/array.Array#AddRangeIfNotExists
  *

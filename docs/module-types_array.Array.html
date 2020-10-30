@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Class: Array | v3.5.0</title>
+    <title>Class: Array | v3.7.0</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -26,7 +26,7 @@
         
     </div>
     <div class="title">
-        <h1><a href="index.html" class="link">v3.5.0</a></h1>
+        <h1><a href="index.html" class="link">v3.7.0</a></h1>
         
     </div>
     <div class="search-container" id="search-container">
@@ -188,6 +188,29 @@
     
     <div class="description">
         <p>add the given element at the end of the list</p>
+<h5>Benchmarks</h5>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ts-tooling Add</td>
+<td>x 57,804,458 ops/sec ±1.47% (91 runs sampled)</td>
+</tr>
+<tr>
+<td>native push</td>
+<td>x 58,264,211 ops/sec ±0.87% (88 runs sampled)</td>
+</tr>
+<tr>
+<td>lodash union</td>
+<td>x 5,189,805 ops/sec ±0.56% (91 runs sampled)</td>
+</tr>
+</tbody>
+</table>
     </div>
     
 
@@ -340,7 +363,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line147">line 147</a></code>
+                <code><a href="types_array_extension.js.html#line155">line 155</a></code>
             </div>
             
         </h4>
@@ -353,6 +376,29 @@
     
     <div class="description">
         <p>add the element at the end of the list when the element not exists in the list.</p>
+<h5>Benchmarks</h5>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ts-tooling AddIfNotExists</td>
+<td>x 107,188,538 ops/sec ±0.52% (92 runs sampled)</td>
+</tr>
+<tr>
+<td>native push</td>
+<td>x 107,892,115 ops/sec ±0.41% (92 runs sampled)</td>
+</tr>
+<tr>
+<td>lodash uniq</td>
+<td>x 3,280,625 ops/sec ±0.45% (93 runs sampled)</td>
+</tr>
+</tbody>
+</table>
     </div>
     
 
@@ -505,7 +551,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line190">line 190</a></code>
+                <code><a href="types_array_extension.js.html#line206">line 206</a></code>
             </div>
             
         </h4>
@@ -518,6 +564,29 @@
     
     <div class="description">
         <p>add multiple elements at the end of this array</p>
+<h5>Benchmarks</h5>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ts-tooling AddRange</td>
+<td>x 39,273,414 ops/sec ±0.33% (94 runs sampled)</td>
+</tr>
+<tr>
+<td>native spread operator</td>
+<td>x 34,448,109 ops/sec ±0.57% (91 runs sampled)</td>
+</tr>
+<tr>
+<td>lodash union</td>
+<td>x 3,644,336 ops/sec ±0.27% (98 runs sampled)</td>
+</tr>
+</tbody>
+</table>
     </div>
     
 
@@ -670,7 +739,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line209">line 209</a></code>
+                <code><a href="types_array_extension.js.html#line233">line 233</a></code>
             </div>
             
         </h4>
@@ -683,6 +752,29 @@
     
     <div class="description">
         <p>add multiple elements at the end of this array when not exists</p>
+<h5>Benchmarks</h5>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ts-tooling AddRangeIfNotExists</td>
+<td>x 44,300,453 ops/sec ±0.51% (95 runs sampled)</td>
+</tr>
+<tr>
+<td>native loop in loop</td>
+<td>x 33,207,676 ops/sec ±0.18% (94 runs sampled)</td>
+</tr>
+<tr>
+<td>lodash unique</td>
+<td>x 3,313,261 ops/sec ±0.50% (92 runs sampled)</td>
+</tr>
+</tbody>
+</table>
     </div>
     
 
@@ -835,7 +927,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line730">line 730</a></code>
+                <code><a href="types_array_extension.js.html#line762">line 762</a></code>
             </div>
             
         </h4>
@@ -1000,7 +1092,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line994">line 994</a></code>
+                <code><a href="types_array_extension.js.html#line1026">line 1026</a></code>
             </div>
             
         </h4>
@@ -1165,7 +1257,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line230">line 230</a></code>
+                <code><a href="types_array_extension.js.html#line262">line 262</a></code>
             </div>
             
         </h4>
@@ -1280,7 +1372,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line246">line 246</a></code>
+                <code><a href="types_array_extension.js.html#line278">line 278</a></code>
             </div>
             
         </h4>
@@ -1445,7 +1537,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line873">line 873</a></code>
+                <code><a href="types_array_extension.js.html#line905">line 905</a></code>
             </div>
             
         </h4>
@@ -1633,7 +1725,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line279">line 279</a></code>
+                <code><a href="types_array_extension.js.html#line311">line 311</a></code>
             </div>
             
         </h4>
@@ -1863,7 +1955,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line714">line 714</a></code>
+                <code><a href="types_array_extension.js.html#line746">line 746</a></code>
             </div>
             
         </h4>
@@ -2028,7 +2120,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line298">line 298</a></code>
+                <code><a href="types_array_extension.js.html#line330">line 330</a></code>
             </div>
             
         </h4>
@@ -2193,7 +2285,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line316">line 316</a></code>
+                <code><a href="types_array_extension.js.html#line348">line 348</a></code>
             </div>
             
         </h4>
@@ -2381,7 +2473,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line372">line 372</a></code>
+                <code><a href="types_array_extension.js.html#line404">line 404</a></code>
             </div>
             
         </h4>
@@ -2569,7 +2661,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line356">line 356</a></code>
+                <code><a href="types_array_extension.js.html#line388">line 388</a></code>
             </div>
             
         </h4>
@@ -2734,7 +2826,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line903">line 903</a></code>
+                <code><a href="types_array_extension.js.html#line935">line 935</a></code>
             </div>
             
         </h4>
@@ -2922,7 +3014,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line340">line 340</a></code>
+                <code><a href="types_array_extension.js.html#line372">line 372</a></code>
             </div>
             
         </h4>
@@ -3087,7 +3179,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line777">line 777</a></code>
+                <code><a href="types_array_extension.js.html#line809">line 809</a></code>
             </div>
             
         </h4>
@@ -3252,7 +3344,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line751">line 751</a></code>
+                <code><a href="types_array_extension.js.html#line783">line 783</a></code>
             </div>
             
         </h4>
@@ -3461,7 +3553,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line1128">line 1128</a></code>
+                <code><a href="types_array_extension.js.html#line1160">line 1160</a></code>
             </div>
             
         </h4>
@@ -3649,7 +3741,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line1054">line 1054</a></code>
+                <code><a href="types_array_extension.js.html#line1086">line 1086</a></code>
             </div>
             
         </h4>
@@ -3793,7 +3885,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line841">line 841</a></code>
+                <code><a href="types_array_extension.js.html#line873">line 873</a></code>
             </div>
             
         </h4>
@@ -3958,7 +4050,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line857">line 857</a></code>
+                <code><a href="types_array_extension.js.html#line889">line 889</a></code>
             </div>
             
         </h4>
@@ -4123,7 +4215,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line437">line 437</a></code>
+                <code><a href="types_array_extension.js.html#line469">line 469</a></code>
             </div>
             
         </h4>
@@ -4331,7 +4423,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line403">line 403</a></code>
+                <code><a href="types_array_extension.js.html#line435">line 435</a></code>
             </div>
             
         </h4>
@@ -4519,7 +4611,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line420">line 420</a></code>
+                <code><a href="types_array_extension.js.html#line452">line 452</a></code>
             </div>
             
         </h4>
@@ -4707,7 +4799,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line927">line 927</a></code>
+                <code><a href="types_array_extension.js.html#line959">line 959</a></code>
             </div>
             
         </h4>
@@ -4872,7 +4964,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line816">line 816</a></code>
+                <code><a href="types_array_extension.js.html#line848">line 848</a></code>
             </div>
             
         </h4>
@@ -5578,7 +5670,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line965">line 965</a></code>
+                <code><a href="types_array_extension.js.html#line997">line 997</a></code>
             </div>
             
         </h4>
@@ -5743,7 +5835,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line168">line 168</a></code>
+                <code><a href="types_array_extension.js.html#line184">line 184</a></code>
             </div>
             
         </h4>
@@ -5931,7 +6023,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line462">line 462</a></code>
+                <code><a href="types_array_extension.js.html#line494">line 494</a></code>
             </div>
             
         </h4>
@@ -6096,7 +6188,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line481">line 481</a></code>
+                <code><a href="types_array_extension.js.html#line513">line 513</a></code>
             </div>
             
         </h4>
@@ -6261,7 +6353,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line502">line 502</a></code>
+                <code><a href="types_array_extension.js.html#line534">line 534</a></code>
             </div>
             
         </h4>
@@ -6426,7 +6518,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line522">line 522</a></code>
+                <code><a href="types_array_extension.js.html#line554">line 554</a></code>
             </div>
             
         </h4>
@@ -6591,7 +6683,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line542">line 542</a></code>
+                <code><a href="types_array_extension.js.html#line574">line 574</a></code>
             </div>
             
         </h4>
@@ -6706,7 +6798,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line557">line 557</a></code>
+                <code><a href="types_array_extension.js.html#line589">line 589</a></code>
             </div>
             
         </h4>
@@ -6871,7 +6963,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line584">line 584</a></code>
+                <code><a href="types_array_extension.js.html#line616">line 616</a></code>
             </div>
             
         </h4>
@@ -7224,7 +7316,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line793">line 793</a></code>
+                <code><a href="types_array_extension.js.html#line825">line 825</a></code>
             </div>
             
         </h4>
@@ -7389,7 +7481,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line943">line 943</a></code>
+                <code><a href="types_array_extension.js.html#line975">line 975</a></code>
             </div>
             
         </h4>
@@ -7577,7 +7669,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line1024">line 1024</a></code>
+                <code><a href="types_array_extension.js.html#line1056">line 1056</a></code>
             </div>
             
         </h4>
@@ -7752,7 +7844,7 @@
             
             <div class="container-source members">
                 <code><a href="types_array_extension.js.html">types/array/extension.js</a></code>,
-                <code><a href="types_array_extension.js.html#line1087">line 1087</a></code>
+                <code><a href="types_array_extension.js.html#line1119">line 1119</a></code>
             </div>
             
         </h4>
