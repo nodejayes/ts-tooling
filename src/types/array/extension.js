@@ -1,3 +1,4 @@
+const {RecursiveDeepCopy} = require('../../core/object/object');
 const {
     Filter,
     Find,
@@ -289,7 +290,7 @@ Array.prototype.Contains = function (element) {
 Array.prototype.Copy = function () {
     const tmp = [];
     for (const el of this) {
-        tmp.push(recursiveDeepCopy(el));
+        tmp.push(RecursiveDeepCopy(el));
     }
     return tmp;
 };
@@ -314,6 +315,14 @@ Array.prototype.Exists = function (condition) {
 
 /**
  * find the first element that matches the condition in the array
+ *
+ * ##### Benchmarks
+ *
+ * | Method          | Time                                       |
+ * |-----------------|--------------------------------------------|
+ * | ts-tooling Find | x 229,304 ops/sec ±0.59% (95 runs sampled) |
+ * | native find     | x 35,343 ops/sec ±28.79% (92 runs sampled) |
+ * | lodash find     | x 219,159 ops/sec ±0.22% (96 runs sampled) |
  *
  * @function module:types/array.Array#Find
  *
@@ -362,6 +371,14 @@ Array.prototype.FindIndex = function (condition) {
 
 /**
  * get all elements that match the condition
+ *
+ * ##### Benchmarks
+ *
+ * | Method             | Time                                       |
+ * |--------------------|--------------------------------------------|
+ * | ts-tooling FindAll | x 29,934 ops/sec ±0.50% (96 runs sampled)  |
+ * | native filter      | x 12,503 ops/sec ±14.18% (92 runs sampled) |
+ * | lodash filter      | x 5,604 ops/sec ±0.56% (93 runs sampled)   |
  *
  * @function module:types/array.Array#FindAll
  *
@@ -856,6 +873,14 @@ Array.prototype.GroupKey = function (condition) {
 /**
  * convert all elements of the array into other form
  *
+ * ##### Benchmarks
+ *
+ * | Method              | Time                                         |
+ * |---------------------|----------------------------------------------|
+ * | ts-tooling Convert  | x 87,857 ops/sec ±0.55% (97 runs sampled)    |
+ * | native map          | x 20,964 ops/sec ±18.85% (91 runs sampled)   |
+ * | lodash map          | x 10,331 ops/sec ±0.84% (93 runs sampled)    |
+ *
  * @function module:types/array.Array#Convert
  *
  * @param convertMethod {function} the method that execute with any element and convert them
@@ -994,7 +1019,7 @@ Array.prototype.Chunk = function (chunkSize) {
         chunks.Add(tmp);
     }
     return chunks;
-}
+};
 
 /**
  * remove all Duplicates in the list
@@ -1062,6 +1087,8 @@ Array.prototype.ForSegment = function (cb) {
 /**
  * iterate over the items they are not in the given indexes
  *
+ * @function module:types/array.Array#Without
+ *
  * @param indexes {number[]} the indexes to skip
  * @param cb {function} the operation to do
  *
@@ -1080,6 +1107,54 @@ Array.prototype.Without = function (indexes, cb) {
         }
         cb(this[i]);
     }
+};
+
+function flat(arr, maxDepth, depth, result = []) {
+    if (depth > maxDepth) {
+        result.push(arr);
+        return;
+    }
+    const l = arr.length;
+    for (let i = 0; i < l; i++) {
+        const v = arr[i];
+        if (Array.isArray(v)) {
+            flat(v, maxDepth, ++depth, result);
+            continue;
+        }
+        result.push(v);
+    }
 }
+
+/**
+ * flat a array to a specific depth
+ *
+ * ##### Benchmarks
+ *
+ * | Method              | Time                                          |
+ * |---------------------|-----------------------------------------------|
+ * | ts-tooling Flat     | x 12,075,388 ops/sec ±0.27% (97 runs sampled) |
+ * | native flat         | x 645,246 ops/sec ±0.26% (90 runs sampled)    |
+ * | lodash flattenDepth | x 7,094,123 ops/sec ±0.30% (95 runs sampled)  |
+ *
+ * @function module:types/array.Array#Flat
+ *
+ * @param depth {number} the number of planes to be resolved
+ * @returns {array} the flatten array
+ *
+ * @example
+ * // returns [1,2,3,4,5]
+ * [1,[[[[[2,3,4]]]]],5].Flat();
+ *
+ * // returns [1,[[[[2,3,4]]]],5]
+ * [1,[[[[[2,3,4]]]]],5].Flat(1);
+ */
+Array.prototype.Flat = function (depth) {
+    if (!depth || depth < 0) {
+        depth = 9007199254740991;
+    }
+    const result = [];
+    flat(this, depth, 0, result);
+    return result;
+};
 
 module.exports = {ListSortOrder};

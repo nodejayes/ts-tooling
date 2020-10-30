@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="FindAll.js" type="NodeJSConfigurationType" path-to-node="node" nameIsGenerated="true" path-to-js-file="FindAll.js" working-dir="$PROJECT_DIR$/benchmarks/spy">
+    <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
+      <profiling log-folder="benchmarks/spy" />
+    </EXTENSION>
+    <method v="2" />
+  </configuration>
+</component>

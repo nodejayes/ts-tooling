@@ -247,6 +247,14 @@ declare global {
         /**
          * find the first element that matches the condition in the array
          *
+         * ##### Benchmarks
+         *
+         * | Method          | Time                                       |
+         * |-----------------|--------------------------------------------|
+         * | ts-tooling Find | x 229,304 ops/sec ±0.59% (95 runs sampled) |
+         * | native find     | x 35,343 ops/sec ±28.79% (92 runs sampled) |
+         * | lodash find     | x 219,159 ops/sec ±0.22% (96 runs sampled) |
+         *
          * @category array
          *
          * @param condition the method executed for each element in the list
@@ -303,6 +311,14 @@ declare global {
 
         /**
          * get all elements that match the condition
+         *
+         * ##### Benchmarks
+         *
+         * | Method             | Time                                       |
+         * |--------------------|--------------------------------------------|
+         * | ts-tooling FindAll | x 29,934 ops/sec ±0.50% (96 runs sampled)  |
+         * | native filter      | x 12,503 ops/sec ±14.18% (92 runs sampled) |
+         * | lodash filter      | x 5,604 ops/sec ±0.56% (93 runs sampled)   |
          *
          * @category array
          *
@@ -697,6 +713,14 @@ declare global {
         /**
          * convert all elements of the array into other form
          *
+         * ##### Benchmarks
+         *
+         * | Method              | Time                                          |
+         * |---------------------|-----------------------------------------------|
+         * | ts-tooling Flat     | x 12,075,388 ops/sec ±0.27% (97 runs sampled) |
+         * | native flat         | x 645,246 ops/sec ±0.26% (90 runs sampled)    |
+         * | lodash flattenDepth | x 7,094,123 ops/sec ±0.30% (95 runs sampled)  |
+         *
          * @category array
          *
          * @param convertMethod the method that execute with any element and convert them
@@ -812,5 +836,27 @@ declare global {
          * // 5
          */
         Without?(indexes: number[], cb: (current: T) => void);
+
+        /**
+         * flat a array to a specific depth
+         *
+         * ##### Benchmarks
+         *
+         * | Method              | Time                                         |
+         * |---------------------|----------------------------------------------|
+         * | ts-tooling Flat     | x 3,391,031 ops/sec ±0.39% (93 runs sampled) |
+         * | native flat         | x 643,445 ops/sec ±0.56% (96 runs sampled)   |
+         * | lodash flattenDepth | x 7,127,927 ops/sec ±0.91% (93 runs sampled) |
+         *
+         * @param depth the number of planes to be resolved
+         *
+         * @example
+         * // returns [1,2,3,4,5]
+         * [1,[[[[[2,3,4]]]]],5].Flat();
+         *
+         * // returns [1,[[[[2,3,4]]]],5]
+         * [1,[[[[[2,3,4]]]]],5].Flat(1);
+         */
+        Flat?(depth?: number): T[];
     }
 }

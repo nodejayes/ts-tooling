@@ -1,3 +1,10 @@
+### 3.7.0
+
+* add better Benchmarks
+* add Array Flat
+* fix Array Copy
+* more Documentation
+
 ### 3.6.0
 
 * DateRange can't construct when end DateTime is before start DateTime

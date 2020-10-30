@@ -1101,4 +1101,52 @@ describe('Array Extension Tests', () => {
             assert.equal(res, '12345');
         });
     });
+    describe('[Method]: Flat', () => {
+        it('flat a empty array', () => {
+            assert.deepEqual([].Flat(), []);
+            assert.deepEqual([].Flat(), [].flat());
+        });
+        it('flat a already flatten array', () => {
+            assert.deepEqual([1,2,3,4].Flat(), [1,2,3,4]);
+            assert.deepEqual([1,2,3,4].Flat(), [1,2,3,4].flat());
+        });
+        it('flat a array 1D', () => {
+            assert.deepEqual([1,[2,3,4],5].Flat(), [1,2,3,4,5]);
+            assert.deepEqual([1,[2,3,4],5].Flat(), [1,[2,3,4],5].flat());
+        });
+        it('flat a array 2D', () => {
+            assert.deepEqual([1,[[2,3,4]],5].Flat(), [1,2,3,4,5]);
+            assert.deepEqual([1,[[2,3,4]],5].Flat(), [1,[[2,3,4]],5].flat(2));
+        });
+        it('flat a array 3D', () => {
+            assert.deepEqual([1,[[[2,3,4]]],5].Flat(), [1,2,3,4,5]);
+            assert.deepEqual([1,[[[2,3,4]]],5].Flat(), [1,[[[2,3,4]]],5].flat(3));
+        });
+        it('flat a array 4D', () => {
+            assert.deepEqual([1,[[[[2,3,4]]]],5].Flat(), [1,2,3,4,5]);
+            assert.deepEqual([1,[[[[2,3,4]]]],5].Flat(), [1,[[[[2,3,4]]]],5].flat(4));
+        });
+        it('default goes down to every plane', () => {
+            assert.deepEqual([1,[[[[[2,3,4]]]]],5].Flat(), [1,2,3,4,5]);
+            assert.deepEqual([1,[[[[[2,3,4]]]]],5].Flat(), [1,[[[[[2,3,4]]]]],5].flat(5));
+        });
+        it('force only flat one plane', () => {
+            assert.deepEqual([1,[[[[[2,3,4]]]]],5].Flat(1), [1,[[[[2,3,4]]]],5]);
+            assert.deepEqual([1,[[[[[2,3,4]]]]],5].Flat(1), [1,[[[[[2,3,4]]]]],5].flat());
+        });
+        it('given zero as parameter', () => {
+            assert.deepEqual([1,[[[[[2,3,4]]]]],5].Flat(0), [1,2,3,4,5]);
+        });
+        it('given -1 as parameter', () => {
+            assert.deepEqual([1,[[[[[2,3,4]]]]],5].Flat(-1), [1,2,3,4,5]);
+        });
+        it('random array elements example 1', () => {
+            assert.deepEqual([1,[[[[[2,3,4]],8,7,[9,10]]]],5].Flat(1), [1,[[[[2,3,4]],8,7,[9,10]]],5]);
+            assert.deepEqual([1,[[[[[2,3,4]],8,7,[9,10]]]],5].Flat(1), [1,[[[[[2,3,4]],8,7,[9,10]]]],5].flat());
+        });
+        it('random array elements example2', () => {
+            assert.deepEqual([1,[[[[[2,3,4]],8,7,[9,10]]]],5].Flat(), [1,2,3,4,8,7,9,10,5]);
+            assert.deepEqual([1,[[[[[2,3,4]],8,7,[9,10]]]],5].Flat(), [1,[[[[2,3,4]],8,7,[9,10]]],5].flat(5));
+        });
+    });
 });
