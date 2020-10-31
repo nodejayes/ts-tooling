@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Add.js" type="NodeJSConfigurationType" path-to-node="node" path-to-js-file="Add.js" working-dir="$PROJECT_DIR$/benchmarks/spy">
+  <configuration default="false" name="Add.js" type="NodeJSConfigurationType" path-to-node="node" path-to-js-file="$PROJECT_DIR$/benchmarks/types/array/Add.js" working-dir="$PROJECT_DIR$/benchmarks">
     <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
       <profiling log-folder="benchmarks/spy" />
     </EXTENSION>

@@ -1,6 +1,6 @@
 const {Benchmark} = require('benchmark');
 const _ = require('lodash');
-require('../../src/ts-tooling');
+require('../../../src/ts-tooling');
 
 (new Benchmark.Suite).add('ts-tooling AddRangeIfNotExists', () => {
     [5,4,3,2,1,0].AddRangeIfNotExists([1,4,5]);

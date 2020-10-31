@@ -660,6 +660,14 @@ declare global {
         /**
          * check if any element is in the array
          *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                           |
+         * |--------------------------------|------------------------------------------------|
+         * | ts-tooling Any                 | x 213,178,708 ops/sec ±0.70% (92 runs sampled) |
+         * | native loop                    | x 206,000,901 ops/sec ±0.36% (96 runs sampled) |
+         * | lodash find                    | x 21,507,024 ops/sec ±1.17% (79 runs sampled)  |
+         *
          * @category array
          *
          * @param condition the condition to search the element

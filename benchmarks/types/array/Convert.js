@@ -1,6 +1,6 @@
 const {Benchmark} = require('benchmark');
 const _ = require('lodash');
-require('../../src/ts-tooling');
+require('../../../src/ts-tooling');
 
 const SOURCE = [];
 (function () {

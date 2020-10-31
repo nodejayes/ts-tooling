@@ -762,6 +762,14 @@ Array.prototype.ElementAt = function (index) {
 /**
  * check if any element is in the array
  *
+ * ##### Benchmarks
+ *
+ * | Method                         | Time                                           |
+ * |--------------------------------|------------------------------------------------|
+ * | ts-tooling Any                 | x 213,178,708 ops/sec ±0.70% (92 runs sampled) |
+ * | native loop                    | x 206,000,901 ops/sec ±0.36% (96 runs sampled) |
+ * | lodash find                    | x 21,507,024 ops/sec ±1.17% (79 runs sampled)  |
+ *
  * @function module:types/array.Array#Any
  *
  * @param condition {function} the condition to search the element
@@ -1035,22 +1043,25 @@ Array.prototype.Pull = function(index) {
  * [1,2,3,4,5].Chunk(2);
  */
 Array.prototype.Chunk = function (chunkSize) {
+    let chunkCount = Math.ceil(this.length / chunkSize);
+    let chunks = new Array(chunkCount);
+    for(let i = 0, j = 0, k = chunkSize; i < chunkCount; ++i) {
+        chunks[i] = this.slice(j, k);
+        j = k;
+        k += chunkSize;
+    }
+    return chunks;
+    /*
     if (chunkSize < 1) {
         return [this];
     }
-    const chunks = [];
-    let tmp = [];
-    for (let i = 0; i < this.length; i++) {
-        if (tmp.length >= chunkSize) {
-            chunks.Add(tmp);
-            tmp = [];
-        }
-        tmp.Add(this[i]);
+    const tmp = [];
+    const l = this.length;
+    for (let i = 0; i < l; i += chunkSize) {
+        tmp.push([1,2,3,4,5].slice(i, i + chunkSize));
     }
-    if (tmp.Any()) {
-        chunks.Add(tmp);
-    }
-    return chunks;
+    return tmp;
+     */
 };
 
 /**
