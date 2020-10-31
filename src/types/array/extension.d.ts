@@ -216,6 +216,14 @@ declare global {
         /**
          * remove all Elements from this array
          *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                           |
+         * |--------------------------------|------------------------------------------------|
+         * | ts-tooling Clear               | x 37,578,211 ops/sec ±0.41% (91 runs sampled)  |
+         * | native length zero             | x 23,631,709 ops/sec ±0.38% (95 runs sampled)  |
+         * | lodash unset                   | x 22,280,942 ops/sec ±0.44% (93 runs sampled)  |
+         *
          * @category array
          *
          * @returns the empty array
@@ -228,6 +236,14 @@ declare global {
 
         /**
          * check if this array have the given element
+         *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                             |
+         * |--------------------------------|--------------------------------------------------|
+         * | ts-tooling Contains            | x 60,523,619 ops/sec ±0.94% (94 runs sampled)    |
+         * | native indexOf                 | x 1,155,522,774 ops/sec ±0.21% (91 runs sampled) |
+         * | lodash indexOf                 | x 156,865,656 ops/sec ±0.54% (97 runs sampled)   |
          *
          * @category array
          *
@@ -818,6 +834,14 @@ declare global {
 
         /**
          * split a Array into chunks
+         *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                           |
+         * |--------------------------------|------------------------------------------------|
+         * | ts-tooling Chunk               | x 31,231,399 ops/sec ±0.64% (96 runs sampled)  |
+         * | native loop                    | x 11,386,704 ops/sec ±1.01% (90 runs sampled)  |
+         * | lodash chunk                   | x 29,142,827 ops/sec ±0.80% (92 runs sampled)  |
          *
          * @function module:types/array.Array#Chunk
          *

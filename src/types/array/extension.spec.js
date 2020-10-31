@@ -195,6 +195,12 @@ describe('Array Extension Tests', () => {
         it('clears all elements in the array', () => {
             assert.equal([1,2,3].Clear().length, 0);
         });
+        it('avoid memory leaks', () => {
+            let a1 = [1,2,3];
+            let a2 = a1;
+            a1.Clear();
+            assert.deepEqual(a1, a2);
+        });
     });
     describe('[Method]: Contains', () => {
         it('find primitive type', () => {
