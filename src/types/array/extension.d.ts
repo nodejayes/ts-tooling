@@ -266,6 +266,14 @@ declare global {
         /**
          * get a new instance of the array
          *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                             |
+         * |--------------------------------|--------------------------------------------------|
+         * | ts-tooling Copy                | x 92,921,502 ops/sec ±0.57% (96 runs sampled)    |
+         * | native map                     | x 91,599,583 ops/sec ±0.62% (91 runs sampled)    |
+         * | lodash clone                   | x 22,895,459 ops/sec ±0.57% (96 runs sampled)    |
+         *
          * @category array
          *
          * @returns the new instance

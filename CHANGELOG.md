@@ -3,6 +3,8 @@
 * add better Benchmarks
 * add Array Flat
 * fix Array Copy
+* optimize Performance Array Copy
+* better Performance
 * more Documentation
 
 ### 3.6.0
