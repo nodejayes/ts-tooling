@@ -290,9 +290,9 @@ Array.prototype.Clear = function () {
  *
  * | Method                         | Time                                             |
  * |--------------------------------|--------------------------------------------------|
- * | ts-tooling Contains            | x 60,523,619 ops/sec ±0.94% (94 runs sampled)    |
+ * | ts-tooling Contains            | x 162,455,211 ops/sec ±0.71% (91 runs sampled)   |
  * | native indexOf                 | x 1,155,522,774 ops/sec ±0.21% (91 runs sampled) |
- * | lodash indexOf                 | x 156,865,656 ops/sec ±0.54% (97 runs sampled)   |
+ * | lodash indexOf                 | x 155,472,909 ops/sec ±1.43% (94 runs sampled)   |
  *
  * @function module:types/array.Array#Contains
  *
@@ -311,17 +311,12 @@ Array.prototype.Clear = function () {
  * [{hello:'world'}].Contains({hello:'world'});
  */
 Array.prototype.Contains = function (element) {
-    for (const el of this) {
-        if (IsFunction(el['Equals'])) {
-            if (el['Equals'](element)) {
-                return true;
-            }
+    return this.indexOf(element) >= 0 ? true : this.Any(e => {
+        if (typeof e['Equals'] === 'function') {
+            return e['Equals'].bind(e)(element);
         }
-        if (el === element) {
-            return true;
-        }
-    }
-    return false;
+        return e === element;
+    });
 };
 
 /**
@@ -382,7 +377,7 @@ Array.prototype.Exists = function (condition) {
  * [1,2,3].Find((e) => e > 1);
  */
 Array.prototype.Find = function (condition) {
-    return Find(this, condition) || null;
+    return Find(this, condition);
 };
 
 /**
@@ -801,7 +796,8 @@ Array.prototype.Any = function (condition) {
     if (typeof condition !== typeof function() {}) {
         return this.length.IsAbove(0);
     }
-    return !!this.Find(condition);
+    const tmp = this.Find(condition);
+    return tmp !== null && tmp !== undefined;
 };
 
 /**

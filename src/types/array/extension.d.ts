@@ -241,9 +241,9 @@ declare global {
          *
          * | Method                         | Time                                             |
          * |--------------------------------|--------------------------------------------------|
-         * | ts-tooling Contains            | x 60,523,619 ops/sec ±0.94% (94 runs sampled)    |
+         * | ts-tooling Contains            | x 162,455,211 ops/sec ±0.71% (91 runs sampled)   |
          * | native indexOf                 | x 1,155,522,774 ops/sec ±0.21% (91 runs sampled) |
-         * | lodash indexOf                 | x 156,865,656 ops/sec ±0.54% (97 runs sampled)   |
+         * | lodash indexOf                 | x 155,472,909 ops/sec ±1.43% (94 runs sampled)   |
          *
          * @category array
          *

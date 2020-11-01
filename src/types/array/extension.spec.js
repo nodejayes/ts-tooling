@@ -215,7 +215,7 @@ describe('Array Extension Tests', () => {
             assert.isTrue([element].Contains(element));
         });
         it('object with Equals method execute method to compare', () => {
-            const element = {hello:'world',Equals:(i) => this.hello === i.hello};
+            const element = {hello:'world',Equals:function (i) { return this.hello === i.hello;}};
             assert.isTrue([element].Contains(element));
         });
     });
@@ -916,6 +916,9 @@ describe('Array Extension Tests', () => {
         it('returns false when condition is false', () => {
             assert.isFalse([1,2,3].Any(e => e === 20));
         });
+        it('find 0 in array', () => {
+            assert.isTrue([0,1,2,3].Any(e => e === 0));
+        });
     });
     describe('[Method]: FirstOrDefault', () => {
         it('gets the first element of array', () => {
@@ -1055,11 +1058,11 @@ describe('Array Extension Tests', () => {
         });
         it('can make custom compare function some matches', () => {
             const list = [{hello: 1},{hello: 2},{hello: 2},{hello: 3},{hello: 3},{hello: 3}];
-            assert.deepEqual(list.Unique((a, b) => a.hello === b.hello), [{hello: 1},{hello: 2},{hello: 3}])
+            assert.deepEqual(list.Unique((a, b) => a.hello === b.hello), [{hello: 1},{hello: 2},{hello: 3}]);
         });
         it('can make custom compare function nothing match', () => {
             const list = [{hello: 1},{hello: 2},{hello: 3}];
-            assert.deepEqual(list.Unique((a, b) => a.hello === b.hello), list)
+            assert.deepEqual(list.Unique((a, b) => a.hello === b.hello), list);
         });
     });
     describe('[Method]: ForSegment', () => {
