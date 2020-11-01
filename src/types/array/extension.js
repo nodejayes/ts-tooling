@@ -1,4 +1,3 @@
-const {RecursiveDeepCopy} = require('../../core/object/object');
 const {
     Filter,
     Find,
@@ -357,7 +356,7 @@ Array.prototype.Copy = function () {
  * [1,2,3].Exists(e => e === 20);
  */
 Array.prototype.Exists = function (condition) {
-    return !!Find(this, condition);
+    return this.Any(condition);
 };
 
 /**
