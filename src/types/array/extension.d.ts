@@ -16,6 +16,13 @@ declare global {
         /**
          * get the Number of Items in the Array
          *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                             |
+         * |--------------------------------|--------------------------------------------------|
+         * | ts-tooling Count               | x 851,097,270 ops/sec ±28.64% (74 runs sampled)  |
+         * | native length                  | x 1,085,894,940 ops/sec ±0.99% (88 runs sampled) |
+         *
          * @category array
          *
          * @returns the Number of Elements
@@ -325,6 +332,14 @@ declare global {
         /**
          * find the last element that matches the condition in the array
          *
+         * ##### Benchmarks
+         *
+         * | Method               | Time                                           |
+         * |----------------------|------------------------------------------------|
+         * | ts-tooling FindLast  | x 227,298,011 ops/sec ±0.46% (93 runs sampled) |
+         * | native for           | x 149,215,368 ops/sec ±0.59% (94 runs sampled) |
+         * | lodash lastIndexOf   | x 64,148,306 ops/sec ±0.76% (94 runs sampled)  |
+         *
          * @category array
          *
          * @param condition the method executed for each element in the list
@@ -353,6 +368,14 @@ declare global {
 
         /**
          * get the index number of the first matched element in the array
+         *
+         * ##### Benchmarks
+         *
+         * | Method               | Time                                           |
+         * |----------------------|------------------------------------------------|
+         * | ts-tooling FindIndex | x 240,067,369 ops/sec ±0.28% (96 runs sampled) |
+         * | native for           | x 237,436,130 ops/sec ±1.00% (93 runs sampled) |
+         * | lodash indexOf       | x 233,680,478 ops/sec ±0.55% (89 runs sampled) |
          *
          * @category array
          *
@@ -389,6 +412,14 @@ declare global {
 
         /**
          * get the index number of the last matched element in the array
+         *
+         * ##### Benchmarks
+         *
+         * | Method                   | Time                                           |
+         * |--------------------------|------------------------------------------------|
+         * | ts-tooling FindLastIndex | x 234,008,498 ops/sec ±0.34% (96 runs sampled) |
+         * | native for               | x 236,726,921 ops/sec ±0.44% (93 runs sampled) |
+         * | lodash lastIndexOf       | x 64,953,673 ops/sec ±0.89% (94 runs sampled)  |
          *
          * @category array
          *
@@ -670,6 +701,13 @@ declare global {
         /**
          * get the array element at the given index or null
          *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                             |
+         * |--------------------------------|--------------------------------------------------|
+         * | ts-tooling ElementAt           | x 1,108,307,168 ops/sec ±0.93% (92 runs sampled) |
+         * | native                         | 1,128,407,580 ops/sec ±0.69% (90 runs sampled)   |
+         *
          * @category array
          *
          * @param index the index of the element to get from array
@@ -709,6 +747,14 @@ declare global {
          * get the First element of the array or the first that match the condition
          *
          * when no element was found the default value or null was returned
+         *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                             |
+         * |--------------------------------|--------------------------------------------------|
+         * | ts-tooling FirstOrDefault      | x 1,160,627,843 ops/sec ±0.22% (91 runs sampled) |
+         * | native loop                    | x 1,047,556,734 ops/sec ±0.21% (97 runs sampled) |
+         * | lodash first                   | x 1,165,609,777 ops/sec ±0.20% (93 runs sampled) |
          *
          * @category array
          *
