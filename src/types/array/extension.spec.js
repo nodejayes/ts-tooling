@@ -1158,4 +1158,32 @@ describe('Array Extension Tests', () => {
             assert.deepEqual([1,[[[[[2,3,4]],8,7,[9,10]]]],5].Flat(), [1,[[[[2,3,4]],8,7,[9,10]]],5].flat(5));
         });
     });
+    describe('[Method]: Head', () => {
+        it('get empty array lower than zero', () => {
+            assert.deepEqual([1,2,3].Head(-1), []);
+        });
+        it('get empty array on zero', () => {
+            assert.deepEqual([1,2,3].Head(0), []);
+        });
+        it('get the exact number of arguments', () => {
+            assert.deepEqual([1,2,3].Head(2), [1,2]);
+        });
+        it('greater than the array length get the complete array', () => {
+            assert.deepEqual([1,2,3].Head(15), [1,2,3]);
+        });
+    });
+    describe('[Method]: Tail', () => {
+        it('get empty array lower than zero', () => {
+            assert.deepEqual([1,2,3].Tail(-1), []);
+        });
+        it('get empty array on zero', () => {
+            assert.deepEqual([1,2,3].Tail(0), []);
+        });
+        it('get the exact number of arguments', () => {
+            assert.deepEqual([1,2,3].Tail(2), [2,3]);
+        });
+        it('greater than the array length get the complete array', () => {
+            assert.deepEqual([1,2,3].Tail(15), [1,2,3]);
+        });
+    });
 });

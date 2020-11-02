@@ -1283,4 +1283,61 @@ Array.prototype.Flat = function (depth) {
     return result;
 };
 
+/**
+ * get the Elements from the end of the Array
+ *
+ * ##### Benchmarks
+ *
+ * | Method              | Time                                          |
+ * |---------------------|-----------------------------------------------|
+ * | ts-tooling Tail     | x 47,853,595 ops/sec ±0.55% (94 runs sampled) |
+ * | native loop         | x 11,654,336 ops/sec ±0.44% (95 runs sampled) |
+ * | lodash takeRight    | x 84,482,095 ops/sec ±0.49% (93 runs sampled) |
+ *
+ * @function module:types/array.Array#Tail
+ *
+ * @param length {number} the number of elements to receive
+ * @returns {array}
+ *
+ * @example
+ * // returns [2,3]
+ * [1,2,3].Tail(2);
+ */
+Array.prototype.Tail = function (length) {
+    if (length < 0) {
+        return [];
+    }
+    if (length >= this.length) {
+        return this;
+    }
+    return this.slice(this.length - length, length+1);
+};
+
+/**
+ * get the Elements on the Top of the Array
+ *
+ * ##### Benchmarks
+ *
+ * | Method              | Time                                          |
+ * |---------------------|-----------------------------------------------|
+ * | ts-tooling Head     | x 44,782,082 ops/sec ±0.46% (97 runs sampled) |
+ * | native loop         | x 38,806,259 ops/sec ±0.43% (94 runs sampled) |
+ * | lodash take         | x 95,112,779 ops/sec ±0.43% (94 runs sampled) |
+ *
+ * @function module:types/array.Array#Head
+ *
+ * @param length {number} the number of elements to receive
+ * @returns {array}
+ *
+ * @example
+ * // returns [1,2]
+ * [1,2,3].Head(2);
+ */
+Array.prototype.Head = function (length) {
+    if (length < 0) {
+        return [];
+    }
+    return this.slice(0, length);
+};
+
 module.exports = {ListSortOrder};

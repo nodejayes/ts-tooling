@@ -978,5 +978,47 @@ declare global {
          * [1,[[[[[2,3,4]]]]],5].Flat(1);
          */
         Flat?(depth?: number): T[];
+
+        /**
+         * get the Elements from the end of the Array
+         *
+         * ##### Benchmarks
+         *
+         * | Method              | Time                                          |
+         * |---------------------|-----------------------------------------------|
+         * | ts-tooling Tail     | x 47,853,595 ops/sec ±0.55% (94 runs sampled) |
+         * | native loop         | x 11,654,336 ops/sec ±0.44% (95 runs sampled) |
+         * | lodash takeRight    | x 84,482,095 ops/sec ±0.49% (93 runs sampled) |
+         *
+         * @category array
+         *
+         * @param length the number of elements to receive
+         *
+         * @example
+         * // returns [2,3]
+         * [1,2,3].Tail(2);
+         */
+        Tail?(length: number): T[];
+
+        /**
+         * get the Elements on the Top of the Array
+         *
+         * ##### Benchmarks
+         *
+         * | Method              | Time                                          |
+         * |---------------------|-----------------------------------------------|
+         * | ts-tooling Head     | x 44,782,082 ops/sec ±0.46% (97 runs sampled) |
+         * | native loop         | x 38,806,259 ops/sec ±0.43% (94 runs sampled) |
+         * | lodash take         | x 95,112,779 ops/sec ±0.43% (94 runs sampled) |
+         *
+         * @category array
+         *
+         * @param length the number of elements to receive
+         *
+         * @example
+         * // returns [1,2]
+         * [1,2,3].Head(2);
+         */
+        Head?(length: number): T[];
     }
 }

@@ -2,6 +2,7 @@
 
 * add better Benchmarks
 * add Array Flat
+* add Array Tail and Head
 * fix Array Copy
 * optimize Performance Array Copy
 * better Performance
