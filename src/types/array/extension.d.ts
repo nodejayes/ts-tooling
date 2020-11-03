@@ -408,7 +408,7 @@ declare global {
          * // returns [2,3]
          * [1,2,3].FindAll(i => i > 1);
          */
-        FindAll?(condition: (d: T) => boolean): T[];
+        FindAll?(condition: (d: T, idx: number, arr: T[]) => boolean): T[];
 
         /**
          * get the index number of the last matched element in the array
@@ -450,6 +450,14 @@ declare global {
 
         /**
          * insert a element in the array at a specific position
+         *
+         * ##### Benchmarks
+         *
+         * | Method                    | Time                                          |
+         * |---------------------------|-----------------------------------------------|
+         * | ts-tooling Insert         | x 15,318,221 ops/sec ±0.53% (92 runs sampled) |
+         * | native loop               | x 13,428,154 ops/sec ±1.98% (88 runs sampled) |
+         * | lodash take and takeRight | x 14,216,260 ops/sec ±0.85% (90 runs sampled) |
          *
          * @category array
          *
@@ -984,11 +992,11 @@ declare global {
          *
          * ##### Benchmarks
          *
-         * | Method              | Time                                          |
-         * |---------------------|-----------------------------------------------|
-         * | ts-tooling Tail     | x 47,853,595 ops/sec ±0.55% (94 runs sampled) |
-         * | native loop         | x 11,654,336 ops/sec ±0.44% (95 runs sampled) |
-         * | lodash takeRight    | x 84,482,095 ops/sec ±0.49% (93 runs sampled) |
+         * | Method              | Time                                           |
+         * |---------------------|------------------------------------------------|
+         * | ts-tooling Tail     | x 101,331,109 ops/sec ±0.48% (95 runs sampled) |
+         * | native slice        | x 53,480,600 ops/sec ±1.39% (91 runs sampled)  |
+         * | lodash takeRight    | x 71,582,112 ops/sec ±1.02% (90 runs sampled)  |
          *
          * @category array
          *
@@ -1005,11 +1013,11 @@ declare global {
          *
          * ##### Benchmarks
          *
-         * | Method              | Time                                          |
-         * |---------------------|-----------------------------------------------|
-         * | ts-tooling Head     | x 44,782,082 ops/sec ±0.46% (97 runs sampled) |
-         * | native loop         | x 38,806,259 ops/sec ±0.43% (94 runs sampled) |
-         * | lodash take         | x 95,112,779 ops/sec ±0.43% (94 runs sampled) |
+         * | Method              | Time                                           |
+         * |---------------------|------------------------------------------------|
+         * | ts-tooling Head     | x 111,504,913 ops/sec ±0.45% (94 runs sampled) |
+         * | native slice        | x 37,705,060 ops/sec ±2.32% (92 runs sampled)  |
+         * | lodash take         | x 78,197,044 ops/sec ±2.85% (87 runs sampled)  |
          *
          * @category array
          *

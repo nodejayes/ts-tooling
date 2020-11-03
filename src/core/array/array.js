@@ -127,23 +127,23 @@ const OperateArray = (arr, filter, operation) => {
         }
         counter++;
         switch(operation) {
-            case 1:
-                if (value === null || item > value) {
-                    value = item;
-                }
-                break;
-            case 2:
-                if (value === null || item < value) {
-                    value = item;
-                }
-                break;
-            case 3:
-            case 4:
-                if (value === null) {
-                    value = 0;
-                }
-                value += item;
-                break;
+        case 1:
+            if (value === null || item > value) {
+                value = item;
+            }
+            break;
+        case 2:
+            if (value === null || item < value) {
+                value = item;
+            }
+            break;
+        case 3:
+        case 4:
+            if (value === null) {
+                value = 0;
+            }
+            value += item;
+            break;
         }
     }
     if (value === null) {
@@ -159,9 +159,30 @@ const OperateArray = (arr, filter, operation) => {
 };
 
 const MergeArray = (array, index, elements) => {
-    const before = array.slice(0, index);
-    const after = array.slice(index, array.length);
+    const before = Slice(array, 0, index);
+    const after = Slice(array, index, array.length);
     return [...before, ...elements, ...after];
 };
 
-module.exports = {MergeArray, Sort, OperateArray, IndexOf, Without, Filter, Find, FindLast, Reverse, GroupBy, GetSortValue};
+const Slice = (array, start, end) => {
+    let index = -1;
+    let length = array.length;
+
+    if (start < 0) {
+        start = -start > length ? 0 : (length + start);
+    }
+    end = end > length ? length : end;
+    if (end < 0) {
+        end += length;
+    }
+    length = start > end ? 0 : ((end - start) >>> 0);
+    start >>>= 0;
+
+    let result = new Array(length);
+    while (++index < length) {
+        result[index] = array[index + start];
+    }
+    return result;
+};
+
+module.exports = {MergeArray, Sort, OperateArray, IndexOf, Without, Filter, Find, FindLast, Reverse, GroupBy, GetSortValue, Slice};

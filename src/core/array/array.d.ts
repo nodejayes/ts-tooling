@@ -8,3 +8,5 @@ export function Filter<T>(array: T[], cb: (item: T) => boolean, remove?: boolean
 export function Without<T>(array: T[], elements: T[]): T[];
 export function IndexOf<T>(array: T[], element: T, skip?: number): number;
 export function OperateArray<T>(array: T[], filter: (item: T) => boolean, operation: number): number;
+export function MergeArray<T>(array: T[], index: number, elements: T[]): T[];
+export function Slice<T>(array: T[], start: number, end: number): T[];

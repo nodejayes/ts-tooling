@@ -4,12 +4,9 @@ require('../../../src/ts-tooling');
 
 (new Benchmark.Suite).add('ts-tooling Tail', () => {
     [1,2,3,4,5,6,7,8,9,10].Tail(5);
-}).add('native loop', () => {
+}).add('native slice', () => {
     const tmp = [1,2,3,4,5,6,7,8,9,10];
-    const res = [];
-    for (let i = tmp.length; i > 0; i--) {
-        res.push(tmp[i]);
-    }
+    tmp.slice(tmp.length-5, 5);
 }).add('lodash takeRight', () => {
     _.takeRight([1,2,3,4,5,6,7,8,9,10], 5);
 }).on('cycle', function(event) {

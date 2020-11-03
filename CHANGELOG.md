@@ -4,6 +4,7 @@
 * add Array Flat
 * add Array Tail and Head
 * fix Array Copy
+* add index and array as parameter for Find and FindAll
 * optimize Performance Array Copy
 * better Performance
 * more Documentation

@@ -6,7 +6,7 @@ const {
     MergeArray,
     OperateArray,
     Reverse, Sort,
-    Without
+    Without, Slice,
 } = require('../../core/array/array');
 const {IsFunction} = require('../../core/checker/checker');
 
@@ -461,7 +461,7 @@ Array.prototype.FindIndex = function (condition) {
 Array.prototype.FindAll = function (condition) {
     const tmp = [];
     for (let i = 0; i < this.length; i++) {
-        if (condition(this[i])) {
+        if (condition(this[i], i, this)) {
             tmp.push(this[i]);
         }
     }
@@ -471,6 +471,14 @@ Array.prototype.FindAll = function (condition) {
 
 /**
  * insert a element in the array at a specific position
+ *
+ * ##### Benchmarks
+ *
+ * | Method                    | Time                                          |
+ * |---------------------------|-----------------------------------------------|
+ * | ts-tooling Insert         | x 15,318,221 ops/sec ±0.53% (92 runs sampled) |
+ * | native loop               | x 13,428,154 ops/sec ±1.98% (88 runs sampled) |
+ * | lodash take and takeRight | x 14,216,260 ops/sec ±0.85% (90 runs sampled) |
  *
  * @function module:types/array.Array#Insert
  *
@@ -1288,11 +1296,11 @@ Array.prototype.Flat = function (depth) {
  *
  * ##### Benchmarks
  *
- * | Method              | Time                                          |
- * |---------------------|-----------------------------------------------|
- * | ts-tooling Tail     | x 47,853,595 ops/sec ±0.55% (94 runs sampled) |
- * | native loop         | x 11,654,336 ops/sec ±0.44% (95 runs sampled) |
- * | lodash takeRight    | x 84,482,095 ops/sec ±0.49% (93 runs sampled) |
+ * | Method              | Time                                           |
+ * |---------------------|------------------------------------------------|
+ * | ts-tooling Tail     | x 101,331,109 ops/sec ±0.48% (95 runs sampled) |
+ * | native slice        | x 53,480,600 ops/sec ±1.39% (91 runs sampled)  |
+ * | lodash takeRight    | x 71,582,112 ops/sec ±1.02% (90 runs sampled)  |
  *
  * @function module:types/array.Array#Tail
  *
@@ -1304,13 +1312,9 @@ Array.prototype.Flat = function (depth) {
  * [1,2,3].Tail(2);
  */
 Array.prototype.Tail = function (length) {
-    if (length < 0) {
-        return [];
-    }
-    if (length >= this.length) {
-        return this;
-    }
-    return this.slice(this.length - length, length+1);
+    let arrLength = this.length;
+    length = arrLength - length;
+    return Slice(this, length < 0 ? 0 : length, arrLength);
 };
 
 /**
@@ -1318,11 +1322,11 @@ Array.prototype.Tail = function (length) {
  *
  * ##### Benchmarks
  *
- * | Method              | Time                                          |
- * |---------------------|-----------------------------------------------|
- * | ts-tooling Head     | x 44,782,082 ops/sec ±0.46% (97 runs sampled) |
- * | native loop         | x 38,806,259 ops/sec ±0.43% (94 runs sampled) |
- * | lodash take         | x 95,112,779 ops/sec ±0.43% (94 runs sampled) |
+ * | Method              | Time                                           |
+ * |---------------------|------------------------------------------------|
+ * | ts-tooling Head     | x 111,504,913 ops/sec ±0.45% (94 runs sampled) |
+ * | native slice        | x 37,705,060 ops/sec ±2.32% (92 runs sampled)  |
+ * | lodash take         | x 78,197,044 ops/sec ±2.85% (87 runs sampled)  |
  *
  * @function module:types/array.Array#Head
  *
@@ -1334,10 +1338,7 @@ Array.prototype.Tail = function (length) {
  * [1,2,3].Head(2);
  */
 Array.prototype.Head = function (length) {
-    if (length < 0) {
-        return [];
-    }
-    return this.slice(0, length);
+    return Slice(this, 0, length < 0 ? 0 : length);
 };
 
 module.exports = {ListSortOrder};
