@@ -950,6 +950,13 @@ Array.prototype.LastOrDefault = function (condition, def) {
 /**
  * groups a array of elements by a condition
  *
+ * ##### Benchmarks
+ *
+ * | Method              | Time                                          |
+ * |---------------------|-----------------------------------------------|
+ * | ts-tooling GroupBy  | x 2,192,293 ops/sec ±0.48% (92 runs sampled)  |
+ * | lodash groupBy      | x 1,661,346 ops/sec ±0.73% (88 runs sampled)  |
+ *
  * @function module:types/array.Array#GroupBy
  *
  * @param condition {function} the condition to group the array
@@ -965,6 +972,12 @@ Array.prototype.GroupBy = function (condition) {
 
 /**
  * groups a array of elements by a condition and returns the group keys
+ *
+ * ##### Benchmarks
+ *
+ * | Method              | Time                                          |
+ * |---------------------|-----------------------------------------------|
+ * | ts-tooling GroupBy  | x 1,410,032 ops/sec ±1.15% (92 runs sampled)  |
  *
  * @function module:types/array.Array#GroupKey
  *
