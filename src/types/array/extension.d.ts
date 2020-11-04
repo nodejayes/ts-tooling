@@ -53,7 +53,7 @@ declare global {
          * // returns 4
          * [1,2,'3',4,'5'].Max();
          */
-        Max?(filterMethod?: (d: T) => boolean): number;
+        Max?(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * get the minimum number in the Array
@@ -73,7 +73,7 @@ declare global {
          * // returns 4
          * ['1','2','3',4,'5'].Min();
          */
-        Min?(filterMethod?: (d: T) => boolean): number;
+        Min?(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * get the Mean from all numbers in this array
@@ -91,7 +91,7 @@ declare global {
          * // returns 4
          * ['1','2','3',4,'5'].Mean();
          */
-        Mean?(filterMethod?: (d: T) => boolean): number;
+        Mean?(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * get the Sum from all numbers in this array
@@ -109,7 +109,7 @@ declare global {
          * // returns 4
          * ['1','2','3',4,'5'].Sum();
          */
-        Sum?(filterMethod?: (d: T) => boolean): number;
+        Sum?(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * add the given element at the end of the list
@@ -327,7 +327,7 @@ declare global {
          * // returns 2
          * [1,2,3].Find((e) => e > 1);
          */
-        Find?(condition: (d: T) => boolean): T;
+        Find?(condition: (d: T, idx: number, arr: T[]) => boolean): T;
 
         /**
          * find the last element that matches the condition in the array
@@ -349,7 +349,7 @@ declare global {
          * // returns 3
          * [1,2,3].FindLast((e) => e > 1);
          */
-        FindLast?(condition: (d: T) => boolean): T;
+        FindLast?(condition: (d: T, idx: number, arr: T[]) => boolean): T;
 
         /**
          * replace a Item in the List takes the first match
@@ -364,7 +364,7 @@ declare global {
          * // returns [1,2,3]
          * [1,5,3].Replace((e) => e === 5, 2);
          */
-        Replace?(condition: (d: T) => boolean, item: T): T[];
+        Replace?(condition: (d: T, idx: number, arr: T[]) => boolean, item: T): T[];
 
         /**
          * get the index number of the first matched element in the array
@@ -386,7 +386,7 @@ declare global {
          * // returns 1
          * [1,2,3,1,2,3].FindIndex(e => e === 2);
          */
-        FindIndex?(condition: (d: T) => boolean): number;
+        FindIndex?(condition: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * get all elements that match the condition
@@ -430,7 +430,7 @@ declare global {
          * // returns 4
          * [1,2,3,1,2,3].FindLastIndex(e => e === 2);
          */
-        FindLastIndex?(condition: (d: T) => boolean): number;
+        FindLastIndex?(condition: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * check if a condition returns true for any element in the array
@@ -446,7 +446,7 @@ declare global {
          * // returns false
          * [1,2,3].TrueForAll(e => e === 1);
          */
-        TrueForAll?(condition: (d: T) => boolean): boolean;
+        TrueForAll?(condition: (d: T, idx: number, arr: T[]) => boolean): boolean;
 
         /**
          * insert a element in the array at a specific position
@@ -531,7 +531,7 @@ declare global {
          * // return []
          * [1,2,3].RemoveAll(() => true);
          */
-        RemoveAll?(match: (d: T) => boolean): T[];
+        RemoveAll?(match: (d: T, idx: number, arr: T[]) => boolean): T[];
 
         /**
          * remove element at specific position
@@ -778,7 +778,7 @@ declare global {
          * // return 10
          * [1,2,3,4,5,6].FirstOrDefault(() => false, 10);
          */
-        FirstOrDefault?(condition?: (d: T) => boolean, def?: T): T;
+        FirstOrDefault?(condition?: (d: T, idx: number, arr: T[]) => boolean, def?: T): T;
 
         /**
          * get the last element of the array or the last that match the condition
@@ -798,7 +798,7 @@ declare global {
          * // return 10
          * [1,2,3,4,5,6].LastOrDefault(() => false, 10);
          */
-        LastOrDefault?(condition?: (d: T) => boolean, def?: T): T;
+        LastOrDefault?(condition?: (d: T, idx: number, arr: T[]) => boolean, def?: T): T;
 
         /**
          * groups a array of elements by a condition

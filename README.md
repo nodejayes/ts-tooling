@@ -15,7 +15,7 @@ npm install --save ts-tooling
 | Build             | Coverage                                                                                                                                                                         |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Build State       | ![Node.js CI](https://github.com/nodejayes/ts-tooling/workflows/Node.js%20CI/badge.svg)                                                                                          |
-| Line Coverage     | ![Line Coverage](https://img.shields.io/badge/6543%2F6668%20-98.13%25-brightgreen)                         |
+| Line Coverage     | ![Line Coverage](https://img.shields.io/badge/6545%2F6670%20-98.13%25-brightgreen)                         |
 | Function Coverage | ![Function Coverage](https://img.shields.io/badge/2118%2F2201%20-96.23%25-brightgreen) |
 | Branch Coverage   | ![Branch Coverage](https://img.shields.io/badge/927%2F1078%20-85.99%25-yellow)               |
 | Version           | [![npm version](https://badge.fury.io/js/ts-tooling.svg)](https://badge.fury.io/js/ts-tooling)                                                                                   |

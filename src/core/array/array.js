@@ -4,7 +4,7 @@ function _find(array, cb, getIdx = false, up = true) {
     if (up === true) {
         for (let i = 0; i < array.length; i++) {
             const item = array[i];
-            if (cb(item)) {
+            if (cb(item, i, array)) {
                 return getIdx ? i : item;
             }
         }
@@ -13,7 +13,7 @@ function _find(array, cb, getIdx = false, up = true) {
 
     for (let i = array.length-1; i >= 0; i--) {
         const item = array[i];
-        if (cb(item)) {
+        if (cb(item, i, array)) {
             return getIdx ? i : item;
         }
     }
@@ -78,16 +78,18 @@ const FindLast = (array, cb, getIdx = false) => {
 
 const Filter = (array, cb, remove = false) => {
     const tmp = [];
+    let i = 0;
     for (const item of array) {
         if (remove === true) {
-            if (!cb(item)) {
+            if (!cb(item, i, array)) {
                 tmp.push(item);
             }
         } else {
-            if (cb(item)) {
+            if (cb(item, i, array)) {
                 tmp.push(item);
             }
         }
+        i++;
     }
     return tmp;
 };
@@ -122,7 +124,7 @@ const OperateArray = (arr, filter, operation) => {
         if (typeof item !== typeof 0) {
             continue;
         }
-        if (filter && !filter(item)) {
+        if (filter && !filter(item, counter, arr)) {
             continue;
         }
         counter++;
