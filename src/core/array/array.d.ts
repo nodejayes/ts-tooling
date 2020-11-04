@@ -10,3 +10,4 @@ export function IndexOf<T>(array: T[], element: T, skip?: number): number;
 export function OperateArray<T>(array: T[], filter: (item: T, idx: number, arr: T[]) => boolean, operation: number): number;
 export function MergeArray<T>(array: T[], index: number, elements: T[]): T[];
 export function Slice<T>(array: T[], start: number, end: number): T[];
+export function Flat<T>(arr: T[], maxDepth: number, depth: number, result?: T[]);

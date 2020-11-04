@@ -187,4 +187,20 @@ const Slice = (array, start, end) => {
     return result;
 };
 
-module.exports = {MergeArray, Sort, OperateArray, IndexOf, Without, Filter, Find, FindLast, Reverse, GroupBy, GetSortValue, Slice};
+const Flat = (arr, maxDepth, depth, result = []) => {
+    if (depth > maxDepth) {
+        result.push(arr);
+        return;
+    }
+    const l = arr.length;
+    for (let i = 0; i < l; i++) {
+        const v = arr[i];
+        if (Array.isArray(v)) {
+            Flat(v, maxDepth, ++depth, result);
+            continue;
+        }
+        result.push(v);
+    }
+};
+
+module.exports = {MergeArray, Sort, OperateArray, IndexOf, Without, Filter, Find, FindLast, Reverse, GroupBy, GetSortValue, Slice, Flat};

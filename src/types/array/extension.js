@@ -7,6 +7,7 @@ const {
     OperateArray,
     Reverse, Sort,
     Without, Slice,
+    Flat,
 } = require('../../core/array/array');
 const {IsFunction} = require('../../core/checker/checker');
 
@@ -1256,22 +1257,6 @@ Array.prototype.Without = function (indexes, cb) {
     }
 };
 
-function flat(arr, maxDepth, depth, result = []) {
-    if (depth > maxDepth) {
-        result.push(arr);
-        return;
-    }
-    const l = arr.length;
-    for (let i = 0; i < l; i++) {
-        const v = arr[i];
-        if (Array.isArray(v)) {
-            flat(v, maxDepth, ++depth, result);
-            continue;
-        }
-        result.push(v);
-    }
-}
-
 /**
  * flat a array to a specific depth
  *
@@ -1300,7 +1285,7 @@ Array.prototype.Flat = function (depth) {
         depth = 9007199254740991;
     }
     const result = [];
-    flat(this, depth, 0, result);
+    Flat(this, depth, 0, result);
     return result;
 };
 
