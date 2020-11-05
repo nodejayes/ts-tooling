@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="FindIndex.js" type="NodeJSConfigurationType" path-to-node="node" path-to-js-file="types/array/FindIndex.js" working-dir="$PROJECT_DIR$/benchmarks/">
+  <configuration default="false" name="FindIndex.js" type="NodeJSConfigurationType" path-to-node="node" path-to-js-file="$PROJECT_DIR$/benchmarks/node/types/array/FindIndex.js" working-dir="$PROJECT_DIR$/benchmarks/">
     <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
       <profiling log-folder="benchmarks/spy" />
     </EXTENSION>

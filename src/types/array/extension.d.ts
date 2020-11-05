@@ -489,6 +489,14 @@ declare global {
         /**
          * get the array index of a element
          *
+         * ##### Benchmarks
+         *
+         * | Method                    | Time                                             |
+         * |---------------------------|--------------------------------------------------|
+         * | ts-tooling Insert         | x 239,446,561 ops/sec ±0.27% (98 runs sampled)   |
+         * | native loop               | x 1,158,030,694 ops/sec ±0.16% (94 runs sampled) |
+         * | lodash take and takeRight | x 72,062,997 ops/sec ±2.63% (85 runs sampled)    |
+         *
          * @category array
          *
          * @param element the element to find in the array
