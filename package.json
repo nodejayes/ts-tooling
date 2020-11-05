@@ -1,6 +1,6 @@
 {
   "name": "ts-tooling",
-  "version": "3.6.1",
+  "version": "3.7.0",
   "main": "src/ts-tooling.js",
   "types": "src/ts-tooling.d.ts",
   "scripts": {
@@ -11,7 +11,7 @@
     "beforecommit": "npm run cover && npm run docs",
     "release": "npm run beforecommit && npm publish",
     "release:beta": "npm run beforecommit && npm publish --tag beta",
-    "bench": "node ./benchmarks/run.js"
+    "bench": "devtool benchmarks/node/types/array/Find.js --index index.html --watch"
   },
   "license": "MIT",
   "repository": {
@@ -27,11 +27,11 @@
   ],
   "dependencies": {
     "luxon": "^1.25.0",
-    "immer": "^7.0.9",
+    "immer": "^7.0.14",
     "lz-string": "^1.4.4",
     "rxjs": "^6.6.3",
     "ts-node": "^9.0.0",
-    "uuid": "^8.3.0",
+    "uuid": "^8.3.1",
     "object-sizeof": "^1.6.1",
     "change-case": "^4.1.1",
     "proj4": "^2.6.2"
@@ -39,12 +39,17 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-uuid": "^1.0.6",
+    "clinic": "^7.0.0",
     "collatio": "^1.0.2",
-    "jsdoc": "^3.6.5",
+    "eslint": "^7.12.1",
+    "jsdoc": "^3.6.6",
     "lcov-parse": "^1.0.0",
     "lodash": "^4.17.20",
-    "mocha": "^8.1.3",
+    "microtime": "^3.0.0",
+    "mocha": "^8.2.1",
     "nyc": "^15.1.0",
-    "tui-jsdoc-template": "^1.2.2"
+    "prettier": "^2.1.2",
+    "tui-jsdoc-template": "^1.2.2",
+    "devtool": "^2.3.1"
   }
 }

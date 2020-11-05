@@ -16,6 +16,13 @@ declare global {
         /**
          * get the Number of Items in the Array
          *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                             |
+         * |--------------------------------|--------------------------------------------------|
+         * | ts-tooling Count               | x 851,097,270 ops/sec ±28.64% (74 runs sampled)  |
+         * | native length                  | x 1,085,894,940 ops/sec ±0.99% (88 runs sampled) |
+         *
          * @category array
          *
          * @returns the Number of Elements
@@ -46,7 +53,7 @@ declare global {
          * // returns 4
          * [1,2,'3',4,'5'].Max();
          */
-        Max?(filterMethod?: (d: T) => boolean): number;
+        Max?(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * get the minimum number in the Array
@@ -66,7 +73,7 @@ declare global {
          * // returns 4
          * ['1','2','3',4,'5'].Min();
          */
-        Min?(filterMethod?: (d: T) => boolean): number;
+        Min?(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * get the Mean from all numbers in this array
@@ -84,7 +91,7 @@ declare global {
          * // returns 4
          * ['1','2','3',4,'5'].Mean();
          */
-        Mean?(filterMethod?: (d: T) => boolean): number;
+        Mean?(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * get the Sum from all numbers in this array
@@ -102,10 +109,18 @@ declare global {
          * // returns 4
          * ['1','2','3',4,'5'].Sum();
          */
-        Sum?(filterMethod?: (d: T) => boolean): number;
+        Sum?(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * add the given element at the end of the list
+         *
+         * ##### Benchmarks
+         *
+         * | Method          | Time                                          |
+         * |-----------------|-----------------------------------------------|
+         * | ts-tooling Add  | x 57,804,458 ops/sec ±1.47% (91 runs sampled) |
+         * | native push     | x 58,264,211 ops/sec ±0.87% (88 runs sampled) |
+         * | lodash union    | x 5,189,805 ops/sec ±0.56% (91 runs sampled)  |
          *
          * @category array
          *
@@ -120,6 +135,14 @@ declare global {
 
         /**
          * add the element at the end of the list when the element not exists in the list.
+         *
+         * ##### Benchmarks
+         *
+         * | Method                     | Time                                           |
+         * |----------------------------|------------------------------------------------|
+         * | ts-tooling AddIfNotExists  | x 107,188,538 ops/sec ±0.52% (92 runs sampled) |
+         * | native push                | x 107,892,115 ops/sec ±0.41% (92 runs sampled) |
+         * | lodash uniq                | x 3,280,625 ops/sec ±0.45% (93 runs sampled)   |
          *
          * @category array
          *
@@ -154,6 +177,14 @@ declare global {
         /**
          * add multiple elements at the end of this array
          *
+         * ##### Benchmarks
+         *
+         * | Method                 | Time                                          |
+         * |------------------------|-----------------------------------------------|
+         * | ts-tooling AddRange    | x 39,273,414 ops/sec ±0.33% (94 runs sampled) |
+         * | native spread operator | x 34,448,109 ops/sec ±0.57% (91 runs sampled) |
+         * | lodash union           | x 3,644,336 ops/sec ±0.27% (98 runs sampled)  |
+         *
          * @category array
          *
          * @param elements the elements to add into this array
@@ -167,6 +198,14 @@ declare global {
 
         /**
          * add multiple elements at the end of this array when not exists
+         *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                          |
+         * |--------------------------------|-----------------------------------------------|
+         * | ts-tooling AddRangeIfNotExists | x 44,300,453 ops/sec ±0.51% (95 runs sampled) |
+         * | native loop in loop            | x 33,207,676 ops/sec ±0.18% (94 runs sampled) |
+         * | lodash unique                  | x 3,313,261 ops/sec ±0.50% (92 runs sampled)  |
          *
          * @category array
          *
@@ -184,6 +223,14 @@ declare global {
         /**
          * remove all Elements from this array
          *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                           |
+         * |--------------------------------|------------------------------------------------|
+         * | ts-tooling Clear               | x 37,578,211 ops/sec ±0.41% (91 runs sampled)  |
+         * | native length zero             | x 23,631,709 ops/sec ±0.38% (95 runs sampled)  |
+         * | lodash unset                   | x 22,280,942 ops/sec ±0.44% (93 runs sampled)  |
+         *
          * @category array
          *
          * @returns the empty array
@@ -196,6 +243,14 @@ declare global {
 
         /**
          * check if this array have the given element
+         *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                             |
+         * |--------------------------------|--------------------------------------------------|
+         * | ts-tooling Contains            | x 162,455,211 ops/sec ±0.71% (91 runs sampled)   |
+         * | native indexOf                 | x 1,155,522,774 ops/sec ±0.21% (91 runs sampled) |
+         * | lodash indexOf                 | x 155,472,909 ops/sec ±1.43% (94 runs sampled)   |
          *
          * @category array
          *
@@ -217,6 +272,14 @@ declare global {
 
         /**
          * get a new instance of the array
+         *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                             |
+         * |--------------------------------|--------------------------------------------------|
+         * | ts-tooling Copy                | x 92,921,502 ops/sec ±0.57% (96 runs sampled)    |
+         * | native map                     | x 91,599,583 ops/sec ±0.62% (91 runs sampled)    |
+         * | lodash clone                   | x 22,895,459 ops/sec ±0.57% (96 runs sampled)    |
          *
          * @category array
          *
@@ -247,6 +310,14 @@ declare global {
         /**
          * find the first element that matches the condition in the array
          *
+         * ##### Benchmarks
+         *
+         * | Method          | Time                                       |
+         * |-----------------|--------------------------------------------|
+         * | ts-tooling Find | x 229,304 ops/sec ±0.59% (95 runs sampled) |
+         * | native find     | x 35,343 ops/sec ±28.79% (92 runs sampled) |
+         * | lodash find     | x 219,159 ops/sec ±0.22% (96 runs sampled) |
+         *
          * @category array
          *
          * @param condition the method executed for each element in the list
@@ -256,10 +327,18 @@ declare global {
          * // returns 2
          * [1,2,3].Find((e) => e > 1);
          */
-        Find?(condition: (d: T) => boolean): T;
+        Find?(condition: (d: T, idx: number, arr: T[]) => boolean): T;
 
         /**
          * find the last element that matches the condition in the array
+         *
+         * ##### Benchmarks
+         *
+         * | Method               | Time                                           |
+         * |----------------------|------------------------------------------------|
+         * | ts-tooling FindLast  | x 227,298,011 ops/sec ±0.46% (93 runs sampled) |
+         * | native for           | x 149,215,368 ops/sec ±0.59% (94 runs sampled) |
+         * | lodash lastIndexOf   | x 64,148,306 ops/sec ±0.76% (94 runs sampled)  |
          *
          * @category array
          *
@@ -270,7 +349,7 @@ declare global {
          * // returns 3
          * [1,2,3].FindLast((e) => e > 1);
          */
-        FindLast?(condition: (d: T) => boolean): T;
+        FindLast?(condition: (d: T, idx: number, arr: T[]) => boolean): T;
 
         /**
          * replace a Item in the List takes the first match
@@ -285,10 +364,18 @@ declare global {
          * // returns [1,2,3]
          * [1,5,3].Replace((e) => e === 5, 2);
          */
-        Replace?(condition: (d: T) => boolean, item: T): T[];
+        Replace?(condition: (d: T, idx: number, arr: T[]) => boolean, item: T): T[];
 
         /**
          * get the index number of the first matched element in the array
+         *
+         * ##### Benchmarks
+         *
+         * | Method               | Time                                           |
+         * |----------------------|------------------------------------------------|
+         * | ts-tooling FindIndex | x 240,067,369 ops/sec ±0.28% (96 runs sampled) |
+         * | native for           | x 237,436,130 ops/sec ±1.00% (93 runs sampled) |
+         * | lodash indexOf       | x 233,680,478 ops/sec ±0.55% (89 runs sampled) |
          *
          * @category array
          *
@@ -299,10 +386,18 @@ declare global {
          * // returns 1
          * [1,2,3,1,2,3].FindIndex(e => e === 2);
          */
-        FindIndex?(condition: (d: T) => boolean): number;
+        FindIndex?(condition: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * get all elements that match the condition
+         *
+         * ##### Benchmarks
+         *
+         * | Method             | Time                                       |
+         * |--------------------|--------------------------------------------|
+         * | ts-tooling FindAll | x 29,934 ops/sec ±0.50% (96 runs sampled)  |
+         * | native filter      | x 12,503 ops/sec ±14.18% (92 runs sampled) |
+         * | lodash filter      | x 5,604 ops/sec ±0.56% (93 runs sampled)   |
          *
          * @category array
          *
@@ -313,10 +408,18 @@ declare global {
          * // returns [2,3]
          * [1,2,3].FindAll(i => i > 1);
          */
-        FindAll?(condition: (d: T) => boolean): T[];
+        FindAll?(condition: (d: T, idx: number, arr: T[]) => boolean): T[];
 
         /**
          * get the index number of the last matched element in the array
+         *
+         * ##### Benchmarks
+         *
+         * | Method                   | Time                                           |
+         * |--------------------------|------------------------------------------------|
+         * | ts-tooling FindLastIndex | x 234,008,498 ops/sec ±0.34% (96 runs sampled) |
+         * | native for               | x 236,726,921 ops/sec ±0.44% (93 runs sampled) |
+         * | lodash lastIndexOf       | x 64,953,673 ops/sec ±0.89% (94 runs sampled)  |
          *
          * @category array
          *
@@ -327,7 +430,7 @@ declare global {
          * // returns 4
          * [1,2,3,1,2,3].FindLastIndex(e => e === 2);
          */
-        FindLastIndex?(condition: (d: T) => boolean): number;
+        FindLastIndex?(condition: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * check if a condition returns true for any element in the array
@@ -343,10 +446,18 @@ declare global {
          * // returns false
          * [1,2,3].TrueForAll(e => e === 1);
          */
-        TrueForAll?(condition: (d: T) => boolean): boolean;
+        TrueForAll?(condition: (d: T, idx: number, arr: T[]) => boolean): boolean;
 
         /**
          * insert a element in the array at a specific position
+         *
+         * ##### Benchmarks
+         *
+         * | Method                    | Time                                          |
+         * |---------------------------|-----------------------------------------------|
+         * | ts-tooling Insert         | x 15,318,221 ops/sec ±0.53% (92 runs sampled) |
+         * | native loop               | x 13,428,154 ops/sec ±1.98% (88 runs sampled) |
+         * | lodash take and takeRight | x 14,216,260 ops/sec ±0.85% (90 runs sampled) |
          *
          * @category array
          *
@@ -377,6 +488,14 @@ declare global {
 
         /**
          * get the array index of a element
+         *
+         * ##### Benchmarks
+         *
+         * | Method                    | Time                                             |
+         * |---------------------------|--------------------------------------------------|
+         * | ts-tooling Insert         | x 239,446,561 ops/sec ±0.27% (98 runs sampled)   |
+         * | native loop               | x 1,158,030,694 ops/sec ±0.16% (94 runs sampled) |
+         * | lodash take and takeRight | x 72,062,997 ops/sec ±2.63% (85 runs sampled)    |
          *
          * @category array
          *
@@ -420,7 +539,7 @@ declare global {
          * // return []
          * [1,2,3].RemoveAll(() => true);
          */
-        RemoveAll?(match: (d: T) => boolean): T[];
+        RemoveAll?(match: (d: T, idx: number, arr: T[]) => boolean): T[];
 
         /**
          * remove element at specific position
@@ -598,6 +717,13 @@ declare global {
         /**
          * get the array element at the given index or null
          *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                             |
+         * |--------------------------------|--------------------------------------------------|
+         * | ts-tooling ElementAt           | x 1,108,307,168 ops/sec ±0.93% (92 runs sampled) |
+         * | native                         | 1,128,407,580 ops/sec ±0.69% (90 runs sampled)   |
+         *
          * @category array
          *
          * @param index the index of the element to get from array
@@ -611,6 +737,14 @@ declare global {
 
         /**
          * check if any element is in the array
+         *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                           |
+         * |--------------------------------|------------------------------------------------|
+         * | ts-tooling Any                 | x 213,178,708 ops/sec ±0.70% (92 runs sampled) |
+         * | native loop                    | x 206,000,901 ops/sec ±0.36% (96 runs sampled) |
+         * | lodash find                    | x 21,507,024 ops/sec ±1.17% (79 runs sampled)  |
          *
          * @category array
          *
@@ -630,6 +764,14 @@ declare global {
          *
          * when no element was found the default value or null was returned
          *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                             |
+         * |--------------------------------|--------------------------------------------------|
+         * | ts-tooling FirstOrDefault      | x 1,160,627,843 ops/sec ±0.22% (91 runs sampled) |
+         * | native loop                    | x 1,047,556,734 ops/sec ±0.21% (97 runs sampled) |
+         * | lodash first                   | x 1,165,609,777 ops/sec ±0.20% (93 runs sampled) |
+         *
          * @category array
          *
          * @param condition the condition executed ba any array element
@@ -644,7 +786,7 @@ declare global {
          * // return 10
          * [1,2,3,4,5,6].FirstOrDefault(() => false, 10);
          */
-        FirstOrDefault?(condition?: (d: T) => boolean, def?: T): T;
+        FirstOrDefault?(condition?: (d: T, idx: number, arr: T[]) => boolean, def?: T): T;
 
         /**
          * get the last element of the array or the last that match the condition
@@ -664,10 +806,17 @@ declare global {
          * // return 10
          * [1,2,3,4,5,6].LastOrDefault(() => false, 10);
          */
-        LastOrDefault?(condition?: (d: T) => boolean, def?: T): T;
+        LastOrDefault?(condition?: (d: T, idx: number, arr: T[]) => boolean, def?: T): T;
 
         /**
          * groups a array of elements by a condition
+         *
+         * ##### Benchmarks
+         *
+         * | Method              | Time                                          |
+         * |---------------------|-----------------------------------------------|
+         * | ts-tooling GroupBy  | x 2,192,293 ops/sec ±0.48% (92 runs sampled)  |
+         * | lodash groupBy      | x 1,661,346 ops/sec ±0.73% (88 runs sampled)  |
          *
          * @category array
          *
@@ -683,6 +832,12 @@ declare global {
         /**
          * groups a array of elements by a condition and returns the group keys
          *
+         * ##### Benchmarks
+         *
+         * | Method              | Time                                          |
+         * |---------------------|-----------------------------------------------|
+         * | ts-tooling GroupBy  | x 1,410,032 ops/sec ±1.15% (92 runs sampled)  |
+         *
          * @category array
          *
          * @param condition the condition to group the array
@@ -696,6 +851,14 @@ declare global {
 
         /**
          * convert all elements of the array into other form
+         *
+         * ##### Benchmarks
+         *
+         * | Method              | Time                                          |
+         * |---------------------|-----------------------------------------------|
+         * | ts-tooling Flat     | x 12,075,388 ops/sec ±0.27% (97 runs sampled) |
+         * | native flat         | x 645,246 ops/sec ±0.26% (90 runs sampled)    |
+         * | lodash flattenDepth | x 7,094,123 ops/sec ±0.30% (95 runs sampled)  |
          *
          * @category array
          *
@@ -755,6 +918,14 @@ declare global {
         /**
          * split a Array into chunks
          *
+         * ##### Benchmarks
+         *
+         * | Method                         | Time                                           |
+         * |--------------------------------|------------------------------------------------|
+         * | ts-tooling Chunk               | x 31,231,399 ops/sec ±0.64% (96 runs sampled)  |
+         * | native loop                    | x 11,386,704 ops/sec ±1.01% (90 runs sampled)  |
+         * | lodash chunk                   | x 29,142,827 ops/sec ±0.80% (92 runs sampled)  |
+         *
          * @function module:types/array.Array#Chunk
          *
          * @param chunkSize {number} the length of a Chunk Size
@@ -812,5 +983,71 @@ declare global {
          * // 5
          */
         Without?(indexes: number[], cb: (current: T) => void);
+
+        /**
+         * flat a array to a specific depth
+         *
+         * ##### Benchmarks
+         *
+         * | Method              | Time                                         |
+         * |---------------------|----------------------------------------------|
+         * | ts-tooling Flat     | x 3,391,031 ops/sec ±0.39% (93 runs sampled) |
+         * | native flat         | x 643,445 ops/sec ±0.56% (96 runs sampled)   |
+         * | lodash flattenDepth | x 7,127,927 ops/sec ±0.91% (93 runs sampled) |
+         *
+         * @category array
+         *
+         * @param depth the number of planes to be resolved
+         *
+         * @example
+         * // returns [1,2,3,4,5]
+         * [1,[[[[[2,3,4]]]]],5].Flat();
+         *
+         * // returns [1,[[[[2,3,4]]]],5]
+         * [1,[[[[[2,3,4]]]]],5].Flat(1);
+         */
+        Flat?(depth?: number): T[];
+
+        /**
+         * get the Elements from the end of the Array
+         *
+         * ##### Benchmarks
+         *
+         * | Method              | Time                                           |
+         * |---------------------|------------------------------------------------|
+         * | ts-tooling Tail     | x 101,331,109 ops/sec ±0.48% (95 runs sampled) |
+         * | native slice        | x 53,480,600 ops/sec ±1.39% (91 runs sampled)  |
+         * | lodash takeRight    | x 71,582,112 ops/sec ±1.02% (90 runs sampled)  |
+         *
+         * @category array
+         *
+         * @param length the number of elements to receive
+         *
+         * @example
+         * // returns [2,3]
+         * [1,2,3].Tail(2);
+         */
+        Tail?(length: number): T[];
+
+        /**
+         * get the Elements on the Top of the Array
+         *
+         * ##### Benchmarks
+         *
+         * | Method              | Time                                           |
+         * |---------------------|------------------------------------------------|
+         * | ts-tooling Head     | x 111,504,913 ops/sec ±0.45% (94 runs sampled) |
+         * | native slice        | x 37,705,060 ops/sec ±2.32% (92 runs sampled)  |
+         * | lodash take         | x 78,197,044 ops/sec ±2.85% (87 runs sampled)  |
+         *
+         * @category array
+         *
+         * @param length the number of elements to receive
+         *
+         * @example
+         * // returns [1,2]
+         * [1,2,3].Head(2);
+         */
+        Head?(length: number): T[];
     }
 }

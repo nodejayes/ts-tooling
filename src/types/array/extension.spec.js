@@ -195,6 +195,12 @@ describe('Array Extension Tests', () => {
         it('clears all elements in the array', () => {
             assert.equal([1,2,3].Clear().length, 0);
         });
+        it('avoid memory leaks', () => {
+            let a1 = [1,2,3];
+            let a2 = a1;
+            a1.Clear();
+            assert.deepEqual(a1, a2);
+        });
     });
     describe('[Method]: Contains', () => {
         it('find primitive type', () => {
@@ -209,7 +215,7 @@ describe('Array Extension Tests', () => {
             assert.isTrue([element].Contains(element));
         });
         it('object with Equals method execute method to compare', () => {
-            const element = {hello:'world',Equals:(i) => this.hello === i.hello};
+            const element = {hello:'world',Equals:function (i) { return this.hello === i.hello;}};
             assert.isTrue([element].Contains(element));
         });
     });
@@ -910,6 +916,9 @@ describe('Array Extension Tests', () => {
         it('returns false when condition is false', () => {
             assert.isFalse([1,2,3].Any(e => e === 20));
         });
+        it('find 0 in array', () => {
+            assert.isTrue([0,1,2,3].Any(e => e === 0));
+        });
     });
     describe('[Method]: FirstOrDefault', () => {
         it('gets the first element of array', () => {
@@ -1049,11 +1058,11 @@ describe('Array Extension Tests', () => {
         });
         it('can make custom compare function some matches', () => {
             const list = [{hello: 1},{hello: 2},{hello: 2},{hello: 3},{hello: 3},{hello: 3}];
-            assert.deepEqual(list.Unique((a, b) => a.hello === b.hello), [{hello: 1},{hello: 2},{hello: 3}])
+            assert.deepEqual(list.Unique((a, b) => a.hello === b.hello), [{hello: 1},{hello: 2},{hello: 3}]);
         });
         it('can make custom compare function nothing match', () => {
             const list = [{hello: 1},{hello: 2},{hello: 3}];
-            assert.deepEqual(list.Unique((a, b) => a.hello === b.hello), list)
+            assert.deepEqual(list.Unique((a, b) => a.hello === b.hello), list);
         });
     });
     describe('[Method]: ForSegment', () => {
@@ -1099,6 +1108,82 @@ describe('Array Extension Tests', () => {
             let res = '';
             [1,2,3,4,5].Without([10], e => res += e);
             assert.equal(res, '12345');
+        });
+    });
+    describe('[Method]: Flat', () => {
+        it('flat a empty array', () => {
+            assert.deepEqual([].Flat(), []);
+            assert.deepEqual([].Flat(), [].flat());
+        });
+        it('flat a already flatten array', () => {
+            assert.deepEqual([1,2,3,4].Flat(), [1,2,3,4]);
+            assert.deepEqual([1,2,3,4].Flat(), [1,2,3,4].flat());
+        });
+        it('flat a array 1D', () => {
+            assert.deepEqual([1,[2,3,4],5].Flat(), [1,2,3,4,5]);
+            assert.deepEqual([1,[2,3,4],5].Flat(), [1,[2,3,4],5].flat());
+        });
+        it('flat a array 2D', () => {
+            assert.deepEqual([1,[[2,3,4]],5].Flat(), [1,2,3,4,5]);
+            assert.deepEqual([1,[[2,3,4]],5].Flat(), [1,[[2,3,4]],5].flat(2));
+        });
+        it('flat a array 3D', () => {
+            assert.deepEqual([1,[[[2,3,4]]],5].Flat(), [1,2,3,4,5]);
+            assert.deepEqual([1,[[[2,3,4]]],5].Flat(), [1,[[[2,3,4]]],5].flat(3));
+        });
+        it('flat a array 4D', () => {
+            assert.deepEqual([1,[[[[2,3,4]]]],5].Flat(), [1,2,3,4,5]);
+            assert.deepEqual([1,[[[[2,3,4]]]],5].Flat(), [1,[[[[2,3,4]]]],5].flat(4));
+        });
+        it('default goes down to every plane', () => {
+            assert.deepEqual([1,[[[[[2,3,4]]]]],5].Flat(), [1,2,3,4,5]);
+            assert.deepEqual([1,[[[[[2,3,4]]]]],5].Flat(), [1,[[[[[2,3,4]]]]],5].flat(5));
+        });
+        it('force only flat one plane', () => {
+            assert.deepEqual([1,[[[[[2,3,4]]]]],5].Flat(1), [1,[[[[2,3,4]]]],5]);
+            assert.deepEqual([1,[[[[[2,3,4]]]]],5].Flat(1), [1,[[[[[2,3,4]]]]],5].flat());
+        });
+        it('given zero as parameter', () => {
+            assert.deepEqual([1,[[[[[2,3,4]]]]],5].Flat(0), [1,2,3,4,5]);
+        });
+        it('given -1 as parameter', () => {
+            assert.deepEqual([1,[[[[[2,3,4]]]]],5].Flat(-1), [1,2,3,4,5]);
+        });
+        it('random array elements example 1', () => {
+            assert.deepEqual([1,[[[[[2,3,4]],8,7,[9,10]]]],5].Flat(1), [1,[[[[2,3,4]],8,7,[9,10]]],5]);
+            assert.deepEqual([1,[[[[[2,3,4]],8,7,[9,10]]]],5].Flat(1), [1,[[[[[2,3,4]],8,7,[9,10]]]],5].flat());
+        });
+        it('random array elements example2', () => {
+            assert.deepEqual([1,[[[[[2,3,4]],8,7,[9,10]]]],5].Flat(), [1,2,3,4,8,7,9,10,5]);
+            assert.deepEqual([1,[[[[[2,3,4]],8,7,[9,10]]]],5].Flat(), [1,[[[[2,3,4]],8,7,[9,10]]],5].flat(5));
+        });
+    });
+    describe('[Method]: Head', () => {
+        it('get empty array lower than zero', () => {
+            assert.deepEqual([1,2,3].Head(-1), []);
+        });
+        it('get empty array on zero', () => {
+            assert.deepEqual([1,2,3].Head(0), []);
+        });
+        it('get the exact number of arguments', () => {
+            assert.deepEqual([1,2,3].Head(2), [1,2]);
+        });
+        it('greater than the array length get the complete array', () => {
+            assert.deepEqual([1,2,3].Head(15), [1,2,3]);
+        });
+    });
+    describe('[Method]: Tail', () => {
+        it('get empty array lower than zero', () => {
+            assert.deepEqual([1,2,3].Tail(-1), []);
+        });
+        it('get empty array on zero', () => {
+            assert.deepEqual([1,2,3].Tail(0), []);
+        });
+        it('get the exact number of arguments', () => {
+            assert.deepEqual([1,2,3].Tail(2), [2,3]);
+        });
+        it('greater than the array length get the complete array', () => {
+            assert.deepEqual([1,2,3].Tail(15), [1,2,3]);
         });
     });
 });

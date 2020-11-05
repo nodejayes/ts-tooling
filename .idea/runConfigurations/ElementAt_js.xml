@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ElementAt.js" type="NodeJSConfigurationType" path-to-node="node" path-to-js-file="$PROJECT_DIR$/benchmarks/node/types/array/ElementAt.js" working-dir="$PROJECT_DIR$/benchmarks/">
+    <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
+      <profiling log-folder="benchmarks/spy" />
+    </EXTENSION>
+    <method v="2" />
+  </configuration>
+</component>

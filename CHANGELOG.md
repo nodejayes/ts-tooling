@@ -1,3 +1,14 @@
+### 3.7.0
+
+* add better Benchmarks
+* add Array Flat
+* add Array Tail and Head
+* fix Array Copy
+* add index and array as parameter for Find and FindAll and same functions
+* optimize Performance Array Copy
+* better Performance
+* more Documentation
+
 ### 3.6.0
 
 * DateRange can't construct when end DateTime is before start DateTime

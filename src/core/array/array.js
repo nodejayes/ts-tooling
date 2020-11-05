@@ -4,7 +4,7 @@ function _find(array, cb, getIdx = false, up = true) {
     if (up === true) {
         for (let i = 0; i < array.length; i++) {
             const item = array[i];
-            if (cb(item)) {
+            if (cb(item, i, array)) {
                 return getIdx ? i : item;
             }
         }
@@ -13,7 +13,7 @@ function _find(array, cb, getIdx = false, up = true) {
 
     for (let i = array.length-1; i >= 0; i--) {
         const item = array[i];
-        if (cb(item)) {
+        if (cb(item, i, array)) {
             return getIdx ? i : item;
         }
     }
@@ -78,16 +78,18 @@ const FindLast = (array, cb, getIdx = false) => {
 
 const Filter = (array, cb, remove = false) => {
     const tmp = [];
+    let i = 0;
     for (const item of array) {
         if (remove === true) {
-            if (!cb(item)) {
+            if (!cb(item, i, array)) {
                 tmp.push(item);
             }
         } else {
-            if (cb(item)) {
+            if (cb(item, i, array)) {
                 tmp.push(item);
             }
         }
+        i++;
     }
     return tmp;
 };
@@ -122,28 +124,28 @@ const OperateArray = (arr, filter, operation) => {
         if (typeof item !== typeof 0) {
             continue;
         }
-        if (filter && !filter(item)) {
+        if (filter && !filter(item, counter, arr)) {
             continue;
         }
         counter++;
         switch(operation) {
-            case 1:
-                if (value === null || item > value) {
-                    value = item;
-                }
-                break;
-            case 2:
-                if (value === null || item < value) {
-                    value = item;
-                }
-                break;
-            case 3:
-            case 4:
-                if (value === null) {
-                    value = 0;
-                }
-                value += item;
-                break;
+        case 1:
+            if (value === null || item > value) {
+                value = item;
+            }
+            break;
+        case 2:
+            if (value === null || item < value) {
+                value = item;
+            }
+            break;
+        case 3:
+        case 4:
+            if (value === null) {
+                value = 0;
+            }
+            value += item;
+            break;
         }
     }
     if (value === null) {
@@ -159,9 +161,46 @@ const OperateArray = (arr, filter, operation) => {
 };
 
 const MergeArray = (array, index, elements) => {
-    const before = array.slice(0, index);
-    const after = array.slice(index, array.length);
+    const before = Slice(array, 0, index);
+    const after = Slice(array, index, array.length);
     return [...before, ...elements, ...after];
 };
 
-module.exports = {MergeArray, Sort, OperateArray, IndexOf, Without, Filter, Find, FindLast, Reverse, GroupBy, GetSortValue};
+const Slice = (array, start, end) => {
+    let index = -1;
+    let length = array.length;
+
+    if (start < 0) {
+        start = -start > length ? 0 : (length + start);
+    }
+    end = end > length ? length : end;
+    if (end < 0) {
+        end += length;
+    }
+    length = start > end ? 0 : ((end - start) >>> 0);
+    start >>>= 0;
+
+    let result = new Array(length);
+    while (++index < length) {
+        result[index] = array[index + start];
+    }
+    return result;
+};
+
+const Flat = (arr, maxDepth, depth, result = []) => {
+    if (depth > maxDepth) {
+        result.push(arr);
+        return;
+    }
+    const l = arr.length;
+    for (let i = 0; i < l; i++) {
+        const v = arr[i];
+        if (Array.isArray(v)) {
+            Flat(v, maxDepth, ++depth, result);
+            continue;
+        }
+        result.push(v);
+    }
+};
+
+module.exports = {MergeArray, Sort, OperateArray, IndexOf, Without, Filter, Find, FindLast, Reverse, GroupBy, GetSortValue, Slice, Flat};
