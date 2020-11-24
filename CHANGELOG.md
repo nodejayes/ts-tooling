@@ -1,3 +1,7 @@
+### 3.7.1
+
+* fix DateTime get ISO Date with new Function ToISO
+
 ### 3.7.0
 
 * add better Benchmarks

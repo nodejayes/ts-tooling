@@ -126,7 +126,34 @@ describe('DateTime Tests', () => {
 
     it('can return the String with milliseconds', () => {
         const dt = DateTime.FromISOString('2019-01-01T12:23:54.555');
-        assert.equal(dt.ToString("yyyy-MM-dd hh:mm:ss.SSS"), '2019-01-01 12:23:54.555');
+        assert.equal(dt.ToString('yyyy-MM-dd hh:mm:ss.SSS'), '2019-01-01 12:23:54.555');
+    });
+
+    it('can get the ISO String of the DateTime', () => {
+        const dt = DateTime.FromISOString('2019-01-01T12:23:54.555');
+        assert.equal(dt.ToISO(), '2019-01-01T12:23:54.555Z');
+    });
+
+    it('can get the ISO String of the DateTime in other Timezone Winter', () => {
+        const dt = DateTime.FromISOString('2019-01-01T12:23:54.555', 'Europe/Berlin');
+        assert.equal(dt.ToISO(), '2019-01-01T12:23:54.555+01:00');
+    });
+
+    it('can get the ISO String of the DateTime in other Timezone Summer', () => {
+        const dt = DateTime.FromISOString('2019-06-01T12:23:54.555', 'Europe/Berlin');
+        assert.equal(dt.ToISO(), '2019-06-01T12:23:54.555+02:00');
+    });
+
+    it('can read from generated ISO Date without Timezone', () => {
+        const dt1 = DateTime.FromISOString('2019-06-01T12:23:54.555');
+        const dt2 = DateTime.FromISOString(dt1.ToISO());
+        assert.equal(dt1.ToISO(), dt2.ToISO());
+    });
+
+    it('can read from generated ISO Date with Timezone', () => {
+        const dt1 = DateTime.FromISOString('2019-06-01T12:23:54.555', 'Europe/Berlin');
+        const dt2 = DateTime.FromISOString(dt1.ToISO(), dt1.Zone);
+        assert.equal(dt1.ToISO(), dt2.ToISO());
     });
 
     it('can return custom DateTime Chars', () => {

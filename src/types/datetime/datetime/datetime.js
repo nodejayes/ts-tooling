@@ -534,6 +534,19 @@ class DateTime {
     }
 
     /**
+     * get the DateTime as a ISO 8601 String
+     *
+     * @return {string} the ISO String
+     *
+     * @example
+     * // return '2019-01-01T12:23:54.555Z'
+     * DateTime.FromISOString('2019-01-01T12:23:54.555').ToISO();
+     */
+    ToISO() {
+        return this._date.toISO();
+    }
+
+    /**
      * convert the DateTime into a Unix Timestamp in ms
      *
      * @param inMs {boolean} get the Timestamp in ms

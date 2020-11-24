@@ -392,6 +392,8 @@ export class DateTime {
      */
     ToString(fmt?: string): string;
 
+    ToISO(): string;
+
     /**
      * convert the DateTime into a Unix Timestamp in ms
      *
