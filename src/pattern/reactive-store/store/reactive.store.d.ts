@@ -27,6 +27,13 @@ export class ReactiveStore<T> {
     constructor(initialState: T, everyChange?: boolean);
 
     /**
+     * add a Function that executes when a Mutation was made
+     *
+     * @param cb the Function that was executed by mutation
+     */
+    OnMutate(cb: (arg: T) => void): void;
+
+    /**
      * listen to a specific Property or a complete State change
      * you can use the SafeBehaviorSubject same as a BehaviorSubject but follow Functions has no effect
      * next, complete, error

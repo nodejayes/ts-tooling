@@ -32,6 +32,7 @@ class SafeBehaviorSubject extends BehaviorSubject {
  * @memberof module:pattern/reactive-store
  */
 class ReactiveStore {
+    _onMutate = null;
     /**
      * create a new Store with a Initial State
      *
@@ -44,6 +45,18 @@ class ReactiveStore {
         this._behaviorSubjects = new Dictionary();
         this._core = im.produce(initialState, () => {});
         this._everyChange = everyChange;
+    }
+
+    /**
+     * add a Function that executes when a Mutation was made
+     *
+     * @param cb {function} the Function that was executed by mutation
+     */
+    OnMutate(cb) {
+        if (typeof cb !== 'function') {
+            return;
+        }
+        this._onMutate = cb;
     }
 
     /**
@@ -109,6 +122,11 @@ class ReactiveStore {
         });
 
         if (changed) {
+            if (typeof this._onMutate === 'function') {
+                this._onMutate(this._core);
+            }
+
+            // send to Listeners when registered
             for (const behaviorKey of Object.keys(behaviors)) {
                 const realKey = behaviorKey.StartsWith('root.') ? behaviorKey.Replace('root.', '') :
                     behaviorKey === 'root' ? '' : behaviorKey;

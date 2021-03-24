@@ -15,9 +15,9 @@ npm install --save ts-tooling
 | Build             | Coverage                                                                                                                                                                         |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Build State       | ![Node.js CI](https://github.com/nodejayes/ts-tooling/workflows/Node.js%20CI/badge.svg)                                                                                          |
-| Line Coverage     | ![Line Coverage](https://img.shields.io/badge/6564%2F6689%20-98.13%25-brightgreen)                         |
-| Function Coverage | ![Function Coverage](https://img.shields.io/badge/2124%2F2207%20-96.24%25-brightgreen) |
-| Branch Coverage   | ![Branch Coverage](https://img.shields.io/badge/927%2F1078%20-85.99%25-yellow)               |
+| Line Coverage     | ![Line Coverage](https://img.shields.io/badge/6578%2F6704%20-98.12%25-brightgreen)                         |
+| Function Coverage | ![Function Coverage](https://img.shields.io/badge/2130%2F2213%20-96.25%25-brightgreen) |
+| Branch Coverage   | ![Branch Coverage](https://img.shields.io/badge/930%2F1082%20-85.95%25-yellow)               |
 | Version           | [![npm version](https://badge.fury.io/js/ts-tooling.svg)](https://badge.fury.io/js/ts-tooling)                                                                                   |
 | Dependencies      | [![devDependency Status](https://david-dm.org/nodejayes/ts-tooling/dev-status.svg)](https://david-dm.org/nodejayes/ts-tooling#info=devDependencies)                              |
 | Licence           | ![npm](https://img.shields.io/npm/l/ts-tooling.svg)                                                                                                                              |

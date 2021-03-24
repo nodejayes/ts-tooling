@@ -129,6 +129,11 @@ describe('DateTime Tests', () => {
         assert.equal(dt.ToString('yyyy-MM-dd hh:mm:ss.SSS'), '2019-01-01 12:23:54.555');
     });
 
+    it('13 o Clock is 13 not 1', () => {
+        const dt = DateTime.FromISOString('2019-01-01T13:23:54.555');
+        assert.equal(dt.ToString('yyyy-MM-dd HH:mm:ss.SSS'), '2019-01-01 13:23:54.555');
+    });
+
     it('can get the ISO String of the DateTime', () => {
         const dt = DateTime.FromISOString('2019-01-01T12:23:54.555');
         assert.equal(dt.ToISO(), '2019-01-01T12:23:54.555Z');

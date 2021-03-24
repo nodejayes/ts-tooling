@@ -573,7 +573,7 @@ describe('Reactive Store Tests', () => {
             obj: new ComplexObject(),
         });
         store.Listen(s => s.obj).subscribe(o => {
-            assert.equal(o.Age, 45);
+            assert.equal(o.Age, 46);
             assert.equal(o.greet(), 'Hello null');
             done();
         });
@@ -676,5 +676,16 @@ describe('Reactive Store Tests', () => {
         const sortedref3 = ref3.sort((a, b) => a > b ? -1 : a<b ? 1 : 0);
         assert.deepEqual(sortedref3, [3,2,1]);
         assert.deepEqual(store.Listen(s => s.test.arr).getValue(), [1,2,3]);
+    });
+
+    it('can register Function on Mutate', (done) => {
+        const store = new ReactiveStore({
+            test: 1
+        });
+        store.OnMutate(s => {
+            assert.equal(s.test, 2);
+            done();
+        });
+        store.Mutate(s => s.test, () => 2);
     });
 });

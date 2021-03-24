@@ -1,3 +1,7 @@
+### 3.7.2
+
+* ReactiveStore add Function that called on Mutation
+
 ### 3.7.1
 
 * fix DateTime get ISO Date with new Function ToISO
