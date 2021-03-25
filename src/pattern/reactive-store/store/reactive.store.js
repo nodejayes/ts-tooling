@@ -32,7 +32,6 @@ class SafeBehaviorSubject extends BehaviorSubject {
  * @memberof module:pattern/reactive-store
  */
 class ReactiveStore {
-    _onMutate = null;
     /**
      * create a new Store with a Initial State
      *

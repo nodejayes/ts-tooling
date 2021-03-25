@@ -1,3 +1,7 @@
+### 3.7.3
+
+* fix Typescript build
+
 ### 3.7.2
 
 * ReactiveStore add Function that called on Mutation

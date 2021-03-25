@@ -1,0 +1,33 @@
+Index: src/pattern/functions/retry.spec.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>const {Retry} = require('./retry');\nconst {describe, it} = require('mocha');\nconst {assert} = require('chai');\n\ndescribe('Retry Tests', () => {\n    it('runs the executions', (done) => {\n        let errCount = 0;\n        Retry({\n            timeout: 5,\n            maxExecutions: 10,\n            onError: e => {\n                errCount++;\n                assert.equal(e.message, 'fake Error');\n            },\n            onMaxExecutions: () => {\n                assert.fail('should not reach max Executions!');\n            },\n            onFinish: res => {\n                assert.equal(res, 1);\n                done();\n            },\n        }, (v) => {\n            v++;\n            if (errCount > 4) {\n                throw new Error('fake Error');\n            }\n            return v;\n        }, 0);\n    });\n\n    it('ends on to many runs', (done) => {\n        let errCount = 0;\n        Retry({\n            timeout: 5,\n            maxExecutions: 10,\n            onError: e => {\n                errCount++;\n                assert.equal(e.message, 'fake Error');\n            },\n            onMaxExecutions: () => {\n                assert.equal(errCount, 10);\n                done();\n            },\n            onFinish: () => {\n                assert.fail('should not reach finish handler!');\n            },\n        }, (v) => {\n            v++;\n            throw new Error('fake Error');\n            return v;\n        }, 0);\n    });\n});\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/pattern/functions/retry.spec.js	(revision f16fdb46cc21b4f31d66929b2cf423efefe89ea2)
++++ src/pattern/functions/retry.spec.js	(date 1593069141167)
+@@ -5,6 +5,7 @@
+ describe('Retry Tests', () => {
+     it('runs the executions', (done) => {
+         let errCount = 0;
++        let callCount = 0;
+         Retry({
+             timeout: 5,
+             maxExecutions: 10,
+@@ -17,11 +18,14 @@
+             },
+             onFinish: res => {
+                 assert.equal(res, 1);
++                assert.equal(callCount, 5);
++                assert.equal(errCount, 4);
+                 done();
+             },
+         }, (v) => {
++            callCount++;
+             v++;
+-            if (errCount > 4) {
++            if (errCount < 4) {
+                 throw new Error('fake Error');
+             }
+             return v;

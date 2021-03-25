@@ -261,7 +261,10 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 2Create(undefined, 2);// returns 3Create(3, 2);</code></pre>
+    <pre class="prettyprint"><code>// returns 2
+Create(undefined, 2);
+// returns 3
+Create(3, 2);</code></pre>
 
     
 
@@ -470,7 +473,11 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const factory = (argument1) => { return argument1; };// returns "test"CreateWithFactory(factory, ['test']);// returns "default"CreateWithFactory(factory, [], 'default');</code></pre>
+    <pre class="prettyprint"><code>const factory = (argument1) => { return argument1; };
+// returns "test"
+CreateWithFactory(factory, ['test']);
+// returns "default"
+CreateWithFactory(factory, [], 'default');</code></pre>
 
     
 
@@ -689,7 +696,29 @@ ATTENTION catched errors in the Function are not detected!</p>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// this executes the function 5 times and returns the function value// 4 Errors are fired with the error message fake Errorlet errCount = 0;Retry({    timeout: 5,    maxExecutions: 10,    onError: e => {        errCount++;        assert.equal(e.message, 'fake Error');    },    onMaxExecutions: () => {        assert.fail('should not reach max Executions!');    },    onFinish: res => {        assert.equal(res, 1);    },}, (v) => {    v++;    if (errCount > 4) {        throw new Error('fake Error');    }    return v;}, 0);</code></pre>
+    <pre class="prettyprint"><code>// this executes the function 5 times and returns the function value
+// 4 Errors are fired with the error message fake Error
+let errCount = 0;
+Retry({
+    timeout: 5,
+    maxExecutions: 10,
+    onError: e => {
+        errCount++;
+        assert.equal(e.message, 'fake Error');
+    },
+    onMaxExecutions: () => {
+        assert.fail('should not reach max Executions!');
+    },
+    onFinish: res => {
+        assert.equal(res, 1);
+    },
+}, (v) => {
+    v++;
+    if (errCount > 4) {
+        throw new Error('fake Error');
+    }
+    return v;
+}, 0);</code></pre>
 
     
 
@@ -1018,7 +1047,16 @@ ATTENTION catched errors in the Function are not detected!</p>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class WithDisposable implements IDisposable {  Name = 'WithoutDisposable';  Dispose(): void {    this.Name = '';  }}using(WithDisposable, (i) => {  // Do whatever you want to do with the new Instance of the Class});</code></pre>
+    <pre class="prettyprint"><code>class WithDisposable implements IDisposable {
+  Name = 'WithoutDisposable';
+
+  Dispose(): void {
+    this.Name = '';
+  }
+}
+using(WithDisposable, (i) => {
+  // Do whatever you want to do with the new Instance of the Class
+});</code></pre>
 
     
 
