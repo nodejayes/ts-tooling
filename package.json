@@ -1,6 +1,6 @@
 {
   "name": "ts-tooling",
-  "version": "3.7.3",
+  "version": "3.8.0",
   "main": "src/ts-tooling.js",
   "types": "src/ts-tooling.d.ts",
   "scripts": {
@@ -26,29 +26,28 @@
     "src"
   ],
   "dependencies": {
-    "luxon": "^1.25.0",
-    "immer": "^7.0.14",
+    "luxon": "^1.26.0",
+    "immer": "^9.0.1",
     "lz-string": "^1.4.4",
-    "rxjs": "^6.6.3",
-    "ts-node": "^9.0.0",
-    "uuid": "^8.3.1",
+    "rxjs": "^6.6.7",
+    "ts-node": "^9.1.1",
+    "uuid": "^8.3.2",
     "object-sizeof": "^1.6.1",
-    "change-case": "^4.1.1",
-    "proj4": "^2.6.2"
+    "change-case": "^4.1.2",
+    "proj4": "^2.7.2"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
+    "chai": "^4.3.4",
     "chai-uuid": "^1.0.6",
-    "clinic": "^7.0.0",
     "collatio": "^1.0.2",
-    "eslint": "^7.12.1",
+    "eslint": "^7.24.0",
     "jsdoc": "^3.6.6",
     "lcov-parse": "^1.0.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "microtime": "^3.0.0",
-    "mocha": "^8.2.1",
+    "mocha": "^8.3.2",
     "nyc": "^15.1.0",
-    "prettier": "^2.1.2",
+    "prettier": "^2.2.1",
     "tui-jsdoc-template": "^1.2.2",
     "devtool": "^2.3.1"
   }

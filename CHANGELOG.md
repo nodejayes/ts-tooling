@@ -1,3 +1,7 @@
+### 3.8.0
+
+* update Dependencies
+
 ### 3.7.3
 
 * fix Typescript build

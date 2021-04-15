@@ -328,30 +328,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class User {
-    `@`IsDefined('Name must be defined', ['Insert', 'Read'])
-    Name: string;
-
-    `@`Min(0, 'Age must be greater -1', ['Insert', 'Update', 'Read'])
-    `@`Max(200, 'Age must me lower 201', ['Insert', 'Update', 'Read'])
-    Age: number;
-
-    `@`IsEmail('Email must be a valid email address', ['Insert', 'Update', 'Read'])
-    Email: string;
-}
-const instance = new User();
-// returns [
-     {Message:'Name must be defined'},
-     {Message:'Age must be greater -1'},
-     {Message:'Age must me lower 201'},
-     {Message:'Email must be a valid email address'},
-]
-ClassValidator.Validate('Insert', instance);
-instance.Name = 'Udo';
-instance.Age = 20;
-instance.Email = 'udo@address.de';
-// returns []
-ClassValidator.Validate('Insert', instance);</code></pre>
+    <pre class="prettyprint"><code>class User {    `@`IsDefined('Name must be defined', ['Insert', 'Read'])    Name: string;    `@`Min(0, 'Age must be greater -1', ['Insert', 'Update', 'Read'])    `@`Max(200, 'Age must me lower 201', ['Insert', 'Update', 'Read'])    Age: number;    `@`IsEmail('Email must be a valid email address', ['Insert', 'Update', 'Read'])    Email: string;}const instance = new User();// returns [     {Message:'Name must be defined'},     {Message:'Age must be greater -1'},     {Message:'Age must me lower 201'},     {Message:'Email must be a valid email address'},]ClassValidator.Validate('Insert', instance);instance.Name = 'Udo';instance.Age = 20;instance.Email = 'udo@address.de';// returns []ClassValidator.Validate('Insert', instance);</code></pre>
 
     
 
@@ -541,31 +518,7 @@ ClassValidator.Validate('Insert', instance);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class User {
-    `@`IsDefined('Name must be defined', ['Insert', 'Read'])
-    Name: string;
-
-    `@`Min(0, 'Age must be greater -1', ['Insert', 'Update', 'Read'])
-    `@`Max(200, 'Age must me lower 201', ['Insert', 'Update', 'Read'])
-    Age: number;
-
-    `@`IsEmail('Email must be a valid email address', ['Insert', 'Update', 'Read'])
-    Email: string;
-}
-const instance = {
-    Name: 'Udo',
-    Age: 20,
-    Email: 'udo@address.de',
-};
-// returns [
-     {Message:'Name must be defined'},
-     {Message:'Age must be greater -1'},
-     {Message:'Age must me lower 201'},
-     {Message:'Email must be a valid email address'},
-]
-ClassValidator.ValidateObject(User, 'Insert', {});
-// returns []
-ClassValidator.ValidateObject(User, 'Insert', instance);</code></pre>
+    <pre class="prettyprint"><code>class User {    `@`IsDefined('Name must be defined', ['Insert', 'Read'])    Name: string;    `@`Min(0, 'Age must be greater -1', ['Insert', 'Update', 'Read'])    `@`Max(200, 'Age must me lower 201', ['Insert', 'Update', 'Read'])    Age: number;    `@`IsEmail('Email must be a valid email address', ['Insert', 'Update', 'Read'])    Email: string;}const instance = {    Name: 'Udo',    Age: 20,    Email: 'udo@address.de',};// returns [     {Message:'Name must be defined'},     {Message:'Age must be greater -1'},     {Message:'Age must me lower 201'},     {Message:'Email must be a valid email address'},]ClassValidator.ValidateObject(User, 'Insert', {});// returns []ClassValidator.ValidateObject(User, 'Insert', instance);</code></pre>
 
     
 
