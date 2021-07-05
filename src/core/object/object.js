@@ -22,6 +22,10 @@ const RecursiveDeepCopy = (o, cache = []) => {
         return newO;
     }
 
+    if (o instanceof Date) {
+        return new Date(o.getTime());
+    }
+
     newO = {};
     for (i in o) {
         if (o.hasOwnProperty(i)) {

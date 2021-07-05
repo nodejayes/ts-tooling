@@ -40,6 +40,16 @@ describe('Object Extension Tests', () => {
             assert.equal(clone.hello, 'world');
             assert.equal(clone.other.hello, 'world');
         });
+        it('copy date in object bug', () => {
+            const tmp = {d: new Date(2021, 5, 5, 5, 5, 5, 500)};
+            const clone = ObjectFactory.Copy(tmp);
+            assert.deepEqual(tmp, clone);
+        });
+        it('can clone correct DateTime', () => {
+            const tmp = new DateTime('UTC', 2021, 5, 5, 5, 5, 5, 5, 5);
+            const clone = ObjectFactory.Copy(tmp);
+            assert.deepEqual(tmp, clone);
+        });
     });
     describe('[Method]: SizeOf', () => {
         it('check {Hello: \'World!\'}', () => {
@@ -106,8 +116,8 @@ describe('Object Extension Tests', () => {
             assert.deepEqual(ObjectFactory.Set(test, 'Hello', 'X'), {Hello:'X'});
         });
         it('set sub key', () => {
-            const test = {Hello:{Name:'Paul',World:'World'}}
-            assert.deepEqual(ObjectFactory.Set(test, 'Hello.Name', 'Sabrina'), {Hello:{Name:'Sabrina',World:'World'}})
+            const test = {Hello:{Name:'Paul',World:'World'}};
+            assert.deepEqual(ObjectFactory.Set(test, 'Hello.Name', 'Sabrina'), {Hello:{Name:'Sabrina',World:'World'}});
         });
     });
     describe('[Method]: Equal', () => {
