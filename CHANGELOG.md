@@ -1,3 +1,7 @@
+### 3.8.2
+
+* fix ObjectFactory.Copy bug: not correct clone objects with Date
+
 ### 3.8.1
 
 * security fixes
