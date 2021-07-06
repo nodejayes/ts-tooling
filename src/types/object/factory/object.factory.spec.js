@@ -2,6 +2,7 @@ const {assert} = require('chai');
 const {ObjectFactory} = require('./object.factory');
 const {describe, it} = require('mocha');
 const {DateTime} = require('../../datetime');
+const {ReactiveStore} = require('./../../../pattern/reactive-store/store/reactive.store');
 
 describe('Object Extension Tests', () => {
     it('detect Circular References', () => {
@@ -49,6 +50,29 @@ describe('Object Extension Tests', () => {
             const tmp = new DateTime('UTC', 2021, 5, 5, 5, 5, 5, 5, 5);
             const clone = ObjectFactory.Copy(tmp);
             assert.deepEqual(tmp, clone);
+        });
+        it('can clone State Object', (done) => {
+            const store = new ReactiveStore({test:{d: new Date(2021,5,5,5,5,5,500)}}, true);
+            let counter = 0;
+            store.Listen(s => s.test).subscribe(d => {
+                counter++;
+                if (counter > 1) {
+                    const clone = ObjectFactory.Copy(d);
+                    assert.deepEqual(d, clone);
+                    done();
+                }
+            });
+            store.Mutate(s => s.test, () => ({d: new Date(2021,5,6,5,5,5,500)}));
+        });
+        it('can clone State Object with getValue', (done) => {
+            const store = new ReactiveStore({test:{d: new Date(2021,5,5,5,5,5,500)}}, true);
+            store.Mutate(s => s.test, () => ({d: new Date(2021,5,6,5,5,5,500)}));
+            setTimeout(() => {
+                const d = store.Listen(s => s.test).getValue();
+                const clone = ObjectFactory.Copy(d);
+                assert.deepEqual(d, clone);
+                done();
+            }, 50);
         });
     });
     describe('[Method]: SizeOf', () => {
