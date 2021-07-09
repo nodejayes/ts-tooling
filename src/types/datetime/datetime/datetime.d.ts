@@ -434,4 +434,21 @@ export class DateTime {
      * DateTime.FromISOString('2019-06-02T02:30:56', 'Europe/Berlin').ToJSON();
      */
     ToJSON(): string;
+
+    /**
+     * returns the Hours in the Month of the current DateTime
+     *
+     * @return {number} the Hours in the Month
+     *
+     * @example
+     * // returns 744
+     * new DateTime('UTC', 2020,1,1,0,0,0,0).MonthHours();
+     * // returns 720
+     * new DateTime('UTC', 2020,4,1,0,0,0,0).MonthHours();
+     * // returns 696
+     * new DateTime('UTC', 2020,2,1,0,0,0,0).MonthHours();
+     * // returns 672
+     * new DateTime('UTC', 2021,2,1,0,0,0,0).MonthHours();
+     */
+    MonthHours(): number;
 }

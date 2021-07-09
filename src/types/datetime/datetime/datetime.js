@@ -2,6 +2,7 @@ const {NumberFactory} = require('../../number');
 const luxon = require('luxon');
 const {TimeSpan} = require('../timespan/timespan');
 const {StringFactory} = require('../../string/factory/string.factory');
+const {GetHoursForMonth} = require('../../../core/datetime/datetime');
 
 function checkLuxonTimeZone(zone, date) {
     if (!date.isValid && date.invalidReason === 'unsupported zone') {
@@ -594,6 +595,25 @@ class DateTime {
      */
     ToJSON() {
         return this._date.toJSON();
+    }
+
+    /**
+     * returns the Hours in the Month of the current DateTime
+     *
+     * @return {number} the Hours in the Month
+     *
+     * @example
+     * // returns 744
+     * new DateTime('UTC', 2020,1,1,0,0,0,0).MonthHours();
+     * // returns 720
+     * new DateTime('UTC', 2020,4,1,0,0,0,0).MonthHours();
+     * // returns 696
+     * new DateTime('UTC', 2020,2,1,0,0,0,0).MonthHours();
+     * // returns 672
+     * new DateTime('UTC', 2021,2,1,0,0,0,0).MonthHours();
+     */
+    MonthHours() {
+        return GetHoursForMonth(this.Month, this.Year);
     }
 }
 

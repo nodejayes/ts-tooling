@@ -30,7 +30,20 @@ const ParseString = (str) => {
         minutes: m,
         seconds: s,
         milliseconds: ms,
-    }
+    };
 };
 
-module.exports = {ParseString};
+function GetHoursForMonth(month, year) {
+    if ([1, 3, 5, 7, 8, 10, 12].Contains(month)) {
+        return 31 * 24;
+    }
+    if ([4, 6, 9, 11].Contains(month)) {
+        return 30 * 24;
+    }
+    if (month !== 2) {
+        return 0;
+    }
+    return (year % 4) === 0 ? 29 * 24 : 28 * 24;
+}
+
+module.exports = {ParseString, GetHoursForMonth};

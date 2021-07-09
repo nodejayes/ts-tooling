@@ -484,4 +484,28 @@ describe('DateTime Tests', () => {
             assert.isFalse(DateTime.IsJavascriptDate([]));
         });
     });
+
+    describe('[Method]: MonthHours', () => {
+        it('returns 31 Day Months', () => {
+            assert.equal(DateTime.FromISOString('2020-01-01T00:00:00', 'UTC').MonthHours(), 744);
+            assert.equal(DateTime.FromISOString('2020-03-01T00:00:00', 'UTC').MonthHours(), 744);
+            assert.equal(DateTime.FromISOString('2020-05-01T00:00:00', 'UTC').MonthHours(), 744);
+            assert.equal(DateTime.FromISOString('2020-07-01T00:00:00', 'UTC').MonthHours(), 744);
+            assert.equal(DateTime.FromISOString('2020-08-01T00:00:00', 'UTC').MonthHours(), 744);
+            assert.equal(DateTime.FromISOString('2020-10-01T00:00:00', 'UTC').MonthHours(), 744);
+            assert.equal(DateTime.FromISOString('2020-12-01T00:00:00', 'UTC').MonthHours(), 744);
+        });
+        it('returns 30 Day Months', () => {
+            assert.equal(DateTime.FromISOString('2020-04-01T00:00:00', 'UTC').MonthHours(), 720);
+            assert.equal(DateTime.FromISOString('2020-06-01T00:00:00', 'UTC').MonthHours(), 720);
+            assert.equal(DateTime.FromISOString('2020-09-01T00:00:00', 'UTC').MonthHours(), 720);
+            assert.equal(DateTime.FromISOString('2020-11-01T00:00:00', 'UTC').MonthHours(), 720);
+        });
+        it('returns 28 Day Months', () => {
+            assert.equal(DateTime.FromISOString('2021-02-01T00:00:00', 'UTC').MonthHours(), 672);
+        });
+        it('returns 29 Day Months', () => {
+            assert.equal(DateTime.FromISOString('2020-02-01T00:00:00', 'UTC').MonthHours(), 696);
+        });
+    });
 });

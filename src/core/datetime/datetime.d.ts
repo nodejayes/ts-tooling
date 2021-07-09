@@ -21,3 +21,4 @@ export interface IMomentInstance {
 }
 
 export function ParseString(str: string): ILuxonDuration;
+export function GetHoursForMonth(month: number, year: number): number;
