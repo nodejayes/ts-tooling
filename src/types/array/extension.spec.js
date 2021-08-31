@@ -288,6 +288,20 @@ describe('Array Extension Tests', () => {
         it('returns false when one element not match the condition', () => {
             assert.isFalse([1,2,3].TrueForAll(e => e === 1));
         });
+        it('idx is not undefined', () => {
+            [1,2,3].TrueForAll((e, i, arr) => {
+                if (i < 0 || i === undefined || i === null) {
+                    assert.fail('wrong index given');
+                }
+            });
+        });
+        it('arr is not undefined', () => {
+            [1,2,3].TrueForAll((e, i, arr) => {
+                if (!Array.isArray(arr)) {
+                    assert.fail('the array was not passed in condition');
+                }
+            });
+        });
     });
     describe('[Method]: Insert', () => {
         it('insert one element at beginning of the array', () => {

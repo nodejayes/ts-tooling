@@ -923,8 +923,9 @@ Array.prototype.FindLastIndex = function (condition) {
  * [1,2,3].TrueForAll(e => e === 1);
  */
 Array.prototype.TrueForAll = function (condition) {
-    for (const item of this) {
-        if (!condition(item)) {
+    for (let i = 0; i < this.length; i++) {
+        const item = this[i];
+        if (!condition(item, i, this)) {
             return false;
         }
     }
