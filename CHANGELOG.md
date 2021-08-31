@@ -1,3 +1,10 @@
+### 3.9.0
+
+* add Observer Pattern
+* add MonthHours on DateTime
+* add Test clone State Object
+* fix TrueForAll Bug undefined index and array parameter in condition
+
 ### 3.8.2
 
 * fix ObjectFactory.Copy bug: not correct clone objects with Date
