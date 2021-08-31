@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: utils/validation | v3.7.0</title>
+    <title>Module: utils/validation | v3.9.0</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -26,7 +26,7 @@
         
     </div>
     <div class="title">
-        <h1><a href="index.html" class="link">v3.7.0</a></h1>
+        <h1><a href="index.html" class="link">v3.9.0</a></h1>
         
     </div>
     <div class="search-container" id="search-container">
@@ -354,18 +354,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class SomeEntity {
-    `@`ArrayNotEmpty('array can not be empty', ['S1'])
-    primeNumbers: number[];
-}
-const invalid = new SomeEntity();
-// returns [{Message: 'array can not be empty'}]
-ClassValidator.Validate('S1', invalid);
-
-const valid = new SomeEntity();
-valid.primeNumbers = [2,3,5,7];
-// returns []
-ClassValidator.Validate('S1', valid);</code></pre>
+    <pre class="prettyprint"><code>class SomeEntity {    `@`ArrayNotEmpty('array can not be empty', ['S1'])    primeNumbers: number[];}const invalid = new SomeEntity();// returns [{Message: 'array can not be empty'}]ClassValidator.Validate('S1', invalid);const valid = new SomeEntity();valid.primeNumbers = [2,3,5,7];// returns []ClassValidator.Validate('S1', valid);</code></pre>
 
     
 
@@ -574,17 +563,7 @@ ClassValidator.Validate('S1', valid);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class BlacklistClass {
-    `@`Blacklist([1,4,8], 'Invalid', ['S1'])
-    value: number;
-}
-const instance = new BlacklistClass();
-// is invalid
-instance.value = 1;
-instance.value = 4;
-instance.value = 8;
-// is valid
-instance.value = 9;</code></pre>
+    <pre class="prettyprint"><code>class BlacklistClass {    `@`Blacklist([1,4,8], 'Invalid', ['S1'])    value: number;}const instance = new BlacklistClass();// is invalidinstance.value = 1;instance.value = 4;instance.value = 8;// is validinstance.value = 9;</code></pre>
 
     
 
@@ -793,16 +772,7 @@ instance.value = 9;</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class CustomValidationClass {
-    `@`CustomValidation(v => v > 5, 'Invalid', ['S1'])
-    value: number;
-}
-const instance = new CustomValidationClass();
-// is valid
-instance.value = 6;
-// is invalid
-instance.value = 5;
-instance.value = 4;</code></pre>
+    <pre class="prettyprint"><code>class CustomValidationClass {    `@`CustomValidation(v => v > 5, 'Invalid', ['S1'])    value: number;}const instance = new CustomValidationClass();// is validinstance.value = 6;// is invalidinstance.value = 5;instance.value = 4;</code></pre>
 
     
 
@@ -1011,15 +981,7 @@ instance.value = 4;</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class EqualsClass {
-    `@`Equals('-', 'Invalid', ['S1'])
-    value: string;
-}
-const instance = new EqualsClass();
-// is invalid
-instance.value = 'a';
-// is valid
-instance.value = '-';</code></pre>
+    <pre class="prettyprint"><code>class EqualsClass {    `@`Equals('-', 'Invalid', ['S1'])    value: string;}const instance = new EqualsClass();// is invalidinstance.value = 'a';// is validinstance.value = '-';</code></pre>
 
     
 
@@ -1205,15 +1167,7 @@ instance.value = '-';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsAlphaTest {
-    `@`IsAlpha('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsAlphaTest();
-// is valid
-instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-// is invalid
-instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1';</code></pre>
+    <pre class="prettyprint"><code>class IsAlphaTest {    `@`IsAlpha('Invalid', ['S1'])    value: string;}const instance = new IsAlphaTest();// is validinstance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';// is invalidinstance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1';</code></pre>
 
     
 
@@ -1399,15 +1353,7 @@ instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1';</code>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsAlphanumericTest {
-    `@`IsAlphanumeric('Invalid', ['S1'])
-    values: string;
-}
-const instance = new IsAlphanumericTest();
-// is valid
-instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-// is invalid
-instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?';</code></pre>
+    <pre class="prettyprint"><code>class IsAlphanumericTest {    `@`IsAlphanumeric('Invalid', ['S1'])    values: string;}const instance = new IsAlphanumericTest();// is validinstance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';// is invalidinstance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?';</code></pre>
 
     
 
@@ -1593,19 +1539,7 @@ instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsAsciiTest {
-    `@`IsAscii('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsAsciiTest();
-// is valid
-for (let i = 0; i &lt;= 127; i++) {
-    instance.value += String.fromCharCode(i);
-}
-// is invalid
-for (let i = 128; i &lt;= 255; i++) {
-    instance.value += String.fromCharCode(i);
-}</code></pre>
+    <pre class="prettyprint"><code>class IsAsciiTest {    `@`IsAscii('Invalid', ['S1'])    value: string;}const instance = new IsAsciiTest();// is validfor (let i = 0; i &lt;= 127; i++) {    instance.value += String.fromCharCode(i);}// is invalidfor (let i = 128; i &lt;= 255; i++) {    instance.value += String.fromCharCode(i);}</code></pre>
 
     
 
@@ -1791,15 +1725,7 @@ for (let i = 128; i &lt;= 255; i++) {
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsBase64Test {
-    `@`IsBase64('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsBase64Test();
-// is valid
-instance.value = 'aGVsbG86d29ybGQhPyQqJigpJy09QH4=';
-// is invalid
-instance.value = 'hello:world!?$*&amp;()'-=@~';</code></pre>
+    <pre class="prettyprint"><code>class IsBase64Test {    `@`IsBase64('Invalid', ['S1'])    value: string;}const instance = new IsBase64Test();// is validinstance.value = 'aGVsbG86d29ybGQhPyQqJigpJy09QH4=';// is invalidinstance.value = 'hello:world!?$*&amp;()'-=@~';</code></pre>
 
     
 
@@ -1986,27 +1912,7 @@ instance.value = 'hello:world!?$*&amp;()'-=@~';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsBooleanStringTest {
-    `@`IsBooleanString('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsBooleanStringTest();
-// is valid
-instance.value = 'abc';
-// returns a error
-await ClassValidator.Validate('S1', instance);
-instance.value = 'true';
-// returns no error
-await ClassValidator.Validate('S1', instance);
-instance.value = 'false';
-// returns no error
-await ClassValidator.Validate('S1', instance);
-instance.value = 'TRUE';
-// returns no error
-await ClassValidator.Validate('S1', instance);
-instance.value = 'FALSE';
-// returns no error
-await ClassValidator.Validate('S1', instance);</code></pre>
+    <pre class="prettyprint"><code>class IsBooleanStringTest {    `@`IsBooleanString('Invalid', ['S1'])    value: string;}const instance = new IsBooleanStringTest();// is validinstance.value = 'abc';// returns a errorawait ClassValidator.Validate('S1', instance);instance.value = 'true';// returns no errorawait ClassValidator.Validate('S1', instance);instance.value = 'false';// returns no errorawait ClassValidator.Validate('S1', instance);instance.value = 'TRUE';// returns no errorawait ClassValidator.Validate('S1', instance);instance.value = 'FALSE';// returns no errorawait ClassValidator.Validate('S1', instance);</code></pre>
 
     
 
@@ -2215,15 +2121,7 @@ await ClassValidator.Validate('S1', instance);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsByteLengthTest {
-    `@`IsByteLength(4, 'Invalid', ['S1])
-    value: string
-}
-const instance = new IsByteLengthTest();
-// is valid
-instance.value = '1234';
-// is invalid
-instance.value = '12345';</code></pre>
+    <pre class="prettyprint"><code>class IsByteLengthTest {    `@`IsByteLength(4, 'Invalid', ['S1])    value: string}const instance = new IsByteLengthTest();// is validinstance.value = '1234';// is invalidinstance.value = '12345';</code></pre>
 
     
 
@@ -2409,17 +2307,7 @@ instance.value = '12345';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsDefinedTest {
-    `@`IsDefined('Invalid', ['S1'])
-    value: any;
-}
-const instance = new IsDefinedTest();
-// is invalid
-instance.value = undefined;
-instance.value = null;
-// is valid
-instance.value = 1;
-instance.value = 'a';</code></pre>
+    <pre class="prettyprint"><code>class IsDefinedTest {    `@`IsDefined('Invalid', ['S1'])    value: any;}const instance = new IsDefinedTest();// is invalidinstance.value = undefined;instance.value = null;// is validinstance.value = 1;instance.value = 'a';</code></pre>
 
     
 
@@ -2605,15 +2493,7 @@ instance.value = 'a';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsEmailClass {
-    `@`IsEmail('Invalid', ['S1])
-    value: string;
-}
-const instance = new IsEmailClass();
-// is invalid
-instance.value = 'xxxxxxxx';
-// is valid
-instance.value = 'test@example.com';</code></pre>
+    <pre class="prettyprint"><code>class IsEmailClass {    `@`IsEmail('Invalid', ['S1])    value: string;}const instance = new IsEmailClass();// is invalidinstance.value = 'xxxxxxxx';// is validinstance.value = 'test@example.com';</code></pre>
 
     
 
@@ -2799,17 +2679,7 @@ instance.value = 'test@example.com';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsEmptyTest {
-    `@`IsEmpty('Invalid', ['S1'])
-    value: any;
-}
-const instance = new IsEmptyTest();
-// is valid
-instance.value = undefined;
-instance.value = null;
-// is invalid
-instance.value = 1;
-instance.value = 'a';</code></pre>
+    <pre class="prettyprint"><code>class IsEmptyTest {    `@`IsEmpty('Invalid', ['S1'])    value: any;}const instance = new IsEmptyTest();// is validinstance.value = undefined;instance.value = null;// is invalidinstance.value = 1;instance.value = 'a';</code></pre>
 
     
 
@@ -2997,30 +2867,7 @@ instance.value = 'a';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsHashTest {
-    `@`IsHash('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsHashTest();
-// is valid
-// MD5
-instance.value = 'd41d8cd98f00b204e9800998ecf8427e';
-// SHA-1
-instance.value = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
-// SHA-256
-instance.value = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
-// SHA-512
-instance.value = 'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e';
-// RIPEMD-160
-instance.value = '9c1185a5c5e9fc54612808977ee8f548b2258d31';
-// Snefru
-instance.value = '8617f366566a011837f4fb4ba5bedea2b892f3ed8b894023d16ae344b2be5881';
-// GHOST
-instance.value = 'ce85b99cc46752fffee35cab9a7b0278abb4c2d2055cff685af4912c49490f8d';
-// Whirlpool
-instance.value = '19fa61d75522a4669b44e39c1d2e1726c530232130d407f89afee0964997f7a73e83be698b288febcf88e3e03c4f0757ea8964e59b63d93708b138cc42a66eb3';
-// is invalid
-instance.value = 'HalloWelt';</code></pre>
+    <pre class="prettyprint"><code>class IsHashTest {    `@`IsHash('Invalid', ['S1'])    value: string;}const instance = new IsHashTest();// is valid// MD5instance.value = 'd41d8cd98f00b204e9800998ecf8427e';// SHA-1instance.value = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';// SHA-256instance.value = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';// SHA-512instance.value = 'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e';// RIPEMD-160instance.value = '9c1185a5c5e9fc54612808977ee8f548b2258d31';// Snefruinstance.value = '8617f366566a011837f4fb4ba5bedea2b892f3ed8b894023d16ae344b2be5881';// GHOSTinstance.value = 'ce85b99cc46752fffee35cab9a7b0278abb4c2d2055cff685af4912c49490f8d';// Whirlpoolinstance.value = '19fa61d75522a4669b44e39c1d2e1726c530232130d407f89afee0964997f7a73e83be698b288febcf88e3e03c4f0757ea8964e59b63d93708b138cc42a66eb3';// is invalidinstance.value = 'HalloWelt';</code></pre>
 
     
 
@@ -3206,18 +3053,7 @@ instance.value = 'HalloWelt';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsHexadecimalTest {
-    `@`IsHexadecimal('Invalid', ['S1])
-    value: string;
-}
-const instance = new IsHexadecimalTest();
-// is valid
-instance.value = 'AF050505';
-instance.value = 'af050505';
-instance.value = '0xAF050505';
-instance.value = '#AF050505';
-// is invalid
-instance.value = 'xxxxxxxx';</code></pre>
+    <pre class="prettyprint"><code>class IsHexadecimalTest {    `@`IsHexadecimal('Invalid', ['S1])    value: string;}const instance = new IsHexadecimalTest();// is validinstance.value = 'AF050505';instance.value = 'af050505';instance.value = '0xAF050505';instance.value = '#AF050505';// is invalidinstance.value = 'xxxxxxxx';</code></pre>
 
     
 
@@ -3404,16 +3240,7 @@ instance.value = 'xxxxxxxx';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsHexColorTest {
-    `@`IsHexColor('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsHexColor();
-// is valid
-instance.value = '#ffffff';
-instance.value = '#ffffffff';
-// is invalid
-instance.value = '#ffffffffff';</code></pre>
+    <pre class="prettyprint"><code>class IsHexColorTest {    `@`IsHexColor('Invalid', ['S1'])    value: string;}const instance = new IsHexColor();// is validinstance.value = '#ffffff';instance.value = '#ffffffff';// is invalidinstance.value = '#ffffffffff';</code></pre>
 
     
 
@@ -3599,15 +3426,7 @@ instance.value = '#ffffffffff';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsIntTest {
-    `@`IsInt('Invalid', ['S1'])
-    value: any;
-}
-const instance = new IsIntTest();
-// is valid
-instance.value = 1;
-// is invalid
-instance.value = 'a';</code></pre>
+    <pre class="prettyprint"><code>class IsIntTest {    `@`IsInt('Invalid', ['S1'])    value: any;}const instance = new IsIntTest();// is validinstance.value = 1;// is invalidinstance.value = 'a';</code></pre>
 
     
 
@@ -3793,16 +3612,7 @@ instance.value = 'a';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsIpTest {
-    `@`IsIp('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsIpTest();
-// is valid
-instance.value = '192.168.1.1';
-// is invalid
-instance.value = '000.0000.00.00';
-instance.value = '912.456.123.123';</code></pre>
+    <pre class="prettyprint"><code>class IsIpTest {    `@`IsIp('Invalid', ['S1'])    value: string;}const instance = new IsIpTest();// is validinstance.value = '192.168.1.1';// is invalidinstance.value = '000.0000.00.00';instance.value = '912.456.123.123';</code></pre>
 
     
 
@@ -3988,15 +3798,7 @@ instance.value = '912.456.123.123';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsJSONTest {
-    `@`IsJSON('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsJSONTest();
-// is valid
-instance.value = '{"Hello":"World"}';
-// is invalid
-instance.value = 'xxxxxxx';</code></pre>
+    <pre class="prettyprint"><code>class IsJSONTest {    `@`IsJSON('Invalid', ['S1'])    value: string;}const instance = new IsJSONTest();// is validinstance.value = '{"Hello":"World"}';// is invalidinstance.value = 'xxxxxxx';</code></pre>
 
     
 
@@ -4182,15 +3984,7 @@ instance.value = 'xxxxxxx';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsJWTTest {
-    `@`IsJWT('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsJWTTest();
-// is valid
-instance.value = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ';
-// is invalid
-instance.value = 'Hello';</code></pre>
+    <pre class="prettyprint"><code>class IsJWTTest {    `@`IsJWT('Invalid', ['S1'])    value: string;}const instance = new IsJWTTest();// is validinstance.value = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ';// is invalidinstance.value = 'Hello';</code></pre>
 
     
 
@@ -4376,16 +4170,7 @@ instance.value = 'Hello';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsMacAddressTest {
-    `@`IsMacAddress('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsMacAddressTest();
-// is valid
-instance.value = '3D-F2-C9-A6-B3-4F';
-instance.value = '3D:F2:C9:A6:B3:4F';
-// is invalid
-instance.value = '3D:F2:C9:A6:B3:4F:';</code></pre>
+    <pre class="prettyprint"><code>class IsMacAddressTest {    `@`IsMacAddress('Invalid', ['S1'])    value: string;}const instance = new IsMacAddressTest();// is validinstance.value = '3D-F2-C9-A6-B3-4F';instance.value = '3D:F2:C9:A6:B3:4F';// is invalidinstance.value = '3D:F2:C9:A6:B3:4F:';</code></pre>
 
     
 
@@ -4571,15 +4356,7 @@ instance.value = '3D:F2:C9:A6:B3:4F:';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsMongoIdTest {
-    `@`IsMongoId('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsMongoIdTest();
-// is valid
-instance.value = '5dfaa9da5fca3be0982a4301';
-// is invalid
-instance.value = 'abc';</code></pre>
+    <pre class="prettyprint"><code>class IsMongoIdTest {    `@`IsMongoId('Invalid', ['S1'])    value: string;}const instance = new IsMongoIdTest();// is validinstance.value = '5dfaa9da5fca3be0982a4301';// is invalidinstance.value = 'abc';</code></pre>
 
     
 
@@ -4765,20 +4542,7 @@ instance.value = 'abc';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsNegativeCheck {
-     `@`IsNegative('Invalid', ['S1'])
-     prop: int;
-}
-const instance = new IsNegativeCheck();
-instance.prop = 0;
-// one error was returned
-await ClassValidator.Validate('S1', instance);
-instance.prop = 1;
-// one error was returned
-await ClassValidator.Validate('S1', instance);
-instance.prop = -1;
-// no error was returned
-await ClassValidator.Validate('S1', instance);</code></pre>
+    <pre class="prettyprint"><code>class IsNegativeCheck {     `@`IsNegative('Invalid', ['S1'])     prop: int;}const instance = new IsNegativeCheck();instance.prop = 0;// one error was returnedawait ClassValidator.Validate('S1', instance);instance.prop = 1;// one error was returnedawait ClassValidator.Validate('S1', instance);instance.prop = -1;// no error was returnedawait ClassValidator.Validate('S1', instance);</code></pre>
 
     
 
@@ -4964,17 +4728,7 @@ await ClassValidator.Validate('S1', instance);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsNotEmptyTest {
-    `@`IsNotEmpty('Invalid', ['S1])
-    value: string;
-}
-const instance = new IsNotEmptyTest();
-// is invalid
-instance.value = '';
-instance.value = null;
-instance.value = undefined;
-// is valid
-instance.value = 'a';</code></pre>
+    <pre class="prettyprint"><code>class IsNotEmptyTest {    `@`IsNotEmpty('Invalid', ['S1])    value: string;}const instance = new IsNotEmptyTest();// is invalidinstance.value = '';instance.value = null;instance.value = undefined;// is validinstance.value = 'a';</code></pre>
 
     
 
@@ -5160,15 +4914,7 @@ instance.value = 'a';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsNumberStringTest {
-    `@`IsNumberString('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsNumberStringTest();
-// is valid
-instance.value = '1';
-// is invalid
-instance.value = '1a';</code></pre>
+    <pre class="prettyprint"><code>class IsNumberStringTest {    `@`IsNumberString('Invalid', ['S1'])    value: string;}const instance = new IsNumberStringTest();// is validinstance.value = '1';// is invalidinstance.value = '1a';</code></pre>
 
     
 
@@ -5512,17 +5258,7 @@ instance.value = '1a';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsPortTest {
-    `@`IsPort('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsPortTest();
-// is valid
-instance.value = '1';
-instance.value = '65536';
-// is invalid
-instance.value = '65537';
-instance.value = '0';</code></pre>
+    <pre class="prettyprint"><code>class IsPortTest {    `@`IsPort('Invalid', ['S1'])    value: string;}const instance = new IsPortTest();// is validinstance.value = '1';instance.value = '65536';// is invalidinstance.value = '65537';instance.value = '0';</code></pre>
 
     
 
@@ -5708,20 +5444,7 @@ instance.value = '0';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsPositiveCheck {
-     `@`IsPositive('Invalid', ['S1'])
-     prop: int;
-}
-const instance = new IsPositiveCheck();
-instance.prop = 0;
-// no error was return
-await ClassValidator.Validate('S1', instance);
-instance.prop = 1;
-// no error was return
-await ClassValidator.Validate('S1', instance);
-instance.prop = -1;
-// one error was returned
-await ClassValidator.Validate('S1', instance);</code></pre>
+    <pre class="prettyprint"><code>class IsPositiveCheck {     `@`IsPositive('Invalid', ['S1'])     prop: int;}const instance = new IsPositiveCheck();instance.prop = 0;// no error was returnawait ClassValidator.Validate('S1', instance);instance.prop = 1;// no error was returnawait ClassValidator.Validate('S1', instance);instance.prop = -1;// one error was returnedawait ClassValidator.Validate('S1', instance);</code></pre>
 
     
 
@@ -5907,17 +5630,7 @@ await ClassValidator.Validate('S1', instance);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsUrlTest {
-    `@`IsUrl('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsUrlTest();
-// is valid
-instance.value = 'http://foo.bar.com/';
-instance.value = 'http://thingiverse.com/download:1894343';
-// is invalid
-instance.value = 'aaa';
-instance.value = 'https://w';</code></pre>
+    <pre class="prettyprint"><code>class IsUrlTest {    `@`IsUrl('Invalid', ['S1'])    value: string;}const instance = new IsUrlTest();// is validinstance.value = 'http://foo.bar.com/';instance.value = 'http://thingiverse.com/download:1894343';// is invalidinstance.value = 'aaa';instance.value = 'https://w';</code></pre>
 
     
 
@@ -6103,16 +5816,7 @@ instance.value = 'https://w';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class IsUUIDTest {
-    `@`IsUUID('Invalid', ['S1'])
-    value: string;
-}
-const instance = new IsUUIDTest();
-// is valid
-instance.value = '3e019b17-e95e-40fc-9606-4041efcb2684';
-instance.value = '{3e019b17-e95e-40fc-9606-4041efcb2684}';
-// is invalid
-instance.value = 'no uuid';</code></pre>
+    <pre class="prettyprint"><code>class IsUUIDTest {    `@`IsUUID('Invalid', ['S1'])    value: string;}const instance = new IsUUIDTest();// is validinstance.value = '3e019b17-e95e-40fc-9606-4041efcb2684';instance.value = '{3e019b17-e95e-40fc-9606-4041efcb2684}';// is invalidinstance.value = 'no uuid';</code></pre>
 
     
 
@@ -6321,16 +6025,7 @@ instance.value = 'no uuid';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class MaxClass {
-    `@`Max(3, 'Invalid', ['S1'])
-    value: number;
-}
-const instance = new MaxClass();
-// is valid
-instance.value = 2;
-instance.value = 3;
-// is invalid
-instance.value = 4;</code></pre>
+    <pre class="prettyprint"><code>class MaxClass {    `@`Max(3, 'Invalid', ['S1'])    value: number;}const instance = new MaxClass();// is validinstance.value = 2;instance.value = 3;// is invalidinstance.value = 4;</code></pre>
 
     
 
@@ -6539,16 +6234,7 @@ instance.value = 4;</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class MaxDateTest {
-    `@`MaxDate(new DateTime('UTC', 2019,1,1,0,0,0,0), 'Invalid', ['S1'])
-    value: DateTime;
-}
-const instance = new MaxDateTest();
-// is invalid
-instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 1);
-// is valid
-instance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);
-instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 0);</code></pre>
+    <pre class="prettyprint"><code>class MaxDateTest {    `@`MaxDate(new DateTime('UTC', 2019,1,1,0,0,0,0), 'Invalid', ['S1'])    value: DateTime;}const instance = new MaxDateTest();// is invalidinstance.value = new DateTime('UTC', 2019,1,1,0,0,0, 1);// is validinstance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 0);</code></pre>
 
     
 
@@ -6757,17 +6443,7 @@ instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 0);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class MaxLengthClass {
-    `@`MaxLength(3, 'Invalid', ['S1'])
-    value: string;
-}
-const instance = new MaxLengthClass();
-// is valid
-instance.value = 'a';
-instance.value = 'ab';
-instance.value = 'abc';
-// is invalid
-instance.value = 'abcd';</code></pre>
+    <pre class="prettyprint"><code>class MaxLengthClass {    `@`MaxLength(3, 'Invalid', ['S1'])    value: string;}const instance = new MaxLengthClass();// is validinstance.value = 'a';instance.value = 'ab';instance.value = 'abc';// is invalidinstance.value = 'abcd';</code></pre>
 
     
 
@@ -6976,16 +6652,7 @@ instance.value = 'abcd';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class MinClass {
-    `@`Min(10, 'Invalid', ['S1'])
-    value: number;
-}
-const instance = new MinClass();
-// is valid
-instance.value = 10;
-instance.value = 11;
-// is invalid
-instance.value = 9;</code></pre>
+    <pre class="prettyprint"><code>class MinClass {    `@`Min(10, 'Invalid', ['S1'])    value: number;}const instance = new MinClass();// is validinstance.value = 10;instance.value = 11;// is invalidinstance.value = 9;</code></pre>
 
     
 
@@ -7194,16 +6861,7 @@ instance.value = 9;</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class MinDateTest {
-    `@`MinDate(new DateTime('UTC', 2019,1,1,0,0,0, 0), 'Invalid', ['S1'])
-    value: DateTime;
-}
-const instance = new MinDateTest();
-// is valid
-instance.value = new DateTime('UTC', 2019,1,1,2,0,0, 0);
-instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 0);
-// is invalid
-instance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);</code></pre>
+    <pre class="prettyprint"><code>class MinDateTest {    `@`MinDate(new DateTime('UTC', 2019,1,1,0,0,0, 0), 'Invalid', ['S1'])    value: DateTime;}const instance = new MinDateTest();// is validinstance.value = new DateTime('UTC', 2019,1,1,2,0,0, 0);instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 0);// is invalidinstance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);</code></pre>
 
     
 
@@ -7412,16 +7070,7 @@ instance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class MinLengthClass {
-    `@`MinLength(3, 'Invalid', ['S1'])
-    value: string;
-}
-const instance = new MinLengthClass();
-// is invalid
-instance.value = 'a';
-instance.value = 'ab';
-// is valid
-instance.value = 'abc';</code></pre>
+    <pre class="prettyprint"><code>class MinLengthClass {    `@`MinLength(3, 'Invalid', ['S1'])    value: string;}const instance = new MinLengthClass();// is invalidinstance.value = 'a';instance.value = 'ab';// is validinstance.value = 'abc';</code></pre>
 
     
 
@@ -7630,15 +7279,7 @@ instance.value = 'abc';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class NotEqualsTest {
-    `@`NotEquals('a', 'Invalid', ['S1'])
-    value: string;
-}
-const instance = new NotEqualsTest();
-// is invalid
-instance.value = 'a';
-// is valid
-instance.value = 'ab';</code></pre>
+    <pre class="prettyprint"><code>class NotEqualsTest {    `@`NotEquals('a', 'Invalid', ['S1'])    value: string;}const instance = new NotEqualsTest();// is invalidinstance.value = 'a';// is validinstance.value = 'ab';</code></pre>
 
     
 
@@ -7824,17 +7465,7 @@ instance.value = 'ab';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class RequiredTest {
-    `@`Required('Invalid', ['S1'])
-    value: any;
-}
-const instance = new RequiredTest();
-// is invalid
-instance.value = undefined;
-instance.value = null;
-// is valid
-instance.value = 1;
-instance.value = 'a';</code></pre>
+    <pre class="prettyprint"><code>class RequiredTest {    `@`Required('Invalid', ['S1'])    value: any;}const instance = new RequiredTest();// is invalidinstance.value = undefined;instance.value = null;// is validinstance.value = 1;instance.value = 'a';</code></pre>
 
     
 
@@ -8020,15 +7651,7 @@ instance.value = 'a';</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class UniqueArrayTest {
-    `@`UniqueArray('Invalid', ['S1'])
-    value: number[];
-}
-const instance = UniqueArrayTest();
-// is valid
-instance.value = [1,2,3,4];
-// is invalid
-instance.value = [1,1,3,4];</code></pre>
+    <pre class="prettyprint"><code>class UniqueArrayTest {    `@`UniqueArray('Invalid', ['S1'])    value: number[];}const instance = UniqueArrayTest();// is validinstance.value = [1,2,3,4];// is invalidinstance.value = [1,1,3,4];</code></pre>
 
     
 
@@ -8237,18 +7860,7 @@ instance.value = [1,1,3,4];</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>`@`ValidateClass((instance, validators) => validators.IsEmail(instance.email) &amp;&amp; validators.Max(instance.num, 20), 'Invalid')
-class ValidateClassTest {
-    email: string;
-    num: number;
-}
-const instance = new ValidateClassTest();
-// is invalid
-instance.email = 'test@example.com';
-instance.num = 21;
-// is valid
-instance.email = 'test@example.com';
-instance.num = 19;</code></pre>
+    <pre class="prettyprint"><code>`@`ValidateClass((instance, validators) => validators.IsEmail(instance.email) &amp;&amp; validators.Max(instance.num, 20), 'Invalid')class ValidateClassTest {    email: string;    num: number;}const instance = new ValidateClassTest();// is invalidinstance.email = 'test@example.com';instance.num = 21;// is validinstance.email = 'test@example.com';instance.num = 19;</code></pre>
 
     
 
@@ -8638,17 +8250,7 @@ instance.num = 19;</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class WhiteListClass {
-    `@`Whitelist([1,4,8], 'Invalid', ['S1'])
-    value: number;
-}
-const instance = new WhiteListClass();
-// is valid
-instance.value = 1;
-instance.value = 4;
-instance.value = 8;
-// is invalid
-instance.value = 9;</code></pre>
+    <pre class="prettyprint"><code>class WhiteListClass {    `@`Whitelist([1,4,8], 'Invalid', ['S1'])    value: number;}const instance = new WhiteListClass();// is validinstance.value = 1;instance.value = 4;instance.value = 8;// is invalidinstance.value = 9;</code></pre>
 
     
 

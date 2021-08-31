@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Class: EventHandler | v3.7.0</title>
+    <title>Class: EventHandler | v3.9.0</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -26,7 +26,7 @@
         
     </div>
     <div class="title">
-        <h1><a href="index.html" class="link">v3.7.0</a></h1>
+        <h1><a href="index.html" class="link">v3.9.0</a></h1>
         
     </div>
     <div class="search-container" id="search-container">
@@ -303,9 +303,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const handler = new EventHandler&lt;number>();
-// sends 1 to every Subscriber
-handler.Invoke(1);</code></pre>
+    <pre class="prettyprint"><code>const handler = new EventHandler&lt;number>();// sends 1 to every Subscriberhandler.Invoke(1);</code></pre>
 
     
 
@@ -472,11 +470,7 @@ handler.Invoke(1);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const handler = new EventHandler&lt;number>();
-handler.Subscribe('X', (i) => {
-    // get the Number that was send by a Invoke call (2)
-});
-handler.Invoke(2);</code></pre>
+    <pre class="prettyprint"><code>const handler = new EventHandler&lt;number>();handler.Subscribe('X', (i) => {    // get the Number that was send by a Invoke call (2)});handler.Invoke(2);</code></pre>
 
     
 
@@ -620,15 +614,7 @@ handler.Invoke(2);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const handler = new EventHandler&lt;number>();
-handler.Subscribe('X', (i) => {
-     // nothing happen here while the Handler was unsubscribe
-});
-// unsubscribe only the X Subscriber
-handler.Unsubscribe('X');
-// unsubscribe all Subscriber
-handler.Unsubscribe();
-handler.Invoke(2);</code></pre>
+    <pre class="prettyprint"><code>const handler = new EventHandler&lt;number>();handler.Subscribe('X', (i) => {     // nothing happen here while the Handler was unsubscribe});// unsubscribe only the X Subscriberhandler.Unsubscribe('X');// unsubscribe all Subscriberhandler.Unsubscribe();handler.Invoke(2);</code></pre>
 
     
 

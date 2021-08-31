@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: pattern | v3.7.0</title>
+    <title>Module: pattern | v3.9.0</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -26,7 +26,7 @@
         
     </div>
     <div class="title">
-        <h1><a href="index.html" class="link">v3.7.0</a></h1>
+        <h1><a href="index.html" class="link">v3.9.0</a></h1>
         
     </div>
     <div class="search-container" id="search-container">
@@ -261,10 +261,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 2
-Create(undefined, 2);
-// returns 3
-Create(3, 2);</code></pre>
+    <pre class="prettyprint"><code>// returns 2Create(undefined, 2);// returns 3Create(3, 2);</code></pre>
 
     
 
@@ -473,11 +470,7 @@ Create(3, 2);</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const factory = (argument1) => { return argument1; };
-// returns "test"
-CreateWithFactory(factory, ['test']);
-// returns "default"
-CreateWithFactory(factory, [], 'default');</code></pre>
+    <pre class="prettyprint"><code>const factory = (argument1) => { return argument1; };// returns "test"CreateWithFactory(factory, ['test']);// returns "default"CreateWithFactory(factory, [], 'default');</code></pre>
 
     
 
@@ -696,29 +689,7 @@ ATTENTION catched errors in the Function are not detected!</p>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// this executes the function 5 times and returns the function value
-// 4 Errors are fired with the error message fake Error
-let errCount = 0;
-Retry({
-    timeout: 5,
-    maxExecutions: 10,
-    onError: e => {
-        errCount++;
-        assert.equal(e.message, 'fake Error');
-    },
-    onMaxExecutions: () => {
-        assert.fail('should not reach max Executions!');
-    },
-    onFinish: res => {
-        assert.equal(res, 1);
-    },
-}, (v) => {
-    v++;
-    if (errCount > 4) {
-        throw new Error('fake Error');
-    }
-    return v;
-}, 0);</code></pre>
+    <pre class="prettyprint"><code>// this executes the function 5 times and returns the function value// 4 Errors are fired with the error message fake Errorlet errCount = 0;Retry({    timeout: 5,    maxExecutions: 10,    onError: e => {        errCount++;        assert.equal(e.message, 'fake Error');    },    onMaxExecutions: () => {        assert.fail('should not reach max Executions!');    },    onFinish: res => {        assert.equal(res, 1);    },}, (v) => {    v++;    if (errCount > 4) {        throw new Error('fake Error');    }    return v;}, 0);</code></pre>
 
     
 
@@ -736,7 +707,7 @@ Retry({
             
             <div class="container-source members">
                 <code><a href="pattern_functions_throttle.js.html">pattern/functions/throttle.js</a></code>,
-                <code><a href="pattern_functions_throttle.js.html#line10">line 10</a></code>
+                <code><a href="pattern_functions_throttle.js.html#line23">line 23</a></code>
             </div>
             
         </h4>
@@ -881,6 +852,11 @@ Retry({
     
 </dl>
 
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>let result = 0;const add = (a, b) => {result = a+b;};Throttle({Timeout: 500, Leading: true}, add, 1, 1);Throttle({Timeout: 500, Leading: true}, add, 2, 2);// result here is 2 and was not changed from the second callresult = 0;Throttle({Timeout: 500, Leading: false}, add, 1, 1);// result here is 0 while Leading property is falsesetTimeout(() => {    // result here is 2}, 500);</code></pre>
 
     
 
@@ -1047,16 +1023,7 @@ Retry({
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>class WithDisposable implements IDisposable {
-  Name = 'WithoutDisposable';
-
-  Dispose(): void {
-    this.Name = '';
-  }
-}
-using(WithDisposable, (i) => {
-  // Do whatever you want to do with the new Instance of the Class
-});</code></pre>
+    <pre class="prettyprint"><code>class WithDisposable implements IDisposable {  Name = 'WithoutDisposable';  Dispose(): void {    this.Name = '';  }}using(WithDisposable, (i) => {  // Do whatever you want to do with the new Instance of the Class});</code></pre>
 
     
 
