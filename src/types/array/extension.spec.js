@@ -259,6 +259,12 @@ describe('Array Extension Tests', () => {
         it('returns -1 when no element match the condition', () => {
             assert.equal([1,2,3].FindIndex(e => e === 20), -1);
         });
+        it('returns the first index that match the condition object example', () => {
+            assert.equal([{n: 1}, {n: 2}, {n: 3}].FindIndex(e => e.n === 2), 1);
+        });
+        it('returns -1 when no element match the condition object example', () => {
+            assert.equal([{n: 1}, {n: 2}, {n: 3}].FindIndex(e => e.n === 20), -1);
+        });
     });
     describe('[Method]: FindLastIndex', () => {
         it('returns the last index that match the condition', () => {

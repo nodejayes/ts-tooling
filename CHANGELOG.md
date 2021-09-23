@@ -1,3 +1,7 @@
+### 3.9.1
+
+* Angular 12 support
+
 ### 3.9.0
 
 * add Observer Pattern

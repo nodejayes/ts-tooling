@@ -433,8 +433,7 @@ next, complete, error</p>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// write the data Property of the State into the console
-store.Listen(s => s.data).subscribe(d => console.info(d));</code></pre>
+    <pre class="prettyprint"><code>// write the data Property of the State into the consolestore.Listen(s => s.data).subscribe(d => console.info(d));</code></pre>
 
     
 
@@ -601,14 +600,7 @@ store.Listen(s => s.data).subscribe(d => console.info(d));</code></pre>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// simple Example to set the State
-store.Mutate(s => s.data, () => newData);
-// make a complex Mutation
-store.Mutate(s => s, old => {
-    old.data = [];
-    old.loading = true;
-    return old;
-});</code></pre>
+    <pre class="prettyprint"><code>// simple Example to set the Statestore.Mutate(s => s.data, () => newData);// make a complex Mutationstore.Mutate(s => s, old => {    old.data = [];    old.loading = true;    return old;});</code></pre>
 
     
 
