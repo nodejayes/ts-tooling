@@ -993,6 +993,12 @@ describe('Array Extension Tests', () => {
         it('convert a array into another array', () => {
             assert.deepEqual([1,2,3].Convert(e => 'Test' + e), ['Test1', 'Test2', 'Test3']);
         });
+        it('convert can access idx', () => {
+            assert.deepEqual([1,2,3].Convert((e, idx) => 'Test' + e + idx), ['Test10', 'Test21', 'Test32']);
+        });
+        it('convert can access arr', () => {
+            assert.deepEqual([1,2,3].Convert((e, idx, arr) => 'Test' + e + idx + arr.length), ['Test103', 'Test213', 'Test323']);
+        });
     });
     describe('[Method]: Join', () => {
         it('default separator is comma', () => {

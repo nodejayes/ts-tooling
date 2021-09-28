@@ -869,7 +869,7 @@ declare global {
          * // returns ['Test1', 'Test2', 'Test3']
          * [1,2,3].Convert(e => 'Test' + e);
          */
-        Convert?<K>(convertMethod: ((d: T) => K) | ((d: T) => Promise<K>)): K[];
+        Convert?<K>(convertMethod: ((d: T, idx: number, arr: T[]) => K) | ((d: T) => Promise<K>)): K[];
 
         /**
          * joins the array elements into a string with separator
