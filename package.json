@@ -1,6 +1,6 @@
 {
   "name": "ts-tooling",
-  "version": "3.9.2",
+  "version": "3.9.3",
   "main": "src/ts-tooling.js",
   "types": "src/ts-tooling.d.ts",
   "scripts": {
@@ -29,7 +29,7 @@
     "luxon": "^1.26.0",
     "immer": "^9.0.1",
     "lz-string": "^1.4.4",
-    "rxjs": "^7.3.0",
+    "rxjs": "6.6.7",
     "ts-node": "^9.1.1",
     "uuid": "^8.3.2",
     "object-sizeof": "^1.6.1",

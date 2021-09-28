@@ -1,3 +1,7 @@
+### 3.9.3
+
+* rxjs dependency back to 6.6.7
+
 ### 3.9.2
 
 * fix Convert typings
