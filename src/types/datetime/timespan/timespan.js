@@ -462,4 +462,40 @@ TimeSpan.FromMilliseconds = (milliseconds) => {
     return new TimeSpan(hours, minutes, second, milliseconds, days);
 };
 
+/**
+ * create TimeSpan from Seconds
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @param seconds {number}
+ * @static
+ */
+TimeSpan.FromSeconds = (seconds) => TimeSpan.FromMilliseconds(seconds*1000);
+
+/**
+ * create TimeSpan from Minutes
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @param minutes {number}
+ * @static
+ */
+TimeSpan.FromMinutes = (minutes) => TimeSpan.FromMilliseconds(minutes*60000);
+
+/**
+ * create TimeSpan from Hours
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @param hours {number}
+ * @static
+ */
+TimeSpan.FromHours = (hours) => TimeSpan.FromMilliseconds(hours*3.6e+6);
+
+/**
+ * create TimeSpan from Days
+ *
+ * @memberof module:types/datetime.TimeSpan
+ * @param days {number}
+ * @static
+ */
+TimeSpan.FromDays = (days) => TimeSpan.FromMilliseconds(days*8.64e+7);
+
 module.exports = {TimeSpan};

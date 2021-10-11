@@ -1,3 +1,7 @@
+### 3.9.4
+
+* add TimeSpan FromSeconds, FromMinutes, FromHours and FromDays
+
 ### 3.9.3
 
 * rxjs dependency back to 6.6.7

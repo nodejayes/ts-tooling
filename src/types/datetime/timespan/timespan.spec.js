@@ -104,6 +104,110 @@ describe('TimeSpan Tests', () => {
             assert.equal(TimeSpan.FromMilliseconds(90061001).Millisecond, 1);
         });
     });
+    describe('[Method]: FromSeconds', () => {
+        it('1 Second', () => {
+            assert.equal(TimeSpan.FromSeconds(1).TotalDays, 0.000011574074074074073);
+            assert.equal(TimeSpan.FromSeconds(1).TotalHours, 0.0002777777777777778);
+            assert.equal(TimeSpan.FromSeconds(1).TotalMinutes, 0.016666666666666666);
+            assert.equal(TimeSpan.FromSeconds(1).TotalSeconds, 1);
+            assert.equal(TimeSpan.FromSeconds(1).TotalMilliseconds, 1000);
+            assert.equal(TimeSpan.FromSeconds(1).Day, 0);
+            assert.equal(TimeSpan.FromSeconds(1).Hour, 0);
+            assert.equal(TimeSpan.FromSeconds(1).Minute, 0);
+            assert.equal(TimeSpan.FromSeconds(1).Second, 1);
+            assert.equal(TimeSpan.FromSeconds(1).Millisecond, 0);
+        });
+        it('0.5 Second', () => {
+            assert.equal(TimeSpan.FromSeconds(0.5).TotalDays, 0.000005787037037037037);
+            assert.equal(TimeSpan.FromSeconds(0.5).TotalHours, 0.0001388888888888889);
+            assert.equal(TimeSpan.FromSeconds(0.5).TotalMinutes, 0.008333333333333333);
+            assert.equal(TimeSpan.FromSeconds(0.5).TotalSeconds, 0.5);
+            assert.equal(TimeSpan.FromSeconds(0.5).TotalMilliseconds, 500);
+            assert.equal(TimeSpan.FromSeconds(0.5).Day, 0);
+            assert.equal(TimeSpan.FromSeconds(0.5).Hour, 0);
+            assert.equal(TimeSpan.FromSeconds(0.5).Minute, 0);
+            assert.equal(TimeSpan.FromSeconds(0.5).Second, 0);
+            assert.equal(TimeSpan.FromSeconds(0.5).Millisecond, 500);
+        });
+    });
+    describe('[Method]: FromMinutes', () => {
+        it('1 Minute', () => {
+            assert.equal(TimeSpan.FromMinutes(1).TotalDays, 0.0006944444444444445);
+            assert.equal(TimeSpan.FromMinutes(1).TotalHours, 0.016666666666666666);
+            assert.equal(TimeSpan.FromMinutes(1).TotalMinutes, 1);
+            assert.equal(TimeSpan.FromMinutes(1).TotalSeconds, 60);
+            assert.equal(TimeSpan.FromMinutes(1).TotalMilliseconds, 60000);
+            assert.equal(TimeSpan.FromMinutes(1).Day, 0);
+            assert.equal(TimeSpan.FromMinutes(1).Hour, 0);
+            assert.equal(TimeSpan.FromMinutes(1).Minute, 1);
+            assert.equal(TimeSpan.FromMinutes(1).Second, 0);
+            assert.equal(TimeSpan.FromMinutes(1).Millisecond, 0);
+        });
+        it('0.5 Minute', () => {
+            assert.equal(TimeSpan.FromMinutes(0.5).TotalDays, 0.00034722222222222224);
+            assert.equal(TimeSpan.FromMinutes(0.5).TotalHours, 0.008333333333333333);
+            assert.equal(TimeSpan.FromMinutes(0.5).TotalMinutes, 0.5);
+            assert.equal(TimeSpan.FromMinutes(0.5).TotalSeconds, 30);
+            assert.equal(TimeSpan.FromMinutes(0.5).TotalMilliseconds, 30000);
+            assert.equal(TimeSpan.FromMinutes(0.5).Day, 0);
+            assert.equal(TimeSpan.FromMinutes(0.5).Hour, 0);
+            assert.equal(TimeSpan.FromMinutes(0.5).Minute, 0);
+            assert.equal(TimeSpan.FromMinutes(0.5).Second, 30);
+            assert.equal(TimeSpan.FromMinutes(0.5).Millisecond, 0);
+        });
+    });
+    describe('[Method]: FromHours', () => {
+        it('1 Hour', () => {
+            assert.equal(TimeSpan.FromHours(1).TotalDays, 0.041666666666666664);
+            assert.equal(TimeSpan.FromHours(1).TotalHours, 1);
+            assert.equal(TimeSpan.FromHours(1).TotalMinutes, 60);
+            assert.equal(TimeSpan.FromHours(1).TotalSeconds, 3600);
+            assert.equal(TimeSpan.FromHours(1).TotalMilliseconds, 3600000);
+            assert.equal(TimeSpan.FromHours(1).Day, 0);
+            assert.equal(TimeSpan.FromHours(1).Hour, 1);
+            assert.equal(TimeSpan.FromHours(1).Minute, 0);
+            assert.equal(TimeSpan.FromHours(1).Second, 0);
+            assert.equal(TimeSpan.FromHours(1).Millisecond, 0);
+        });
+        it('0.5 Hour', () => {
+            assert.equal(TimeSpan.FromHours(0.5).TotalDays, 0.020833333333333332);
+            assert.equal(TimeSpan.FromHours(0.5).TotalHours, 0.5);
+            assert.equal(TimeSpan.FromHours(0.5).TotalMinutes, 30);
+            assert.equal(TimeSpan.FromHours(0.5).TotalSeconds, 1800);
+            assert.equal(TimeSpan.FromHours(0.5).TotalMilliseconds, 1800000);
+            assert.equal(TimeSpan.FromHours(0.5).Day, 0);
+            assert.equal(TimeSpan.FromHours(0.5).Hour, 0);
+            assert.equal(TimeSpan.FromHours(0.5).Minute, 30);
+            assert.equal(TimeSpan.FromHours(0.5).Second, 0);
+            assert.equal(TimeSpan.FromHours(0.5).Millisecond, 0);
+        });
+    });
+    describe('[Method]: FromDays', () => {
+        it('1 Day', () => {
+            assert.equal(TimeSpan.FromDays(1).TotalDays, 1);
+            assert.equal(TimeSpan.FromDays(1).TotalHours, 24);
+            assert.equal(TimeSpan.FromDays(1).TotalMinutes, 1440);
+            assert.equal(TimeSpan.FromDays(1).TotalSeconds, 86400);
+            assert.equal(TimeSpan.FromDays(1).TotalMilliseconds, 86400000);
+            assert.equal(TimeSpan.FromDays(1).Day, 1);
+            assert.equal(TimeSpan.FromDays(1).Hour, 0);
+            assert.equal(TimeSpan.FromDays(1).Minute, 0);
+            assert.equal(TimeSpan.FromDays(1).Second, 0);
+            assert.equal(TimeSpan.FromDays(1).Millisecond, 0);
+        });
+        it('0.5 Day', () => {
+            assert.equal(TimeSpan.FromDays(0.5).TotalDays, 0.5);
+            assert.equal(TimeSpan.FromDays(0.5).TotalHours, 12);
+            assert.equal(TimeSpan.FromDays(0.5).TotalMinutes, 720);
+            assert.equal(TimeSpan.FromDays(0.5).TotalSeconds, 43200);
+            assert.equal(TimeSpan.FromDays(0.5).TotalMilliseconds, 43200000);
+            assert.equal(TimeSpan.FromDays(0.5).Day, 0);
+            assert.equal(TimeSpan.FromDays(0.5).Hour, 12);
+            assert.equal(TimeSpan.FromDays(0.5).Minute, 0);
+            assert.equal(TimeSpan.FromDays(0.5).Second, 0);
+            assert.equal(TimeSpan.FromDays(0.5).Millisecond, 0);
+        });
+    });
     describe('[Method]: FromIsoString', () => {
         it('can create TimeSpan from ISO Chars', () => {
             assert.equal(TimeSpan.FromISOString('05:22:12').Day, 0);
@@ -239,7 +343,7 @@ describe('TimeSpan Tests', () => {
     describe('[Method]: IsAfter', () => {
         it('can check TimeSpan is after', () => {
             assert.isTrue(new TimeSpan(5).IsAfter(new TimeSpan(2)));
-            assert.isFalse(new TimeSpan(5).IsAfter(new TimeSpan(6)))
+            assert.isFalse(new TimeSpan(5).IsAfter(new TimeSpan(6)));
         });
     });
     describe('[Method]: ToString', () => {

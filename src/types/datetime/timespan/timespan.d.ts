@@ -155,6 +155,34 @@ export class TimeSpan {
     static FromMilliseconds(milliseconds: number): TimeSpan;
 
     /**
+     * create TimeSpan from Seconds
+     *
+     * @param seconds
+     */
+    static FromSeconds(seconds: number): TimeSpan;
+
+    /**
+     * create TimeSpan from Minutes
+     *
+     * @param minutes
+     */
+    static FromMinutes(minutes: number): TimeSpan;
+
+    /**
+     * create TimeSpan from Hours
+     *
+     * @param hours
+     */
+    static FromHours(hours: number): TimeSpan;
+
+    /**
+     * create TimeSpan from Days
+     *
+     * @param days
+     */
+    static FromDays(days: number): TimeSpan;
+
+    /**
      * add a TimeSpan to this TimeSpan
      *
      * @param duration
