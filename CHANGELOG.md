@@ -1,3 +1,7 @@
+### 3.9.5
+
+* add TimeBetween Function into DateRange Type
+
 ### 3.9.4
 
 * add TimeSpan FromSeconds, FromMinutes, FromHours and FromDays

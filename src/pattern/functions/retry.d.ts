@@ -19,7 +19,7 @@ export interface IRetryOptions {
      *
      * @param e the return value of the function
      */
-    onFinish?: (e) => void;
+    onFinish?: (e: (...args: any) => any) => void;
     /**
      * a function that was executed when a Error was thrown in the function
      *
@@ -61,4 +61,4 @@ export interface IRetryOptions {
  *     return v;
  * }, 0);
  */
-export function Retry(options: IRetryOptions, fn: (...args) => any, ...args: any): void;
+export function Retry(options: IRetryOptions, fn: (...args: any) => any, ...args: any): void;

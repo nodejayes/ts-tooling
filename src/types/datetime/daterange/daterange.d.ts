@@ -1,4 +1,4 @@
-import {DateTime} from '..';
+import {DateTime, TimeSpan} from '..';
 
 export class DateRange {
     /**
@@ -129,4 +129,14 @@ export class DateRange {
      * dateRange.ToString('yyyy-MM-dd hh:mm:ss SSS');
      */
     ToString(fmt?: string): string;
+    /**
+     * give the Time Between start and end in the DateRange as a TimeSpan
+     * only positive TimeSpans are returned!
+     *
+     * @example
+     * // logs into console 86400000
+     * const v = new DateRange(new DateTime('UTC', 2020, 1, 1, 1), new DateTime('UTC', 2020, 1, 2, 1));
+     * console.info(v.TimeBetween().TotalMilliseconds);
+     */
+    TimeBetween(): TimeSpan;
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Class: Guid | v3.7.0</title>
+    <title>Class: DateRange | v3.7.0</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -48,10 +48,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="module-types_guid.html">types/guid</a>.</span>Guid<span class="signature">(guid<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {Guid}</span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>DateRange<span class="signature">(begin, to)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>represent the Global Uniqe Identifier</p></div>
+            <div class="class-description"><p>some Calculations for DateTime Ranges</p></div>
         
     
 </header>
@@ -64,14 +63,14 @@
 
 <dt>
     
-        <h4 class="name" id="Guid">
+        <h4 class="name" id="DateRange">
             
-                new <span class="type-signature"></span>Guid<span class="signature">(guid<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {Guid}</span>
+                new <span class="type-signature"></span>DateRange<span class="signature">(begin, to)</span><span class="type-signature"></span>
                 
             
             <div class="container-source members">
-                <code><a href="types_guid_guid_guid.js.html">types/guid/guid/guid.js</a></code>,
-                <code><a href="types_guid_guid_guid.js.html#line9">line 9</a></code>
+                <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+                <code><a href="types_datetime_daterange_daterange.js.html#line8">line 8</a></code>
             </div>
             
         </h4>
@@ -83,8 +82,7 @@
 
     
     <div class="description">
-        <p>create a new Guid</p>
-<p>generates a new one when no guid was passed</p>
+        <p>create a new DateRange from two DateTime Objects</p>
     </div>
     
 
@@ -108,8 +106,6 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -122,33 +118,46 @@
 
         <tr>
             
-                <td class="name"><code>guid</code></td>
+                <td class="name"><code>begin</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">DateTime</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
 
-                
-                    &lt;nullable><br>
-                
+            
 
+            <td class="description last"><p>the start DateTime of the DateRange</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>to</code></td>
+            
+
+            <td class="type">
+            
                 
-                </td>
+<span class="param-type">DateTime</span>
+
+
+            
+            </td>
+
             
 
             
 
-            <td class="description last"><p>a new guid as string representation</p></td>
+            <td class="description last"><p>the end DateTime of the DateRange</p></td>
         </tr>
 
     
@@ -168,25 +177,6 @@
 
     
 
-    
-    <div class="container-returns">
-        <h5>Returns:</h5>
-        
-                
-
-
-
-<span class="param-type">Guid</span>
-
-
-
-
-
-
-
-
-            
-    </div>
     
 
     
@@ -229,7 +219,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns a new generated Guidnew Guid();// returns "6bcb9d2c-ae48-4310-8d56-ea7accffcc8c"new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c');</code></pre>
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');// create a date range object from 2019-01-01 to 2019-01-10const range = new DateRange(a, b);</code></pre>
 
     
 
@@ -258,12 +248,12 @@
             
 
 <dt>
-<h4 class="name" id="IsEmpty">
-    <span class="type-signature"></span>IsEmpty<span class="type-signature"></span>
+<h4 class="name" id="Begin">
+    <span class="type-signature"><span class="icon green">readonly</span> </span>Begin<span class="type-signature"></span>
     
     <div class="container-source members">
-        <code><a href="types_guid_guid_guid.js.html">types/guid/guid/guid.js</a></code>,
-        <code><a href="types_guid_guid_guid.js.html#line21">line 21</a></code>
+        <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+        <code><a href="types_datetime_daterange_daterange.js.html#line21">line 21</a></code>
     </div>
     
 </h4>
@@ -273,7 +263,7 @@
 <dd>
     
     <div class="description">
-        <p>is this Guid a Empty Guid</p>
+        <p>the Start DateTime</p>
     </div>
     
 
@@ -323,7 +313,81 @@
     
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>// returns truenew Guid('00000000-0000-0000-0000-000000000000').IsEmpty();// returns falsenew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').IsEmpty();</code></pre>
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');const range = new DateRange(a, b);// log 2019-01-01T00:00:00 into consoleconsole.info(range.Begin)</code></pre>
+
+    
+</dd>
+
+        
+            
+
+<dt>
+<h4 class="name" id="End">
+    <span class="type-signature"><span class="icon green">readonly</span> </span>End<span class="type-signature"></span>
+    
+    <div class="container-source members">
+        <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+        <code><a href="types_datetime_daterange_daterange.js.html#line37">line 37</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>the End DateTime</p>
+    </div>
+    
+
+    <!--
+    
+    -->
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');const range = new DateRange(a, b);// log 2019-01-10T00:00:00 into consoleconsole.info(range.End)</code></pre>
 
     
 </dd>
@@ -339,14 +403,14 @@
 
 <dt>
     
-        <h4 class="name" id="Equals">
+        <h4 class="name" id="IsAfter">
             
-                <span class="type-signature"></span>Equals<span class="signature">(guid)</span><span class="type-signature"> &rarr; {boolean}</span>
+                <span class="type-signature"></span>IsAfter<span class="signature">(value)</span><span class="type-signature"> &rarr; {boolean}</span>
                 
             
             <div class="container-source members">
-                <code><a href="types_guid_guid_guid.js.html">types/guid/guid/guid.js</a></code>,
-                <code><a href="types_guid_guid_guid.js.html#line79">line 79</a></code>
+                <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+                <code><a href="types_datetime_daterange_daterange.js.html#line158">line 158</a></code>
             </div>
             
         </h4>
@@ -358,7 +422,7 @@
 
     
     <div class="description">
-        <p>check if the Guid is Equal another Guid</p>
+        <p>is the given DateTime after the DateRange</p>
     </div>
     
 
@@ -394,13 +458,13 @@
 
         <tr>
             
-                <td class="name"><code>guid</code></td>
+                <td class="name"><code>value</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Guid</span>
+<span class="param-type">DateTime</span>
 
 
             
@@ -410,7 +474,7 @@
 
             
 
-            <td class="description last"><p>the guid to check</p></td>
+            <td class="description last"><p>the DateTime to check</p></td>
         </tr>
 
     
@@ -444,7 +508,168 @@
 
 
 
-- <p>are the Guid´s equal or not</p>
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');const range = new DateRange(a, b);const before = DateTime.FromISOString('2018-12-02T00:00:00');const after = DateTime.FromISOString('2019-01-12T00:00:00');// is truerange.IsAfter(after);// is falserange.IsAfter(b);range.IsAfter(a);range.IsAfter(before);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="IsBefore">
+            
+                <span class="type-signature"></span>IsBefore<span class="signature">(value)</span><span class="type-signature"> &rarr; {boolean}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+                <code><a href="types_datetime_daterange_daterange.js.html#line136">line 136</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>is the given DateTime before the DateRange</p>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DateTime</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the DateTime to check</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">boolean</span>
+
+
+
+
 
 
 
@@ -493,7 +718,7 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns truenew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').Equals('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c');new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').Equals(new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c'));// returns falsenew Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').Equals('4fa89189-03b5-43f2-b184-8a42adeebfe7');</code></pre>
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');const range = new DateRange(a, b);const before = DateTime.FromISOString('2018-12-02T00:00:00');const after = DateTime.FromISOString('2019-01-12T00:00:00');// is truerange.IsBefore(before);// is falserange.IsBefore(a);range.IsBefore(b);range.IsBefore(after);</code></pre>
 
     
 
@@ -504,14 +729,14 @@
 
 <dt>
     
-        <h4 class="name" id="ToString">
+        <h4 class="name" id="IsIn">
             
-                <span class="type-signature"></span>ToString<span class="signature">()</span><span class="type-signature"> &rarr; {Guid}</span>
+                <span class="type-signature"></span>IsIn<span class="signature">(value)</span><span class="type-signature"> &rarr; {boolean}</span>
                 
             
             <div class="container-source members">
-                <code><a href="types_guid_guid_guid.js.html">types/guid/guid/guid.js</a></code>,
-                <code><a href="types_guid_guid_guid.js.html#line62">line 62</a></code>
+                <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+                <code><a href="types_datetime_daterange_daterange.js.html#line114">line 114</a></code>
             </div>
             
         </h4>
@@ -523,7 +748,334 @@
 
     
     <div class="description">
-        <p>converts the Guid to a String representation</p>
+        <p>is the given DateTime in the DateRange</p>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DateTime</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the DateTime to check</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">boolean</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');const range = new DateRange(a, b);const inRange = DateTime.FromISOString('2019-01-02T00:00:00');const notInRange = DateTime.FromISOString('2019-01-12T00:00:00');// is truerange.IsIn(inRange);range.IsIn(a);range.IsIn(b);// is falserange.IsIn(notInRange);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="Overlaps">
+            
+                <span class="type-signature"></span>Overlaps<span class="signature">(range)</span><span class="type-signature"> &rarr; {boolean}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+                <code><a href="types_datetime_daterange_daterange.js.html#line91">line 91</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>overlaps the given DateRange the current DateRange</p>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>range</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">DateRange</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the DateRange to check</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">boolean</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const a = DateTime.FromISOString('2019-01-01T00:00:00');const b = DateTime.FromISOString('2019-01-10T00:00:00');const range = new DateRange(a, b);const bothIn = new DateRange(DateTime.FromISOString('2019-01-02T00:00:00'), DateTime.FromISOString('2019-01-03T00:00:00'));const beginIn = new DateRange(DateTime.FromISOString('2019-01-02T00:00:00'), DateTime.FromISOString('2019-01-11T00:00:00'));const endIn = new DateRange(DateTime.FromISOString('2018-12-02T00:00:00'), DateTime.FromISOString('2019-01-02T00:00:00'));const bothOut = new DateRange(DateTime.FromISOString('2018-12-02T00:00:00'), DateTime.FromISOString('2019-01-12T00:00:00'));const bothBefore = new DateRange(DateTime.FromISOString('2018-12-02T00:00:00'), DateTime.FromISOString('2018-12-03T00:00:00'));const bothAfter = new DateRange(DateTime.FromISOString('2019-01-12T00:00:00'), DateTime.FromISOString('2019-01-13T00:00:00'));// is truerange.Overlaps(bothIn);range.Overlaps(beginIn);range.Overlaps(endIn);range.Overlaps(bothOut);range.Overlaps(range);// is falserange.Overlaps(bothBefore);range.Overlaps(bothAfter);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="TimeBetween">
+            
+                <span class="type-signature"></span>TimeBetween<span class="signature">()</span><span class="type-signature"> &rarr; {TimeSpan}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+                <code><a href="types_datetime_daterange_daterange.js.html#line188">line 188</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>give the Time Between start and end in the DateRange as a TimeSpan
+only positive TimeSpans are returned!</p>
     </div>
     
 
@@ -553,13 +1105,11 @@
 
 
 
-<span class="param-type">Guid</span>
+<span class="param-type">TimeSpan</span>
 
 
 
 
-
-- <p>Guid  as string</p>
 
 
 
@@ -608,7 +1158,182 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns "6bcb9d2c-ae48-4310-8d56-ea7accffcc8c"new Guid('6bcb9d2c-ae48-4310-8d56-ea7accffcc8c').ToString();</code></pre>
+    <pre class="prettyprint"><code>// logs into console 86400000const v = new DateRange(new DateTime('UTC', 2020, 1, 1, 1), new DateTime('UTC', 2020, 1, 2, 1));console.info(v.TimeBetween().TotalMilliseconds);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="ToString">
+            
+                <span class="type-signature"></span>ToString<span class="signature">(fmt<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {string}</span>
+                
+            
+            <div class="container-source members">
+                <code><a href="types_datetime_daterange_daterange.js.html">types/datetime/daterange/daterange.js</a></code>,
+                <code><a href="types_datetime_daterange_daterange.js.html#line174">line 174</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>print the DateRange into a String</p>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fmt</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>the format of the DateTime strings look DateTime for more informations</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">string</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>const dateRange = new DateRange(new DateTime('UTC', 2020, 1, 1, 1), new DateTime('UTC', 2020, 1, 2, 1));// returns [2020-01-01 01:00:00 => 2020-01-02 01:00:00]dateRange.ToString();// returns [2020-01-01 01:00:00 000 => 2020-01-02 01:00:00 000]dateRange.ToString('yyyy-MM-dd hh:mm:ss SSS');</code></pre>
 
     
 
@@ -638,7 +1363,7 @@
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:types/guid.Guid_sub'.replace(/"/g, '_');
+        var id = 'module:types/daterange.DateRange_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

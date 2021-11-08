@@ -1,10 +1,11 @@
+const {describe, it} = require('mocha');
 const {assert} = require('chai');
 const {DateRange, DateTime} = require('../../../ts-tooling');
 
 describe('DateRange Tests', () => {
     it('invalid date range constructor', () => {
         assert.throw(() => {
-            new DateRange(new DateTime('UTC', 2020, 3, 1, 4), new DateTime('UTC', 2020, 1, 3, 4))
+            new DateRange(new DateTime('UTC', 2020, 3, 1, 4), new DateTime('UTC', 2020, 1, 3, 4));
         });
     });
 
@@ -13,6 +14,24 @@ describe('DateRange Tests', () => {
         const b = DateTime.FromISOString('2019-01-10T00:00:00');
         const range = new DateRange(a, b);
         assert.isDefined(range);
+    });
+
+    it('throws a Error when begin is invalid', () => {
+        assert.throw(() => {
+            new DateRange(null, DateTime.FromISOString('2019-01-01T00:00:00'));
+        });
+        assert.throw(() => {
+            new DateRange(undefined, DateTime.FromISOString('2019-01-01T00:00:00'));
+        });
+    });
+
+    it('throws a Error when end is invalid', () => {
+        assert.throw(() => {
+            new DateRange(DateTime.FromISOString('2019-01-01T00:00:00'), null);
+        });
+        assert.throw(() => {
+            new DateRange(DateTime.FromISOString('2019-01-01T00:00:00'), undefined);
+        });
     });
 
     it('should get Begin and End DateTime', () => {
@@ -130,6 +149,26 @@ describe('DateRange Tests', () => {
 
         it('can input a custom format', () => {
             assert.equal(v.ToString('yyyy-MM-dd hh:mm:ss SSS'), '[2020-01-01 01:00:00 000 => 2020-01-02 01:00:00 000]');
+        });
+    });
+
+    describe('[Method]: TimeBetween', () => {
+        it('check begin lower than end', () => {
+            const v = new DateRange(new DateTime('UTC', 2020, 1, 1, 1), new DateTime('UTC', 2020, 1, 2, 1));
+            assert.isDefined(v.TimeBetween());
+            assert.equal(v.TimeBetween().TotalMilliseconds, 86400000);
+            assert.equal(v.TimeBetween().TotalSeconds, 86400);
+            assert.equal(v.TimeBetween().TotalMinutes, 1440);
+            assert.equal(v.TimeBetween().TotalHours, 24);
+            assert.equal(v.TimeBetween().TotalDays, 1);
+        });
+        it('check begin and end are equal', () => {
+            const v = new DateRange(new DateTime('UTC', 2020, 1, 1, 1), new DateTime('UTC', 2020, 1, 1, 1));
+            assert.isDefined(v.TimeBetween());
+            assert.equal(v.TimeBetween().TotalMilliseconds, 0);
+            assert.equal(v.TimeBetween().TotalSeconds, 0);
+            assert.equal(v.TimeBetween().TotalMinutes, 0);
+            assert.equal(v.TimeBetween().TotalDays, 0);
         });
     });
 });
