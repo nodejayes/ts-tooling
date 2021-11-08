@@ -1,3 +1,7 @@
+### 3.9.7
+
+* remove Dependabot alerts
+
 ### 3.9.6
 
 * npm audit fix
