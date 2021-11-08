@@ -1,3 +1,7 @@
+### 3.9.6
+
+* npm audit fix
+
 ### 3.9.5
 
 * add TimeBetween Function into DateRange Type

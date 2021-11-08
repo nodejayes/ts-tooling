@@ -1,6 +1,6 @@
 {
   "name": "ts-tooling",
-  "version": "3.9.5",
+  "version": "3.9.6",
   "main": "src/ts-tooling.js",
   "types": "src/ts-tooling.d.ts",
   "scripts": {
@@ -26,20 +26,22 @@
     "src"
   ],
   "dependencies": {
-    "luxon": "^1.26.0",
+    "change-case": "^4.1.2",
     "immer": "^9.0.1",
+    "luxon": "^1.26.0",
     "lz-string": "^1.4.4",
+    "object-sizeof": "^1.6.1",
+    "proj4": "^2.7.2",
     "rxjs": "6.6.7",
     "ts-node": "^9.1.1",
-    "uuid": "^8.3.2",
-    "object-sizeof": "^1.6.1",
-    "change-case": "^4.1.2",
-    "proj4": "^2.7.2"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "chai": "^4.3.4",
     "chai-uuid": "^1.0.6",
     "collatio": "^1.0.2",
+    "devtool": "^1.5.3",
+    "electron": "11.5.0",
     "eslint": "^7.24.0",
     "jsdoc": "^3.6.6",
     "lcov-parse": "^1.0.0",
@@ -48,7 +50,6 @@
     "mocha": "^8.3.2",
     "nyc": "^15.1.0",
     "prettier": "^2.2.1",
-    "tui-jsdoc-template": "^1.2.2",
-    "devtool": "^2.3.1"
+    "tui-jsdoc-template": "^1.2.2"
   }
 }
