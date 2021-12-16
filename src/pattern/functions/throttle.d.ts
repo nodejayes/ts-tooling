@@ -22,4 +22,4 @@ export interface IThrottleOptions {
  * @param options {IThrottleOptions} the options to control the execution
  * @param fn {function} the Function to throttle
  */
-export function Throttle(options: IThrottleOptions, fn: (...args) => any, ...args: any): void;
+export function Throttle<T>(options: IThrottleOptions, fn: (...args: T[]) => any, ...args: T[]): void;

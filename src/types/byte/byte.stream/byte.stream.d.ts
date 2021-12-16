@@ -33,14 +33,14 @@ export class ByteStream {
     /**
      * reset the Read/Write Cursor of the Stream
      */
-    ResetCursor();
+    ResetCursor(): void;
 
     /**
      * set the Read/Write Cursor to a specific Position
      * if a bigger Position given the Cursor was set to the end of  the Stream
      * @param pos the Position the Cursor was set
      */
-    SetCursor(pos: number);
+    SetCursor(pos: number): void;
 
     /**
      * write multiple Bytes into the Byte Stream

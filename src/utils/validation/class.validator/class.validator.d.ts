@@ -13,43 +13,43 @@ export interface IValidationError {
 }
 
 export const VALIDATIONS: {
-    IsBase64: (v) => boolean;
-    IsHexColor: (v) => boolean;
-    IsHexadecimal: (v) => boolean;
-    IsMacAddress: (v) => boolean;
-    IsPort: (v) => boolean;
-    IsIp: (v) => boolean;
-    IsJSON: (v) => boolean;
-    IsJWT: (v) => boolean;
+    IsBase64: (v: any) => boolean;
+    IsHexColor: (v: any) => boolean;
+    IsHexadecimal: (v: any) => boolean;
+    IsMacAddress: (v: any) => boolean;
+    IsPort: (v: any) => boolean;
+    IsIp: (v: any) => boolean;
+    IsJSON: (v: any) => boolean;
+    IsJWT: (v: any) => boolean;
     IsByteLength: (v: string, validationValue: number) => boolean,
-    IsMongoId: (v) => boolean;
+    IsMongoId: (v: any) => boolean;
     MinDate: (v: DateTime, validationValue: DateTime) => boolean,
     MaxDate: (v: DateTime, validationValue: DateTime) => boolean,
-    ArrayNotEmpty: (v) => boolean;
-    UniqueArray: (v) => boolean;
-    IsAscii: (v) => boolean;
-    IsAlphanumeric: (v) => boolean;
-    IsAlpha: (v) => boolean;
-    IsUrl: (v) => boolean;
-    IsUUID: (v) => boolean;
-    IsHash: (v) => boolean;
-    IsNegative: (v) => boolean;
-    IsPositive: (v) => boolean;
-    IsNumberString: (v) => boolean;
-    IsBooleanString: (v) => boolean;
-    IsInt: (v) => boolean;
-    NotEquals: (v, validationValue) => boolean,
-    Equals: (v, validationValue) => boolean,
-    Blacklist: (v, validationValue) => boolean,
-    Whitelist: (v, validationValue) => boolean,
-    MaxLength: (v, validationValue) => boolean,
-    MinLength: (v, validationValue) => boolean,
-    Max: (v, validationValue) => boolean,
-    Min: (v, validationValue) => boolean,
-    IsEmail: (v) => boolean;
-    IsNotEmpty: (v) => boolean;
-    IsEmpty: (v) => boolean;
-    IsDefined: (v) => boolean;
+    ArrayNotEmpty: (v: any) => boolean;
+    UniqueArray: (v: any) => boolean;
+    IsAscii: (v: any) => boolean;
+    IsAlphanumeric: (v: any) => boolean;
+    IsAlpha: (v: any) => boolean;
+    IsUrl: (v: any) => boolean;
+    IsUUID: (v: any) => boolean;
+    IsHash: (v: any) => boolean;
+    IsNegative: (v: any) => boolean;
+    IsPositive: (v: any) => boolean;
+    IsNumberString: (v: any) => boolean;
+    IsBooleanString: (v: any) => boolean;
+    IsInt: (v: any) => boolean;
+    NotEquals: (v: any, validationValue: any) => boolean,
+    Equals: (v: any, validationValue: any) => boolean,
+    Blacklist: (v: any, validationValue: any) => boolean,
+    Whitelist: (v: any, validationValue: any) => boolean,
+    MaxLength: (v: any, validationValue: any) => boolean,
+    MinLength: (v: any, validationValue: any) => boolean,
+    Max: (v: any, validationValue: any) => boolean,
+    Min: (v: any, validationValue: any) => boolean,
+    IsEmail: (v: any) => boolean;
+    IsNotEmpty: (v: any) => boolean;
+    IsEmpty: (v: any) => boolean;
+    IsDefined: (v: any) => boolean;
 };
 
 /**
@@ -137,7 +137,7 @@ export class ClassValidator {
  * @param cb define the check Method
  * @param scenarios the scenario strings where the validation was executed
  */
-export function ValidateIf<T>(cb: (d: T) => boolean, scenarios?: string[]);
+export function ValidateIf<T>(cb: (d: T) => boolean, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the Value is missing and ignore all Validations
@@ -146,7 +146,7 @@ export function ValidateIf<T>(cb: (d: T) => boolean, scenarios?: string[]);
  *
  * @param scenarios the scenario strings where the validation was executed
  */
-export function IsOptional(scenarios?: string[]);
+export function IsOptional(scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the Property was in the Object and have a Value
@@ -169,7 +169,7 @@ export function IsOptional(scenarios?: string[]);
  * instance.value = 1;
  * instance.value = 'a';
  */
-export function Required(validationMessage?: string, scenarios?: string[]);
+export function Required(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * the Property must have a Valid Value
@@ -191,7 +191,7 @@ export function Required(validationMessage?: string, scenarios?: string[]);
  * instance.value = 1;
  * instance.value = 'a';
  */
-export function IsDefined(validationMessage?: string, scenarios?: string[]);
+export function IsDefined(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * the Property must have a Empty value like empty String or null or undefined
@@ -214,7 +214,7 @@ export function IsDefined(validationMessage?: string, scenarios?: string[]);
  * instance.value = 1;
  * instance.value = 'a';
  */
-export function IsEmpty(validationMessage?: string, scenarios?: string[]);
+export function IsEmpty(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * the Property must can not have a Empty value like empty String or null or undefined
@@ -236,7 +236,7 @@ export function IsEmpty(validationMessage?: string, scenarios?: string[]);
  * // is valid
  * instance.value = 'a';
  */
-export function IsNotEmpty(validationMessage?: string, scenarios?: string[]);
+export function IsNotEmpty(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * the String at this Property must be a Email Address
@@ -256,7 +256,7 @@ export function IsNotEmpty(validationMessage?: string, scenarios?: string[]);
  * // is valid
  * instance.value = 'test@example.com';
  */
-export function IsEmail(validationMessage?: string, scenarios?: string[]);
+export function IsEmail(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * the numeric Value must be greater or Equal the given Value
@@ -278,7 +278,7 @@ export function IsEmail(validationMessage?: string, scenarios?: string[]);
  * // is invalid
  * instance.value = 9;
  */
-export function Min(value: number, validationMessage?: string, scenarios?: string[]);
+export function Min(value: number, validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * the numeric Value mut be lower or equal the given Value
@@ -300,7 +300,7 @@ export function Min(value: number, validationMessage?: string, scenarios?: strin
  * // is invalid
  * instance.value = 4;
  */
-export function Max(value: number, validationMessage?: string, scenarios?: string[]);
+export function Max(value: number, validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * can execute a Function that returns true or false, can perform any Validation you want
@@ -322,7 +322,7 @@ export function Max(value: number, validationMessage?: string, scenarios?: strin
  * instance.value = 5;
  * instance.value = 4;
  */
-export function CustomValidation(value: (v) => boolean | Promise<boolean>, validationMessage?: string, scenarios?: string[]);
+export function CustomValidation(value: (v: any) => boolean | Promise<boolean>, validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * the String or Array must have the given Length or more
@@ -344,7 +344,7 @@ export function CustomValidation(value: (v) => boolean | Promise<boolean>, valid
  * // is valid
  * instance.value = 'abc';
  */
-export function MinLength(value: number, validationMessage?: string, scenarios?: string[]);
+export function MinLength(value: number, validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * the String or Array must have the given Length or lesser
@@ -367,7 +367,7 @@ export function MinLength(value: number, validationMessage?: string, scenarios?:
  * // is invalid
  * instance.value = 'abcd';
  */
-export function MaxLength(value: number, validationMessage?: string, scenarios?: string[]);
+export function MaxLength(value: number, validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * implements a Whitelist check for the Property
@@ -390,7 +390,7 @@ export function MaxLength(value: number, validationMessage?: string, scenarios?:
  * // is invalid
  * instance.value = 9;
  */
-export function Whitelist(value: any[], validationMessage?: string, scenarios?: string[]);
+export function Whitelist(value: any[], validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * implements a Blacklist check for the Property
@@ -413,7 +413,7 @@ export function Whitelist(value: any[], validationMessage?: string, scenarios?: 
  * // is valid
  * instance.value = 9;
  */
-export function Blacklist(value: any[], validationMessage?: string, scenarios?: string[]);
+export function Blacklist(value: any[], validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the Property Value Equals the given Value using (===)
@@ -434,7 +434,7 @@ export function Blacklist(value: any[], validationMessage?: string, scenarios?: 
  * // is valid
  * instance.value = '-';
  */
-export function Equals<T>(value: T, validationMessage?: string, scenarios?: string[]);
+export function Equals<T>(value: T, validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the Property Value Equals the given Value using (!==)
@@ -455,7 +455,7 @@ export function Equals<T>(value: T, validationMessage?: string, scenarios?: stri
  * // is valid
  * instance.value = 'ab';
  */
-export function NotEquals(value: any, validationMessage?: string, scenarios?: string[]);
+export function NotEquals(value: any, validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the given Value is an Integer number
@@ -475,7 +475,7 @@ export function NotEquals(value: any, validationMessage?: string, scenarios?: st
  * // is invalid
  * instance.value = 'a';
  */
-export function IsInt(validationMessage?: string, scenarios?: string[]);
+export function IsInt(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check an Array if it has Unique Values
@@ -495,7 +495,7 @@ export function IsInt(validationMessage?: string, scenarios?: string[]);
  * // is invalid
  * instance.value = [1,1,3,4];
  */
-export function UniqueArray(validationMessage?: string, scenarios?: string[]);
+export function UniqueArray(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the Array not Empty
@@ -505,7 +505,7 @@ export function UniqueArray(validationMessage?: string, scenarios?: string[]);
  * @param validationMessage
  * @param scenarios the scenario strings where the validation was executed
  */
-export function ArrayNotEmpty(validationMessage?: string, scenarios?: string[]);
+export function ArrayNotEmpty(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check the Value for a Positive number
@@ -530,7 +530,7 @@ export function ArrayNotEmpty(validationMessage?: string, scenarios?: string[]);
  * // one error was returned
  * await ClassValidator.Validate('S1', instance);
  */
-export function IsPositive(validationMessage?: string, scenarios?: string[]);
+export function IsPositive(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check the Value for a Negative number
@@ -555,7 +555,7 @@ export function IsPositive(validationMessage?: string, scenarios?: string[]);
  * // no error was returned
  * await ClassValidator.Validate('S1', instance);
  */
-export function IsNegative(validationMessage?: string, scenarios?: string[]);
+export function IsNegative(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the String has any valid Boolean declaration like
@@ -588,7 +588,7 @@ export function IsNegative(validationMessage?: string, scenarios?: string[]);
  * // returns no error
  * await ClassValidator.Validate('S1', instance);
  */
-export function IsBooleanString(validationMessage?: string, scenarios?: string[]);
+export function IsBooleanString(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the String contain Numbers Only
@@ -608,7 +608,7 @@ export function IsBooleanString(validationMessage?: string, scenarios?: string[]
  * // is invalid
  * instance.value = '1a';
  */
-export function IsNumberString(validationMessage?: string, scenarios?: string[]);
+export function IsNumberString(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if a DateTime is After the value
@@ -630,7 +630,7 @@ export function IsNumberString(validationMessage?: string, scenarios?: string[])
  * // is invalid
  * instance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);
  */
-export function MinDate(value: DateTime, validationMessage?: string, scenarios?: string[]);
+export function MinDate(value: DateTime, validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if a DateTime is Before the value
@@ -652,7 +652,7 @@ export function MinDate(value: DateTime, validationMessage?: string, scenarios?:
  * instance.value = new DateTime('UTC', 2018,12,31,23,59,59, 999);
  * instance.value = new DateTime('UTC', 2019,1,1,0,0,0, 0);
  */
-export function MaxDate(value: DateTime, validationMessage?: string, scenarios?: string[]);
+export function MaxDate(value: DateTime, validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the String contains only letters a-z
@@ -672,7 +672,7 @@ export function MaxDate(value: DateTime, validationMessage?: string, scenarios?:
  * // is invalid
  * instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1';
  */
-export function IsAlpha(validationMessage?: string, scenarios?: string[]);
+export function IsAlpha(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the string only contains letters a-z and numbers 0-9
@@ -693,7 +693,7 @@ export function IsAlpha(validationMessage?: string, scenarios?: string[]);
  * // is invalid
  * instance.value = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?';
  */
-export function IsAlphanumeric(validationMessage?: string, scenarios?: string[]);
+export function IsAlphanumeric(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the String only contains Ascii Characters
@@ -717,7 +717,7 @@ export function IsAlphanumeric(validationMessage?: string, scenarios?: string[])
  *     instance.value += String.fromCharCode(i);
  * }
  */
-export function IsAscii(validationMessage?: string, scenarios?: string[]);
+export function IsAscii(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the String is a Base64 string
@@ -737,7 +737,7 @@ export function IsAscii(validationMessage?: string, scenarios?: string[]);
  * // is invalid
  * instance.value = 'hello:world!?$*&()'-=@~';
  */
-export function IsBase64(validationMessage?: string, scenarios?: string[]);
+export function IsBase64(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if a String is a Hex Color
@@ -760,7 +760,7 @@ export function IsBase64(validationMessage?: string, scenarios?: string[]);
  * // is invalid
  * instance.value = '#ffffffffff';
  */
-export function IsHexColor(validationMessage?: string, scenarios?: string[]);
+export function IsHexColor(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if a String is a Hexadecimal String
@@ -783,7 +783,7 @@ export function IsHexColor(validationMessage?: string, scenarios?: string[]);
  * // is invalid
  * instance.value = 'xxxxxxxx';
  */
-export function IsHexadecimal(validationMessage?: string, scenarios?: string[]);
+export function IsHexadecimal(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the String is a MAC Address
@@ -804,7 +804,7 @@ export function IsHexadecimal(validationMessage?: string, scenarios?: string[]);
  * // is invalid
  * instance.value = '3D:F2:C9:A6:B3:4F:';
  */
-export function IsMacAddress(validationMessage?: string, scenarios?: string[]);
+export function IsMacAddress(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the String is a IP Address
@@ -825,7 +825,7 @@ export function IsMacAddress(validationMessage?: string, scenarios?: string[]);
  * instance.value = '000.0000.00.00';
  * instance.value = '912.456.123.123';
  */
-export function IsIp(validationMessage?: string, scenarios?: string[]);
+export function IsIp(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the String or Number is a Port Number
@@ -847,7 +847,7 @@ export function IsIp(validationMessage?: string, scenarios?: string[]);
  * instance.value = '65537';
  * instance.value = '0';
  */
-export function IsPort(validationMessage?: string, scenarios?: string[]);
+export function IsPort(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the String is a JSON String
@@ -867,7 +867,7 @@ export function IsPort(validationMessage?: string, scenarios?: string[]);
  * // is invalid
  * instance.value = 'xxxxxxx';
  */
-export function IsJSON(validationMessage?: string, scenarios?: string[]);
+export function IsJSON(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the String is a JSON Web Token
@@ -887,7 +887,7 @@ export function IsJSON(validationMessage?: string, scenarios?: string[]);
  * // is invalid
  * instance.value = 'Hello';
  */
-export function IsJWT(validationMessage?: string, scenarios?: string[]);
+export function IsJWT(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the String has the Maximum Bytes Size of the given Value
@@ -908,7 +908,7 @@ export function IsJWT(validationMessage?: string, scenarios?: string[]);
  * // is invalid
  * instance.value = '12345';
  */
-export function IsByteLength(value: number, validationMessage?: string, scenarios?: string[]);
+export function IsByteLength(value: number, validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if a String is a MongoDb Object Id
@@ -928,7 +928,7 @@ export function IsByteLength(value: number, validationMessage?: string, scenario
  * // is invalid
  * instance.value = 'abc';
  */
-export function IsMongoId(validationMessage?: string, scenarios?: string[]);
+export function IsMongoId(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if a String is a valid URL
@@ -950,7 +950,7 @@ export function IsMongoId(validationMessage?: string, scenarios?: string[]);
  * instance.value = 'aaa';
  * instance.value = 'https://w';
  */
-export function IsUrl(validationMessage?: string, scenarios?: string[]);
+export function IsUrl(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if a String is a UUID
@@ -971,7 +971,7 @@ export function IsUrl(validationMessage?: string, scenarios?: string[]);
  * // is invalid
  * instance.value = 'no uuid';
  */
-export function IsUUID(validationMessage?: string, scenarios?: string[]);
+export function IsUUID(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * check if the String can be a Hash
@@ -1010,7 +1010,7 @@ export function IsUUID(validationMessage?: string, scenarios?: string[]);
  * // is invalid
  * instance.value = 'HalloWelt';
  */
-export function IsHash(validationMessage?: string, scenarios?: string[]);
+export function IsHash(validationMessage?: string, scenarios?: string[]): (target: any, propertyKey: string) => void;
 
 /**
  * validate the Class with a Function
@@ -1033,4 +1033,4 @@ export function IsHash(validationMessage?: string, scenarios?: string[]);
  * instance.email = 'test@example.com';
  * instance.num = 19;
  */
-export function ValidateClass<T>(method: (instance: T, validators: typeof VALIDATIONS) => boolean, validationMessage?: string);
+export function ValidateClass<T>(method: (instance: T, validators: typeof VALIDATIONS) => boolean, validationMessage?: string): (target: any) => void;

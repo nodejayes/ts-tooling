@@ -20,7 +20,7 @@ export class StringFactory {
      * // is false
      * StringFactory.IsNullOrEmpty('a');
      */
-    static IsNullOrEmpty(value: string);
+    static IsNullOrEmpty(value: string): boolean;
 
     /**
      * generate a Random String with given Size

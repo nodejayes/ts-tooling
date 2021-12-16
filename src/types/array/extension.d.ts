@@ -967,7 +967,7 @@ declare global {
          *     counter++;
          * });
          */
-        ForSegment?(cb: (current: T, next: T) => void);
+        ForSegment?(cb: (current: T, next: T) => void): void;
 
         /**
          * iterate over the items they are not in the given indexes
@@ -982,7 +982,7 @@ declare global {
          * // 4
          * // 5
          */
-        Without?(indexes: number[], cb: (current: T) => void);
+        Without?(indexes: number[], cb: (current: T) => void): void;
 
         /**
          * flat a array to a specific depth

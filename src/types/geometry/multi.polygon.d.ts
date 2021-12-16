@@ -10,5 +10,5 @@ export class MultiPolygon {
     constructor(coordinates: number[][][][], srid?: number);
 
     ToJSON(): {type: string, coordinates: number[][][][], crs?: ReferenceSystem};
-    Transform(srid: number);
+    Transform(srid: number): void;
 }

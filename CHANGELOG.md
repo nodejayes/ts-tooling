@@ -1,3 +1,7 @@
+### 3.9.8
+
+* support of typescript strict mode
+
 ### 3.9.7
 
 * remove Dependabot alerts

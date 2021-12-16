@@ -25,7 +25,7 @@ const BASE_VALIDATIONS = {
         if (isNaN(val)) {
             return true;
         }
-        return val > 65536 ||val < 1
+        return val > 65536 ||val < 1;
     },
     IsIp: v => !/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/g.test(v),
     IsJSON: v => {
@@ -195,120 +195,120 @@ ClassValidator.Validate = async (scenario, instance) => {
                     continue;
                 }
                 switch (validationKey) {
-                    case 'IsDefined':
-                        executeValidation(value, BASE_VALIDATIONS.IsDefined, validationMessage, errors);
-                        break;
-                    case 'IsEmpty':
-                        executeValidation(value, BASE_VALIDATIONS.IsEmpty, validationMessage, errors);
-                        break;
-                    case 'IsNotEmpty':
-                        executeValidation(value, BASE_VALIDATIONS.IsNotEmpty, validationMessage, errors);
-                        break;
-                    case 'IsEmail':
-                        executeValidation(value, BASE_VALIDATIONS.IsEmail, validationMessage, errors);
-                        break;
-                    case 'Min':
-                        executeValidation(value, v => BASE_VALIDATIONS.Min(v, validationValue), validationMessage, errors);
-                        break;
-                    case 'Max':
-                        executeValidation(value, v => BASE_VALIDATIONS.Max(v, validationValue), validationMessage, errors);
-                        break;
-                    case 'MinLength':
-                        executeValidation(value, v => BASE_VALIDATIONS.MinLength(v, validationValue), validationMessage, errors);
-                        break;
-                    case 'MaxLength':
-                        executeValidation(value, v => BASE_VALIDATIONS.MaxLength(v, validationValue), validationMessage, errors);
-                        break;
-                    case 'Whitelist':
-                        executeValidation(value, v => BASE_VALIDATIONS.Whitelist(v, validationValue), validationMessage, errors);
-                        break;
-                    case 'Blacklist':
-                        executeValidation(value, v => BASE_VALIDATIONS.Blacklist(v, validationValue), validationMessage, errors);
-                        break;
-                    case 'Equals':
-                        executeValidation(value, v => BASE_VALIDATIONS.Equals(v, validationValue), validationMessage, errors);
-                        break;
-                    case 'NotEquals':
-                        executeValidation(value, v => BASE_VALIDATIONS.NotEquals(v, validationValue), validationMessage, errors);
-                        break;
-                    case 'IsInt':
-                        executeValidation(value, BASE_VALIDATIONS.IsInt, validationMessage, errors);
-                        break;
-                    case 'IsBooleanString':
-                        executeValidation(value, BASE_VALIDATIONS.IsBooleanString, validationMessage, errors);
-                        break;
-                    case 'IsNumberString':
-                        executeValidation(value, BASE_VALIDATIONS.IsNumberString, validationMessage, errors);
-                        break;
-                    case 'IsPositive':
-                        executeValidation(value, BASE_VALIDATIONS.IsPositive, validationMessage, errors);
-                        break;
-                    case 'IsNegative':
-                        executeValidation(value, BASE_VALIDATIONS.IsNegative, validationMessage, errors);
-                        break;
-                    case 'IsHash':
-                        executeValidation(value, BASE_VALIDATIONS.IsHash, validationMessage, errors);
-                        break;
-                    case 'IsUUID':
-                        executeValidation(value, BASE_VALIDATIONS.IsUUID, validationMessage, errors);
-                        break;
-                    case 'IsUrl':
-                        executeValidation(value, BASE_VALIDATIONS.IsUrl, validationMessage, errors);
-                        break;
-                    case 'IsAlpha':
-                        executeValidation(value, BASE_VALIDATIONS.IsAlpha, validationMessage, errors);
-                        break;
-                    case 'IsAlphanumeric':
-                        executeValidation(value, BASE_VALIDATIONS.IsAlphanumeric, validationMessage, errors);
-                        break;
-                    case 'IsAscii':
-                        executeValidation(value, BASE_VALIDATIONS.IsAscii, validationMessage, errors);
-                        break;
-                    case 'IsBase64':
-                        executeValidation(value, BASE_VALIDATIONS.IsBase64, validationMessage, errors);
-                        break;
-                    case 'IsHexColor':
-                        executeValidation(value, BASE_VALIDATIONS.IsHexColor, validationMessage, errors);
-                        break;
-                    case 'IsHexadecimal':
-                        executeValidation(value, BASE_VALIDATIONS.IsHexadecimal, validationMessage, errors);
-                        break;
-                    case 'IsMacAddress':
-                        executeValidation(value, BASE_VALIDATIONS.IsMacAddress, validationMessage, errors);
-                        break;
-                    case 'IsPort':
-                        executeValidation(value, BASE_VALIDATIONS.IsPort, validationMessage, errors);
-                        break;
-                    case 'IsIp':
-                        executeValidation(value, BASE_VALIDATIONS.IsIp, validationMessage, errors);
-                        break;
-                    case 'IsJSON':
-                        executeValidation(value, BASE_VALIDATIONS.IsJSON, validationMessage, errors);
-                        break;
-                    case 'IsJWT':
-                        executeValidation(value, BASE_VALIDATIONS.IsJWT, validationMessage, errors);
-                        break;
-                    case 'IsByteLength':
-                        executeValidation(value, v => BASE_VALIDATIONS.IsByteLength(v, validationValue), validationMessage, errors);
-                        break;
-                    case 'IsMongoId':
-                        executeValidation(value, BASE_VALIDATIONS.IsMongoId, validationMessage, errors);
-                        break;
-                    case 'MinDate':
-                        executeValidation(value, v => BASE_VALIDATIONS.MinDate(v, validationValue), validationMessage, errors);
-                        break;
-                    case 'MaxDate':
-                        executeValidation(value, v => BASE_VALIDATIONS.MaxDate(v, validationValue), validationMessage, errors);
-                        break;
-                    case 'ArrayNotEmpty':
-                        executeValidation(value, BASE_VALIDATIONS.ArrayNotEmpty, validationMessage, errors);
-                        break;
-                    case 'UniqueArray':
-                        executeValidation(value, BASE_VALIDATIONS.UniqueArray, validationMessage, errors);
-                        break;
-                    case 'CustomValidation':
-                        executeValidation(value, v => !validationValue(v), validationMessage, errors);
-                        break;
+                case 'IsDefined':
+                    executeValidation(value, BASE_VALIDATIONS.IsDefined, validationMessage, errors);
+                    break;
+                case 'IsEmpty':
+                    executeValidation(value, BASE_VALIDATIONS.IsEmpty, validationMessage, errors);
+                    break;
+                case 'IsNotEmpty':
+                    executeValidation(value, BASE_VALIDATIONS.IsNotEmpty, validationMessage, errors);
+                    break;
+                case 'IsEmail':
+                    executeValidation(value, BASE_VALIDATIONS.IsEmail, validationMessage, errors);
+                    break;
+                case 'Min':
+                    executeValidation(value, v => BASE_VALIDATIONS.Min(v, validationValue), validationMessage, errors);
+                    break;
+                case 'Max':
+                    executeValidation(value, v => BASE_VALIDATIONS.Max(v, validationValue), validationMessage, errors);
+                    break;
+                case 'MinLength':
+                    executeValidation(value, v => BASE_VALIDATIONS.MinLength(v, validationValue), validationMessage, errors);
+                    break;
+                case 'MaxLength':
+                    executeValidation(value, v => BASE_VALIDATIONS.MaxLength(v, validationValue), validationMessage, errors);
+                    break;
+                case 'Whitelist':
+                    executeValidation(value, v => BASE_VALIDATIONS.Whitelist(v, validationValue), validationMessage, errors);
+                    break;
+                case 'Blacklist':
+                    executeValidation(value, v => BASE_VALIDATIONS.Blacklist(v, validationValue), validationMessage, errors);
+                    break;
+                case 'Equals':
+                    executeValidation(value, v => BASE_VALIDATIONS.Equals(v, validationValue), validationMessage, errors);
+                    break;
+                case 'NotEquals':
+                    executeValidation(value, v => BASE_VALIDATIONS.NotEquals(v, validationValue), validationMessage, errors);
+                    break;
+                case 'IsInt':
+                    executeValidation(value, BASE_VALIDATIONS.IsInt, validationMessage, errors);
+                    break;
+                case 'IsBooleanString':
+                    executeValidation(value, BASE_VALIDATIONS.IsBooleanString, validationMessage, errors);
+                    break;
+                case 'IsNumberString':
+                    executeValidation(value, BASE_VALIDATIONS.IsNumberString, validationMessage, errors);
+                    break;
+                case 'IsPositive':
+                    executeValidation(value, BASE_VALIDATIONS.IsPositive, validationMessage, errors);
+                    break;
+                case 'IsNegative':
+                    executeValidation(value, BASE_VALIDATIONS.IsNegative, validationMessage, errors);
+                    break;
+                case 'IsHash':
+                    executeValidation(value, BASE_VALIDATIONS.IsHash, validationMessage, errors);
+                    break;
+                case 'IsUUID':
+                    executeValidation(value, BASE_VALIDATIONS.IsUUID, validationMessage, errors);
+                    break;
+                case 'IsUrl':
+                    executeValidation(value, BASE_VALIDATIONS.IsUrl, validationMessage, errors);
+                    break;
+                case 'IsAlpha':
+                    executeValidation(value, BASE_VALIDATIONS.IsAlpha, validationMessage, errors);
+                    break;
+                case 'IsAlphanumeric':
+                    executeValidation(value, BASE_VALIDATIONS.IsAlphanumeric, validationMessage, errors);
+                    break;
+                case 'IsAscii':
+                    executeValidation(value, BASE_VALIDATIONS.IsAscii, validationMessage, errors);
+                    break;
+                case 'IsBase64':
+                    executeValidation(value, BASE_VALIDATIONS.IsBase64, validationMessage, errors);
+                    break;
+                case 'IsHexColor':
+                    executeValidation(value, BASE_VALIDATIONS.IsHexColor, validationMessage, errors);
+                    break;
+                case 'IsHexadecimal':
+                    executeValidation(value, BASE_VALIDATIONS.IsHexadecimal, validationMessage, errors);
+                    break;
+                case 'IsMacAddress':
+                    executeValidation(value, BASE_VALIDATIONS.IsMacAddress, validationMessage, errors);
+                    break;
+                case 'IsPort':
+                    executeValidation(value, BASE_VALIDATIONS.IsPort, validationMessage, errors);
+                    break;
+                case 'IsIp':
+                    executeValidation(value, BASE_VALIDATIONS.IsIp, validationMessage, errors);
+                    break;
+                case 'IsJSON':
+                    executeValidation(value, BASE_VALIDATIONS.IsJSON, validationMessage, errors);
+                    break;
+                case 'IsJWT':
+                    executeValidation(value, BASE_VALIDATIONS.IsJWT, validationMessage, errors);
+                    break;
+                case 'IsByteLength':
+                    executeValidation(value, v => BASE_VALIDATIONS.IsByteLength(v, validationValue), validationMessage, errors);
+                    break;
+                case 'IsMongoId':
+                    executeValidation(value, BASE_VALIDATIONS.IsMongoId, validationMessage, errors);
+                    break;
+                case 'MinDate':
+                    executeValidation(value, v => BASE_VALIDATIONS.MinDate(v, validationValue), validationMessage, errors);
+                    break;
+                case 'MaxDate':
+                    executeValidation(value, v => BASE_VALIDATIONS.MaxDate(v, validationValue), validationMessage, errors);
+                    break;
+                case 'ArrayNotEmpty':
+                    executeValidation(value, BASE_VALIDATIONS.ArrayNotEmpty, validationMessage, errors);
+                    break;
+                case 'UniqueArray':
+                    executeValidation(value, BASE_VALIDATIONS.UniqueArray, validationMessage, errors);
+                    break;
+                case 'CustomValidation':
+                    executeValidation(value, v => !validationValue(v), validationMessage, errors);
+                    break;
                 }
             }
         }
@@ -435,7 +435,7 @@ function registerInStore(target, propertyKey, targetKey, value, validationMessag
 function ValidateIf(cb, scenarios) {
     return function (target, propertyKey) {
         registerInStore(target, propertyKey, 'ValidateIf', cb, '', scenarios);
-    }
+    };
 }
 
 /**
@@ -448,7 +448,7 @@ function ValidateIf(cb, scenarios) {
 function IsOptional(scenarios) {
     return function (target, propertyKey) {
         registerInStore(target, propertyKey, 'IsOptional', true, '', scenarios);
-    }
+    };
 }
 
 /**
@@ -476,7 +476,7 @@ function Required(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be set.`;
         registerInStore(target, propertyKey, 'Required', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -504,7 +504,7 @@ function IsDefined(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be defined.`;
         registerInStore(target, propertyKey, 'IsDefined', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -532,7 +532,7 @@ function IsEmpty(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be Empty.`;
         registerInStore(target, propertyKey, 'IsEmpty', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -560,7 +560,7 @@ function IsNotEmpty(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be Empty.`;
         registerInStore(target, propertyKey, 'IsNotEmpty', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -586,7 +586,7 @@ function IsEmail(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Email Address.`;
         registerInStore(target, propertyKey, 'IsEmail', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -670,7 +670,7 @@ function CustomValidation(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} Custom Validation was not successful.`;
         registerInStore(target, propertyKey, 'CustomValidation', value, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -756,7 +756,7 @@ function Whitelist(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have the following values: ${value.join(',')}`;
         registerInStore(target, propertyKey, 'Whitelist', value, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -784,7 +784,7 @@ function Blacklist(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not have the following values: ${value.join(',')}`;
         registerInStore(target, propertyKey, 'Blacklist', value, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -811,7 +811,7 @@ function Equals(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} not match the value: ${value}`;
         registerInStore(target, propertyKey, 'Equals', value, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -838,7 +838,7 @@ function NotEquals(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} match the value: ${value}`;
         registerInStore(target, propertyKey, 'NotEquals', value, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -864,7 +864,7 @@ function IsInt(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Integer Value`;
         registerInStore(target, propertyKey, 'IsInt', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -890,7 +890,7 @@ function UniqueArray(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must have Unique Values`;
         registerInStore(target, propertyKey, 'UniqueArray', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -921,7 +921,7 @@ function ArrayNotEmpty(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can not be empty.`;
         registerInStore(target, propertyKey, 'ArrayNotEmpty', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -953,7 +953,7 @@ function IsPositive(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have Positive Values.`;
         registerInStore(target, propertyKey, 'IsPositive', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -985,7 +985,7 @@ function IsNegative(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have Positive Values.`;
         registerInStore(target, propertyKey, 'IsNegative', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1025,7 +1025,7 @@ function IsBooleanString(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Boolean String.`;
         registerInStore(target, propertyKey, 'IsBooleanString', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1051,7 +1051,7 @@ function IsNumberString(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contain Numbers.`;
         registerInStore(target, propertyKey, 'IsNumberString', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1079,7 +1079,7 @@ function MinDate(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be greater than ${value.toString()}.`;
         registerInStore(target, propertyKey, 'MinDate', value, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1107,7 +1107,7 @@ function MaxDate(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be lower than ${value.toString()}.`;
         registerInStore(target, propertyKey, 'MaxDate', value, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1133,7 +1133,7 @@ function IsAlpha(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters (a-zA-Z).`;
         registerInStore(target, propertyKey, 'IsAlpha', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1159,7 +1159,7 @@ function IsAlphanumeric(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only contains letters and numbers.`;
         registerInStore(target, propertyKey, 'IsAlphanumeric', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1189,7 +1189,7 @@ function IsAscii(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Ascii String.`;
         registerInStore(target, propertyKey, 'IsAscii', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1215,7 +1215,7 @@ function IsBase64(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Base64 String.`;
         registerInStore(target, propertyKey, 'IsBase64', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1244,7 +1244,7 @@ function IsHexColor(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hex Color String.`;
         registerInStore(target, propertyKey, 'IsHexColor', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1273,7 +1273,7 @@ function IsHexadecimal(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hexadecimal String.`;
         registerInStore(target, propertyKey, 'IsHexadecimal', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1300,7 +1300,7 @@ function IsMacAddress(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MAC Address.`;
         registerInStore(target, propertyKey, 'IsMacAddress', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1327,7 +1327,7 @@ function IsIp(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a IP Address.`;
         registerInStore(target, propertyKey, 'IsIp', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1355,7 +1355,7 @@ function IsPort(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Port Number.`;
         registerInStore(target, propertyKey, 'IsPort', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1381,7 +1381,7 @@ function IsJSON(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON String.`;
         registerInStore(target, propertyKey, 'IsJSON', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1407,7 +1407,7 @@ function IsJWT(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a JSON Web Token.`;
         registerInStore(target, propertyKey, 'IsJWT', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1434,7 +1434,7 @@ function IsByteLength(value, validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} can only have a Length of ${value} Bytes.`;
         registerInStore(target, propertyKey, 'IsByteLength', value, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1460,7 +1460,7 @@ function IsMongoId(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a MongoDb ObjectId.`;
         registerInStore(target, propertyKey, 'IsMongoId', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1488,7 +1488,7 @@ function IsUrl(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a URL.`;
         registerInStore(target, propertyKey, 'IsUrl', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1515,7 +1515,7 @@ function IsUUID(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a UUID.`;
         registerInStore(target, propertyKey, 'IsUUID', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1560,7 +1560,7 @@ function IsHash(validationMessage, scenarios) {
     return function (target, propertyKey) {
         const message = validationMessage ? validationMessage : `the Property ${propertyKey} in ${target.constructor.name} must be a Hash.`;
         registerInStore(target, propertyKey, 'IsHash', true, message, scenarios);
-    }
+    };
 }
 
 /**
@@ -1590,7 +1590,7 @@ function ValidateClass(method, validationMessage, scenarios) {
     return function (target) {
         const message = validationMessage ? validationMessage : `the Class ${target.constructor.name} is invalid.`;
         registerInStore({constructor: {name: target.name}}, '', 'ValidateClass', method, message, scenarios);
-    }
+    };
 }
 
 module.exports = {
