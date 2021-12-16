@@ -52,7 +52,7 @@ export class ByteStream {
      * write a single Byte into the Stream
      * @param value the Byte to write into Stream
      */
-    WriteByte(value: Byte);
+    WriteByte(value: Byte): void;
 
     /**
      * read a Part of the Byte Stream on default the complete Stream was returned

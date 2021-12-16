@@ -1,4 +1,4 @@
-### 3.9.8
+### 3.9.9
 
 * support of typescript strict mode
 
