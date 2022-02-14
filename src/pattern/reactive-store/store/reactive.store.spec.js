@@ -573,7 +573,7 @@ describe('Reactive Store Tests', () => {
             obj: new ComplexObject(),
         });
         store.Listen(s => s.obj).subscribe(o => {
-            assert.equal(o.Age, 46);
+            assert.equal(o.Age, 47);
             assert.equal(o.greet(), 'Hello null');
             done();
         });
