@@ -47,7 +47,7 @@
     "set-value": "4.1.0",
     "glob-parent": "^6.0.2",
     "braces": "^3.0.2",
-    "electron": "11.5.0",
+    "electron": "13.6.6",
     "eslint": "^7.24.0",
     "jsdoc": "^3.6.6",
     "lcov-parse": "^1.0.0",
