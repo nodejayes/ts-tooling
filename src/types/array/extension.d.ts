@@ -358,13 +358,14 @@ declare global {
          *
          * @param condition the method executed for each element in the list
          * @param item the Item to replace with
+         * @param force {boolean} add item if not found in list on the end default = true
          * @returns the list with the inserted Item
          *
          * @example
          * // returns [1,2,3]
          * [1,5,3].Replace((e) => e === 5, 2);
          */
-        Replace?(condition: (d: T, idx: number, arr: T[]) => boolean, item: T): T[];
+        Replace?(condition: (d: T, idx: number, arr: T[]) => boolean, item: T, force?: boolean): T[];
 
         /**
          * get the index number of the first matched element in the array

@@ -914,6 +914,9 @@ describe('Array Extension Tests', () => {
         it('append when the element not found', () => {
             assert.deepEqual([1,2,3].Replace(e => e === 7, 4), [1,2,3,4]);
         });
+        it('not append when the element not found and force is false', () => {
+            assert.deepEqual([1,2,3].Replace(e => e === 7, 4, false), [1,2,3]);
+        });
     });
     describe('[Method]: ElementAt', () => {
         it('get the array element at the position', () => {

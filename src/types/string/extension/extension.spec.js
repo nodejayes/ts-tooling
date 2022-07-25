@@ -338,6 +338,9 @@ describe('String Extensions Tests', () => {
         it('do nothing when have no matches', () => {
             assert.equal('abcdefg'.Replace('x', 'z'), 'abcdefg');
         });
+        it('82 tooo', () => {
+            assert.equal('82'.Replace('.', ','), '82');
+        });
     });
     describe('[Method]: ReplaceAll', () => {
         it('replace all matches', () => {

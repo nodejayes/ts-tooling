@@ -1039,17 +1039,20 @@ Array.prototype.Convert = function (convertMethod) {
  *
  * @param condition {function} the method executed for each element in the list
  * @param item {any} the Item to replace with
+ * @param force {boolean} add item if not found in list on the end default = true
  * @returns {any[]} the list with the inserted Item
  *
  * @example
  * // returns [1,2,3]
  * [1,5,3].Replace((e) => e === 5, 2);
  */
-Array.prototype.Replace = function (condition, item) {
+Array.prototype.Replace = function (condition, item, force = true) {
     const tmp = this;
     const pos = this.FindIndex(condition);
     if (pos.IsBelow(0)) {
-        tmp.Add(item);
+        if (force === true) {
+            tmp.Add(item);
+        }
         return tmp;
     }
     tmp[pos] = item;

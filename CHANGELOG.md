@@ -1,3 +1,7 @@
+### 3.9.11
+
+* Replace add force Parameter
+
 ### 3.9.9
 
 * support of typescript strict mode

@@ -59,6 +59,15 @@ describe('Reactive Store Tests', () => {
         assert.equal(store.Listen(s => s.test.b).getValue(), false);
     });
 
+    it('can use RemoveAll', () => {
+        const store = new ReactiveStore({
+            test: [{value: 1},{value: 2},{value: 3}]
+        });
+        store.Mutate(s => s.test, o => o.RemoveAll(n => n.value === 2));
+        assert.equal(store.Listen(s => s.test).getValue()[0].value, 1);
+        assert.equal(store.Listen(s => s.test).getValue()[1].value, 3);
+    });
+
     it('exact match 1', (done) => {
         let callCount = 0;
         let callCount2 = 0;
