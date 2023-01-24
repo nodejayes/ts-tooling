@@ -1,3 +1,8 @@
+### 3.9.12
+
+* change compare in Reactive Store
+* fix Documentation issue
+
 ### 3.9.11
 
 * Replace add force Parameter
