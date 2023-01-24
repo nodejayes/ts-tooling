@@ -360,7 +360,8 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// create a TimeSpan of 2 Days, 2 Hours, 5 Minutes and 8 Secondsconst time = new TimeSpan(2, 5, 8, 2);</code></pre>
+    <pre class="prettyprint"><code>// create a TimeSpan of 2 Days, 2 Hours, 5 Minutes and 8 Seconds
+const time = new TimeSpan(2, 5, 8, 2);</code></pre>
 
     
 
@@ -1307,7 +1308,8 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 0.00:00:05const time = new TimeSpan().Add(new TimeSpan(0, 0, 5, 0, 0));</code></pre>
+    <pre class="prettyprint"><code>// returns 0.00:00:05
+const time = new TimeSpan().Add(new TimeSpan(0, 0, 5, 0, 0));</code></pre>
 
     
 
@@ -1470,7 +1472,10 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// is truenew TimeSpan().Equals(new TimeSpan());// is falsenew TimeSpan(5).Equals(new TimeSpan());</code></pre>
+    <pre class="prettyprint"><code>// is true
+new TimeSpan().Equals(new TimeSpan());
+// is false
+new TimeSpan(5).Equals(new TimeSpan());</code></pre>
 
     
 
@@ -1633,7 +1638,10 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// is truenew TimeSpan(5).IsAfter(new TimeSpan(2));// is falsenew TimeSpan(5).IsAfter(new TimeSpan(6));</code></pre>
+    <pre class="prettyprint"><code>// is true
+new TimeSpan(5).IsAfter(new TimeSpan(2));
+// is false
+new TimeSpan(5).IsAfter(new TimeSpan(6));</code></pre>
 
     
 
@@ -1796,7 +1804,10 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// is truenew TimeSpan(5).IsBefore(new TimeSpan(6));// is falsenew TimeSpan(5).IsBefore(new TimeSpan(2));</code></pre>
+    <pre class="prettyprint"><code>// is true
+new TimeSpan(5).IsBefore(new TimeSpan(6));
+// is false
+new TimeSpan(5).IsBefore(new TimeSpan(2));</code></pre>
 
     
 
@@ -1911,7 +1922,8 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 0.-05:00:00new TimeSpan(5).Negate();</code></pre>
+    <pre class="prettyprint"><code>// returns 0.-05:00:00
+new TimeSpan(5).Negate();</code></pre>
 
     
 
@@ -2074,7 +2086,8 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 0.04:00:00new TimeSpan(5).Subtract(new TimeSpan(1));</code></pre>
+    <pre class="prettyprint"><code>// returns 0.04:00:00
+new TimeSpan(5).Subtract(new TimeSpan(1));</code></pre>
 
     
 
@@ -2250,7 +2263,10 @@ you can define a Format Chars to format the TimeSpan</p>
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// returns 1.01:01:01new TimeSpan(1,1,1,1,1).ToString();// returns 05:03:04new TimeSpan(5, 3, 4).ToString();</code></pre>
+    <pre class="prettyprint"><code>// returns 1.01:01:01
+new TimeSpan(1,1,1,1,1).ToString();
+// returns 05:03:04
+new TimeSpan(5, 3, 4).ToString();</code></pre>
 
     
 

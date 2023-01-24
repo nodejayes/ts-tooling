@@ -197,7 +197,10 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>// create a empty dictionaryconst empty = new Dictionary();// create a Dictionary with number valuesconst filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});</code></pre>
+    <pre class="prettyprint"><code>// create a empty dictionary
+const empty = new Dictionary();
+// create a Dictionary with number values
+const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});</code></pre>
 
     
 
@@ -291,7 +294,9 @@
     
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});//write 3 into the consoleconsole.info(filled.Count);</code></pre>
+    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});
+//write 3 into the console
+console.info(filled.Count);</code></pre>
 
     
 </dd>
@@ -365,7 +370,9 @@
     
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});// writes ['a', 'b', 'c'] into the consoleconsole.info(filled.Keys);</code></pre>
+    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});
+// writes ['a', 'b', 'c'] into the console
+console.info(filled.Keys);</code></pre>
 
     
 </dd>
@@ -439,7 +446,9 @@
     
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});//write [1,2,3] into the consoleconsole.info(filled.Values);</code></pre>
+    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});
+//write [1,2,3] into the console
+console.info(filled.Values);</code></pre>
 
     
 </dd>
@@ -630,7 +639,12 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});filled.Add('d', 4);// writes ['a', 'b', 'c', 'd'] into the consoleconsole.info(filled.Keys);// writes [1, 2, 3, 4] into the consoleconsole.info(filled.Values);</code></pre>
+    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});
+filled.Add('d', 4);
+// writes ['a', 'b', 'c', 'd'] into the console
+console.info(filled.Keys);
+// writes [1, 2, 3, 4] into the console
+console.info(filled.Values);</code></pre>
 
     
 
@@ -743,7 +757,10 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});filled.Clear();// writes [] into the consoleconsole.info(filled.Keys);</code></pre>
+    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});
+filled.Clear();
+// writes [] into the console
+console.info(filled.Keys);</code></pre>
 
     
 
@@ -906,7 +923,11 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});// is truefilled.ContainsKey('b');// is falsefilled.ContainsKey('z');</code></pre>
+    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});
+// is true
+filled.ContainsKey('b');
+// is false
+filled.ContainsKey('z');</code></pre>
 
     
 
@@ -1069,7 +1090,11 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});// is truefilled.ContainsValue(1);// is falsefilled.ContainsValue(10);</code></pre>
+    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});
+// is true
+filled.ContainsValue(1);
+// is false
+filled.ContainsValue(10);</code></pre>
 
     
 
@@ -1232,7 +1257,13 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const d = new Dictionary({     Hello: 'World',     This: 'is',     A: 'Dictionary', }); // returns 'is' d.Find(i => i.Equals('is'));</code></pre>
+    <pre class="prettyprint"><code>const d = new Dictionary({
+     Hello: 'World',
+     This: 'is',
+     A: 'Dictionary',
+ });
+ // returns 'is'
+ d.Find(i => i.Equals('is'));</code></pre>
 
     
 
@@ -1395,7 +1426,15 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const d = new Dictionary({     Hello: 'World',     Hello2: 'World',     Hello3: 'World',     This: 'is',     A: 'Dictionary', }); // returns 3 d.FindAll(i => i.Equals('World')).Count();</code></pre>
+    <pre class="prettyprint"><code>const d = new Dictionary({
+     Hello: 'World',
+     Hello2: 'World',
+     Hello3: 'World',
+     This: 'is',
+     A: 'Dictionary',
+ });
+ // returns 3
+ d.FindAll(i => i.Equals('World')).Count();</code></pre>
 
     
 
@@ -1508,7 +1547,9 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});// returns {'a': 1, 'b': 2, 'c': 3}console.info(filled.GetObject());</code></pre>
+    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});
+// returns {'a': 1, 'b': 2, 'c': 3}
+console.info(filled.GetObject());</code></pre>
 
     
 
@@ -1674,7 +1715,11 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});// returns 2filled.GetValue('b');// returns nullfilled.GetValue('z');</code></pre>
+    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});
+// returns 2
+filled.GetValue('b');
+// returns null
+filled.GetValue('z');</code></pre>
 
     
 
@@ -1837,7 +1882,12 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});filled.Remove('a');// writes ['b', 'c'] into the consoleconsole.info(filled.Keys);// writes [2, 3] into the consoleconsole.info(filled.Values);</code></pre>
+    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});
+filled.Remove('a');
+// writes ['b', 'c'] into the console
+console.info(filled.Keys);
+// writes [2, 3] into the console
+console.info(filled.Values);</code></pre>
 
     
 
@@ -2023,7 +2073,12 @@
     
         <h5>Example</h5>
         
-    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});// returns true and set result 2let result;filled.TryGetValue('b', v => result = v);// returns false and set result nullfilled.TryGetValue('z', v => result = v);</code></pre>
+    <pre class="prettyprint"><code>const filled = new Dictionary&lt;number>({'a': 1, 'b': 2, 'c': 3});
+// returns true and set result 2
+let result;
+filled.TryGetValue('b', v => result = v);
+// returns false and set result null
+filled.TryGetValue('z', v => result = v);</code></pre>
 
     
 

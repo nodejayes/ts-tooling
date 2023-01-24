@@ -1,4 +1,5 @@
 const {BehaviorSubject} = require('rxjs');
+const equal = require('fast-deep-equal');
 const {Dictionary} = require('../../../types/dictionary/dictionary/dictionary');
 const {Get, Set} = require('../../../core/object/object');
 const im = require('immer');
@@ -106,9 +107,7 @@ class ReactiveStore {
             const currentValue = selector(draft);
             const newValue = mutation(currentValue);
             if (!this._everyChange) {
-                const hash1 = JSON.stringify(original);
-                const hash2 = JSON.stringify(newValue);
-                if (hash1 === hash2) {
+                if (equal(original, newValue)) {
                     changed = false;
                     return;
                 }

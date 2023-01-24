@@ -83,7 +83,7 @@ Array.prototype.Max = function (filterMethod) {
  * @returns {number} the minimum value
  *
  * @example
- * // returns 3
+ * // returns 1
  * [1,2,3].Min();
  * // returns 2
  * [1,2,3].Min(i => i > 1);
