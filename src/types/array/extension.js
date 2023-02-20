@@ -319,8 +319,10 @@ Array.prototype.Clear = function () {
  */
 Array.prototype.Contains = function (element) {
     return this.indexOf(element) >= 0 ? true : this.Any(e => {
-        if (typeof e['Equals'] === 'function') {
-            return e['Equals'].bind(e)(element);
+        if (typeof e === 'object' && e !== null) {
+            if (typeof e['Equals'] === 'function') {
+                return e['Equals'].bind(e)(element);
+            }
         }
         return e === element;
     });

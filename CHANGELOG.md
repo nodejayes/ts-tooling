@@ -1,3 +1,8 @@
+### 3.9.13
+
+* fix Contains behavior to accept null and undefined values
+* fix Test uses dynamic Age on CustomObject that changes over time
+
 ### 3.9.12
 
 * change compare in Reactive Store

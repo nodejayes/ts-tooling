@@ -218,6 +218,14 @@ describe('Array Extension Tests', () => {
             const element = {hello:'world',Equals:function (i) { return this.hello === i.hello;}};
             assert.isTrue([element].Contains(element));
         });
+        it('works with undefined data', () => {
+            assert.isFalse([undefined].Contains(1));
+            assert.isTrue([undefined].Contains(undefined));
+        });
+        it('works with nullable data', () => {
+            assert.isFalse([null].Contains(1));
+            assert.isTrue([null].Contains(null));
+        });
     });
     describe('[Method]: Copy', () => {
         it('creates a new instance', () => {

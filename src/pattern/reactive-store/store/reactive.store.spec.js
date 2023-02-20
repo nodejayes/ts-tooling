@@ -5,10 +5,12 @@ const {filter} = require('rxjs/operators');
 const {describe, it} = require('mocha');
 const {assert} = require('chai');
 
+const myBday = new DateTime('UTC', 1975, 1, 1);
+
 class ComplexObject {
     constructor() {
         this.name = null;
-        this.birthday = new DateTime('UTC', 1975, 1, 1);
+        this.birthday = myBday;
     }
 
     get Age() {
@@ -582,7 +584,7 @@ describe('Reactive Store Tests', () => {
             obj: new ComplexObject(),
         });
         store.Listen(s => s.obj).subscribe(o => {
-            assert.equal(o.Age, 47);
+            assert.equal(o.Age, new DateTime().Subtract(myBday).Year);
             assert.equal(o.greet(), 'Hello null');
             done();
         });
