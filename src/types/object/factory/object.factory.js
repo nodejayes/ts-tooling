@@ -123,7 +123,7 @@ ObjectFactory.SizeOf = (obj) => {
  * ObjectFactory.Merge(obj1, obj2);
  */
 ObjectFactory.Merge = (parent, child) => {
-    return Merge(parent, child)
+    return Merge(parent, child);
 };
 
 /**

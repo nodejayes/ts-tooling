@@ -1,3 +1,8 @@
+### 3.9.14
+
+* fix ObjectFactory Merge: now works with Date
+* fix ObjectFactory Merge: base Object Property that was undefined in Merge Object not set to undefined.
+
 ### 3.9.13
 
 * fix Contains behavior to accept null and undefined values

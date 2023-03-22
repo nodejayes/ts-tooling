@@ -59,6 +59,13 @@ const Set = (obj, key, value) => {
 const Merge = (master, slave) => {
     for (const key in slave) {
         if (master.hasOwnProperty(key) && master[key] !== null && master[key] !== undefined) {
+            if (slave[key] === undefined) {
+                continue;
+            }
+            if (master[key] instanceof Date) {
+                master[key] = slave[key];
+                continue;
+            }
             if (typeof master[key] === typeof {}) {
                 master[key] = Merge(master[key], slave[key]);
                 continue;

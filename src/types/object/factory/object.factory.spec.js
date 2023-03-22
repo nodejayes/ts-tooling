@@ -84,6 +84,7 @@ describe('Object Extension Tests', () => {
     describe('[Method]: Merge', () => {
         it('merge simple object', () => {
             const obj1 = {
+                id: 1,
                 hello: 'world',
                 age: 1,
                 subobject: {
@@ -91,15 +92,20 @@ describe('Object Extension Tests', () => {
                     value: 'xxxx',
                     active: true,
                 },
+                mydate: new Date(Date.UTC(2023,2,1)),
             };
             const obj2 = {
+                id: undefined,
                 hello: 'world!',
                 description: 'some example value',
                 subobject: {
                     value: 'change me',
-                }
+                },
+                mydate: new Date(Date.UTC(2023,1,1)),
+                aundef: undefined,
             };
             assert.deepEqual(ObjectFactory.Merge(obj1, obj2), {
+                id: 1,
                 hello: 'world!',
                 age: 1,
                 subobject: {
@@ -108,6 +114,8 @@ describe('Object Extension Tests', () => {
                     active: true,
                 },
                 description: 'some example value',
+                mydate: new Date(Date.UTC(2023,1,1)),
+                aundef: undefined,
             });
         });
     });
