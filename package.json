@@ -1,6 +1,6 @@
 {
   "name": "ts-tooling",
-  "version": "3.10.1",
+  "version": "3.10.2",
   "main": "src/ts-tooling.js",
   "types": "src/ts-tooling.d.ts",
   "scripts": {
