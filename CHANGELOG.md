@@ -1,3 +1,7 @@
+### 3.10.1
+
+* fix missing export Sleep function
+
 ### 3.10.0
 
 * add Sleep function
