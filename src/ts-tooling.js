@@ -14,7 +14,7 @@ const {
 } = require('./types/geometry');
 
 // Patterns
-const {Using, Create, CreateWithFactory, Throttle, Retry} = require('./pattern');
+const {Using, Create, CreateWithFactory, Throttle, Retry, Sleep} = require('./pattern');
 const {EventHandler} = require('./pattern/event-handler');
 const {ReactiveStore, SafeBehaviorSubject} = require('./pattern/reactive-store');
 
@@ -58,7 +58,7 @@ module.exports = {
     ListSortOrder, Dictionary, TestDataGenerator,
     LZCompression, StopWatch, ClassValidator,
     Throttle, Retry, SafeBehaviorSubject,
-    Create, CreateWithFactory, Using, EventHandler, ReactiveStore,
+    Create, CreateWithFactory, Using, EventHandler, ReactiveStore, Sleep,
     VALIDATIONS,
     IsDefined, IsEmail, Min, Max, Blacklist, IsEmpty, IsNotEmpty, MaxLength, MinLength, ValidateIf, Whitelist,
     Equals, NotEquals,
@@ -86,4 +86,7 @@ module.exports = {
     UniqueArray,
     CustomValidation,
     ValidateClass,
+    FeatureCollection, Feature, Point, Line, Polygon,
+    MultiPoint, MultiLine, MultiPolygon,
+    ReferenceSystem, WGS84, WEB_MERCATOR, registerProjection
 };

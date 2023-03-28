@@ -1,3 +1,7 @@
+### 3.10.4
+
+* add some missing global exports
+
 ### 3.10.3
 
 * fix missing export Sleep function
