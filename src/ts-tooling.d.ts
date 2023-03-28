@@ -14,7 +14,7 @@ export {
 } from './types/geometry';
 
 // Patterns
-export {Using, IDisposable, Create, CreateWithFactory, IThrottleOptions, Throttle, IRetryOptions, Retry} from './pattern';
+export {Using, IDisposable, Create, CreateWithFactory, IThrottleOptions, Throttle, IRetryOptions, Retry, Sleep} from './pattern';
 export {EventHandler} from './pattern/event-handler';
 export {ReactiveStore, SafeBehaviorSubject} from './pattern/reactive-store';
 
