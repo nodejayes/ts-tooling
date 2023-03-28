@@ -23,7 +23,7 @@ const Throttle = (function () {
                 locked = false;
             }, options.Timeout);
         }
-    }
+    };
 })();
 
 module.exports = {Throttle};

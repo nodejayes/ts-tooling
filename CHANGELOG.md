@@ -1,3 +1,8 @@
+### 3.10.0
+
+* add Sleep function
+* cleanup code
+
 ### 3.9.14
 
 * fix ObjectFactory Merge: now works with Date

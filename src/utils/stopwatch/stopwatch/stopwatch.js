@@ -206,7 +206,7 @@ class StopWatch {
         if (!this._isBrowser()) {
             const tmp2 = this._time;
             const t = global['process'].hrtime(tmp2);
-            return (t[0] * NS_PER_SEC + t[1])/1000000
+            return (t[0] * NS_PER_SEC + t[1])/1000000;
         }
         const tmp = this._time;
         return window.performance.now() - tmp;
@@ -216,10 +216,10 @@ class StopWatch {
         if (!this._isBrowser()) {
             const tmp2 = this._multipleTimes[key];
             if (!tmp2) {
-                return 0
+                return 0;
             }
             const t = global['process'].hrtime(tmp2);
-            return (t[0] * NS_PER_SEC + t[1])/1000000
+            return (t[0] * NS_PER_SEC + t[1])/1000000;
         }
         const tmp = this._multipleTimes[key];
         return window.performance.now() - tmp;
