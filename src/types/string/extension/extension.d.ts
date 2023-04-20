@@ -21,7 +21,7 @@ declare global {
          * // throws an Error while string has not enough letters
          * 'Hello'.CharAt(5);
          */
-        CharAt?(pos: number): string;
+        CharAt(pos: number): string;
 
         /**
          * Converts a string so that the first letter of the string is capital and all others are small.
@@ -36,7 +36,7 @@ declare global {
          * 'HELLO'.Capitalize();
          * 'Hello'.Capitalize();
          */
-        Capitalize?(): string;
+        Capitalize(): string;
 
         /**
          * checks whether a string begins with a character string.
@@ -55,7 +55,7 @@ declare global {
          * 'abcdefg'.StartsWith('b', 2);
          * 'abcdefg'.StartsWith('z');
          */
-        StartsWith?(search: string, position?: number): boolean;
+        StartsWith(search: string, position?: number): boolean;
 
         /**
          * checks whether a string ends with a character string.
@@ -74,7 +74,7 @@ declare global {
          * 'abcdefg'.EndsWith('f', 1);
          * 'abcdefg'.EndsWith('z');
          */
-        EndsWith?(search: string, position?: number): boolean;
+        EndsWith(search: string, position?: number): boolean;
 
         /**
          * escape to a HTML safe string
@@ -87,7 +87,7 @@ declare global {
          * // returns "fred, barney, &amp; pebbles"
          * 'fred, barney, & pebbles'.HTMLEscape();
          */
-        HTMLEscape?(): string;
+        HTMLEscape(): string;
 
         /**
          * unescape a escaped HTML String
@@ -100,7 +100,7 @@ declare global {
          * // returns "fred, barney, & pebbles"
          * 'fred, barney, &amp; pebbles'.HTMLUnescape();
          */
-        HTMLUnescape?(): string;
+        HTMLUnescape(): string;
 
         /**
          * escape a String used for Regular Expression
@@ -113,7 +113,7 @@ declare global {
          * // returns "\[helloworld\]\(https://google\.com/\)"
          * '[helloworld](https://google.com/)'.RegExpEscape();
          */
-        RegExpEscape?(): string;
+        RegExpEscape(): string;
 
         /**
          * convert a string into a Integer number Value
@@ -129,7 +129,7 @@ declare global {
          * // returns 0
          * 'aaa'.ToInteger();
          */
-        ToInteger?(): number;
+        ToInteger(): number;
 
         /**
          * convert a string into a Double number Value
@@ -147,7 +147,7 @@ declare global {
          * // returns 0.0
          * 'aaa'.ToDouble();
          */
-        ToDouble?(): number;
+        ToDouble(): number;
 
         /**
          * Converts a string into the Camel Case format.
@@ -162,7 +162,7 @@ declare global {
          * '--foo-bar--'.ToCamelCase()
          * '__FOO_BAR__'.ToCamelCase()
          */
-        ToCamelCase?(): string;
+        ToCamelCase(): string;
 
         /**
          * Converts a string into the Kebab Case format.
@@ -177,7 +177,7 @@ declare global {
          * 'fooBar'.ToKebabCase();
          * '__FOO_BAR__'.ToKebabCase();
          */
-        ToKebabCase?(): string;
+        ToKebabCase(): string;
 
         /**
          * Transform into a space separated string with each word capitalized.
@@ -190,7 +190,7 @@ declare global {
          * // returns "Test String"
          * 'test string'.ToCapitalCase();
          */
-        ToCapitalCase?(): string;
+        ToCapitalCase(): string;
 
         /**
          * Transform into upper case string with an underscore between words.
@@ -203,7 +203,7 @@ declare global {
          * // returns "TEST_STRING"
          * 'test string'.ToConstantCase();
          */
-        ToConstantCase?(): string;
+        ToConstantCase(): string;
 
         /**
          * Transform into a lower case string with a period between words.
@@ -216,7 +216,7 @@ declare global {
          * // returns "test.string"
          * 'test string'.ToDotCase();
          */
-        ToDotCase?(): string;
+        ToDotCase(): string;
 
         /**
          * Transform into a lower cased string with spaces between words.
@@ -229,7 +229,7 @@ declare global {
          * // returns "test.string"
          * 'test string'.ToNoCase();
          */
-        ToNoCase?(): string;
+        ToNoCase(): string;
 
         /**
          * Transform into a lower case string with slashes between words.
@@ -242,7 +242,7 @@ declare global {
          * // returns "test/string"
          * 'test string'.ToPathCase();
          */
-        ToPathCase?(): string;
+        ToPathCase(): string;
 
         /**
          * Transform into a lower case with spaces between words, then capitalize the string.
@@ -255,7 +255,7 @@ declare global {
          * // returns "Test string"
          * 'test string'.ToSentenceCase();
          */
-        ToSentenceCase?(): string;
+        ToSentenceCase(): string;
 
         /**
          * Transform into a string of capitalized words without separators.
@@ -268,7 +268,7 @@ declare global {
          * // returns "Test string"
          * 'TestString'.ToPascalCase();
          */
-        ToPascalCase?(): string;
+        ToPascalCase(): string;
 
         /**
          * Converts a string into the Snake Case format.
@@ -283,7 +283,7 @@ declare global {
          * 'fooBar'.ToSnakeCase();
          * '--FOO-BAR--'.ToSnakeCase();
          */
-        ToSnakeCase?(): string;
+        ToSnakeCase(): string;
 
         /**
          * converts every letter of the string into lower case
@@ -296,7 +296,7 @@ declare global {
          * // returns "hello"
          * 'HELLO'.ToLowerCase();
          */
-        ToLowerCase?(): string;
+        ToLowerCase(): string;
 
         /**
          * converts every letter of the string into upper case
@@ -309,7 +309,7 @@ declare global {
          * // returns "HELLO"
          * 'hello'.ToLowerCase();
          */
-        ToUpperCase?(): string;
+        ToUpperCase(): string;
 
         /**
          * convert the first letter of the string into lower case
@@ -323,7 +323,7 @@ declare global {
          * 'Hello'.LowerFirst();
          * 'hello'.LowerFirst();
          */
-        LowerFirst?(): string;
+        LowerFirst(): string;
 
         /**
          * convert the first letter of the string into upper case
@@ -337,7 +337,7 @@ declare global {
          * 'hello'.UpperFirst();
          * 'Hello'.UpperFirst();
          */
-        UpperFirst?(): string;
+        UpperFirst(): string;
 
         /**
          * splits a string into an array of its words.
@@ -360,7 +360,7 @@ declare global {
          *     ].Contains(e)
          * );
          */
-        Words?(filter?: (word: string) => boolean, pattern?: string): string[];
+        Words(filter?: (word: string) => boolean, pattern?: string): string[];
 
         /**
          * concat 2 strings
@@ -377,7 +377,7 @@ declare global {
          * // returns "a#b"
          * 'a'.Concat('b', '#');
          */
-        Concat?(appender: string, separator?: string): string;
+        Concat(appender: string, separator?: string): string;
 
         /**
          * same as Concat only with multiple strings.
@@ -396,7 +396,7 @@ declare global {
          * // returns "a#b#c"
          * ''.Join(['a','b','c'], '#');
          */
-        Join?(appender: string[], separator?: string): string;
+        Join(appender: string[], separator?: string): string;
 
         /**
          * fills a string alternately from left and right.
@@ -415,7 +415,7 @@ declare global {
          * // returns "abcdefg"
          * 'abcdefg'.Pad(3, '-');
          */
-        Pad?(length: number, template?: string): string;
+        Pad(length: number, template?: string): string;
 
         /**
          * fills a string from left.
@@ -434,7 +434,7 @@ declare global {
          * // returns "abcdefg"
          * 'abcdefg'.PadLeft(3, '-');
          */
-        PadLeft?(length: number, template?: string): string;
+        PadLeft(length: number, template?: string): string;
 
         /**
          * fills a string from right.
@@ -453,7 +453,7 @@ declare global {
          * // returns "abcdefg"
          * 'abcdefg'.PadRight(3, '-');
          */
-        PadRight?(length: number, template?: string): string;
+        PadRight(length: number, template?: string): string;
 
         /**
          * repeat the current string x times
@@ -467,7 +467,7 @@ declare global {
          * // returns "*****"
          * '*'.Repeat(5);
          */
-        Repeat?(times: number): string;
+        Repeat(times: number): string;
 
         /**
          * replace the first match on the current String
@@ -484,7 +484,7 @@ declare global {
          * // returns "azbcdefg"
          * 'abbcdefg'.Replace('b', 'z');
          */
-        Replace?(search: string, replacer: string): string;
+        Replace(search: string, replacer: string): string;
 
         /**
          * replace all matches on the current String
@@ -499,7 +499,7 @@ declare global {
          * // returns "azzzcdezfg"
          * 'abbbcdebfg'.ReplaceAll('b', 'z');
          */
-        ReplaceAll?(search: string, replacer: string): string;
+        ReplaceAll(search: string, replacer: string): string;
 
         /**
          * split a string by a pattern into a Array
@@ -513,7 +513,7 @@ declare global {
          * // returns ['bbbb', 'bbb', 'c']
          * 'abbbbabbbac'.Split('a');
          */
-        Split?(pattern: string): string[];
+        Split(pattern: string): string[];
 
         /**
          * convert all letters of the string into lower case.
@@ -526,7 +526,7 @@ declare global {
          * // returns "ababab"
          * 'aBaBaB'.ToLower();
          */
-        ToLower?(): string;
+        ToLower(): string;
 
         /**
          * convert all letters of the string into upper case.
@@ -538,7 +538,7 @@ declare global {
          * // returns "ABABAB"
          * 'aBaBaB'.ToLower();
          */
-        ToUpper?(): string;
+        ToUpper(): string;
 
         /**
          * removes all consecutive string sequences at the beginning and end of the string.
@@ -553,7 +553,7 @@ declare global {
          * '___Test___'.Trim('_');
          * '   Test   '.Trim();
          */
-        Trim?(sequence?: string): string;
+        Trim(sequence?: string): string;
 
         /**
          * removes all consecutive string sequences at the beginning of the string.
@@ -568,7 +568,7 @@ declare global {
          * '___Test'.Trim('_');
          * '   Test'.Trim();
          */
-        TrimStart?(sequence?: string): string;
+        TrimStart(sequence?: string): string;
 
         /**
          * removes all consecutive string sequences at the end of the string.
@@ -583,7 +583,7 @@ declare global {
          * 'Test___'.Trim('_');
          * 'Test   '.Trim();
          */
-        TrimEnd?(sequence?: string): string;
+        TrimEnd(sequence?: string): string;
 
         /**
          * cuts a string to a certain length.
@@ -601,7 +601,7 @@ declare global {
          * // returns "##-#X"
          * '##-##Chars##-##'.Truncate(5, 'X');
          */
-        Truncate?(length: number, omission?: string, separator?: string): string;
+        Truncate(length: number, omission?: string, separator?: string): string;
 
         /**
          * clones the current String into a new one
@@ -614,7 +614,7 @@ declare global {
          * // returns a new Instance "Test"
          * 'Test'.Copy();
          */
-        Copy?(): string;
+        Copy(): string;
 
         /**
          * checks if a string is in the current string.
@@ -631,7 +631,7 @@ declare global {
          * // returns false
          * 'abbbc'.Contains('xxx');
          */
-        Contains?(search: string): boolean;
+        Contains(search: string): boolean;
 
         /**
          * returns the number of occurrences of the search string.
@@ -648,7 +648,7 @@ declare global {
          * // returns 2
          * 'zzabcabcabczz'.ContainsCount('cabc', true);
          */
-        ContainsCount?(search: string, allowOverlapping?: boolean): number;
+        ContainsCount(search: string, allowOverlapping?: boolean): number;
 
         /**
          * check if this String strict the same as the given string
@@ -664,7 +664,7 @@ declare global {
          * // returns false
          * 'Test'.Equals('test');
          */
-        Equals?(value: string): boolean;
+        Equals(value: string): boolean;
 
         /**
          * insert a string into this string on a specific position
@@ -683,7 +683,7 @@ declare global {
          * // returns "abcx"
          * 'abc'.Insert(100, 'x');
          */
-        Insert?(startIndex: number, value: string): string;
+        Insert(startIndex: number, value: string): string;
 
         /**
          * remove a number of characters from the position in this string
@@ -702,7 +702,7 @@ declare global {
          * // returns ""
          * 'abc'.Remove(10, 5);
          */
-        Remove?(position: number, count?: number): string;
+        Remove(position: number, count?: number): string;
 
         /**
          * get a part of this string
@@ -723,7 +723,7 @@ declare global {
          * // return "st"
          * 'Test'.Substring(100, 2);
          */
-        Substring?(position: number, length?: number): string;
+        Substring(position: number, length?: number): string;
 
         /**
          * get the position of the first match in this string
@@ -741,7 +741,7 @@ declare global {
          * // returns -1
          * 'abc'.IndexOf('z');
          */
-        IndexOf?(value: string): number;
+        IndexOf(value: string): number;
 
         /**
          * get the position of the last match in this string
@@ -759,7 +759,7 @@ declare global {
          * // returns -1
          * 'abc'.LastIndexOf('z');
          */
-        LastIndexOf?(value: string): number;
+        LastIndexOf(value: string): number;
 
         /**
          * found text between 2 text marks and returns the results as string array
@@ -774,7 +774,7 @@ declare global {
          * // returns "betweenmodule"
          * 'beforemodule@NgModule({betweenmodule})aftermodule'.TextBetween('@NgModule({', '})');
          */
-        TextBetween?(begin: string, end: string): string[];
+        TextBetween(begin: string, end: string): string[];
 
         /**
          * check if this string only contains Ascii letters
@@ -789,7 +789,7 @@ declare global {
          * // returns false
          * '©'.IsAscii();
          */
-        IsAscii?(): boolean;
+        IsAscii(): boolean;
 
         /**
          * check if this string only have alphabetical letters without "ß"
@@ -805,7 +805,7 @@ declare global {
          * 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1'.IsAlpha();
          * 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZß'.IsAlpha();
          */
-        IsAlpha?(): boolean;
+        IsAlpha(): boolean;
 
         /**
          * get the String Length in Bytes
@@ -818,6 +818,6 @@ declare global {
          * // returns 3
          * 'ABC'.Bytes();
          */
-        Bytes?(): number;
+        Bytes(): number;
     }
 }

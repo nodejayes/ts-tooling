@@ -11,7 +11,7 @@
  * // returns 3
  * Create(3, 2);
  */
-export function Create<T>(initialValue: T, defaultValue?: T): T;
+export function Create<T>(initialValue: T, defaultValue: T): T;
 
 /**
  * create a Value with a Factory Method null safe with optional default value

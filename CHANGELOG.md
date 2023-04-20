@@ -1,3 +1,10 @@
+### 3.10.5
+
+* fix types for Typescript
+* update rxjs for new Angular Version
+* add Array Function RemoveCountFromStart
+* add Array Function RemoveCountFromEnd
+
 ### 3.10.4
 
 * add some missing global exports

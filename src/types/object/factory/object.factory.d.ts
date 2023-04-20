@@ -101,7 +101,7 @@ export class ObjectFactory {
      * // returns null
      * ObjectFactory.Get({Hello:{Name:'Paul',World:'World'}}, 'hello');
      */
-    static Get<T>(obj: any, key: string): T;
+    static Get<T>(obj: any, key: string): T | undefined;
 
     /**
      * set the Value of a Object by key

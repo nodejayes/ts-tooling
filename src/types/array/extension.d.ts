@@ -33,7 +33,7 @@ declare global {
          * // returns 0
          * [].Count();
          */
-        Count?(): number;
+        Count(): number;
 
         /**
          * get the maximum number in the Array
@@ -53,7 +53,7 @@ declare global {
          * // returns 4
          * [1,2,'3',4,'5'].Max();
          */
-        Max?(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
+        Max(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * get the minimum number in the Array
@@ -73,7 +73,7 @@ declare global {
          * // returns 4
          * ['1','2','3',4,'5'].Min();
          */
-        Min?(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
+        Min(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * get the Mean from all numbers in this array
@@ -91,7 +91,7 @@ declare global {
          * // returns 4
          * ['1','2','3',4,'5'].Mean();
          */
-        Mean?(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
+        Mean(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * get the Sum from all numbers in this array
@@ -109,7 +109,7 @@ declare global {
          * // returns 4
          * ['1','2','3',4,'5'].Sum();
          */
-        Sum?(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
+        Sum(filterMethod?: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * add the given element at the end of the list
@@ -131,7 +131,7 @@ declare global {
          * // returns [1]
          * [].Add(1);
          */
-        Add?(element: T): T[];
+        Add(element: T): T[];
 
         /**
          * add the element at the end of the list when the element not exists in the list.
@@ -155,7 +155,7 @@ declare global {
          * // returns [1]
          * [1].AddIfNotExists(1);
          */
-        AddIfNotExists?(element: T): T[];
+        AddIfNotExists(element: T): T[];
 
         /**
          * shrink the array into a new object with a convert function.
@@ -172,7 +172,7 @@ declare global {
          *      return target.Concat(e, ',');
          *  }, '')
          */
-        Reduce?<K>(reducer: (target: K, e: T) => K, initial: K): K;
+        Reduce<K>(reducer: (target: K, e: T) => K, initial: K): K;
 
         /**
          * add multiple elements at the end of this array
@@ -194,7 +194,7 @@ declare global {
          * // returns [1,2,3,4]
          * [1].AddRange([2,3,4]);
          */
-        AddRange?(elements: T[]): T[];
+        AddRange(elements: T[]): T[];
 
         /**
          * add multiple elements at the end of this array when not exists
@@ -218,7 +218,7 @@ declare global {
          * // returns [1]
          * [1].AddRangeIfNotExists([1,1,1]);
          */
-        AddRangeIfNotExists?(elements: T[]): T[];
+        AddRangeIfNotExists(elements: T[]): T[];
 
         /**
          * remove all Elements from this array
@@ -239,7 +239,7 @@ declare global {
          * // returns []
          * [1,2,3].Clear();
          */
-        Clear?(): T[];
+        Clear(): T[];
 
         /**
          * check if this array have the given element
@@ -268,7 +268,7 @@ declare global {
          * [1,2,3].Contains(50);
          * [{hello:'world'}].Contains({hello:'world'});
          */
-        Contains?(element: T): boolean;
+        Contains(element: T): boolean;
 
         /**
          * get a new instance of the array
@@ -289,7 +289,7 @@ declare global {
          * // returns [1,2,3]
          * [1,2,3].Copy();
          */
-        Copy?(): T[];
+        Copy(): T[];
 
         /**
          * check if the find Method returns true for a element in the list
@@ -305,7 +305,7 @@ declare global {
          * // returns false
          * [1,2,3].Exists(e => e === 20);
          */
-        Exists?(condition: (d: T) => boolean): boolean;
+        Exists(condition: (d: T) => boolean): boolean;
 
         /**
          * find the first element that matches the condition in the array
@@ -327,7 +327,7 @@ declare global {
          * // returns 2
          * [1,2,3].Find((e) => e > 1);
          */
-        Find?(condition: (d: T, idx: number, arr: T[]) => boolean): T;
+        Find(condition: (d: T, idx: number, arr: T[]) => boolean): T | undefined;
 
         /**
          * find the last element that matches the condition in the array
@@ -349,7 +349,7 @@ declare global {
          * // returns 3
          * [1,2,3].FindLast((e) => e > 1);
          */
-        FindLast?(condition: (d: T, idx: number, arr: T[]) => boolean): T;
+        FindLast(condition: (d: T, idx: number, arr: T[]) => boolean): T | undefined;
 
         /**
          * replace a Item in the List takes the first match
@@ -365,7 +365,7 @@ declare global {
          * // returns [1,2,3]
          * [1,5,3].Replace((e) => e === 5, 2);
          */
-        Replace?(condition: (d: T, idx: number, arr: T[]) => boolean, item: T, force?: boolean): T[];
+        Replace(condition: (d: T, idx: number, arr: T[]) => boolean, item: T, force?: boolean): T[];
 
         /**
          * get the index number of the first matched element in the array
@@ -387,7 +387,7 @@ declare global {
          * // returns 1
          * [1,2,3,1,2,3].FindIndex(e => e === 2);
          */
-        FindIndex?(condition: (d: T, idx: number, arr: T[]) => boolean): number;
+        FindIndex(condition: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * get all elements that match the condition
@@ -409,7 +409,8 @@ declare global {
          * // returns [2,3]
          * [1,2,3].FindAll(i => i > 1);
          */
-        FindAll?(condition: (d: T, idx: number, arr: T[]) => boolean): T[];
+        FindAll<S extends T>(condition: (d: T, idx: number, arr: T[]) => d is S): S[];
+        FindAll(condition: (d: T, idx: number, arr: T[]) => boolean): T[];
 
         /**
          * get the index number of the last matched element in the array
@@ -431,7 +432,7 @@ declare global {
          * // returns 4
          * [1,2,3,1,2,3].FindLastIndex(e => e === 2);
          */
-        FindLastIndex?(condition: (d: T, idx: number, arr: T[]) => boolean): number;
+        FindLastIndex(condition: (d: T, idx: number, arr: T[]) => boolean): number;
 
         /**
          * check if a condition returns true for any element in the array
@@ -447,7 +448,7 @@ declare global {
          * // returns false
          * [1,2,3].TrueForAll(e => e === 1);
          */
-        TrueForAll?(condition: (d: T, idx: number, arr: T[]) => boolean): boolean;
+        TrueForAll(condition: (d: T, idx: number, arr: T[]) => boolean): boolean;
 
         /**
          * insert a element in the array at a specific position
@@ -470,7 +471,7 @@ declare global {
          * // returns [1,5,2,3]
          * [1,2,3].Insert(1, 5);
          */
-        Insert?(index: number, element: T): T[];
+        Insert(index: number, element: T): T[];
 
         /**
          * insert a array of elements in the array at a specific position
@@ -485,7 +486,7 @@ declare global {
          * // returns [1,4,5,6,2,3]
          * [1,2,3].Insert(1, [4,5,6]);
          */
-        InsertRange?(index: number, elements: T[]): T[];
+        InsertRange(index: number, elements: T[]): T[];
 
         /**
          * get the array index of a element
@@ -510,7 +511,7 @@ declare global {
          * // returns 4
          * [1,2,3,1,2,3].IndexOf(2, 2);
          */
-        IndexOf?(element: T, fromIndex?: number): number;
+        IndexOf(element: T, fromIndex?: number): number;
 
         /**
          * remove a element from the list
@@ -524,7 +525,35 @@ declare global {
          * // returns [1,3]
          * [1,2,3].Remove(2);
          */
-        Remove?(element: T): T[];
+        Remove(element: T): T[];
+
+        /**
+         * remove the Elements from beginning of the Array
+         *
+         * @category array
+         *
+         * @param n the number of elements to remove
+         * @returns the changed array
+         *
+         * @example
+         * // creates [3,4]
+         * [1,2,3,4].RemoveCountFromStart(2);
+         */
+        RemoveCountFromStart<T>(n: number): T[];
+
+        /**
+         * remove the Elements from end of the Array
+         *
+         * @category array
+         *
+         * @param n the number of elements to remove
+         * @returns the changed array
+         *
+         * @example
+         * // creates [1,2]
+         * [1,2,3,4].RemoveCountFromEnd(2);
+         */
+        RemoveCountFromEnd<T>(n: number): T[];
 
         /**
          * remove all elements that match the given condition
@@ -540,7 +569,8 @@ declare global {
          * // return []
          * [1,2,3].RemoveAll(() => true);
          */
-        RemoveAll?(match: (d: T, idx: number, arr: T[]) => boolean): T[];
+        RemoveAll<S extends T>(match: (d: T, idx: number, arr: T[]) => d is S): S[];
+        RemoveAll(match: (d: T, idx: number, arr: T[]) => boolean): T[];
 
         /**
          * remove element at specific position
@@ -554,7 +584,7 @@ declare global {
          * // returns [1,3]
          * [1,2,3].RemoveAt(1);
          */
-        RemoveAt?(index: number): T[];
+        RemoveAt(index: number): T[];
 
         /**
          * remove multiple elements from the array
@@ -569,7 +599,7 @@ declare global {
          * [1,2,3,4,5,6].RemoveRange([4,5,6]);
          * [1,2,3].RemoveRange([4,5,6]);
          */
-        RemoveRange?(elements: T[]): T[];
+        RemoveRange(elements: T[]): T[];
 
         /**
          * turn around the array elements
@@ -582,7 +612,7 @@ declare global {
          * // returns [3,2,1]
          * [1,2,3].Reverse();
          */
-        Reverse?(): T[];
+        Reverse(): T[];
 
         /**
          * sort the elements in a array
@@ -600,7 +630,7 @@ declare global {
          * // returns ['c', 'b', 'a']
          * ['a', 'b', 'c'].Sort(ListSortOrder.DESC);
          */
-        Sort?(order?: ListSortOrder): T[];
+        Sort(order?: ListSortOrder): T[];
 
         /**
          * sort a array of objects by the given keys
@@ -713,7 +743,7 @@ declare global {
          *       }
          *    ].SortBy(['Name'], [ListSortOrder.ASC]);
          */
-        SortBy?(keys: string[], orders?: ListSortOrder[]): T[];
+        SortBy(keys: string[], orders?: ListSortOrder[]): T[];
 
         /**
          * get the array element at the given index or null
@@ -734,7 +764,7 @@ declare global {
          * // returns 2
          * [1,2,3].ElementAt(1);
          */
-        ElementAt?(index: number): T;
+        ElementAt(index: number): T | undefined;
 
         /**
          * check if any element is in the array
@@ -758,7 +788,7 @@ declare global {
          * // returns false
          * [].Any();
          */
-        Any?(condition?: (d: T) => boolean): boolean;
+        Any(condition?: (d: T) => boolean): boolean;
 
         /**
          * get the First element of the array or the first that match the condition
@@ -787,7 +817,7 @@ declare global {
          * // return 10
          * [1,2,3,4,5,6].FirstOrDefault(() => false, 10);
          */
-        FirstOrDefault?(condition?: (d: T, idx: number, arr: T[]) => boolean, def?: T): T;
+        FirstOrDefault<S extends T | undefined>(condition?: (d: T, idx: number, arr: T[]) => boolean, def?: S): S;
 
         /**
          * get the last element of the array or the last that match the condition
@@ -807,7 +837,7 @@ declare global {
          * // return 10
          * [1,2,3,4,5,6].LastOrDefault(() => false, 10);
          */
-        LastOrDefault?(condition?: (d: T, idx: number, arr: T[]) => boolean, def?: T): T;
+        LastOrDefault<S extends T | undefined>(condition?: (d: T, idx: number, arr: T[]) => boolean, def?: S): S;
 
         /**
          * groups a array of elements by a condition
@@ -828,7 +858,7 @@ declare global {
          * // returns {'1': [1], '2': [2], '3': [3,3,3]}
          * [1,2,3,3,3].GroupBy(e => e);
          */
-        GroupBy?(condition: (d: T) => any): {[key: string]: T[]};
+        GroupBy(condition: (d: T) => any): {[key: string]: T[]};
 
         /**
          * groups a array of elements by a condition and returns the group keys
@@ -848,7 +878,7 @@ declare global {
          * // returns ['1', '2', '3']
          * [1,2,3,3,3].GroupKey(e => e);
          */
-        GroupKey?(condition: (d: T) => any): string[];
+        GroupKey(condition: (d: T) => any): string[];
 
         /**
          * convert all elements of the array into other form
@@ -870,7 +900,7 @@ declare global {
          * // returns ['Test1', 'Test2', 'Test3']
          * [1,2,3].Convert(e => 'Test' + e);
          */
-        Convert?<K>(convertMethod: ((d: T, idx: number, arr: T[]) => K) | ((d: T) => Promise<K>)): K[];
+        Convert<K>(convertMethod: (d: T, idx: number, arr: T[]) => K): K[];
 
         /**
          * joins the array elements into a string with separator
@@ -884,7 +914,7 @@ declare global {
          * // returns "1,2,3"
          * [1,2,3].Join(',');
          */
-        Join?(separator?: string): string;
+        Join(separator?: string): string;
 
         /**
          * merge two arrays by the condition
@@ -899,7 +929,7 @@ declare global {
          * // returns [1,2,3,6]
          * [1,2,3].UnionBy([4,5,6], e => e === 6);
          */
-        UnionBy?<T>(items: T[], check: (d: T) => boolean): T[];
+        UnionBy<T>(items: T[], check: (d: T) => boolean): T[];
 
         /**
          * remove the Element at the index from the Array and give it back
@@ -914,7 +944,7 @@ declare global {
          * console.info(tmp)
          * // prints [1,3]
          */
-        Pull?<T>(index: number): T;
+        Pull<T>(index: number): T | undefined;
 
         /**
          * split a Array into chunks
@@ -935,7 +965,7 @@ declare global {
          * // returns [[1,2], [3,4], [5]]
          * [1,2,3,4,5].Chunk(2);
          */
-        Chunk?<T>(chunkSize: number): T[][];
+        Chunk<T>(chunkSize: number): T[][];
 
         /**
          * remove all Duplicates in the list
@@ -947,7 +977,7 @@ declare global {
          * // returns [1,2,3]
          * [1,1,2,2,3].Unique();
          */
-        Unique?<T>(cb?: (a: T, b: T) => boolean): T[];
+        Unique<T>(cb?: (a: T, b: T) => boolean): T[];
 
         /**
          * execute a callback for each Array Segment
@@ -968,7 +998,7 @@ declare global {
          *     counter++;
          * });
          */
-        ForSegment?(cb: (current: T, next: T) => void): void;
+        ForSegment(cb: (current: T, next: T) => void): void;
 
         /**
          * iterate over the items they are not in the given indexes
@@ -983,7 +1013,7 @@ declare global {
          * // 4
          * // 5
          */
-        Without?(indexes: number[], cb: (current: T) => void): void;
+        Without(indexes: number[], cb: (current: T) => void): void;
 
         /**
          * flat a array to a specific depth
@@ -1007,7 +1037,7 @@ declare global {
          * // returns [1,[[[[2,3,4]]]],5]
          * [1,[[[[[2,3,4]]]]],5].Flat(1);
          */
-        Flat?(depth?: number): T[];
+        Flat<T>(depth?: number): T[];
 
         /**
          * get the Elements from the end of the Array
@@ -1028,7 +1058,7 @@ declare global {
          * // returns [2,3]
          * [1,2,3].Tail(2);
          */
-        Tail?(length: number): T[];
+        Tail(length: number): T[];
 
         /**
          * get the Elements on the Top of the Array
@@ -1049,6 +1079,6 @@ declare global {
          * // returns [1,2]
          * [1,2,3].Head(2);
          */
-        Head?(length: number): T[];
+        Head(length: number): T[];
     }
 }

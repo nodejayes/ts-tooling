@@ -62,4 +62,6 @@ describe('Array Benchmarks', () => {
     it('Insert', () => executeBenchmarks(require('./types/array/Insert'), 'Array.Insert'));
     it('InsertRange', () => executeBenchmarks(require('./types/array/InsertRange'), 'Array.InsertRange'));
     it('Tail', () => executeBenchmarks(require('./types/array/Tail'), 'Array.Tail'));
+    it('RemoveCountFromStart', () => executeBenchmarks(require('./types/array/RemoveCountFromStart'), 'Array.RemoveCountFromStart'));
+    it('RemoveCountFromEnd', () => executeBenchmarks(require('./types/array/RemoveCountFromEnd'), 'Array.RemoveCountFromEnd'));
 });

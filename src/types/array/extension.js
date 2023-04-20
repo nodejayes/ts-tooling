@@ -567,6 +567,44 @@ Array.prototype.Remove = function (element) {
 };
 
 /**
+ * remove the Elements from beginning of the Array
+ *
+ * @function module:types/array.Array#RemoveCountFromStart
+ *
+ * @param n {number} the number of elements to remove
+ * @returns {any[]} the changed array
+ *
+ * @example
+ * // creates [3,4]
+ * [1,2,3,4].RemoveCountFromStart(2);
+ */
+Array.prototype.RemoveCountFromStart = function (n) {
+    for (var i = 0; i < n; i++) {
+        this.shift();
+    }
+    return this;
+};
+
+/**
+ * remove the Elements from end of the Array
+ *
+ * @function module:types/array.Array#RemoveCountFromEnd
+ *
+ * @param n {number} the number of elements to remove
+ * @return {any[]} the changed array
+ *
+ * @example
+ * // creates [1,2]
+ * [1,2,3,4].RemoveCountFromEnd(2);
+ */
+Array.prototype.RemoveCountFromEnd = function (n) {
+    for (var i = 0; i < n; i++) {
+        this.pop();
+    }
+    return this;
+};
+
+/**
  * remove all elements that match the given condition
  *
  * @function module:types/array.Array#RemoveAll
@@ -819,7 +857,7 @@ Array.prototype.SortBy = function (keys, orders) {
  * [1,2,3].ElementAt(1);
  */
 Array.prototype.ElementAt = function (index) {
-    return this[index] || null;
+    return this[index] || undefined;
 };
 
 /**
@@ -881,9 +919,9 @@ Array.prototype.Any = function (condition) {
  */
 Array.prototype.FirstOrDefault = function (condition, def) {
     if (!IsFunction(condition)) {
-        return this[0] || (def ? def : null);
+        return this[0] || def;
     }
-    return Find(this, condition) || (def ? def : null);
+    return Find(this, condition) || def;
 };
 
 /**
@@ -954,9 +992,9 @@ Array.prototype.TrueForAll = function (condition) {
  */
 Array.prototype.LastOrDefault = function (condition, def) {
     if (!IsFunction(condition)) {
-        return this[this.length-1] || (def ? def : null);
+        return this[this.length-1] || def;
     }
-    return FindLast(this, condition) || (def ? def : null);
+    return FindLast(this, condition) || def;
 };
 
 /**
@@ -1125,7 +1163,7 @@ Array.prototype.Pull = function(index) {
         el = this.ElementAt(index);
     }
     this.splice(index, 1);
-    return el;
+    return el || undefined;
 };
 
 function baseSlice(array, start, end) {

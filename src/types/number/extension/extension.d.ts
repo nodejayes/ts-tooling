@@ -21,7 +21,7 @@ declare global {
          * // returns false
          * 5.2.IsInRange(1.0, 2.0)
          */
-        IsInRange?(lower: number, upper: number): boolean;
+        IsInRange(lower: number, upper: number): boolean;
 
         /**
          * Checks if a number is equal to the current number.
@@ -34,7 +34,7 @@ declare global {
          * // returns false
          * (1).Equals(2)
          */
-        Equals?(value: number): boolean;
+        Equals(value: number): boolean;
 
         /**
          * Checks if a number is greater than the current number.
@@ -48,7 +48,7 @@ declare global {
          * (1).IsAbove(1)
          * (1).IsAbove(5)
          */
-        IsAbove?(value: number): boolean;
+        IsAbove(value: number): boolean;
 
         /**
          * Checks if a number is lower than the current number.
@@ -62,7 +62,7 @@ declare global {
          * (1).IsBelow(1)
          * (1).IsBelow(0)
          */
-        IsBelow?(value: number): boolean;
+        IsBelow(value: number): boolean;
 
         /**
          * Sets the value of the number to the lower or upper limit if the number is greater or smaller than the opere or lower limit.
@@ -80,7 +80,7 @@ declare global {
          * (1).Clamp(1, 10);
          * (0.5).Clamp(1, 10);
          */
-        Clamp?(lower: number, upper: number): number;
+        Clamp(lower: number, upper: number): number;
 
         /**
          * Add the current number to the given number.
@@ -93,7 +93,7 @@ declare global {
          * // returns 3
          * (1).Add(1).Add(1);
          */
-        Add?(value: number): number;
+        Add(value: number): number;
 
         /**
          * Subtracts the current number with the given number.
@@ -106,7 +106,7 @@ declare global {
          * // returns 0
          * (2).Subtract(1).Subtract(1);
          */
-        Subtract?(value: number): number;
+        Subtract(value: number): number;
 
         /**
          * Multiplies the current number by the given number.
@@ -119,7 +119,7 @@ declare global {
          * // returns 20
          * (1).Multiply(10).Multiply(2);
          */
-        Multiply?(value: number): number;
+        Multiply(value: number): number;
 
         /**
          * Divides the current number with the given number.
@@ -134,7 +134,7 @@ declare global {
          * // throws an Error
          * (10).Divide(0);
          */
-        Divide?(value: number): number;
+        Divide(value: number): number;
 
         /**
          * increases the number by 1 or the value that was given.
@@ -147,7 +147,7 @@ declare global {
          * // returns 5
          * (1).Increment(4);
          */
-        Increment?(step?: number): number;
+        Increment(step?: number): number;
 
         /**
          * decreases the number by 1 or the value that was given.
@@ -160,7 +160,7 @@ declare global {
          * // returns 1
          * (5).Decrement(4);
          */
-        Decrement?(step?: number): number;
+        Decrement(step?: number): number;
 
         /**
          * Rounds a number up or down if the next digit is greater than or equal to 5.
@@ -175,7 +175,7 @@ declare global {
          * // returns 4100
          * (4060).Round(-2);
          */
-        Round?(precision?: number): number;
+        Round(precision?: number): number;
 
         /**
          * Rounding off a number
@@ -190,7 +190,7 @@ declare global {
          * // returns 4000
          * (4060).Floor(-2);
          */
-        Floor?(precision?: number): number;
+        Floor(precision?: number): number;
 
         /**
          * Rounding up a number
@@ -205,7 +205,7 @@ declare global {
          * // returns 6100
          * (6040).Ceil(-2);
          */
-        Ceil?(precision?: number): number;
+        Ceil(precision?: number): number;
 
         /**
          * number of digits before the decimal point
@@ -217,7 +217,7 @@ declare global {
          * // returns 2
          * (10).Numerals();
          */
-        Numerals?(): number;
+        Numerals(): number;
 
         /**
          * Number of digits after the decimal point
@@ -228,6 +228,6 @@ declare global {
          * // returns 1
          * (1.5).DecimalPlaces();
          */
-        DecimalPlaces?(): number;
+        DecimalPlaces(): number;
     }
 }

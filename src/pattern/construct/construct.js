@@ -15,9 +15,7 @@
  */
 function Create(initialValue, defaultValue) {
     return typeof initialValue === typeof undefined || initialValue === null ?
-        defaultValue ?
-            defaultValue :
-            null :
+        defaultValue :
         initialValue;
 }
 

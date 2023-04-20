@@ -8,7 +8,7 @@ function _find(array, cb, getIdx = false, up = true) {
                 return getIdx ? i : item;
             }
         }
-        return getIdx ? -1 : null;
+        return getIdx ? -1 : undefined;
     }
 
     for (let i = array.length-1; i >= 0; i--) {
@@ -17,7 +17,7 @@ function _find(array, cb, getIdx = false, up = true) {
             return getIdx ? i : item;
         }
     }
-    return getIdx ? -1 : null;
+    return getIdx ? -1 : undefined;
 }
 
 const GetSortValue = (v1, v2) => {

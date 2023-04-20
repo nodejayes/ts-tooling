@@ -246,7 +246,7 @@ describe('Array Extension Tests', () => {
             assert.equal([1,2,3].Find(e => e === 2), 2);
         });
         it('returns null when no element match the condition', () => {
-            assert.isNull([1,2,3].Find(e => e === 20));
+            assert.isUndefined([1,2,3].Find(e => e === 20));
         });
     });
     describe('[Method]: FindLast', () => {
@@ -930,8 +930,8 @@ describe('Array Extension Tests', () => {
         it('get the array element at the position', () => {
             assert.equal([1,2,3].ElementAt(1), 2);
         });
-        it('get null when no element at position', () => {
-            assert.isNull([1,2,3].ElementAt(5));
+        it('get undefined when no element at position', () => {
+            assert.isUndefined([1,2,3].ElementAt(5));
         });
     });
     describe('[Method]: Any', () => {
@@ -962,7 +962,33 @@ describe('Array Extension Tests', () => {
             assert.equal([1,2,3,4,5,6].FirstOrDefault(() => false, 10), 10);
         });
         it('return null when no default value was passed', () => {
-            assert.isNull([1,2,3].FirstOrDefault(() => false));
+            assert.isUndefined([1,2,3].FirstOrDefault(() => false));
+        });
+    });
+    describe('[Method]: RemoveCountFromStart', () => {
+        it('removes the first two elements', () => {
+            assert.deepEqual([1,2,3,4].RemoveCountFromStart(2), [3,4]);
+        });
+        it('empty array returns empty array', () => {
+            assert.deepEqual([].RemoveCountFromStart(2), []);
+        });
+        it('change by reference', () => {
+            const demo = [1,2,3,4];
+            demo.RemoveCountFromStart(2);
+            assert.deepEqual(demo, [3,4]);
+        });
+    });
+    describe('[Method]: RemoveCountFromEnd', () => {
+        it('removes the last two elements', () => {
+            assert.deepEqual([1,2,3,4].RemoveCountFromEnd(2), [1,2]);
+        });
+        it('empty array returns empty array', () => {
+            assert.deepEqual([].RemoveCountFromEnd(2), []);
+        });
+        it('change by reference', () => {
+            const demo = [1,2,3,4];
+            demo.RemoveCountFromEnd(2);
+            assert.deepEqual(demo, [1,2]);
         });
     });
     describe('[Method]: LastOrDefault', () => {
@@ -976,7 +1002,7 @@ describe('Array Extension Tests', () => {
             assert.equal([1,2,3,4,5,6].LastOrDefault(() => false, 10), 10);
         });
         it('return null when no default value was passed', () => {
-            assert.isNull([1,2,3].LastOrDefault(() => false));
+            assert.isUndefined([1,2,3].LastOrDefault(() => false));
         });
     });
     describe('[Method]: GroupBy', () => {
