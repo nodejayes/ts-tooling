@@ -6,28 +6,55 @@ require('mocha');
 function print(meta, title) {
     console.log(title);
     console.log('----------------------------------------');
-    console.log(`tsTooling: ${meta.tsTooling.duration} ms`);
-    console.log(`nativeJs:  ${meta.nativeJs.duration} ms`);
-    console.log(`lodash:    ${meta.lodash.duration} ms`);
+    if (meta.tsTooling.hasBenchmark) {
+        console.log(`tsTooling: ${meta.tsTooling.duration} ms`);
+    } else {
+        console.log('tsTooling: no benchmark');
+    }
+    if (meta.nativeJs.hasBenchmark) {
+        console.log(`nativeJs:  ${meta.nativeJs.duration} ms`);
+    } else {
+        console.log('nativeJs:  no benchmark');
+    }
+    if (meta.lodash.hasBenchmark) {
+        console.log(`lodash:    ${meta.lodash.duration} ms`);
+    } else {
+        console.log('lodash:    no benchmark');
+    }
     console.log('----------------------------------------');
 }
 
 function executeBenchmarks(benchmarks, title) {
     let meta = {
-        tsTooling: {duration: 0},
-        nativeJs: {duration: 0},
-        lodash: {duration: 0},
+        tsTooling: {
+            duration: 0,
+            hasBenchmark: true,
+        },
+        nativeJs: {
+            duration: 0,
+            hasBenchmark: true,
+        },
+        lodash: {
+            duration: 0,
+            hasBenchmark: true,
+        },
     };
     let start = performance.now();
-    benchmarks.tsTooling();
+    if (benchmarks.tsTooling() === undefined) {
+        meta.tsTooling.hasBenchmark = false;
+    }
     meta.tsTooling.duration = performance.now() - start;
 
     start = performance.now();
-    benchmarks.nativeJs();
+    if (benchmarks.nativeJs() === undefined) {
+        meta.nativeJs.hasBenchmark = false;
+    }
     meta.nativeJs.duration = performance.now() - start;
 
     start = performance.now();
-    benchmarks.lodash();
+    if (benchmarks.lodash() === undefined) {
+        meta.lodash.hasBenchmark = false;
+    }
     meta.lodash.duration = performance.now() - start;
 
     print(meta, title);

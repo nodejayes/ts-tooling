@@ -2,24 +2,27 @@ module.exports = (executions, offset, tsToolingBenchmark, nativeJsBenchmark, lod
     const n = executions || 1000000;
 
     function tsTooling() {
-        let c = 0;
+        let c = 1;
         while(++c < n) {
             tsToolingBenchmark();
         }
+        return tsToolingBenchmark();
     }
 
     function nativeJs() {
-        let c = 0;
+        let c = 1;
         while(++c < n) {
             nativeJsBenchmark();
         }
+        return nativeJsBenchmark();
     }
 
     function lodash() {
-        let c = 0;
+        let c = 1;
         while(++c < n) {
             lodashBenchmark();
         }
+        return lodashBenchmark();
     }
 
     return {
