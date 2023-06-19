@@ -4,6 +4,7 @@
 * update rxjs for new Angular Version
 * add Array Function RemoveCountFromStart
 * add Array Function RemoveCountFromEnd
+* add new DateTime constructor function FromCustomString
 
 ### 3.10.4
 

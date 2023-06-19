@@ -172,6 +172,21 @@ export class DateTime {
     static FromISOString(isoStr: string, zone?: string): DateTime;
 
     /**
+     * create a DateTime from a custom formatted string
+     *
+     * @memberof module:types/datetime.DateTime
+     * @static
+     * @param input the custom input string
+     * @param format the format of the input string
+     * @param zone the time zone of the input string
+     *
+     * @example
+     * // returns a DateTime Object at 2020-01-20 UTC Timezone
+     * DateTime.FromCustomString('20.01.2020', 'dd.MM.yyyy', 'UTC');
+     */
+    static FromCustomString(input: string, format: string, zone?: string): DateTime;
+
+    /**
      * create DateTime from Milliseconds
      *
      * @param milliseconds the total milliseconds since 1970-01-01 00:00:00.000

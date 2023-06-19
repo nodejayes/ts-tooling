@@ -101,6 +101,18 @@ describe('DateTime Tests', () => {
         assertDate(dt, vgl);
     });
 
+    it('can create DateTime from German String', () => {
+        const vgl = luxon.DateTime.utc(2020,1,20);
+        const dt = DateTime.FromCustomString('20.01.2020', 'dd.MM.yyyy', 'UTC');
+        assertDate(dt, vgl);
+    });
+
+    it('can create DateTime from English String', () => {
+        const vgl = luxon.DateTime.utc(2020,1,20);
+        const dt = DateTime.FromCustomString('01/20/2020', 'MM/dd/yyyy', 'UTC');
+        assertDate(dt, vgl);
+    });
+
     it('can create DateTime from ISO Chars with a specific Timezone', () => {
         const vgl = luxon.DateTime.utc();
         const dt = DateTime.FromISOString(vgl.toISO(), 'Europe/Berlin');

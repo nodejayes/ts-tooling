@@ -699,6 +699,30 @@ DateTime.FromISOString = (isoStr, zone) => {
 };
 
 /**
+ * create a DateTime from a custom formatted string
+ *
+ * @memberof module:types/datetime.DateTime
+ * @static
+ * @param input {string} the custom input string
+ * @param format {string} the format of the input string
+ * @param zone {string} the time zone of the input string
+ *
+ * @example
+ * // returns a DateTime Object at 2020-01-20 UTC Timezone
+ * DateTime.FromCustomString('20.01.2020', 'dd.MM.yyyy', 'UTC');
+ */
+DateTime.FromCustomString = (input, format, zone) => {
+    if (StringFactory.IsNullOrEmpty(zone)) {
+        zone = 'UTC';
+    }
+    const tmp = luxon.DateTime.fromFormat(input, format, {
+        zone,
+    });
+    checkLuxonTimeZone(zone, tmp);
+    return DateTime.FromLuxon(tmp);
+};
+
+/**
  * create DateTime from Milliseconds
  *
  * @memberof module:types/datetime.DateTime
