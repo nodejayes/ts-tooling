@@ -6,6 +6,7 @@
 * add Array Function RemoveCountFromEnd
 * add new DateTime constructor function FromCustomString
 * update dependencies
+* change internal date handling to support ClassTransformer
 
 ### 3.10.4
 

@@ -22,6 +22,19 @@ function cloneLuxonDate(date) {
     }, {zone: date.zone});
 }
 
+function normalize(date, zone) {
+    return {
+        year: date.year,
+        month: date.month,
+        day: date.day,
+        hour: date.hour,
+        minute: date.minute,
+        second: date.second,
+        millisecond: date.millisecond,
+        zone,
+    };
+}
+
 /**
  * represent a DateTime DataType
  *
@@ -125,7 +138,7 @@ class DateTime {
      * @return {number}
      */
     get UTCOffsetMinutes() {
-        return this._date.offset;
+        return cloneLuxonDate(this._date).offset;
     }
 
     /**
@@ -135,7 +148,7 @@ class DateTime {
      * @return {string}
      */
     get Zone() {
-        return this._date.zoneName;
+        return cloneLuxonDate(this._date).zoneName;
     }
 
     /**
@@ -145,7 +158,7 @@ class DateTime {
      * @return {number}
      */
     get DayOfWeek() {
-        return this._date.weekday;
+        return cloneLuxonDate(this._date).weekday;
     }
 
     /**
@@ -155,7 +168,7 @@ class DateTime {
      * @return {number}
      */
     get DayOfYear() {
-        return this._date.ordinal;
+        return cloneLuxonDate(this._date).ordinal;
     }
 
     /**
@@ -165,7 +178,7 @@ class DateTime {
      * @return {number}
      */
     get DaysInYear() {
-        return this._date.daysInYear;
+        return cloneLuxonDate(this._date).daysInYear;
     }
 
     /**
@@ -175,7 +188,7 @@ class DateTime {
      * @return {number}
      */
     get DaysInMonth() {
-        return this._date.daysInMonth;
+        return cloneLuxonDate(this._date).daysInMonth;
     }
 
     /**
@@ -185,7 +198,7 @@ class DateTime {
      * @return {number}
      */
     get YearQuarter() {
-        return this._date.quarter;
+        return cloneLuxonDate(this._date).quarter;
     }
 
     /**
@@ -195,7 +208,7 @@ class DateTime {
      * @return {number}
      */
     get YearWeekNumber() {
-        return this._date.weekNumber;
+        return cloneLuxonDate(this._date).weekNumber;
     }
 
     /**
@@ -225,7 +238,7 @@ class DateTime {
      * @return {boolean}
      */
     get Valid() {
-        return this._date.isValid;
+        return cloneLuxonDate(this._date).isValid;
     }
 
     /**
@@ -251,12 +264,11 @@ class DateTime {
      * new DateTime('Europe/Berlin', 2019, 1, 1, null, null, null, null, true);
      */
     constructor(zone, year, month, day, hour, minute, second, millisecond, keepTimeZone = false) {
-        this._date = luxon.DateTime.utc();
         if (StringFactory.IsNullOrEmpty(zone)) {
             zone = 'UTC';
         }
         const isTimeSet = keepTimeZone === true || (hour >= 0 || minute >= 0 || second >= 0 || millisecond >= 0);
-        this._date = luxon.DateTime.utc(
+        const tmp = luxon.DateTime.utc(
             year >= 0 ? year : undefined,
             month ? month : undefined,
             day ? day : undefined,
@@ -265,7 +277,8 @@ class DateTime {
             second >= 0 ? second : undefined,
             millisecond >= 0 ? millisecond : undefined)
             .setZone(zone, {keepLocalTime: isTimeSet});
-        checkLuxonTimeZone(zone, this._date);
+        checkLuxonTimeZone(zone, tmp);
+        this._date = normalize(tmp, zone);
     }
 
     /**
@@ -310,7 +323,7 @@ class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').Add(DateTime.FromISOString('2019-01-02T23:00:00'));
      */
     Add(dt) {
-        this._date = this._date.plus({
+        const tmp = cloneLuxonDate(this._date).plus({
             year: dt.Year,
             month: dt.Month,
             day: dt.Day,
@@ -319,6 +332,7 @@ class DateTime {
             second: dt.Second,
             millisecond: dt.Millisecond,
         });
+        this._date = normalize(tmp, tmp.zone);
         return this;
     }
 
@@ -335,7 +349,7 @@ class DateTime {
      * DateTime.FromISOString('2019-02-02T02:00:00').Equals(DateTime.FromISOString('2019-02-02T03:00:00'));
      */
     Equals(dt) {
-        return this._date.diff(dt._date).milliseconds === 0;
+        return cloneLuxonDate(this._date).diff(cloneLuxonDate(dt._date)).milliseconds === 0;
     }
 
     /**
@@ -349,7 +363,7 @@ class DateTime {
      * DateTime.FromISOString('2019-02-02T02:00:00').Subtract(DateTime.FromISOString('0000-01-01T01:00:00'));
      */
     Subtract(dt) {
-        this._date = this._date.minus({
+        const tmp = cloneLuxonDate(this._date).minus({
             year: dt.Year,
             month: dt.Month,
             day: dt.Day,
@@ -358,6 +372,7 @@ class DateTime {
             second: dt.Second,
             millisecond: dt.Millisecond,
         });
+        this._date = normalize(tmp, tmp.zone);
         return this;
     }
 
@@ -372,7 +387,8 @@ class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddYears(2);
      */
     AddYears(years) {
-        this._date = this._date.plus({years});
+        const tmp = cloneLuxonDate(this._date).plus({years});
+        this._date = normalize(tmp, tmp.zone);
         return this;
     }
 
@@ -387,7 +403,8 @@ class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddMonths(2);
      */
     AddMonths(months) {
-        this._date = this._date.plus({months});
+        const tmp = cloneLuxonDate(this._date).plus({months});
+        this._date = normalize(tmp, tmp.zone);
         return this;
     }
 
@@ -402,7 +419,8 @@ class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddDays(2);
      */
     AddDays(days) {
-        this._date = this._date.plus({days});
+        const tmp = cloneLuxonDate(this._date).plus({days});
+        this._date = normalize(tmp, tmp.zone);
         return this;
     }
 
@@ -417,7 +435,8 @@ class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddHours(1);
      */
     AddHours(hours) {
-        this._date = this._date.plus({hours});
+        const tmp = cloneLuxonDate(this._date).plus({hours});
+        this._date = normalize(tmp, tmp.zone);
         return this;
     }
 
@@ -432,7 +451,8 @@ class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddMinutes(1);
      */
     AddMinutes(minutes) {
-        this._date = this._date.plus({minutes});
+        const tmp = cloneLuxonDate(this._date).plus({minutes});
+        this._date = normalize(tmp, tmp.zone);
         return this;
     }
 
@@ -447,7 +467,8 @@ class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddSeconds(1);
      */
     AddSeconds(seconds) {
-        this._date = this._date.plus({seconds});
+        const tmp = cloneLuxonDate(this._date).plus({seconds});
+        this._date = normalize(tmp, tmp.zone);
         return this;
     }
 
@@ -462,7 +483,8 @@ class DateTime {
      * DateTime.FromISOString('2019-01-01T00:00:00').AddMilliseconds(1);
      */
     AddMilliseconds(milliseconds) {
-        this._date = this._date.plus({milliseconds});
+        const tmp = cloneLuxonDate(this._date).plus({milliseconds});
+        this._date = normalize(tmp, tmp.zone);
         return this;
     }
 
@@ -479,7 +501,7 @@ class DateTime {
      * DateTime.FromISOString('2019-02-02T02:00:00').IsBefore(DateTime.FromISOString('2019-02-02T02:00:00'));
      */
     IsBefore(dt) {
-        return this._date.diff(dt._date).milliseconds < 0;
+        return cloneLuxonDate(this._date).diff(cloneLuxonDate(dt._date)).milliseconds < 0;
     }
 
     /**
@@ -495,7 +517,7 @@ class DateTime {
      * DateTime.FromISOString('2019-02-02T02:00:00').IsAfter(DateTime.FromISOString('2019-02-03T02:00:00'));
      */
     IsAfter(dt) {
-        return this._date.diff(dt._date).milliseconds > 0;
+        return cloneLuxonDate(this._date).diff(cloneLuxonDate(dt._date)).milliseconds > 0;
     }
 
     /**
@@ -512,7 +534,7 @@ class DateTime {
      * DateTime.FromISOString('2019-11-02T02:00:00', 'UTC').IsDaylightSavingTime();
      */
     IsDaylightSavingTime() {
-        return this._date.isInDST;
+        return cloneLuxonDate(this._date).isInDST;
     }
 
     /**
@@ -530,7 +552,7 @@ class DateTime {
      * DateTime.FromISOString('2019-01-01T12:23:54').ToString('yyyy');
      */
     ToString(fmt) {
-        return this._date.toFormat(fmt ? fmt : 'yyyy-MM-dd HH:mm:ss');
+        return cloneLuxonDate(this._date).toFormat(fmt ? fmt : 'yyyy-MM-dd HH:mm:ss');
     }
 
     /**
@@ -543,7 +565,7 @@ class DateTime {
      * DateTime.FromISOString('2019-01-01T12:23:54.555').ToISO();
      */
     ToISO() {
-        return this._date.toISO();
+        return cloneLuxonDate(this._date).toISO();
     }
 
     /**
@@ -559,9 +581,10 @@ class DateTime {
      * DateTime.FromISOString('2019-06-02T02:00:00', 'Europe/Berlin').ToUnixTimestamp(false);
      */
     ToUnixTimestamp(inMs = true) {
+        const tmp = cloneLuxonDate(this._date);
         return inMs ?
-            this._date.toMillis() :
-            NumberFactory.NewInteger(this._date.toMillis() / 1000);
+            tmp.toMillis() :
+            NumberFactory.NewInteger(tmp.toMillis() / 1000);
     }
 
     /**
@@ -578,7 +601,7 @@ class DateTime {
      * DateTime.FromISOString('2019-06-02T02:30:56', 'Europe/Berlin').ToJavascriptDate().toISOString();
      */
     ToJavascriptDate() {
-        return this._date.toJSDate();
+        return cloneLuxonDate(this._date).toJSDate();
     }
 
     /**
@@ -593,7 +616,7 @@ class DateTime {
      * DateTime.FromISOString('2019-06-02T02:30:56', 'Europe/Berlin').ToJSON();
      */
     ToJSON() {
-        return this._date.toJSON();
+        return cloneLuxonDate(this._date).toJSON();
     }
 
     /**
