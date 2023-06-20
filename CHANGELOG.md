@@ -5,6 +5,7 @@
 * add Array Function RemoveCountFromStart
 * add Array Function RemoveCountFromEnd
 * add new DateTime constructor function FromCustomString
+* update dependencies
 
 ### 3.10.4
 

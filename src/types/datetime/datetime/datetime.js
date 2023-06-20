@@ -19,8 +19,7 @@ function cloneLuxonDate(date) {
         minute: date.minute,
         second: date.second,
         millisecond: date.millisecond,
-        zone: date.zone,
-    });
+    }, {zone: date.zone});
 }
 
 /**
