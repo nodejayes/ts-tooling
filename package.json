@@ -57,6 +57,7 @@
     "owasp-dependency-check": "^0.0.21",
     "prettier": "^2.8.8",
     "set-value": "^4.1.0",
+    "taffydb": "^2.7.3",
     "trim-newlines": "^5.0.0",
     "tui-jsdoc-template": "^1.2.2"
   }
